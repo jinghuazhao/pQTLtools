@@ -1,0 +1,53 @@
+\contentsline {chapter}{\numberline {1}Preliminaries}{1}
+\contentsline {section}{\numberline {1.1}Basic terminology}{1}
+\contentsline {section}{\numberline {1.2}Mean and variance of noncentral $\chi ^2$ distribution}{5}
+\contentsline {section}{\numberline {1.3}Segregation analysis}{6}
+\contentsline {section}{\numberline {1.4}Linkage analysis}{9}
+\contentsline {section}{\numberline {1.5}Association analysis}{15}
+\contentsline {section}{\numberline {1.6}Coalescent models}{19}
+\contentsline {section}{\numberline {1.7}Outline of thesis}{22}
+\contentsline {section}{\numberline {1.8}Bibliographic notes}{22}
+\contentsline {chapter}{\numberline {2}Linkage tests for small pedigrees}{24}
+\contentsline {section}{\numberline {2.1}Introduction}{24}
+\contentsline {section}{\numberline {2.2}Methods}{25}
+\contentsline {section}{\numberline {2.3}Results}{33}
+\contentsline {section}{\numberline {2.4}Discussion}{35}
+\contentsline {section}{\numberline {2.5}Bibliographic notes}{37}
+\contentsline {chapter}{\numberline {3}Case-control allelic association}{38}
+\contentsline {section}{\numberline {3.1}Introduction}{38}
+\contentsline {section}{\numberline {3.2}Methods}{39}
+\contentsline {section}{\numberline {3.3}Results}{43}
+\contentsline {section}{\numberline {3.4}Discussion}{45}
+\contentsline {section}{\numberline {3.5}Bibliographic notes}{46}
+\contentsline {chapter}{\numberline {4}Marker characteristics and fine mapping}{49}
+\contentsline {section}{\numberline {4.1}Introduction}{49}
+\contentsline {section}{\numberline {4.2}Methods}{50}
+\contentsline {section}{\numberline {4.3}Results}{52}
+\contentsline {section}{\numberline {4.4}Discussion}{56}
+\contentsline {section}{\numberline {4.5}Bibliographic notes}{57}
+\contentsline {chapter}{\numberline {5}Computer simulation methods}{60}
+\contentsline {section}{\numberline {5.1}Introduction}{60}
+\contentsline {section}{\numberline {5.2}Methods, implementations and results}{61}
+\contentsline {section}{\numberline {5.3}Discussion}{72}
+\contentsline {section}{\numberline {5.4}Bibliographic notes}{74}
+\contentsline {chapter}{\numberline {6}Association in nuclear families}{76}
+\contentsline {section}{\numberline {6.1}Introduction}{76}
+\contentsline {section}{\numberline {6.2}Methods}{77}
+\contentsline {section}{\numberline {6.3}Results}{81}
+\contentsline {section}{\numberline {6.4}Discussion}{82}
+\contentsline {section}{\numberline {6.5}Bibliographic notes}{85}
+\contentsline {chapter}{\numberline {7}Transmission/disequilibrium tests}{86}
+\contentsline {section}{\numberline {7.1}Introduction}{86}
+\contentsline {section}{\numberline {7.2}Methods}{87}
+\contentsline {section}{\numberline {7.3}Results}{89}
+\contentsline {section}{\numberline {7.4}Discussion}{91}
+\contentsline {section}{\numberline {7.5}Bibliographic notes}{92}
+\contentsline {chapter}{\numberline {8}Bells and Whistles}{95}
+\contentsline {section}{\numberline {8.1}Major findings}{95}
+\contentsline {section}{\numberline {8.2}Possible extensions}{96}
+\contentsline {section}{\numberline {8.3}Epilogue}{97}
+\contentsline {chapter}{\numberline {A}Gene counting method}{98}
+\contentsline {chapter}{\numberline {B}Computer programs}{114}
+\contentsline {section}{\numberline {B.1}C subroutines}{114}
+\contentsline {section}{\numberline {B.2}SAS programs}{127}
+\contentsline {section}{\numberline {B.3}QBASIC program}{132}

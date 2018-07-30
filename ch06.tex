@@ -1,0 +1,336 @@
+% 2/8/2000 change ``candidate gene'' to ``modelling haplotypes''
+% 15/10/2001 fix Xiong/Jin (2000) result and wrap everything within ``Method''
+
+\chapter{Association in nuclear families}
+
+\section{Introduction}
+
+Typical linkage analysis assumes linkage equilibrium between disease locus and
+markers.  Several recent works show that the incorporation of LD information is
+necessary to increase power (e.g.  Terwilliger \& Ott 1994; Xiong \& Jin 2000).
+This chapter presents some work on this subject for nuclear families, which is
+relatively easy to study and generalisable to general pedigrees (e.g.  Morton
+1955; Elston \& Steward 1971; Cannings et al.  1978; Bonney 1986; Martin et al.
+2000; Abecasis, Cookson \& Cardon 2000).
+
+Assumption of linkage equilibrium between disease locus and markers formed the
+basis of allele frequency estimation of Boehnke (1991) and maximisation over
+penetrances of Curtis \& Sham (1995).  Terwilliger \& Ott (1994) suggested
+that lod score can be more appropriately obtained from the joint likelihood
+linkage and association, treating haplotype frequencies as nuisance parameters.
+However as recently pointed out by Xiong \& Jin (2000), they did not provide
+algorithm incorporating LD parameters, nor did they use the correct critical
+value for the statistics (Self \& Liang 1987) and conduct power analysis.
+Family-based association methods assume a disease locus and a marker locus
+being either in equilibrium or in disequilibrium.  There is a growing consensus
+that a general likelihood framework combining linkage and association is needed
+(Thomson 1995a, 1995b; Xiong \& Jin 2000; Slager et al.  2001).
+
+
+\section*{Chapter aims}
+
+This chapter attempts to use mathematical optimisation in combined linkage and
+association analysis for nuclear families.  These include numerical experiments
+similar to those in Terwilliger \& Ott (1994), Xiong \& Jin (2000).
+
+
+\section{Methods}
+
+Figure~\ref{ch23} is from Terwilliger \& Ott (1994), as an example of linkage
+analysis allowing for LD.
+
+\fig{4.5truein}{ch23.new}{Pedigree for association analysis between two marker loci}{ch23}
+
+Initial haplotype frequencies were obtained from founder individuals using {\bf
+EH}, and the input data, not given there, is as follows.
+\begin{verbatim}
+2 2
+3 0 0
+1 8 0
+0 1 0
+\end{verbatim}
+Note that the first line indicates that there are two markers each with two
+alleles, the following lines correspond to a $3\times 3$ table formed by the
+three genotypes at each marker.
+
+Denote the allele frequencies at marker 1 to be $p_1, p_2$ and those at marker
+2 to be $q_1, q_2$.  A single disequilibrium parameter ($\delta$) is sufficient
+to describe disequilibrium between two biallelic loci.  The variation between
+$\delta=0$ and $\delta=-p_1q_1$ or $p_2q_2$ indicates no and complete linkage
+disequilibrium.  This motivates us to incorporate this parameter into the
+standard linkage analysis, so that the likelihood calculation is based directly
+on haplotype frequencies and a proper optimisation procedure is used.
+
+Consider a generalised single locus with allele frequencies $p$ and $q$ for the
+normal and disease alleles, respectively. The penetrances of genotypes given
+two, one and no disease alleles are $f_2$, $f_1$ and $f_0$.  Consider also a
+marker locus with $n$ alleles, their associated haplotype frequencies being
+$h_{11},...,h_{1n}, h_{21},...,h_{2n}$, conditional on individual's affection
+status, the genotypic distribution is then obtained according to equation
+(\ref{gendist}).  Alzheimer's model (Model 3 below) is used to define genotypic
+probabilities, through which 22 models are generated (see table~\ref{models6})
+by a SAS program given in Appendix B.
+
+\begin{table}[h]
+\caption{The 22 models compatible with Alzheimer's\label{models6}}
+\centering
+\vskip 0.3cm
+\begin{tabular}{llllll}
+\hline
+model &   $q$  & $\delta$ &    $f_0$ &    $f_1$  &    $f_2$\\
+\hline
+  1   & 0.117  & 0.10027  & 0.049410 &  0.21760  &  0.95834\\
+  2   & 0.130  & 0.10179  & 0.045761 &  0.20521  &  0.92021\\
+  3   & 0.130  & 0.11310  & 0.050000 &  0.20000  &  0.80000\\
+  4   & 0.143  & 0.10365  & 0.042493 &  0.19338  &  0.88008\\
+  5   & 0.156  & 0.09454  & 0.034453 &  0.18342  &  0.97647\\
+  6   & 0.156  & 0.10585  & 0.039598 &  0.18224  &  0.83867\\
+  7   & 0.169  & 0.09707  & 0.031942 &  0.17163  &  0.92221\\
+  8   & 0.182  & 0.09994  & 0.029809 &  0.16087  &  0.86821\\
+  9   & 0.195  & 0.09184  & 0.022419 &  0.14611  &  0.95217\\
+ 10   & 0.195  & 0.10315  & 0.028020 &  0.15114  &  0.81520\\
+ 11   & 0.208  & 0.09539  & 0.021137 &  0.13677  &  0.88495\\
+ 12   & 0.221  & 0.08797  & 0.014451 &  0.11813  &  0.96561\\
+ 13   & 0.221  & 0.09928  & 0.020143 &  0.12860  &  0.82105\\
+ 14   & 0.234  & 0.09220  & 0.013983 &  0.11129  &  0.88580\\
+ 15   & 0.247  & 0.08545  & 0.008373 &  0.08962  &  0.95922\\
+ 16   & 0.247  & 0.09676  & 0.013721 &  0.10557  &  0.81225\\
+ 17   & 0.260  & 0.09035  & 0.008553 &  0.08621  &  0.86903\\
+ 18   & 0.273  & 0.08428  & 0.004232 &  0.06279  &  0.93176\\
+ 19   & 0.286  & 0.08986  & 0.004807 &  0.06335  &  0.83481\\
+ 20   & 0.299  & 0.08446  & 0.001783 &  0.03972  &  0.88456\\
+ 21   & 0.312  & 0.07940  & 0.000161 &  0.01230  &  0.93739\\
+ 22   & 0.325  & 0.08599  & 0.000580 &  0.02182  &  0.82145\\
+\hline
+\end{tabular}
+\end{table}
+
+For example with model 1, the haplotype frequencies are as follows \medskip
+
+\begin{tabular}{llll}
+\\
+                &  \multicolumn{2}{c}{marker}\\ %\cline{2-3}
+disease         &   allele 1 & allele 2 & total\\
+disease allele  & 0.115479 &  0.014521 &   0.13\\
+normal  allele  & 0.001521 &  0.868479 &   0.87\\
+total           & 0.117    &  0.883    &   1\\
+\\
+\end{tabular}
+\medskip
+
+Only a subset of these models, here models 1, 3, 11 and 22 are used to
+experiment on model identification.  The second marker is assumed to have
+three, four, or five equifrequent alleles and in linkage equilibrium with the
+first (allele frequency 0.1).  Nuclear families are generated from the {\bf
+SIM} program (Chapter 5), with sibship size in accordance with truncated
+Poisson distribution with parameter 3.  Families are kept only when there are
+two or more family members are affected.  For the simulated data, numerical
+optimisation is conducted to recover the simulated parameters.  If $q$ is
+fixed, it is set to 0.13.  If $\delta$ is fixed, it is set to be the maximum
+0.1311.  -2 log likelihood is minimised over penetrances in addition to
+different combination of frequency and disequilibrium parameters.  The problem
+is redefined as follows.
+
+When $f_0=f_1$ and $f_2=1$, $f_1$ achieves the smallest value
+${[K-q^2]}/{[1-q^2]}$, $f_1\ge \max({[K-q^2]}/{[1-q^2]},0)$, and when $f_0=0$
+and $f_1=f_2$ the biggest ${K}/{[1-(1-q)^2]}$,
+$f_1\le\min({K}/{[1-(1-q)^2]},1)$.
+
+Given $f_1,q$, if $f_1<K$, $f_2$ achieves the smallest value when $f_0=f_1$,
+i.e. ${[K-(1-q^2)f_1]}/{q^2}$; If $f_1>K$, the smallest $f_2$ is $f_1$, the
+largest is when $f_0=0$, i.e.  $\min({[K-2q(1-q)f_1]}/{q^2},1)$.
+
+Given $q, f_1, f_2$, $f_0={[K-2q(1-q)f_1-q^2f_2]}/{(1-q)^2}$.
+
+Given the lower bound $L$ and upper bound $U$ of a parameter $x$, the problem
+is then converted into a nonlinear optimisation with boundary constraints.
+$x=L+c(U-L),$ where $c$ varies between 0 and 1.
+\begin{eqnarray*}
+ \min f_1&=&\max((K-q^2)/(1-q^2),0)\cr
+ \max f_1&=&\min(K/(1-(1-q)^2),1)\cr
+ f_1&=&\min f_1+c_1(\max f_1-\min f_1)\cr \cr
+ \min f_2&=&\cases{f_1, & $f_1>K$ \cr  K-(1-q^2)f_1)/q^2,& otherwise}\cr\cr
+ \max f_2&=&\min((K-2qpf_1)/q^2,1)\cr
+ f_2&=&\min f_2+c_2(\max f_2-\min f_2)\cr
+ f_0&=&(K-2qpf_1-q^2f_2)/p^2\cr
+ \min\delta&=&\max(-qp_1,-pp_2)\cr
+ \max\delta&=&\min(pp_1,qp_2)\cr
+ \delta&=&\min\delta+c_3(\max\delta-\min\delta)\cr
+ K_n&=&p^2f_0 + 2pqf_1 + q^2f_2
+\end{eqnarray*}
+Where $c_1-c_3$ are free parameters for the penetrances and disequilibrium
+parameter, where $K_n$ is used to check for $K$.  Logistic transformation
+$f(x)={1}/{[1+\exp(-x)]}$ removing the boundary constraints is an alternative
+but not pursued.
+
+The optimisation is performed with the conjugate gradient method of SAS by
+repeatedly invoking {\bf LINKMAP}.  Statistical power can be appropriately
+evaluated in terms of sample sizes based on the log-likelihood ratio
+statistics.  For type I and type II error rates to be $\alpha=0.0001$,
+$\beta=0.10$, the noncentrality parameter is 29.92 for $\chi^2$ degrees of
+freedom 2.
+
+
+\section{Results}
+
+Based on Figure~\ref{ch23}, the likelihood ratio statistic of association
+versus no association is 12.02, corresponding to a $p$ value of 0.0005.  The
+estimated haplotype frequencies are (0.377219, 0.199704, 0.276627, 0.146450)
+assuming independence and (0.576921, 0.000002, 0.076925, 0.346152) assuming
+association; these yield a disequilibrium estimate of 0.199702.
+
+These are used as initial values for {\bf ILINK} to maximise the likelihood
+over haplotype frequencies using the whole pedigree to establish the phase.
+When the markers are unlinked the estimate (0.576837, 0.000000, 0.076995,
+0.346169) is very similar to those from {\bf EH}.  By allowing for linkage
+between the two markers, and estimate the recombination and haplotype
+frequencies jointly the results become (0.315367, 0.257574, 0.341849, 0.085210)
+and disequilibrium value of -0.061852.  The values of -2 log-likelihood from
+{\bf ILINK} are 92.9909 and 97.9948120 so the optimisation process is not
+satisfactory.  Such a seemingly simple example shows that the likelihood
+surface is not simple.
+
+The same result occurs from SAS optimisation procedure:  fixing recombination
+rate $\theta=0.5$ and starting with equal haplotype frequencies, -2
+log-likelihood value drops from 108.13096 to 92.991507 with estimates
+(0.5759099, 0, 0.0782231 and 0.345867) under Sun, -2 log-likelihood 85.335481
+and haplotype estimates (0.6622288, 0.0000000, 0.1902562, 0.1475151) under DEC
+Alpha, while allowing for linkage, -2 log-likelihood remains to be 97.975395
+with haplotype frequency estimates (0.3168155, 0.2601083, 0.3370297, 0.0860466)
+under DEC Alpha, suggesting a very flat surface with respect to $\theta$.  It
+seems the failure of SAS may be due to convergence to a local minimum, but log
+likelihood remains unchanged with moderate change in parameter value.
+
+The result is not examined in detail here for the simulated data from {\bf
+SIM} due to some vexing problems.  First, the scheme from which the sample is
+simulated may lead to ascertainment bias.  Second, it discards families
+potential for LD, such as family trios (two parents and one child), which is
+typical data for TDT designs for test of linkage and association.  Finally, the
+implementation in {\bf LINKAGE} is quite limited.
+
+
+\section{Discussion}
+
+Most current procedures have their limitations.  For example, {\bf ILINK} can
+provide maximum likelihood estimation of allele frequencies but the penetrances
+are assumed known, and most problems are difficult for the GEMINI routine when
+highly polymorphic markers are involved.  In fact these could be special cases
+of family likelihood which takes into account allele frequencies, penetrances,
+disequilibrium, in a combined linkage and association framework.  In priciple
+we can use any linkage analysis routine as function calculator for
+high-performance optimisation routine, although when the likelihood computation
+itself is computer intensive, especially for extended pedigrees with many
+loops.
+
+The likelihood in a typical linkage analysis is affected by founder allele
+frequencies.  It takes little reflection to recognise that founder LD has
+similar role, and that even families with one affected child can provide useful
+information about linkage disequilibrium.  An explicit likelihood framework is
+desirable to explore the potential increase in power, although in reality it
+remains appealing to continue experiments on programs such as {\bf LINKAGE},
+with its capability to handle haplotype frequencies.
+
+For single markers it is possible to obtain analytical power via method
+described in Thomson (1995a, 1995b) or Xiong \& Jin (2000).  A nuclear family
+with three siblings (called 3S below in their convention) was examined in
+Figure 1 of Xiong \& Jin (2000).  Specifically the family had two unaffected
+parents and three affected siblings, all were genotyped at a biallelic marker
+($p_1$=frequency of allele 1, $p_2$=frequency of allele 2) and both parents and
+the first two siblings were 1/2 heterozygous, while the third sibling is 1/1
+homozygous.  Now under Mendelian recessive model ($p_d$=frequency of normal
+allele, $p_D$=frequency of disease allele), the likelihood is
+$4(p_dp_Dp_1p_2)^2[\theta^2(1-\theta)^4+\theta^5(1-\theta)+(1-\theta)^5\theta+
+\theta^4(1-\theta)^2]$, with $\theta$ being the recombination rate between
+disease and marker loci.  The lod score curve is shown in Figure~\ref{3slod}.
+
+%\ffig{4.5truein}{ch23.ps}{ch23}
+\begin{figure}
+\centerline{\epsfig{figure=lod.ps,width=4.2in,height=3in}}
+\caption{LOD score of 3S family assuming linkage equilibrium\label{3slod}}
+\end{figure}
+
+Assume $p_1=0.1$, $p_D$=0.01, this function is approximately maximised at
+$\theta=0.2$ with lod score 0.12.  By allowing for LD between disease and
+marker loci ($\delta$), the lod score function can be expressed as $4(c_1
+c_4)^2 (1-\theta)^4 \theta^2+4c_1 c_2 c_3 c_4 [(1-\theta)^5 \theta+\theta^5
+(1-\theta)]+4(c_2 c_3)^2 \theta^4 (1-\theta)^2$, where $c_1=p_1 p_D+\delta$,
+$c_2=p_1 p_d-\delta$, $c_3=p_2 p_D-\delta$, $c_4=p_2 p_d+\delta$.  Apparently
+the lod score 1.06 in their table I would be 0.92.  It is rather unfortunate
+that even in such a simple case it would be difficult with numerical
+optimisation.  We can evaluate the lod score function using fine grid points of
+recombination rate and disequibrium value.  Many points exceeded their optimal
+solution (e.g.  1.554 when $\theta=0.325$, $\delta=0.009$).
+Figure~\ref{3slod3d} shows the lod score surface using GNUPlot.
+
+\begin{figure}
+\centerline{\epsfig{figure=lod3d.ps,width=4.2in,height=3in}}
+\caption{LOD score of 3S family assuming linkage disequilibrium\label{3slod3d}}
+\end{figure}
+
+The lod score function indeed favors larger disequilibrium value.  In general,
+let $S_{ijkl}$ be the probability of parental genotype $(i,j)\times (k,l)$) at
+a multiallelic marker, $S_{ijkl}(\theta, 0)=p_ip_jp_kp_l$ under linkage
+equilibrium; $S_{ijkl}(\theta,\delta)=p_ip_jp_kp_lW(\theta,\delta)$ under
+linkage disequilibrium ($W(\theta,\delta)$ is a function of disease/marker
+allele frequencies and disequilibrium values between them).  The noncentrality
+parameter for family trios (two parents and an affected sibling, called S
+families) is $$\lambda_S(\theta,\delta)=4N
+\sum_{ijkl}p_ip_jp_kp_lW(\theta,\delta)\ln W(\theta,\delta)$$ For single
+mutation, and from $\delta(t)=\delta_0e^{\theta t}$, with $t$ being the number
+of generations that a single mutation was introduced, they obtained the
+approximation $$\lambda_S(\theta,\delta) \approx
+\frac{4N[\theta^2+(1-\theta)^2]}{p^2(A)}\left[ (f_{DD}-f_{Dd})p_D
++(f_{Dd}-f_{dd})p_d\right]\frac{1-p_1}{p_1} e^{-2\theta t}$$ Where $p$'s and
+$p_D$ are the marker and disease allele frequencies.
+$P(A)=\sum_{r}\sum_{t}f_{rt}p_rp_t$, $r,t=d,D$.  A QBASIC program for this
+calculation is given in Appendix B.  It was surprising that all the 22 models
+virtually yielded the same likelihood and noncentrality parameter, which needs
+to be further investigated.
+
+Lake et al.  (2000) also proposed tests of association in the presence of
+linkage.  Under the null hypothesis there is linkage but no association,
+whereas under the alternaive there are both linkage and association.  They also
+proposed an empirical variance-covariance estimator that is robust to sibling
+marker-genotype correlation.  This is rather appealing but only appropriate for
+single markers.  Recently, Slager et al.  (2001), Huang \& Jiang (2001)
+proposed another framework of combined linkage and association analysis.  Their
+method used phase probability as indication of association, for it can be shown
+that equal phase probabilities for repulsive phases in the usual linkage
+analysis is true only when there is linkage equilibrium.  They expressed the
+likelihood as a function of both recombination and phase probabilities.  Again
+the threshold for significance is determined by mixture of $\chi^2$
+distributions (Self \& Liang 1987).  They showed that for cases involving two
+or more affected siblings under a variety of scenarios their method is more
+powerful than both TDT and affected sibpair mean test.
+
+Mathematical optimisation depends both on the problem and the numerical
+techniques (e.g.  Morton et al.  1983).  A successful example is {\bf Mx}
+(http://views.vcu.edu/mx/), a freely available program for structural equation
+modelling and widely used for twin data analysis.  Both {\bf Mx} and {\bf PAP}
+use {\bf NPSOL} (http://www.sbsi-sol-optimize.com/NPSOL.htm).  Others include
+{\bf CFSQP} (http://gachinese.com/aemdesign/fsqpcontents.htm) and {\bf SEARCH}
+(http://www.biomath.medsch.ucla.edu/faculty/klange/software.html).  To make the
+models feasible these tools are indispensible.
+
+
+\section{Bibliographic notes}
+
+The method of Boehnke (1991) is now part of {\bf MENDEL}.  There is renewed
+interest in combined linkage and association analysis (Terwilliger et al.
+1992; Terwilliger \& Ott 1994; Keavney et al.  1998; Terwilliger \& G\"{o}ring
+2000; Xiong \& Jin 2000).
+
+{\bf GENEHUNTER} obtains most probably haplotype frequency estimate via Viterbi
+algorithm for hidden Markov model.  {\bf SimWalk2} (Sobel \& Lange 1996) uses
+simulation-based method to extract haplotype information.  {\bf PedManager}
+(http://waldo.wi.mit.edu /ftp/distribution/software/), {\bf Maga2}
+(Mukhopadhyay et al.  1999) can also be used to estimate allele frequencies
+based on family data, but they do not seem to be based on haplotype analysis.
+It is likely that programs designed for family data could induce bias owing to
+ascertainment.
+
+Self \& Liang (1987) gave asymptotic distribution of log-likelihood ratio
+statistic under several nonstandard scenarios.  Related work on the subject
+also includes Chernoff (1954), Davis (1977, 1987), Geyer (1994).  Genetic
+examples include Holmans (1993), Chernoff \& Lander (1995), Liang \& Rathouz
+(1999).

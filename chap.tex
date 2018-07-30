@@ -1,0 +1,665 @@
+\chapter{Computer programs}\label{programs}
+
+This appendix includes some subroutines and programs used in previous chapters.
+
+\section{C subroutines}
+Subroutine {\bf fibonacci} is used to locate the interval containing optimal
+value in front of a unidimensional optimisation routine.  It has been used in
+Chapter 4.
+\begin{verbatim}
+float fibonacci(float a,float b,float(*f)(float),float eps)
+/*
+Brian D Bunday & Gerald R Garside (1987). Optimisation Methods in Pascal.
+Edward Arnold, finalized 11/11/98 JH Zhao
+*/
+{
+float x1, x2, x3, x4, f2, f4, fib0, fib1, fib2;
+int n, k;
+n=15;
+fib0 = 1;
+fib1 = 1;
+for (k = 2; k <= n; k++) {
+  fib2 = fib1 + fib0;
+  fib0 = fib1;
+  fib1 = fib2;
+}
+x1 = a;
+x3 = b;
+if (n % 2) eps = -eps;
+x2 = a + ((b - a) * fib0 + eps) / fib1;
+f2 = (*f)(x2);
+for (k = 2; k <= n; k++) {
+  x4 = x1 - x2 + x3;
+  f4 = (*f)(x4);
+  if (f4 < f2) {
+    if (x4 < x2) x3 = x2; else x1 = x2;
+    x2 = x4;
+    f2 = f4;
+  } else if (x4 < x2) x1 = x4; else x3 = x4;
+}
+asave=x1;
+bsave=x3;
+return x2;
+}
+\end{verbatim}
+
+\noindent Subroutine {\bf fmin} is popular for unidimensional optimisation
+(Forsythe et al.  1977; Press et al.  1992).  An auxiliary routine {\em sign}
+is also given.
+\begin{verbatim}
+int fcount,maxn;
+int sign(float a,float b)
+/*an invent for Fortran SIGN(.) function in C*/
+{
+return((a>b)?1:((a==b)?0:-1));
+}
+float fmin(float ax, float bx, float (*f)(float), float tol)
+/* This is Brent's method of univariate optimization adapted from
+   Forsythe GE et al. (1977) and Press WH et al. (1992)
+   JH Zhao 26/8/1998 IOP London
+*/
+{
+int iter;
+float a,b,d,fu,fv,fw,fx,p,q,r,tol1,tol2,u,v,w,x,xm;
+float e=0.0,goldr=(3.0-sqrt(5.0))/2.0,maxiter=15,zeps=1.e-10;
+a=ax;
+b=bx;
+w=v=x=bx;
+fw=fv=fx=(*f)(x);
+for (iter=1;iter<=maxiter;iter++) {
+   xm=0.5*(a+b);
+   tol2=2.0*(tol1=tol*fabs(x)+zeps);
+   if (fabs(x-xm) <= (tol2-0.5*(b-a))) return x;
+   if (fabs(e) > tol1) { /* fit parabola*/
+      r=(x-w)*(fx-fv);
+      q=(x-v)*(fx-fw);
+      p=(x-v)*q-(x-w)*r;
+      q=2.0*(q-r);
+      if (q > 0.0) p = -p;
+      q=fabs(q);
+      r=e;
+      e=d;
+      if (fabs(p) < fabs(0.5*q*r) || p > q*(a-x) || p < q*(b-x))
+      { /* parabolic interpolation step*/
+         d=p/q;
+         u=x+d;
+         if (u-a < tol2 || b-u < tol2) d=sign(tol1,xm-x);
+      } else /* golden section step*/
+         d=goldr*(e=(x >= xm ? a-x : b-x));
+   } else d=goldr*(e=(x >= xm ? a-x : b-x));
+   u=(fabs(d) >= tol1 ? x+d : x+sign(tol1,d));
+   fu=(*f)(u);
+   if (fu <= fx) { /*update a,b,v,w,and x*/
+      if (u >= x) a=x; else b=x;
+      v = w; w = x; x = u;
+      fv = fw; fw = fx; fx = fu;
+   } else {
+      if (u < x) a=u; else b=u;
+      if (fu <= fw || w == x) {
+         v=w; w=u;
+         fv=fw; fw=fu;
+      } else if (fu <= fv || v == x || v == w) {
+        v=u; fv=fu;
+      }
+   }
+}
+/*perror("Maximum iterations exceeded in fmin");*/
+return x;
+}
+\end{verbatim}
+
+\noindent Subroutine {\bf digit}, due to Zhao \& Sham (1998), has been used to
+sequentially list all possible patterns of mutations in Chapter 4.
+\begin{verbatim}
+int digit(int radix, int d[], int i)
+/*digital addition*/
+{
+if (d[i] < radix) {
+   ++d[i];
+   goto ok;
+   }
+else {
+   d[i] = 1;
+   ++d[i + 1];
+   if (d[i + 1] <= radix) goto ok;
+   }
+digit(radix, d, i+1);
+ok:
+return 0;
+}
+\end{verbatim}
+
+\noindent The binary search tree routines below are used in {\bf
+fastEHPLUS}.
+\begin{verbatim}
+typedef struct node_type
+{
+  int key,n;
+  struct node_type *left, *right;
+} node;
+node *itree(node*,int),*stree(node*,int),*dtree(node*,int);
+void inorder(node*),preorder(node*),postorder(node*);
+void rtree(node*),ptree(node*,int),etree(node*);
+node *rt=NULL;
+main()
+{
+int s[]={4,2,1,3,6,5,7,4,2,1,3,6,5,7},i;
+for(i=0;i<14;i++) rt=itree(rt,s[i]);
+printf("tree: root=%d\n\n",rt->key);
+ptree(rt,0);
+printf("\nPreorder:");
+preorder(rt);
+printf("\nInorder:");
+inorder(rt);
+printf("\nPostorder:");
+postorder(rt);
+etree(rt);
+ptree(rt,0);
+}
+node *itree(node *r,int key)
+/*insert and sort*/
+{
+  if (r==NULL)
+  {
+    r=(node*)malloc(sizeof(node));
+    if (r==NULL)
+    {
+      printf("out of memory\n");exit(0);
+    }
+    r->left=r->right=NULL;
+    r->key=key;
+    r->n=1;
+  }
+  else
+  if (key<r->key) r->left=itree(r->left,key);
+  else if (key>r->key) r->right=itree(r->right,key);
+  else r->n++;
+  return r;
+}
+node *stree(node *t,int key)
+/*search*/
+{
+  if (!t) return t;
+  while (t->key!=key)
+  {
+    if (key<t->key) t=t->left;
+    else t=t->right;
+    if (t==0) break;
+  }
+  return t;
+}
+node *dtree(node *t,int key)
+/*delete*/
+{
+  node *p,*p2;
+
+  if (!t) return t;
+  if (t->key==key)
+  {
+    if(t->left==t->right)
+    {
+      free(t);
+      return NULL;
+    }
+    else if (t->left==NULL)
+    {
+      p=t->right;
+      free(t);
+      return p;
+    }
+    else if (t->right==NULL)
+    {
+      p=t->left;
+      free(t);
+      return p;
+    }
+    else
+    {
+      p2=t->right;
+      p=t->right;
+      while (p->left) p=p->left;
+      p->left=t->left;
+      free(t);
+      return p2;
+    }
+  }
+  if (t->key<key) t->right=dtree(t->right,key);
+  else t->left=dtree(t->left,key);
+  return t;
+}
+void inorder(node *t)
+/*left subtree->t->right subtree*/
+{
+  if (!t) return;
+  inorder(t->left);
+  printf("%d ",t->key);
+  inorder(t->right);
+}
+void preorder(node *t)
+/*t->left subtree->right subtree->t*/
+{
+  if (!t) return;
+  printf("%d ",t->key);
+  preorder(t->left);
+  preorder(t->right);
+}
+void postorder(node *t)
+/*left subtree->right subtree->t*/
+{
+  if (!t) return;
+  postorder(t->left);
+  postorder(t->right);
+  printf("%d ",t->key);
+}
+void etree(node *t)
+{
+  printf("\nfree tree\n");
+  rtree(t);
+  rt=NULL;
+}
+void rtree(node *t)
+/*left subtree->right subtree->t*/
+{
+  if (!t) return;
+  rtree(t->left);
+  rtree(t->right);
+  printf("freeing %d\n",t->key);
+  free(t);
+}
+void ptree(node *r,int l)
+/*print tree inorder*/
+{
+  int i;
+  if (!r) return;
+  ptree(r->left,l+1);
+  for (i=0;i<l;++i) printf("  ");
+  printf("%d [%d]\n",r->key,r->n);
+  ptree(r->right,l+1);
+}
+\end{verbatim}
+
+\noindent Subroutines {\bf fbsize} and {\bf pbsize} are used to obtain power of
+TDT and case-control designs in Chapters 4 and 7.
+\begin{verbatim}
+#include <stdio.h>
+#include <math.h>
+#define ERROR /*Science 273: 1516-17 13SEP1996*/
+#undef ERROR  /*Science 275: 1327-30 28FEB1997*/
+typedef struct normal{float m,v;} norm;
+int fbsize(float,float),pbsize();
+float n(norm,int);
+float y,h,h1,h2,p_A,lambda_o,lambda_s,n1,n2,n3;
+float models[12][2]={
+    4.0, 0.01,      4.0, 0.10,      4.0, 0.50,      4.0, 0.80,
+    2.0, 0.01,      2.0, 0.10,      2.0, 0.50,      2.0, 0.80,
+    1.5, 0.01,      1.5, 0.10,      1.5, 0.50,      1.5, 0.80};
+main()
+{
+float gamma,p;
+int i;
+/*Risch & Merikangas 1996*/
+printf("\nThe family-based result: \n");
+printf("\ngamma   p      Y     N_asp    P_A    Het
+   N_tdt   Het N_asp/tdt  L_o   L_s\n\n");
+for(i=0;i<12;i++) {
+  gamma=models[i][0];
+  p=models[i][1];
+  fbsize(gamma,p);
+  if((i+1)%4==0) printf("\n");
+}
+/*APOE-4, Scott WK, Pericak-Vance, MA & Haines JL*/
+/*Genetic analysis of complex diseases 1327*/
+gamma=4.5;
+p=0.15;
+printf("Alzheimer's:\n\n");
+fbsize(gamma,p);
+/*Long AD, Grote MN & Langley CH 1328*/
+pbsize();
+}
+
+int fbsize(float gamma,float p)
+/*Jing Hua Zhao 30-12-98*/
+{
+norm nl, al, na, aa;
+float k,va,vd,q,w;
+q=1-p;
+k=pow(p*gamma+q,2);
+va=2*p*q*pow((gamma-1)*(p*gamma+q),2);
+vd=pow(p*q*pow(gamma-1,2),2);
+#ifdef DEBUG
+printf("K=%f VA=%f VD=%f\n",k,va,vd);
+#endif
+w=p*q*pow(gamma-1,2)/pow(p*gamma+q,2);
+y=(1+w)/(2+w);
+lambda_s=pow(1+0.5*w,2);
+lambda_o=1+w;
+h=h1=p*q*(gamma+1)/(p*gamma+q);
+p_A=gamma/(gamma+1);
+/*ASP*/
+nl.m=0;
+nl.v=1;
+al.m=2*y-1;
+#ifdef ERROR
+al.v=0;
+#else
+al.v=4*y*(1-y);
+#endif
+n1=n(al,1);
+/*TDT*/
+na.m=0;
+na.v=1;
+aa.m=sqrt(h)*(gamma-1)/(gamma+1);
+aa.v=1-h*pow((gamma-1)/(gamma+1),2);
+n2=n(aa,2);
+/*ASP-TDT*/
+h=h2=p*q*pow(gamma+1,2)/(2*pow(p*gamma+q,2)+p*q*pow(gamma-1,2));
+aa.m=sqrt(h)*(gamma-1)/(gamma+1);
+aa.v=1-h*pow((gamma-1)/(gamma+1),2);
+n3=n(aa,3);
+printf("%4.1f%5.2f|%6.3f%10.0f|%6.3f|%6.3f%8.0f%6.3f%8.0f|%6.2f%6.2f\n",
+       gamma,p,y,n1,p_A,h1,n2,h2,n3,lambda_o,lambda_s);
+return 0;
+}
+
+float n(norm all,int op)
+/*m=0,v=1 under the null hypotheses*/
+{
+float z_alpha,z1_beta;
+float s,m,v;
+m=all.m;
+v=all.v;
+z1_beta=-0.84;                       /*1-beta=0.8,-.84162123*/
+switch(op) {
+case 1:z_alpha=3.72;break;           /*alpha=1E-4,3.7190165*/
+default:z_alpha=5.33;break;          /*alpha=5E-8,5.3267239*/
+}
+s=pow((z_alpha-sqrt(v)*z1_beta)/m,2)/2; /*shared/transmitted for each parent*/
+if(op==3) s/=2;                         /*the sample size is halved*/
+return (s);
+}
+
+#define x2_alpha 29.72 /*Q=29.7168*/
+#define z_alpha 5.45   /*5.4513104*/
+
+int pbsize()
+{
+int i,j;
+float z1_beta,gamma,lambda,pi,p,q,n,k,s,kp[3]={0.01,0.05,0.10};
+/*
+\alpha=5e-8,\beta=0.8, \alpha would give 5\% genome-wide significance level
+\lambda is the NCP from the marginal table
+\pi is the pr(Affected|aa)
+*/
+gamma=4.5; /*again for Alzheimer's*/
+p=0.15;
+q=1-p;
+pi=0.065;  /*0.07 generates 163, equivalent to ASP*/
+z1_beta=-0.84;
+k=pi*pow(gamma*p+q,2);
+s=(1-pi*pow(gamma,2))*pow(p,2)+(1-pi*gamma)*2*p*q+(1-pi)*pow(q,2);
+/*LGL formula*/
+lambda=pi*(pow(gamma,2)*p+q-pow(gamma*p+q,2))/(1-pi*pow(gamma*p+q,2));
+/*my own*/
+lambda=pi*p*q*pow(gamma-1,2)/(1-pi*pow(gamma*p+q,2));
+/*not sure about +/-!*/
+n=pow(z1_beta+z_alpha,2)/lambda;
+/*may be used to correct for population prevalence*/
+printf("\nThe population-based result: Kp=%f Kq=%f n=%10.0f\n",k,s,n);
+printf("\nRandom ascertainment with disease prevalence\n");
+printf("\n         1%%         5%%        10%%\n\n");
+for(i=0;i<12;i++) {
+  gamma=models[i][0];
+  p=models[i][1];
+  q=1-p;
+  for(j=0;j<3;j++) {
+    k=kp[j];
+    pi=k/pow(gamma*p+q,2);
+    lambda=pi*p*q*pow(gamma-1,2)/(1-pi*pow(gamma*p+q,2));
+    n=pow(z1_beta-z_alpha,2)/lambda;
+    printf(" %10.f",n);
+  } printf("\n");
+  if((i+1)%4==0) printf("\n");
+}
+printf("This is only an approximation, a more accurate result\n");
+printf("can be obtained by Fisher's exact test\n");
+return 0;
+}
+\end{verbatim}
+
+\section{SAS programs}
+
+\noindent Program {\bf power} obtains noncentrality parameter of $\chi_f^2$
+distribution, $f=1, \ldots, 30$, for a given power and significant level
+$\alpha$.
+\begin{verbatim}
+title;
+data power;
+do f=1 to 30;
+   alpha=0.05;
+   power=0.8;
+   c=cinv(1-alpha,f);
+   NCP=cnonct(c,f,1-power);
+   p=probchi(c,f,c);
+   d=cinv(1-alpha,f,0.87);
+   output;
+end;
+proc print;run;
+\end{verbatim}
+
+\noindent Program {\bf ncp} includes a macro to obtain the required sample
+sizes using means of log-likelihood ratio tests.
+\begin{verbatim}
+/*Adapted from ncp.sas (use macro) JH Zhao 1-8-2002, redo 8-8-2002*/
+options nocenter nonumber;
+%macro n(data=abc);
+data abc;
+  set &data;
+  array m{7} T H F R D P G;
+  array s{7} st sh sf sr sd sp sg;
+  array nn{7} nnt nnh nnf nnr nnd nnp nng;
+  do i=1 to 7;
+     if i=3 then nn[i]=ceil(18.3/(m[i]/nobs));
+     else nn[i]=ceil(17.4/(m[i]/nobs));
+  end;
+  array n{7} nt nh nf nr nd np ng;
+  array k{7} kt kh kf kr kd kp kg;
+  do i=1 to 7;
+     if (i=3) then do;
+        n[i]=ceil(18.3/(m[i]-7)*nobs);
+        k[i]=ceil(18.3/((s[i]*s[i]-2*7)/4)*nobs);
+     end;
+     else do;
+        n[i]=ceil(17.4/(m[i]-6)*nobs);
+        k[i]=ceil(17.4/((s[i]*s[i]-2*6)/4)*nobs);
+     end;
+  end;
+  drop i;
+run;
+proc print noobs;
+     var model nnt nnr nnd nnf nnh nnp nng;
+     where model ne 'NULL';
+run;
+proc print noobs;
+     var model nt nr nd nf nh np ng;
+     where model ne 'NULL';
+run;
+proc print noobs;
+     var model kt kr kd kf kh kp kg;
+     where model ne 'NULL';
+run;
+proc print noobs;
+     var model t r d f h p g st sr sd sf sh sp sg;
+     format _numeric_ 7.2;
+run;
+%mend n;
+data abc10000;
+  nobs=10000;
+  do model='NULL','RR','RD','CR','CD','ALZ';
+     input name$ T H F R D P G/name$ st sh sf sr sd sp sg;
+     output;
+  end;
+cards;
+mean     6.086     6.161     6.244     6.153     6.159     6.144     6.157
+ std     3.481     3.552     3.595     3.550     3.557     3.533     3.548
+mean  3199.286  3199.277  3199.285  3199.285  2356.602  3063.708  3197.999
+ std   111.160   111.121   111.105   111.105    77.514   104.428   110.949
+mean  1041.946   907.501  1041.946   907.501  1041.946   895.769   907.543
+ std    57.352    52.210    57.357    52.202    57.352    50.888    52.217
+mean   804.946   716.690   805.366   716.718   541.284   710.195   716.737
+ std    60.346    57.130    60.390    57.128    42.141    56.103    57.127
+mean   261.983   252.311   262.728   252.311   262.585   251.125   252.346
+ std    31.544    30.534    31.622    30.536    31.631    30.246    30.529
+mean   268.792   270.229   270.977   270.353   261.748   269.156   270.263
+ std    32.161    32.490    32.454    32.487    31.324    32.233    32.499
+;
+data abc1000;
+  nobs=1000;
+  do model='NULL','RR','RD','CR','CD','ALZ';
+     input name$ T H F R D P G/name$ st sh sf sr sd sp sg;
+     output;
+  end;
+cards;
+mean     5.393     6.173     6.377     6.148     6.084     6.032     6.177
+ std     2.802     3.366     3.416     3.330     3.219     3.221     3.379
+mean   327.218   327.218   327.295   327.218   242.027   312.990   327.172
+ std    33.957    33.961    33.977    33.959    23.160    31.830    33.919
+mean   109.637    96.629   109.785    96.629   109.637    95.050    96.638
+ std    19.155    18.022    19.231    18.023    19.155    17.463    18.025
+mean    85.210    77.086    86.309    77.089    59.308    76.035    77.082
+ std    18.618    17.870    18.807    17.870    13.341    17.397    17.872
+mean    30.568    30.370    32.022    30.370    31.399    30.045    30.370
+ std    10.170    10.204    10.425    10.205    10.315    10.037    10.204
+mean    31.881    32.896    33.842    32.881    31.944    32.560    32.901
+ std    10.876    11.132    11.300    11.138    10.725    10.980    11.138
+;
+%n(data=abc10000);
+%n(data=abc1000);
+\end{verbatim}
+
+\noindent Macro {\bf setf} obtains disease models compatible with population
+disease prevalence and genotypic distribution.  An example of Alzheimer's
+disease is also provided.
+\begin{verbatim}
+/***********************************************************/
+/*This SAS macro gives a set of kp compatible q and f's.   */
+/*      kp=population prevalence                           */
+/*f0,f1,f2=the penetrance                                  */
+/*       q=the putative disease allele frequency           */
+/*Corrected 4/8/97 IOP JH ZHAO                             */
+/***********************************************************/
+%macro setf(setq=,setf0=,setf1=,setf2=);
+title;
+options nocenter nodate nonumber;
+proc iml;
+q=&setq;p=1-q;
+f0=&setf0;f1=&setf1;f2=&setf2;
+p1=p;p2=q;
+k=f0*p**2+f1*2*p*q+f2*q**2;
+f=(f0//f1//f2);
+b=(f0*p**2/k)//(f1*2*p*q/k)//(f2*q**2/k);
+print k q f b;
+step1=q/10;
+step2=p*q/10;
+do q=0.0 to 1.0 by step1;
+   p=1-q;
+   do d=-p*q to p*q by step2;
+      h11=p*p1+d;
+      h12=p*p2-d;
+      h21=q*p1-d;
+      h22=q*p2+d;
+      h=h11+h12+h21+h22;
+      a=(  (h11*h11 || 2*h11*h21           || h21*h21)//
+         (2*h11*h12 || 2*h11*h22+2*h12*h21 || 2*h21*h22)//
+           (h12*h12 || 2*h12*h22           || h22*h22)
+        )/k;
+      f=ginv(a)*b;
+      kp=f[1]*p**2+f[2]*2*p*q+f[3]*q**2;
+      hh=h11//h12//h21//h22;
+      c=a[+,]*k;
+      if (h11>=0 && h12>=0 && h21>=0 && h22>=0) &&
+         (f[1]>=0 && f[1] <= f[2] && f[2]<=f[3] && f[3]<=1)
+      then print hh q d a f kp;
+   end;
+end;
+quit;
+%mend setf;
+%setf(setq=0.13,setf0=0.05,setf1=0.2,setf2=0.8);
+\end{verbatim}
+
+\section{QBASIC program}
+{\bf N.BAS} illustrates how mixture of $\chi^2$ is used for obtaining
+required sample size and has been used in Chapter 6.
+\begin{verbatim}
+DECLARE SUB ssize (pd, p1, r!, g!)
+PRINT
+PRINT "pd", "p1", "r", "g", "n (t=10cM)"
+PRINT
+CALL ssize(.1, .1, 4, 15): CALL ssize(.5, .1, 4, 15)
+CALL ssize(.1, .3, 4, 15): CALL ssize(.5, .3, 4, 15)
+CALL ssize(.1, .5, 4, 15): CALL ssize(.5, .5, 4, 15)
+CALL ssize(.1, .7, 4, 15): CALL ssize(.5, .7, 4, 15)
+CALL ssize(.1, .9, 4, 15): CALL ssize(.5, .9, 4, 15)
+PRINT
+CALL ssize(.1, .1, 4, 50): CALL ssize(.5, .1, 4, 50)
+CALL ssize(.1, .3, 4, 50): CALL ssize(.5, .3, 4, 50)
+CALL ssize(.1, .5, 4, 50): CALL ssize(.5, .5, 4, 50)
+CALL ssize(.1, .7, 4, 50): CALL ssize(.5, .7, 4, 50)
+CALL ssize(.1, .9, 4, 50): CALL ssize(.5, .9, 4, 50)
+END
+
+' sample size required for LLD with S families
+'
+' pd=disease allele frequency
+' pn=normal allele frequency
+' p1=associated allele frequency for biallelic locus
+' n=sample size
+' t=theta, recombination fraction, 10cM and Haldane function
+' r=relative risk assuming multiplicative model
+' psi as in Haseman and Elston (1972)
+' K=population prevalence
+' g=generations
+' s=required sample size
+' critical value for 0.5*X^2(1)+0.5*X^2(2)=3.77*2*2.3025851
+' x2n=noncentrality parameter for alpha=0.0001, beta=0.2
+' di npnchi(2,3.77*2*2.3025851,0.2) " " nchi(2,23.978829,3.77*2*2.3025851)
+' 23.978829 .1999992
+'
+SUB ssize (pd, p1, r, g)
+t = .0906  '10cM
+psi = t ^ 2 + (1 - t) ^ 2
+pn = 1 - pd
+k = (pd * r + pn) ^ 2
+ncp = (4 * psi / k) * ((r - 1)*pd) ^ 2 * ((1 - p1) / p1) * EXP(-2 * t * g)
+x2n = 23.978829#
+n = x2n / ncp
+PRINT pd, p1, r, g, n
+
+END SUB
+\end{verbatim}
+
+%ms_model()
+%/*Ebers G et al (1996) on multiple sclerosis Nat Genet 13:472*/
+%/*for modest \lambda_s, two models are the same*/
+%/*\lambda_s=sibling risk ratio associated with the locus*/
+%{
+%float z2,z1,z0,y;
+%
+%/*model with moderate amount of dominance variance*/
+%y=1-0.5/sqrt(lambda_s);
+%z2=y*y;
+%z1=2*y*(1-y);
+%z0=pow(1-y,2);
+%
+%/*additive model, dominance variance eq 0*/
+%z2=0.5-0.25/lambda_s;
+%z1=0.5;
+%z0=0.25/lambda_s;
+%}
+
+%\section{Related publications}
+%\noindent Chapter 2: Sham et al. (1997,2000) AJHG.
+%\noindent Chapter 3: Zhao \& Sham (1997) AJMD, Zhao et al. (2000). HH
+%\noindent Chapter 3: Zhao \& Sham (2001) CMPB
+%\noindent Chapter 4: Zhao \& Sham (1998) CSDA. Sham et al. (2000). AHG
+%\noindent Chapter 5: Ohadi et al. (1999). AJHG.
+%\noindent Chapter 7: Zhao J et al. (1999) AJHG

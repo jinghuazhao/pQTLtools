@@ -1,0 +1,328 @@
+%!PS-Adobe-1.0
+%%DocumentFonts: Helvetica
+%%Title: (none)
+%%Creator: PEDPACK
+%%CreationDate: Mon Jan  8 16:57:30 2001
+%%For: jinghua
+%%Pages: 1
+%%BoundingBox: 36 36 576 756
+%%EndComments
+% Start of Prolog
+/M /moveto load def
+/L /lineto load def
+/R /rlineto load def
+/C /closepath load def
+/N /newpath load def
+/GR /grestore load def
+/SGF {setgray fill} bind def
+/GSC {gsave clip} bind def
+/tex {
+  gsave
+  newpath moveto
+  dup stringwidth pop neg 2 div
+  0 rmoveto
+  false charpath flattenpath
+  gsave 1 setgray 25 setlinewidth
+  1 setlinejoin stroke grestore
+  0 setgray fill
+  grestore
+  } bind def
+/dot {
+  gsave newpath 25 0 360 arc 0 setgray fill grestore
+  } bind def
+/cir {
+  newpath 50 0 360 arc
+  } bind def
+/squ {
+  newpath moveto
+  0 90 rlineto 90 0 rlineto
+  0 -90 rlineto -90 0 rlineto
+  closepath
+  } bind def
+/dia {
+  newpath moveto
+  -63 63 rlineto 63 63 rlineto
+  63 -63 rlineto -63 -63 rlineto
+  closepath
+  } bind def
+/ful {
+  gsave setgray fill grestore
+  } bind def
+0.1 0.1 scale  % this version uses integer coordinates at 1/10's of a point
+1 setlinecap 1 setlinejoin
+/Helvetica findfont 89 scalefont setfont
+%%EndProlog
+%%Page: 1 1
+5 setlinewidth
+4061 6351 M
+4061 6351 dot
+3854 7149 L
+4061 6351 M
+4268 7149 L
+4061 6351 M
+3957 5554 L
+stroke
+3026 6351 M
+3026 6351 dot
+2819 7149 L
+3026 6351 M
+3233 7149 L
+3026 6351 M
+2611 5554 L
+3026 6351 M
+3440 5554 L
+stroke
+1684 6351 M
+1684 6351 dot
+1364 7149 L
+1684 6351 M
+2197 7149 L
+1684 6351 M
+1364 5554 L
+1684 6351 M
+1928 5554 L
+stroke
+4682 4757 M
+4682 4757 dot
+4475 5554 L
+4682 4757 M
+4889 5554 L
+4682 4757 M
+4689 3960 L
+stroke
+3703 4757 M
+3703 4757 dot
+3440 5554 L
+3703 4757 M
+3957 5554 L
+3703 4757 M
+3712 3960 L
+stroke
+2197 4757 M
+2197 4757 dot
+2611 5554 L
+2197 4757 M
+1928 5554 L
+2197 4757 M
+2191 3960 L
+stroke
+970 4757 M
+970 4757 dot
+1364 5554 L
+970 4757 M
+651 5554 L
+970 4757 M
+970 3960 L
+stroke
+4238 3162 M
+4238 3162 dot
+4689 3960 L
+4238 3162 M
+3712 3960 L
+4238 3162 M
+3515 2365 L
+4238 3162 M
+4238 2365 L
+4238 3162 M
+4905 2365 L
+stroke
+1674 3162 M
+1674 3162 dot
+1468 3960 L
+1674 3162 M
+2191 3960 L
+1674 3162 M
+1280 2365 L
+1674 3162 M
+1674 2365 L
+1674 3162 M
+2210 2365 L
+stroke
+5224 1568 M
+5224 1568 dot
+4905 2365 L
+5224 1568 M
+5393 2365 L
+5224 1568 M
+5469 771 L
+5224 1568 M
+4962 771 L
+stroke
+2398 1568 M
+2398 1568 dot
+2783 2365 L
+2398 1568 M
+2210 2365 L
+2398 1568 M
+2398 771 L
+stroke
+1083 1568 M
+1083 1568 dot
+1280 2365 L
+1083 1568 M
+848 2365 L
+1083 1568 M
+1083 771 L
+stroke
+4268 7149 cir
+1 ful
+stroke
+3809 7104 squ
+1 ful
+stroke
+3233 7149 cir
+1 ful
+stroke
+2774 7104 squ
+1 ful
+stroke
+2197 7149 cir
+1 ful
+stroke
+1319 7104 squ
+1 ful
+stroke
+4889 5554 cir
+1 ful
+stroke
+4430 5509 squ
+1 ful
+stroke
+3957 5554 cir
+1 ful
+stroke
+3395 5509 squ
+1 ful
+stroke
+2566 5509 squ
+1 ful
+stroke
+1928 5554 cir
+1 ful
+stroke
+1319 5509 squ
+1 ful
+stroke
+651 5554 cir
+1 ful
+stroke
+4644 3915 squ
+1 ful
+stroke
+3712 3960 cir
+1 ful
+stroke
+2191 3960 cir
+1 ful
+stroke
+1423 3915 squ
+1 ful
+stroke
+970 3896 dia
+1 ful
+stroke
+5393 2365 cir
+1 ful
+stroke
+4860 2320 squ
+1 ful
+stroke
+4238 2301 dia
+1 ful
+stroke
+3515 2301 dia
+1 ful
+stroke
+2738 2320 squ
+1 ful
+stroke
+2210 2365 cir
+1 ful
+stroke
+1674 2301 dia
+1 ful
+stroke
+1235 2320 squ
+1 ful
+stroke
+848 2365 cir
+1 ful
+stroke
+4962 707 dia
+1 ful
+stroke
+2398 707 dia
+1 ful
+stroke
+1083 707 dia
+1 ful
+stroke
+5469 707 dia
+1 ful
+stroke
+(1) 4268 7235 tex
+(2) 3854 7235 tex
+(3) 3233 7235 tex
+(4) 2819 7235 tex
+(5) 2197 7235 tex
+(6) 1364 7235 tex
+(7) 4889 5641 tex
+(8) 4475 5641 tex
+(9) 3957 5641 tex
+(10) 3440 5641 tex
+(11) 2611 5641 tex
+(12) 1928 5641 tex
+(13) 1364 5641 tex
+(14) 651 5641 tex
+(15) 4689 4046 tex
+(16) 3712 4046 tex
+(17) 2191 4046 tex
+(18) 1468 4046 tex
+(19) 970 4059 tex
+(20) 5393 2452 tex
+(21) 4905 2452 tex
+(22) 4238 2465 tex
+(23) 3515 2465 tex
+(24) 2783 2452 tex
+(25) 2210 2452 tex
+(26) 1674 2465 tex
+(27) 1280 2452 tex
+(28) 848 2452 tex
+(29) 4962 870 tex
+(30) 2398 870 tex
+(31) 1083 870 tex
+(32) 5469 870 tex
+(11/AA) 4268 6994 tex
+(12/AA) 3854 6994 tex
+(22/AB) 3233 6994 tex
+(12/AB) 2819 6994 tex
+(12/AB) 2197 6994 tex
+(11/AA) 1364 6994 tex
+(12/AB) 4889 5400 tex
+(11/AA) 4475 5400 tex
+(12/AA) 3957 5400 tex
+(12/BB) 3440 5400 tex
+(22/AA) 2611 5400 tex
+(12/AA) 1928 5400 tex
+(11/AB) 1364 5400 tex
+(12/AB) 651 5400 tex
+(12/AA) 4689 3805 tex
+(11/AB) 3712 3805 tex
+(12/AA) 2191 3805 tex
+(12/AB) 1468 3805 tex
+(11/AB) 970 3792 tex
+(12/AB) 5393 2211 tex
+(12/AB) 4905 2211 tex
+(11/AA) 4238 2198 tex
+(11/AB) 3515 2198 tex
+(12/AB) 2783 2211 tex
+(11/AB) 2210 2211 tex
+(12/AA) 1674 2198 tex
+(11/AB) 1280 2211 tex
+(12/AB) 848 2211 tex
+(11/AB) 4962 603 tex
+(11/BB) 2398 603 tex
+(11/BB) 1083 603 tex
+(12/BB) 5469 603 tex
+showpage
+%%Trailer
