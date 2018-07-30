@@ -1,0 +1,809 @@
+% 30-01-2001 start to work
+% 02-02-2001 paper form
+% 17-10-2001 current form
+
+\chapter{Gene counting method}\label{genecount}
+
+A more systematic and comprehensive derivation of simple cases of gene counting
+than previously described (Terwilliger \& Ott 1994; Sham 1998) is given here.
+This includes marker-marker analysis of two and three biallelic markers and
+marker-disease analysis of one and two biallelic markers with a putative
+disease locus.  A summary of symbols used is given in table~\ref{symbol}.
+
+\begin{table}[h]
+\centering
+\caption{Symbols and their meanings\label{symbol}}
+\vskip 0.3cm
+\begin{tabular}{c|l}
+\hline
+symbol & meaning \\
+\hline
+$p$   & normal allele ($D$) frequency of a biallelic disease locus, or\\
+      & frequency of the first allele of a three-allele disease locus \\
+$q$   & disease allele ($d$) frequency of a biallelic disease locus, or\\
+      & frequency of the second allele of a three-allele disease locus \\
+$r$   & frequency of the third allele of a three-allele disease locus\\
+$f$   & disease penetrances given genotypes at disease locus\\
+$s$   & normal penetrances given genotypes at disease locus\\
+$K$   & disease prevalence in population\\
+$Q$   & normal prevalence in population\\
+$a$   & cases\\
+$u$   & controls\\
+$n$   & cell count(s) of observed contingency table\\
+$N$   & total number of individuals\\
+$c$   & haplotype count\\
+$h$   & haplotype frequency\\
+$g$   & genotypic frequency\\
+$D$   & LD parameter\\
+\hline
+\end{tabular}
+\end{table}
+
+
+\section*{Two biallelic markers}
+
+Let alleles at each marker be 1 and 2, the haplotypes they form be 11, 12, 21,
+22 and frequencies $h_{11}$, $h_{12}$, $h_{21}$, $h_{22}$.  The observed data
+can be organised into table~\ref{twotwon}.
+
+\begin{table}[h]
+\centering
+\caption{Genotype counts for biallelic markers\label{twotwon}}
+\vskip 0.3cm
+\begin{tabular}{cccc}
+\hline
+     & \multicolumn{3}{c}{marker 2} \\ \cline{2-4}
+marker 1  & 1/1 & 1/2 & 2/2\\
+\hline
+1/1  &  $n_0$ & $n_1$ & $n_2$\\
+1/2  &  $n_3$ & $n_4$ & $n_5$\\
+2/2  &  $n_6$ & $n_7$ & $n_8$\\
+\hline
+\end{tabular}
+\end{table}
+
+Note cells of this table are numbered using the convention of C programming
+language.  The haplotype contribution from each cell is unambiguous except for
+$n_4$, where EM algorithm comes in.  The doubly heterozygous cell $n_4$ can be
+from two possibilities or phase, 21/12 or 22/11 haplotypes.  The E-step obtains
+the expected probabilities $\alpha^4=h_{21} h_{12}/(h_{21} h_{12}+h_{22}
+h_{11})$ for 21/12, $1-\alpha^4$ for 22/11, and haplotype counts
+$c_{11} = 2 n_{0}+n_{1}+n_{3}+(1-\alpha^4) n_{4}$ $c_{12} = n_{1}+2
+n_{2}+n_{5}+\alpha^4 n_{4}$, $c_{21} = n_{3}+2 n_{6}+n_{7}+\alpha^4 n_{4}$,
+$c_{22} = n_{5}+n_{7}+2 n_{8}+(1-\alpha^4) n_{4}$.  Note that the sequence
+number of a cell appears in the superscript for any expected probability, and
+that phase number appear as subscript when there are more than two phases.  Now
+the M-step is to obtain haplotype frequencies which are simply $c_{ij}/(2N)$,
+$i,j=1,2$, $N=\sum_{i=0}^8n_i$.  Start with independent haplotype frequencies
+(being product of the constituent allele frequencies), the haplotype
+frequencies are updated iteratively.  The genotypic probabilities $g$,
+$i=0,\ldots,8$, are then obtained as table~\ref{twotwog}.
+
+\begin{table}[h]
+\centering
+\caption{Genotypic probabilities for two biallelic markers\label{twotwog}}
+\vskip 0.3cm
+\begin{tabular}{cccc}
+\hline
+     & \multicolumn{3}{c}{marker 2}\\ \cline{2-4}
+marker 1 & 1/1 & 1/2 & 2/2\\
+\hline
+1/1  & $h_{11}^2$     & $2 h_{11} h_{12}$ & $h_{12}^2$ \\
+1/2  & $2 h_{21} h_{11}$ & $2 (h_{21} h_{12}+h_{22} h_{11})$ & $2 h_{22} h_{12}$ \\
+2/2  & $h_{21}^2$ & $2 h_{21} h_{22}$ & $h_{22}^2$ \\
+\hline
+\end{tabular}
+\end{table}
+
+The log-likelihood is based on multinomial distribution $l=\sum_{i=0}^8n_i \ln
+(g_i)$.  Denote the log-likelihood assuming linkage equilibrium as $l_0$, that
+from the gene counting procedure as $l_1$, $2(l_1-l_0)$ has asymptotic $\chi^2$
+distribution with ($2\times 2-1)-[(2-1)+(2-1)]=1$ degree of freedom.
+
+
+\section*{Three biallelic markers}
+
+The observed contingency table is now as table~\ref{threethreen}.
+
+\begin{table}[h]
+\centering
+\caption{Genotype count for three biallelic markers\label{threethreen}}
+\vskip 0.3cm
+\begin{tabular}{ccccc}
+\hline
+ & & \multicolumn{3}{c}{marker 3} \\ \cline{3-5}
+marker 1&marker 2&1/1 & 1/2 & 2/2 \\
+\hline
+     & 1/1 & $n_0$ & $n_1$ & $n_2$ \\
+1/1  & 1/2 & $n_3$ & $n_4$ & $n_5$ \\
+     & 2/2 & $n_6$ & $n_7$ & $n_8$ \\
+     & 1/1 & $n_9$ & $n_{10}$ & $n_{11}$ \\
+1/2  & 1/2 & $n_{12}$ & $n_{13}$ & $n_{14}$ \\
+     & 2/2 & $n_{15}$ & $n_{16}$ & $n_{17}$ \\
+     & 1/1 & $n_{18}$ & $n_{19}$ & $n_{20}$ \\
+2/2  & 1/2 & $n_{21}$ & $n_{22}$ & $n_{23}$ \\
+     & 2/2 & $n_{24}$ & $n_{25}$ & $n_{26}$ \\
+\hline
+\end{tabular}
+\end{table}
+
+With slight complication we obtain our haplotype counts as follows
+\begin{eqnarray*}
+c_{111}&=&2 n_{0}+n_{1}+n_{3}+\alpha^4 n_{4}+n_{9}+(1-\alpha^{10}) n_{10}+(1-\alpha^{12}) n_{12}+\alpha^{13}_4 n_{13}\cr
+c_{112}&=&n_{1}+2 n_{2}+n_{5}+(1-\alpha^4) n_{4}+\alpha^{10} n_{10}+n_{11}+\alpha^{13}_3 n_{13}+(1-\alpha^{14}) n_{14}\cr
+c_{121}&=&n_{3}+2 n_{6}+n_{7}+(1-\alpha^4) n_{4}+\alpha^{12} n_{12}+\alpha^{13}_2 n_{13}+n_{15}+(1-\alpha^{16}) n_{16}\cr
+c_{122}&=&n_{5}+n_{7}+2 n_{8}+\alpha^4 n_{4}+\alpha^{13}_1 n_{13}+\alpha^{14} n_{14}+\alpha^{16} n_{16}+n_{17}\cr
+c_{211}&=&n_{9}+\alpha^{10} n_{10}+\alpha^{12} n_{12}+\alpha^{13}_1 n_{13}+2 n_{18}+n_{19}+n_{21}+\alpha^{22} n_{22}\cr
+c_{212}&=&(1-\alpha^{10}) n_{10}+n_{11}+\alpha^{13}_2 n_{13}+\alpha^{14} n_{14}+n_{19}+2 n_{20}+(1-\alpha^{22}) n_{22}+n_{23}\cr
+c_{221}&=&(1-\alpha^{12}) n_{12}+\alpha^{13}_3 n_{13}+n_{15}+\alpha^{16} n_{16}+n_{21}+(1-\alpha^{22}) n_{22}+2 n_{24}+n_{25}\cr
+c_{222}&=&\alpha^{13}_4 n_{13}+(1-\alpha^{14}) n_{14}+(1-\alpha^{16}) n_{16}+n_{17}+\alpha^{22} n_{22}+n_{23}+n_{25}+2 n_{26}
+\end{eqnarray*}
+where
+\begin{eqnarray*}
+   \alpha^4&=&h_{111}h_{122}/(h_{111}h_{122}+h_{121}h_{112})\cr
+    \alpha^{10}&=&h_{211}h_{112}/(h_{211}h_{112}+h_{212}h_{111})\cr
+   \alpha^{12}&=&h_{211}h_{121}/(h_{211}h_{121}+h_{221}h_{111})\cr
+ \alpha^{13}_1&=&h_{211}h_{122}/(h_{211}h_{122}+h_{212}h_{121}+h_{221}h_{112}+h_{222}h_{111})\cr
+ \alpha^{13}_2&=&h_{212}h_{121}/(h_{211}h_{122}+h_{212}h_{121}+h_{221}h_{112}+h_{222}h_{111})\cr
+ \alpha^{13}_3&=&h_{221}h_{112}/(h_{211}h_{122}+h_{212}h_{121}+h_{221}h_{112}+h_{222}h_{111})\cr
+ \alpha^{13}_4&=&h_{222}h_{111}/(h_{211}h_{122}+h_{212}h_{121}+h_{221}h_{112}+h_{222}h_{111})\cr
+      \alpha^{14}&=&h_{212}h_{122}/(h_{212}h_{122}+h_{222}h_{112})\cr
+     \alpha^{16}&=&h_{221}h_{122}/(h_{221}h_{122}+h_{222}h_{121})\cr
+   \alpha^{22}&=&h_{211}h_{122}/(h_{211}h_{222}+h_{221}h_{212})
+\end{eqnarray*}
+are expected contributations based on haplotype frequency estimates from last
+iteration.  For example for cell 13 there are 4 possible phases, the
+probability of each phase is given by $\delta_i$, $i=1,\ldots, 4$.  As before
+$h_{ijk}=c_{ijk}/(2N)$, $i,j,k=1,2$, and $N=\sum_{i=0}^{26}n_i$.  The
+genotypic probabilities, $g_i$, $i=0,\ldots,26$ are now in table~\ref{ththmg}.
+
+\begin{table}[h]
+\centering
+\caption{The genotypic probabilities for three biallelic markers\label{ththmg}}
+\vskip 0.3cm
+\begin{tabular}{ccccc}
+\hline
+   & & \multicolumn{3}{c}{marker 3} \\ \cline{3-5}
+marker 1&marker 2 & 1/1 & 1/2 & 2/2 \\
+\hline
+   & 1/1 &   $h_{111}^2$ &
+             $2 h_{112} h_{111}$ &
+             $h_{112}^2$ \\
+1/1& 1/2 &   $2 h_{111} h_{121}$ &
+             $2 (h_{112} h_{121}+h_{111} h_{122})$ &
+             $2 h_{112} h_{122}$ \\
+   & 2/2 &   $h_{121}^2$ &
+             $2 h_{121} h_{122}$ &
+             $h_{122}^2$ \\
+   & 1/1 &   $2 h_{211} h_{111}$ &
+             $2 (h_{211} h_{112}+h_{212} h_{111})$ &
+             $2 h_{212} h_{112}$ \\
+1/2& 1/2 &   $2 h_{211} h_{121}$ &
+             $2 (h_{211} h_{122}+h_{212} h_{121})$ &
+             $2 h_{212} h_{122}$ \\
+          && $+2 h_{221} h_{111}$&
+             $+2 (h_{221} h_{112}+h_{222} h_{111})$ &
+             $+2 h_{222} h_{112}$\\
+   & 2/2 &   $2 h_{221} h_{121}$  &
+             $2 (h_{221} h_{122}+h_{222} h_{121})$ &
+             $2 h_{222} h_{122}$ \\
+   & 1/1 &   $h_{211}^2$  &
+             $2 h_{211} h_{212}$ &
+             $h_{212}^2$  \\
+2/2& 1/2 &   $2 h_{211} h_{221}$ &
+             $2 (h_{211} h_{222}+h_{221} h_{212})$ &
+             $2 h_{212} h_{222}$ \\
+   & 2/2 &   $h_{221}^2$ &
+             $2 h_{221} h_{222}$ &
+             $h_{222}^2$ \\
+\hline
+\end{tabular}
+\end{table}
+
+The log-likelihood can be calculated in a similar fashion as for two biallelic
+markers but now with ($2\times 2\times 2-1)-[(2-1)+(2-1)+(2-1)]=4$ degrees of
+freedom for the log-likelihood ratio $\chi^2$ test.
+
+\section*{A disease locus and a marker}
+
+Assume the disease locus to be biallelic with disease $d$ and normal alleles
+$D$, their frequencies to be $q$ and $p=1-q$, the genotypes $dd$, $Dd$ and $DD$
+have disease penetrances $f_{dd}$, $f_{Dd}$, $f_{DD}$, and normal penetrances
+$s_{dd}$, $s_{Dd}$, $s_{DD}$, so that disease and normal prevalences to be
+$K=q^2f_{dd}+2pqf_{Dd}+p^2f_{DD}$ and $Q=1-K$, respectively.  The conditional
+probabilities of genotypes dd, Dd, DD, $\frac{q^2f_{dd}}{K}$,
+$\frac{2pqf_{Dd}}{K}$, $\frac{p^2f_{DD}}{K}$ for being a case, and
+$\frac{q^2s_{dd}}{Q}$, $\frac{2pqs_{Dd}}{Q}$, $\frac{p^2s_{DD}}{Q}$ for being
+a control suggests Table~\ref{initwotwo}.  Each cell of the contingency table
+contains two component, one from cases and one from controls.
+
+\begin{table}[h]
+\centering
+\caption{Initial count table for disease locus and a marker\label{initwotwo}}
+\vskip 0.3cm
+\begin{tabular}{cccc}
+\hline
+disease  & \multicolumn{3}{c}{marker}\\ \cline{2-4}
+locus&1/1 & 1/2 & 2/2 \\
+\hline
+d/d  & $\frac{  q^2 f_{dd}a_{0}}{K} +\frac{  q^2 s_{dd}u_{0}}{Q}$&
+       $\frac{  q^2 f_{dd}a_{1}}{K} +\frac{  q^2 s_{dd}u_{1}}{Q}$&
+       $\frac{  q^2 f_{dd}a_{2}}{K} +\frac{  q^2 s_{dd}u_{2}}{Q}$\\
+D/d  & $\frac{2 p q f_{Dd}a_{0}}{K} +\frac{2 p q s_{Dd}u_{0}}{Q}$&
+       $\frac{2 p q f_{Dd}a_{1}}{K} +\frac{2 p q s_{Dd}u_{1}}{Q}$&
+       $\frac{2 p q f_{Dd}a_{2}}{K} +\frac{2 p q s_{Dd}u_{2}}{Q}$\\
+D/D  & $\frac{  p^2 f_{DD}a_{0}}{K} +\frac{  p^2 s_{DD}u_{0}}{Q}$&
+       $\frac{  p^2 f_{DD}a_{1}}{K} +\frac{  p^2 s_{DD}u_{1}}{Q}$&
+       $\frac{  p^2 f_{DD}a_{2}}{K} +\frac{  p^2 s_{DD}u_{2}}{Q}$\\
+\hline
+\end{tabular}
+\end{table}
+
+We can use table~\ref{initwotwo} to obtain haplotype frequencies as before,
+ $\alpha^4=h_{D1} h_{d2}/(h_{D1} hd_{d2}+h_{D2} h_{d1})$, $c_{d1} = 2
+n_{0}+n_{1}+n_{3}+(1-\alpha^4) n_{4}$, $c_{d2} = n_{1}+2 n_{2}+n_{5}+\alpha^4
+n_{4}$, $c_{D1} = n_{3}+2 n_{6}+n_{7}+\alpha^4 n_{4}$, $c_{D2} = n_{5}+n_{7}+2
+n_{8}+(1-\alpha^4) n_{4}$.  This yields overestimate of disease haplotypes.
+Conditioning on population disease allele frequency unchanged gives direct
+estimates $h_{d1} = h_{d1}q/sa$, $h_{d2} = h_{d2}q/sa$, $h_{D1} = h_{D1}p/su$,
+$h_{D2} = h_{D2}p/su$, where $sa=c_{d1}+c_{d2}$, $su=c_{D1}+c_{D2}$.  The
+genotypic probabilities $g$ are given in table~\ref{dmg}.
+
+\begin{table}[h]
+\centering
+\caption{Genotypic probabilities for a disease locus and a marker\label{dmg}}
+\vskip 0.3cm
+\begin{tabular}{cccc}
+\hline
+disease  & \multicolumn{3}{c}{marker}\\ \cline{2-4}
+locus & 1/1 & 1/2 & 2/2 \\
+\hline
+d/d & $h_{d1}^2$ & $2 h_{d1} h_{d2}$ & $h_{d2}^2$ \\
+D/d & $2 h_{D1} h_{d1}$ & $2 (h_{D1} h_{d2}+h_{D2} h_{d1})$&$2 h_{D2} h_{d2}$\\
+D/D & $h_{D1}^2$ & 2 $h_{D1} h_{D2}$ & $h_{D2}^2$ \\
+\hline
+\end{tabular}
+\end{table}
+
+The updated table is now as in table~\ref{twotwou},
+
+\begin{table}[h]
+\centering
+\caption{The updated count table for a disease locus and a marker\label{twotwou}}
+\vskip 0.3cm
+\begin{tabular}{cccc}
+\hline
+disease & \multicolumn{3}{c}{marker}\\ \cline{2-4}
+locus &   1/1 & 1/2 & 2/2 \\
+\hline
+d/d  &   $\frac{g_{0} f_{dd}a_{0}}{sa_1} + \frac{g_{0} s_{dd}u_{0}}{su_1}$&
+         $\frac{g_{3} f_{Dd}a_{0}}{sa_1} + \frac{g_{3} s_{Dd}u_{0}}{su_1}$&
+         $\frac{g_{6} f_{DD}a_{0}}{sa_1} + \frac{g_{6} s_{DD}u_{0}}{su_1}$\\
+D/d  &   $\frac{g_{1} f_{dd}a_{1}}{sa_2} + \frac{g_{1} s_{dd}u_{1}}{su_2}$&
+         $\frac{g_{4} f_{Dd}a_{1}}{sa_2} + \frac{g_{4} s_{Dd}u_{1}}{su_2}$&
+         $\frac{g_{7} f_{DD}a_{1}}{sa_2} + \frac{g_{7} s_{DD}u_{1}}{su_2}$\\
+D/D  &   $\frac{g_{2} f_{dd}a_{2}}{sa_3} + \frac{g_{2} s_{dd}u_{2}}{su_3}$&
+         $\frac{g_{5} f_{Dd}a_{2}}{sa_3} + \frac{g_{5} s_{Dd}u_{2}}{su_3}$&
+         $\frac{g_{8} f_{DD}a_{2}}{sa_3} + \frac{g_{8} s_{DD}u_{2}}{su_3}$\\
+\hline
+\end{tabular}
+\end{table}
+
+where
+\begin{eqnarray*}
+  sa_1&=&g_{0} f_{dd}+g_{3} f_{Dd}+g_{6} f_{DD},\ su_1 = g_{0} s_{dd}+g_{3} s_{Dd}+g_{6} s_{DD} \cr
+  sa_2&=&g_{1} f_{dd}+g_{4} f_{Dd}+g_{7} f_{DD},\ su_2 = g_{1} s_{dd}+g_{4} s_{Dd}+g_{7} s_{DD} \cr
+  sa_3&=&g_{2} f_{dd}+g_{5} f_{Dd}+g_{8} f_{DD},\ su_3 = g_{2} s_{dd}+g_{5} s_{Dd}+g_{8} s_{DD}
+\end{eqnarray*}
+and $sa=sa_1+sa_2+sa_3$, $su=su_1+su_2+su_3$ are the overall probabilities of
+being affected and unaffected.
+
+The log-likelihood function is as follows.
+\begin{eqnarray*}
+l&=&  a_{0}\ln ((g_{0} f_{dd}+g_{3} f_{Dd}+g_{6} f_{DD})/K_1)
+     +u_{0}\ln ((g_{0} s_{dd}+g_{3} s_{Dd}+g_{6} s_{DD})/K_2) \cr
+ &+&  a_{1}\ln ((g_{1} f_{dd}+g_{4} f_{Dd}+g_{7} f_{DD})/K_1)
+     +u_{1}\ln ((g_{1} s_{dd}+g_{4} s_{Dd}+g_{7} s_{DD})/K_2) \cr
+ &+&  a_{2}\ln ((g_{2} f_{dd}+g_{5} f_{Dd}+g_{8} f_{DD})/K_1)
+     +u_{2}\ln ((g_{2} s_{dd}+g_{5} s_{Dd}+g_{8} s_{DD})/K_2)
+\end{eqnarray*}
+where $g$'s are the genotypic probabilities given above.  $K_1$ and $K_2$ could
+either be $sa$ and $su$ or $K$ and $Q$.  We can iterate the counting procedure
+until successive changes in log-likelihoods is small than a predefined small
+constant.  Different hypotheses can be tested using these haplotype frequency
+estimates.  Denote the log-likelihood obtained from counting as $l_1$, that
+obtained from marker-marker association only as $l_0$, the log-likelihood ratio
+test statistic $2(l_1-l_0)$ has asymptotic $\chi^2$ distribution with 1 degree
+of freedom.
+
+
+\section*{A disease locus and two biallelic markers}
+
+The initial table is as in table~\ref{initthreethree}.
+
+\begin{table}[h]
+\centering
+\caption{Initial count table for a disease locus and two markers\label{initthreethree}}
+\vskip 0.3cm
+\begin{tabular}{ccccc}
+\hline
+disease&&\multicolumn{3}{c}{marker 2}\\ \cline{3-5}
+locus& marker 1& 1/1 & 1/2 & 2/2 \\
+\hline
+   & 1/1 &$ \frac{  q^2f_{dd}a_{0}}{K} + \frac{  q^2s_{dd}u_{0}}{Q} $ &
+          $ \frac{  q^2f_{dd}a_{1}}{K} + \frac{  q^2s_{dd}u_{1}}{Q} $ &
+          $ \frac{  q^2f_{dd}a_{2}}{K} + \frac{  q^2s_{dd}u_{2}}{Q} $ \\
+d/d& 1/2 &$ \frac{  q^2f_{dd}a_{3}}{K} + \frac{  q^2s_{dd}u_{3}}{Q} $ &
+          $ \frac{  q^2f_{dd}a_{4}}{K} + \frac{  q^2s_{dd}u_{4}}{Q} $ &
+          $ \frac{  q^2f_{dd}a_{5}}{K} + \frac{  q^2s_{dd}u_{5}}{Q} $ \\
+   & 2/2 &$ \frac{  q^2f_{dd}a_{6}}{K} + \frac{  q^2s_{dd}u_{6}}{Q} $ &
+          $ \frac{  q^2f_{dd}a_{7}}{K} + \frac{  q^2s_{dd}u_{7}}{Q} $ &
+          $ \frac{  q^2f_{dd}a_{8}}{K} + \frac{  q^2s_{dd}u_{8}}{Q} $ \\
+   & 1/1 &$ \frac{2 p qf_{Dd}a_{0}}{K} + \frac{2 p qs_{Dd}u_{0}}{Q} $ &
+          $ \frac{2 p qf_{Dd}a_{1}}{K} + \frac{2 p qs_{Dd}u_{1}}{Q} $ &
+          $ \frac{2 p qf_{Dd}a_{2}}{K} + \frac{2 p qs_{Dd}u_{2}}{Q} $ \\
+D/d& 1/2 &$ \frac{2 p qf_{Dd}a_{3}}{K} + \frac{2 p qs_{Dd}u_{3}}{Q} $ &
+          $ \frac{2 p qf_{Dd}a_{4}}{K} + \frac{2 p qs_{Dd}u_{4}}{Q} $ &
+          $ \frac{2 p qf_{Dd}a_{5}}{K} + \frac{2 p qs_{Dd}u_{5}}{Q} $ \\
+   & 2/2 &$ \frac{2 p qf_{Dd}a_{6}}{K} + \frac{2 p qs_{Dd}u_{6}}{Q} $ &
+          $ \frac{2 p qf_{Dd}a_{7}}{K} + \frac{2 p qs_{Dd}u_{7}}{Q} $ &
+          $ \frac{2 p qf_{Dd}a_{8}}{K} + \frac{2 p qs_{Dd}u_{8}}{Q} $ \\
+   & 1/1 &$ \frac{  p^2f_{DD}a_{0}}{K} + \frac{  p^2s_{DD}u_{0}}{Q} $ &
+          $ \frac{  p^2f_{DD}a_{1}}{K} + \frac{  p^2s_{DD}u_{1}}{Q} $ &
+          $ \frac{  p^2f_{DD}a_{2}}{K} + \frac{  p^2s_{DD}u_{2}}{Q} $ \\
+D/D& 1/2 &$ \frac{  p^2f_{DD}a_{3}}{K} + \frac{  p^2s_{DD}u_{3}}{Q} $ &
+          $ \frac{  p^2f_{DD}a_{4}}{K} + \frac{  p^2s_{DD}u_{4}}{Q} $ &
+          $ \frac{  p^2f_{DD}a_{5}}{K} + \frac{  p^2s_{DD}u_{5}}{Q} $ \\
+   & 2/2 &$ \frac{  p^2f_{DD}a_{6}}{K} + \frac{  p^2s_{DD}u_{6}}{Q} $ &
+          $ \frac{  p^2f_{DD}a_{7}}{K} + \frac{  p^2s_{DD}u_{7}}{Q} $ &
+          $ \frac{  p^2f_{DD}a_{8}}{K} + \frac{  p^2s_{DD}u_{8}}{Q} $ \\
+\hline
+\end{tabular}
+\end{table}
+
+The E-step is to obtain the expected probabilities
+\begin{eqnarray*}
+\alpha^4&=& h_{d11} h_{d22}/(h_{d11} h_{d22}+h_{d21} h_{d12})\cr
+\alpha^{10}&=& h_{D11} h_{d12}/(h_{D11} h_{d12}+h_{D12} h_{d11})\cr
+\alpha^{12}&=& h_{D11} h_{d21}/(h_{D11} h_{d21}+h_{D21} h_{d11})\cr
+\alpha^{13}_1&=&h_{D11} h_{d22}/(h_{D11} h_{d22}+h_{D12} h_{d21}+h_{D21} h_{d12}+h_{D22} h_{d11})\cr
+\alpha^{13}_2&=&h_{D12} h_{d21}/(h_{D11} h_{d22}+h_{D12} h_{d21}+h_{D21} h_{d12}+h_{D22} h_{d11})\cr
+\alpha^{13}_3&=&h_{D21} h_{d12}/(h_{D11} h_{d22}+h_{D12} h_{d21}+h_{D21} h_{d12}+h_{D22} h_{d11})\cr
+\alpha^{13}_4&=&h_{D22} h_{d11}/(h_{D11} h_{d22}+h_{D12} h_{d21}+h_{D21} h_{d12}+h_{D22} h_{d11})\cr
+\alpha^{14}&=&h_{D12} h_{d22}/(h_{D12} h_{d22}+h_{D22} h_{d12})\cr
+\alpha^{16}&=&h_{D21} h_{d22}/(h_{D21} h_{d22}+h_{D22} h_{d21})\cr
+\alpha^{22}&=&h_{D11} h_{D22}/(h_{D11} h_{D22}+h_{D21} h_{D12})
+\end{eqnarray*}
+and the haplotype counts
+\begin{eqnarray*}
+ c_{d11}&=&2 n_{0}+n_{1}+n_{3}+\alpha^4 n_{4}+n_{9}+(1-\alpha^{10}) n_{10}+(1-\alpha^{12}) n_{12}+\alpha^{13}_4 n_{13}\cr
+ c_{d12}&=&n_{1}+2 n_{2}+n_{5}+(1-\alpha^4) n_{4}+\alpha^{10} n_{10}+n_{11}+\alpha^{13}_3 n_{13}+(1-\alpha^{14}) n_{14}\cr
+ c_{d21}&=&n_{3}+2 n_{6}+n_{7}+(1-\alpha^4) n_{4}+\alpha^{12} n_{12}+\alpha^{13}_2 n_{13}+n_{15}+(1-\alpha^{16}) n_{16}\cr
+ c_{d22}&=&n_{5}+n_{7}+2 n_{8}+\alpha^4 n_{4}+\alpha^{13}_1 n_{13}+\alpha^{14} n_{14}+\alpha^{16} n_{16}+n_{17}\cr
+ c_{D11}&=&n_{9}+\alpha^{10} n_{10}+\alpha^{12} n_{12}+\alpha^{13}_1 n_{13}+2 n_{18}+n_{19}+n_{21}+\alpha^{22} n_{22}\cr
+ c_{D12}&=&(1-\alpha^{10}) n_{10}+n_{11}+\alpha^{13}_2 n_{13}+\alpha^{14} n_{14}+n_{19}+2 n_{20}+(1-\alpha^{22}) n_{22}+n_{23}\cr
+ c_{D21}&=&(1-\alpha^{12}) n_{12}+\alpha^{13}_3 n_{13}+n_{15}+\alpha^{16} n_{16}+n_{21}+(1-\alpha^{22}) n_{22}+2 n_{24}+n_{25}\cr
+ c_{D22}&=&\alpha^{13}_4 n_{13}+(1-\alpha^{14}) n_{14}+(1-\alpha^{16}) n_{16}+n_{17}+\alpha^{22} n_{22}+n_{23}+n_{25}+2 n_{26}
+\end{eqnarray*}
+By conditioning,
+ $h_{d11}=q h_{d11}/sa,\ h_{D11} = p h_{D11}/su$,
+ $h_{d12}=q h_{d12}/sa,\ h_{D12} = p h_{D12}/su$,
+ $h_{d21}=q h_{d21}/sa,\ h_{D21} = p h_{D21}/su$,
+ $h_{d22}=q h_{d22}/sa,\ h_{D22} = p h_{D22}/su$,
+where $sa=c_{d11}+c_{d12}+c_{d21}+c_{d22}$,
+$su=c_{D11}+c_{D12}+c_{D21}+c_{D22}$.
+We have the genotypic probabilities$, g_i$, $i=0,\ldots,26$ in
+Table~\ref{threethreeg}.
+
+\begin{table}[h]
+\centering
+\caption{The genotypic probabilities for a disease locus and two markers\label{threethreeg}}
+\vskip 0.3cm
+\begin{tabular}{ccccc}
+\hline
+disease&& \multicolumn{3}{c}{marker 2}\\ \cline{3-5}
+locus& marker 1& 1/1 & 1/2 & 2/2 \\
+\hline
+   & 1/1 &   $h_{d11}^2$ &
+             $2 h_{d12} h_{d11}$ &
+             $h_{d12}^2$ \\
+d/d& 1/2 &   $2 h_{d11} h_{d21}$ &
+             $2 (h_{d12} h_{d21}+h_{d11} h_{d22})$ &
+             $2 h_{d12} h_{d22}$ \\
+   & 2/2 &   $h_{d21}^2$ &
+             $2 h_{d21} h_{d22}$ &
+             $h_{d22}^2$ \\
+   & 1/1 &   $2 h_{D11} h_{d11}$ &
+             $2 (h_{D11} h_{d12}+h_{D12} h_{d11})$ &
+             $2 h_{D12} h_{d12}$ \\
+D/d& 1/2 &   $2 h_{D11} h_{d21}$ &
+             $2 (h_{D11} h_{d22}+h_{D12} h_{d21})$ &
+             $2 h_{D12} h_{d22}$ \\
+          && $+2 h_{D21} h_{d11}$&
+             $+2 (h_{D21} h_{d12}+h_{D22} h_{d11})$ &
+             $+2 h_{D22} h_{d12}$\\
+   & 2/2 &   $2 h_{D21} h_{d21}$  &
+             $2 (h_{D21} h_{d22}+h_{D22} h_{d21})$ &
+             $2 h_{D22} h_{d22}$ \\
+   & 1/1 &   $h_{D11}^2$  &
+             $2 h_{D11} h_{D12}$ &
+             $h_{D12}^2$  \\
+D/D& 1/2 &   $2 h_{D11} h_{D21}$ &
+             $2 (h_{D11} h_{D22}+h_{D21} h_{D12})$ &
+             $2 h_{D12} h_{D22}$ \\
+   & 2/2 &   $h_{D21}^2$ &
+             $2 h_{D21} h_{D22}$ &
+             $h_{D22}^2$ \\
+\hline
+\end{tabular}
+\end{table}
+
+Now our gene counting table turns out to be Table~\ref{threethreeu}, where
+\begin{eqnarray*}
+  sa_1&=&g_{0} f_{dd}+g_{9} f_{Dd}+g_{18} f_{DD}, \  su_1 = g_{0} s_{dd}+g_{9} s_{Dd}+g_{18} s_{DD}\cr
+  sa_2&=&g_{1} f_{dd}+g_{10} f_{Dd}+g_{19} f_{DD},\  su_2 = g_{1} s_{dd}+g_{10} s_{Dd}+g_{19} s_{DD}\cr
+  sa_3&=&g_{2} f_{dd}+g_{11} f_{Dd}+g_{20} f_{DD},\  su_3 = g_{2} s_{dd}+g_{11} s_{Dd}+g_{20} s_{DD}\cr
+  sa_4&=&g_{3} f_{dd}+g_{12} f_{Dd}+g_{21} f_{DD},\  su_4 = g_{3} s_{dd}+g_{12} s_{Dd}+g_{21} s_{DD}\cr
+  sa_5&=&g_{4} f_{dd}+g_{13} f_{Dd}+g_{22} f_{DD},\  su_5 = g_{4} s_{dd}+g_{13} s_{Dd}+g_{22} s_{DD}\cr
+  sa_6&=&g_{5} f_{dd}+g_{14} f_{Dd}+g_{23} f_{DD},\  su_6 = g_{5} s_{dd}+g_{14} s_{Dd}+g_{23} s_{DD}\cr
+  sa_7&=&g_{5} f_{dd}+g_{15} f_{Dd}+g_{24} f_{DD},\  su_7 = g_{5} s_{dd}+g_{15} s_{Dd}+g_{24} s_{DD}\cr
+  sa_8&=&g_{7} f_{dd}+g_{16} f_{Dd}+g_{25} f_{DD},\  su_8 = g_{7} s_{dd}+g_{16} s_{Dd}+g_{25} s_{DD}\cr
+  sa_9&=&g_{8} f_{dd}+g_{17} f_{Dd}+g_{26} f_{DD},\  su_9 = g_{8} s_{dd}+g_{17} s_{Dd}+g_{26} s_{DD}
+\end{eqnarray*}
+
+\begin{table}[h]
+\centering
+\caption{The updated gene count table for a disease locus and two markers\label{threethreeu}}
+\vskip 0.3cm
+\begin{tabular}{ccccc}
+\hline
+disease&& \multicolumn{3}{c}{marker 2}\\ \cline{3-5}
+locus& marker 1& 1/1 & 1/2 & 2/2 \\
+\hline
+    & 1/1 &   $\frac{g_{0}  f_{dd}a_{0}}{sa_1}+\frac{g_{0}  s_{dd}u_{0}}{su_1}$ &
+              $\frac{g_{1}  f_{dd}a_{1}}{sa_2}+\frac{g_{1}  s_{dd}u_{1}}{su_2}$ &
+              $\frac{g_{2}  f_{dd}a_{2}}{sa_3}+\frac{g_{2}  s_{dd}u_{2}}{su_3}$ \\
+ d/d& 1/2 &   $\frac{g_{3}  f_{dd}a_{3}}{sa_4}+\frac{g_{3}  s_{dd}u_{3}}{su_4}$ &
+              $\frac{g_{4}  f_{dd}a_{4}}{sa_5}+\frac{g_{4}  s_{dd}u_{4}}{su_5}$ &
+              $\frac{g_{5}  f_{dd}a_{5}}{sa_6}+\frac{g_{5}  s_{dd}u_{5}}{su_6}$ \\
+    & 2/2 &   $\frac{g_{6}  f_{dd}a_{6}}{sa_7}+\frac{g_{6}  s_{dd}u_{6}}{su_7}$ &
+              $\frac{g_{7}  f_{dd}a_{7}}{sa_8}+\frac{g_{7}  s_{dd}u_{7}}{su_8}$ &
+              $\frac{g_{8}  f_{dd}a_{8}}{sa_9}+\frac{g_{8}  s_{dd}u_{8}}{su_9}$ \\
+    & 1/1 &   $\frac{g_{9}  f_{Dd}a_{0}}{sa_1}+\frac{g_{9}  s_{Dd}u_{0}}{su_1}$ &
+              $\frac{g_{10} f_{Dd}a_{1}}{sa_2}+\frac{g_{10} s_{Dd}u_{1}}{su_2}$ &
+              $\frac{g_{11} f_{Dd}a_{2}}{sa_3}+\frac{g_{11} s_{Dd}u_{2}}{su_3}$ \\
+ D/d& 1/2 &   $\frac{g_{12} f_{Dd}a_{3}}{sa_4}+\frac{g_{12} s_{Dd}u_{3}}{su_4}$ &
+              $\frac{g_{13} f_{Dd}a_{4}}{sa_5}+\frac{g_{13} s_{Dd}u_{4}}{su_5}$ &
+              $\frac{g_{14} f_{Dd}a_{5}}{sa_6}+\frac{g_{14} s_{Dd}u_{5}}{su_6}$ \\
+    & 2/2 &   $\frac{g_{15} f_{Dd}a_{6}}{sa_7}+\frac{g_{15} s_{Dd}u_{6}}{su_7}$ &
+              $\frac{g_{16} f_{Dd}a_{7}}{sa_8}+\frac{g_{16} s_{Dd}u_{7}}{su_8}$ &
+              $\frac{g_{17} f_{Dd}a_{8}}{sa_9}+\frac{g_{17} s_{Dd}u_{8}}{su_9}$ \\
+    & 1/1 &   $\frac{g_{18} f_{DD}a_{0}}{sa_1}+\frac{g_{18} s_{DD}u_{0}}{su_1}$ &
+              $\frac{g_{19} f_{DD}a_{1}}{sa_2}+\frac{g_{19} s_{DD}u_{1}}{su_2}$ &
+              $\frac{g_{20} f_{DD}a_{2}}{sa_3}+\frac{g_{20} s_{DD}u_{2}}{su_3}$ \\
+ D/D& 1/2 &   $\frac{g_{21} f_{DD}a_{3}}{sa_4}+\frac{g_{21} s_{DD}u_{3}}{su_4}$ &
+              $\frac{g_{22} f_{DD}a_{4}}{sa_5}+\frac{g_{22} s_{DD}u_{4}}{su_5}$ &
+              $\frac{g_{23} f_{DD}a_{5}}{sa_6}+\frac{g_{23} s_{DD}u_{5}}{su_6}$ \\
+    & 2/2 &   $\frac{g_{24} f_{DD}a_{6}}{sa_7}+\frac{g_{24} s_{DD}u_{6}}{su_7}$ &
+              $\frac{g_{25} f_{DD}a_{7}}{sa_8}+\frac{g_{25} s_{DD}u_{7}}{su_8}$ &
+              $\frac{g_{26} f_{DD}a_{8}}{sa_9}+\frac{g_{26} s_{DD}u_{8}}{su_9}$ \\
+\hline
+\end{tabular}
+\end{table}
+
+We can calculate the probabilities of being affected and unaffected based on
+our sample $sa=\sum_{i=1}^9 sa_i$, $su=\sum_{i=1}^9 su_i$.
+The log-likelihood function can be obtained in a similar fashion.
+\begin{eqnarray*}
+l&=&  a_0 \ln ((g_0  f_{dd}+g_{9}  f_{Dd}+g_{18} f_{DD})/K_1)
+  +   u_0 \ln ((g_0  s_{dd}+g_{9}  s_{Dd}+g_{18} s_{DD})/K_2) \cr
+ &+&  a_1 \ln ((g_1  f_{dd}+g_{10} f_{Dd}+g_{19} f_{DD})/K_1)
+  +   u_1 \ln ((g_1  s_{dd}+g_{10} s_{Dd}+g_{19} s_{DD})/K_2) \cr
+ &+&  a_2 \ln ((g_2  f_{dd}+g_{11} f_{Dd}+g_{20} f_{DD})/K_1)
+  +   u_2 \ln ((g_2  s_{dd}+g_{11} s_{Dd}+g_{20} s_{DD})/K_2) \cr
+ &+&  a_3 \ln ((g_3  f_{dd}+g_{12} f_{Dd}+g_{21} f_{DD})/K_1)
+  +   u_3 \ln ((g_3  s_{dd}+g_{12} s_{Dd}+g_{21} s_{DD})/K_2) \cr
+ &+&  a_4 \ln ((g_4  f_{dd}+g_{13} f_{Dd}+g_{22} f_{DD})/K_1)
+  +   u_4 \ln ((g_4  s_{dd}+g_{13} s_{Dd}+g_{22} s_{DD})/K_2) \cr
+ &+&  a_5 \ln ((g_5  f_{dd}+g_{14} f_{Dd}+g_{23} f_{DD})/K_1)
+  +   u_5 \ln ((g_5  s_{dd}+g_{14} s_{Dd}+g_{23} s_{DD})/K_2) \cr
+ &+&  a_6 \ln ((g_5  f_{dd}+g_{15} f_{Dd}+g_{24} f_{DD})/K_1)
+  +   u_6 \ln ((g_5  s_{dd}+g_{15} s_{Dd}+g_{24} s_{DD})/K_2) \cr
+ &+&  a_7 \ln ((g_7  f_{dd}+g_{16} f_{Dd}+g_{25} f_{DD})/K_1)
+  +   u_7 \ln ((g_7  s_{dd}+g_{16} s_{Dd}+g_{25} s_{DD})/K_2) \cr
+ &+&  a_8 \ln ((g_8  f_{dd}+g_{17} f_{Dd}+g_{26} f_{DD})/K_1)
+  +   u_8 \ln ((g_8  s_{dd}+g_{17} s_{Dd}+g_{26} s_{DD})/K_2)
+\end{eqnarray*}
+where $K_1$ and $K_2$ could either be $sa$ and $su$ or $K$ and $Q$.  The
+procedure above can be iterated to pre-specified criteria based on the
+log-likelihoods.
+
+
+\section*{A disease locus with three alleles}
+
+Denote alleles of the disease locus to be $d_1$, $d_2$, $d_3$, their
+frequencies $p$, $q$, $r$, penetrances $f_{ij}$, $s_{ij}$, $i,j=1,\ldots,3$,
+our observed data can be decomposed into table~\ref{d3n}.
+
+\begin{table}[h]
+\centering
+\caption{Gene counts for a triallelic disease locus and two biallelic markers\label{d3n}}
+\vskip 0.3cm
+\begin{tabular}{ccccc}
+\hline
+disease & & \multicolumn{3}{c}{marker 2}\\ \cline{3-5}
+locus & marker 1 & 1/1 & 1/2 & 2/2 \\
+\hline
+          & 1/1 & $n_0$ & $n_1$ & $n_2$ \\
+$d_1/d_1$ & 1/2 & $n_3$ & $n_4$ & $n_5$ \\
+          & 2/2 & $n_6$ & $n_7$ & $n_8$ \\
+          & 1/1 & $n_{9}$ & $n_{10}$ & $n_{11}$ \\
+$d_1/d_2$ & 1/2 & $n_{12}$ & $n_{13}$ & $n_{14}$ \\
+          & 2/2 & $n_{15}$ & $n_{16}$ & $n_{17}$ \\
+          & 1/1 & $n_{18}$ & $n_{19}$ & $n_{20}$ \\
+$d_2/d_2$ & 1/2 & $n_{21}$ & $n_{22}$ & $n_{23}$ \\
+          & 2/2 & $n_{24}$ & $n_{25}$ & $n_{26}$ \\
+          & 1/1 & $n_{27}$ & $n_{28}$ & $n_{29}$ \\
+$d_1/d_3$ & 1/2 & $n_{30}$ & $n_{31}$ & $n_{32}$ \\
+          & 2/2 & $n_{33}$ & $n_{34}$ & $n_{35}$ \\
+          & 1/1 & $n_{36}$ & $n_{37}$ & $n_{38}$ \\
+$d_2/d_3$ & 1/2 & $n_{39}$ & $n_{40}$ & $n_{41}$ \\
+          & 2/2 & $n_{42}$ & $n_{43}$ & $n_{44}$ \\
+          & 1/1 & $n_{45}$ & $n_{46}$ & $n_{47}$ \\
+$d_3/d_3$ & 1/2 & $n_{48}$ & $n_{49}$ & $n_{50}$ \\
+          & 2/2 & $n_{51}$ & $n_{52}$ & $n_{53}$ \\
+\hline
+\end{tabular}
+\end{table}
+
+Cells in the initial table can be one of the six forms.
+\begin{eqnarray*}
+\frac{p^2f_{11}a_i}{K}+\frac{p^2s_{11}u_i}{Q}, &~& i=0,\ldots,9\cr
+\frac{2pqf_{12}a_i}{K}+\frac{2pqs_{12}u_i}{Q}, &~& i=10,\ldots,17\cr
+\frac{q^2f_{22}a_i}{K}+\frac{q^2s_{22}u_i}{Q}, &~& i=18,\ldots,26\cr
+\frac{2prf_{13}a_i}{K}+\frac{2prs_{13}u_i}{Q}, &~& i=27,\ldots,35\cr
+\frac{2qrf_{23}a_i}{K}+\frac{2qrs_{23}u_i}{Q}, &~& i=36,\ldots,47\cr
+\frac{r^2f_{33}a_i}{K}+\frac{r^2s_{33}u_i}{Q}, &~& i=45,\ldots,53\cr
+\end{eqnarray*}
+The haplotype counts are obtained as follows
+\begin{eqnarray*}
+c_{d_111}&=&2 n_0+n_1+n_3+\alpha^4 n_4\cr
+         &+&n_{9}+(1-\alpha^{10}) n_{10}+(1-\alpha^{12}) n_{12}+\alpha^{13}_4 n_{13}\cr
+         &+&n_{27}+(1-\alpha^{28}) n_{28}+(1-\alpha^{30}) n_{30}+\alpha^{31}_4 n_{31}\cr
+c_{d_112}&=&n_1+2 n_2+(1-\alpha^4 )n_4+n_5\cr
+         &+&    \alpha^{10} n_{10}+n_{11}+\alpha^{13}_3 n_{13}+(1-\alpha^{14}) n_{14}\cr
+         &+&    \alpha^{28} n_{28}+n_{29}+\alpha^{31}_3 n_{31}+(1-\alpha^{32}) n_{32}\cr
+c_{d_121}&=&n_3+(1-\alpha^4 )n_4+2n_6+n_7\cr
+         &+&    \alpha^{12} n_{12}+\alpha^{13}_2 n_{13}+n_{15}+(1-\alpha^{16}) n_{16}\cr
+         &+&    \alpha^{30} n_{30}+\alpha^{31}_2 n_{31}+n_{33}+(1-\alpha^{34}) n_{34}\cr
+c_{d_122}&=&\alpha^4 n_4+n_5+n_7+2n_8\cr
+         &+&\alpha^{13}_1 n_{13}+\alpha^{14} n_{14}+\alpha^{16} n_{16}+n_{17}\cr
+         &+&\alpha^{31}_1 n_{31}+\alpha^{32} n_{32}+\alpha^{34} n_{34}+n_{35}\cr
+c_{d_211}&=&2 n_{18}+n_{19}+n_{24}+\alpha^{25} n_{25}\cr
+         &+&n_{9}+\alpha^{10} n_{10}+\alpha^{12} n_{12}+\alpha^{13}_1 n_{13}\cr
+         &+&n_{36}+(1-\alpha^{37}) n_{37}+(1-\alpha^{39}) n_{39}+\alpha^{40}_4 n_{40}\cr
+c_{d_212}&=&n_{22}+2 n_{23}+(1-\alpha^{25} )n_{25}+n_{26}\cr
+         &+&(1-\alpha^{10}) n_{10}+n_{11}+\alpha^{13}_2 n_{13}+\alpha^{14} n_{14}\cr
+         &+&    \alpha^{37} n_{37}+n_{38}+\alpha^{40}_3 n_{40}+(1-\alpha^{41}) n_{41}\cr
+c_{d_221}&=&n_{24}+(1-\alpha^{25} )n_{25}+2n_{27}+n_{28}\cr
+         &+&(1-\alpha^{12}) n_{12}+\alpha^{13}_3 n_{13}+n_{15}+\alpha^{16} n_{16}\cr
+         &+&    \alpha^{39} n_{39}+\alpha^{40}_2 n_{40}+n_{42}+(1-\alpha^{43}) n_{43}\cr
+c_{d_222}&=&\alpha^{25} n_{25}+n_{26}+n_{28}+2n_{29}\cr
+         &+&\alpha^{13}_4 n_{13}+(1-\alpha^{14}) n_{14}+(1-\alpha^{16}) n_{16}+n_{17}\cr
+         &+&\alpha^{40}_1 n_{40}+\alpha^{41} n_{41}+\alpha^{43} n_{43}+n_{44}\cr
+c_{d_311}&=&2 n_{45}+n_{46}+n_{47}+\alpha^{49} n_{49}\cr
+         &+&n_{27}+\alpha^{28} n_{28}+\alpha^{30} n_{30}+\alpha^{31}_1 n_{31}\cr
+         &+&n_{36}+\alpha^{37} n_{37}+\alpha^{39} n_{39}+\alpha^{40}_1 n_{40}\cr
+c_{d_312}&=&n_{46}+2 n_{47}+(1-\alpha^{49} )n_{49}+n_{50}\cr
+         &+&(1-\alpha^{28}) n_{28}+n_{29}+\alpha^{31}_2 n_{31}+\alpha^{32} n_{32}\cr
+         &+&(1-\alpha^{37}) n_{37}+n_{38}+\alpha^{40}_2 n_{40}+\alpha^{41} n_{41}\cr
+c_{d_321}&=&n_{48}+(1-\alpha^{49} )n_{49}+2n_{51}+n_{52}\cr
+         &+&(1-\alpha^{30}) n_{30}+\alpha^{31}_3 n_{31}+n_{33}+\alpha^{34} n_{34}\cr
+         &+&(1-\alpha^{39}) n_{39}+\alpha^{40}_3 n_{40}+n_{42}+\alpha^{43} n_{43}\cr
+c_{d_322}&=&\alpha^{49} n_{49}+n_{50}+n_{52}+2n_{53}\cr
+         &+&\alpha^{31}_4 n_{31}+(1-\alpha^{32}) n_{32}+(1-\alpha^{34}) n_{34}+n_{35}\cr
+         &+&\alpha^{40}_4 n_{40}+(1-\alpha^{41}) n_{41}+(1-\alpha^{43}) n_{43}+n_{44}\cr
+\end{eqnarray*}
+for example $\alpha^4=h_{d_111}h_{d_122}/(h_{d_111}h_{d_122}+h_{d_112}h_{d_121})$,
+The log-likelihood function is easily written as follows.
+\begin{eqnarray*}
+l&=&  a_0 \ln ((g_0  f_{11}+g_{9}  f_{12}+g_{18} f_{22}+g_{27}f_{13}+g_{36} f_{23}+g_{45} f_{33})/K_1) \cr
+ &+&  u_0 \ln ((g_0  s_{11}+g_{9}  s_{12}+g_{18} s_{22}+g_{27}s_{13}+g_{36} s_{23}+g_{45} s_{33})/K_2) \cr
+ &+&  a_1 \ln ((g_1  f_{11}+g_{10} f_{12}+g_{19} f_{22}+g_{28}f_{13}+g_{37} f_{23}+g_{46} f_{33})/K_1) \cr
+ &+&  u_1 \ln ((g_1  s_{11}+g_{10} s_{12}+g_{19} s_{22}+g_{28}s_{13}+g_{37} s_{23}+g_{46} s_{33})/K_2) \cr
+ &+&  a_2 \ln ((g_2  f_{11}+g_{11} f_{12}+g_{20} f_{22}+g_{29}f_{13}+g_{38} f_{23}+g_{47} f_{33})/K_1) \cr
+ &+&  u_2 \ln ((g_2  s_{11}+g_{11} s_{12}+g_{20} s_{22}+g_{29}s_{13}+g_{38} s_{23}+g_{47} s_{33})/K_2) \cr
+ &+&  a_3 \ln ((g_3  f_{11}+g_{12} f_{12}+g_{21} f_{22}+g_{30}f_{13}+g_{39} f_{23}+g_{48} f_{33})/K_1) \cr
+ &+&  u_3 \ln ((g_3  s_{11}+g_{12} s_{12}+g_{21} s_{22}+g_{30}s_{13}+g_{39} s_{23}+g_{48} s_{33})/K_2) \cr
+ &+&  a_4 \ln ((g_4  f_{11}+g_{13} f_{12}+g_{22} f_{22}+g_{31}f_{13}+g_{40} f_{23}+g_{49} f_{33})/K_1) \cr
+ &+&  u_4 \ln ((g_4  s_{11}+g_{13} s_{12}+g_{22} s_{22}+g_{31}s_{13}+g_{40} s_{23}+g_{49} s_{33})/K_2) \cr
+ &+&  a_5 \ln ((g_5  f_{11}+g_{14} f_{12}+g_{23} f_{22}+g_{32}f_{13}+g_{41} f_{23}+g_{50} f_{33})/K_1) \cr
+ &+&  u_5 \ln ((g_5  s_{11}+g_{14} s_{12}+g_{23} s_{22}+g_{32}s_{13}+g_{41} s_{23}+g_{50} s_{33})/K_2) \cr
+ &+&  a_6 \ln ((g_5  f_{11}+g_{15} f_{12}+g_{24} f_{22}+g_{33}f_{13}+g_{42} f_{23}+g_{51} f_{33})/K_1) \cr
+ &+&  u_6 \ln ((g_5  s_{11}+g_{15} s_{12}+g_{24} s_{22}+g_{33}s_{13}+g_{42} s_{23}+g_{51} s_{33})/K_2) \cr
+ &+&  a_7 \ln ((g_7  f_{11}+g_{16} f_{12}+g_{25} f_{22}+g_{34}f_{13}+g_{43} f_{23}+g_{52} f_{33})/K_1) \cr
+ &+&  u_7 \ln ((g_7  s_{11}+g_{16} s_{12}+g_{25} s_{22}+g_{34}s_{13}+g_{43} s_{23}+g_{52} s_{33})/K_2) \cr
+ &+&  a_8 \ln ((g_8  f_{11}+g_{17} f_{12}+g_{26} f_{22}+g_{35}f_{13}+g_{44} f_{23}+g_{53} f_{33})/K_1) \cr
+ &+&  u_8 \ln ((g_8  s_{11}+g_{17} s_{12}+g_{26} s_{22}+g_{35}s_{13}+g_{44} s_{23}+g_{53} s_{33})/K_2) \cr
+\end{eqnarray*}
+where $K_1$ and $K_2$ could either be $sa$ and $su$ or $K$ and $Q$.
+$sa=\sum_{i=1}^9 sa_i$, $su=\sum_{i=1}^9 su_i$ with
+\begin{eqnarray*}
+sa_1&=&g_{0} f_{11}+g_{9}  f_{12}+g_{18} f_{22}+g_{18} f_{22}+g_{27}f_{13}+g_{36} f_{23}+g_{45} f_{33}\cr
+sa_2&=&g_{1} f_{11}+g_{10} f_{12}+g_{19} f_{22}+g_{18} s_{22}+g_{27}s_{13}+g_{36} s_{23}+g_{45} s_{33}\cr
+sa_3&=&g_{2} f_{11}+g_{11} f_{12}+g_{20} f_{22}+g_{19} f_{22}+g_{28}f_{13}+g_{37} f_{23}+g_{46} f_{33}\cr
+sa_4&=&g_{3} f_{11}+g_{12} f_{12}+g_{21} f_{22}+g_{19} s_{22}+g_{28}s_{13}+g_{37} s_{23}+g_{46} s_{33}\cr
+sa_5&=&g_{4} f_{11}+g_{13} f_{12}+g_{22} f_{22}+g_{20} f_{22}+g_{29}f_{13}+g_{38} f_{23}+g_{47} f_{33}\cr
+sa_6&=&g_{5} f_{11}+g_{14} f_{12}+g_{23} f_{22}+g_{20} s_{22}+g_{29}s_{13}+g_{38} s_{23}+g_{47} s_{33}\cr
+sa_7&=&g_{5} f_{11}+g_{15} f_{12}+g_{24} f_{22}+g_{21} f_{22}+g_{30}f_{13}+g_{39} f_{23}+g_{48} f_{33}\cr
+sa_8&=&g_{7} f_{11}+g_{16} f_{12}+g_{25} f_{22}+g_{21} s_{22}+g_{30}s_{13}+g_{39} s_{23}+g_{48} s_{33}\cr
+sa_9&=&g_{8} f_{11}+g_{17} f_{12}+g_{26} f_{22}+g_{22} f_{22}+g_{31}f_{13}+g_{40} f_{23}+g_{49} f_{33}\cr
+su_1&=&g_{0} s_{11}+g_{9}  s_{12}+g_{18} s_{22}+g_{22} s_{22}+g_{31}s_{13}+g_{40} s_{23}+g_{49} s_{33}\cr
+su_2&=&g_{1} s_{11}+g_{10} s_{12}+g_{19} s_{22}+g_{23} f_{22}+g_{32}f_{13}+g_{41} f_{23}+g_{50} f_{33}\cr
+su_3&=&g_{2} s_{11}+g_{11} s_{12}+g_{20} s_{22}+g_{23} s_{22}+g_{32}s_{13}+g_{41} s_{23}+g_{50} s_{33}\cr
+su_4&=&g_{3} s_{11}+g_{12} s_{12}+g_{21} s_{22}+g_{24} f_{22}+g_{33}f_{13}+g_{42} f_{23}+g_{51} f_{33}\cr
+su_5&=&g_{4} s_{11}+g_{13} s_{12}+g_{22} s_{22}+g_{24} s_{22}+g_{33}s_{13}+g_{42} s_{23}+g_{51} s_{33}\cr
+su_6&=&g_{5} s_{11}+g_{14} s_{12}+g_{23} s_{22}+g_{25} f_{22}+g_{34}f_{13}+g_{43} f_{23}+g_{52} f_{33}\cr
+su_7&=&g_{5} s_{11}+g_{15} s_{12}+g_{24} s_{22}+g_{25} s_{22}+g_{34}s_{13}+g_{43} s_{23}+g_{52} s_{33}\cr
+su_8&=&g_{7} s_{11}+g_{16} s_{12}+g_{25} s_{22}+g_{26} f_{22}+g_{35}f_{13}+g_{44} f_{23}+g_{53} f_{33}\cr
+su_9&=&g_{8} s_{11}+g_{17} s_{12}+g_{26} s_{22}+g_{26} s_{22}+g_{35}s_{13}+g_{44} s_{23}+g_{53} s_{33}
+\end{eqnarray*}
+It is clear that the gene counting algorithm will soon become unwieldy and a
+computer algorithm is more appropriate.
+
+
+\section*{General case and further remarks}\label{twob}
+
+{\bf EH} and {\bf EHPLUS} implement algorithms for three sampling schemes:  a
+single phenotypic sample, a population sample of cases and controls, and a
+randomly ascertained sample of cases and control.  Following Ott, in his 1998
+version of {\bf EH} documentation, schemes involving $m$ markers, each with
+alleles $a_j$, $j=1,\ldots, m$, can be briefly described as follows.
+
+{\bf Case 1}.  A group of subjects with genotypic information $M_i$,
+$i=1,\ldots,N$ with log-likelihood function $\sum_{i=1}^N \ln
+P(M_i)=\sum_{i=1}^n \ln\sum_g P(M_i|g) P(g)$, where $N$ is the sample size, $g$
+is a multilocus genotype at all loci, $P(M_i|g)$ is the product of penetrances
+taking values of 0 or 1, and $P(g)$ the genotype probability based on the
+population haplotype frequencies assuming random union of haplotypes.  The
+number of these genotypes is $k(k+1)/2$, with $k$ being the number of
+haplotypes.  The original data is conveniently organised into an
+$m$-dimensional contingency table, with each dimension being indexed by unique
+genotype identifiers $l+u(u-1)/2$, $l$ and $u$ are alleles at marker $i$,
+$l\leq u$, $i=1,\ldots, m$.  The log-likelihood can simply be obtained from the
+observed multilocus genotype counts and multinomial probabilities.  Each
+population haplotype frequency is simply the product of all constituent allele
+frequencies assuming no association between loci.
+
+{\bf Case 2}.  A random population sample of $n_A$ cases and $n_U$ controls
+with unconditional log-likelihood of all the phenotypic data
+$\sum_{i=1}^{n_A} \ln P(A,M_i) + \sum_{j=1}^{n_U} \ln
+P(U,M_j)$, where $P(A,M_i)=P(A,M_i|g) P(g)$ and $P(U,M_j)=P(U,M_j|g)P(g)$,
+while $P(A,M_i|g)$ and $P(U,M_j|g)$ are given by the product of all penetrances
+at individual loci.  $P(g)$ is the genotype probability incorporating disease
+locus.
+
+{\bf Case 3}.  Two independently ascertained samples of cases and controls with
+associated conditional likelihoods $P(M|A)=\sum_g P(M|g,A)$ $P(A|g)P(g)/P(A)$,
+$P(M|U)=\sum_g P(M|g,U)$ $P(U|g)P(g)/P(U)$, respectively.  We have
+$P(A)=\sum_gP(A|g)P(g)$, $P(U)=\sum_gP(U|g)P(g) $, i.e., summing over all the
+possible genotype configurations, $P(g)$ being given by the population
+haplotype frequencies.  Each cell in the contingency table will contribute
+probabilities $P(A|g)P(g)$ of being affected and $P(U|g)P(g)$ being unaffected
+to $P(A)$ and $P(U)$, where $P(A|g)+P(U|g)=1$.  However the cases are
+over-represented in the sample the contributions are scaled by $P(A)$ and
+$P(U)$ to have total cell probabilities sum to 1, $P(A|g)P(g)/P(A)=P(g|A)$,
+$P(U|g)P(g)/P(U)=P(g|U)$.  The conditional log-likelihood can be expressed from
+its unconditional counterpart with an extra term of $n_A \ln P(A) + n_U \ln
+P(U)$.
+
+The MLEs of haplotype frequencies is furnished by gene counting.  Starting from
+a set of initial haplotype frequencies, a new set of frequencies is obtained,
+$P(h|A)$ for cases and $P(h|U)$ for control, such that
+$P(h)=P(h|A)P(A)+P(h|U)P(U)$, which serves as initial values for the next
+iteration.  Specifically, the gene counts are estimated from an iteratively
+updated table with $L=3\prod_{j=1}^m a_j(a_j+1)/2$ cells obtained by
+conditioning marker genotypes on disease locus.  Repeating the procedure would
+suffice to get the MLEs.
+
+Three hypotheses $H_0$, $H_1$, $H_2$, of allelic association can be considered.
+$H_0$ assumes no marker-marker or disease-marker association so haplotype
+frequencies are simply product of individual disease and marker allele
+frequencies.  $H_1$ only allows for marker-marker association so haplotype
+frequencies are estimated from pooled case-control sample with disease locus as
+an extra locus.  $H_2$ imposes a disease model to the whole sample and get
+haplotype frequency estimates by maximising the log-likelihood function.
+Appropriate log-likelihood ratio statistics can be constructed.
+
+Multiple samples can also be subject to heterogeneity analysis (Workman \&
+Niswander 1970).  Due to the large number of degrees of freedom, empirical $p$
+value can then be obtained by permutation.  Confidence interval or threshold
+can be based on binomial distribution when $Np\ge 5$ ($N$ is the number of
+replicates) and there is little need for a confidence interval when $p$ value
+is small (Nettleton \& Doerge 2000).  The standard error of $p$ can also be
+estimated by subdividing the number of replicates into $B$ batches (Hastings
+1970; Guo \& Thompson 1992), a $p$ value is calculated separately for each
+batch as $p_i, i=1, \ldots, B$, the standard error of $p$ is then
+$\sqrt{{\sum_{i=1}^B(p-p_i)} /{B(B-1)}}$.  The process is stopped when the
+estimated standard error is smaller than a predefined value specified by the
+user.
+
+The method of maximum likelihood (Thompson et al.  1988; Cox et al.  1998) can
+provide asymptotic variances but the MLEs are more difficult to obtain.  Recall
+that the allele frequencies for the two markers are $p$, $1-p$ and $q$, $1-q$,
+with observed counts $n_i$ for joint genotypes $g_i$, $i=0,\ldots,8$, with
+$\sum_{i=0}^8n_i=N$.  Rewritten in terms of disequilibrium parameter $D$,
+haplotype frequencies are now $h_{11}=pq+D$, $h_{12}=p(1-q)-D$,
+$h_{21}=(1-p)q-D$, $h_{22}=(1-p)(1-q)+D$.  Let
+$\theta=(\theta_1,\theta_2,\theta_3) =(p,q,D)^T$ be the vector of parameters,
+the likelihood and log-likelihood are given by
+$\left({n!}/{\prod_{i=0}^8n_i!}\right)\prod_{i=0}^8g_i ^ {n_i}$ and $
+\mbox{constant}+\sum_{i=0}^8n_i\ln(g_i)$, respectively.  The
+variance-covariance matrix of $\theta$ can be approximated by
+$V(\theta)=I^{-1}(\theta)$, where
+$I(\theta)=\left[E\left(-\frac{\partial^2l(\theta)}{\partial\theta_j\partial
+\theta_k}\right)\right]$ is the information matrix with $(j,k)$ element being
+$N \left [\sum_{i=0}^8 \frac{\partial y_i}{\partial\theta_j}\frac{\partial
+y_i}{\partial\theta_k}y_i^{-1} \right ]$, $j, k=0,\ldots,2$.  The variance of
+$D$ for $N$ observations evaluated at $D=0$ is $V_N(D=0)={p(1-p)q(1-q)}/{N}$
+and from which the power can be calculated.  The critical region for rejection
+of null hypothesis at 5\% significance level is $|\hat D|>1.96\sqrt{V_N(D=0)}$,
+and the power is $w=P(\mbox{reject} ~H_0:D=0|D\neq 0)$, i.e.,
+$$w=\Phi\left(\frac{-1.96\sqrt{V_N(D=0)}+D}{\sqrt{V_N(D)}}\right)
++\Phi\left(\frac{-1.96\sqrt{V_N(D=0)}-D}{\sqrt{V_N(D)}}\right)$$ where
+$\Phi(.)$ is the standard normal distribution function.  When $D\neq 0$,
+$V_N(D)$ is calculated numerically.  An approximation to the required sample
+size is obtained by taking $w$ to be the first rhs term for negative $D$ and
+the second rhs term for positive $D$.  In either case,
+$N=\left({\Phi^{-1}(w)+k(D)}/{m(D)}\right)^2$, where
+$k(D)=1.96\sqrt{p(1-p)q(1-q)}/\sqrt{V_1(D)}$, $m(D)=D/\sqrt{V_1(D)}$ with
+$V_1(D)=I_{2,2}^{-1}(\theta)$ being the single-observation variance based on
+the (2,2) element of the information matrix.
+
+The quantity $\rho^2=D^2/[p(1-p)q(1-q)]$ is of special interests, in that
+$2N\rho^2$ can either be compared to $\chi^2$ with 1 degree of freedom, or
+$\rho$ be treated as correlation coefficient for normal test using Fisher's
+z-transformation (Weir 1996).  There is a simple relationship $E(\rho^2)\approx
+1/(1+4N_e\theta)$, where $N_e$ is the effective population size and $\theta$ is
+the recombination rate (Hill \& Robertson 1968; Sved 1971).  Hill (1974)
+extended the approach in Hill \& Robertson (1968) to three or more loci.
+
+A scaled LD measure is $D'=D/D_{max}$, where
+$$D_{max}=\cases{\min(pq,(1-p)(1-q)), & $D<0$ \cr \min(p(1-q),q(1-p)), &
+$D>0$}$$ Zapata et al.  (1997) gave its standard error estimates.  A global
+disequilibrium statistic based on pairwise disequilibrium measure
+$D_{ij}=h_{ij}-p_iq_j$ can be defined as $W=\sqrt{\sum_i\sum_j
+D_{ij}^2(p_iq_j)^{-1}}$, where $p_i$ and $q_j$, $i=1,\ldots, k; ~j=1,\ldots, l$
+are the observed allele frequencies at each of two loci having $k$ and $l$
+alleles.  A normalised version $W'=W/\sqrt{\min(k,l)-1}$ lies in [0,1].  If the
+sample size is $N$, then $NW^2$ can be used for testing significance of the
+global disequilibrium and refer to $\chi^2$ with degrees of freedom
+$(k-1)(l-1)$ (Klitz et al.  1995; Long et al.  1995).  There is also
+counterpart of the two biallelic $D'$ to two multialleic markers, and Zapata et
+al.  (2001) gave its standard error.
+
+A permutation-based linkage disequilibrium estimate (Zhao H et al.  1999) is
+defined as $\hat\xi= {\sqrt{2f}}\left({t-\mu}/{\sigma}\right)/{N}$, where $t$
+is log-likelihood ratio test statistic from the observed data, $f$ its degrees
+of freedom, and $N$ the number of replicates.  The mean ($\mu$) and variance
+($\sigma^2$) of the likelihood ratio test statistic are based on its empirical
+distribution obtained by simulation.  The sample variance of $\hat\xi$ is
+$2(f+2N\hat\xi)/N^2$ and can be used to construct confidence interval.  This
+statistic is based on $\chi^2$ of single marker-marker analysis, and readily
+extended to other statistics considered here.  The statistic is implemented in
+program {\bf HAPLO}.  Ayres \& Balding (2001) discussed MCMC method to obtain
+posterior distribution of LD statistic.
+
+C programs for disease-marker analysis involving one or two biallelic markers
+are written to verify the gene counting as in {\bf EH} and {\bf EHPLUS} both
+for marker-marker case and disease-marker case.  A C program {\bf 2LD} for
+obtaining two-locus disequibria and {\bf fastEHPLUS} for obtaining
+permutation-based linkage disequilibrium measures are available from the
+section website. New algorithms developed for gene counting including handle
+of missing data were reported elsewhere.
+
+Related works are Ceppellini et al.  (1955), Hill (1975), Ott (1977), Xie \&
+Ott (1993), Weir \& Cockerham (1978, 1979), Weir (1990, 1996), Xie \& Ott
+(1993), Excoffier \& Slatkin (1995), Hawley \& Kidd (1995), Long et al.
+(1995), Zaykin et al.  (1995), Terwilliger \& Ott (1994).  However they either
+provide insufficient details or only deal with marker-marker analysis.
