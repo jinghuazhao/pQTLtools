@@ -21,4 +21,4 @@ becomes
 
 \includegraphics[a=b,x=y]{foo}
 
-nevertheless the original 2001.dvi is sufficient to regenerate 2001.pdf with better quality text (OCR).
+Nevertheless the original 2001.dvi is sufficient to regenerate 2001.pdf with better quality text (OCR).
