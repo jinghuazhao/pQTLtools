@@ -10,6 +10,7 @@ bibtex 2001
 latex 2001
 latex 2001
 dvips 2001
+dvipdf 2001
 ```
 
 Under Ubuntu 18.04, the following change is required.
