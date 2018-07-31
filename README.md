@@ -8,10 +8,10 @@ Under Fedora 28 it is possible with
 latex 2001
 bibtex 2001
 latex 2001
-latex 2001
 dvips 2001
 dvipdf 2001
 ```
+while the much simplified `pdflatex` does not work well with figures in PostScript (.ps) format.
 
 Under Ubuntu 18.04, the following change is required.
 
