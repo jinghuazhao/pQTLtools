@@ -2,9 +2,7 @@
 
 NB
 
-Nowadays, it is typical to use \epsfig{file=foo,a=b,x=y} rather than \includegraphics[a=b,x=y]{foo}.
-
-The original 2001.dvi (.ps) is sufficient to regenerate 2001.pdf with better quality (OCR) text. Under Fedora 28 it is to reproduce with 
+It is now typical to use \epsfig{file=foo,a=b,x=y} instead of \includegraphics[a=b,x=y]{foo}. Nevertheless the original 2001.dvi (.ps) is sufficient to regenerate 2001.pdf with better quality (OCR) text. Under Fedora 28 it is to reproduce with 
 
 ```bash
 latex 2001
