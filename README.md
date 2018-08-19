@@ -9,10 +9,10 @@ latex 2001
 bibtex 2001
 latex 2001
 latex 2001
-# .dvi --> .ps, .pdf
-dvips 2001
+# .dvi --> .pdf
 dvipdf 2001
 # ps2pdf leads to smaller size
+dvips 2001
 ps2pdf 2001.ps
 ```
 while the much simplified `pdflatex` does not recognise figures in PostScript (.ps) format. File `epsf.tex` copied here enables the same to be done with Ubuntu 18.04. 
