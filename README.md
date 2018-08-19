@@ -9,6 +9,7 @@ latex 2001
 bibtex 2001
 latex 2001
 latex 2001
+# .dvi --> .ps, .pdf
 dvips 2001
 dvipdf 2001
 # ps2pdf leads to smaller size
