@@ -12,7 +12,7 @@ latex 2001
 latex 2001
 # .dvi --> .pdf
 dvipdf 2001
-# ,dvi --> .ps and then .pdf with smaller size from ps2pdf
+# .dvi --> .ps and then .pdf with smaller size from ps2pdf
 dvips 2001
 ps2pdf 2001.ps
 ```
