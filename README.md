@@ -19,7 +19,7 @@ remotes::install_github("jinghuazhao/pQTLtools")
 
 **A web-driven documentation is now available** [https://jinghuazhao.github.io/pQTLtools/](https://jinghuazhao.github.io/pQTLtools/).
 
-## A summary
+## A summary of datasets and functions
 
 Objects             |    Description
 --------------------|-----------------------------------------
