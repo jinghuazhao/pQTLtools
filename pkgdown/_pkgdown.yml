@@ -20,7 +20,7 @@ navbar:
       href: "news/index.html"
   right:
     - text: "Source"
-      href: https://github.com/jinghuazhao/R/tree/master/pQTLtools
+      href: https://github.com/jinghuazhao/pQTLtools
 
 articles:
   - title: Vignettes
