@@ -1,6 +1,4 @@
-# pQTLtools 1.0
-
-## Change logs
+# pQTLtools 0.1
 
 * ...
 * Add LICENSE.md
@@ -19,7 +17,4 @@
 * Fix R CMD check errors in pQTLtools-interval.Rd
 * Add biomaRt.rda, hg19.rda, hg19Tables.rda, st4.rda, st6.rda, but drop hgTables
 * Import from lmm as template, use save(,compress='xz')
-
-# pQTLtools 0.1
-
 * First release
