@@ -1,7 +1,7 @@
 Package: pQTLtools
 Title: pQTL Tools
 Version: 0.1
-Date: 2021-2-7
+Date: 2021-2-8
 Author: Jing Hua Zhao
 Maintainer: Jing hua Zhao <jinghuazhao@hotmail.com>
 Description: This repository collects information on a number of
@@ -13,8 +13,8 @@ Description: This repository collects information on a number of
     pQTL-Mendelian Randomization via TwoSampleMR, linkage through UniProt
     IDs to other resources.
 License: Unlimited
-URL: https://github.com/jinghuazhao/R
-BugReports: https://github.com/jinghuazhao/R/issues
+URL: https://github.com/jinghuazhao/pQTLtools
+BugReports: https://github.com/jinghuazhao/pQTLtools/issues
 Depends:
     R (>= 3.5.0)
 Imports:
