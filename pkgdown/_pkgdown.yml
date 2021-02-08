@@ -41,6 +41,11 @@ reference:
     - regionqueries
     - snpqueries
     - uniprot2ids
+  - title: Datasets
+    desc: >
+      The following datasets are available as internal objects: biomaRt, caprion, hg19, hg19Tables, inf1, Olink_NGS, Olink_qPCR, SomaLogic160410, st4, s6, swath_ms.
+    contents:
+    - pQTLtools-internal
 
 env:
  global:
