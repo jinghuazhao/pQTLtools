@@ -15,7 +15,7 @@ template:
 
 navbar:
   left:
-    - text: "Vignettes"
+    - text: "Articles"
       href: articles/index.html
     - text: "Reference"
       href: reference/index.html
