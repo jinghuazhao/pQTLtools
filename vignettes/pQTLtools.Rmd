@@ -1,0 +1,207 @@
+---
+title: "An Overview of pQTLtools"
+author: "Jing Hua Zhao"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+    toc_depth: 2
+    check_title: false
+bibliography: refs.bib
+vignette: >
+  %\VignetteIndexEntry{Overview}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+set.seed(0)
+knitr::opts_chunk$set(
+  out.extra = 'style="display:block; margin: auto"',
+  fig.align = "center",
+  fig.path = "figures/",
+  collapse = TRUE,
+  comment = "#>",
+  dev = "png")
+```
+
+## cis/trans classification
+```{r}
+options(width=200)
+require(gap)
+INF <- Sys.getenv("INF")
+f <- file.path(INF,"work","INF1.merge")
+clumped <- read.delim(f,as.is=TRUE)
+hits <- merge(clumped[c("CHR","POS","MarkerName","prot","log10p")],
+              inf1[c("prot","uniprot")],by="prot")
+names(hits) <- c("prot","Chr","bp","SNP","log10p","uniprot")
+cistrans <- cis.vs.trans.classification(hits,inf1,"uniprot")
+cis.vs.trans <- with(cistrans,data)
+with(cistrans,table)
+with(cistrans,total)
+circos.cis.vs.trans.plot(hits=f,inf1,"uniprot")
+```
+This is used to generate 2d-Manhattan plot
+```{r}
+INF <- Sys.getenv("INF")
+d <- read.csv(file.path(INF,"work","INF1.merge.cis.vs.trans"),as.is=TRUE)
+t2d <- mhtplot2d(d)
+```
+and ideogram
+```{r}
+INF1_merge <- read.delim(file.path(INF,"work","INF1.merge"))[c("Chrom","Start","End","prot","MarkerName")]
+singletons <- with(INF1_merge,End-Start==1)
+INF1_merge[singletons,"Start"] <- INF1_merge[singletons,"Start"] - 1e6
+INF1_merge[singletons,"End"] <- INF1_merge[singletons,"End"] + 1e6
+small <- with(INF1_merge, Start<0)
+INF1_merge[small,"Start"] <- 0
+cvt <- read.csv(file.path(INF,"work","/INF1.merge.cis.vs.trans"),as.is=TRUE)
+INF1_merge_cvt <- merge(INF1_merge,cvt,by.x=c("prot","MarkerName"),by.y=c("prot","SNP"))
+ord <- with(INF1_merge_cvt,order(Chr,bp))
+INF1_merge_cvt <- INF1_merge_cvt[ord,]
+
+library(biomaRt)
+library(regioneR)
+mart <- useMart(biomart = "ensembl", dataset = "hsapiens_gene_ensembl")
+bm <- with(INF1_merge_cvt, getBM(attributes = c("hgnc_symbol", "chromosome_name", "start_position", "end_position", "band"),
+           filters="chromosomal_region", values=paste0(Chr,":",bp,":",bp), mart=mart))
+genes <- with(bm,toGRanges(chromosome_name,start_position,end_position,labels=hgnc_symbol))
+
+library(karyoploteR)
+attach(INF1_merge_cvt)
+sentinels <- toGRanges(Chr,bp-1,bp,labels=p.gene)
+cis.regions <- toGRanges(Chr,cis.start,cis.end)
+loci <- toGRanges(Chr,Start,End)
+panel <- toGRanges(p.chr,p.start,p.end,labels=p.gene)
+colors <- c("red","blue")
+seqlevelsStyle(sentinels) <- "UCSC"
+kp <- plotKaryotype(genome="hg19",chromosomes=levels(seqnames(sentinels)))
+kpAddBaseNumbers(kp)
+kpPlotRegions(kp,data=loci,r0=0.05,r1=0.15,border="black")
+kpPlotMarkers(kp, data=sentinels, labels=p.gene, text.orientation="vertical",
+              cex=0.45, y=0.3*seq_along(p.gene)/length(p.gene), srt=30, ignore.chromosome.ends=TRUE,
+              adjust.label.position=TRUE, label.color=colors[2-cis], label.dist=0.002,
+              cex.axis=3, cex.lab=3)
+legend("bottomright", bty="n", pch=c(19,19), col=colors, pt.cex=0.4, legend=c("cis", "trans"), text.col=colors, cex=0.8, horiz=FALSE)
+# kpPlotLinks(kp, data=loci, data2=panel, col=colors[2-cis])
+detach(INF1_merge_cvt)
+```
+
+## Bidirectional Mendelian Randomization
+
+The function `pqtlMR` is derived from @zheng20.
+
+## eQTL Catalogue for colocalization analysis
+
+See example associated with `import_eQTLCatalogue`. A related function is `import_OpenGWAS` used to fetch data from OpenGWAS.
+
+```{r}
+library(pQTLtools)
+f <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","hg19ToHg38.over.chain")
+chain <- rtracklayer::import.chain(f)
+invisible(lapply(c("dplyr", "ggplot2", "readr", "coloc", "GenomicRanges","seqminer"), require, character.only = TRUE))
+HPC_WORK <- Sys.getenv("HPC_WORK")
+gwasvcf::set_bcftools(file.path(HPC_WORK,"bin","bcftools"))
+f <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","tabix_ftp_paths.tsv")
+tabix_paths <- read.delim(f, sep = "\t", header = TRUE, stringsAsFactors = FALSE) %>% dplyr::as_tibble()
+HOME <- Sys.getenv("HOME")
+f <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","tabix_ftp_paths_imported.tsv")
+imported_tabix_paths <- within(read.delim(f, sep = "\t", header = TRUE, stringsAsFactors = FALSE) %>% dplyr::as_tibble(),
+      {ftp_path <- gsub("ftp://ftp.ebi.ac.uk/pub/databases/spot/eQTL/csv/GTEx_V8/ge",
+                        paste0(HOME,"/rds/public_databases/GTEx/csv"),ftp_path)})
+INF <- Sys.getenv("INF")
+M <- 1e6
+sentinels <- subset(read.csv(file.path(INF,"work","INF1.merge.cis.vs.trans")),cis)
+liftRegion <- function(x,chain)
+{
+  require(GenomicRanges)
+  gr <- with(x,GenomicRanges::GRanges(seqnames=chr,IRanges::IRanges(start,end)))
+  seqlevelsStyle(gr) <- "UCSC"
+  gr38 <- rtracklayer::liftOver(gr, chain)
+  chr <- colnames(table(seqnames(gr38)))
+  chr <- gsub("chr","",chr)
+  start <- min(unlist(start(gr38)))
+  end <- max(unlist(end(gr38)))
+  invisible(list(chr=chr,start=start,end=end,region=paste0(chr,":",start,"-",end)))
+}
+
+coloc_sumstats <- function(prot,chr,region37)
+{
+  cat("GWAS sumstats\n")
+  gwas_stats <- gwasvcf::query_gwas(file.path(INF,"METAL/gwas2vcf",paste0(prot,".vcf.gz")), chrompos = region37)
+  gwas_stats <- gwasvcf::vcf_to_granges(gwas_stats) %>% keepSeqlevels(chr) %>% renameSeqlevels(paste0("chr",chr))
+  gwas_stats_hg38 <- rtracklayer::liftOver(gwas_stats, chain) %>%
+    unlist() %>%
+    renameSeqlevels(chr) %>%
+    dplyr::as_tibble() %>%
+    dplyr::transmute(chromosome = seqnames, position = start, AF, ES, SE, LP, SS) %>%
+    dplyr::mutate(id = paste(chromosome, position, sep = ":")) %>%
+    dplyr::mutate(MAF = pmin(AF, 1-AF)) %>%
+    dplyr::group_by(id) %>%
+    dplyr::mutate(row_count = n()) %>%
+    dplyr::ungroup() %>%
+    dplyr::filter(row_count == 1)
+  ggplot(gwas_stats_hg38, aes(x = position, y = LP)) + geom_point()
+  gwas_stats_hg38
+}
+
+coloc_c <- function(gwas_stats_hg38,ensGene,region38)
+{
+  cat("c. GTEx_v8 imported eQTL datasets\n")
+  rnaseq_df <- dplyr::filter(imported_tabix_paths, quant_method == "ge") %>% dplyr::mutate(qtl_id = paste(study, qtl_group, sep = "_"))
+  ftp_path_list <- setNames(as.list(rnaseq_df$ftp_path), rnaseq_df$qtl_id)
+  hdr <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","column_names.GTEx")
+  column_names <- names(read.delim(hdr))
+  safe_import <- purrr::safely(import_eQTLCatalogue)
+  summary_list <- purrr::map(ftp_path_list, ~safe_import(., region38, selected_gene_id = ensGene, column_names))
+  result_list <- purrr::map(summary_list, ~.$result)
+  result_list <- result_list[!unlist(purrr::map(result_list, is.null))]
+  result_filtered <- purrr::map(result_list[lapply(result_list,nrow)!=0], ~dplyr::filter(., !is.na(se)))
+  coloc_df_imported <- purrr::map_df(result_filtered, ~run_coloc(., gwas_stats_hg38), .id = "qtl_id")
+}
+
+mixed_coloc <- function(prot,chr,ensGene,chain,region37,region38,out)
+{
+  gwas_stats_hg38 <- coloc_sumstats(prot,chr,region37)
+  coloc_df_imported <- coloc_c(gwas_stats_hg38,ensGene,region38)
+  if (exists("coloc_df_imported"))
+  {
+    saveRDS(coloc_df_imported,file=paste0(out,".RDS"))
+    dplyr::arrange(coloc_df_imported, -PP.H4.abf)
+    ggplot(coloc_df_imported, aes(x = PP.H4.abf)) + geom_histogram()
+  }
+}
+
+single_run <- function(r)
+{
+  sentinel <- sentinels[r,]
+  isnpid <- within(gap::inv_chr_pos_a1_a2(sentinel[["SNP"]]),
+  {
+    chr <- gsub("chr","",chr)
+    pos <- as.integer(pos)
+    start <- pos-M
+    if (start<0) start <- 0
+    end <- pos+M
+  })
+  chr <- with(isnpid,chr)
+  region37 <- with(isnpid, paste0(chr,":",start,"-",end))
+  ensRegion37 <- with(subset(inf1,prot==sentinel[["prot"]]),paste0(chr,":",start,"-",end))
+  region38 <- with(liftRegion(isnpid,chain),region)
+  ensGene <- subset(inf1,prot==sentinel[["prot"]])[["ensembl_gene_id"]]
+  ensRegion38 <- with(liftRegion(subset(inf1,prot==sentinel[["prot"]]),chain),region)
+  f <- file.path(INF,"coloc",with(sentinel,paste0(prot,"-",SNP)))
+  cat(chr,region37,region38,ensGene,ensRegion37,ensRegion38,"\n")
+  mixed_coloc(sentinel[["prot"]],chr,ensGene,chain,region37,region38,f)
+}
+
+single_run(1)
+```
+
+## Literature on pQTLs
+
+Those as identified by @sun18 and @suhre20 are included as EndNote libraries.
+
+## UniProt IDs
+
+The function `uniprot2ids` converts UniProt IDs to others.
+
+## References
