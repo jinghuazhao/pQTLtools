@@ -1,0 +1,45 @@
+Package: pQTLtools
+Title: pQTL Tools
+Version: 0.1
+Date: 2021-2-7
+Author: Jing Hua Zhao
+Maintainer: Jing hua Zhao <jinghuazhao@hotmail.com>
+Description: This repository collects information on a number of
+    protein panels, linking function for cis/trans classification, 2D
+    manhattan plots, 3D-plotly plots, forest plots among others availale
+    from R/gap; query results on genes, regions, and SNPs via
+    PhenoScanner, adding functionality to check for replication across
+    platforms and aspects of protein-related analysis such as
+    pQTL-Mendelian Randomization via TwoSampleMR, linkage through UniProt
+    IDs to other resources.
+License: Unlimited
+URL: https://github.com/jinghuazhao/R
+BugReports: https://github.com/jinghuazhao/R/issues
+Depends:
+    R (>= 3.5.0)
+Imports:
+    coloc,
+    dplyr,
+    gwasvcf,
+    rtracklayer,
+    TwoSampleMR,
+    VariantAnnotation
+Suggests:
+    biomaRt,
+    gap,
+    circlize,
+    knitr,
+    karyoploteR,
+    openxlsx,
+    phenoscanner,
+    purrr,
+    regioneR,
+    reticulate,
+    seqminer,
+    GenomicRanges,
+    IRanges
+VignetteBuilder:
+    knitr
+LazyData: Yes
+LazyLoad: Yes
+NeedsCompilation: no
