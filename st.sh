@@ -1,5 +1,8 @@
-# 30-7-2018 JHZ
+#!/usr/bin/bash
 
-git add *
-git commit -m "PhD thesis"
-git push
+for f in .gitignore .Rbuildignore .Rinstignore .travis.yml \
+         data/ DESCRIPTION docs/ INDEX index.md inst/ LICENSE LICENSE.md man/ NAMESPACE NEWS.md pkgdown/ R/ st.sh vignettes/
+do
+  git add ${f}
+  git commit -m "${f}"
+done
