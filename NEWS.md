@@ -20,6 +20,6 @@
 * Add biomaRt.rda, hg19.rda, hg19Tables.rda, st4.rda, st6.rda, but drop hgTables
 * Import from lmm as template, use save(,compress='xz')
 
-# pQTLtoos 0.1
+# pQTLtools 0.1
 
 * First release
