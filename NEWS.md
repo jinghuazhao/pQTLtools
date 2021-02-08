@@ -6,9 +6,9 @@
 * Add import_OpenGWAS and therefore suggests gwasvcf, rtracklayer, VariantAnnotation
 * Adopt import_eQTLCatalogue from eQTL-Catalogue-resources suggesting seqminer
 * Listed publications on pQTLs by Sun et al. (2018) and Suhre et al. (2020)
-* uniprot2ids() based on UniProt
+* Add uniprot2ids() based on UniProt
 * pqtlMR() based on TwoSampleMR
-* run_coloc() based on coloc
+* Add run_coloc() based on coloc
 * Tidy up various options of SomaLogic lookup (panel, box, ST4, ST6)
 * Suggest circlize, openxlsx, knitr and add HTML vignette (biomaRt, karyoploteR, regioneR)
   with cis/trans-classification/ideogram/mhtplot2d examples
