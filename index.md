@@ -1,5 +1,5 @@
 # pQTLtools
-[![Build Status](https://github.com/jinghuazhao/R/pQTLtools/workflows/R-CMD-check/badge.svg)](https://github.com/jinghuazhao/R/pQTLtools/actions?workflow=R-CMD-check)
+[![Build Status](https://github.com/jinghuazhao/pQTLtools/workflows/R-CMD-check/badge.svg)](https://github.com/jinghuazhao/pQTLtools/actions?workflow=R-CMD-check)
 
 Objects             |    Description
 --------------------|-----------------------------------------
