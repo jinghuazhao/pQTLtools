@@ -1,7 +1,7 @@
 # pQTLtools 0.1
 
 * ...
-* Add LICENSE.md
+* Add LICENSE.md and README.md
 * Replace ChangeLog with NEWS.md and document with pkgdown
 * Add import_OpenGWAS and therefore suggests gwasvcf, rtracklayer, VariantAnnotation
 * Adopt import_eQTLCatalogue from eQTL-Catalogue-resources suggesting seqminer
