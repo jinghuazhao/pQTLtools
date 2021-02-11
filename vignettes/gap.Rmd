@@ -1,5 +1,5 @@
 ---
-title: "Related functions in R/gap"
+title: "Other related functions in R/gap"
 author: "Jing Hua Zhao"
 output:
   rmarkdown::html_vignette:
