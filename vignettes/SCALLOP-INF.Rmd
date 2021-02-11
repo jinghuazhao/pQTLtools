@@ -1,0 +1,27 @@
+---
+title: "SCALLOP-INF scripts"
+author: "Jing Hua Zhao"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+    toc_depth: 2
+    check_title: false
+bibliography: refs.bib
+vignette: >
+  %\VignetteIndexEntry{scallop-inf}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+set.seed(0)
+knitr::opts_chunk$set(
+  out.extra = 'style="display:block; margin: auto"',
+  fig.align = "center",
+  fig.path = "figures/",
+  collapse = TRUE,
+  comment = "#>",
+  dev = "png")
+```
+
+To be added.
