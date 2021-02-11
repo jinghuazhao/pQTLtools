@@ -33,6 +33,7 @@ articles:
     contents:
     - plogp
     - gap
+    - SCALLOP-INF
 
 reference:
   - title: Functions
