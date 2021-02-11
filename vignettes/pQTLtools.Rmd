@@ -18,7 +18,7 @@ set.seed(0)
 knitr::opts_chunk$set(
   out.extra = 'style="display:block; margin: auto"',
   fig.align = "center",
-  fig.path = "figures/",
+  fig.path = "pQTLtools/",
   collapse = TRUE,
   comment = "#>",
   dev = "png")
@@ -41,13 +41,13 @@ with(cistrans,total)
 circos.cis.vs.trans.plot(hits=f,inf1,"uniprot")
 ```
 This is used to generate 2d-Manhattan plot
-```{r}
+```{r, fig.height=8}
 INF <- Sys.getenv("INF")
 d <- read.csv(file.path(INF,"work","INF1.merge.cis.vs.trans"),as.is=TRUE)
 t2d <- mhtplot2d(d)
 ```
 and ideogram
-```{r}
+```{r, fig.height=8}
 INF1_merge <- read.delim(file.path(INF,"work","INF1.merge"))[c("Chrom","Start","End","prot","MarkerName")]
 singletons <- with(INF1_merge,End-Start==1)
 INF1_merge[singletons,"Start"] <- INF1_merge[singletons,"Start"] - 1e6
