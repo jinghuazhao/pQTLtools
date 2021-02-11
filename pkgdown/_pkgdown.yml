@@ -28,6 +28,7 @@ navbar:
 articles:
   - title: Articles
     contents:
+    - plogp
     - pQTLtools
 
 reference:
