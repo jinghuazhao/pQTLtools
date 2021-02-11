@@ -30,6 +30,8 @@ articles:
     contents:
     - pQTLtools
   - title: Articles
+    desc: >
+      The logp, log10p, pvalue functions are now part of R/gap,
     contents:
     - plogp
     - gap
