@@ -94,7 +94,7 @@ The function `pqtlMR` is derived from @zheng20.
 
 See example associated with `import_eQTLCatalogue`. A related function is `import_OpenGWAS` used to fetch data from OpenGWAS.
 
-```{r}
+```{r, warning = FALSE}
 library(pQTLtools)
 f <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","hg19ToHg38.over.chain")
 chain <- rtracklayer::import.chain(f)
