@@ -1,0 +1,106 @@
+---
+title: "Related functions in R/gap"
+author: "Jing Hua Zhao"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+    toc_depth: 2
+    check_title: false
+bibliography: refs.bib
+vignette: >
+  %\VignetteIndexEntry{gap}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+set.seed(0)
+knitr::opts_chunk$set(
+  out.extra = 'style="display:block; margin: auto"',
+  fig.align = "center",
+  fig.path = "figures/",
+  collapse = TRUE,
+  comment = "#>",
+  dev = "png")
+```
+
+We describe some functions from R/gap.
+
+## invnormal
+
+The function is widely used in various consortium analyses and defined as follows,
+```{r}
+invnormal <- function(x) qnorm((rank(x,na.last="keep")-0.5)/sum(!is.na(x)))
+```
+An example use on data from Poisson distribution is as follows,
+```{r}
+set.seed(12345)
+Ni <- rpois(50, lambda = 4); table(factor(Ni, 0:max(Ni)))
+y <- invnormal(Ni)
+sd(y)
+mean(y)
+Ni <- 1:50
+y <- invnormal(Ni)
+mean(y)
+sd(y)
+```
+
+## gc.lambda
+
+The definition is as follows,
+```{r}
+gc.lambda <- function(p) {
+  p <- p[!is.na(p)]
+  n <- length(p)
+
+  obs <- qchisq(p,1,lower.tail=FALSE)
+  exp <- qchisq(1:n/n,1,lower.tail=FALSE)
+
+  lambda <- median(obs)/median(exp)
+  return(lambda)
+}
+
+# A simplified version is as follows,
+# obs <- median(chisq)
+# exp <- qchisq(0.5, 1) # 0.4549364
+# lambda <- obs/exp
+# see also estlambda from GenABEL and qq.chisq from snpStats
+
+# A related function
+
+lambda1000 <- function(lambda, ncases, ncontrols)
+  1 + (lambda - 1) * (1 / ncases + 1 / ncontrols)/( 1 / 1000 + 1 / 1000)
+```
+
+## mhtplot.trunc
+
+Again this is the documentation example,
+```
+require(gap)
+require(gap.datasets)
+mhtplot.trunc(mhtdata,chr = "chr", bp = "pos", p = "p", snp = "rsn", y.brk1=10, y.brk2=12)
+# https://portals.broadinstitute.org/collaboration/
+# giant/images/0/0f/Meta-analysis_Locke_et_al+UKBiobank_2018.txt.gz
+gz <- gzfile("Meta-analysis_Locke_et_al+UKBiobank_2018_UPDATED.txt.gz")
+BMI <- within(read.delim(gz,as.is=TRUE), {Z <- BETA/SE})
+library(Rmpfr)
+within(subset(BMI, P==0), {P <- format(2*pnorm(mpfr(abs(BETA/SE),100),lower.tail=FALSE))})
+par(oma=c(0,0,0,0), mar=c(5,6.5,1,1))
+mhtplot.trunc(BMI, chr="CHR", bp="POS", p="P", snp="SNP", z = "Z",
+              suggestiveline=FALSE, genomewideline=-log10(1e-8), logp = TRUE,
+              cex.mtext=0.6, cex.text=0.7,
+              mtext.line=4, y.brk1=200, y.brk2=280, cex.axis=0.6, cex.y=0.6, cex=0.5,
+              y.ax.space=20,
+              col = c("blue4", "skyblue")
+)
+```
+
+## METAL.forestplot
+
+The following is the documentation example,
+```
+require(gap)
+require(gap.datasets)
+data(OPG)
+METAL_forestplot(OPGtbl,OPGall,OPGrsid,pdf="OPG.pdf",width=8.75,height=5)
+```
