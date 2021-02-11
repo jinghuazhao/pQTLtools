@@ -98,7 +98,7 @@ mhtplot.trunc(BMI, chr="CHR", bp="POS", p="P", snp="SNP", z = "Z",
 ## METAL.forestplot
 
 The following is the documentation example,
-```
+```r
 require(gap)
 require(gap.datasets)
 data(OPG)
