@@ -75,7 +75,7 @@ lambda1000 <- function(lambda, ncases, ncontrols)
 ## mhtplot.trunc
 
 Again this is the documentation example,
-```
+```r
 require(gap)
 require(gap.datasets)
 mhtplot.trunc(mhtdata,chr = "chr", bp = "pos", p = "p", snp = "rsn", y.brk1=10, y.brk2=12)
