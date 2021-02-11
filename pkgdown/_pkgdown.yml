@@ -26,10 +26,12 @@ navbar:
       href: https://github.com/jinghuazhao/pQTLtools
 
 articles:
+  - title: Vignettes
+    contents:
+    - pQTLtools
   - title: Articles
     contents:
     - plogp
-    - pQTLtools
 
 reference:
   - title: Functions
