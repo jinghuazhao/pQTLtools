@@ -72,6 +72,16 @@ lambda1000 <- function(lambda, ncases, ncontrols)
   1 + (lambda - 1) * (1 / ncases + 1 / ncontrols)/( 1 / 1000 + 1 / 1000)
 ```
 
+## METAL.forestplot
+
+The following is the documentation example,
+```{r, message = FALSE, fig.height=6, fig.width=12}
+require(gap)
+require(gap.datasets)
+data(OPG)
+METAL_forestplot(OPGtbl,OPGall,OPGrsid,width=8.75,height=5)
+```
+
 ## mhtplot.trunc
 
 Again this is the documentation example,
@@ -95,12 +105,41 @@ mhtplot.trunc(BMI, chr="CHR", bp="POS", p="P", snp="SNP", z = "Z",
 )
 ```
 
-## METAL.forestplot
+## cnvplot and circos.cnvplot
 
-The following is the documentation example,
-```{r, message = FALSE, fig.height=6, fig.width=12}
-require(gap)
-require(gap.datasets)
-data(OPG)
-METAL_forestplot(OPGtbl,OPGall,OPGrsid,width=8.75,height=5)
+These are a functions to plot distribution of CNVs,
+
+```{r}
+library(gap)
+cnvplot(cnv)
+circos.cnvplot(cnv)
 ```
+
+## cs
+
+This is a function for credible set.
+```r
+# zcat METAL/4E.BP1-1.tbl.gz | \
+# awk 'NR==1 || ($1==4 && $2 >= 187158034 - 1e6 && $2 < 187158034 + 1e6)' >  4E.BP1.z
+tbl <- within(read.delim("4E.BP1.z"),{logp <- logp(Effect/StdErr)})
+z <- cs(tbl)
+l <- cs(tbl,log_p="logp")
+```
+
+## chr_pos_a1_a2 and inv_chr_pos_a1_a2
+
+They are functions to handle SNPid.
+```{r2}
+s <- chr_pos_a1_a2(1,c(123,321),letters[1:2],letters[2:1])
+inv_chr_pos_a1_a2(s)
+inv_chr_pos_a1_a2("chr1:123-A_B",seps=c(":","-","_"))
+```
+
+## snptest_sample
+
+This is a function to output sample file for SNPTEST.
+```r
+d <- data.frame(ID_1=1,ID_2=1,missing=0,PC1=1,PC2=2,D1=1,P1=10)
+snptest_sample(d,C=paste0("PC",1:2),D=paste0("D",1:1),P=paste0("P",1:1))
+```
+The commands above generates a file named ``snptest.sample.
