@@ -115,8 +115,8 @@ pqtlMR <- function(Ins,Ids,prefix="INF1",reverse=FALSE)
   exposure <- outcome <- id.exposure <- id.outcome <- effect_allele.exposure <- effect_allele.outcome <- NULL
   other_allele.exposure <- other_allele.outcome <- eaf.exposure <- eaf.outcome <- samplesize.exposure <- NULL
   beta.exposure <- beta.outcome <- se.exposure <- se.outcome <- pval.exposure <- pval.outcome <- swap_unique_var_a <- NULL
-  Ins <- data <- Ins
-  Ins <- TwoSampleMR::format_data(Ins, type = "exposure", header = TRUE,
+  dat <- Ins
+  Ins <- TwoSampleMR::format_data(dat, type = "exposure", header = TRUE,
                      phenotype_col = "Phenotype", snp_col = "SNP", beta_col = "beta",
                      se_col = "se", eaf_col = "eaf", effect_allele_col = "effect_allele",
                      other_allele_col = "other_allele", pval_col = "pval")
