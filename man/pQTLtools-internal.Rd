@@ -65,7 +65,7 @@ setdiff(INF1_uniprot,box_uniprot)
 # Phenoscanner database
 ps <- merge(subset(read.delim(file.path(INF,"work","pQTL_2018.txt.gz"),as.is=TRUE),pmid==29875488),
             box,by.x="trait",by.y="TargetFullName")
-z <- subset(ps,UniProts \%in\% INF1_uniprot & p<=1.5e-11)
+z <- subset(ps,UniProtgwas \%in\% INF1_uniprot & p<=1.5e-11)
 
 # ST4 at Nature
 st4regions <- subset(st4, UniProt \%in\% INF1_uniprot)
