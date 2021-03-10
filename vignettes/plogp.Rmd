@@ -90,3 +90,17 @@ pvalue <- function(z,decimals=2)
   paste0(round(base*10,decimals),"e",-1+exponent)
 }
 ```
+We end with a quick look-up table
+```r
+grid1 <- seq(0,30,5)
+grid2 <- seq(40,5000,300)
+require(gap)
+v <- data.frame()
+for (z in c(grid1,grid2))
+{
+  vi <- c(z,pvalue(z),logp(z),log10p(z))
+  v <- rbind(v,vi)
+}
+names(v) <- c("z","P","log(P)","log10(P)")
+print(v,right=FALSE,row.names=FALSE)
+```
