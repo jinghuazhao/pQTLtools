@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+Rscript -e "library(pkgdown);build_articles()"
+
 for f in .github .gitignore .Rbuildignore .Rinstignore .travis.yml \
          data/ DESCRIPTION docs/ INDEX inst/ LICENSE LICENSE.md man/ NAMESPACE NEWS.md pkgdown/ R/ st.sh README.md vignettes/
 do
