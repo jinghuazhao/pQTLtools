@@ -91,7 +91,7 @@ pvalue <- function(z,decimals=2)
 }
 ```
 We end with a quick look-up table
-```r
+```{r}
 grid1 <- seq(0,30,5)
 grid2 <- seq(40,5000,300)
 require(gap)
