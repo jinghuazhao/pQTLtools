@@ -2,6 +2,8 @@
 \title{Internal data/functions for pQTLtools}
 \alias{biomaRt}
 \alias{caprion}
+\alias{extract_outcome_data.args}
+\alias{format_data.args}
 \alias{hg19}
 \alias{hg19Tables}
 \alias{inf1}
