@@ -215,3 +215,55 @@ import_OpenGWAS <- function(opengwas_id, region, verbose = TRUE)
   vcf <- VariantAnnotation::readVcf(file_path, "hg19", param)
   gwasvcf::vcf_to_granges(vcf)
 }
+
+
+format_data.args <- function(file="exposure.gz", type="exposure", phenotype_col="prot", header = TRUE, snp_col = "rsid",
+                             effect_allele_col = "Allele1", other_allele_col = "Allele2",
+                             eaf_col = "Freq1", beta_col = "Effect", se_col = "StdErr", pval_col = "P", log_pval = FALSE,
+                             samplesize_col = "N")
+  invisible(list(file=file,type=type,phenotype_col=phenotype_col,header=header,snp_col=snp_col,
+                 effect_allele_col=effect_allele_col,other_allele_col=other_allele_col,eaf_col=eaf_col,
+                 beta_col=beta_col,se_col=se_col,pval_col=pval_col,log_pval=log_pval,samplesize_col=samplesize_col))
+
+extract_outcome_data.args <- function(snps, outcomes, proxies=TRUE, rsq=0.8, align_alleles=1,
+                                      palindromes=1, maf_threshold=0.3, access_token=ieugwasr::check_access_token(),
+                                      splitsize=10000, proxy_splitsize=500)
+  invisible(list(snps=snps,outcomes=outcomes,proxies=proxies,rsq=rsq,align_alleles=align_alleles,
+                           palindromes=palindromes,maf_threshold=maf_threshold,access_token=access_token,
+                           splitsize=splitsize,proxy_splitsize=proxy_splitsize))
+
+run_TwoSampleMR <- function(exposure.args=format_data.args(),outcome.args=extract_outcome_data.args(),prefix,...)
+{
+  d <- with(exposure.args,lapply(file, function(x) tryCatch(read.delim(file,as.is=TRUE), error=function(e) NULL))[[1]])
+  if (nrow(d)==0) stop("the data is empty")
+  e <- with(exposure.args,TwoSampleMR::format_data(d, type=type, phenotype_col=phenotype_col, header=header, snp_col=snp_col,
+                          effect_allele_col=effect_allele_col, other_allele_col=other_allele_col,
+                          eaf_col=eaf_col, beta_col=beta_col, se_col=se_col, pval_col=pval_col, log_pval=log_pval,
+                          samplesize_col=samplesize_col))
+  exposure_dat <- TwoSampleMR::clump_data(e)
+  outcome_dat <- with(outcome.args,TwoSampleMR::extract_outcome_data(snps, outcomes, proxies=proxies, rsq=rsq,
+                                   align_alleles=align_alleles, palindromes=palindromes, maf_threshold=maf_threshold))
+  if(!is.null(outcome_dat))
+  {
+    dat <- TwoSampleMR::harmonise_data(exposure_dat, outcome_dat, action = 2)
+    TwoSampleMR::directionality_test(dat)
+    if (nrow(dat)!=0)
+    {
+      result <- TwoSampleMR::mr(dat)
+      heterogeneity <- TwoSampleMR::mr_heterogeneity(dat)
+      pleiotropy <- TwoSampleMR::mr_pleiotropy_test(dat)
+      single <- TwoSampleMR::mr_singlesnp(dat)
+      loo <- TwoSampleMR::mr_leaveoneout(dat)
+      invisible(lapply(c("result","heterogeneity","pleiotropy","single","loo"), function(x) {
+                      v <- lapply(x, function(x) tryCatch(get(x), error=function(e) NULL))[[1]]
+                      if (!is.null(v)) write.table(format(v,digits=3),file=paste0(prefix,"-",x,".txt"),quote=FALSE,row.names=FALSE,sep="\t")
+                    }))
+      pdf(paste0(prefix,".pdf"))
+      TwoSampleMR::mr_scatter_plot(result, dat)
+      TwoSampleMR::mr_forest_plot(single)
+      TwoSampleMR::mr_leaveoneout_plot(loo)
+      TwoSampleMR::mr_funnel_plot(single)
+      dev.off()
+    }
+  }
+}
