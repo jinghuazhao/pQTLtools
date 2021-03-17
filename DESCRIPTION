@@ -27,6 +27,7 @@ Imports:
 Suggests:
     biomaRt,
     gap,
+    gap.datasets,
     circlize,
     knitr,
     karyoploteR,
