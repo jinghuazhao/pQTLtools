@@ -13,6 +13,7 @@ function build()
     build_site()
   END
 
+# add entry to pkgdown/_pkgdown.yml  
   mv vignettes/gap docs/articles/
   mv vignettes/pQTLtools docs/articles/
 }
