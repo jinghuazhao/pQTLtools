@@ -1,6 +1,7 @@
 # pQTLtools 0.1
 
 * ...
+* Add run_TwoSampleMR()
 * Add gap.Rmd and SCALLOP-INF.Rmd articles
 * Add LICENSE.md and README.md
 * Replace ChangeLog with NEWS.md and document with pkgdown
