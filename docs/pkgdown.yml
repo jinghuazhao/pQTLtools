@@ -2,6 +2,9 @@ pandoc: 2.0.6
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
+  SCALLOP-INF: SCALLOP-INF.html
+  gap: gap.html
   pQTLtools: pQTLtools.html
-last_built: 2021-02-08T12:26Z
+  plogp: plogp.html
+last_built: 2021-03-17T21:10Z
 
