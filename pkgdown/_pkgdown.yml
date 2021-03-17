@@ -46,6 +46,7 @@ reference:
     - import_eQTLCatalogue
     - pqtlMR
     - regionqueries
+    - run_TwoSampleMR
     - snpqueries
     - uniprot2ids
   - title: Datasets
