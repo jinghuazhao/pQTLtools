@@ -8,32 +8,32 @@ Given a compressed or uncompressed file containing exposure data, this function 
 \arguments{
 \item{exposure.args}{a list of options appropriate for TwoSampleMR's format_data(),
   \enumerate{
-    \item{file}{file}
-    \item{type}{exposure or outcome}
-    \item{phenotype_col}{protein column}
-    \item{header}{TRUE or FALSE}
-    \item{snp_col}{rsid}
-    \item{effect_allele_col}{effect allele}
-    \item{other_allele_col}{other allele}
-    \item{eaf_col}{EAF}
-    \item{beta_col}{beta}
-    \item{se_col}{se}
-    \item{pval_col}{pval}
-    \item{log_pval}{FALSE or TRUE}
+    \item file. file
+    \item type. exposure or outcome
+    \item phenotype_col. protein column
+    \item header. TRUE or FALSE
+    \item snp_col. rsid
+    \item effect_allele_col. effect allele
+    \item other_allele_col. other allele
+    \item eaf_col. EAF
+    \item beta_col. beta
+    \item se_col. se
+    \item pval_col. pval
+    \item log_pval. FALSE or TRUE
   }
 }
 \item{outcome.args}{a list of options appropriate for TwoSampleMR's extract_outcome_data(),
   \enumerate{
-    \item{snp}{snpname}
-    \item{outcomes}{outcome id}
-    \item{proxies}{TRUE or FALSE}
-    \item{rsq}{r^2}
-    \item{align_alleles}{1}
-    \item{palindromes}{1}
-    \item{maf_threshold}{0.3}
-    \item{access_token}{token}
-    \item{splitsize}{10000}
-    \item{proxy_splitsize}{500}
+    \item snp. snpname
+    \item outcomes. outcome id
+    \item proxies. TRUE or FALSE
+    \item rsq. r^2
+    \item align_alleles. 1
+    \item palindromes. 1
+    \item maf_threshold. 0.3
+    \item access_token. token
+    \item splitsize. 10000
+    \item proxy_splitsize. 500
   }
 }
 \item{prefix}{a prefix for output files}
