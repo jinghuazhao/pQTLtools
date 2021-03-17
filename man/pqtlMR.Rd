@@ -41,5 +41,5 @@ ids <- scan("ieu-id.txt",what="")
 pQTLtools::pqtlMR(ivs,ids)
 }
 }
-\note{adapted from script by Jie Zheng}
+\note{Adapted from script by Jie Zheng}
 \keyword{utilities}
