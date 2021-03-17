@@ -3,8 +3,7 @@
 \title{Bidirectional pQTL-MR analysis}
 \usage{pqtlMR(Ins,Ids,prefix="INF1",reverse=FALSE)}
 \description{
-Given a list of pQTLs as instrumental variables (IVs), this function
-performs MR analysis according to epigraphdb.
+Given a list of pQTLs as instrumental variables (IVs), this function performs MR analysis according to epigraphdb.
 }
 \arguments{
 \item{Ins}{a data.frame containing a list of pQTLs and their effect sizes}
