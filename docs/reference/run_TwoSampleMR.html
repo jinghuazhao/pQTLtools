@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Bidirectional pQTL-MR analysis — pqtlMR • pQTLtools</title>
+<title>A generic wrapper for TwoSampleMR analysis — run_TwoSampleMR • pQTLtools</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Bidirectional pQTL-MR analysis — pqtlMR" />
-<meta property="og:description" content="Given a list of pQTLs as instrumental variables (IVs), this function performs MR analysis according to epigraphdb." />
+<meta property="og:title" content="A generic wrapper for TwoSampleMR analysis — run_TwoSampleMR" />
+<meta property="og:description" content="Given a compressed or uncompressed file containing exposure data, this function conducts a two-sample MR analysis using MR-Base." />
 
 
 
@@ -105,69 +105,83 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Bidirectional pQTL-MR analysis</h1>
+    <h1>A generic wrapper for TwoSampleMR analysis</h1>
     
-    <div class="hidden name"><code>pqtlMR.Rd</code></div>
+    <div class="hidden name"><code>run_TwoSampleMR.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Given a list of pQTLs as instrumental variables (IVs), this function performs MR analysis according to epigraphdb.</p>
+    <p>Given a compressed or uncompressed file containing exposure data, this function conducts a two-sample MR analysis using MR-Base.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pqtlMR</span><span class='op'>(</span><span class='va'>Ins</span>,<span class='va'>Ids</span>,prefix<span class='op'>=</span><span class='st'>"INF1"</span>,reverse<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>run_TwoSampleMR</span><span class='op'>(</span>exposure.args<span class='op'>=</span><span class='fu'><a href='pQTLtools-internal.html'>format_data.args</a></span><span class='op'>(</span><span class='op'>)</span>,outcome.args<span class='op'>=</span><span class='fu'><a href='pQTLtools-internal.html'>extract_outcome_data.args</a></span><span class='op'>(</span><span class='op'>)</span>,<span class='va'>prefix</span>,<span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>Ins</th>
-      <td><p>a data.frame containing a list of pQTLs and their effect sizes</p></td>
+      <th>exposure.args</th>
+      <td><p>a list of options appropriate for TwoSampleMR's format_data(),</p><ol>
+<li><p>file. file</p></li>
+<li><p>type. exposure or outcome</p></li>
+<li><p>phenotype_col. protein column</p></li>
+<li><p>header. TRUE or FALSE</p></li>
+<li><p>snp_col. rsid</p></li>
+<li><p>effect_allele_col. effect allele</p></li>
+<li><p>other_allele_col. other allele</p></li>
+<li><p>eaf_col. EAF</p></li>
+<li><p>beta_col. beta</p></li>
+<li><p>se_col. se</p></li>
+<li><p>pval_col. pval</p></li>
+<li><p>log_pval. FALSE or TRUE</p></li>
+</ol>
+</td>
     </tr>
     <tr>
-      <th>Ids</th>
-      <td><p>a vector containing a list of MR-Base IDs</p></td>
+      <th>outcome.args</th>
+      <td><p>a list of options appropriate for TwoSampleMR's extract_outcome_data(),</p><ol>
+<li><p>snp. snpname</p></li>
+<li><p>outcomes. outcome id</p></li>
+<li><p>proxies. TRUE or FALSE</p></li>
+<li><p>rsq. r^2</p></li>
+<li><p>align_alleles. 1</p></li>
+<li><p>palindromes. 1</p></li>
+<li><p>maf_threshold. 0.3</p></li>
+<li><p>access_token. token</p></li>
+<li><p>splitsize. 10000</p></li>
+<li><p>proxy_splitsize. 500</p></li>
+</ol>
+</td>
     </tr>
     <tr>
       <th>prefix</th>
       <td><p>a prefix for output files</p></td>
     </tr>
     <tr>
-      <th>reverse</th>
-      <td><p>if TRUE, perform reverse MR</p></td>
+      <th>...</th>
+      <td><p>other options to be added</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>This function is based on TwoSampleMR.</p>
+    <p>As TwoSampleMR includes seemingly daunting tasks, this function intends to simplify various steps in a two-sample MR. It is
+particularly useful when a large numbher of MRs are necessary, e.g., multiple proteins and their cis/trans regions need to be examined,
+in which case prefix could direct the output to various directories.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>No value is returned but several files.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Zheng, J., et al. (2020). Phenome-wide Mendelian randomization mapping the influence of the plasma proteome on complex diseases. *Nature Genetics* 52(10): 1122-1131.</p>
+    <p>Dimou NL, Tsilidis KK. A Primer in Mendelian Randomization Methodology with a Focus on Utilizing Published Summary Association Data. In
+Evangelos Evangelou (ed.), Genetic Epidemiology: Methods and Protocols, Methods in Molecular Biology, vol. 1793,
+https://doi.org/10.1007/978-1-4939-7868-7_13, Springer Science+Business Media, LLC, part of Springer Nature 2018</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>adapted from script by Jie Zheng</p>
+    <p>Adapted from script by Dimou NL, Tsilidis KK</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='co'># A bidirectional MR analysis</span>
-<span class='va'>ms</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/find.package.html'>find.package</a></span><span class='op'>(</span><span class='st'>"pQTLtools"</span><span class='op'>)</span>,<span class='st'>"tests"</span>,<span class='st'>"ms.ins"</span><span class='op'>)</span>
-<span class='va'>ivs</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.table</a></span><span class='op'>(</span><span class='va'>ms</span>,as.is<span class='op'>=</span><span class='cn'>TRUE</span>,header<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='va'>ids</span> <span class='op'>&lt;-</span> <span class='st'>"ieu-b-18"</span>
-<span class='co'># MR</span>
-<span class='fu'>pqtlMR</span><span class='op'>(</span><span class='va'>ivs</span>,<span class='va'>ids</span>,prefix<span class='op'>=</span><span class='st'>"MS"</span><span class='op'>)</span>
-<span class='co'># reverse MR</span>
-<span class='fu'>pqtlMR</span><span class='op'>(</span><span class='va'>ivs</span>,<span class='va'>ids</span>,prefix<span class='op'>=</span><span class='st'>"MS_rev"</span>,reverse<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/list.files.html'>dir</a></span><span class='op'>(</span><span class='op'>)</span>
-<span class='co'># prefix=INF1 for the SCALLOP/INF1</span>
-<span class='va'>prefix</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"prefix"</span><span class='op'>)</span>
-<span class='va'>ivs</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/with.html'>within</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.table</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>prefix</span>,<span class='st'>".ins"</span><span class='op'>)</span>,as.is<span class='op'>=</span><span class='cn'>TRUE</span>,header<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>,<span class='op'>{</span><span class='va'>pval</span><span class='op'>=</span><span class='fl'>10</span><span class='op'>^</span><span class='va'>pval</span><span class='op'>}</span><span class='op'>)</span>
-<span class='va'>ids</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/scan.html'>scan</a></span><span class='op'>(</span><span class='st'>"ieu-id.txt"</span>,what<span class='op'>=</span><span class='st'>""</span><span class='op'>)</span>
-<span class='fu'>pQTLtools</span><span class='fu'>::</span><span class='fu'>pqtlMR</span><span class='op'>(</span><span class='va'>ivs</span>,<span class='va'>ids</span><span class='op'>)</span>
-<span class='op'>}</span>
-</div></pre>
+    <pre class="examples"></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
