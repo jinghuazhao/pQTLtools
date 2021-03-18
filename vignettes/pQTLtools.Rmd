@@ -8,7 +8,7 @@ output:
     check_title: false
 bibliography: refs.bib
 vignette: >
-  %\VignetteIndexEntry{Overview}
+  %\VignetteIndexEntry{An Overview of pQTLtools}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
