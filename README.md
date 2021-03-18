@@ -49,4 +49,3 @@ regionqueries        |   phenoscanner regionqueries in batches
 snpqueries           |   phenoscanner snpqueries in batches
 **UniProt API**      |
 uniprot2ids          |   UniProt ID to others
-
