@@ -1,5 +1,5 @@
 export(genequeries,regionqueries,snpqueries,import_eQTLCatalogue,import_OpenGWAS,pqtlMR,run_coloc,run_TwoSampleMR,uniprot2ids)
-import(dplyr,utils)
+import(dplyr,rtracklayer,utils)
 importFrom("coloc","coloc.abf")
 importFrom("graphics", "abline", "arrows", "axis", "box", "identify",
            "legend", "lines", "mtext", "par", "plot", "points",
