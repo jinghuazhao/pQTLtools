@@ -193,6 +193,24 @@ swap <- function(x,y)
 
 pqtlMR <- function(Ins=format_data.args(),Ids=extract_outcome_data.args(),prefix="INF1",reverse=FALSE,...)
 {
+  exposure <- NA
+  outcome <- NA
+  id.exposure <- NA
+  id.outcome <- NA
+  effect_allele.exposure <- NA
+  effect_allele.outcome <- NA
+  other_allele.exposure <- NA
+  other_allele.outcome <- NA
+  eaf.exposure <- NA
+  eaf.outcome <- NA
+  samplesize.exposure <- NA
+  beta.exposure <- NA
+  beta.outcome <- NA
+  se.exposure <- NA
+  se.outcome <- NA
+  pval.exposure <- NA
+  pval.outcome <- NA
+  swap_unique_var_a <- NA
   Ins <- with(Ins,TwoSampleMR::format_data(Ins, type=type, phenotype_col=phenotype_col, header=header, snp_col=snp_col,
                   effect_allele_col=effect_allele_col, other_allele_col=other_allele_col,
                   eaf_col=eaf_col, beta_col=beta_col, se_col=se_col, pval_col=pval_col, log_pval=log_pval,
