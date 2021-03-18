@@ -1,5 +1,5 @@
 ---
-title: "SCALLOP-INF scripts"
+title: "SCALLOP-INF"
 author: "Jing Hua Zhao"
 output:
   rmarkdown::html_vignette:
