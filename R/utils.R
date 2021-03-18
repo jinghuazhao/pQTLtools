@@ -105,52 +105,6 @@ snpqueries <- function(snplist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.8,buil
   list(snps=snps,results=results)
 }
 
-swap <- function(x,y)
-   eval(parse(text = paste("swap_unique_var_a <-", substitute(x), ";",
-   substitute(x), "<-", substitute(y), ";",
-   substitute(y), "<-swap_unique_var_a")), envir=parent.frame())
-
-pqtlMR <- function(Ins,Ids,prefix="INF1",reverse=FALSE)
-{
-  exposure <- outcome <- id.exposure <- id.outcome <- effect_allele.exposure <- effect_allele.outcome <- NULL
-  other_allele.exposure <- other_allele.outcome <- eaf.exposure <- eaf.outcome <- samplesize.exposure <- NULL
-  beta.exposure <- beta.outcome <- se.exposure <- se.outcome <- pval.exposure <- pval.outcome <- swap_unique_var_a <- NULL
-  dat <- Ins
-  Ins <- TwoSampleMR::format_data(dat, type = "exposure", header = TRUE,
-                     phenotype_col = "Phenotype", snp_col = "SNP", beta_col = "beta",
-                     se_col = "se", eaf_col = "eaf", effect_allele_col = "effect_allele",
-                     other_allele_col = "other_allele", pval_col = "pval")
-# ao <- TwoSampleMR::available_outcomes(access_token=NULL)
-  ids <- Ids
-  outcome_dat <- TwoSampleMR::extract_outcome_data(snps = with(Ins,SNP), outcomes = ids)
-  harmonise <- TwoSampleMR::harmonise_data(exposure_dat = Ins, outcome_dat = outcome_dat)
-  if (reverse) harmonise <- subset(within(harmonise,
-  {
-    swap(exposure,outcome)
-    swap(id.exposure,id.outcome)
-    swap(effect_allele.exposure,effect_allele.outcome)
-    swap(other_allele.exposure,other_allele.outcome)
-    swap(eaf.exposure,eaf.outcome)
-    if(exists("samplesize.exposure") & exists("samplesize.outcome")) swap(samplesize.exposure,samplesize.outcome)
-    if(!exists("samplesize.exposure") & exists("samplesize.outcome")) samplesize.outcome <- NA
-    swap(beta.exposure,beta.outcome)
-    swap(se.exposure,se.outcome)
-    swap(pval.exposure,pval.outcome)
-  }),select=-swap_unique_var_a)
-  result <- heterogeneity <- pleiotropy <- single <- NULL
-  try(result <- TwoSampleMR::mr(harmonise, method_list=c("mr_wald_ratio", "mr_ivw"))) # main MR analysis
-  heterogeneity <- TwoSampleMR::mr_heterogeneity(harmonise) # heterogeneity test across instruments
-  pleiotropy <- TwoSampleMR::mr_pleiotropy_test(harmonise) # MR-Egger intercept test
-  try(single <- TwoSampleMR::mr_singlesnp(harmonise)) #single SNP MR using Wald ratio
-# result <- within(result,outcome <- sub(" [|]* id:ieu-a-[0-9]*| [|]* id:ukb-a-[0-9]*", "\\1", outcome, perl = TRUE))
-  ext <- ".txt"
-  invisible(lapply(c("harmonise","result","heterogeneity","pleiotropy","single"), function(x) {
-                   v <- lapply(x, function(x) tryCatch(get(x), error=function(e) NULL))[[1]]
-                   if (!is.null(v)) write.table(format(v,digits=3),file=paste0(prefix,"-",x,ext),quote=FALSE,row.names=FALSE,sep="\t")
-            })
-  )
-}
-
 uniprot2ids <- function(uniprotid="ACC+ID",to,query)
 {
   rt <- find.package("pQTLtools")
@@ -231,6 +185,48 @@ extract_outcome_data.args <- function(snps, outcomes, proxies=TRUE, rsq=0.8, ali
   invisible(list(snps=snps,outcomes=outcomes,proxies=proxies,rsq=rsq,align_alleles=align_alleles,
                            palindromes=palindromes,maf_threshold=maf_threshold,access_token=access_token,
                            splitsize=splitsize,proxy_splitsize=proxy_splitsize))
+
+swap <- function(x,y)
+   eval(parse(text = paste("swap_unique_var_a <-", substitute(x), ";",
+   substitute(x), "<-", substitute(y), ";",
+   substitute(y), "<-swap_unique_var_a")), envir=parent.frame())
+
+pqtlMR <- function(Ins=format_data.args(),Ids=extract_outcome_data.args(),prefix="INF1",reverse=FALSE,...)
+{
+  Ins <- with(Ins,TwoSampleMR::format_data(Ins, type=type, phenotype_col=phenotype_col, header=header, snp_col=snp_col,
+                  effect_allele_col=effect_allele_col, other_allele_col=other_allele_col,
+                  eaf_col=eaf_col, beta_col=beta_col, se_col=se_col, pval_col=pval_col, log_pval=log_pval,
+                  samplesize_col=samplesize_col))
+# ao <- TwoSampleMR::available_outcomes(access_token=NULL)
+  outcome_dat <- with(Ids,TwoSampleMR::extract_outcome_data(snps, outcomes, proxies=proxies, rsq=rsq,
+                          align_alleles=align_alleles, palindromes=palindromes, maf_threshold=maf_threshold))
+  harmonise <- TwoSampleMR::harmonise_data(exposure_dat = Ins, outcome_dat = outcome_dat)
+  if (reverse) harmonise <- subset(within(harmonise,
+  {
+    swap(exposure,outcome)
+    swap(id.exposure,id.outcome)
+    swap(effect_allele.exposure,effect_allele.outcome)
+    swap(other_allele.exposure,other_allele.outcome)
+    swap(eaf.exposure,eaf.outcome)
+    if(exists("samplesize.exposure") & exists("samplesize.outcome")) swap(samplesize.exposure,samplesize.outcome)
+    if(!exists("samplesize.exposure") & exists("samplesize.outcome")) samplesize.outcome <- NA
+    swap(beta.exposure,beta.outcome)
+    swap(se.exposure,se.outcome)
+    swap(pval.exposure,pval.outcome)
+  }),select=-swap_unique_var_a)
+  result <- heterogeneity <- pleiotropy <- single <- NULL
+  try(result <- TwoSampleMR::mr(harmonise, method_list=c("mr_wald_ratio", "mr_ivw"))) # main MR analysis
+  heterogeneity <- TwoSampleMR::mr_heterogeneity(harmonise) # heterogeneity test across instruments
+  pleiotropy <- TwoSampleMR::mr_pleiotropy_test(harmonise) # MR-Egger intercept test
+  try(single <- TwoSampleMR::mr_singlesnp(harmonise)) #single SNP MR using Wald ratio
+# result <- within(result,outcome <- sub(" [|]* id:ieu-a-[0-9]*| [|]* id:ukb-a-[0-9]*", "\\1", outcome, perl = TRUE))
+  ext <- ".txt"
+  invisible(lapply(c("harmonise","result","heterogeneity","pleiotropy","single"), function(x) {
+                   v <- lapply(x, function(x) tryCatch(get(x), error=function(e) NULL))[[1]]
+                   if (!is.null(v)) write.table(format(v,digits=3),file=paste0(prefix,"-",x,ext),quote=FALSE,row.names=FALSE,sep="\t")
+            })
+  )
+}
 
 run_TwoSampleMR <- function(exposure.args=format_data.args(),outcome.args=extract_outcome_data.args(),prefix,...)
 {
