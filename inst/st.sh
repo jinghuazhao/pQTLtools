@@ -13,9 +13,15 @@ function build()
     build_site()
   END
 
-# add entry to pkgdown/_pkgdown.yml  
-  mv vignettes/gap docs/articles/
-  mv vignettes/pQTLtools docs/articles/
+  if [ -d vignettes/gap ]; then
+     rm -rf docs/articles/gap
+     mv vignettes/gap docs/articles/
+  fi
+  if [ -d vignettes/pQTLtools ]; then
+     rm -rf docs/articles/pQTLtools
+     mv vignettes/pQTLtools docs/articles/
+  fi
+# add entry for reference to pkgdown/_pkgdown.yml  
 }
 
 for f in .github .gitignore .Rbuildignore .Rinstignore .travis.yml \
