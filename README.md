@@ -42,6 +42,7 @@ import_eQTLCatalogue |   Import eQTL Catalogue
 import_OpenGWAS      |   Import OpenGWAS
 **MR analysis**      |
 pqtlMR               |   Bidirectional pQTL-MR analysis
+run_TwoSampleMR      |   A generic wrapper for TwoSampleMR analysis
 **PhenoScanner Utilities** |
 genequeries          |   phenoscanner genequeries in batches
 regionqueries        |   phenoscanner regionqueries in batches
