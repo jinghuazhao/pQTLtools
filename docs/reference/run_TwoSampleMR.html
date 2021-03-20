@@ -115,7 +115,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>run_TwoSampleMR</span><span class='op'>(</span>exposure.args<span class='op'>=</span><span class='fu'><a href='pQTLtools-internal.html'>format_data.args</a></span><span class='op'>(</span><span class='op'>)</span>,outcome.args<span class='op'>=</span><span class='fu'><a href='pQTLtools-internal.html'>extract_outcome_data.args</a></span><span class='op'>(</span><span class='op'>)</span>,
-                       clump.args<span class='op'>=</span><span class='fu'><a href='pQTLtools-internal.html'>clump_data.args</a></span><span class='op'>(</span><span class='op'>)</span>,harmonise.args<span class='op'>=</span><span class='fu'>harmonise_data.args</span><span class='op'>(</span><span class='op'>)</span>,<span class='va'>prefix</span>,<span class='va'>...</span><span class='op'>)</span></pre>
+                       clump.args<span class='op'>=</span><span class='fu'><a href='pQTLtools-internal.html'>clump_data.args</a></span><span class='op'>(</span><span class='op'>)</span>,harmonise.args<span class='op'>=</span><span class='fu'><a href='pQTLtools-internal.html'>harmonise_data.args</a></span><span class='op'>(</span><span class='op'>)</span>,<span class='va'>prefix</span>,<span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -141,8 +141,8 @@
     <tr>
       <th>outcome.args</th>
       <td><p>a list of options appropriate for TwoSampleMR's extract_outcome_data(),</p><ol>
-<li><p>snp. snpname</p></li>
-<li><p>outcomes. outcome id</p></li>
+<li><p>snp. NULL (to derive from exposure.args)</p></li>
+<li><p>outcomes. NULL</p></li>
 <li><p>proxies. TRUE or FALSE</p></li>
 <li><p>rsq. r^2</p></li>
 <li><p>align_alleles. 1</p></li>
@@ -156,10 +156,8 @@
     </tr>
     <tr>
       <th>clump.args</th>
-      <td><p>a list of options appropriate for TwoSampleMR's clump_data(),
-dat, clump_kb = 10000, clump_r2 = 0.001, clump_p1 = 1, clump_p2 = 1, pop = "EUR")
-  invisible(list(dat=dat,clump_kb=clump_kb,clump_r2=clump_r2,clump_p1=clump_p1,clump_p2=clump_p2,pop=pop</p><ol>
-<li><p>dat. format_data() output</p></li>
+      <td><p>a list of options appropriate for TwoSampleMR's clump_data(),</p><ol>
+<li><p>dat. NULL (format_data() output)</p></li>
 <li><p>clump_kb. 10000</p></li>
 <li><p>clump_r2. 0.001</p></li>
 <li><p>clump_p1. 1</p></li>
@@ -205,7 +203,14 @@ https://doi.org/10.1007/978-1-4939-7868-7_13, Springer Science+Business Media, L
     <p>Adapted from script by Dimou NL, Tsilidis KK</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"></pre>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+<span class='va'>INF</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"INF"</span><span class='op'>)</span>
+<span class='va'>prefix</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>INF</span>,<span class='st'>"mr"</span>,<span class='st'>"cis"</span>,<span class='st'>"IL.18-cis"</span><span class='op'>)</span>
+<span class='va'>d</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='va'>prefix</span>,<span class='st'>".mrx"</span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>TwoSampleMR</span><span class='op'>)</span>
+<span class='fu'>run_TwoSampleMR</span><span class='op'>(</span>exposure.args<span class='op'>=</span><span class='fu'><a href='pQTLtools-internal.html'>format_data.args</a></span><span class='op'>(</span><span class='va'>d</span><span class='op'>)</span>,outcome.args<span class='op'>=</span><span class='fu'><a href='pQTLtools-internal.html'>extract_outcome_data.args</a></span><span class='op'>(</span>outcomes<span class='op'>=</span><span class='st'>"ieu-b-18"</span><span class='op'>)</span>,<span class='va'>prefix</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
