@@ -49,8 +49,8 @@ Given a compressed or uncompressed file containing exposure data, this function 
 }
 \item{harmonise.args}{a list of options appropriate for harmonise_data(),
   \enumerate{
-    \item exposure_data. exposure data from format_data()
-    \item outcome_data. outcome data from format_data()
+    \item exposure_data. NULL (exposure data from format_data())
+    \item outcome_data. NULL (outcome data from format_data())
     \item action. 2 (1, 2, 3)
   }
 }
