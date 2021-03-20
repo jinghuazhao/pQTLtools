@@ -186,12 +186,19 @@ extract_outcome_data.args <- function(snps, outcomes, proxies=TRUE, rsq=0.8, ali
                            palindromes=palindromes,maf_threshold=maf_threshold,access_token=access_token,
                            splitsize=splitsize,proxy_splitsize=proxy_splitsize))
 
+clump_data.args <- function(dat, clump_kb = 10000, clump_r2 = 0.001, clump_p1 = 1, clump_p2 = 1, pop = "EUR")
+  invisible(list(dat=dat,clump_kb=clump_kb,clump_r2=clump_r2,clump_p1=clump_p1,clump_p2=clump_p2,pop=pop))
+
+harmonise_data.args <- function(exposure_dat, outcome_dat, action = 2)
+  invisible(list(exporesure_dat=exposure_dat,outcome_dat=outcome_dat,action=action))
+
 swap <- function(x,y)
    eval(parse(text = paste("swap_unique_var_a <-", substitute(x), ";",
    substitute(x), "<-", substitute(y), ";",
    substitute(y), "<-swap_unique_var_a")), envir=parent.frame())
 
-pqtlMR <- function(Ins=format_data.args(),Ids=extract_outcome_data.args(),prefix="INF1",reverse=FALSE,...)
+pqtlMR <- function(Ins=format_data.args(),Ids=extract_outcome_data.args(),harmonise=harmonise_data.args(),
+                   prefix="INF1",reverse=FALSE,...)
 {
   exposure <- NA
   outcome <- NA
@@ -218,7 +225,7 @@ pqtlMR <- function(Ins=format_data.args(),Ids=extract_outcome_data.args(),prefix
 # ao <- TwoSampleMR::available_outcomes(access_token=NULL)
   outcome_dat <- with(Ids,TwoSampleMR::extract_outcome_data(snps, outcomes, proxies=proxies, rsq=rsq,
                           align_alleles=align_alleles, palindromes=palindromes, maf_threshold=maf_threshold))
-  harmonise <- TwoSampleMR::harmonise_data(exposure_dat = Ins, outcome_dat = outcome_dat)
+  harmonise <- with(harmonise,TwoSampleMR::harmonise_data(exposure_dat=Ins, outcome_dat=outcome_dat, action=action))
   if (reverse) harmonise <- subset(within(harmonise,
   {
     swap(exposure,outcome)
@@ -246,7 +253,8 @@ pqtlMR <- function(Ins=format_data.args(),Ids=extract_outcome_data.args(),prefix
   )
 }
 
-run_TwoSampleMR <- function(exposure.args=format_data.args(),outcome.args=extract_outcome_data.args(),prefix,...)
+run_TwoSampleMR <- function(exposure.args=format_data.args(),outcome.args=extract_outcome_data.args(),
+                            clump.args=clump_data.args(),hamonise.args=harmonise_data.args(),prefix,...)
 {
   d <- with(exposure.args,lapply(file, function(x) tryCatch(read.delim(file,as.is=TRUE), error=function(e) NULL))[[1]])
   if (nrow(d)==0) stop("the data is empty")
@@ -254,12 +262,12 @@ run_TwoSampleMR <- function(exposure.args=format_data.args(),outcome.args=extrac
                           effect_allele_col=effect_allele_col, other_allele_col=other_allele_col,
                           eaf_col=eaf_col, beta_col=beta_col, se_col=se_col, pval_col=pval_col, log_pval=log_pval,
                           samplesize_col=samplesize_col))
-  exposure_dat <- TwoSampleMR::clump_data(e)
+  exposure_dat <- with(clump.args,TwoSampleMR::clump_data(e,clump_kb=clump_kb, clump_r2=clump_r2, clump_p1=clump_p1, clump_p2=clump_p2, pop=pop))
   outcome_dat <- with(outcome.args,TwoSampleMR::extract_outcome_data(snps, outcomes, proxies=proxies, rsq=rsq,
                                    align_alleles=align_alleles, palindromes=palindromes, maf_threshold=maf_threshold))
   if(!is.null(outcome_dat))
   {
-    dat <- TwoSampleMR::harmonise_data(exposure_dat, outcome_dat, action = 2)
+    dat <- with(harmonise.args,TwoSampleMR::harmonise_data(exposure_dat, outcome_dat, action=action))
     TwoSampleMR::directionality_test(dat)
     if (nrow(dat)!=0)
     {
