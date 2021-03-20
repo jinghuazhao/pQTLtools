@@ -254,7 +254,7 @@ pqtlMR <- function(Ins=format_data.args(),Ids=extract_outcome_data.args(),harmon
 }
 
 run_TwoSampleMR <- function(exposure.args=format_data.args(),outcome.args=extract_outcome_data.args(),
-                            clump.args=clump_data.args(),hamonise.args=harmonise_data.args(),prefix,...)
+                            clump.args=clump_data.args(),harmonise.args=harmonise_data.args(),prefix,...)
 {
   d <- with(exposure.args,lapply(file, function(x) tryCatch(read.delim(file,as.is=TRUE), error=function(e) NULL))[[1]])
   if (nrow(d)==0) stop("the data is empty")
