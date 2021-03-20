@@ -1,8 +1,8 @@
 \name{pqtlMR}
 \alias{pqtlMR}
 \title{Bidirectional pQTL-MR analysis}
-\usage{pqtlMR(Ins=format_data.args(),Ids=extract_outcome_data.args(),harmonise=harmonise_data(),
-              prefix="INF1",reverse=FALSE,...)}
+\usage{pqtlMR(Ins=format_data.args(),Ids=extract_outcome_data.args(),
+              harmonise=harmonise_data.args(),prefix="INF1",reverse=FALSE,...)}
 \description{
 Given a list of pQTLs as instrumental variables (IVs), this function performs MR analysis according to epigraphdb.
 }

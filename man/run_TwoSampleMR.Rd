@@ -49,7 +49,7 @@ dat, clump_kb = 10000, clump_r2 = 0.001, clump_p1 = 1, clump_p2 = 1, pop = "EUR"
     \item pop. "EUR" ("EUR", "SAS", "EAS", "AFR", "AMR")
   }
 }
-\item{harmonise}{a list of options appropriate for harmonise_data(),
+\item{harmonise.args}{a list of options appropriate for harmonise_data(),
   \enumerate{
     \item exposure_data. exposure data from format_data()
     \item outcome_data. outcome data from format_data()

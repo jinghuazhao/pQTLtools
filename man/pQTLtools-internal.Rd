@@ -5,7 +5,7 @@
 \alias{clump_data.args}
 \alias{extract_outcome_data.args}
 \alias{format_data.args}
-\alias{harmonise.args}
+\alias{harmonise_data.args}
 \alias{hg19}
 \alias{hg19Tables}
 \alias{inf1}
