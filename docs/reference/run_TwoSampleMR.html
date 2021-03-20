@@ -114,7 +114,8 @@
     <p>Given a compressed or uncompressed file containing exposure data, this function conducts a two-sample MR analysis using MR-Base.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>run_TwoSampleMR</span><span class='op'>(</span>exposure.args<span class='op'>=</span><span class='fu'><a href='pQTLtools-internal.html'>format_data.args</a></span><span class='op'>(</span><span class='op'>)</span>,outcome.args<span class='op'>=</span><span class='fu'><a href='pQTLtools-internal.html'>extract_outcome_data.args</a></span><span class='op'>(</span><span class='op'>)</span>,<span class='va'>prefix</span>,<span class='va'>...</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>run_TwoSampleMR</span><span class='op'>(</span>exposure.args<span class='op'>=</span><span class='fu'><a href='pQTLtools-internal.html'>format_data.args</a></span><span class='op'>(</span><span class='op'>)</span>,outcome.args<span class='op'>=</span><span class='fu'><a href='pQTLtools-internal.html'>extract_outcome_data.args</a></span><span class='op'>(</span><span class='op'>)</span>,
+                       clump.args<span class='op'>=</span><span class='fu'><a href='pQTLtools-internal.html'>clump_data.args</a></span><span class='op'>(</span><span class='op'>)</span>,harmonise.args<span class='op'>=</span><span class='fu'>harmonise_data.args</span><span class='op'>(</span><span class='op'>)</span>,<span class='va'>prefix</span>,<span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -150,6 +151,29 @@
 <li><p>access_token. token</p></li>
 <li><p>splitsize. 10000</p></li>
 <li><p>proxy_splitsize. 500</p></li>
+</ol>
+</td>
+    </tr>
+    <tr>
+      <th>clump.args</th>
+      <td><p>a list of options appropriate for TwoSampleMR's clump_data(),
+dat, clump_kb = 10000, clump_r2 = 0.001, clump_p1 = 1, clump_p2 = 1, pop = "EUR")
+  invisible(list(dat=dat,clump_kb=clump_kb,clump_r2=clump_r2,clump_p1=clump_p1,clump_p2=clump_p2,pop=pop</p><ol>
+<li><p>dat. format_data() output</p></li>
+<li><p>clump_kb. 10000</p></li>
+<li><p>clump_r2. 0.001</p></li>
+<li><p>clump_p1. 1</p></li>
+<li><p>clump_p2. 1</p></li>
+<li><p>pop. "EUR" ("EUR", "SAS", "EAS", "AFR", "AMR")</p></li>
+</ol>
+</td>
+    </tr>
+    <tr>
+      <th>harmonise</th>
+      <td><p>a list of options appropriate for harmonise_data(),</p><ol>
+<li><p>exposure_data. exposure data from format_data()</p></li>
+<li><p>outcome_data. outcome data from format_data()</p></li>
+<li><p>action. 2 (1, 2, 3)</p></li>
 </ol>
 </td>
     </tr>

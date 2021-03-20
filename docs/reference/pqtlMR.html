@@ -114,7 +114,8 @@
     <p>Given a list of pQTLs as instrumental variables (IVs), this function performs MR analysis according to epigraphdb.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pqtlMR</span><span class='op'>(</span>Ins<span class='op'>=</span><span class='fu'><a href='pQTLtools-internal.html'>format_data.args</a></span><span class='op'>(</span><span class='op'>)</span>,Ids<span class='op'>=</span><span class='fu'><a href='pQTLtools-internal.html'>extract_outcome_data.args</a></span><span class='op'>(</span><span class='op'>)</span>,prefix<span class='op'>=</span><span class='st'>"INF1"</span>,reverse<span class='op'>=</span><span class='cn'>FALSE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>pqtlMR</span><span class='op'>(</span>Ins<span class='op'>=</span><span class='fu'><a href='pQTLtools-internal.html'>format_data.args</a></span><span class='op'>(</span><span class='op'>)</span>,Ids<span class='op'>=</span><span class='fu'><a href='pQTLtools-internal.html'>extract_outcome_data.args</a></span><span class='op'>(</span><span class='op'>)</span>,harmonise<span class='op'>=</span><span class='fu'>harmonise_data</span><span class='op'>(</span><span class='op'>)</span>,
+              prefix<span class='op'>=</span><span class='st'>"INF1"</span>,reverse<span class='op'>=</span><span class='cn'>FALSE</span>,<span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -150,6 +151,15 @@
 <li><p>access_token. token</p></li>
 <li><p>splitsize. 10000</p></li>
 <li><p>proxy_splitsize. 500</p></li>
+</ol>
+</td>
+    </tr>
+    <tr>
+      <th>harmonise</th>
+      <td><p>a list of options appropriate for harmonise_data(),</p><ol>
+<li><p>exposure_data. exposure data from format_data()</p></li>
+<li><p>outcome_data. outcome data from format_data()</p></li>
+<li><p>action. 2 (1, 2 ,3)</p></li>
 </ol>
 </td>
     </tr>
