@@ -1,7 +1,8 @@
 \name{pqtlMR}
 \alias{pqtlMR}
 \title{Bidirectional pQTL-MR analysis}
-\usage{pqtlMR(Ins=format_data.args(),Ids=extract_outcome_data.args(),prefix="INF1",reverse=FALSE,...)}
+\usage{pqtlMR(Ins=format_data.args(),Ids=extract_outcome_data.args(),harmonise=harmonise_data(),
+              prefix="INF1",reverse=FALSE,...)}
 \description{
 Given a list of pQTLs as instrumental variables (IVs), this function performs MR analysis according to epigraphdb.
 }
@@ -34,6 +35,13 @@ Given a list of pQTLs as instrumental variables (IVs), this function performs MR
     \item access_token. token
     \item splitsize. 10000
     \item proxy_splitsize. 500
+  }
+}
+\item{harmonise}{a list of options appropriate for harmonise_data(),
+  \enumerate{
+    \item exposure_data. exposure data from format_data()
+    \item outcome_data. outcome data from format_data()
+    \item action. 2 (1, 2 ,3)
   }
 }
 \item{prefix}{a prefix for output files}

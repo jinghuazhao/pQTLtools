@@ -2,6 +2,7 @@
 \title{Internal data/functions for pQTLtools}
 \alias{biomaRt}
 \alias{caprion}
+\alias{clump_data.args}
 \alias{extract_outcome_data.args}
 \alias{format_data.args}
 \alias{hg19}

@@ -1,7 +1,8 @@
 \name{run_TwoSampleMR}
 \alias{run_TwoSampleMR}
 \title{A generic wrapper for TwoSampleMR analysis}
-\usage{run_TwoSampleMR(exposure.args=format_data.args(),outcome.args=extract_outcome_data.args(),prefix,...)}
+\usage{run_TwoSampleMR(exposure.args=format_data.args(),outcome.args=extract_outcome_data.args(),
+                       clump.args=clump_data.args(),harmonise.args=harmonise_data.args(),prefix,...)}
 \description{
 Given a compressed or uncompressed file containing exposure data, this function conducts a two-sample MR analysis using MR-Base.
 }
@@ -34,6 +35,25 @@ Given a compressed or uncompressed file containing exposure data, this function 
     \item access_token. token
     \item splitsize. 10000
     \item proxy_splitsize. 500
+  }
+}
+\item{clump.args}{a list of options appropriate for TwoSampleMR's clump_data(),
+dat, clump_kb = 10000, clump_r2 = 0.001, clump_p1 = 1, clump_p2 = 1, pop = "EUR")
+  invisible(list(dat=dat,clump_kb=clump_kb,clump_r2=clump_r2,clump_p1=clump_p1,clump_p2=clump_p2,pop=pop
+  \enumerate{
+    \item dat. format_data() output
+    \item clump_kb. 10000
+    \item clump_r2. 0.001
+    \item clump_p1. 1
+    \item clump_p2. 1
+    \item pop. "EUR" ("EUR", "SAS", "EAS", "AFR", "AMR")
+  }
+}
+\item{harmonise}{a list of options appropriate for harmonise_data(),
+  \enumerate{
+    \item exposure_data. exposure data from format_data()
+    \item outcome_data. outcome data from format_data()
+    \item action. 2 (1, 2, 3)
   }
 }
 \item{prefix}{a prefix for output files}
