@@ -78,6 +78,7 @@ https://doi.org/10.1007/978-1-4939-7868-7_13, Springer Science+Business Media, L
 INF <- Sys.getenv("INF")
 prefix <- file.path(INF,"mr","cis","IL.18-cis")
 d <- paste0(prefix,".mrx")
+library(TwoSampleMR)
 run_TwoSampleMR(exposure.args=format_data.args(d),outcome.args=extract_outcome_data.args(outcomes="ieu-b-18"),prefix)
 }
 }
