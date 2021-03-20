@@ -189,7 +189,7 @@ extract_outcome_data.args <- function(snps=NULL, outcomes=NULL, proxies=TRUE, rs
 clump_data.args <- function(dat=NULL, clump_kb = 10000, clump_r2 = 0.001, clump_p1 = 1, clump_p2 = 1, pop = "EUR")
   invisible(list(dat=dat,clump_kb=clump_kb,clump_r2=clump_r2,clump_p1=clump_p1,clump_p2=clump_p2,pop=pop))
 
-harmonise_data.args <- function(exposure_dat, outcome_dat, action = 2)
+harmonise_data.args <- function(exposure_dat=NULL, outcome_dat=NULL, action = 2)
   invisible(list(exporesure_dat=exposure_dat,outcome_dat=outcome_dat,action=action))
 
 swap <- function(x,y)
@@ -270,6 +270,8 @@ run_TwoSampleMR <- function(exposure.args=format_data.args(),outcome.args=extrac
                                    align_alleles=align_alleles, palindromes=palindromes, maf_threshold=maf_threshold))
   if(!is.null(outcome_dat))
   {
+    if (is.null(harmonise.args$exposure_dat)) harmonise.args$exposure_dat <- exposure_dat
+    if (is.null(harmonise.args$outcome_dat)) harmonise.args$outcome_dat <- exposure_dat
     dat <- with(harmonise.args,TwoSampleMR::harmonise_data(exposure_dat, outcome_dat, action=action))
     TwoSampleMR::directionality_test(dat)
     if (nrow(dat)!=0)
