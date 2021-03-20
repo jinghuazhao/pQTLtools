@@ -186,7 +186,7 @@ extract_outcome_data.args <- function(snps=NULL, outcomes=NULL, proxies=TRUE, rs
                            palindromes=palindromes,maf_threshold=maf_threshold,access_token=access_token,
                            splitsize=splitsize,proxy_splitsize=proxy_splitsize))
 
-clump_data.args <- function(dat, clump_kb = 10000, clump_r2 = 0.001, clump_p1 = 1, clump_p2 = 1, pop = "EUR")
+clump_data.args <- function(dat=NULL, clump_kb = 10000, clump_r2 = 0.001, clump_p1 = 1, clump_p2 = 1, pop = "EUR")
   invisible(list(dat=dat,clump_kb=clump_kb,clump_r2=clump_r2,clump_p1=clump_p1,clump_p2=clump_p2,pop=pop))
 
 harmonise_data.args <- function(exposure_dat, outcome_dat, action = 2)
@@ -263,7 +263,8 @@ run_TwoSampleMR <- function(exposure.args=format_data.args(),outcome.args=extrac
                           effect_allele_col=effect_allele_col, other_allele_col=other_allele_col,
                           eaf_col=eaf_col, beta_col=beta_col, se_col=se_col, pval_col=pval_col, log_pval=log_pval,
                           samplesize_col=samplesize_col))
-  exposure_dat <- with(clump.args,TwoSampleMR::clump_data(e,clump_kb=clump_kb, clump_r2=clump_r2, clump_p1=clump_p1, clump_p2=clump_p2, pop=pop))
+  if (is.null(clump.args$dat)) clump.args$dat <- e
+  exposure_dat <- with(clump.args,TwoSampleMR::clump_data(dat,clump_kb=clump_kb, clump_r2=clump_r2, clump_p1=clump_p1, clump_p2=clump_p2, pop=pop))
   if (is.null(outcome.args$snps)) outcome.args$snps <- with(e,SNP)
   outcome_dat <- with(outcome.args,TwoSampleMR::extract_outcome_data(snps, outcomes, proxies=proxies, rsq=rsq,
                                    align_alleles=align_alleles, palindromes=palindromes, maf_threshold=maf_threshold))
