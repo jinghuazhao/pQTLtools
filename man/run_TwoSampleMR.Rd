@@ -79,7 +79,8 @@ INF <- Sys.getenv("INF")
 prefix <- file.path(INF,"mr","cis","IL.18-cis")
 d <- paste0(prefix,".mrx")
 library(TwoSampleMR)
-run_TwoSampleMR(exposure.args=format_data.args(d),outcome.args=extract_outcome_data.args(outcomes="ieu-b-18"),prefix)
+run_TwoSampleMR(exposure.args=format_data.args(d),outcome.args=extract_outcome_data.args(outcomes="ieu-b-18"),
+                clump.args=clump_data.args(),harmonise.args=harmonise_data.args(),prefix)
 }
 }
 \note{Adapted from script by Dimou NL, Tsilidis KK}
