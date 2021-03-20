@@ -25,8 +25,8 @@ Given a compressed or uncompressed file containing exposure data, this function 
 }
 \item{outcome.args}{a list of options appropriate for TwoSampleMR's extract_outcome_data(),
   \enumerate{
-    \item snp. snpname
-    \item outcomes. outcome id
+    \item snp. NULL (to derive from exposure.args)
+    \item outcomes. NULL
     \item proxies. TRUE or FALSE
     \item rsq. r^2
     \item align_alleles. 1
@@ -77,7 +77,10 @@ https://doi.org/10.1007/978-1-4939-7868-7_13, Springer Science+Business Media, L
 
 \examples{
 \dontrun{
-To be added.
+INF <- Sys.getenv("INF")
+prefix <- file.path(INF,"mr","cis","IL.18-cis")
+d <- paste0(prefix,".mrx")
+run_TwoSampleMR(exposure.args=format_data.args(d),outcome.args=extract_outcome_data.args(outcomes="ieu-b-18"),prefix)
 }
 }
 \note{Adapted from script by Dimou NL, Tsilidis KK}
