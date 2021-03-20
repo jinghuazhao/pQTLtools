@@ -38,10 +38,8 @@ Given a compressed or uncompressed file containing exposure data, this function 
   }
 }
 \item{clump.args}{a list of options appropriate for TwoSampleMR's clump_data(),
-dat, clump_kb = 10000, clump_r2 = 0.001, clump_p1 = 1, clump_p2 = 1, pop = "EUR")
-  invisible(list(dat=dat,clump_kb=clump_kb,clump_r2=clump_r2,clump_p1=clump_p1,clump_p2=clump_p2,pop=pop
   \enumerate{
-    \item dat. format_data() output
+    \item dat. NULL (format_data() output)
     \item clump_kb. 10000
     \item clump_r2. 0.001
     \item clump_p1. 1
