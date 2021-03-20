@@ -179,7 +179,7 @@ format_data.args <- function(file="exposure.gz", type="exposure", phenotype_col=
                  effect_allele_col=effect_allele_col,other_allele_col=other_allele_col,eaf_col=eaf_col,
                  beta_col=beta_col,se_col=se_col,pval_col=pval_col,log_pval=log_pval,samplesize_col=samplesize_col))
 
-extract_outcome_data.args <- function(snps, outcomes, proxies=TRUE, rsq=0.8, align_alleles=1,
+extract_outcome_data.args <- function(snps=NULL, outcomes=NULL, proxies=TRUE, rsq=0.8, align_alleles=1,
                                       palindromes=1, maf_threshold=0.3, access_token=ieugwasr::check_access_token(),
                                       splitsize=10000, proxy_splitsize=500)
   invisible(list(snps=snps,outcomes=outcomes,proxies=proxies,rsq=rsq,align_alleles=align_alleles,
@@ -223,6 +223,7 @@ pqtlMR <- function(Ins=format_data.args(),Ids=extract_outcome_data.args(),harmon
                   eaf_col=eaf_col, beta_col=beta_col, se_col=se_col, pval_col=pval_col, log_pval=log_pval,
                   samplesize_col=samplesize_col))
 # ao <- TwoSampleMR::available_outcomes(access_token=NULL)
+  if (is.null(Ids$snps)) Ids$snps <- Ins$SNP
   outcome_dat <- with(Ids,TwoSampleMR::extract_outcome_data(snps, outcomes, proxies=proxies, rsq=rsq,
                           align_alleles=align_alleles, palindromes=palindromes, maf_threshold=maf_threshold))
   harmonise <- with(harmonise,TwoSampleMR::harmonise_data(exposure_dat=Ins, outcome_dat=outcome_dat, action=action))
@@ -263,6 +264,7 @@ run_TwoSampleMR <- function(exposure.args=format_data.args(),outcome.args=extrac
                           eaf_col=eaf_col, beta_col=beta_col, se_col=se_col, pval_col=pval_col, log_pval=log_pval,
                           samplesize_col=samplesize_col))
   exposure_dat <- with(clump.args,TwoSampleMR::clump_data(e,clump_kb=clump_kb, clump_r2=clump_r2, clump_p1=clump_p1, clump_p2=clump_p2, pop=pop))
+  if (is.null(outcome.args$snps)) outcome.args$snps <- with(e,SNP)
   outcome_dat <- with(outcome.args,TwoSampleMR::extract_outcome_data(snps, outcomes, proxies=proxies, rsq=rsq,
                                    align_alleles=align_alleles, palindromes=palindromes, maf_threshold=maf_threshold))
   if(!is.null(outcome_dat))
