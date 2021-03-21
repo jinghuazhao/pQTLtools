@@ -1,6 +1,0 @@
-id.exposure	id.outcome	outcome	exposure	method	nsnp	b	se	pval
-ImbABK	ukb-b-19732	Non-cancer illness code, self-reported: hypothyroidism/myxoedema || id:ukb-b-19732	MMP.10	MR Egger	4	-2.81e-05	0.00242	0.992
-ImbABK	ukb-b-19732	Non-cancer illness code, self-reported: hypothyroidism/myxoedema || id:ukb-b-19732	MMP.10	Weighted median	4	 1.06e-03	0.00124	0.390
-ImbABK	ukb-b-19732	Non-cancer illness code, self-reported: hypothyroidism/myxoedema || id:ukb-b-19732	MMP.10	Inverse variance weighted	4	 1.06e-03	0.00127	0.402
-ImbABK	ukb-b-19732	Non-cancer illness code, self-reported: hypothyroidism/myxoedema || id:ukb-b-19732	MMP.10	Simple mode	4	 3.94e-03	0.00260	0.226
-ImbABK	ukb-b-19732	Non-cancer illness code, self-reported: hypothyroidism/myxoedema || id:ukb-b-19732	MMP.10	Weighted mode	4	 4.04e-04	0.00145	0.798

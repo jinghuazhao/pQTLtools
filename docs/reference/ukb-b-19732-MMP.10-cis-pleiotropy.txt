@@ -1,2 +1,0 @@
-id.exposure	id.outcome	outcome	exposure	egger_intercept	se	pval
-ImbABK	ukb-b-19732	Non-cancer illness code, self-reported: hypothyroidism/myxoedema || id:ukb-b-19732	MMP.10	0.000597	0.00106	0.63

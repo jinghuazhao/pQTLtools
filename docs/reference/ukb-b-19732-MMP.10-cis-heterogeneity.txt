@@ -1,3 +1,0 @@
-id.exposure	id.outcome	outcome	exposure	method	Q	Q_df	Q_pval
-ImbABK	ukb-b-19732	Non-cancer illness code, self-reported: hypothyroidism/myxoedema || id:ukb-b-19732	MMP.10	MR Egger	3.41	2	0.182
-ImbABK	ukb-b-19732	Non-cancer illness code, self-reported: hypothyroidism/myxoedema || id:ukb-b-19732	MMP.10	Inverse variance weighted	3.95	3	0.267

@@ -1,7 +1,0 @@
-exposure	outcome	id.exposure	id.outcome	samplesize	SNP	b	se	p
-MMP.10	Non-cancer illness code, self-reported: hypothyroidism/myxoedema || id:ukb-b-19732	ImbABK	ukb-b-19732	462933	rs11225354	 4.30e-03	0.00229	0.0603
-MMP.10	Non-cancer illness code, self-reported: hypothyroidism/myxoedema || id:ukb-b-19732	ImbABK	ukb-b-19732	462933	rs142915220	 4.86e-03	0.00538	0.3668
-MMP.10	Non-cancer illness code, self-reported: hypothyroidism/myxoedema || id:ukb-b-19732	ImbABK	ukb-b-19732	462933	rs17099622	-3.05e-03	0.00419	0.4672
-MMP.10	Non-cancer illness code, self-reported: hypothyroidism/myxoedema || id:ukb-b-19732	ImbABK	ukb-b-19732	462933	rs17860955	 1.07e-04	0.00136	0.9375
-MMP.10	Non-cancer illness code, self-reported: hypothyroidism/myxoedema || id:ukb-b-19732	ImbABK	ukb-b-19732	462933	All - Inverse variance weighted	 1.06e-03	0.00127	0.4017
-MMP.10	Non-cancer illness code, self-reported: hypothyroidism/myxoedema || id:ukb-b-19732	ImbABK	ukb-b-19732	462933	All - MR Egger	-2.81e-05	0.00242	0.9918
