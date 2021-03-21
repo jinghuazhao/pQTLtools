@@ -24,7 +24,7 @@ knitr::opts_chunk$set(
   dev = "png")
 ```
 
-## Colocalization
+## Colocalisation
 ```bash
 #!/usr/bin/bash
 
