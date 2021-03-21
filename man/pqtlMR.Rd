@@ -72,7 +72,6 @@ pqtlMR(Ins, Ids = extract_outcome_data.args(outcomes="ieu-b-18"),
 # reverse MR
 pqtlMR(Ins, Ids = extract_outcome_data.args(outcomes="ieu-b-18"),
        harmonise = harmonise_data.args(),prefix="MS_rev",reverse=TRUE)
-dir()
 }
 \note{Adapted from script by Jie Zheng}
 \keyword{utilities}
