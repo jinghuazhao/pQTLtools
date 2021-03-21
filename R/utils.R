@@ -220,6 +220,7 @@ pqtlMR <- function(Ins=format_data.args(),Ids=extract_outcome_data.args(),harmon
   swap_unique_var_a <- NA
   d <- with(Ins,lapply(file, function(x) tryCatch(read.delim(file,as.is=TRUE), error=function(e) NULL))[[1]])
   if (nrow(d)==0) stop("the Instrument data is empty")
+  if (is.null(Ins$dat)) Ins$dat <- d
   Ins <- with(Ins,TwoSampleMR::format_data(d, type=type, phenotype_col=phenotype_col, header=header, snp_col=snp_col,
                   effect_allele_col=effect_allele_col, other_allele_col=other_allele_col,
                   eaf_col=eaf_col, beta_col=beta_col, se_col=se_col, pval_col=pval_col, log_pval=log_pval,
