@@ -183,7 +183,7 @@ format_file.args <- function(file=NULL, type = "exposure", snps = NULL, header =
                  other_allele_col = other_allele_col, pval_col = pval_col, units_col = units_col,
                  ncase_col = ncase_col, ncontrol_col = ncontrol_col, samplesize_col = samplesize_col,
                  gene_col = gene_col, id_col = id_col, min_pval = min_pval, z_col = z_col,
-                 info_col = info_col, chr_col = chr_col, pos_col = pos_chol, log_pval = FALSE))
+                 info_col = info_col, chr_col = chr_col, pos_col = pos_col, log_pval = FALSE))
 
 extract_outcome_data.args <- function(snps=NULL, outcomes=NULL, proxies=TRUE, rsq=0.8, align_alleles=1,
                                       palindromes=1, maf_threshold=0.3, access_token=ieugwasr::check_access_token(),
