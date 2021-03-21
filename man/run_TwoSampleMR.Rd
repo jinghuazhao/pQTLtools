@@ -87,10 +87,10 @@ https://doi.org/10.1007/978-1-4939-7868-7_13, Springer Science+Business Media, L
 
 \examples{
 library(TwoSampleMR)
+outcomes <- "ukb-b-19732"
 prot <- "MMP.10"
 type <- "cis"
 f <- paste0(prot,"-",type,".mrx")
-outcomes <- "ukb-b-19732"
 e <- function(d) format_file.args(d, phenotype_col="prot", snp_col="rsid", chr_col="Chromosome", pos_col="Posistion",
                  effect_allele_col="Allele1", other_allele_col="Allele2", eaf_col="Freq1",
                  beta_col="Effect", se_col="StdErr", pval_col="logP", log_pval=TRUE, samplesize_col="N")
