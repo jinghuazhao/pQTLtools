@@ -177,7 +177,7 @@ format_file.args <- function(file=NULL, type = "exposure", snps = NULL, header =
                              ncase_col = "ncase", ncontrol_col = "ncontrol", samplesize_col = "samplesize",
                              gene_col = "gene", id_col = "id", min_pval = 1e-200, z_col = "z",
                              info_col = "info", chr_col = "chr", pos_col = "pos", log_pval = FALSE)
-  invisible(list(dat=dat, type = type, snps = snps, header = header,
+  invisible(list(file = file, type = type, snps = snps, header = header,
                  phenotype_col = phenotype_col, snp_col = snp_col, beta_col = beta_col,
                  se_col = se_col, eaf_col = eaf_col, effect_allele_col = effect_allele_col,
                  other_allele_col = other_allele_col, pval_col = pval_col, units_col = units_col,
