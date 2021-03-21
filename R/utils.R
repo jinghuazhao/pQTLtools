@@ -227,10 +227,13 @@ pqtlMR <- function(Ins=format_file.args(),Ids=extract_outcome_data.args(),harmon
   d <- with(Ins,lapply(file, function(x) tryCatch(read.table(file,as.is=TRUE,header=TRUE), error=function(e) NULL))[[1]])
   if (nrow(d)==0) stop("the Instrument data is empty")
   if (is.null(Ins$dat)) Ins$dat <- d
-  exposure_dat <- with(Ins,TwoSampleMR::format_data(d, type=type, phenotype_col=phenotype_col, header=header, snp_col=snp_col,
-                       effect_allele_col=effect_allele_col, other_allele_col=other_allele_col,
-                       eaf_col=eaf_col, beta_col=beta_col, se_col=se_col, pval_col=pval_col, log_pval=log_pval,
-                      samplesize_col=samplesize_col))
+  exposure_dat <- with(Ins,TwoSampleMR::format_dat(Ins, type = type, snps = snps, header = header,
+                       phenotype_col = phenotype_col, snp_col = snp_col, beta_col = beta_col,
+                       se_col = se_col, eaf_col = eaf_col, effect_allele_col = effect_allele_col,
+                       other_allele_col = other_allele_col, pval_col = pval_col, units_col = units_col,
+                       ncase_col = ncase_col, ncontrol_col = ncontrol_col, samplesize_col = samplesize_col,
+                       gene_col = gene_col, id_col = id_col, min_pval = min_pval, z_col = z_col,
+                       info_col = info_col, chr_col = chr_col, pos_col = pos_col, log_pval = FALSE))
 # ao <- TwoSampleMR::available_outcomes(access_token=NULL)
   if (is.null(Ids$snps)) Ids$snps <- exposure_dat$SNP
   outcome_dat <- with(Ids,TwoSampleMR::extract_outcome_data(snps, outcomes, proxies=proxies, rsq=rsq,
@@ -270,10 +273,13 @@ run_TwoSampleMR <- function(exposure.args=format_file.args(),outcome.args=extrac
 {
   d <- with(exposure.args,lapply(file, function(x) tryCatch(read.delim(file,as.is=TRUE), error=function(e) NULL))[[1]])
   if (nrow(d)==0) stop("the exposure data is empty")
-  e <- with(exposure.args,TwoSampleMR::format_data(d, type=type, phenotype_col=phenotype_col, header=header, snp_col=snp_col,
-                          effect_allele_col=effect_allele_col, other_allele_col=other_allele_col,
-                          eaf_col=eaf_col, beta_col=beta_col, se_col=se_col, pval_col=pval_col, log_pval=log_pval,
-                          samplesize_col=samplesize_col))
+  e <- with(exposure.args,TwoSampleMR::format_dat(d, type = type, snps = snps, header = header,
+                 phenotype_col = phenotype_col, snp_col = snp_col, beta_col = beta_col,
+                 se_col = se_col, eaf_col = eaf_col, effect_allele_col = effect_allele_col,
+                 other_allele_col = other_allele_col, pval_col = pval_col, units_col = units_col,
+                 ncase_col = ncase_col, ncontrol_col = ncontrol_col, samplesize_col = samplesize_col,
+                 gene_col = gene_col, id_col = id_col, min_pval = min_pval, z_col = z_col,
+                 info_col = info_col, chr_col = chr_col, pos_col = pos_col, log_pval = FALSE))
   if (is.null(clump.args$dat)) clump.args$dat <- e
   exposure_dat <- with(clump.args,TwoSampleMR::clump_data(dat,clump_kb=clump_kb, clump_r2=clump_r2, clump_p1=clump_p1, clump_p2=clump_p2, pop=pop))
   if (is.null(outcome.args$snps)) outcome.args$snps <- with(e,SNP)
