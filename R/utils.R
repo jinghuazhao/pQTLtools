@@ -271,7 +271,7 @@ run_TwoSampleMR <- function(exposure.args=format_data.args(),outcome.args=extrac
   if(!is.null(outcome_dat))
   {
     if (is.null(harmonise.args$exposure_dat)) harmonise.args$exposure_dat <- exposure_dat
-    if (is.null(harmonise.args$outcome_dat)) harmonise.args$outcome_dat <- exposure_dat
+    if (is.null(harmonise.args$outcome_dat)) harmonise.args$outcome_dat <- outcome_dat
     dat <- with(harmonise.args,TwoSampleMR::harmonise_data(exposure_dat, outcome_dat, action=action))
     TwoSampleMR::directionality_test(dat)
     if (nrow(dat)!=0)
