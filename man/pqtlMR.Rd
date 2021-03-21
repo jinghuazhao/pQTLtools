@@ -25,8 +25,8 @@ Given a list of pQTLs as instrumental variables (IVs), this function performs MR
 }
 \item{Ids}{a list of options appropriate for extract_outcome_data(),
   \enumerate{
-    \item snp. snpname
-    \item outcomes. outcome id
+    \item snp. NULL (snpname)
+    \item outcomes. NULL (outcome id)
     \item proxies. TRUE or FALSE
     \item rsq. r^2
     \item align_alleles. 1
