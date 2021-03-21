@@ -218,7 +218,7 @@ pqtlMR <- function(Ins=format_data.args(),Ids=extract_outcome_data.args(),harmon
   pval.exposure <- NA
   pval.outcome <- NA
   swap_unique_var_a <- NA
-  d <- with(Ins,lapply(file, function(x) tryCatch(read.delim(file,as.is=TRUE), error=function(e) NULL))[[1]])
+  d <- with(Ins,lapply(file, function(x) tryCatch(read.table(file,as.is=TRUE,header=TRUE), error=function(e) NULL))[[1]])
   if (nrow(d)==0) stop("the Instrument data is empty")
   if (is.null(Ins$dat)) Ins$dat <- d
   Ins <- with(Ins,TwoSampleMR::format_data(d, type=type, phenotype_col=phenotype_col, header=header, snp_col=snp_col,
