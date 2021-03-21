@@ -90,22 +90,22 @@ library(TwoSampleMR)
 prot <- "MMP.10"
 type <- "cis"
 f <- paste0(prot,"-",type,".mrx")
+outcomes <- "ukb-b-19732"
+e <- function(d) format_file.args(d, phenotype_col="prot", snp_col="rsid", chr_col="Chromosome", pos_col="Posistion",
+                 effect_allele_col="Allele1", other_allele_col="Allele2", eaf_col="Freq1",
+                 beta_col="Effect", se_col="StdErr", pval_col="logP", log_pval=TRUE, samplesize_col="N")
 \dontrun{
 # SCALLOP-INF
 INF <- Sys.getenv("INF")
-outcomes <- "ukb-b-19732"
 wd <- file.path(INF,"mr",type)
 d <- file.path(wd,f)
-run_TwoSampleMR(exposure.args=format_file.args(d,samplesize_col="N"),outcome.args=extract_outcome_data.args(outcomes=outcomes),
+run_TwoSampleMR(exposure.args=e(d),outcome.args=extract_outcome_data.args(outcomes=outcomes),
                 clump.args=clump_data.args(),harmonise.args=harmonise_data.args(),
                 prefix=file.path(wd,paste(outcomes,prot,type,sep="-")))
 }
 # pQTLtools
 d <- file.path(find.package("pQTLtools"),"tests",f)
-e <- format_file.args(d, phenotype_col="prot", snp_col="rsid", chr_col="Chromosome", pos_col="Posistion",
-                      effect_allele_col="Allele1", other_allele_col="Allele2", eaf_col="Freq1",
-                      beta_col="Effect", se_col="StdErr", pval_col="logP", log_pval=TRUE, samplesize_col="N")
-run_TwoSampleMR(exposure.args=e,outcome.args=extract_outcome_data.args(outcomes=outcomes),
+run_TwoSampleMR(exposure.args=e(d),outcome.args=extract_outcome_data.args(outcomes=outcomes),
                 clump.args=clump_data.args(),harmonise.args=harmonise_data.args(),
                 prefix=paste(outcomes,prot,type,sep="-"))
 }
