@@ -229,8 +229,8 @@ pqtlMR <- function(Ins=format_data.args(),Ids=extract_outcome_data.args(),harmon
   if (is.null(Ids$snps)) Ids$snps <- Ins$SNP
   outcome_dat <- with(Ids,TwoSampleMR::extract_outcome_data(snps, outcomes, proxies=proxies, rsq=rsq,
                           align_alleles=align_alleles, palindromes=palindromes, maf_threshold=maf_threshold))
-  if (is.null(harmonise$exposure_dat)) harmonise.args$exposure_dat <- exposure_dat
-  if (is.null(harmonise$outcome_dat)) harmonise.args$outcome_dat <- outcome_dat
+  if (is.null(harmonise$exposure_dat)) harmonise.args$exposure_dat <- Ins
+  if (is.null(harmonise$outcome_dat)) harmonise.args$outcome_dat <- Ids
   harmonise <- with(harmonise,TwoSampleMR::harmonise_data(exposure_dat=Ins, outcome_dat=outcome_dat, action=action))
   if (reverse) harmonise <- subset(within(harmonise,
   {
