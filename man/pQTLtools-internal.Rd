@@ -4,7 +4,7 @@
 \alias{caprion}
 \alias{clump_data.args}
 \alias{extract_outcome_data.args}
-\alias{format_data.args}
+\alias{format_file.args}
 \alias{harmonise_data.args}
 \alias{hg19}
 \alias{hg19Tables}

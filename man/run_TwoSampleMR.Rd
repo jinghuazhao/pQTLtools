@@ -1,26 +1,38 @@
 \name{run_TwoSampleMR}
 \alias{run_TwoSampleMR}
 \title{A generic wrapper for TwoSampleMR analysis}
-\usage{run_TwoSampleMR(exposure.args=format_data.args(),outcome.args=extract_outcome_data.args(),
+\usage{run_TwoSampleMR(exposure.args=format_file.args(),outcome.args=extract_outcome_data.args(),
                        clump.args=clump_data.args(),harmonise.args=harmonise_data.args(),prefix,...)}
 \description{
 Given a compressed or uncompressed file containing exposure data, this function conducts a two-sample MR analysis using MR-Base.
 }
 \arguments{
-\item{exposure.args}{a list of options appropriate for TwoSampleMR's format_data(),
+\item{exposure.args}{a list of options appropriate for TwoSampleMR's format_data() in a file,
   \enumerate{
-    \item file. file
-    \item type. exposure or outcome
-    \item phenotype_col. protein column
-    \item header. TRUE or FALSE
-    \item snp_col. rsid
-    \item effect_allele_col. effect allele
-    \item other_allele_col. other allele
-    \item eaf_col. EAF
-    \item beta_col. beta
-    \item se_col. se
-    \item pval_col. pval
-    \item log_pval. FALSE or TRUE
+    \item file. NULL (file)
+    \item type. exposure (or outcome)
+    \item snps. NULL
+    \item header. TRUE (or FALSE)
+    \item phenotype_col. "Phenotype" (protein column)
+    \item snp_col. "SNP"
+    \item beta_col. "beta"
+    \item se_col. "se"
+    \item eaf_col. "eaf"
+    \item effect_allele_col. "effect_allele"
+    \item other_allele_col. "other_allele"
+    \item pval_col. "pval"
+    \item units_col. "units"
+    \item ncase_col. "ncase"
+    \item ncontrol_col. "ncontrol"
+    \item samplesize_col. "samplesize"
+    \item gene_col. "gene"
+    \item id_col. "id"
+    \item min_pval. 1e-200
+    \item z_col. "z"
+    \item info_col. "info"
+    \item chr_col. "chr"
+    \item pos_col. "pos"
+    \item log_pval. FALSE (or TRUE)
   }
 }
 \item{outcome.args}{a list of options appropriate for TwoSampleMR's extract_outcome_data(),
@@ -84,13 +96,19 @@ f <- paste0(prot,"-",type,".mrx")
 d <- file.path(wd,f)
 library(TwoSampleMR)
 \dontrun{
-run_TwoSampleMR(exposure.args=format_data.args(d),outcome.args=extract_outcome_data.args(outcomes=outcomes),
+e <- format_file.args(file=d, type="exposure", phenotype_col="prot", header = TRUE, snp_col = "rsid",
+                      effect_allele_col = "Allele1", other_allele_col = "Allele2",
+                      eaf_col = "Freq1", beta_col = "Effect", se_col = "StdErr", pval_col = "P", log_pval = FALSE)
+run_TwoSampleMR(exposure.args=e,outcome.args=extract_outcome_data.args(outcomes=outcomes),
                 clump.args=clump_data.args(),harmonise.args=harmonise_data.args(),
                 prefix=file.path(wd,paste(outcomes,prot,type,sep="-")))
 }
 # pQTLtools
 d <- file.path(find.package("pQTLtools"),"tests",f)
-run_TwoSampleMR(exposure.args=format_data.args(d),outcome.args=extract_outcome_data.args(outcomes=outcomes),
+e <- format_file.args(file=d, type="exposure", phenotype_col="prot", header = TRUE, snp_col = "rsid",
+                      effect_allele_col = "Allele1", other_allele_col = "Allele2",
+                      eaf_col = "Freq1", beta_col = "Effect", se_col = "StdErr", pval_col = "P", log_pval = FALSE)
+run_TwoSampleMR(exposure.args=e,outcome.args=extract_outcome_data.args(outcomes=outcomes),
                 clump.args=clump_data.args(),harmonise.args=harmonise_data.args(),
                 prefix=paste(outcomes,prot,type,sep="-"))
 }

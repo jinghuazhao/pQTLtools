@@ -1,7 +1,7 @@
 \name{pqtlMR}
 \alias{pqtlMR}
 \title{Bidirectional pQTL-MR analysis}
-\usage{pqtlMR(Ins=format_data.args(),Ids=extract_outcome_data.args(),
+\usage{pqtlMR(Ins=format_file.args(),Ids=extract_outcome_data.args(),
               harmonise=harmonise_data.args(),prefix="INF1",reverse=FALSE,...)}
 \description{
 Given a list of pQTLs as instrumental variables (IVs), this function performs MR analysis according to epigraphdb.
@@ -9,18 +9,30 @@ Given a list of pQTLs as instrumental variables (IVs), this function performs MR
 \arguments{
 \item{Ins}{a list of options appropriate for format_data(),
   \enumerate{
-    \item file. file
-    \item type. exposure or outcome
-    \item phenotype_col. protein column
-    \item header. TRUE or FALSE
-    \item snp_col. rsid
-    \item effect_allele_col. effect allele
-    \item other_allele_col. other allele
-    \item eaf_col. EAF
-    \item beta_col. beta
-    \item se_col. se
-    \item pval_col. pval
-    \item log_pval. FALSE or TRUE
+    \item file. NULL (file)
+    \item type. exposure (or outcome)
+    \item snps. NULL
+    \item header. TRUE (or FALSE)
+    \item phenotype_col. "Phenotype" (protein column)
+    \item snp_col. "SNP"
+    \item beta_col. "beta"
+    \item se_col. "se"
+    \item eaf_col. "eaf"
+    \item effect_allele_col. "effect_allele"
+    \item other_allele_col. "other_allele"
+    \item pval_col. "pval"
+    \item units_col. "units"
+    \item ncase_col. "ncase"
+    \item ncontrol_col. "ncontrol"
+    \item samplesize_col. "samplesize"
+    \item gene_col. "gene"
+    \item id_col. "id"
+    \item min_pval. 1e-200
+    \item z_col. "z"
+    \item info_col. "info"
+    \item chr_col. "chr"
+    \item pos_col. "pos"
+    \item log_pval. FALSE (or TRUE)
   }
 }
 \item{Ids}{a list of options appropriate for extract_outcome_data(),
@@ -57,15 +69,13 @@ No value is returned but several files.
 }
 
 \section{References}{
-Zheng, J., et al. (2020). Phenome-wide Mendelian randomization mapping the influence of the plasma proteome on complex diseases. *Nature Genetics* 52(10): 1122-1131.
+Zheng J, et al. (2020). Phenome-wide Mendelian randomization mapping the influence of the plasma proteome on complex diseases. *Nature Genetics* 52(10): 1122-1131.
 }
 
 \examples{
 # A bidirectional MR analysis
 ms <- file.path(find.package("pQTLtools"),"tests","ms.ins")
-Ins <- format_data.args(file=ms,phenotype_col="Phenotype",
-                        snp_col="SNP", eaf_col="eaf", effect_allele_col="effect_allele", other_allele_col="other_allele",
-                        beta_col="beta", se_col="se", pval_col="pval")
+Ins <- format_file.args(file=ms)
 # MR
 pqtlMR(Ins, Ids = extract_outcome_data.args(outcomes="ieu-b-18"),
        harmonise = harmonise_data.args(),prefix="MS")
