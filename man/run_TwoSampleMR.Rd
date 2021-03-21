@@ -94,18 +94,15 @@ type <- "cis"
 wd <- file.path(INF,"mr",type)
 f <- paste0(prot,"-",type,".mrx")
 d <- file.path(wd,f)
-format_data.args <- format_file.args(file=d, type="exposure", phenotype_col="prot", header = TRUE, snp_col = "rsid",
-                                     effect_allele_col = "Allele1", other_allele_col = "Allele2",
-                                     eaf_col = "Freq1", beta_col = "Effect", se_col = "StdErr", pval_col = "P", log_pval = FALSE)
 library(TwoSampleMR)
 \dontrun{
-run_TwoSampleMR(exposure.args=foramt_data.args(d),outcome.args=extract_outcome_data.args(outcomes=outcomes),
+run_TwoSampleMR(exposure.args=foramt_file.args(d),outcome.args=extract_outcome_data.args(outcomes=outcomes),
                 clump.args=clump_data.args(),harmonise.args=harmonise_data.args(),
                 prefix=file.path(wd,paste(outcomes,prot,type,sep="-")))
 }
 # pQTLtools
 d <- file.path(find.package("pQTLtools"),"tests",f)
-run_TwoSampleMR(exposure.args=format_data.args(d),outcome.args=extract_outcome_data.args(outcomes=outcomes),
+run_TwoSampleMR(exposure.args=format_file.args(d),outcome.args=extract_outcome_data.args(outcomes=outcomes),
                 clump.args=clump_data.args(),harmonise.args=harmonise_data.args(),
                 prefix=paste(outcomes,prot,type,sep="-"))
 }
