@@ -227,7 +227,7 @@ pqtlMR <- function(Ins=format_file.args(),Ids=extract_outcome_data.args(),harmon
   d <- with(Ins,lapply(file, function(x) tryCatch(read.table(file,as.is=TRUE,header=TRUE), error=function(e) NULL))[[1]])
   if (nrow(d)==0) stop("the Instrument data is empty")
   if (is.null(Ins$dat)) Ins$dat <- d
-  exposure_dat <- with(Ins,TwoSampleMR::format_dat(Ins, type = type, snps = snps, header = header,
+  exposure_dat <- with(Ins,TwoSampleMR::format_data(Ins, type = type, snps = snps, header = header,
                        phenotype_col = phenotype_col, snp_col = snp_col, beta_col = beta_col,
                        se_col = se_col, eaf_col = eaf_col, effect_allele_col = effect_allele_col,
                        other_allele_col = other_allele_col, pval_col = pval_col, units_col = units_col,
@@ -273,7 +273,7 @@ run_TwoSampleMR <- function(exposure.args=format_file.args(),outcome.args=extrac
 {
   d <- with(exposure.args,lapply(file, function(x) tryCatch(read.delim(file,as.is=TRUE), error=function(e) NULL))[[1]])
   if (nrow(d)==0) stop("the exposure data is empty")
-  e <- with(exposure.args,TwoSampleMR::format_dat(d, type = type, snps = snps, header = header,
+  e <- with(exposure.args,TwoSampleMR::format_data(d, type = type, snps = snps, header = header,
                  phenotype_col = phenotype_col, snp_col = snp_col, beta_col = beta_col,
                  se_col = se_col, eaf_col = eaf_col, effect_allele_col = effect_allele_col,
                  other_allele_col = other_allele_col, pval_col = pval_col, units_col = units_col,
