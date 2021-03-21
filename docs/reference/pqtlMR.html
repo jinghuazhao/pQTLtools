@@ -114,7 +114,7 @@
     <p>Given a list of pQTLs as instrumental variables (IVs), this function performs MR analysis according to epigraphdb.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>pqtlMR</span><span class='op'>(</span>Ins<span class='op'>=</span><span class='fu'><a href='pQTLtools-internal.html'>format_data.args</a></span><span class='op'>(</span><span class='op'>)</span>,Ids<span class='op'>=</span><span class='fu'><a href='pQTLtools-internal.html'>extract_outcome_data.args</a></span><span class='op'>(</span><span class='op'>)</span>,
+    <pre class="usage"><span class='fu'>pqtlMR</span><span class='op'>(</span>Ins<span class='op'>=</span><span class='fu'><a href='pQTLtools-internal.html'>format_file.args</a></span><span class='op'>(</span><span class='op'>)</span>,Ids<span class='op'>=</span><span class='fu'><a href='pQTLtools-internal.html'>extract_outcome_data.args</a></span><span class='op'>(</span><span class='op'>)</span>,
               harmonise<span class='op'>=</span><span class='fu'><a href='pQTLtools-internal.html'>harmonise_data.args</a></span><span class='op'>(</span><span class='op'>)</span>,prefix<span class='op'>=</span><span class='st'>"INF1"</span>,reverse<span class='op'>=</span><span class='cn'>FALSE</span>,<span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -123,18 +123,30 @@
     <tr>
       <th>Ins</th>
       <td><p>a list of options appropriate for format_data(),</p><ol>
-<li><p>file. file</p></li>
-<li><p>type. exposure or outcome</p></li>
-<li><p>phenotype_col. protein column</p></li>
-<li><p>header. TRUE or FALSE</p></li>
-<li><p>snp_col. rsid</p></li>
-<li><p>effect_allele_col. effect allele</p></li>
-<li><p>other_allele_col. other allele</p></li>
-<li><p>eaf_col. EAF</p></li>
-<li><p>beta_col. beta</p></li>
-<li><p>se_col. se</p></li>
-<li><p>pval_col. pval</p></li>
-<li><p>log_pval. FALSE or TRUE</p></li>
+<li><p>file. NULL (file)</p></li>
+<li><p>type. exposure (or outcome)</p></li>
+<li><p>snps. NULL</p></li>
+<li><p>header. TRUE (or FALSE)</p></li>
+<li><p>phenotype_col. "Phenotype" (protein column)</p></li>
+<li><p>snp_col. "SNP"</p></li>
+<li><p>beta_col. "beta"</p></li>
+<li><p>se_col. "se"</p></li>
+<li><p>eaf_col. "eaf"</p></li>
+<li><p>effect_allele_col. "effect_allele"</p></li>
+<li><p>other_allele_col. "other_allele"</p></li>
+<li><p>pval_col. "pval"</p></li>
+<li><p>units_col. "units"</p></li>
+<li><p>ncase_col. "ncase"</p></li>
+<li><p>ncontrol_col. "ncontrol"</p></li>
+<li><p>samplesize_col. "samplesize"</p></li>
+<li><p>gene_col. "gene"</p></li>
+<li><p>id_col. "id"</p></li>
+<li><p>min_pval. 1e-200</p></li>
+<li><p>z_col. "z"</p></li>
+<li><p>info_col. "info"</p></li>
+<li><p>chr_col. "chr"</p></li>
+<li><p>pos_col. "pos"</p></li>
+<li><p>log_pval. FALSE (or TRUE)</p></li>
 </ol>
 </td>
     </tr>
@@ -185,7 +197,7 @@
     <p>No value is returned but several files.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Zheng, J., et al. (2020). Phenome-wide Mendelian randomization mapping the influence of the plasma proteome on complex diseases. *Nature Genetics* 52(10): 1122-1131.</p>
+    <p>Zheng J, et al. (2020). Phenome-wide Mendelian randomization mapping the influence of the plasma proteome on complex diseases. *Nature Genetics* 52(10): 1122-1131.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>Adapted from script by Jie Zheng</p>
@@ -193,16 +205,14 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># A bidirectional MR analysis</span>
 <span class='va'>ms</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/find.package.html'>find.package</a></span><span class='op'>(</span><span class='st'>"pQTLtools"</span><span class='op'>)</span>,<span class='st'>"tests"</span>,<span class='st'>"ms.ins"</span><span class='op'>)</span>
-<span class='va'>Ins</span> <span class='op'>&lt;-</span> <span class='fu'><a href='pQTLtools-internal.html'>format_data.args</a></span><span class='op'>(</span>file<span class='op'>=</span><span class='va'>ms</span>,phenotype_col<span class='op'>=</span><span class='st'>"Phenotype"</span>,
-                        snp_col<span class='op'>=</span><span class='st'>"SNP"</span>, eaf_col<span class='op'>=</span><span class='st'>"eaf"</span>, effect_allele_col<span class='op'>=</span><span class='st'>"effect_allele"</span>, other_allele_col<span class='op'>=</span><span class='st'>"other_allele"</span>,
-                        beta_col<span class='op'>=</span><span class='st'>"beta"</span>, se_col<span class='op'>=</span><span class='st'>"se"</span>, pval_col<span class='op'>=</span><span class='st'>"pval"</span><span class='op'>)</span>
-<span class='co'># MR</span>
+<span class='va'>Ins</span> <span class='op'>&lt;-</span> <span class='fu'><a href='pQTLtools-internal.html'>format_file.args</a></span><span class='op'>(</span>file<span class='op'>=</span><span class='va'>ms</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in format_file.args(file = ms): unused argument (file = ms)</span></div><div class='input'><span class='co'># MR</span>
 <span class='fu'>pqtlMR</span><span class='op'>(</span><span class='va'>Ins</span>, Ids <span class='op'>=</span> <span class='fu'><a href='pQTLtools-internal.html'>extract_outcome_data.args</a></span><span class='op'>(</span>outcomes<span class='op'>=</span><span class='st'>"ieu-b-18"</span><span class='op'>)</span>,
        harmonise <span class='op'>=</span> <span class='fu'><a href='pQTLtools-internal.html'>harmonise_data.args</a></span><span class='op'>(</span><span class='op'>)</span>,prefix<span class='op'>=</span><span class='st'>"MS"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: cannot open file '/home/jhz22/pQTLtools/tests/ms.ins': No such file or directory</span></div><div class='output co'>#&gt; <span class='error'>Error in if (nrow(d) == 0) stop("the Instrument data is empty"): argument is of length zero</span></div><div class='input'><span class='co'># reverse MR</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in with(Ins, lapply(file, function(x) tryCatch(read.table(file,     as.is = TRUE, header = TRUE), error = function(e) NULL))[[1]]): object 'Ins' not found</span></div><div class='input'><span class='co'># reverse MR</span>
 <span class='fu'>pqtlMR</span><span class='op'>(</span><span class='va'>Ins</span>, Ids <span class='op'>=</span> <span class='fu'><a href='pQTLtools-internal.html'>extract_outcome_data.args</a></span><span class='op'>(</span>outcomes<span class='op'>=</span><span class='st'>"ieu-b-18"</span><span class='op'>)</span>,
        harmonise <span class='op'>=</span> <span class='fu'><a href='pQTLtools-internal.html'>harmonise_data.args</a></span><span class='op'>(</span><span class='op'>)</span>,prefix<span class='op'>=</span><span class='st'>"MS_rev"</span>,reverse<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: cannot open file '/home/jhz22/pQTLtools/tests/ms.ins': No such file or directory</span></div><div class='output co'>#&gt; <span class='error'>Error in if (nrow(d) == 0) stop("the Instrument data is empty"): argument is of length zero</span></div></pre>
+</div><div class='output co'>#&gt; <span class='error'>Error in with(Ins, lapply(file, function(x) tryCatch(read.table(file,     as.is = TRUE, header = TRUE), error = function(e) NULL))[[1]]): object 'Ins' not found</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
