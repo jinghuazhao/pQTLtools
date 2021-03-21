@@ -87,6 +87,7 @@ https://doi.org/10.1007/978-1-4939-7868-7_13, Springer Science+Business Media, L
 
 \examples{
 library(TwoSampleMR)
+library(pQTLtools)
 outcomes <- "ukb-b-19732"
 prot <- "MMP.10"
 type <- "cis"
@@ -104,7 +105,7 @@ run_TwoSampleMR(exposure.args=e(d),outcome.args=extract_outcome_data.args(outcom
                 prefix=file.path(wd,paste(outcomes,prot,type,sep="-")))
 }
 # pQTLtools
-d <- file.path(find.package("pQTLtools"),"tests",f)
+d <- file.path(path.package("pQTLtools"),"tests",f)
 run_TwoSampleMR(exposure.args=e(d),outcome.args=extract_outcome_data.args(outcomes=outcomes),
                 clump.args=clump_data.args(),harmonise.args=harmonise_data.args(),
                 prefix=paste(outcomes,prot,type,sep="-"))
