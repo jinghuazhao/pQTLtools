@@ -270,7 +270,7 @@ pqtlMR <- function(Ins=format_file.args(),Ids=extract_outcome_data.args(),harmon
 run_TwoSampleMR <- function(exposure.args=format_file.args(),outcome.args=extract_outcome_data.args(),
                             clump.args=clump_data.args(),harmonise.args=harmonise_data.args(),prefix,...)
 {
-  d <- with(exposure.args,lapply(file, function(x) tryCatch(read.delim(file,as.is=TRUE), error=function(e) NULL))[[1]])
+  d <- with(exposure.args,lapply(file, function(x) tryCatch(read.table(file,as.is=TRUE,header=TRUE), error=function(e) NULL))[[1]])
   if (nrow(d)==0) stop("the exposure data is empty")
   e <- with(exposure.args,TwoSampleMR::format_data(d, type = type, snps = snps, header = header,
                  phenotype_col = phenotype_col, snp_col = snp_col, beta_col = beta_col,
