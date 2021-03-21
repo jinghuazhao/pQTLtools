@@ -74,14 +74,25 @@ https://doi.org/10.1007/978-1-4939-7868-7_13, Springer Science+Business Media, L
 }
 
 \examples{
-\dontrun{
+# SCALLOP-INF
 INF <- Sys.getenv("INF")
-prefix <- file.path(INF,"mr","cis","MMP.10-cis")
-d <- paste0(prefix,".mrx")
+outcomes <- "ukb-b-19732"
+prot <- "MMP.10"
+type <- "cis"
+wd <- file.path(INF,"mr",type)
+f <- paste0(prot,"-",type,".mrx")
+d <- file.path(wd,f)
 library(TwoSampleMR)
-run_TwoSampleMR(exposure.args=format_data.args(d),outcome.args=extract_outcome_data.args(outcomes="ukb-b-19732"),
-                clump.args=clump_data.args(),harmonise.args=harmonise_data.args(),prefix)
+\dontrun{
+run_TwoSampleMR(exposure.args=format_data.args(d),outcome.args=extract_outcome_data.args(outcomes=outcomes),
+                clump.args=clump_data.args(),harmonise.args=harmonise_data.args(),
+                prefix=file.path(wd,paste(outcomes,prot,type,sep="-")))
 }
+# pQTLtools
+d <- package.path("tests",f)
+run_TwoSampleMR(exposure.args=format_data.args(d),outcome.args=extract_outcome_data.args(outcomes=outcomes),
+                clump.args=clump_data.args(),harmonise.args=harmonise_data.args(),
+                prefix=paste(outcomes,prot,type,sep="-"))
 }
 \note{Adapted from script by Dimou NL, Tsilidis KK}
 \keyword{utilities}
