@@ -89,7 +89,7 @@ run_TwoSampleMR(exposure.args=format_data.args(d),outcome.args=extract_outcome_d
                 prefix=file.path(wd,paste(outcomes,prot,type,sep="-")))
 }
 # pQTLtools
-d <- package.path("tests",f)
+d <- file.path(find.package("pQTLtools"),"tests",f)
 run_TwoSampleMR(exposure.args=format_data.args(d),outcome.args=extract_outcome_data.args(outcomes=outcomes),
                 clump.args=clump_data.args(),harmonise.args=harmonise_data.args(),
                 prefix=paste(outcomes,prot,type,sep="-"))

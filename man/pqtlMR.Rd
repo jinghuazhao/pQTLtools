@@ -64,18 +64,18 @@ Zheng, J., et al. (2020). Phenome-wide Mendelian randomization mapping the influ
 \dontrun{
 # A bidirectional MR analysis
 ms <- file.path(find.package("pQTLtools"),"tests","ms.ins")
-ivs <- format_data.args(file=ms)
-ids <- extract_outcome_data.args(outcomes="ieu-b-18")
 # MR
-pqtlMR(ivs,ids,prefix="MS")
+pqtlMR(Ins = format_data.args(ms), Ids = extract_outcome_data.args(outcomes="ieu-b-18"),
+       harmonise = harmonise_data.args(),prefix="MS")
 # reverse MR
-pqtlMR(ivs,ids,prefix="MS_rev",reverse=TRUE)
+pqtlMR(Ins = format_data.args(ms), Ids = extract_outcome_data.args(outcomes="ieu-b-18"),
+       harmonise = harmonise_data.args(),prefix="MS_rev",reverse=TRUE)
 dir()
-# prefix=INF1 for the SCALLOP/INF1
+# SCALLOP-INF1
 prefix <- Sys.getenv("prefix")
-ivs <- format_data.args(file=paste0(prefix,".ins",log_pval=TRUE))
+ivs <- format_data.args(file=paste0(prefix,".ins"),log_pval=TRUE)
 ids <- extract_outcome_data.args(outcomes=scan("ieu-id.txt",what=""))
-pQTLtools::pqtlMR(ivs,ids)
+pqtlMR(ivs, ids, harmonise = harmonise_data.args(),prefix="MS_rev",reverse=TRUE)
 }
 }
 \note{Adapted from script by Jie Zheng}
