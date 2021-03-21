@@ -170,7 +170,7 @@ import_OpenGWAS <- function(opengwas_id, region, verbose = TRUE)
   gwasvcf::vcf_to_granges(vcf)
 }
 
-format_file.args <- function(dat=NULL, type = "exposure", snps = NULL, header = TRUE,
+format_file.args <- function(file=NULL, type = "exposure", snps = NULL, header = TRUE,
                              phenotype_col = "Phenotype", snp_col = "SNP", beta_col = "beta",
                              se_col = "se", eaf_col = "eaf", effect_allele_col = "effect_allele",
                              other_allele_col = "other_allele", pval_col = "pval", units_col = "units",
