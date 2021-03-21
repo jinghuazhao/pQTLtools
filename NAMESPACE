@@ -1,5 +1,5 @@
 export(genequeries,regionqueries,snpqueries,import_eQTLCatalogue,import_OpenGWAS,pqtlMR,run_coloc,
-       format_data.args,extract_outcome_data.args,clump_data.args,harmonise_data.args,run_TwoSampleMR,uniprot2ids)
+       format_file.args,extract_outcome_data.args,clump_data.args,harmonise_data.args,run_TwoSampleMR,uniprot2ids)
 import(dplyr,rtracklayer,utils)
 importFrom("coloc","coloc.abf")
 importFrom("graphics", "abline", "arrows", "axis", "box", "identify",
