@@ -86,16 +86,16 @@ https://doi.org/10.1007/978-1-4939-7868-7_13, Springer Science+Business Media, L
 }
 
 \examples{
+library(TwoSampleMR)
+f <- paste0(prot,"-",type,".mrx")
+\dontrun{
 # SCALLOP-INF
 INF <- Sys.getenv("INF")
 outcomes <- "ukb-b-19732"
 prot <- "MMP.10"
 type <- "cis"
 wd <- file.path(INF,"mr",type)
-f <- paste0(prot,"-",type,".mrx")
 d <- file.path(wd,f)
-library(TwoSampleMR)
-\dontrun{
 run_TwoSampleMR(exposure.args=format_file.args(d,samplesize_col="N"),outcome.args=extract_outcome_data.args(outcomes=outcomes),
                 clump.args=clump_data.args(),harmonise.args=harmonise_data.args(),
                 prefix=file.path(wd,paste(outcomes,prot,type,sep="-")))

@@ -75,7 +75,7 @@ Zheng J, et al. (2020). Phenome-wide Mendelian randomization mapping the influen
 \examples{
 # A bidirectional MR analysis
 ms <- file.path(find.package("pQTLtools"),"tests","ms.ins")
-Ins <- format_file.args(file=ms)
+Ins <- format_file.args(file=ms,samplesize_col="N")
 # MR
 pqtlMR(Ins, Ids = extract_outcome_data.args(outcomes="ieu-b-18"),
        harmonise = harmonise_data.args(),prefix="MS")
