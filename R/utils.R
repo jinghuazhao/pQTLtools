@@ -226,7 +226,7 @@ pqtlMR <- function(Ins=format_data.args(),Ids=extract_outcome_data.args(),harmon
                        eaf_col=eaf_col, beta_col=beta_col, se_col=se_col, pval_col=pval_col, log_pval=log_pval,
                       samplesize_col=samplesize_col))
 # ao <- TwoSampleMR::available_outcomes(access_token=NULL)
-  if (is.null(Ids$snps)) Ids$snps <- Ins$SNP
+  if (is.null(Ids$snps)) Ids$snps <- exposure_dat$SNP
   outcomne_dat <- with(Ids,TwoSampleMR::extract_outcome_data(snps, outcomes, proxies=proxies, rsq=rsq,
                        align_alleles=align_alleles, palindromes=palindromes, maf_threshold=maf_threshold))
   if (is.null(harmonise$exposure_dat)) harmonise$exposure_dat <- exposure_dat
