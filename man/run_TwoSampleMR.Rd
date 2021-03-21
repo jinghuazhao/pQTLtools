@@ -105,7 +105,7 @@ d <- file.path(find.package("pQTLtools"),"tests",f)
 e <- format_file.args(d, phenotype_col="prot", snp_col="rsid", chr_col="Chromosome", pos_col="Posistion",
                       effect_allele_col="Allele1", other_allele_col="Allele2", eaf_col="Freq1",
                       beta_col="Effect", se_col="StdErr", pval_col="logP", log_pval=TRUE, samplesize_col="N")
-run_TwoSampleMR(exposure.args=e(d),outcome.args=extract_outcome_data.args(outcomes=outcomes),
+run_TwoSampleMR(exposure.args=e,outcome.args=extract_outcome_data.args(outcomes=outcomes),
                 clump.args=clump_data.args(),harmonise.args=harmonise_data.args(),
                 prefix=paste(outcomes,prot,type,sep="-"))
 }
