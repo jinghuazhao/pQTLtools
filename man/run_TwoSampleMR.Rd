@@ -96,7 +96,7 @@ f <- paste0(prot,"-",type,".mrx")
 d <- file.path(wd,f)
 library(TwoSampleMR)
 \dontrun{
-run_TwoSampleMR(exposure.args=foramt_file.args(d),outcome.args=extract_outcome_data.args(outcomes=outcomes),
+run_TwoSampleMR(exposure.args=format_file.args(d),outcome.args=extract_outcome_data.args(outcomes=outcomes),
                 clump.args=clump_data.args(),harmonise.args=harmonise_data.args(),
                 prefix=file.path(wd,paste(outcomes,prot,type,sep="-")))
 }
