@@ -221,17 +221,17 @@ pqtlMR <- function(Ins=format_data.args(),Ids=extract_outcome_data.args(),harmon
   d <- with(Ins,lapply(file, function(x) tryCatch(read.table(file,as.is=TRUE,header=TRUE), error=function(e) NULL))[[1]])
   if (nrow(d)==0) stop("the Instrument data is empty")
   if (is.null(Ins$dat)) Ins$dat <- d
-  Ins <- with(Ins,TwoSampleMR::format_data(d, type=type, phenotype_col=phenotype_col, header=header, snp_col=snp_col,
-                  effect_allele_col=effect_allele_col, other_allele_col=other_allele_col,
-                  eaf_col=eaf_col, beta_col=beta_col, se_col=se_col, pval_col=pval_col, log_pval=log_pval,
-                  samplesize_col=samplesize_col))
+  exposure_dat <- with(Ins,TwoSampleMR::format_data(d, type=type, phenotype_col=phenotype_col, header=header, snp_col=snp_col,
+                       effect_allele_col=effect_allele_col, other_allele_col=other_allele_col,
+                       eaf_col=eaf_col, beta_col=beta_col, se_col=se_col, pval_col=pval_col, log_pval=log_pval,
+                      samplesize_col=samplesize_col))
 # ao <- TwoSampleMR::available_outcomes(access_token=NULL)
   if (is.null(Ids$snps)) Ids$snps <- Ins$SNP
-  Ids <- with(Ids,TwoSampleMR::extract_outcome_data(snps, outcomes, proxies=proxies, rsq=rsq,
-              align_alleles=align_alleles, palindromes=palindromes, maf_threshold=maf_threshold))
-  if (is.null(harmonise$exposure_dat)) harmonise$exposure_dat <- Ins
-  if (is.null(harmonise$outcome_dat)) harmonise$outcome_dat <- Ids
-  harmonise <- with(harmonise,TwoSampleMR::harmonise_data(exposure_dat=Ins, outcome_dat=outcome_dat, action=action))
+  outcomne_dat <- with(Ids,TwoSampleMR::extract_outcome_data(snps, outcomes, proxies=proxies, rsq=rsq,
+                       align_alleles=align_alleles, palindromes=palindromes, maf_threshold=maf_threshold))
+  if (is.null(harmonise$exposure_dat)) harmonise$exposure_dat <- exposure_dat
+  if (is.null(harmonise$outcome_dat)) harmonise$outcome_dat <- outcome_dat
+  harmonise <- with(harmonise,TwoSampleMR::harmonise_data(exposure_dat, outcome_dat, action=action))
   if (reverse) harmonise <- subset(within(harmonise,
   {
     swap(exposure,outcome)
