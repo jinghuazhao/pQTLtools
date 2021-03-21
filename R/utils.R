@@ -170,14 +170,20 @@ import_OpenGWAS <- function(opengwas_id, region, verbose = TRUE)
   gwasvcf::vcf_to_granges(vcf)
 }
 
-
-format_data.args <- function(file="exposure.gz", type="exposure", phenotype_col="prot", header = TRUE, snp_col = "rsid",
-                             effect_allele_col = "Allele1", other_allele_col = "Allele2",
-                             eaf_col = "Freq1", beta_col = "Effect", se_col = "StdErr", pval_col = "P", log_pval = FALSE,
-                             samplesize_col = "N")
-  invisible(list(file=file,type=type,phenotype_col=phenotype_col,header=header,snp_col=snp_col,
-                 effect_allele_col=effect_allele_col,other_allele_col=other_allele_col,eaf_col=eaf_col,
-                 beta_col=beta_col,se_col=se_col,pval_col=pval_col,log_pval=log_pval,samplesize_col=samplesize_col))
+format_file.args <- function(dat=NULL, type = "exposure", snps = NULL, header = TRUE,
+                             phenotype_col = "Phenotype", snp_col = "SNP", beta_col = "beta",
+                             se_col = "se", eaf_col = "eaf", effect_allele_col = "effect_allele",
+                             other_allele_col = "other_allele", pval_col = "pval", units_col = "units",
+                             ncase_col = "ncase", ncontrol_col = "ncontrol", samplesize_col = "samplesize",
+                             gene_col = "gene", id_col = "id", min_pval = 1e-200, z_col = "z",
+                             info_col = "info", chr_col = "chr", pos_col = "pos", log_pval = FALSE)
+  invisible(list(dat=dat, type = type, snps = snps, header = header,
+                 phenotype_col = phenotype_col, snp_col = snp_col, beta_col = beta_col,
+                 se_col = se_col, eaf_col = eaf_col, effect_allele_col = effect_allele_col,
+                 other_allele_col = other_allele_col, pval_col = pval_col, units_col = units_col,
+                 ncase_col = ncase_col, ncontrol_col = ncontrol_col, samplesize_col = samplesize_col,
+                 gene_col = gene_col, id_col = id_col, min_pval = min_pval, z_col = z_col,
+                 info_col = info_col, chr_col = chr_col, pos_col = pos_chol, log_pval = FALSE))
 
 extract_outcome_data.args <- function(snps=NULL, outcomes=NULL, proxies=TRUE, rsq=0.8, align_alleles=1,
                                       palindromes=1, maf_threshold=0.3, access_token=ieugwasr::check_access_token(),
@@ -197,7 +203,7 @@ swap <- function(x,y)
    substitute(x), "<-", substitute(y), ";",
    substitute(y), "<-swap_unique_var_a")), envir=parent.frame())
 
-pqtlMR <- function(Ins=format_data.args(),Ids=extract_outcome_data.args(),harmonise=harmonise_data.args(),
+pqtlMR <- function(Ins=format_file.args(),Ids=extract_outcome_data.args(),harmonise=harmonise_data.args(),
                    prefix="INF1",reverse=FALSE,...)
 {
   exposure <- NA
@@ -259,7 +265,7 @@ pqtlMR <- function(Ins=format_data.args(),Ids=extract_outcome_data.args(),harmon
   )
 }
 
-run_TwoSampleMR <- function(exposure.args=format_data.args(),outcome.args=extract_outcome_data.args(),
+run_TwoSampleMR <- function(exposure.args=format_file.args(),outcome.args=extract_outcome_data.args(),
                             clump.args=clump_data.args(),harmonise.args=harmonise_data.args(),prefix,...)
 {
   d <- with(exposure.args,lapply(file, function(x) tryCatch(read.delim(file,as.is=TRUE), error=function(e) NULL))[[1]])
