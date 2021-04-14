@@ -32,4 +32,4 @@ do
   git commit -m "${f}"
 done
 
-git push
+git push -f
