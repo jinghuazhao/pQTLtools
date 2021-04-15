@@ -98,9 +98,10 @@ log10pvalue <- function(p)
 {
   p <- format(p,scientific=TRUE)
   p2 <- as.numeric(unlist(strsplit(p,"e")))
-  -p2[2]+log10(p2[1])
+  log10(p2[1])-p2[2]
 }
 ```
+One can derive logpvalue for natural base (e) similarly.
 
 We end with a quick look-up table
 ```{r}
