@@ -2,10 +2,6 @@
 
 ## A protein Quantitative Trait Locus toolkit
 
-<!-- badges: start -->
-[![Build Status](https://github.com/jinghuazhao/pQTLtools/workflows/R-CMD-check/badge.svg)](https://github.com/jinghuazhao/pQTLtools/actions?workflow=R-CMD-check)
-<!-- badges: end -->
-
 ## Installation
 
 The latest version of pQTLtools can be installed as usual:
