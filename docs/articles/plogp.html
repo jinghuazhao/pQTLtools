@@ -138,8 +138,9 @@
 <span class="op">{</span>
   <span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span><span class="va">p</span>,scientific<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
   <span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/strsplit.html">strsplit</a></span><span class="op">(</span><span class="va">p</span>,<span class="st">"e"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
-  <span class="op">-</span><span class="va">p2</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="va">p2</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="va">p2</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">-</span><span class="va">p2</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>
 <span class="op">}</span></code></pre></div>
+<p>One can derive logpvalue for natural base (e) similarly.</p>
 <p>We end with a quick look-up table</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">grid1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">30</span>,<span class="fl">5</span><span class="op">)</span>
