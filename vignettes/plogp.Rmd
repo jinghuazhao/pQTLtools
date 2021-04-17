@@ -83,12 +83,12 @@ One may wonder the P value in this case, which is 6.6666145952e-542868108 or sim
 
 The magic function for doing this is defined as follows,
 ```r
-pvalue <- function(z,decimals=2)
+pvalue <- function (z, decimals = 2)
 {
-  lp <- log10p(z)
-  exponent <- ceiling(lp)
-  base <- 10^(lp - exponent)
-  paste0(round(base*10,decimals),"e",-1+exponent)
+    lp <- -log10p(z)
+    exponent <- ceiling(lp)
+    base <- 10^-(lp - exponent)
+    paste0(round(base, decimals), "e", -exponent)
 }
 ```
 and it is more appropriate to make all p values to be a string varible so they can be easily
