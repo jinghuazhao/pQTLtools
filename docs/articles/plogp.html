@@ -125,12 +125,12 @@
 <p>One may wonder the P value in this case, which is 6.6666145952e-542868108 or simply 6.67e-542868108.</p>
 <p>The magic function for doing this is defined as follows,</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">pvalue</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">z</span>,<span class="va">decimals</span><span class="op">=</span><span class="fl">2</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">pvalue</span> <span class="op">&lt;-</span> <span class="kw">function</span> <span class="op">(</span><span class="va">z</span>, <span class="va">decimals</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="op">{</span>
-  <span class="va">lp</span> <span class="op">&lt;-</span> <span class="fu">log10p</span><span class="op">(</span><span class="va">z</span><span class="op">)</span>
-  <span class="va">exponent</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">ceiling</a></span><span class="op">(</span><span class="va">lp</span><span class="op">)</span>
-  <span class="va">base</span> <span class="op">&lt;-</span> <span class="fl">10</span><span class="op">^</span><span class="op">(</span><span class="va">lp</span> <span class="op">-</span> <span class="va">exponent</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">base</span><span class="op">*</span><span class="fl">10</span>,<span class="va">decimals</span><span class="op">)</span>,<span class="st">"e"</span>,<span class="op">-</span><span class="fl">1</span><span class="op">+</span><span class="va">exponent</span><span class="op">)</span>
+    <span class="va">lp</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fu">log10p</span><span class="op">(</span><span class="va">z</span><span class="op">)</span>
+    <span class="va">exponent</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">ceiling</a></span><span class="op">(</span><span class="va">lp</span><span class="op">)</span>
+    <span class="va">base</span> <span class="op">&lt;-</span> <span class="fl">10</span><span class="op">^</span><span class="op">-</span><span class="op">(</span><span class="va">lp</span> <span class="op">-</span> <span class="va">exponent</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">base</span>, <span class="va">decimals</span><span class="op">)</span>, <span class="st">"e"</span>, <span class="op">-</span><span class="va">exponent</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
 <p>and it is more appropriate to make all p values to be a string varible so they can be easily handled as follows,</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
