@@ -36,6 +36,7 @@ Suggests:
     purrr,
     regioneR,
     reticulate,
+    rmarkdown,
     seqminer,
     GenomicRanges,
     IRanges
