@@ -117,3 +117,14 @@ for (z in c(grid1,grid2))
 names(v) <- c("z","P","log(P)","log10(P)")
 print(v,right=FALSE,row.names=FALSE)
 ```
+
+## Application
+
+The `mhtplot.trunc()` function in R/gap accepts three types of arguments:
+
+* p. P values of association statistics, which could be very small
+* log10p. log10(P)
+* z. normal statistics that could be very large.
+
+In all three cases, a log10(P) counterpart is obtained internally and to accommodate extreme log10(P),
+the y-axis allows for truncation levaing out a given range of log10(P).
