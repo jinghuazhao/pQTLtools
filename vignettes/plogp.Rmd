@@ -121,9 +121,10 @@ print(v,right=FALSE,row.names=FALSE)
 ## Application
 
 The `mhtplot.trunc()` function in R/gap accepts three types of arguments:
-* p. P values of association statistics, which could be very small
-* log10p. log10(P)
-* z. normal statistics that could be very large.
+
+1. p. P values of association statistics, which could be very small.
+2. log10p. log10(P).
+3. z. normal statistics that could be very large.
 
 In all three cases, a log10(P) counterpart is obtained internally and to accommodate extreme log10(P),
 the y-axis allows for truncation leaving out a given range of log10(P).
