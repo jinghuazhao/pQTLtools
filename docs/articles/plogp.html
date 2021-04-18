@@ -182,6 +182,21 @@
 <span class="co">#&gt;  4540 1.49e-4475756 -10305808.6464737 -4475755.82671434   </span>
 <span class="co">#&gt;  4840 6.45e-5086809 -11712808.7104614 -5086808.19054173</span></code></pre></div>
 </div>
+<div id="application" class="section level2">
+<h2 class="hasAnchor">
+<a href="#application" class="anchor"></a>Application</h2>
+<p>The <code><a href="https://rdrr.io/pkg/gap/man/mhtplot.trunc.html">mhtplot.trunc()</a></code> function in R/gap accepts three types of arguments:</p>
+<ul>
+<li><ol start="16" style="list-style-type: lower-alpha">
+<li>P values of association statistics, which could be very small</li>
+</ol></li>
+<li>log10p. log10(P)</li>
+<li><ol start="26" style="list-style-type: lower-alpha">
+<li>normal statistics that could be very large.</li>
+</ol></li>
+</ul>
+<p>In all three cases, a log10(P) counterpart is obtained internally and to accommodate extreme log10(P), the y-axis allows for truncation levaing out a given range of log10(P).</p>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
