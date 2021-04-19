@@ -99,9 +99,11 @@ log10pvalue <- function(p=NULL,base=NULL,exponent=NULL)
   if(!is.null(p))
   {
     p <- format(p,scientific=TRUE)
-    p2 <- as.numeric(unlist(strsplit(p,"e")))
-    log10(p2[1])+p2[2]
-  } else if(!is.null(base) & !is.null(exponent)) log10(base)+exponent
+    p2 <- strsplit(p,"e")
+    base <- as.numeric(lapply(p2,"[",1))
+    exponent <- as.numeric(lapply(p2,"[",2))
+  } else if(is.null(base) | is.null(exponent)) stop("base and exponent should both be specified")
+  log10(base)+exponent
 }
 ```
 used as `log10pvalue(p)` when p<=1e-323, or log10pvalue(base=1,exponent=-323) otherwise.
