@@ -91,17 +91,22 @@ pvalue <- function (z, decimals = 2)
     paste0(round(base, decimals), "e", -exponent)
 }
 ```
-and it is more appropriate to make all p values to be a string varible so they can be easily
+and it is more appropriate to express p values in scientific format so they can be
 handled as follows,
 ```r
-log10pvalue <- function(p)
+log10pvalue <- function(p=NULL,base=NULL,exponent=NULL)
 {
-  p <- format(p,scientific=TRUE)
-  p2 <- as.numeric(unlist(strsplit(p,"e")))
-  log10(p2[1])-p2[2]
+  if(!is.null(p))
+  {
+    p <- format(p,scientific=TRUE)
+    p2 <- as.numeric(unlist(strsplit(p,"e")))
+    log10(p2[1])+p2[2]
+  } else if(!is.null(base) & !is.null(exponent)) log10(base)+exponent
 }
 ```
-One can derive logpvalue for natural base (e) similarly.
+used as `log10pvalue(p)` when p<=1e-323, or log10pvalue(base=1,exponent=-323) otherwise.
+
+One can also derive logpvalue for natural base (e) similarly.
 
 We end with a quick look-up table
 ```{r}
