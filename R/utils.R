@@ -261,7 +261,7 @@ pqtlMR <- function(Ins=format_file.args(),Ids=extract_outcome_data.args(),harmon
 # result <- within(result,outcome <- sub(" [|]* id:ieu-a-[0-9]*| [|]* id:ukb-a-[0-9]*", "\\1", outcome, perl = TRUE))
   ext <- ".txt"
   invisible(lapply(c("harmonise","result","heterogeneity","pleiotropy","single"), function(x) {
-                   v <- lapply(x, function(x) tryCatch(get(x), error=function(e) NULL))[[1]]
+                   v <- lapply(x, function(x) tryCatch(get(x)[[1]], error=function(e) NULL))
                    if (!is.null(v)) write.table(format(v,digits=3),file=paste0(prefix,"-",x,ext),quote=FALSE,row.names=FALSE,sep="\t")
             })
   )
@@ -298,14 +298,15 @@ run_TwoSampleMR <- function(exposure.args=format_file.args(),outcome.args=extrac
       single <- TwoSampleMR::mr_singlesnp(dat)
       loo <- TwoSampleMR::mr_leaveoneout(dat)
       invisible(lapply(c("result","heterogeneity","pleiotropy","single","loo"), function(x) {
-                      v <- lapply(x, function(x) tryCatch(get(x), error=function(e) NULL))[[1]]
+                      v <- lapply(x, function(x) tryCatch(get(x)[[1]], error=function(e) NULL))
                       if (!is.null(v)) write.table(format(v,digits=3),file=paste0(prefix,"-",x,".txt"),quote=FALSE,row.names=FALSE,sep="\t")
                     }))
+      scatter <- TwoSampleMR::mr_scatter_plot(result, dat)
+      forest <- TwoSampleMR::mr_forest_plot(single)
+      funnel <- TwoSampleMR::mr_funnel_plot(single)
+      leaveoneout <- TwoSampleMR::mr_leaveoneout_plot(loo)
       pdf(paste0(prefix,".pdf"))
-      TwoSampleMR::mr_scatter_plot(result, dat)
-      TwoSampleMR::mr_forest_plot(single)
-      TwoSampleMR::mr_leaveoneout_plot(loo)
-      TwoSampleMR::mr_funnel_plot(single)
+      invisible(sapply(c(scatter,forest,funnel,leaveoneout), function(x) print(x)))
       dev.off()
     }
   }
