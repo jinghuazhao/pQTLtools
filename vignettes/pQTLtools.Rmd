@@ -48,6 +48,7 @@ t2d <- mhtplot2d(d)
 ```
 and ideogram
 ```{r, fig.height=8}
+INF <- Sys.getenv("INF")
 INF1_merge <- read.delim(file.path(INF,"work","INF1.merge"))[c("Chrom","Start","End","prot","MarkerName")]
 singletons <- with(INF1_merge,End-Start==1)
 INF1_merge[singletons,"Start"] <- INF1_merge[singletons,"Start"] - 1e6
@@ -59,6 +60,8 @@ INF1_merge_cvt <- merge(INF1_merge,cvt,by.x=c("prot","MarkerName"),by.y=c("prot"
 ord <- with(INF1_merge_cvt,order(Chr,bp))
 INF1_merge_cvt <- INF1_merge_cvt[ord,]
 
+library(httr)
+set_config(config(ssl_verifypeer = 0L))
 library(biomaRt)
 library(regioneR)
 mart <- useMart(biomart = "ensembl", dataset = "hsapiens_gene_ensembl")
