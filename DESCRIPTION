@@ -1,7 +1,7 @@
 Package: pQTLtools
 Title: pQTL Tools
 Version: 0.1
-Date: 2021-4-15
+Date: 2021-4-21
 Author: Jing Hua Zhao
 Maintainer: Jing hua Zhao <jinghuazhao@hotmail.com>
 Description: This repository collects information on a number of
@@ -29,6 +29,7 @@ Suggests:
     gap,
     gap.datasets,
     circlize,
+    httr,
     knitr,
     karyoploteR,
     openxlsx,
