@@ -75,6 +75,11 @@
 
     
     
+<div id="bidirectional-mendelian-randomization" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bidirectional-mendelian-randomization" class="anchor"></a>Bidirectional Mendelian Randomization</h2>
+<p>The function <code>pqtlMR</code> is derived from <span class="citation">Zheng et al. (2020)</span>.</p>
+</div>
 <div id="cistrans-classification" class="section level2">
 <h2 class="hasAnchor">
 <a href="#cistrans-classification" class="anchor"></a>cis/trans classification</h2>
@@ -241,11 +246,6 @@
 <code class="sourceCode R"><span class="co"># kpPlotLinks(kp, data=loci, data2=panel, col=colors[2-cis])</span>
 <span class="kw"><a href="https://rdrr.io/r/base/detach.html">detach</a></span><span class="op">(</span><span class="va">INF1_merge_cvt</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="bidirectional-mendelian-randomization" class="section level2">
-<h2 class="hasAnchor">
-<a href="#bidirectional-mendelian-randomization" class="anchor"></a>Bidirectional Mendelian Randomization</h2>
-<p>The function <code>pqtlMR</code> is derived from <span class="citation">Zheng et al. (2020)</span>.</p>
-</div>
 <div id="eqtl-catalogue-for-colocalization-analysis" class="section level2">
 <h2 class="hasAnchor">
 <a href="#eqtl-catalogue-for-colocalization-analysis" class="anchor"></a>eQTL Catalogue for colocalization analysis</h2>
@@ -327,7 +327,7 @@
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">transmute</a></span><span class="op">(</span>chromosome <span class="op">=</span> <span class="va">seqnames</span>, position <span class="op">=</span> <span class="va">start</span>, <span class="va">AF</span>, <span class="va">ES</span>, <span class="va">SE</span>, <span class="va">LP</span>, <span class="va">SS</span><span class="op">)</span> <span class="op">%&gt;%</span>
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">chromosome</span>, <span class="va">position</span>, sep <span class="op">=</span> <span class="st">":"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>MAF <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/Rmpfr/man/pmax.html">pmin</a></span><span class="op">(</span><span class="va">AF</span>, <span class="fl">1</span><span class="op">-</span><span class="va">AF</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>MAF <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">pmin</a></span><span class="op">(</span><span class="va">AF</span>, <span class="fl">1</span><span class="op">-</span><span class="va">AF</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">id</span><span class="op">)</span> <span class="op">%&gt;%</span>
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>row_count <span class="op">=</span> <span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -584,6 +584,60 @@
 <span class="co">#&gt; [1] "PP abf for shared variant: 4.14%"</span>
 <span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></code></pre></div>
 <p><img src="pQTLtools/unnamed-chunk-4-1.png" width="700" style="display:block; margin: auto"></p>
+</div>
+<div id="run_twosamplemr" class="section level2">
+<h2 class="hasAnchor">
+<a href="#run_twosamplemr" class="anchor"></a>run_TwoSampleMR</h2>
+<p>The documentation example is quoted here,</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">TwoSampleMR</span><span class="op">)</span>
+<span class="co">#&gt; TwoSampleMR version 0.5.6 </span>
+<span class="co">#&gt; [&gt;] New: Option to use non-European LD reference panels for clumping etc</span>
+<span class="co">#&gt; [&gt;] Some studies temporarily quarantined to verify effect allele</span>
+<span class="co">#&gt; [&gt;] See news(package='TwoSampleMR') and https://gwas.mrcieu.ac.uk for further details</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Attaching package: 'TwoSampleMR'</span>
+<span class="co">#&gt; The following object is masked from 'package:GenomicRanges':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     trim</span>
+<span class="co">#&gt; The following object is masked from 'package:IRanges':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     trim</span>
+<span class="va">outcomes</span> <span class="op">&lt;-</span> <span class="st">"ukb-b-19732"</span>
+<span class="va">prot</span> <span class="op">&lt;-</span> <span class="st">"MMP.10"</span>
+<span class="va">type</span> <span class="op">&lt;-</span> <span class="st">"cis"</span>
+<span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">prot</span>,<span class="st">"-"</span>,<span class="va">type</span>,<span class="st">".mrx"</span><span class="op">)</span>
+<span class="va">e</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">d</span><span class="op">)</span> <span class="fu"><a href="../reference/pQTLtools-internal.html">format_file.args</a></span><span class="op">(</span><span class="va">d</span>, phenotype_col<span class="op">=</span><span class="st">"prot"</span>, snp_col<span class="op">=</span><span class="st">"rsid"</span>, chr_col<span class="op">=</span><span class="st">"Chromosome"</span>, pos_col<span class="op">=</span><span class="st">"Posistion"</span>,
+                 effect_allele_col<span class="op">=</span><span class="st">"Allele1"</span>, other_allele_col<span class="op">=</span><span class="st">"Allele2"</span>, eaf_col<span class="op">=</span><span class="st">"Freq1"</span>,
+                 beta_col<span class="op">=</span><span class="st">"Effect"</span>, se_col<span class="op">=</span><span class="st">"StdErr"</span>, pval_col<span class="op">=</span><span class="st">"logP"</span>, log_pval<span class="op">=</span><span class="cn">TRUE</span>, samplesize_col<span class="op">=</span><span class="st">"N"</span><span class="op">)</span>
+<span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/find.package.html">path.package</a></span><span class="op">(</span><span class="st">"pQTLtools"</span><span class="op">)</span>,<span class="st">"tests"</span>,<span class="va">f</span><span class="op">)</span>
+<span class="va">prefix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">outcomes</span>,<span class="va">prot</span>,<span class="va">type</span>,sep<span class="op">=</span><span class="st">"-"</span><span class="op">)</span>
+<span class="fu"><a href="../reference/run_TwoSampleMR.html">run_TwoSampleMR</a></span><span class="op">(</span>exposure.args<span class="op">=</span><span class="fu">e</span><span class="op">(</span><span class="va">d</span><span class="op">)</span>,outcome.args<span class="op">=</span><span class="fu"><a href="../reference/pQTLtools-internal.html">extract_outcome_data.args</a></span><span class="op">(</span>outcomes<span class="op">=</span><span class="va">outcomes</span><span class="op">)</span>,
+                clump.args<span class="op">=</span><span class="fu"><a href="../reference/pQTLtools-internal.html">clump_data.args</a></span><span class="op">(</span><span class="op">)</span>,harmonise.args<span class="op">=</span><span class="fu"><a href="../reference/pQTLtools-internal.html">harmonise_data.args</a></span><span class="op">(</span><span class="op">)</span>,prefix<span class="op">=</span><span class="va">prefix</span><span class="op">)</span>
+<span class="co">#&gt; API: public: http://gwas-api.mrcieu.ac.uk/</span>
+<span class="co">#&gt; Please look at vignettes for options on running this locally if you need to run many instances of this command.</span>
+<span class="co">#&gt; Clumping dU3C0x, 1106 variants, using EUR population reference</span>
+<span class="co">#&gt; Removing 1102 of 1106 variants due to LD with other variants or absence from LD reference panel</span>
+<span class="co">#&gt; Extracting data for 1106 SNP(s) from 1 GWAS(s)</span>
+<span class="co">#&gt; Finding proxies for 172 SNPs in outcome ukb-b-19732</span>
+<span class="co">#&gt; Extracting data for 172 SNP(s) from 1 GWAS(s)</span>
+<span class="co">#&gt; Harmonising MMP.10 (dU3C0x) and Non-cancer illness code, self-reported: hypothyroidism/myxoedema || id:ukb-b-19732 (ukb-b-19732)</span>
+<span class="co">#&gt; r.exposure and/or r.outcome not present.</span>
+<span class="co">#&gt; Calculating approximate SNP-exposure and/or SNP-outcome correlations, assuming all are quantitative traits. Please pre-calculate r.exposure and/or r.outcome using get_r_from_lor() for any binary traits</span>
+<span class="co">#&gt; Estimating correlation for quantitative trait.</span>
+<span class="co">#&gt; This method is an approximation, and may be numerically unstable.</span>
+<span class="co">#&gt; Ideally you should estimate r directly from independent replication samples.</span>
+<span class="co">#&gt; Use get_r_from_lor for binary traits.</span>
+<span class="co">#&gt; Estimating correlation for quantitative trait.</span>
+<span class="co">#&gt; This method is an approximation, and may be numerically unstable.</span>
+<span class="co">#&gt; Ideally you should estimate r directly from independent replication samples.</span>
+<span class="co">#&gt; Use get_r_from_lor for binary traits.</span>
+<span class="co">#&gt; Analysing 'dU3C0x' on 'ukb-b-19732'</span>
+<span class="co">#&gt; png </span>
+<span class="co">#&gt;   2</span>
+<span class="fu"><a href="https://rdrr.io/r/base/invisible.html">invisible</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"result"</span>,<span class="st">"heterogeneity"</span>,<span class="st">"pleiotropy"</span>,<span class="st">"single"</span>,<span class="st">"loo"</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">prefix</span>,<span class="st">"-"</span>,<span class="va">x</span>,<span class="st">".txt"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p>The output is contained in individual files <code>ukb-b-19732-MMP.10-cis-result.txt</code>, etc. The scatter, forest, funnel and leave-one-out plots is contained in <code>ukb-b-19732-MMP.10-cis.pdf</code>.</p>
+<embed src="ukb-b-19732-MMP.10-cis.pdf" width="800px" height="460px" style="display:block; margin: auto" type="application/pdf"></embed>
 </div>
 <div id="literature-on-pqtls" class="section level2">
 <h2 class="hasAnchor">
