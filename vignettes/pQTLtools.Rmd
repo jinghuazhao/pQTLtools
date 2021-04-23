@@ -217,8 +217,11 @@ prefix <- paste(outcomes,prot,type,sep="-")
 run_TwoSampleMR(exposure.args=e(d),outcome.args=extract_outcome_data.args(outcomes=outcomes),
                 clump.args=clump_data.args(),harmonise.args=harmonise_data.args(),prefix=prefix)
 invisible(sapply(c("result","heterogeneity","pleiotropy","single","loo"), function(x) unlink(paste0(prefix,"-",x,".txt"))))
-knitr::include_graphics(paste0(prefix,".pdf"))
-unlink(paste0(prefix,".pdf"))
+if(file.exists(paste0(prefix,".pdf")))
+{
+  knitr::include_graphics(paste0(prefix,".pdf"))
+  unlink(paste0(prefix,".pdf"))
+}
 ```
 
 The output is contained in individual files `ukb-b-19732-MMP.10-cis-result.txt`, etc. The scatter, forest, funnel and leave-one-out plots is contained in `ukb-b-19732-MMP.10-cis.pdf`.
