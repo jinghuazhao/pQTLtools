@@ -24,10 +24,6 @@ knitr::opts_chunk$set(
   dev = "png")
 ```
 
-## Bidirectional Mendelian Randomization
-
-The function `pqtlMR` is derived from @zheng20.
-
 ## cis/trans classification
 ```{r}
 options(width=200)
@@ -199,6 +195,10 @@ single_run <- function(r)
 single_run(1)
 ```
 
+## pQTL-based Mendelian Randomization
+
+The function `pqtlMR` is derived from @zheng20.
+
 ## run_TwoSampleMR
 
 The documentation example is quoted here,
@@ -221,7 +221,7 @@ invisible(sapply(c("result","heterogeneity","pleiotropy","single","loo"), functi
 
 The output is contained in individual files `ukb-b-19732-MMP.10-cis-result.txt`, etc. The scatter, forest, funnel and leave-one-out plots is contained in `ukb-b-19732-MMP.10-cis.pdf`.
 
-```{r, out.height = "460px", out.width='800px',echo=FALSE}
+```{r,echo=FALSE}
 knitr::include_graphics(paste0(prefix,".pdf"))
 unlink(paste0(prefix,".pdf"))
 ```
