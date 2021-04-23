@@ -26,23 +26,25 @@ knitr::opts_chunk$set(
 
 We describe some functions from R/gap.
 
-## invnormal
+## chr_pos_a1_a2 and inv_chr_pos_a1_a2
 
-The function is widely used in various consortium analyses and defined as follows,
+They are functions to handle SNPid.
 ```{r}
-invnormal <- function(x) qnorm((rank(x,na.last="keep")-0.5)/sum(!is.na(x)))
+require(gap)
+s <- chr_pos_a1_a2(1,c(123,321),letters[1:2],letters[2:1])
+inv_chr_pos_a1_a2(s)
+inv_chr_pos_a1_a2("chr1:123-A_B",seps=c(":","-","_"))
 ```
-An example use on data from Poisson distribution is as follows,
-```{r}
-set.seed(12345)
-Ni <- rpois(50, lambda = 4); table(factor(Ni, 0:max(Ni)))
-y <- invnormal(Ni)
-sd(y)
-mean(y)
-Ni <- 1:50
-y <- invnormal(Ni)
-mean(y)
-sd(y)
+
+## cs
+
+This is a function for credible set.
+```r
+# zcat METAL/4E.BP1-1.tbl.gz | \
+# awk 'NR==1 || ($1==4 && $2 >= 187158034 - 1e6 && $2 < 187158034 + 1e6)' >  4E.BP1.z
+tbl <- within(read.delim("4E.BP1.z"),{logp <- logp(Effect/StdErr)})
+z <- cs(tbl)
+l <- cs(tbl,log_p="logp")
 ```
 
 ## gc.lambda
@@ -72,11 +74,45 @@ lambda1000 <- function(lambda, ncases, ncontrols)
   1 + (lambda - 1) * (1 / ncases + 1 / ncontrols)/( 1 / 1000 + 1 / 1000)
 ```
 
+## gsmr
+
+The function was originally developed to rework on data generated from GSMR, although it could be any harmonised data.
+
+```{r}
+print(mr)
+res <- gsmr(mr, "LIF.R", c("CAD","FEV1"))
+f <- file.path("INF1_CAD-FEV1.csv")
+write.table(with(res,r), file=f, quote=FALSE, col.names=FALSE, row.names=FALSE, sep=",")
+top <- function(r)
+       sapply(c("IVW","EGGER","WM","PWM"), function(x) as.numeric(gap::pvalue(r[[paste0("b",x)]]/r[[paste0("seb",x)]])))
+r <- read.csv(f,as.is=TRUE)
+p <- top(r)
+data.frame(r,p)
+```
+
+## invnormal
+
+The function is widely used in various consortium analyses and defined as follows,
+```{r}
+invnormal <- function(x) qnorm((rank(x,na.last="keep")-0.5)/sum(!is.na(x)))
+```
+An example use on data from Poisson distribution is as follows,
+```{r}
+set.seed(12345)
+Ni <- rpois(50, lambda = 4); table(factor(Ni, 0:max(Ni)))
+y <- invnormal(Ni)
+sd(y)
+mean(y)
+Ni <- 1:50
+y <- invnormal(Ni)
+mean(y)
+sd(y)
+```
+
 ## METAL.forestplot
 
 The following is the documentation example,
 ```{r, message = FALSE, fig.height=6, fig.width=12}
-require(gap)
 require(gap.datasets)
 data(OPG)
 METAL_forestplot(OPGtbl,OPGall,OPGrsid,width=8.75,height=5)
@@ -121,26 +157,6 @@ These are a functions to plot distribution of CNVs,
 library(gap)
 cnvplot(cnv)
 circos.cnvplot(cnv)
-```
-
-## cs
-
-This is a function for credible set.
-```r
-# zcat METAL/4E.BP1-1.tbl.gz | \
-# awk 'NR==1 || ($1==4 && $2 >= 187158034 - 1e6 && $2 < 187158034 + 1e6)' >  4E.BP1.z
-tbl <- within(read.delim("4E.BP1.z"),{logp <- logp(Effect/StdErr)})
-z <- cs(tbl)
-l <- cs(tbl,log_p="logp")
-```
-
-## chr_pos_a1_a2 and inv_chr_pos_a1_a2
-
-They are functions to handle SNPid.
-```{r}
-s <- chr_pos_a1_a2(1,c(123,321),letters[1:2],letters[2:1])
-inv_chr_pos_a1_a2(s)
-inv_chr_pos_a1_a2("chr1:123-A_B",seps=c(":","-","_"))
 ```
 
 ## snptest_sample
