@@ -24,6 +24,10 @@ knitr::opts_chunk$set(
   dev = "png")
 ```
 
+## Bidirectional Mendelian Randomization
+
+The function `pqtlMR` is derived from @zheng20.
+
 ## cis/trans classification
 ```{r}
 options(width=200)
@@ -89,15 +93,11 @@ legend("bottomright", bty="n", pch=c(19,19), col=colors, pt.cex=0.4, legend=c("c
 detach(INF1_merge_cvt)
 ```
 
-## Bidirectional Mendelian Randomization
-
-The function `pqtlMR` is derived from @zheng20.
-
 ## eQTL Catalogue for colocalization analysis
 
 See example associated with `import_eQTLCatalogue`. A related function is `import_OpenGWAS` used to fetch data from OpenGWAS.
 
-```{r, warning = FALSE}
+```{r, warning=FALSE}
 library(pQTLtools)
 f <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","hg19ToHg38.over.chain")
 chain <- rtracklayer::import.chain(f)
@@ -197,6 +197,33 @@ single_run <- function(r)
 }
 
 single_run(1)
+```
+
+## run_TwoSampleMR
+
+The documentation example is quoted here,
+
+```{r, warning=FALSE}
+library(TwoSampleMR)
+outcomes <- "ukb-b-19732"
+prot <- "MMP.10"
+type <- "cis"
+f <- paste0(prot,"-",type,".mrx")
+e <- function(d) format_file.args(d, phenotype_col="prot", snp_col="rsid", chr_col="Chromosome", pos_col="Posistion",
+                 effect_allele_col="Allele1", other_allele_col="Allele2", eaf_col="Freq1",
+                 beta_col="Effect", se_col="StdErr", pval_col="logP", log_pval=TRUE, samplesize_col="N")
+d <- file.path(path.package("pQTLtools"),"tests",f)
+prefix <- paste(outcomes,prot,type,sep="-")
+run_TwoSampleMR(exposure.args=e(d),outcome.args=extract_outcome_data.args(outcomes=outcomes),
+                clump.args=clump_data.args(),harmonise.args=harmonise_data.args(),prefix=prefix)
+invisible(sapply(c("result","heterogeneity","pleiotropy","single","loo"), function(x) unlink(paste0(prefix,"-",x,".txt"))))
+```
+
+The output is contained in individual files `ukb-b-19732-MMP.10-cis-result.txt`, etc. The scatter, forest, funnel and leave-one-out plots is contained in `ukb-b-19732-MMP.10-cis.pdf`.
+
+```{r, out.height = "460px", out.width='800px',echo=FALSE}
+knitr::include_graphics(paste0(prefix,".pdf"))
+unlink(paste0(prefix,".pdf"))
 ```
 
 ## Literature on pQTLs

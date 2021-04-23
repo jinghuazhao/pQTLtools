@@ -80,14 +80,15 @@ The function was originally developed to rework on data generated from GSMR, alt
 
 ```{r}
 print(mr)
-res <- gsmr(mr, "LIF.R", c("CAD","FEV1"))
-f <- file.path("INF1_CAD-FEV1.csv")
+res <- gsmr(mr, "LIF.R", c("CAD","FEV1"),other_plots=TRUE)
+f <- "INF1_CAD-FEV1.csv"
 write.table(with(res,r), file=f, quote=FALSE, col.names=FALSE, row.names=FALSE, sep=",")
 top <- function(r)
        sapply(c("IVW","EGGER","WM","PWM"), function(x) as.numeric(gap::pvalue(r[[paste0("b",x)]]/r[[paste0("seb",x)]])))
 r <- read.csv(f,as.is=TRUE)
 p <- top(r)
 data.frame(r,p)
+unlink(f)
 ```
 
 ## invnormal
