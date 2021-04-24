@@ -67,7 +67,8 @@ box_uniprot <- setdiff(unique(with(box_INF1,UniProt)),"P23560")
 setdiff(INF1_uniprot,box_uniprot)
 
 # Phenoscanner database
-ps <- merge(subset(read.delim(file.path(INF,"work","pQTL_2018.txt.gz"),as.is=TRUE),pmid==29875488),
+ps <- merge(subset(read.delim(file.path(INF,"work","pQTL_2018.txt.gz"),as.is=TRUE),
+            pmid==29875488),
             box,by.x="trait",by.y="TargetFullName")
 z <- subset(ps,UniProtgwas \%in\% INF1_uniprot & p<=1.5e-11)
 
