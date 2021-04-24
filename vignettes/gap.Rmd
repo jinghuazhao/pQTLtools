@@ -113,7 +113,7 @@ sd(y)
 ## METAL.forestplot
 
 The following is the documentation example,
-```{r, message = FALSE, fig.height=6, fig.width=12}
+```{r, message = FALSE, fig.height=6, fig.width=12, results='hide'}
 require(gap.datasets)
 data(OPG)
 METAL_forestplot(OPGtbl,OPGall,OPGrsid,width=8.75,height=5)
