@@ -203,7 +203,7 @@ The function `pqtlMR` is derived from @zheng20.
 
 The function has similiarity to @dt18. The documentation example is quoted here,
 
-```{r, warning=FALSE}
+```{r, results='hide',warning=FALSE}
 library(TwoSampleMR)
 outcomes <- "ukb-b-19732"
 prot <- "MMP.10"
