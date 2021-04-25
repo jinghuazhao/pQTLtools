@@ -216,7 +216,8 @@ if (file.exists("pQTL-combined-result.txt"))
   result <- read.delim("pQTL-combined-result.txt",header=TRUE)
   knitr::kable(result,caption="ABO/LIFR variants and CHD/FEV1")
 }
-invisible(sapply(c("result","single"), function(x) unlink(paste0("pQTL-combined-",x,".txt"))))
+invisible(sapply(c("harmonise","result","single"),
+                 function(x) unlink(paste0("pQTL-combined-",x,".txt"))))
 ```
 
 ## run_TwoSampleMR
