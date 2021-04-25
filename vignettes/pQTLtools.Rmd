@@ -195,9 +195,29 @@ single_run <- function(r)
 single_run(1)
 ```
 
-## pQTL-based Mendelian Randomization
+## pQTL-based Mendelian Randomization (MR)
 
-The function `pqtlMR` is derived from @zheng20.
+The function `pqtlMR` is derived from @zheng20. It has an attractive feature that multiple pQTLs
+can be used together for conducting MR with a list of outcomes from MR-Base. To simplify matters
+while maintaining greater flexibility, a composite input is needed to run the function which is
+illustrated below.
+
+```{r, warning=FALSE}
+library(TwoSampleMR)
+ins <- read.csv(file.path(path.package("pQTLtools"),"tests","Ins.csv"))
+ids <- c("ieu-a-7","ebi-a-GCST007432")
+Ins <- format_data(ins)
+Ids <- extract_outcome_data(snps=with(Ins,SNP),outcomes=ids)
+harmonise <- harmonise_data(Ins,Ids)
+input <- list(Ins, Ids, harmonise)
+pqtlMR(input,plot=FALSE)
+if (file.exists("pQTL-combined-result.txt"))
+{
+  result <- read.delim("pQTL-combined-result.txt",header=TRUE)
+  knitr::kable(result,caption="ABO/LIFR variants and CHD/FEV1")
+}
+invisible(sapply(c("result","single"), function(x) unlink(paste0("pQTL-combined-",x,".txt"))))
+```
 
 ## run_TwoSampleMR
 
@@ -209,19 +229,25 @@ outcomes <- "ukb-b-19732"
 prot <- "MMP.10"
 type <- "cis"
 f <- paste0(prot,"-",type,".mrx")
-e <- function(d) format_file.args(d, phenotype_col="prot", snp_col="rsid", chr_col="Chromosome", pos_col="Posistion",
-                 effect_allele_col="Allele1", other_allele_col="Allele2", eaf_col="Freq1",
-                 beta_col="Effect", se_col="StdErr", pval_col="logP", log_pval=TRUE, samplesize_col="N")
-d <- file.path(path.package("pQTLtools"),"tests",f)
+d <- read.table(file.path(path.package("pQTLtools"),"tests",f),header=TRUE)
+exposure <- format_data(within(d,{P=10^logP}), phenotype_col="prot", snp_col="rsid",
+                        chr_col="Chromosome", pos_col="Posistion",
+                        effect_allele_col="Allele1", other_allele_col="Allele2",
+                        eaf_col="Freq1", beta_col="Effect", se_col="StdErr",
+                        pval_col="P", log_pval=FALSE,
+                        samplesize_col="N")
+clump <- clump_data(exposure)
+outcome <- extract_outcome_data(snps=exposure$SNP,outcomes=outcomes)
+harmonise <- harmonise_data(clump,outcome)
+input <- list(exposure,outcome,clump,harmonise)
 prefix <- paste(outcomes,prot,type,sep="-")
-run_TwoSampleMR(exposure.args=e(d),outcome.args=extract_outcome_data.args(outcomes=outcomes),
-                clump.args=clump_data.args(),harmonise.args=harmonise_data.args(),prefix=prefix)
-invisible(sapply(c("result","heterogeneity","pleiotropy","single","loo"), function(x) unlink(paste0(prefix,"-",x,".txt"))))
-if(file.exists(paste0(prefix,".pdf")))
+run_TwoSampleMR(input, prefix=prefix)
+if (file.exists(paste0(prefix,"-result.txt")))
 {
-  knitr::include_graphics(paste0(prefix,".pdf"))
-  unlink(paste0(prefix,".pdf"))
+  result <- read.delim(paste0(prefix,"-result.txt"),header=TRUE)
+  knitr::kable(result,caption="MMP.10 variants and MS")
 }
+invisible(sapply(c("result","heterogeneity","pleiotropy","single","loo"), function(x) unlink(paste0(prefix,"-",x,".txt"))))
 ```
 
 The output is contained in individual files `ukb-b-19732-MMP.10-cis-result.txt`, etc. The scatter, forest, funnel and leave-one-out plots is contained in `ukb-b-19732-MMP.10-cis.pdf`.
