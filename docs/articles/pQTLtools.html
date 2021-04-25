@@ -700,7 +700,7 @@
 <p>The function has similiarity to <span class="citation">Dimou and Tsilidis (2018)</span>. The documentation example is quoted here,</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">TwoSampleMR</span><span class="op">)</span>
-<span class="va">outcomes</span> <span class="op">&lt;-</span> <span class="st">"ukb-b-19732"</span>
+<span class="va">outcomes</span> <span class="op">&lt;-</span> <span class="st">"ebi-a-GCST007432"</span>
 <span class="va">prot</span> <span class="op">&lt;-</span> <span class="st">"MMP.10"</span>
 <span class="va">type</span> <span class="op">&lt;-</span> <span class="st">"cis"</span>
 <span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">prot</span>,<span class="st">"-"</span>,<span class="va">type</span>,<span class="st">".mrx"</span><span class="op">)</span>
@@ -717,10 +717,10 @@
 <span class="co">#&gt; Removing 1102 of 1106 variants due to LD with other variants or absence from LD reference panel</span>
 <span class="va">outcome</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/TwoSampleMR/man/extract_outcome_data.html">extract_outcome_data</a></span><span class="op">(</span>snps<span class="op">=</span><span class="va">exposure</span><span class="op">$</span><span class="va">SNP</span>,outcomes<span class="op">=</span><span class="va">outcomes</span><span class="op">)</span>
 <span class="co">#&gt; Extracting data for 1106 SNP(s) from 1 GWAS(s)</span>
-<span class="co">#&gt; Finding proxies for 172 SNPs in outcome ukb-b-19732</span>
-<span class="co">#&gt; Extracting data for 172 SNP(s) from 1 GWAS(s)</span>
+<span class="co">#&gt; Finding proxies for 155 SNPs in outcome ebi-a-GCST007432</span>
+<span class="co">#&gt; Extracting data for 155 SNP(s) from 1 GWAS(s)</span>
 <span class="va">harmonise</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/TwoSampleMR/man/harmonise_data.html">harmonise_data</a></span><span class="op">(</span><span class="va">clump</span>,<span class="va">outcome</span><span class="op">)</span>
-<span class="co">#&gt; Harmonising MMP.10 (ZoHewj) and Non-cancer illness code, self-reported: hypothyroidism/myxoedema || id:ukb-b-19732 (ukb-b-19732)</span>
+<span class="co">#&gt; Harmonising MMP.10 (ZoHewj) and FEV1 || id:ebi-a-GCST007432 (ebi-a-GCST007432)</span>
 <span class="va">input</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">exposure</span>,<span class="va">outcome</span>,<span class="va">clump</span>,<span class="va">harmonise</span><span class="op">)</span>
 <span class="va">prefix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">outcomes</span>,<span class="va">prot</span>,<span class="va">type</span>,sep<span class="op">=</span><span class="st">"-"</span><span class="op">)</span>
 <span class="fu"><a href="../reference/run_TwoSampleMR.html">run_TwoSampleMR</a></span><span class="op">(</span><span class="va">input</span>, prefix<span class="op">=</span><span class="va">prefix</span><span class="op">)</span>
@@ -734,13 +734,13 @@
 <span class="co">#&gt; This method is an approximation, and may be numerically unstable.</span>
 <span class="co">#&gt; Ideally you should estimate r directly from independent replication samples.</span>
 <span class="co">#&gt; Use get_r_from_lor for binary traits.</span>
-<span class="co">#&gt; Analysing 'ZoHewj' on 'ukb-b-19732'</span></code></pre></div>
+<span class="co">#&gt; Analysing 'ZoHewj' on 'ebi-a-GCST007432'</span></code></pre></div>
 <p><img src="pQTLtools/unnamed-chunk-6-1.png" width="700" style="display:block; margin: auto"><img src="pQTLtools/unnamed-chunk-6-2.png" width="700" style="display:block; margin: auto"><img src="pQTLtools/unnamed-chunk-6-3.png" width="700" style="display:block; margin: auto"><img src="pQTLtools/unnamed-chunk-6-4.png" width="700" style="display:block; margin: auto"></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.exists</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">prefix</span>,<span class="st">"-result.txt"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="op">{</span>
   <span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.delim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">prefix</span>,<span class="st">"-result.txt"</span><span class="op">)</span>,header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
-  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">result</span>,caption<span class="op">=</span><span class="st">"MMP.10 variants and MS"</span><span class="op">)</span>
+  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">result</span>,caption<span class="op">=</span><span class="st">"MMP.10 variants and FEV1"</span><span class="op">)</span>
 <span class="op">}</span>
 <span class="fu"><a href="https://rdrr.io/r/base/invisible.html">invisible</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"result"</span>,<span class="st">"heterogeneity"</span>,<span class="st">"pleiotropy"</span>,<span class="st">"single"</span>,<span class="st">"loo"</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">prefix</span>,<span class="st">"-"</span>,<span class="va">x</span>,<span class="st">".txt"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>The output is contained in individual files <code>ukb-b-19732-MMP.10-cis-result.txt</code>, etc. The scatter, forest, funnel and leave-one-out plots is contained in <code>ukb-b-19732-MMP.10-cis.pdf</code>.</p>
