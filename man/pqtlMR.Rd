@@ -1,14 +1,18 @@
 \name{pqtlMR}
 \alias{pqtlMR}
 \title{Bidirectional pQTL-MR analysis}
-\usage{pqtlMR(Ins, Ids, harmonise, plot=TRUE, prefix="INF1",reverse=FALSE)}
+\usage{pqtlMR(pqtlMRinput, plot=TRUE, prefix="pQTL-combined-",reverse=FALSE)}
 \description{
 Given a list of pQTLs as instrumental variables (IVs), this function performs MR analysis according to epigraphdb.
 }
 \arguments{
-\item{Ins}{result of format_data()}
-\item{Ids}{result of extract_outcome_data()}
-\item{harmonise}{result of harmonise_data()}
+\item{pqtlMRinput}{A list of the following elements for greater flexibility,
+  \enumerate{
+    \item{Ins}{result of format_data()}
+    \item{Ids}{result of extract_outcome_data()}
+    \item{harmonise}{result of harmonise_data()}
+  }
+}
 \item{plot}{to produce plots}
 \item{prefix}{a prefix for output files}
 \item{reverse}{if TRUE, perform reverse MR}
@@ -29,18 +33,22 @@ Zheng J, et al. (2020). Phenome-wide Mendelian randomization mapping the influen
 library(TwoSampleMR)
 # Original examples
 ins <- read.csv(file.path(path.package("pQTLtools"),"tests","Ins.csv"))
-ids <- c("ieu-a-7","ieu-a-798","ukb-a-61")
+ids <- c("ieu-a-7","ebi-a-GCST007432")
 Ins <- format_data(ins)
 Ids <- extract_outcome_data(snps=with(Ins,SNP),outcomes=ids)
-pqtlMR(Ins,Ids, harmonise_data(Ins,Ids),plot=FALSE)
+harmonise <- harmonise_data(Ins,Ids)
+input <- list(Ins, Ids, harmonise)
+pqtlMR(input,plot=FALSE)
 # A bidirectional analysis
 ms <- read.table(file.path(path.package("pQTLtools"),"tests","ms.ins"),header=TRUE)
 Ins <- format_data(ms,samplesize_col="N")
 Ids <- extract_outcome_data(snps=with(Ins,SNP),outcomes="ieu-b-18")
+harmonise <- harmonise_data(Ins,Ids)
+input <- list(Ins, Ids, harmonise)
 # MR
-pqtlMR(Ins, Ids, harmonise_data(Ins,Ids),prefix="MS-")
+pqtlMR(input,prefix="MS-")
 # reverse MR
-pqtlMR(Ins, Ids, harmonise_data(Ins,Ids),prefix="MS_rev-",reverse=TRUE)
+pqtlMR(input,prefix="MS_rev-",reverse=TRUE)
 }
 \note{Adapted from script by Jie Zheng}
 \keyword{utilities}

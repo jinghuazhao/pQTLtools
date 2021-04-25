@@ -1,15 +1,19 @@
 \name{run_TwoSampleMR}
 \alias{run_TwoSampleMR}
 \title{A generic wrapper for TwoSampleMR analysis}
-\usage{run_TwoSampleMR(exposure, outcome, clump, harmonise, plot=TRUE, prefix)}
+\usage{run_TwoSampleMR(TwoSampleMRinput, plot=TRUE, prefix)}
 \description{
 Given a compressed or uncompressed file containing exposure data, this function conducts a two-sample MR analysis using MR-Base.
 }
 \arguments{
-\item{exposure}{result TwoSampleMR's format_data()}
-\item{outcome}{result if TwoSampleMR's extract_outcome_data()}
-\item{clump}{result of TwoSampleMR's clump_data()}
-\item{harmonise}{result of TwoSampleMR's harmonise_data()}
+\item{TwoSampleMRinput}{A list containing the following elements to allow for greater flexibility,
+  \enumerate{
+   \item{exposure}{result TwoSampleMR's format_data()}
+   \item{outcome}{result if TwoSampleMR's extract_outcome_data()}
+   \item{clump}{result of TwoSampleMR's clump_data()}
+   \item{harmonise}{result of TwoSampleMR's harmonise_data()}
+  }
+}
 \item{plot}{to produce plots}
 \item{prefix}{a prefix for output files}
 }
@@ -36,16 +40,17 @@ prot <- "MMP.10"
 type <- "cis"
 f <- paste0(prot,"-",type,".mrx")
 d <- read.table(file.path(path.package("pQTLtools"),"tests",f),header=TRUE)
-e <- format_data(within(d,{P=10^logP}), phenotype_col="prot", snp_col="rsid",
-                 chr_col="Chromosome", pos_col="Posistion",
-                 effect_allele_col="Allele1", other_allele_col="Allele2",
-                 eaf_col="Freq1", beta_col="Effect", se_col="StdErr",
-                 pval_col="P", log_pval=FALSE,
-                 samplesize_col="N")
-clump <- clump_data(e)
-outcome <- extract_outcome_data(snps=e$SNP,outcomes=outcomes)
-run_TwoSampleMR(e, outcome, clump, harmonise=harmonise_data(clump,outcome),
-                prefix=paste(outcomes,prot,type,sep="-"))
+exposure <- format_data(within(d,{P=10^logP}), phenotype_col="prot", snp_col="rsid",
+                        chr_col="Chromosome", pos_col="Posistion",
+                        effect_allele_col="Allele1", other_allele_col="Allele2",
+                        eaf_col="Freq1", beta_col="Effect", se_col="StdErr",
+                        pval_col="P", log_pval=FALSE,
+                        samplesize_col="N")
+clump <- clump_data(exposure)
+outcome <- extract_outcome_data(snps=exposure$SNP,outcomes=outcomes)
+harmonise <- harmonise_data(clump,outcome)
+input <- list(exposure,outcome,clump,harmonise)
+run_TwoSampleMR(input, prefix=paste(outcomes,prot,type,sep="-"))
 }
 \note{Adapted from script by Dimou NL, Tsilidis KK}
 \keyword{utilities}
