@@ -8,10 +8,10 @@ Given a compressed or uncompressed file containing exposure data, this function 
 \arguments{
 \item{TwoSampleMRinput}{A list containing the following elements to allow for greater flexibility,
   \enumerate{
-   \item{exposure}{result TwoSampleMR's format_data()}
-   \item{outcome}{result if TwoSampleMR's extract_outcome_data()}
-   \item{clump}{result of TwoSampleMR's clump_data()}
-   \item{harmonise}{result of TwoSampleMR's harmonise_data()}
+   \item exposure result TwoSampleMR's format_data()
+   \item outcome result if TwoSampleMR's extract_outcome_data()
+   \item clump result of TwoSampleMR's clump_data()
+   \item harmonise result of TwoSampleMR's harmonise_data()
   }
 }
 \item{plot}{to produce plots}

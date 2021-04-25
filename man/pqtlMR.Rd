@@ -8,9 +8,9 @@ Given a list of pQTLs as instrumental variables (IVs), this function performs MR
 \arguments{
 \item{pqtlMRinput}{A list of the following elements for greater flexibility,
   \enumerate{
-    \item{Ins}{result of format_data()}
-    \item{Ids}{result of extract_outcome_data()}
-    \item{harmonise}{result of harmonise_data()}
+    \item Ins result of format_data()
+    \item Ids result of extract_outcome_data()
+    \item harmonise result of harmonise_data()
   }
 }
 \item{plot}{to produce plots}
