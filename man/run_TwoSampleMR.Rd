@@ -35,7 +35,7 @@ https://doi.org/10.1007/978-1-4939-7868-7_13, Springer Science+Business Media, L
 
 \examples{
 library(TwoSampleMR)
-outcomes <- "ukb-b-19732"
+outcomes <- "ebi-a-GCST007432"
 prot <- "MMP.10"
 type <- "cis"
 f <- paste0(prot,"-",type,".mrx")
