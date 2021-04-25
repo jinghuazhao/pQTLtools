@@ -225,7 +225,7 @@ The function has similiarity to @dt18. The documentation example is quoted here,
 
 ```{r, results='hide',warning=FALSE}
 library(TwoSampleMR)
-outcomes <- "ukb-b-19732"
+outcomes <- "ebi-a-GCST007432"
 prot <- "MMP.10"
 type <- "cis"
 f <- paste0(prot,"-",type,".mrx")
@@ -245,7 +245,7 @@ run_TwoSampleMR(input, prefix=prefix)
 if (file.exists(paste0(prefix,"-result.txt")))
 {
   result <- read.delim(paste0(prefix,"-result.txt"),header=TRUE)
-  knitr::kable(result,caption="MMP.10 variants and MS")
+  knitr::kable(result,caption="MMP.10 variants and FEV1")
 }
 invisible(sapply(c("result","heterogeneity","pleiotropy","single","loo"), function(x) unlink(paste0(prefix,"-",x,".txt"))))
 ```
