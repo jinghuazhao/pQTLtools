@@ -1,0 +1,3 @@
+Phenotype,SNP,effect_allele,other_allele,eaf,beta,se,pval
+ABO,rs505922,C,T,0.313,1.298,0.014,1.2e-1828
+LIFR,rs635634,T,C,0.180,-0.300,0.032,6.00E-21
