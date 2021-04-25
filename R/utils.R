@@ -203,8 +203,29 @@ swap <- function(x,y)
    substitute(x), "<-", substitute(y), ";",
    substitute(y), "<-swap_unique_var_a")), envir=parent.frame())
 
-pqtlMR <- function(Ins, Ids, harmonise, plot=TRUE, prefix="pQTL-combined-",reverse=FALSE)
+pqtlMR <- function(pqtlMRinput, plot=TRUE, prefix="pQTL-combined-",reverse=FALSE)
 {
+  Ins <- with(pqtlMRinput,Ins)
+  Ids <- with(pqtlMRinput,Ids)
+  harmonise <- with(pqtlMRinput,harmonise)
+  id.exposure <- NA
+  id.outcome <- NA
+  effect_allele.exposure <- NA
+  effect_allele.outcome <- NA
+  other_allele.exposure <- NA
+  other_allele.outcome <- NA
+  eaf.exposure <- NA
+  eaf.outcome <- NA
+  samplesize.exposure <- NA
+  beta.exposure <- NA
+  beta.outcome <- NA
+  se.exposure <- NA
+  se.outcome <- NA
+  pval.exposure <- NA
+  pval.outcome <- NA
+  swap_unique_var_a <- NA
+  if (is.null(Ins) | is.null(Ids) | is.null(harmonise))
+     stop("Missing element(s) in the input")
   if (reverse) harmonise <- subset(within(harmonise,
   {
     swap(Ins,Ids)
@@ -235,8 +256,14 @@ pqtlMR <- function(Ins, Ids, harmonise, plot=TRUE, prefix="pQTL-combined-",rever
   }
 }
 
-run_TwoSampleMR <- function(exposure, outcome, clump, harmonise, plot=TRUE, prefix="")
+run_TwoSampleMR <- function(TwoSampleMRinput, plot=TRUE, prefix="")
 {
+  exposure <- with(TwoSampleMRinput, exposure)
+  outcome <- with(TwoSampleMRinput, outcome)
+  clump <- with(TwoSampleMRinput, clump)
+  harmonise <- with(TwoSampleMRinput, harmonise)
+  if (is.null(exposure) | is.null(outcome) | is.null(clump) | is.null(harmonise))
+     stop("Missing element(s) in the input")
   TwoSampleMR::directionality_test(harmonise)
   result <- heterogeneity <- pleiotropy <- single <- loo <- NULL
   result <- TwoSampleMR::mr(harmonise)
