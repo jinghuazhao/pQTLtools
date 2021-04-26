@@ -41,7 +41,8 @@ harmonise <- harmonise_data(Ins,Ids)
 input <- list(Ins, Ids, harmonise)
 pqtlMR(input,plot=FALSE)
 # A bidirectional analysis
-ms <- read.table(file.path(find.package("pQTLtools",lib.loc=.libPaths()),"tests","ms.ins"),header=TRUE)
+ms <- read.table(file.path(find.package("pQTLtools",lib.loc=.libPaths()),"tests","ms.ins"),
+                 header=TRUE)
 Ins <- format_data(ms,samplesize_col="N")
 Ids <- extract_outcome_data(snps=with(Ins,SNP),outcomes="ieu-b-18")
 harmonise <- harmonise_data(Ins,Ids)
