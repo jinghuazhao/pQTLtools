@@ -156,26 +156,99 @@
        <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"IVW"</span>,<span class="st">"EGGER"</span>,<span class="st">"WM"</span>,<span class="st">"PWM"</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="fu">gap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gap/man/gap-internal.html">pvalue</a></span><span class="op">(</span><span class="va">r</span><span class="op">[[</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"b"</span>,<span class="va">x</span><span class="op">)</span><span class="op">]</span><span class="op">]</span><span class="op">/</span><span class="va">r</span><span class="op">[[</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"seb"</span>,<span class="va">x</span><span class="op">)</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="va">f</span>,as.is<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
 <span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">top</span><span class="op">(</span><span class="va">r</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">r</span>,<span class="va">p</span><span class="op">)</span>
-<span class="co">#&gt;           IV        bIVW     sebIVW     CochQ    CochQp     bEGGER   sebEGGER</span>
-<span class="co">#&gt; 1  LIF.R.CAD -0.18710875 0.04992948 2.1156746 0.9531614 -0.1843936 0.06009144</span>
-<span class="co">#&gt; 2 LIF.R.FEV1  0.04457766 0.01238405 0.4815447 0.9998844  0.0486759 0.01494467</span>
-<span class="co">#&gt;       intEGGER  seintEGGER         bWM      sebWM        bPWM     sebPWM</span>
-<span class="co">#&gt; 1 0.0009905967 0.009704878 -0.24678493 0.04507241 -0.24842463 0.04421814</span>
-<span class="co">#&gt; 2 0.0013397058 0.002432065  0.06240365 0.01220117  0.05518126 0.01312195</span>
-<span class="co">#&gt;        IVW   EGGER       WM      PWM</span>
-<span class="co">#&gt; 1 0.000179 0.00215 4.37e-08 1.93e-08</span>
-<span class="co">#&gt; 2 0.000319 0.00113 3.14e-07 2.61e-05</span>
-<span class="fu"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span></code></pre></div>
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">r</span>,<span class="va">p</span><span class="op">)</span>,caption<span class="op">=</span><span class="st">"LIFR variant rs635634 and CAD/FEV1"</span>,digits<span class="op">=</span><span class="fl">3</span><span class="op">)</span></code></pre></div>
+<table class="table">
+<caption>LIFR variant rs635634 and CAD/FEV1</caption>
+<colgroup>
+<col width="9%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="7%">
+<col width="7%">
+<col width="9%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="3%">
+<col width="5%">
+<col width="2%">
+<col width="3%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">IV</th>
+<th align="right">bIVW</th>
+<th align="right">sebIVW</th>
+<th align="right">CochQ</th>
+<th align="right">CochQp</th>
+<th align="right">bEGGER</th>
+<th align="right">sebEGGER</th>
+<th align="right">intEGGER</th>
+<th align="right">seintEGGER</th>
+<th align="right">bWM</th>
+<th align="right">sebWM</th>
+<th align="right">bPWM</th>
+<th align="right">sebPWM</th>
+<th align="right">IVW</th>
+<th align="right">EGGER</th>
+<th align="right">WM</th>
+<th align="right">PWM</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">LIF.R.CAD</td>
+<td align="right">-0.187</td>
+<td align="right">0.050</td>
+<td align="right">2.116</td>
+<td align="right">0.953</td>
+<td align="right">-0.184</td>
+<td align="right">0.060</td>
+<td align="right">0.001</td>
+<td align="right">0.010</td>
+<td align="right">-0.247</td>
+<td align="right">0.045</td>
+<td align="right">-0.248</td>
+<td align="right">0.044</td>
+<td align="right">0</td>
+<td align="right">0.002</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">LIF.R.FEV1</td>
+<td align="right">0.045</td>
+<td align="right">0.012</td>
+<td align="right">0.482</td>
+<td align="right">1.000</td>
+<td align="right">0.049</td>
+<td align="right">0.015</td>
+<td align="right">0.001</td>
+<td align="right">0.002</td>
+<td align="right">0.062</td>
+<td align="right">0.012</td>
+<td align="right">0.055</td>
+<td align="right">0.013</td>
+<td align="right">0</td>
+<td align="right">0.001</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="invnormal" class="section level2">
 <h2 class="hasAnchor">
 <a href="#invnormal" class="anchor"></a>invnormal</h2>
 <p>The function is widely used in various consortium analyses and defined as follows,</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">invnormal</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rank.html">rank</a></span><span class="op">(</span><span class="va">x</span>,na.last<span class="op">=</span><span class="st">"keep"</span><span class="op">)</span><span class="op">-</span><span class="fl">0.5</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>An example use on data from Poisson distribution is as follows,</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">12345</span><span class="op">)</span>
 <span class="va">Ni</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html">rpois</a></span><span class="op">(</span><span class="fl">50</span>, lambda <span class="op">=</span> <span class="fl">4</span><span class="op">)</span>; <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">Ni</span>, <span class="fl">0</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">Ni</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; </span>
@@ -197,7 +270,7 @@
 <h2 class="hasAnchor">
 <a href="#metal-forestplot" class="anchor"></a>METAL.forestplot</h2>
 <p>The following is the documentation example,</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://jinghuazhao.github.io/R/">gap.datasets</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">OPG</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/gap/man/METAL_forestplot.html">METAL_forestplot</a></span><span class="op">(</span><span class="va">OPGtbl</span>,<span class="va">OPGall</span>,<span class="va">OPGrsid</span>,width<span class="op">=</span><span class="fl">8.75</span>,height<span class="op">=</span><span class="fl">5</span><span class="op">)</span></code></pre></div>
@@ -207,7 +280,7 @@
 <h2 class="hasAnchor">
 <a href="#mhtplot-trunc" class="anchor"></a>mhtplot.trunc</h2>
 <p>Again this is the documentation example,</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>width<span class="op">=</span><span class="fl">120</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://jinghuazhao.github.io/R/">gap.datasets</a></span><span class="op">)</span>
 <span class="va">mhtdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html">within</a></span><span class="op">(</span><span class="va">mhtdata</span>, <span class="op">{</span><span class="va">z</span><span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="va">p</span><span class="op">/</span><span class="fl">2</span>, lower.tail<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span><span class="op">}</span><span class="op">)</span>
@@ -238,11 +311,11 @@
 <h2 class="hasAnchor">
 <a href="#cnvplot-and-circos-cnvplot" class="anchor"></a>cnvplot and circos.cnvplot</h2>
 <p>These are a functions to plot distribution of CNVs,</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jinghuazhao/R">gap</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/gap/man/gap-internal.html">cnvplot</a></span><span class="op">(</span><span class="va">cnv</span><span class="op">)</span></code></pre></div>
 <p><img src="gap/unnamed-chunk-7-1.png" width="700" style="display:block; margin: auto"></p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/gap/man/gap-internal.html">circos.cnvplot</a></span><span class="op">(</span><span class="va">cnv</span><span class="op">)</span>
 <span class="co">#&gt; Warning in genomicPanelFun(df[2:3], df[-(1:3)], .param = .param): NAs introduced</span>
 <span class="co">#&gt; by coercion</span>
@@ -255,7 +328,7 @@
 <h2 class="hasAnchor">
 <a href="#snptest_sample" class="anchor"></a>snptest_sample</h2>
 <p>This is a function to output sample file for SNPTEST.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>ID_1<span class="op">=</span><span class="fl">1</span>,ID_2<span class="op">=</span><span class="fl">1</span>,missing<span class="op">=</span><span class="fl">0</span>,PC1<span class="op">=</span><span class="fl">1</span>,PC2<span class="op">=</span><span class="fl">2</span>,D1<span class="op">=</span><span class="fl">1</span>,P1<span class="op">=</span><span class="fl">10</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/gap/man/gap-internal.html">snptest_sample</a></span><span class="op">(</span><span class="va">d</span>,C<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"PC"</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span>,D<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"D"</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>,P<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"P"</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>The commands above generates a file named ``snptest.sample.</p>

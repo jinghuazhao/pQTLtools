@@ -153,7 +153,7 @@
 <span class="va">grid2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">40</span>,<span class="fl">5000</span>,<span class="fl">300</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jinghuazhao/R">gap</a></span><span class="op">)</span>
 <span class="co">#&gt; Loading required package: gap</span>
-<span class="co">#&gt; gap version 1.2.3</span>
+<span class="co">#&gt; gap version 1.2.3-2</span>
 <span class="va">v</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="op">)</span>
 <span class="kw">for</span> <span class="op">(</span><span class="va">z</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">grid1</span>,<span class="va">grid2</span><span class="op">)</span><span class="op">)</span>
 <span class="op">{</span>
@@ -161,32 +161,162 @@
   <span class="va">v</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Rmpfr/man/bind-methods.html">rbind</a></span><span class="op">(</span><span class="va">v</span>,<span class="va">vi</span><span class="op">)</span>
 <span class="op">}</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">v</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"z"</span>,<span class="st">"P"</span>,<span class="st">"log(P)"</span>,<span class="st">"log10(P)"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">v</span>,right<span class="op">=</span><span class="cn">FALSE</span>,row.names<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>
-<span class="co">#&gt;  z    P             log(P)            log10(P)            </span>
-<span class="co">#&gt;  0    1e0           0                 5.55111512312578e-17</span>
-<span class="co">#&gt;  5    5.73e-7       -14.3718512134288 -6.24161567672667   </span>
-<span class="co">#&gt;  10   1.52e-23      -52.5381379699525 -22.8170234098221   </span>
-<span class="co">#&gt;  15   7.34e-51      -115.438237665152 -50.1341896186115   </span>
-<span class="co">#&gt;  20   5.51e-89      -203.224008190537 -88.2590653474116   </span>
-<span class="co">#&gt;  25   6.11e-138     -315.94626082746  -137.213717655332   </span>
-<span class="co">#&gt;  30   9.81e-198     -453.628096775783 -197.008179265997   </span>
-<span class="co">#&gt;  40   7.31e-350     -803.915294833194 -349.135976463682   </span>
-<span class="co">#&gt;  340  1.41e-25105   -57806.0547456206 -25104.8505966203   </span>
-<span class="co">#&gt;  640  3.85e-88947   -204806.68726197  -88946.4141347587   </span>
-<span class="co">#&gt;  940  4.23e-191875  -441807.07167236  -191874.37329314    </span>
-<span class="co">#&gt;  1240 1.62e-333889  -768807.348658662 -333888.789169126   </span>
-<span class="co">#&gt;  1540 2.08e-514990  -1185807.56532947 -514989.682221718   </span>
-<span class="co">#&gt;  1840 8.67e-735178  -1692807.7433125  -735177.061843714   </span>
-<span class="co">#&gt;  2140 1.17e-994451  -2289807.89435268 -994450.933135873   </span>
-<span class="co">#&gt;  2440 5.02e-1292812 -2976808.02554484 -1292811.29917944   </span>
-<span class="co">#&gt;  2740 6.89e-1630259 -3753808.14150469 -1630258.16197899   </span>
-<span class="co">#&gt;  3040 3e-2006792    -4620808.24540426 -2006791.52291212   </span>
-<span class="co">#&gt;  3340 4.14e-2422412 -5577808.33951753 -2422411.3829664    </span>
-<span class="co">#&gt;  3640 1.81e-2877118 -6624808.42553039 -2877117.74287402   </span>
-<span class="co">#&gt;  3940 2.49e-3370911 -7761808.50472742 -3370910.60319285   </span>
-<span class="co">#&gt;  4240 1.09e-3903790 -8988808.57810996 -3903789.96435777   </span>
-<span class="co">#&gt;  4540 1.49e-4475756 -10305808.6464737 -4475755.82671434   </span>
-<span class="co">#&gt;  4840 6.45e-5086809 -11712808.7104614 -5086808.19054173</span></code></pre></div>
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">v</span>,caption<span class="op">=</span><span class="st">"z,P,log(P) and log10(P)"</span><span class="op">)</span></code></pre></div>
+<table class="table">
+<caption>z,P,log(P) and log10(P)</caption>
+<thead><tr class="header">
+<th align="left">z</th>
+<th align="left">P</th>
+<th align="left">log(P)</th>
+<th align="left">log10(P)</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">0</td>
+<td align="left">1e0</td>
+<td align="left">0</td>
+<td align="left">5.55111512312578e-17</td>
+</tr>
+<tr class="even">
+<td align="left">5</td>
+<td align="left">5.73e-7</td>
+<td align="left">-14.3718512134288</td>
+<td align="left">-6.24161567672667</td>
+</tr>
+<tr class="odd">
+<td align="left">10</td>
+<td align="left">1.52e-23</td>
+<td align="left">-52.5381379699525</td>
+<td align="left">-22.8170234098221</td>
+</tr>
+<tr class="even">
+<td align="left">15</td>
+<td align="left">7.34e-51</td>
+<td align="left">-115.438237665152</td>
+<td align="left">-50.1341896186115</td>
+</tr>
+<tr class="odd">
+<td align="left">20</td>
+<td align="left">5.51e-89</td>
+<td align="left">-203.224008190537</td>
+<td align="left">-88.2590653474116</td>
+</tr>
+<tr class="even">
+<td align="left">25</td>
+<td align="left">6.11e-138</td>
+<td align="left">-315.94626082746</td>
+<td align="left">-137.213717655332</td>
+</tr>
+<tr class="odd">
+<td align="left">30</td>
+<td align="left">9.81e-198</td>
+<td align="left">-453.628096775783</td>
+<td align="left">-197.008179265997</td>
+</tr>
+<tr class="even">
+<td align="left">40</td>
+<td align="left">7.31e-350</td>
+<td align="left">-803.915294833194</td>
+<td align="left">-349.135976463682</td>
+</tr>
+<tr class="odd">
+<td align="left">340</td>
+<td align="left">1.41e-25105</td>
+<td align="left">-57806.0547456206</td>
+<td align="left">-25104.8505966203</td>
+</tr>
+<tr class="even">
+<td align="left">640</td>
+<td align="left">3.85e-88947</td>
+<td align="left">-204806.68726197</td>
+<td align="left">-88946.4141347587</td>
+</tr>
+<tr class="odd">
+<td align="left">940</td>
+<td align="left">4.23e-191875</td>
+<td align="left">-441807.07167236</td>
+<td align="left">-191874.37329314</td>
+</tr>
+<tr class="even">
+<td align="left">1240</td>
+<td align="left">1.62e-333889</td>
+<td align="left">-768807.348658662</td>
+<td align="left">-333888.789169126</td>
+</tr>
+<tr class="odd">
+<td align="left">1540</td>
+<td align="left">2.08e-514990</td>
+<td align="left">-1185807.56532947</td>
+<td align="left">-514989.682221718</td>
+</tr>
+<tr class="even">
+<td align="left">1840</td>
+<td align="left">8.67e-735178</td>
+<td align="left">-1692807.7433125</td>
+<td align="left">-735177.061843714</td>
+</tr>
+<tr class="odd">
+<td align="left">2140</td>
+<td align="left">1.17e-994451</td>
+<td align="left">-2289807.89435268</td>
+<td align="left">-994450.933135873</td>
+</tr>
+<tr class="even">
+<td align="left">2440</td>
+<td align="left">5.02e-1292812</td>
+<td align="left">-2976808.02554484</td>
+<td align="left">-1292811.29917944</td>
+</tr>
+<tr class="odd">
+<td align="left">2740</td>
+<td align="left">6.89e-1630259</td>
+<td align="left">-3753808.14150469</td>
+<td align="left">-1630258.16197899</td>
+</tr>
+<tr class="even">
+<td align="left">3040</td>
+<td align="left">3e-2006792</td>
+<td align="left">-4620808.24540426</td>
+<td align="left">-2006791.52291212</td>
+</tr>
+<tr class="odd">
+<td align="left">3340</td>
+<td align="left">4.14e-2422412</td>
+<td align="left">-5577808.33951753</td>
+<td align="left">-2422411.3829664</td>
+</tr>
+<tr class="even">
+<td align="left">3640</td>
+<td align="left">1.81e-2877118</td>
+<td align="left">-6624808.42553039</td>
+<td align="left">-2877117.74287402</td>
+</tr>
+<tr class="odd">
+<td align="left">3940</td>
+<td align="left">2.49e-3370911</td>
+<td align="left">-7761808.50472742</td>
+<td align="left">-3370910.60319285</td>
+</tr>
+<tr class="even">
+<td align="left">4240</td>
+<td align="left">1.09e-3903790</td>
+<td align="left">-8988808.57810996</td>
+<td align="left">-3903789.96435777</td>
+</tr>
+<tr class="odd">
+<td align="left">4540</td>
+<td align="left">1.49e-4475756</td>
+<td align="left">-10305808.6464737</td>
+<td align="left">-4475755.82671434</td>
+</tr>
+<tr class="even">
+<td align="left">4840</td>
+<td align="left">6.45e-5086809</td>
+<td align="left">-11712808.7104614</td>
+<td align="left">-5086808.19054173</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="application" class="section level2">
 <h2 class="hasAnchor">
