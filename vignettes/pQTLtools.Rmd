@@ -36,7 +36,7 @@ hits <- merge(clumped[c("CHR","POS","MarkerName","prot","log10p")],
 names(hits) <- c("prot","Chr","bp","SNP","log10p","uniprot")
 cistrans <- cis.vs.trans.classification(hits,inf1,"uniprot")
 cis.vs.trans <- with(cistrans,data)
-with(cistrans,table)
+knitr::kable(with(cistrans,table),caption="Table 1. cis/trans classification")
 with(cistrans,total)
 circos.cis.vs.trans.plot(hits=f,inf1,"uniprot")
 ```
@@ -93,7 +93,7 @@ detach(INF1_merge_cvt)
 
 See example associated with `import_eQTLCatalogue`. A related function is `import_OpenGWAS` used to fetch data from OpenGWAS.
 
-```{r, warning=FALSE}
+```{r, results='hide', warning=FALSE}
 library(pQTLtools)
 f <- file.path(find.package("pQTLtools",lib.loc=.libPaths()),"eQTL-Catalogue","hg19ToHg38.over.chain")
 chain <- rtracklayer::import.chain(f)
@@ -214,7 +214,7 @@ pqtlMR(input,plot=FALSE)
 if (file.exists("pQTL-combined-result.txt"))
 {
   result <- read.delim("pQTL-combined-result.txt",header=TRUE)
-  knitr::kable(result,caption="ABO/LIFR variants and CHD/FEV1")
+  knitr::kable(result,caption="Table 2. ABO/LIFR variants and CHD/FEV1")
 }
 invisible(sapply(c("harmonise","result","single"),
                  function(x) unlink(paste0("pQTL-combined-",x,".txt"))))
@@ -247,7 +247,7 @@ run_TwoSampleMR(input, prefix=prefix)
 if (file.exists(paste0(prefix,"-result.txt")))
 {
   result <- read.delim(paste0(prefix,"-result.txt"),header=TRUE)
-  knitr::kable(result,caption="MMP.10 variants and FEV1")
+  knitr::kable(result,caption="Table 3. MMP.10 variants and FEV1")
 }
 invisible(sapply(c("result","heterogeneity","pleiotropy","single","loo"), function(x) unlink(paste0(prefix,"-",x,".txt"))))
 ```
