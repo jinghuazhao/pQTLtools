@@ -40,7 +40,8 @@ outcomes <- "ebi-a-GCST007432"
 prot <- "MMP.10"
 type <- "cis"
 f <- paste0(prot,"-",type,".mrx")
-d <- read.table(file.path(find.package("pQTLtools",lib.loc=.libPaths()),"tests",f),header=TRUE)
+d <- read.table(file.path(find.package("pQTLtools",lib.loc=.libPaths()),"tests",f),
+                header=TRUE)
 exposure <- format_data(within(d,{P=10^logP}), phenotype_col="prot", snp_col="rsid",
                         chr_col="Chromosome", pos_col="Posistion",
                         effect_allele_col="Allele1", other_allele_col="Allele2",
