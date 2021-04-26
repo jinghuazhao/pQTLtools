@@ -91,89 +91,455 @@
 <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">hits</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"prot"</span>,<span class="st">"Chr"</span>,<span class="st">"bp"</span>,<span class="st">"SNP"</span>,<span class="st">"log10p"</span>,<span class="st">"uniprot"</span><span class="op">)</span>
 <span class="va">cistrans</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gap/man/gap-internal.html">cis.vs.trans.classification</a></span><span class="op">(</span><span class="va">hits</span>,<span class="va">inf1</span>,<span class="st">"uniprot"</span><span class="op">)</span>
 <span class="va">cis.vs.trans</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">cistrans</span>,<span class="va">data</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">cistrans</span>,<span class="va">table</span><span class="op">)</span>
-<span class="co">#&gt;           cis trans total</span>
-<span class="co">#&gt; ADA         1     0     1</span>
-<span class="co">#&gt; CASP8       1     0     1</span>
-<span class="co">#&gt; CCL11       1     4     5</span>
-<span class="co">#&gt; CCL13       1     3     4</span>
-<span class="co">#&gt; CCL19       1     3     4</span>
-<span class="co">#&gt; CCL2        0     3     3</span>
-<span class="co">#&gt; CCL20       1     1     2</span>
-<span class="co">#&gt; CCL23       1     0     1</span>
-<span class="co">#&gt; CCL25       1     3     4</span>
-<span class="co">#&gt; CCL3        1     1     2</span>
-<span class="co">#&gt; CCL4        1     1     2</span>
-<span class="co">#&gt; CCL7        1     2     3</span>
-<span class="co">#&gt; CCL8        1     1     2</span>
-<span class="co">#&gt; CD244       1     2     3</span>
-<span class="co">#&gt; CD274       1     0     1</span>
-<span class="co">#&gt; CD40        1     0     1</span>
-<span class="co">#&gt; CD5         1     2     3</span>
-<span class="co">#&gt; CD6         1     1     2</span>
-<span class="co">#&gt; CDCP1       1     2     3</span>
-<span class="co">#&gt; CSF1        1     0     1</span>
-<span class="co">#&gt; CST5        1     3     4</span>
-<span class="co">#&gt; CX3CL1      1     2     3</span>
-<span class="co">#&gt; CXCL1       1     0     1</span>
-<span class="co">#&gt; CXCL10      1     1     2</span>
-<span class="co">#&gt; CXCL11      1     3     4</span>
-<span class="co">#&gt; CXCL5       1     3     4</span>
-<span class="co">#&gt; CXCL6       1     1     2</span>
-<span class="co">#&gt; CXCL9       1     2     3</span>
-<span class="co">#&gt; DNER        1     0     1</span>
-<span class="co">#&gt; EIF4EBP1    0     1     1</span>
-<span class="co">#&gt; FGF19       0     3     3</span>
-<span class="co">#&gt; FGF21       1     2     3</span>
-<span class="co">#&gt; FGF23       0     2     2</span>
-<span class="co">#&gt; FGF5        1     0     1</span>
-<span class="co">#&gt; FLT3LG      0     6     6</span>
-<span class="co">#&gt; GDNF        1     0     1</span>
-<span class="co">#&gt; HGF         1     1     2</span>
-<span class="co">#&gt; IL10        1     2     3</span>
-<span class="co">#&gt; IL10RB      1     1     2</span>
-<span class="co">#&gt; IL12B       1     7     8</span>
-<span class="co">#&gt; IL15RA      1     0     1</span>
-<span class="co">#&gt; IL17C       1     0     1</span>
-<span class="co">#&gt; IL18        1     1     2</span>
-<span class="co">#&gt; IL18R1      1     1     2</span>
-<span class="co">#&gt; IL1A        0     1     1</span>
-<span class="co">#&gt; IL6         0     1     1</span>
-<span class="co">#&gt; IL7         1     0     1</span>
-<span class="co">#&gt; IL8         1     0     1</span>
-<span class="co">#&gt; KITLG       0     7     7</span>
-<span class="co">#&gt; LIFR        0     1     1</span>
-<span class="co">#&gt; LTA         1     2     3</span>
-<span class="co">#&gt; MMP1        1     2     3</span>
-<span class="co">#&gt; MMP10       1     1     2</span>
-<span class="co">#&gt; NGF         1     1     2</span>
-<span class="co">#&gt; NTF3        0     1     1</span>
-<span class="co">#&gt; OSM         0     2     2</span>
-<span class="co">#&gt; PLAU        1     5     6</span>
-<span class="co">#&gt; S100A12     1     0     1</span>
-<span class="co">#&gt; SIRT2       1     0     1</span>
-<span class="co">#&gt; SLAMF1      1     4     5</span>
-<span class="co">#&gt; SULT1A1     1     1     2</span>
-<span class="co">#&gt; TGFA        1     0     1</span>
-<span class="co">#&gt; TGFB1       1     0     1</span>
-<span class="co">#&gt; TNFRSF11B   1     1     2</span>
-<span class="co">#&gt; TNFRSF9     1     1     2</span>
-<span class="co">#&gt; TNFSF10     1     7     8</span>
-<span class="co">#&gt; TNFSF11     1     5     6</span>
-<span class="co">#&gt; TNFSF12     1     4     5</span>
-<span class="co">#&gt; TNFSF14     1     0     1</span>
-<span class="co">#&gt; VEGFA       1     3     4</span>
-<span class="co">#&gt; total      59   121   180</span>
-<span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">cistrans</span>,<span class="va">total</span><span class="op">)</span>
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">cistrans</span>,<span class="va">table</span><span class="op">)</span>,caption<span class="op">=</span><span class="st">"Table 1. cis/trans classification"</span><span class="op">)</span></code></pre></div>
+<table class="table">
+<caption>Table 1. cis/trans classification</caption>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="right">cis</th>
+<th align="right">trans</th>
+<th align="right">total</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">ADA</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">CASP8</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">CCL11</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="left">CCL13</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">CCL19</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">CCL2</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">CCL20</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">CCL23</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">CCL25</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">CCL3</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">CCL4</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">CCL7</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">CCL8</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">CD244</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">CD274</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">CD40</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">CD5</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">CD6</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">CDCP1</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">CSF1</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">CST5</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">CX3CL1</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">CXCL1</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">CXCL10</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">CXCL11</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">CXCL5</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">CXCL6</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">CXCL9</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">DNER</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">EIF4EBP1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">FGF19</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">FGF21</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">FGF23</td>
+<td align="right">0</td>
+<td align="right">2</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">FGF5</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">FLT3LG</td>
+<td align="right">0</td>
+<td align="right">6</td>
+<td align="right">6</td>
+</tr>
+<tr class="even">
+<td align="left">GDNF</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">HGF</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">IL10</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">IL10RB</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">IL12B</td>
+<td align="right">1</td>
+<td align="right">7</td>
+<td align="right">8</td>
+</tr>
+<tr class="odd">
+<td align="left">IL15RA</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">IL17C</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">IL18</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">IL18R1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">IL1A</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">IL6</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">IL7</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">IL8</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">KITLG</td>
+<td align="right">0</td>
+<td align="right">7</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td align="left">LIFR</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">LTA</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">MMP1</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">3</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP10</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">NGF</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">NTF3</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">OSM</td>
+<td align="right">0</td>
+<td align="right">2</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">PLAU</td>
+<td align="right">1</td>
+<td align="right">5</td>
+<td align="right">6</td>
+</tr>
+<tr class="even">
+<td align="left">S100A12</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">SIRT2</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">SLAMF1</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="right">5</td>
+</tr>
+<tr class="odd">
+<td align="left">SULT1A1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">TGFA</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">TGFB1</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">TNFRSF11B</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">TNFRSF9</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">TNFSF10</td>
+<td align="right">1</td>
+<td align="right">7</td>
+<td align="right">8</td>
+</tr>
+<tr class="odd">
+<td align="left">TNFSF11</td>
+<td align="right">1</td>
+<td align="right">5</td>
+<td align="right">6</td>
+</tr>
+<tr class="even">
+<td align="left">TNFSF12</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="right">5</td>
+</tr>
+<tr class="odd">
+<td align="left">TNFSF14</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">VEGFA</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">total</td>
+<td align="right">59</td>
+<td align="right">121</td>
+<td align="right">180</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">cistrans</span>,<span class="va">total</span><span class="op">)</span>
 <span class="co">#&gt; [1] 180</span>
 <span class="fu"><a href="https://rdrr.io/pkg/gap/man/gap-internal.html">circos.cis.vs.trans.plot</a></span><span class="op">(</span>hits<span class="op">=</span><span class="va">f</span>,<span class="va">inf1</span>,<span class="st">"uniprot"</span><span class="op">)</span></code></pre></div>
-<p><img src="pQTLtools/unnamed-chunk-1-1.png" width="700" style="display:block; margin: auto"> This is used to generate 2d-Manhattan plot</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<p><img src="pQTLtools/unnamed-chunk-1-1.png" width="768" style="display:block; margin: auto"> This is used to generate 2d-Manhattan plot</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">INF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span><span class="op">(</span><span class="st">"INF"</span><span class="op">)</span>
 <span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="va">INF</span>,<span class="st">"work"</span>,<span class="st">"INF1.merge.cis.vs.trans"</span><span class="op">)</span>,as.is<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
 <span class="va">t2d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gap/man/gap-internal.html">mhtplot2d</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span></code></pre></div>
 <p><img src="pQTLtools/unnamed-chunk-2-1.png" width="700" style="display:block; margin: auto"> and ideogram</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">INF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span><span class="op">(</span><span class="st">"INF"</span><span class="op">)</span>
 <span class="va">INF1_merge</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.delim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="va">INF</span>,<span class="st">"work"</span>,<span class="st">"INF1.merge"</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Chrom"</span>,<span class="st">"Start"</span>,<span class="st">"End"</span>,<span class="st">"prot"</span>,<span class="st">"MarkerName"</span><span class="op">)</span><span class="op">]</span>
 <span class="va">singletons</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">INF1_merge</span>,<span class="va">End</span><span class="op">-</span><span class="va">Start</span><span class="op">==</span><span class="fl">1</span><span class="op">)</span>
@@ -190,31 +556,6 @@
 <span class="fu"><a href="https://httr.r-lib.org/reference/set_config.html">set_config</a></span><span class="op">(</span><span class="fu"><a href="https://httr.r-lib.org/reference/config.html">config</a></span><span class="op">(</span>ssl_verifypeer <span class="op">=</span> <span class="fl">0L</span><span class="op">)</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">biomaRt</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">regioneR</span><span class="op">)</span>
-<span class="co">#&gt; Loading required package: GenomicRanges</span>
-<span class="co">#&gt; Loading required package: stats4</span>
-<span class="co">#&gt; Loading required package: BiocGenerics</span>
-<span class="co">#&gt; Loading required package: parallel</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Attaching package: 'BiocGenerics'</span>
-<span class="co">#&gt; The following objects are masked from 'package:parallel':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     clusterApply, clusterApplyLB, clusterCall, clusterEvalQ, clusterExport, clusterMap, parApply, parCapply, parLapply, parLapplyLB, parRapply, parSapply, parSapplyLB</span>
-<span class="co">#&gt; The following objects are masked from 'package:stats':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     IQR, mad, sd, var, xtabs</span>
-<span class="co">#&gt; The following objects are masked from 'package:base':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     anyDuplicated, append, as.data.frame, basename, cbind, colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep, grepl, intersect, is.unsorted, lapply,</span>
-<span class="co">#&gt;     Map, mapply, match, mget, order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank, rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply, union, unique, unsplit,</span>
-<span class="co">#&gt;     which, which.max, which.min</span>
-<span class="co">#&gt; Loading required package: S4Vectors</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Attaching package: 'S4Vectors'</span>
-<span class="co">#&gt; The following object is masked from 'package:base':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     expand.grid</span>
-<span class="co">#&gt; Loading required package: IRanges</span>
-<span class="co">#&gt; Loading required package: GenomeInfoDb</span>
 <span class="va">mart</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/useMart.html">useMart</a></span><span class="op">(</span>biomart <span class="op">=</span> <span class="st">"ensembl"</span>, dataset <span class="op">=</span> <span class="st">"hsapiens_gene_ensembl"</span><span class="op">)</span>
 <span class="va">bm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">INF1_merge_cvt</span>, <span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/getBM.html">getBM</a></span><span class="op">(</span>attributes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"hgnc_symbol"</span>, <span class="st">"chromosome_name"</span>, <span class="st">"start_position"</span>, <span class="st">"end_position"</span>, <span class="st">"band"</span><span class="op">)</span>,
            filters<span class="op">=</span><span class="st">"chromosomal_region"</span>, values<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">Chr</span>,<span class="st">":"</span>,<span class="va">bp</span>,<span class="st">":"</span>,<span class="va">bp</span><span class="op">)</span>, mart<span class="op">=</span><span class="va">mart</span><span class="op">)</span><span class="op">)</span>
@@ -235,17 +576,18 @@
               cex<span class="op">=</span><span class="fl">0.45</span>, y<span class="op">=</span><span class="fl">0.3</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span><span class="op">(</span><span class="va">p.gene</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="va">p.gene</span><span class="op">)</span>, srt<span class="op">=</span><span class="fl">30</span>, ignore.chromosome.ends<span class="op">=</span><span class="cn">TRUE</span>,
               adjust.label.position<span class="op">=</span><span class="cn">TRUE</span>, label.color<span class="op">=</span><span class="va">colors</span><span class="op">[</span><span class="fl">2</span><span class="op">-</span><span class="va">cis</span><span class="op">]</span>, label.dist<span class="op">=</span><span class="fl">0.002</span>,
               cex.axis<span class="op">=</span><span class="fl">3</span>, cex.lab<span class="op">=</span><span class="fl">3</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="st">"bottomright"</span>, bty<span class="op">=</span><span class="st">"n"</span>, pch<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">19</span>,<span class="fl">19</span><span class="op">)</span>, col<span class="op">=</span><span class="va">colors</span>, pt.cex<span class="op">=</span><span class="fl">0.4</span>, legend<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"cis"</span>, <span class="st">"trans"</span><span class="op">)</span>, text.col<span class="op">=</span><span class="va">colors</span>, cex<span class="op">=</span><span class="fl">0.8</span>, horiz<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
-<p><img src="pQTLtools/unnamed-chunk-3-1.png" width="700" style="display:block; margin: auto"></p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># kpPlotLinks(kp, data=loci, data2=panel, col=colors[2-cis])</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="st">"bottomright"</span>, bty<span class="op">=</span><span class="st">"n"</span>, pch<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">19</span>,<span class="fl">19</span><span class="op">)</span>, col<span class="op">=</span><span class="va">colors</span>, pt.cex<span class="op">=</span><span class="fl">0.4</span>, legend<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"cis"</span>, <span class="st">"trans"</span><span class="op">)</span>, text.col<span class="op">=</span><span class="va">colors</span>, cex<span class="op">=</span><span class="fl">0.8</span>, horiz<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>
+<span class="co"># kpPlotLinks(kp, data=loci, data2=panel, col=colors[2-cis])</span>
 <span class="kw"><a href="https://rdrr.io/r/base/detach.html">detach</a></span><span class="op">(</span><span class="va">INF1_merge_cvt</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html">include_graphics</a></span><span class="op">(</span><span class="st">'karyoplot.png'</span>,dpi<span class="op">=</span><span class="fl">300</span><span class="op">)</span></code></pre></div>
+<p><img src="karyoplot.png" width="604" style="display:block; margin: auto"></p>
 </div>
 <div id="eqtl-catalogue-for-colocalization-analysis" class="section level2">
 <h2 class="hasAnchor">
 <a href="#eqtl-catalogue-for-colocalization-analysis" class="anchor"></a>eQTL Catalogue for colocalization analysis</h2>
 <p>See example associated with <code>import_eQTLCatalogue</code>. A related function is <code>import_OpenGWAS</code> used to fetch data from OpenGWAS.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jinghuazhao/pQTLtools">pQTLtools</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Attaching package: 'pQTLtools'</span>
@@ -258,24 +600,6 @@
 <span class="co">#&gt; Loading required package: dplyr</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Attaching package: 'dplyr'</span>
-<span class="co">#&gt; The following objects are masked from 'package:GenomicRanges':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     intersect, setdiff, union</span>
-<span class="co">#&gt; The following object is masked from 'package:GenomeInfoDb':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     intersect</span>
-<span class="co">#&gt; The following objects are masked from 'package:IRanges':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     collapse, desc, intersect, setdiff, slice, union</span>
-<span class="co">#&gt; The following objects are masked from 'package:S4Vectors':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     first, intersect, rename, setdiff, setequal, union</span>
-<span class="co">#&gt; The following objects are masked from 'package:BiocGenerics':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     combine, intersect, setdiff, union</span>
-<span class="co">#&gt; The following object is masked from 'package:biomaRt':</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;     select</span>
 <span class="co">#&gt; The following objects are masked from 'package:stats':</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     filter, lag</span>
@@ -285,6 +609,42 @@
 <span class="co">#&gt; Loading required package: ggplot2</span>
 <span class="co">#&gt; Loading required package: readr</span>
 <span class="co">#&gt; Loading required package: coloc</span>
+<span class="co">#&gt; Loading required package: GenomicRanges</span>
+<span class="co">#&gt; Loading required package: stats4</span>
+<span class="co">#&gt; Loading required package: BiocGenerics</span>
+<span class="co">#&gt; Loading required package: parallel</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Attaching package: 'BiocGenerics'</span>
+<span class="co">#&gt; The following objects are masked from 'package:parallel':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     clusterApply, clusterApplyLB, clusterCall, clusterEvalQ, clusterExport, clusterMap, parApply, parCapply, parLapply, parLapplyLB, parRapply, parSapply, parSapplyLB</span>
+<span class="co">#&gt; The following objects are masked from 'package:dplyr':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     combine, intersect, setdiff, union</span>
+<span class="co">#&gt; The following objects are masked from 'package:stats':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     IQR, mad, sd, var, xtabs</span>
+<span class="co">#&gt; The following objects are masked from 'package:base':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     anyDuplicated, append, as.data.frame, basename, cbind, colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep, grepl, intersect, is.unsorted, lapply,</span>
+<span class="co">#&gt;     Map, mapply, match, mget, order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank, rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply, union, unique, unsplit,</span>
+<span class="co">#&gt;     which, which.max, which.min</span>
+<span class="co">#&gt; Loading required package: S4Vectors</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Attaching package: 'S4Vectors'</span>
+<span class="co">#&gt; The following objects are masked from 'package:dplyr':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     first, rename</span>
+<span class="co">#&gt; The following object is masked from 'package:base':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     expand.grid</span>
+<span class="co">#&gt; Loading required package: IRanges</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Attaching package: 'IRanges'</span>
+<span class="co">#&gt; The following objects are masked from 'package:dplyr':</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;     collapse, desc, slice</span>
+<span class="co">#&gt; Loading required package: GenomeInfoDb</span>
 <span class="co">#&gt; Loading required package: seqminer</span>
 <span class="va">HPC_WORK</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span><span class="op">(</span><span class="st">"HPC_WORK"</span><span class="op">)</span>
 <span class="fu">gwasvcf</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gwasvcf/man/set_bcftools.html">set_bcftools</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="va">HPC_WORK</span>,<span class="st">"bin"</span>,<span class="st">"bcftools"</span><span class="op">)</span><span class="op">)</span>
@@ -381,202 +741,6 @@
 <span class="op">}</span>
 
 <span class="fu">single_run</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span>
-<span class="co">#&gt; 8 8:119081031-121081031 8:118068792-120068792 ENSG00000164761 8:119935796-119964439 8:118923557-118952200 </span>
-<span class="co">#&gt; GWAS sumstats</span>
-<span class="co">#&gt; c. GTEx_v8 imported eQTL datasets</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Adipose_Subcutaneous.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Adipose_Visceral_Omentum.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Adrenal_Gland.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Artery_Aorta.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Artery_Coronary.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Artery_Tibial.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Brain_Amygdala.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Brain_Anterior_cingulate_cortex_BA24.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Brain_Caudate_basal_ganglia.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Brain_Cerebellar_Hemisphere.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Brain_Cerebellum.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Brain_Cortex.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Brain_Frontal_Cortex_BA9.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Brain_Hippocampus.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Brain_Hypothalamus.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Brain_Nucleus_accumbens_basal_ganglia.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Brain_Putamen_basal_ganglia.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Brain_Spinal_cord_cervical_c-1.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Brain_Substantia_nigra.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Breast_Mammary_Tissue.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Cells_Cultured_fibroblasts.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Cells_EBV-transformed_lymphocytes.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Colon_Sigmoid.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Colon_Transverse.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Esophagus_Gastroesophageal_Junction.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Esophagus_Mucosa.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Esophagus_Muscularis.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Heart_Atrial_Appendage.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Heart_Left_Ventricle.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Kidney_Cortex.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Liver.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Lung.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Minor_Salivary_Gland.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Muscle_Skeletal.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Nerve_Tibial.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Ovary.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Pancreas.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Pituitary.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Prostate.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Skin_Not_Sun_Exposed_Suprapubic.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Skin_Sun_Exposed_Lower_leg.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Small_Intestine_Terminal_Ileum.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Spleen.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Stomach.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Testis.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Thyroid.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Uterus.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Vagina.tsv.gz"</span>
-<span class="co">#&gt; [1] "/home/jhz22/rds/public_databases/GTEx/csv/Whole_Blood.tsv.gz"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  2.43e-49  6.57e-44  3.69e-06  1.00e+00  1.66e-07 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 1.66e-05%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  5.76e-45  5.97e-44  8.77e-02  9.09e-01  3.64e-03 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 0.364%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  3.02e-44  2.38e-44  4.59e-01  3.62e-01  1.79e-01 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 17.9%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  3.91e-44  2.49e-44  5.95e-01  3.79e-01  2.56e-02 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 2.56%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  3.18e-44  3.14e-44  4.84e-01  4.78e-01  3.73e-02 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 3.73%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  3.91e-44  2.20e-44  5.94e-01  3.34e-01  7.17e-02 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 7.17%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  3.69e-44  2.37e-44  5.61e-01  3.60e-01  7.92e-02 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 7.92%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  3.48e-44  2.85e-44  5.29e-01  4.33e-01  3.75e-02 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 3.75%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  3.69e-44  2.66e-44  5.62e-01  4.05e-01  3.26e-02 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 3.26%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  3.58e-44  2.72e-44  5.44e-01  4.13e-01  4.22e-02 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 4.22%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  3.58e-44  2.48e-44  5.45e-01  3.77e-01  7.79e-02 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 7.79%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  3.14e-44  3.07e-44  4.78e-01  4.67e-01  5.41e-02 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 5.41%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  3.13e-44  3.12e-44  4.77e-01  4.75e-01  4.85e-02 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 4.85%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  3.62e-44  2.27e-44  5.51e-01  3.45e-01  1.05e-01 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 10.5%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  3.30e-44  2.96e-44  5.03e-01  4.50e-01  4.74e-02 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 4.74%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  3.70e-44  2.47e-44  5.63e-01  3.76e-01  6.07e-02 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 6.07%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  3.79e-44  2.50e-44  5.77e-01  3.81e-01  4.22e-02 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 4.22%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  3.73e-44  2.54e-44  5.67e-01  3.86e-01  4.68e-02 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 4.68%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  3.81e-44  2.51e-44  5.80e-01  3.82e-01  3.88e-02 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 3.88%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  3.62e-44  2.77e-44  5.51e-01  4.21e-01  2.74e-02 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 2.74%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  5.04e-55  6.57e-44  7.67e-12  1.00e+00  3.72e-13 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 3.72e-11%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  3.18e-44  3.19e-44  4.84e-01  4.85e-01  3.11e-02 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 3.11%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  3.45e-44  2.87e-44  5.25e-01  4.37e-01  3.84e-02 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 3.84%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  4.94e-46  6.52e-44  7.51e-03  9.92e-01  3.49e-04 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 0.0349%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  3.80e-44  2.60e-44  5.78e-01  3.95e-01  2.72e-02 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 2.72%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  2.41e-44  4.05e-44  3.67e-01  6.16e-01  1.71e-02 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 1.71%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  7.06e-46  6.43e-44  1.07e-02  9.79e-01  1.05e-02 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 1.05%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  3.32e-47  6.57e-44  5.05e-04  9.99e-01  2.32e-05 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 0.00232%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  1.62e-45  6.40e-44  2.47e-02  9.74e-01  1.19e-03 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 0.119%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  3.51e-44  2.76e-44  5.35e-01  4.21e-01  4.49e-02 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 4.49%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  3.08e-44  3.12e-44  4.68e-01  4.74e-01  5.78e-02 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 5.78%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  6.83e-46  6.50e-44  1.04e-02  9.89e-01  1.04e-03 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 0.104%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  3.78e-44  2.42e-44  5.75e-01  3.68e-01  5.76e-02 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 5.76%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  4.02e-44  2.40e-44  6.12e-01  3.66e-01  2.24e-02 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 2.24%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  1.22e-44  5.30e-44  1.86e-01  8.06e-01  7.92e-03 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 0.792%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  3.61e-44  2.72e-44  5.50e-01  4.13e-01  3.69e-02 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 3.69%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  1.24e-45  6.44e-44  1.89e-02  9.80e-01  9.57e-04 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 0.0957%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  4.02e-44  2.32e-44  6.12e-01  3.52e-01  3.60e-02 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 3.6%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  3.37e-44  2.98e-44  5.12e-01  4.53e-01  3.45e-02 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 3.45%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  3.62e-44  2.81e-44  5.51e-01  4.27e-01  2.18e-02 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 2.18%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  2.81e-44  3.65e-44  4.28e-01  5.55e-01  1.78e-02 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 1.78%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  3.74e-44  2.32e-44  5.69e-01  3.53e-01  7.80e-02 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 7.8%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  3.58e-44  2.68e-44  5.45e-01  4.08e-01  4.70e-02 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 4.7%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  3.82e-44  2.48e-44  5.80e-01  3.77e-01  4.23e-02 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 4.23%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  4.04e-44  2.32e-44  6.15e-01  3.53e-01  3.20e-02 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 3.2%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  9.86e-45  5.54e-44  1.50e-01  8.44e-01  6.55e-03 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 0.655%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  3.76e-44  2.56e-44  5.72e-01  3.90e-01  3.87e-02 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 3.87%"</span>
-<span class="co">#&gt; PP.H0.abf PP.H1.abf PP.H2.abf PP.H3.abf PP.H4.abf </span>
-<span class="co">#&gt;  3.91e-44  2.39e-44  5.95e-01  3.64e-01  4.14e-02 </span>
-<span class="co">#&gt; [1] "PP abf for shared variant: 4.14%"</span>
 <span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></code></pre></div>
 <p><img src="pQTLtools/unnamed-chunk-4-1.png" width="700" style="display:block; margin: auto"></p>
 </div>
@@ -584,7 +748,7 @@
 <h2 class="hasAnchor">
 <a href="#pqtl-based-mendelian-randomization-mr" class="anchor"></a>pQTL-based Mendelian Randomization (MR)</h2>
 <p>The function <code>pqtlMR</code> is derived from <span class="citation">Zheng et al. (2020)</span>. It has an attractive feature that multiple pQTLs can be used together for conducting MR with a list of outcomes from MR-Base. To simplify matters while maintaining greater flexibility, a composite input is needed to run the function which is illustrated below.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">TwoSampleMR</span><span class="op">)</span>
 <span class="co">#&gt; TwoSampleMR version 0.5.6 </span>
 <span class="co">#&gt; [&gt;] New: Option to use non-European LD reference panels for clumping etc</span>
@@ -618,10 +782,10 @@
 <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.exists</a></span><span class="op">(</span><span class="st">"pQTL-combined-result.txt"</span><span class="op">)</span><span class="op">)</span>
 <span class="op">{</span>
   <span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.delim</a></span><span class="op">(</span><span class="st">"pQTL-combined-result.txt"</span>,header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
-  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">result</span>,caption<span class="op">=</span><span class="st">"ABO/LIFR variants and CHD/FEV1"</span><span class="op">)</span>
+  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">result</span>,caption<span class="op">=</span><span class="st">"Table 2. ABO/LIFR variants and CHD/FEV1"</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
 <table class="table">
-<caption>ABO/LIFR variants and CHD/FEV1</caption>
+<caption>Table 2. ABO/LIFR variants and CHD/FEV1</caption>
 <colgroup>
 <col width="9%">
 <col width="13%">
@@ -691,7 +855,7 @@
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/invisible.html">invisible</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"harmonise"</span>,<span class="st">"result"</span>,<span class="st">"single"</span><span class="op">)</span>,
                  <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"pQTL-combined-"</span>,<span class="va">x</span>,<span class="st">".txt"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </div>
@@ -699,7 +863,7 @@
 <h2 class="hasAnchor">
 <a href="#run_twosamplemr" class="anchor"></a>run_TwoSampleMR</h2>
 <p>The function has similiarity to <span class="citation">Dimou and Tsilidis (2018)</span>. The documentation example is quoted here,</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">TwoSampleMR</span><span class="op">)</span>
 <span class="va">outcomes</span> <span class="op">&lt;-</span> <span class="st">"ebi-a-GCST007432"</span>
 <span class="va">prot</span> <span class="op">&lt;-</span> <span class="st">"MMP.10"</span>
@@ -738,11 +902,11 @@
 <span class="co">#&gt; Use get_r_from_lor for binary traits.</span>
 <span class="co">#&gt; Analysing 'ZoHewj' on 'ebi-a-GCST007432'</span></code></pre></div>
 <p><img src="pQTLtools/unnamed-chunk-6-1.png" width="700" style="display:block; margin: auto"><img src="pQTLtools/unnamed-chunk-6-2.png" width="700" style="display:block; margin: auto"><img src="pQTLtools/unnamed-chunk-6-3.png" width="700" style="display:block; margin: auto"><img src="pQTLtools/unnamed-chunk-6-4.png" width="700" style="display:block; margin: auto"></p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.exists</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">prefix</span>,<span class="st">"-result.txt"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="op">{</span>
   <span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.delim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">prefix</span>,<span class="st">"-result.txt"</span><span class="op">)</span>,header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
-  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">result</span>,caption<span class="op">=</span><span class="st">"MMP.10 variants and FEV1"</span><span class="op">)</span>
+  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">result</span>,caption<span class="op">=</span><span class="st">"Table 3. MMP.10 variants and FEV1"</span><span class="op">)</span>
 <span class="op">}</span>
 <span class="fu"><a href="https://rdrr.io/r/base/invisible.html">invisible</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"result"</span>,<span class="st">"heterogeneity"</span>,<span class="st">"pleiotropy"</span>,<span class="st">"single"</span>,<span class="st">"loo"</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">prefix</span>,<span class="st">"-"</span>,<span class="va">x</span>,<span class="st">".txt"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>The output is contained in individual files <code>ukb-b-19732-MMP.10-cis-result.txt</code>, etc. The scatter, forest, funnel and leave-one-out plots is contained in <code>ukb-b-19732-MMP.10-cis.pdf</code>.</p>
