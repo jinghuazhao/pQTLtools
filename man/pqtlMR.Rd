@@ -27,12 +27,13 @@ No value is returned but several files.
 
 \section{References}{
 Zheng J, et al. (2020). Phenome-wide Mendelian randomization mapping the influence of the plasma proteome on complex diseases. *Nature Genetics* 52(10): 1122-1131.
-}
+}find.package("pQTLtools",lib.loc=.libPaths())
 
 \examples{
 library(TwoSampleMR)
+library(pQTLtools)
 # Original examples
-ins <- read.csv(file.path(path.package("pQTLtools"),"tests","Ins.csv"))
+ins <- read.csv(file.path(find.package("pQTLtools",lib.loc=.libPaths()),"tests","Ins.csv"))
 ids <- c("ieu-a-7","ebi-a-GCST007432")
 Ins <- format_data(ins)
 Ids <- extract_outcome_data(snps=with(Ins,SNP),outcomes=ids)
@@ -40,7 +41,7 @@ harmonise <- harmonise_data(Ins,Ids)
 input <- list(Ins, Ids, harmonise)
 pqtlMR(input,plot=FALSE)
 # A bidirectional analysis
-ms <- read.table(file.path(path.package("pQTLtools"),"tests","ms.ins"),header=TRUE)
+ms <- read.table(file.path(find.package("pQTLtools",lib.loc=.libPaths()),"tests","ms.ins"),header=TRUE)
 Ins <- format_data(ms,samplesize_col="N")
 Ids <- extract_outcome_data(snps=with(Ins,SNP),outcomes="ieu-b-18")
 harmonise <- harmonise_data(Ins,Ids)
