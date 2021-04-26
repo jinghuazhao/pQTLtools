@@ -88,7 +88,7 @@ legend("bottomright", bty="n", pch=c(19,19), col=colors, pt.cex=0.4, legend=c("c
 # kpPlotLinks(kp, data=loci, data2=panel, col=colors[2-cis])
 detach(INF1_merge_cvt)
 ```
-```{r, out.height=12, out.width=8}
+```{r karyoplot, fig.height=12, fig.width=8}
 knitr::include_graphics('karyoplot.png',dpi=300)
 ```
 
@@ -197,6 +197,7 @@ single_run <- function(r)
 
 single_run(1)
 ```
+The output are saved in the `.RDS` files.
 
 ## pQTL-based Mendelian Randomization (MR)
 
@@ -214,7 +215,7 @@ Ids <- extract_outcome_data(snps=with(Ins,SNP),outcomes=ids)
 harmonise <- harmonise_data(Ins,Ids)
 input <- list(Ins, Ids, harmonise)
 pqtlMR(input,plot=FALSE)
-result <- read.delim(file.path(getwd(),"pQTL-combined-result.txt"),header=TRUE)
+result <- read.delim("pQTL-combined-result.txt",header=TRUE)
 knitr::kable(result,caption="Table 2. ABO/LIFR variants and CHD/FEV1")
 invisible(sapply(c("harmonise","result","single"),
                  function(x) unlink(paste0("pQTL-combined-",x,".txt"))))
@@ -244,7 +245,7 @@ harmonise <- harmonise_data(clump,outcome)
 input <- list(exposure,outcome,clump,harmonise)
 prefix <- paste(outcomes,prot,type,sep="-")
 run_TwoSampleMR(input, prefix=prefix)
-result <- read.delim(file.path(getwd(),paste0(prefix,"-result.txt")),header=TRUE)
+result <- read.delim(paste0(prefix,"-result.txt"),header=TRUE)
 knitr::kable(result,caption="Table 3. MMP.10 variants and FEV1")
 invisible(sapply(c("result","heterogeneity","pleiotropy","single","loo"), function(x) unlink(paste0(prefix,"-",x,".txt"))))
 ```
