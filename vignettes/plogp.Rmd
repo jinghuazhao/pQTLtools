@@ -122,7 +122,7 @@ for (z in c(grid1,grid2))
   v <- rbind(v,vi)
 }
 names(v) <- c("z","P","log(P)","log10(P)")
-print(v,right=FALSE,row.names=FALSE)
+knitr::kable(v,caption="z,P,log(P) and log10(P)")
 ```
 
 ## Application

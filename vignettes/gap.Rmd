@@ -87,7 +87,7 @@ top <- function(r)
        sapply(c("IVW","EGGER","WM","PWM"), function(x) as.numeric(gap::pvalue(r[[paste0("b",x)]]/r[[paste0("seb",x)]])))
 r <- read.csv(f,as.is=TRUE)
 p <- top(r)
-data.frame(r,p)
+knitr::kable(data.frame(r,p),caption="LIFR variant rs635634 and CAD/FEV1",digits=3)
 unlink(f)
 ```
 
