@@ -95,15 +95,15 @@ See example associated with `import_eQTLCatalogue`. A related function is `impor
 
 ```{r, warning=FALSE}
 library(pQTLtools)
-f <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","hg19ToHg38.over.chain")
+f <- file.path(find.package("pQTLtools",lib.loc=.libPaths()),"eQTL-Catalogue","hg19ToHg38.over.chain")
 chain <- rtracklayer::import.chain(f)
 invisible(lapply(c("dplyr", "ggplot2", "readr", "coloc", "GenomicRanges","seqminer"), require, character.only = TRUE))
 HPC_WORK <- Sys.getenv("HPC_WORK")
 gwasvcf::set_bcftools(file.path(HPC_WORK,"bin","bcftools"))
-f <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","tabix_ftp_paths.tsv")
+f <- file.path(find.package("pQTLtools",lib.loc=.libPaths()),"eQTL-Catalogue","tabix_ftp_paths.tsv")
 tabix_paths <- read.delim(f, sep = "\t", header = TRUE, stringsAsFactors = FALSE) %>% dplyr::as_tibble()
 HOME <- Sys.getenv("HOME")
-f <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","tabix_ftp_paths_imported.tsv")
+f <- file.path(find.package("pQTLtools",lib.loc=.libPaths()),"eQTL-Catalogue","tabix_ftp_paths_imported.tsv")
 imported_tabix_paths <- within(read.delim(f, sep = "\t", header = TRUE, stringsAsFactors = FALSE) %>% dplyr::as_tibble(),
       {ftp_path <- gsub("ftp://ftp.ebi.ac.uk/pub/databases/spot/eQTL/csv/GTEx_V8/ge",
                         paste0(HOME,"/rds/public_databases/GTEx/csv"),ftp_path)})
@@ -148,7 +148,7 @@ coloc_c <- function(gwas_stats_hg38,ensGene,region38)
   cat("c. GTEx_v8 imported eQTL datasets\n")
   rnaseq_df <- dplyr::filter(imported_tabix_paths, quant_method == "ge") %>% dplyr::mutate(qtl_id = paste(study, qtl_group, sep = "_"))
   ftp_path_list <- setNames(as.list(rnaseq_df$ftp_path), rnaseq_df$qtl_id)
-  hdr <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","column_names.GTEx")
+  hdr <- file.path(find.package("pQTLtools",lib.loc=.libPaths()),"eQTL-Catalogue","column_names.GTEx")
   column_names <- names(read.delim(hdr))
   safe_import <- purrr::safely(import_eQTLCatalogue)
   summary_list <- purrr::map(ftp_path_list, ~safe_import(., region38, selected_gene_id = ensGene, column_names))
@@ -204,7 +204,7 @@ illustrated below.
 
 ```{r, warning=FALSE}
 library(TwoSampleMR)
-ins <- read.csv(file.path(path.package("pQTLtools"),"tests","Ins.csv"))
+ins <- read.csv(file.path(find.package("pQTLtools",lib.loc=.libPaths()),"tests","Ins.csv"))
 ids <- c("ieu-a-7","ebi-a-GCST007432")
 Ins <- format_data(ins)
 Ids <- extract_outcome_data(snps=with(Ins,SNP),outcomes=ids)
@@ -230,7 +230,8 @@ outcomes <- "ebi-a-GCST007432"
 prot <- "MMP.10"
 type <- "cis"
 f <- paste0(prot,"-",type,".mrx")
-d <- read.table(file.path(path.package("pQTLtools"),"tests",f),header=TRUE)
+d <- read.table(file.path(find.package("pQTLtools",lib.loc=.libPaths()),"tests",f),
+                header=TRUE)
 exposure <- format_data(within(d,{P=10^logP}), phenotype_col="prot", snp_col="rsid",
                         chr_col="Chromosome", pos_col="Posistion",
                         effect_allele_col="Allele1", other_allele_col="Allele2",
