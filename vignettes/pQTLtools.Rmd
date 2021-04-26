@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
 ```
 
 ## cis/trans classification
-```{r, fig.height=8, fig.width=8}
+```{r, fig.height=7, fig.width=7}
 options(width=200)
 require(gap)
 INF <- Sys.getenv("INF")
@@ -46,7 +46,7 @@ INF <- Sys.getenv("INF")
 d <- read.csv(file.path(INF,"work","INF1.merge.cis.vs.trans"),as.is=TRUE)
 t2d <- mhtplot2d(d)
 ```
-and ideogram
+and ideogram (biomaRt is not always on so we include the plot below)
 ```r
 INF <- Sys.getenv("INF")
 INF1_merge <- read.delim(file.path(INF,"work","INF1.merge"))[c("Chrom","Start","End","prot","MarkerName")]
@@ -88,7 +88,7 @@ legend("bottomright", bty="n", pch=c(19,19), col=colors, pt.cex=0.4, legend=c("c
 # kpPlotLinks(kp, data=loci, data2=panel, col=colors[2-cis])
 detach(INF1_merge_cvt)
 ```
-```{r, fig.height=8}
+```{r, fig.height=10, fig.width=8}
 knitr::include_graphics('karyoplot.png',dpi=300)
 ```
 
