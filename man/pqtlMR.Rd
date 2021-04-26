@@ -27,7 +27,7 @@ No value is returned but several files.
 
 \section{References}{
 Zheng J, et al. (2020). Phenome-wide Mendelian randomization mapping the influence of the plasma proteome on complex diseases. *Nature Genetics* 52(10): 1122-1131.
-}find.package("pQTLtools",lib.loc=.libPaths())
+}
 
 \examples{
 library(TwoSampleMR)
