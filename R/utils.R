@@ -228,7 +228,6 @@ pqtlMR <- function(pqtlMRinput, plot=TRUE, prefix="pQTL-combined-",reverse=FALSE
      stop("Missing element(s) in the input")
   if (reverse) harmonise <- subset(within(harmonise,
   {
-    swap(Ins,Ids)
     swap(id.exposure,id.outcome)
     swap(effect_allele.exposure,effect_allele.outcome)
     swap(other_allele.exposure,other_allele.outcome)
