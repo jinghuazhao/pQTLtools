@@ -8,7 +8,7 @@ version is obtained with `awk -FS="," 'NR==1||$1~/ABO/||$1~/LIFR/' ~/R/work/Inst
 
 ```r
 Ins <- read.csv("Ins.csv")
-ids <- c("ieu-a-7","ieu-a-798","ukb-a-61")
+ids <- c("ieu-a-7","ebi-a-GCST007432")
 pqtlMR(Ins,ids)
 ```
 
