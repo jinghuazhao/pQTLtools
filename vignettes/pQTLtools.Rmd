@@ -247,16 +247,17 @@ prefix <- paste(outcomes,prot,type,sep="-")
 run_TwoSampleMR(input, plot="New", prefix=prefix)
 ```
 
+The output is contained in individual `.txt` files, together with the scatter, forest, funnel and leave-one-out plots.
+
 ```{r, echo=FALSE}
-invisible(sapply(c("result","heterogeneity","pleiotropy","single","loo"), function(x)
+sapply(c("result","heterogeneity","pleiotropy","single","loo"),
+function(x)
 {
   r <- read.delim(paste0(prefix,"-",x,".txt"),header=TRUE)
   knitr::kable(r,caption=paste0("Table 3. MMP.10 variants and FEV1 (",x,")"))
   unlink(paste0(prefix,"-",x,".txt"))
-}))
+})
 ```
-
-The output is contained in individual `.txt` files, together with the scatter, forest, funnel and leave-one-out plots.
 
 ## Literature on pQTLs
 
