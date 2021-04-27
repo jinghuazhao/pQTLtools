@@ -2,6 +2,7 @@
 
 * ...
 * Add run_TwoSampleMR()
+* Import ggplot2
 * Suggest cowplot, gap.datasets, httr, plyr, rmarkdown
 * Add gap.Rmd and SCALLOP-INF.Rmd articles
 * Add LICENSE.md and README.md
