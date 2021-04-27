@@ -900,66 +900,6 @@
 <span class="co">#&gt; Analysing 'ZoHewj' on 'ebi-a-GCST007432'</span></code></pre></div>
 <p><img src="pQTLtools/unnamed-chunk-5-1.png" width="672" style="display:block; margin: auto"><img src="pQTLtools/unnamed-chunk-5-2.png" width="672" style="display:block; margin: auto"><img src="pQTLtools/unnamed-chunk-5-3.png" width="672" style="display:block; margin: auto"><img src="pQTLtools/unnamed-chunk-5-4.png" width="672" style="display:block; margin: auto"></p>
 <p>The output is contained in individual <code>.txt</code> files, together with the scatter, forest, funnel and leave-one-out plots.</p>
-<pre><code>#&gt; $result
-#&gt; 
-#&gt; 
-#&gt; Table: MMP.10 variants and FEV1 (result)
-#&gt; 
-#&gt; |id.exposure |id.outcome       |outcome                               |exposure |method                    | nsnp|         b|      se|  pval|
-#&gt; |:-----------|:----------------|:-------------------------------------|:--------|:-------------------------|----:|---------:|-------:|-----:|
-#&gt; |ZoHewj      |ebi-a-GCST007432 |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |MMP.10   |MR Egger                  |    4| -0.000577| 0.01001| 0.959|
-#&gt; |ZoHewj      |ebi-a-GCST007432 |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |MMP.10   |Weighted median           |    4|  0.002002| 0.00628| 0.750|
-#&gt; |ZoHewj      |ebi-a-GCST007432 |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |MMP.10   |Inverse variance weighted |    4|  0.002067| 0.00594| 0.728|
-#&gt; |ZoHewj      |ebi-a-GCST007432 |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |MMP.10   |Simple mode               |    4|  0.004152| 0.00994| 0.704|
-#&gt; |ZoHewj      |ebi-a-GCST007432 |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |MMP.10   |Weighted mode             |    4|  0.001134| 0.00706| 0.883|
-#&gt; 
-#&gt; $heterogeneity
-#&gt; 
-#&gt; 
-#&gt; Table: MMP.10 variants and FEV1 (heterogeneity)
-#&gt; 
-#&gt; |id.exposure |id.outcome       |outcome                               |exposure |method                    |     Q| Q_df| Q_pval|
-#&gt; |:-----------|:----------------|:-------------------------------------|:--------|:-------------------------|-----:|----:|------:|
-#&gt; |ZoHewj      |ebi-a-GCST007432 |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |MMP.10   |MR Egger                  | 0.114|    2|  0.944|
-#&gt; |ZoHewj      |ebi-a-GCST007432 |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |MMP.10   |Inverse variance weighted | 0.222|    3|  0.974|
-#&gt; 
-#&gt; $pleiotropy
-#&gt; 
-#&gt; 
-#&gt; Table: MMP.10 variants and FEV1 (pleiotropy)
-#&gt; 
-#&gt; |id.exposure |id.outcome       |outcome                               |exposure | egger_intercept|      se|  pval|
-#&gt; |:-----------|:----------------|:-------------------------------------|:--------|---------------:|-------:|-----:|
-#&gt; |ZoHewj      |ebi-a-GCST007432 |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |MMP.10   |         0.00143| 0.00434| 0.774|
-#&gt; 
-#&gt; $single
-#&gt; 
-#&gt; 
-#&gt; Table: MMP.10 variants and FEV1 (single)
-#&gt; 
-#&gt; |exposure |outcome                               |id.exposure |id.outcome       | samplesize|SNP                             |         b|      se|     p|
-#&gt; |:--------|:-------------------------------------|:-----------|:----------------|----------:|:-------------------------------|---------:|-------:|-----:|
-#&gt; |MMP.10   |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |ZoHewj      |ebi-a-GCST007432 |     321047|rs11225354                      |  0.006425| 0.01217| 0.598|
-#&gt; |MMP.10   |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |ZoHewj      |ebi-a-GCST007432 |     321047|rs142915220                     | -0.003993| 0.02856| 0.889|
-#&gt; |MMP.10   |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |ZoHewj      |ebi-a-GCST007432 |     321047|rs17099622                      |  0.004360| 0.02229| 0.845|
-#&gt; |MMP.10   |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |ZoHewj      |ebi-a-GCST007432 |     321047|rs17860955                      |  0.000616| 0.00739| 0.934|
-#&gt; |MMP.10   |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |ZoHewj      |ebi-a-GCST007432 |     321047|All - Inverse variance weighted |  0.002067| 0.00594| 0.728|
-#&gt; |MMP.10   |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |ZoHewj      |ebi-a-GCST007432 |     321047|All - MR Egger                  | -0.000577| 0.01001| 0.959|
-#&gt; 
-#&gt; $loo
-#&gt; 
-#&gt; 
-#&gt; Table: MMP.10 variants and FEV1 (loo)
-#&gt; 
-#&gt; |exposure |outcome                               |id.exposure |id.outcome       | samplesize|SNP         |        b|      se|     p|
-#&gt; |:--------|:-------------------------------------|:-----------|:----------------|----------:|:-----------|--------:|-------:|-----:|
-#&gt; |MMP.10   |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |ZoHewj      |ebi-a-GCST007432 |     321047|rs11225354  | 0.000703| 0.00681| 0.918|
-#&gt; |MMP.10   |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |ZoHewj      |ebi-a-GCST007432 |     321047|rs142915220 | 0.002341| 0.00608| 0.700|
-#&gt; |MMP.10   |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |ZoHewj      |ebi-a-GCST007432 |     321047|rs17099622  | 0.001891| 0.00617| 0.759|
-#&gt; |MMP.10   |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |ZoHewj      |ebi-a-GCST007432 |     321047|rs17860955  | 0.004730| 0.01001| 0.636|
-#&gt; |MMP.10   |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |ZoHewj      |ebi-a-GCST007432 |     321047|All         | 0.002067| 0.00594| 0.728|</code></pre>
-<pre><code>#&gt;        result heterogeneity    pleiotropy        single           loo 
-#&gt;             0             0             0             0             0</code></pre>
 </div>
 <div id="literature-on-pqtls" class="section level2">
 <h2 class="hasAnchor">
