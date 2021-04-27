@@ -229,19 +229,19 @@ mr_scatter_plot2 <- function (mr_results, dat, alpha=0.05)
           colours <- c("#a6cee3", "#1f78b4", "#b2df8a", "#33a02c", "#fb9a99", "#e31a1c",
                        "#fdbf6f", "#ff7f00", "#cab2d6", "#6a3d9a", "#ffff99", "#b15928")
           ggplot2::ggplot(data = d, 
-              ggplot2::aes(x = beta.exposure, y = beta.outcome)) + 
-              ggplot2::geom_errorbar(ggplot2::aes(ymin = beta.outcome - c*se.outcome, ymax = beta.outcome + c*se.outcome), width = 0) +
-              ggplot2::geom_errorbarh(ggplot2::aes(xmin = beta.exposure - c*se.exposure, xmax = beta.exposure + c*se.exposure), height = 0) +
-              ggplot2::geom_point() +
-              ggplot2::theme_bw() +
-              cowplot::theme_cowplot(12) + 
-              ggplot2::geom_abline(data = mrres, ggplot2::aes(intercept = a, slope = b, colour = method), size = 1, show.legend = TRUE) +
-              ggplot2::scale_colour_manual(values = colours) +
-              ggplot2::labs(colour = "MR Test", x = paste("SNP effect on", d$exposure[1]), y = paste("SNP effect on", d$outcome[1])) + 
-              ggplot2::theme(legend.position = "bottom", legend.direction = "vertical") +
-              ggplot2::guides(colour = ggplot2::guide_legend(ncol = 4)) +
-              ggplot2::geom_abline(intercept = 0, slope = 0, size = 1) +
-              ggplot2::geom_vline(xintercept = 0, size = 1)
+          ggplot2::aes(x = beta.exposure, y = beta.outcome)) + 
+          ggplot2::geom_errorbar(ggplot2::aes(ymin = beta.outcome - c*se.outcome, ymax = beta.outcome + c*se.outcome), width = 0) +
+          ggplot2::geom_errorbarh(ggplot2::aes(xmin = beta.exposure - c*se.exposure, xmax = beta.exposure + c*se.exposure), height = 0) +
+          ggplot2::geom_point() +
+          ggplot2::theme_bw() +
+          cowplot::theme_cowplot(12) + 
+          ggplot2::geom_abline(data = mrres, ggplot2::aes(intercept = a, slope = b, colour = method), size = 1, show.legend = TRUE) +
+          ggplot2::scale_colour_manual(values = colours) +
+          ggplot2::labs(colour = "MR Test", x = paste("SNP effect on", d$exposure[1]), y = paste("SNP effect on", d$outcome[1])) + 
+          ggplot2::theme(legend.position = "bottom", legend.direction = "vertical") +
+          ggplot2::guides(colour = ggplot2::guide_legend(ncol = 4)) +
+          ggplot2::geom_abline(intercept = 0, slope = 0, size = 1) +
+          ggplot2::geom_vline(xintercept = 0, size = 1)
       })
    mrres
 }
