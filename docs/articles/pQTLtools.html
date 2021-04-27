@@ -886,7 +886,7 @@
 <span class="co">#&gt; Harmonising MMP.10 (ZoHewj) and FEV1 || id:ebi-a-GCST007432 (ebi-a-GCST007432)</span>
 <span class="va">input</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">exposure</span>,<span class="va">outcome</span>,<span class="va">clump</span>,<span class="va">harmonise</span><span class="op">)</span>
 <span class="va">prefix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">outcomes</span>,<span class="va">prot</span>,<span class="va">type</span>,sep<span class="op">=</span><span class="st">"-"</span><span class="op">)</span>
-<span class="fu"><a href="../reference/run_TwoSampleMR.html">run_TwoSampleMR</a></span><span class="op">(</span><span class="va">input</span>, prefix<span class="op">=</span><span class="va">prefix</span><span class="op">)</span>
+<span class="fu"><a href="../reference/run_TwoSampleMR.html">run_TwoSampleMR</a></span><span class="op">(</span><span class="va">input</span>, plot<span class="op">=</span><span class="st">"New"</span>, prefix<span class="op">=</span><span class="va">prefix</span><span class="op">)</span>
 <span class="co">#&gt; r.exposure and/or r.outcome not present.</span>
 <span class="co">#&gt; Calculating approximate SNP-exposure and/or SNP-outcome correlations, assuming all are quantitative traits. Please pre-calculate r.exposure and/or r.outcome using get_r_from_lor() for any binary traits</span>
 <span class="co">#&gt; Estimating correlation for quantitative trait.</span>
