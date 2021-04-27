@@ -203,6 +203,49 @@ swap <- function(x,y)
    substitute(x), "<-", substitute(y), ";",
    substitute(y), "<-swap_unique_var_a")), envir=parent.frame())
 
+mr_scatter_plot2 <- function (mr_results, dat, alpha=0.05)
+{
+   requireNamespace("ggplot2", quietly = TRUE)
+   requireNamespace("plyr", quietly = TRUE)
+   c <- qnorm(alpha/2, lower.tail = FALSE)
+   mrres <- plyr::dlply(dat, c("id.exposure", "id.outcome"),
+      function(d) {
+          d <- plyr::mutate(d)
+          if (nrow(d) < 2 | sum(d$mr_keep) == 0) return(blank_plot("Insufficient number of SNPs"))
+          d <- subset(d, mr_keep)
+          index <- d$beta.exposure < 0
+          d$beta.exposure[index] <- d$beta.exposure[index] * -1
+          d$beta.outcome[index] <- d$beta.outcome[index] * -1
+          mrres <- subset(mr_results, id.exposure == d$id.exposure[1] & id.outcome == d$id.outcome[1])
+          mrres$a <- 0
+          if ("MR Egger" %in% mrres$method) {
+              temp <- mr_egger_regression(d$beta.exposure, d$beta.outcome, d$se.exposure, d$se.outcome, default_parameters())
+              mrres$a[mrres$method == "MR Egger"] <- temp$b_i
+          }
+          if ("MR Egger (bootstrap)" %in% mrres$method) {
+              temp <- mr_egger_regression_bootstrap(d$beta.exposure, d$beta.outcome, d$se.exposure, d$se.outcome, default_parameters())
+              mrres$a[mrres$method == "MR Egger (bootstrap)"] <- temp$b_i
+          }
+          colours <- c("#a6cee3", "#1f78b4", "#b2df8a", "#33a02c", "#fb9a99", "#e31a1c",
+                       "#fdbf6f", "#ff7f00", "#cab2d6", "#6a3d9a", "#ffff99", "#b15928")
+          ggplot2::ggplot(data = d, 
+              ggplot2::aes(x = beta.exposure, y = beta.outcome)) + 
+              ggplot2::geom_errorbar(ggplot2::aes(ymin = beta.outcome - c*se.outcome, ymax = beta.outcome + c*se.outcome), width = 0) +
+              ggplot2::geom_errorbarh(ggplot2::aes(xmin = beta.exposure - c*se.exposure, xmax = beta.exposure + c*se.exposure), height = 0) +
+              ggplot2::geom_point() +
+              ggplot2::theme_bw() +
+              cowplot::theme_cowplot(12) + 
+              ggplot2::geom_abline(data = mrres, ggplot2::aes(intercept = a, slope = b, colour = method), size = 1, show.legend = TRUE) +
+              ggplot2::scale_colour_manual(values = colours) +
+              ggplot2::labs(colour = "MR Test", x = paste("SNP effect on", d$exposure[1]), y = paste("SNP effect on", d$outcome[1])) + 
+              ggplot2::theme(legend.position = "bottom", legend.direction = "vertical") +
+              ggplot2::guides(colour = ggplot2::guide_legend(ncol = 4)) +
+              ggplot2::geom_abline(intercept = 0, slope = 0, size = 1) +
+              ggplot2::geom_vline(xintercept = 0, size = 1)
+      })
+   mrres
+}
+
 pqtlMR <- function(pqtlMRinput, plot=TRUE, prefix="pQTL-combined-",reverse=FALSE)
 {
   Ins <- with(pqtlMRinput,Ins)
@@ -255,7 +298,7 @@ pqtlMR <- function(pqtlMRinput, plot=TRUE, prefix="pQTL-combined-",reverse=FALSE
   }
 }
 
-run_TwoSampleMR <- function(TwoSampleMRinput, plot=TRUE, prefix="")
+run_TwoSampleMR <- function(TwoSampleMRinput, plot="None", prefix="")
 {
   exposure <- with(TwoSampleMRinput, exposure)
   outcome <- with(TwoSampleMRinput, outcome)
@@ -274,12 +317,13 @@ run_TwoSampleMR <- function(TwoSampleMRinput, plot=TRUE, prefix="")
                    if (exists(x)) write.table(format(get(x),digits=3),
                                               file=paste0(prefix,"-",x,".txt"),
                                               quote=FALSE,row.names=FALSE,sep="\t")))
-  if (plot)
-  {
-    scatter <- TwoSampleMR::mr_scatter_plot(result, harmonise)
-    forest <- TwoSampleMR::mr_forest_plot(single)
-    funnel <- TwoSampleMR::mr_funnel_plot(single)
-    leaveoneout <- TwoSampleMR::mr_leaveoneout_plot(loo)
-    invisible(sapply(c(scatter,forest,funnel,leaveoneout), function(x) print(x)))
-  }
+  type <- match.arg(plot, c("None", "TwoSampleMR", "New"))
+  if (type == 1) return else if (type == "TwoSampleMR")
+  { 
+    scatter = TwoSampleMR::mr_scatter_plot(result, harmonise)
+  } else scatter = mr_scatter_plot2(result, harmonise)
+  forest <- TwoSampleMR::mr_forest_plot(single)
+  funnel <- TwoSampleMR::mr_funnel_plot(single)
+  leaveoneout <- TwoSampleMR::mr_leaveoneout_plot(loo)
+  invisible(sapply(c(scatter,forest,funnel,leaveoneout), function(x) print(x)))
 }
