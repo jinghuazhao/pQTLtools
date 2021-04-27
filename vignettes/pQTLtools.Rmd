@@ -225,7 +225,7 @@ invisible(sapply(c("harmonise","result","single"),
 
 The function has similiarity to @dt18. The documentation example is quoted here,
 
-```{r, fig.height=7, fig.width=8, results='hide',warning=FALSE}
+```{r, fig.height=6, fig.width=7, results='hide',warning=FALSE}
 library(TwoSampleMR)
 outcomes <- "ebi-a-GCST007432"
 prot <- "MMP.10"
@@ -245,6 +245,9 @@ harmonise <- harmonise_data(clump,outcome)
 input <- list(exposure,outcome,clump,harmonise)
 prefix <- paste(outcomes,prot,type,sep="-")
 run_TwoSampleMR(input, plot="New", prefix=prefix)
+```
+
+```{r, echo=FALSE}
 invisible(sapply(c("result","heterogeneity","pleiotropy","single","loo"), function(x)
 {
   r <- read.delim(paste0(prefix,"-",x,".txt"),header=TRUE)
