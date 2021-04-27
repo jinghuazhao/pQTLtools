@@ -225,7 +225,7 @@ invisible(sapply(c("harmonise","result","single"),
 
 The function has similiarity to @dt18. The documentation example is quoted here,
 
-```{r, results='hide',warning=FALSE}
+```{r, fig.height=10, fig.width=8, results='hide',warning=FALSE}
 library(TwoSampleMR)
 outcomes <- "ebi-a-GCST007432"
 prot <- "MMP.10"
