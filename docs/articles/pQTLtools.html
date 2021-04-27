@@ -900,6 +900,338 @@
 <span class="co">#&gt; Analysing 'ZoHewj' on 'ebi-a-GCST007432'</span></code></pre></div>
 <p><img src="pQTLtools/unnamed-chunk-5-1.png" width="672" style="display:block; margin: auto"><img src="pQTLtools/unnamed-chunk-5-2.png" width="672" style="display:block; margin: auto"><img src="pQTLtools/unnamed-chunk-5-3.png" width="672" style="display:block; margin: auto"><img src="pQTLtools/unnamed-chunk-5-4.png" width="672" style="display:block; margin: auto"></p>
 <p>The output is contained in individual <code>.txt</code> files, together with the scatter, forest, funnel and leave-one-out plots.</p>
+<table class="table">
+<caption>Table 3. MMP.10 variants and FEV1 (result)</caption>
+<colgroup>
+<col width="9%">
+<col width="12%">
+<col width="29%">
+<col width="6%">
+<col width="19%">
+<col width="3%">
+<col width="7%">
+<col width="6%">
+<col width="4%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">id.exposure</th>
+<th align="left">id.outcome</th>
+<th align="left">outcome</th>
+<th align="left">exposure</th>
+<th align="left">method</th>
+<th align="right">nsnp</th>
+<th align="right">b</th>
+<th align="right">se</th>
+<th align="right">pval</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">ZoHewj</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">MMP.10</td>
+<td align="left">MR Egger</td>
+<td align="right">4</td>
+<td align="right">-0.000577</td>
+<td align="right">0.01001</td>
+<td align="right">0.959</td>
+</tr>
+<tr class="even">
+<td align="left">ZoHewj</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">MMP.10</td>
+<td align="left">Weighted median</td>
+<td align="right">4</td>
+<td align="right">0.002002</td>
+<td align="right">0.00628</td>
+<td align="right">0.750</td>
+</tr>
+<tr class="odd">
+<td align="left">ZoHewj</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">MMP.10</td>
+<td align="left">Inverse variance weighted</td>
+<td align="right">4</td>
+<td align="right">0.002067</td>
+<td align="right">0.00594</td>
+<td align="right">0.728</td>
+</tr>
+<tr class="even">
+<td align="left">ZoHewj</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">MMP.10</td>
+<td align="left">Simple mode</td>
+<td align="right">4</td>
+<td align="right">0.004152</td>
+<td align="right">0.00994</td>
+<td align="right">0.704</td>
+</tr>
+<tr class="odd">
+<td align="left">ZoHewj</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">MMP.10</td>
+<td align="left">Weighted mode</td>
+<td align="right">4</td>
+<td align="right">0.001134</td>
+<td align="right">0.00706</td>
+<td align="right">0.883</td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<caption>Table 3. MMP.10 variants and FEV1 (heterogeneity)</caption>
+<colgroup>
+<col width="10%">
+<col width="14%">
+<col width="31%">
+<col width="7%">
+<col width="21%">
+<col width="5%">
+<col width="4%">
+<col width="5%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">id.exposure</th>
+<th align="left">id.outcome</th>
+<th align="left">outcome</th>
+<th align="left">exposure</th>
+<th align="left">method</th>
+<th align="right">Q</th>
+<th align="right">Q_df</th>
+<th align="right">Q_pval</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">ZoHewj</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">MMP.10</td>
+<td align="left">MR Egger</td>
+<td align="right">0.114</td>
+<td align="right">2</td>
+<td align="right">0.944</td>
+</tr>
+<tr class="even">
+<td align="left">ZoHewj</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">MMP.10</td>
+<td align="left">Inverse variance weighted</td>
+<td align="right">0.222</td>
+<td align="right">3</td>
+<td align="right">0.974</td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<caption>Table 3. MMP.10 variants and FEV1 (pleiotropy)</caption>
+<colgroup>
+<col width="11%">
+<col width="16%">
+<col width="35%">
+<col width="8%">
+<col width="15%">
+<col width="7%">
+<col width="5%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">id.exposure</th>
+<th align="left">id.outcome</th>
+<th align="left">outcome</th>
+<th align="left">exposure</th>
+<th align="right">egger_intercept</th>
+<th align="right">se</th>
+<th align="right">pval</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="left">ZoHewj</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">MMP.10</td>
+<td align="right">0.00143</td>
+<td align="right">0.00434</td>
+<td align="right">0.774</td>
+</tr></tbody>
+</table>
+<table class="table">
+<caption>Table 3. MMP.10 variants and FEV1 (single)</caption>
+<colgroup>
+<col width="6%">
+<col width="26%">
+<col width="8%">
+<col width="11%">
+<col width="7%">
+<col width="22%">
+<col width="6%">
+<col width="5%">
+<col width="4%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">exposure</th>
+<th align="left">outcome</th>
+<th align="left">id.exposure</th>
+<th align="left">id.outcome</th>
+<th align="right">samplesize</th>
+<th align="left">SNP</th>
+<th align="right">b</th>
+<th align="right">se</th>
+<th align="right">p</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">ZoHewj</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs11225354</td>
+<td align="right">0.006425</td>
+<td align="right">0.01217</td>
+<td align="right">0.598</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">ZoHewj</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs142915220</td>
+<td align="right">-0.003993</td>
+<td align="right">0.02856</td>
+<td align="right">0.889</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">ZoHewj</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs17099622</td>
+<td align="right">0.004360</td>
+<td align="right">0.02229</td>
+<td align="right">0.845</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">ZoHewj</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs17860955</td>
+<td align="right">0.000616</td>
+<td align="right">0.00739</td>
+<td align="right">0.934</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">ZoHewj</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">All - Inverse variance weighted</td>
+<td align="right">0.002067</td>
+<td align="right">0.00594</td>
+<td align="right">0.728</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">ZoHewj</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">All - MR Egger</td>
+<td align="right">-0.000577</td>
+<td align="right">0.01001</td>
+<td align="right">0.959</td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<caption>Table 3. MMP.10 variants and FEV1 (loo)</caption>
+<colgroup>
+<col width="7%">
+<col width="31%">
+<col width="9%">
+<col width="13%">
+<col width="9%">
+<col width="9%">
+<col width="7%">
+<col width="6%">
+<col width="4%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">exposure</th>
+<th align="left">outcome</th>
+<th align="left">id.exposure</th>
+<th align="left">id.outcome</th>
+<th align="right">samplesize</th>
+<th align="left">SNP</th>
+<th align="right">b</th>
+<th align="right">se</th>
+<th align="right">p</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">ZoHewj</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs11225354</td>
+<td align="right">0.000703</td>
+<td align="right">0.00681</td>
+<td align="right">0.918</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">ZoHewj</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs142915220</td>
+<td align="right">0.002341</td>
+<td align="right">0.00608</td>
+<td align="right">0.700</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">ZoHewj</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs17099622</td>
+<td align="right">0.001891</td>
+<td align="right">0.00617</td>
+<td align="right">0.759</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">ZoHewj</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs17860955</td>
+<td align="right">0.004730</td>
+<td align="right">0.01001</td>
+<td align="right">0.636</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">ZoHewj</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">All</td>
+<td align="right">0.002067</td>
+<td align="right">0.00594</td>
+<td align="right">0.728</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="literature-on-pqtls" class="section level2">
 <h2 class="hasAnchor">
