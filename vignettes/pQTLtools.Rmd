@@ -88,7 +88,7 @@ legend("bottomright", bty="n", pch=c(19,19), col=colors, pt.cex=0.4, legend=c("c
 # kpPlotLinks(kp, data=loci, data2=panel, col=colors[2-cis])
 detach(INF1_merge_cvt)
 ```
-```{r karyoplot, fig.height=12, fig.width=8}
+```{r karyoplot, echo=FALSE, fig.height=12, fig.width=8}
 knitr::include_graphics('karyoplot.png',dpi=300)
 ```
 
