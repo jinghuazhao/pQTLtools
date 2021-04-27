@@ -250,11 +250,12 @@ run_TwoSampleMR(input, plot="New", prefix=prefix)
 The output is contained in individual `.txt` files, together with the scatter, forest, funnel and leave-one-out plots.
 
 ```{r, echo=FALSE}
-for (x in c("result","heterogeneity","pleiotropy","single","loo"))
-{
-  knitr::kable(read.delim(paste0(prefix,"-",x,".txt"),header=TRUE),caption=paste0("MMP.10 variants and FEV1 (",x,")"))
-  unlink(paste0(prefix,"-",x,".txt"))
-}
+knitr::kable(read.delim(paste0(prefix,"-result.txt"),header=TRUE),caption="Table 3. MMP.10 variants and FEV1 (result)")
+knitr::kable(read.delim(paste0(prefix,"-heterogeneity.txt"),header=TRUE),caption="Table 3. MMP.10 variants and FEV1 (heterogeneity)")
+knitr::kable(read.delim(paste0(prefix,"-pleiotropy.txt"),header=TRUE),caption="Table 3. MMP.10 variants and FEV1 (pleiotropy)")
+knitr::kable(read.delim(paste0(prefix,"-single.txt"),header=TRUE),caption="Table 3. MMP.10 variants and FEV1 (single)")
+knitr::kable(read.delim(paste0(prefix,"-loo.txt"),header=TRUE),caption="Table 3. MMP.10 variants and FEV1 (loo)")
+for (x in c("result","heterogeneity","pleiotropy","single","loo")) unlink(paste0(prefix,"-",x,".txt"))
 ```
 
 ## Literature on pQTLs
