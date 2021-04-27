@@ -218,6 +218,7 @@ mr_scatter_plot2 <- function (mr_results, dat, alpha=0.05)
    requireNamespace("ggplot2", quietly = TRUE)
    requireNamespace("plyr", quietly = TRUE)
    c <- qnorm(alpha/2, lower.tail = FALSE)
+   a <- b <- id.exposure <- id.outcome <- method <- mr_keep <- se.exposure <- se.outcome <- NA
    mrres <- plyr::dlply(dat, c("id.exposure", "id.outcome"),
       function(d) {
           d <- plyr::mutate(d)
@@ -256,10 +257,11 @@ mr_scatter_plot2 <- function (mr_results, dat, alpha=0.05)
    mrres
 }
 
-mr_forest_plot2 <- function (singlesnp_results, exponentiate = FALSE)
+mr_forest_plot2 <- function (singlesnp_results, exponentiate = FALSE, alpha = 0.05)
 {
   requireNamespace("ggplot2", quietly = TRUE)
   requireNamespace("plyr", quietly = TRUE)
+  c <- qnorm(alpha/2, lower.tail = FALSE)
   b <- id.exposure <- id.outcome <- method <- mr_keep <- se <- se.exposure <- se.outcome <- NA
   res <- plyr::dlply(singlesnp_results, c("id.exposure", "id.outcome"),
       function(d) {
@@ -268,8 +270,8 @@ mr_forest_plot2 <- function (singlesnp_results, exponentiate = FALSE)
           d <- within(d, {levels(SNP)[levels(SNP) == "All - Inverse variance weighted"] <- "All - IVW"})
           d <- within(d, {levels(SNP)[levels(SNP) == "All - MR Egger"] <- "All - Egger"})
           am <- with(d, grep("All", SNP, value = TRUE))
-          d <- within(d, {up <- b + 1.96 * se})
-          d <- within(d, {lo <- b - 1.96 * se})
+          d <- within(d, {up <- b + c * se})
+          d <- within(d, {lo <- b - c * se})
           d <- within(d, {tot <- 0.01})
           d <- within(d, {tot[SNP %in% am] <- 1})
           d <- within(d, {SNP <- as.character(SNP)})
@@ -329,16 +331,17 @@ mr_funnel_plot2 <- function (singlesnp_results)
   res
 }
 
-mr_leaveoneout_plot2 <- function (leaveoneout_results)
+mr_leaveoneout_plot2 <- function (leaveoneout_results, alpha = 0.05)
 {
   requireNamespace("ggplot2", quietly = TRUE)
   requireNamespace("plyr", quietly = TRUE)
+  c <- qnorm(alpha/2, lower.tail = FALSE)
   a <- b <- id.exposure <- id.outcome <- method <- mr_keep <- se <- se.exposure <- se.outcome <- NA
   res <- plyr::dlply(leaveoneout_results, c("id.exposure", "id.outcome"), function(d) {
       d <- plyr::mutate(d)
       if (with(d, sum(!grepl("All", SNP))) < 3) return(blank_plot("Insufficient number of SNPs"))
-      d <- within(d, {up <- b + 1.96 * se})
-      d <- within(d, {lo <- b - 1.96 * se})
+      d <- within(d, {up <- b + c * se})
+      d <- within(d, {lo <- b - c * se})
       d <- within(d, {tot <- 1})
       d <- within(d, {tot[SNP != "All"] <- 0.01})
       d <- within(d, {SNP <- as.character(SNP)})
