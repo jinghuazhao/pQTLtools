@@ -26,6 +26,7 @@ Imports:
     VariantAnnotation
 Suggests:
     biomaRt,
+    cowplot,
     gap,
     gap.datasets,
     circlize,
