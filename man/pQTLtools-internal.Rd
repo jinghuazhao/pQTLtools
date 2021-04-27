@@ -9,6 +9,9 @@
 \alias{hg19}
 \alias{hg19Tables}
 \alias{inf1}
+\alias{mr_forest_plot2}
+\alias{mr_funnel_plot2}
+\alias{mr_leaveoneout_plot2}
 \alias{mr_scatter_plot2}
 \alias{Olink_NGS}
 \alias{Olink_qPCR}
