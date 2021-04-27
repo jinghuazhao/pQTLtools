@@ -203,6 +203,16 @@ swap <- function(x,y)
    substitute(x), "<-", substitute(y), ";",
    substitute(y), "<-swap_unique_var_a")), envir=parent.frame())
 
+
+blank_plot <- function(message)
+{
+        requireNamespace("ggplot2", quietly=TRUE)
+        ggplot2::ggplot(data.frame(a=0,b=0,n=message)) +
+        ggplot2::geom_text(ggplot2::aes(x=a,y=b,label=n)) +
+        ggplot2::labs(x=NULL,y=NULL) +
+        ggplot2::theme(axis.text=ggplot2::element_blank(), axis.ticks=ggplot2::element_blank())
+}
+
 mr_scatter_plot2 <- function (mr_results, dat, alpha=0.05)
 {
    requireNamespace("ggplot2", quietly = TRUE)
@@ -211,20 +221,20 @@ mr_scatter_plot2 <- function (mr_results, dat, alpha=0.05)
    mrres <- plyr::dlply(dat, c("id.exposure", "id.outcome"),
       function(d) {
           d <- plyr::mutate(d)
-          if (nrow(d) < 2 | sum(d$mr_keep) == 0) return(blank_plot("Insufficient number of SNPs"))
+          if (nrow(d) < 2 | with(d,sum(mr_keep)) == 0) return(blank_plot("Insufficient number of SNPs"))
           d <- subset(d, mr_keep)
-          index <- d$beta.exposure < 0
-          d$beta.exposure[index] <- d$beta.exposure[index] * -1
-          d$beta.outcome[index] <- d$beta.outcome[index] * -1
-          mrres <- subset(mr_results, id.exposure == d$id.exposure[1] & id.outcome == d$id.outcome[1])
-          mrres$a <- 0
-          if ("MR Egger" %in% mrres$method) {
-              temp <- mr_egger_regression(d$beta.exposure, d$beta.outcome, d$se.exposure, d$se.outcome, default_parameters())
-              mrres$a[mrres$method == "MR Egger"] <- temp$b_i
+          index <- with(d, beta.exposure < 0)
+          d <- within(d, {beta.exposure[index] <- beta.exposure[index] * -1})
+          d <- within(d, {beta.outcome[index] <- beta.outcome[index] * -1})
+          mrres <- subset(mr_results, id.exposure == with(d, id.exposure)[1] & id.outcome == with(d, id.outcome)[1])
+          mrres <- within(mrres, {a <- 0})
+          if ("MR Egger" %in% with(mrres, method)) {
+              temp <- with(d, TwoSampleMR::mr_egger_regression(beta.exposure, beta.outcome, se.exposure, se.outcome, default_parameters()))
+              mrres <- within(mrres, {a[method == "MR Egger"] <- with(temp, b_i)})
           }
-          if ("MR Egger (bootstrap)" %in% mrres$method) {
-              temp <- mr_egger_regression_bootstrap(d$beta.exposure, d$beta.outcome, d$se.exposure, d$se.outcome, default_parameters())
-              mrres$a[mrres$method == "MR Egger (bootstrap)"] <- temp$b_i
+          if ("MR Egger (bootstrap)" %in% with(mrres, method)) {
+              temp <- with(d, TwoSampleMR::mr_egger_regression_bootstrap(beta.exposure, beta.outcome, se.exposure, se.outcome, default_parameters()))
+              mrres <- within(mrres, {a[method == "MR Egger (bootstrap)"] <- with(temp, b_i)})
           }
           colours <- c("#a6cee3", "#1f78b4", "#b2df8a", "#33a02c", "#fb9a99", "#e31a1c",
                        "#fdbf6f", "#ff7f00", "#cab2d6", "#6a3d9a", "#ffff99", "#b15928")
@@ -237,7 +247,7 @@ mr_scatter_plot2 <- function (mr_results, dat, alpha=0.05)
           cowplot::theme_cowplot(12) + 
           ggplot2::geom_abline(data = mrres, ggplot2::aes(intercept = a, slope = b, colour = method), size = 1, show.legend = TRUE) +
           ggplot2::scale_colour_manual(values = colours) +
-          ggplot2::labs(colour = "MR Test", x = paste("SNP effect on", d$exposure[1]), y = paste("SNP effect on", d$outcome[1])) + 
+          ggplot2::labs(colour = "MR Test", x = paste("SNP effect on", with(d,exposure)[1]), y = paste("SNP effect on", with(d, outcome)[1])) + 
           ggplot2::theme(legend.position = "bottom", legend.direction = "vertical") +
           ggplot2::guides(colour = ggplot2::guide_legend(ncol = 4)) +
           ggplot2::geom_abline(intercept = 0, slope = 0, size = 1) +
@@ -250,31 +260,32 @@ mr_forest_plot2 <- function (singlesnp_results, exponentiate = FALSE)
 {
   requireNamespace("ggplot2", quietly = TRUE)
   requireNamespace("plyr", quietly = TRUE)
+  b <- id.exposure <- id.outcome <- method <- mr_keep <- se <- se.exposure <- se.outcome <- NA
   res <- plyr::dlply(singlesnp_results, c("id.exposure", "id.outcome"),
       function(d) {
           d <- plyr::mutate(d)
-          if (sum(!grepl("All", d$SNP)) < 2) return(blank_plot("Insufficient number of SNPs"))
-          levels(d$SNP)[levels(d$SNP) == "All - Inverse variance weighted"] <- "All - IVW"
-          levels(d$SNP)[levels(d$SNP) == "All - MR Egger"] <- "All - Egger"
-          am <- grep("All", d$SNP, value = TRUE)
-          d$up <- d$b + 1.96 * d$se
-          d$lo <- d$b - 1.96 * d$se
-          d$tot <- 0.01
-          d$tot[d$SNP %in% am] <- 1
-          d$SNP <- as.character(d$SNP)
-          nom <- d$SNP[!d$SNP %in% am]
-          nom <- nom[order(d$b)]
+          if (with(d, sum(!grepl("All", SNP))) < 2) return(blank_plot("Insufficient number of SNPs"))
+          d <- within(d, {levels(SNP)[levels(SNP) == "All - Inverse variance weighted"] <- "All - IVW"})
+          d <- within(d, {levels(SNP)[levels(SNP) == "All - MR Egger"] <- "All - Egger"})
+          am <- with(d, grep("All", SNP, value = TRUE))
+          d <- within(d, {up <- b + 1.96 * se})
+          d <- within(d, {lo <- b - 1.96 * se})
+          d <- within(d, {tot <- 0.01})
+          d <- within(d, {tot[SNP %in% am] <- 1})
+          d <- within(d, {SNP <- as.character(SNP)})
+          nom <- with(d, SNP[!SNP %in% am])
+          nom <- with(d, nom[order(b)])
           d <- rbind(d, d[nrow(d), ])
-          d$SNP[nrow(d) - 1] <- ""
-          d$b[nrow(d) - 1] <- NA
-          d$up[nrow(d) - 1] <- NA
-          d$lo[nrow(d) - 1] <- NA
-          d$SNP <- ordered(d$SNP, levels = c(am, "", nom))
+          d <- within(d, {SNP[nrow(d) - 1] <- ""})
+          d <- within(d, {b[nrow(d) - 1] <- NA})
+          d <- within(d, {up[nrow(d) - 1] <- NA})
+          d <- within(d, {lo[nrow(d) - 1] <- NA})
+          d <- within(d, {SNP <- ordered(SNP, levels = c(am, "", nom))})
           xint <- 0
           if (exponentiate) {
-              d$b <- exp(d$b)
-              d$up <- exp(d$up)
-              d$lo <- exp(d$lo)
+              d <- within(d, {b <- exp(b)})
+              d <- within(d, {up <- exp(up)})
+              d <- within(d, {lo <- exp(lo)})
               xint <- 1
           }
           ggplot2::ggplot(d, ggplot2::aes(y = SNP, x = b)) +
@@ -288,7 +299,7 @@ mr_forest_plot2 <- function (singlesnp_results, exponentiate = FALSE)
           ggplot2::scale_size_manual(values = c(0.3, 1)) +
           ggplot2::theme(legend.position = "none", axis.text.y = ggplot2::element_text(size = 8),
                          axis.ticks.y = ggplot2::element_line(size = 0), axis.title.x = ggplot2::element_text(size = 8)) +
-          ggplot2::labs(y = "", x = paste0("MR effect size for\n'", d$exposure[1], "' on '", d$outcome[1], "'"))
+          ggplot2::labs(y = "", x = paste0("MR effect size for\n'", with(d, exposure)[1], "' on '", with(d, outcome)[1], "'"))
       })
   res
 }
@@ -297,12 +308,13 @@ mr_funnel_plot2 <- function (singlesnp_results)
 {
   requireNamespace("ggplot2", quietly = TRUE)
   requireNamespace("plyr", quietly = TRUE)
+  SNP <- b <- se <- NA
   res <- plyr::dlply(singlesnp_results, c("id.exposure", "id.outcome"),
       function(d) {
           d <- plyr::mutate(d)
-          if (sum(!grepl("All", d$SNP)) < 2) return(blank_plot("Insufficient number of SNPs"))
-          am <- grep("All", d$SNP, value = TRUE)
-          d$SNP <- gsub("All - ", "", d$SNP)
+          if (with(d, sum(!grepl("All", SNP))) < 2) return(blank_plot("Insufficient number of SNPs"))
+          am <- with(d, grep("All", SNP, value = TRUE))
+          d <- within(d, {SNP <- gsub("All - ", "", SNP)})
           am <- gsub("All - ", "", am)
           ggplot2::ggplot(subset(d, !SNP %in% am), ggplot2::aes(y = 1/se, x = b)) +
           ggplot2::geom_point() +
@@ -321,23 +333,23 @@ mr_leaveoneout_plot2 <- function (leaveoneout_results)
 {
   requireNamespace("ggplot2", quietly = TRUE)
   requireNamespace("plyr", quietly = TRUE)
-  res <- plyr::dlply(leaveoneout_results, c("id.exposure",
-      "id.outcome"), function(d) {
+  a <- b <- id.exposure <- id.outcome <- method <- mr_keep <- se <- se.exposure <- se.outcome <- NA
+  res <- plyr::dlply(leaveoneout_results, c("id.exposure", "id.outcome"), function(d) {
       d <- plyr::mutate(d)
-      if (sum(!grepl("All", d$SNP)) < 3) return(blank_plot("Insufficient number of SNPs"))
-      d$up <- d$b + 1.96 * d$se
-      d$lo <- d$b - 1.96 * d$se
-      d$tot <- 1
-      d$tot[d$SNP != "All"] <- 0.01
-      d$SNP <- as.character(d$SNP)
-      nom <- d$SNP[d$SNP != "All"]
-      nom <- nom[order(d$b)]
+      if (with(d, sum(!grepl("All", SNP))) < 3) return(blank_plot("Insufficient number of SNPs"))
+      d <- within(d, {up <- b + 1.96 * se})
+      d <- within(d, {lo <- b - 1.96 * se})
+      d <- within(d, {tot <- 1})
+      d <- within(d, {tot[SNP != "All"] <- 0.01})
+      d <- within(d, {SNP <- as.character(SNP)})
+      nom <- with(d, SNP[SNP != "All"])
+      nom <- nom[order(with(d,b))]
       d <- rbind(d, d[nrow(d), ])
-      d$SNP[nrow(d) - 1] <- ""
-      d$b[nrow(d) - 1] <- NA
-      d$up[nrow(d) - 1] <- NA
-      d$lo[nrow(d) - 1] <- NA
-      d$SNP <- ordered(d$SNP, levels = c("All", "", nom))
+      d <- within(d, {SNP[nrow(d) - 1] <- ""})
+      d <- within(d, {b[nrow(d) - 1] <- NA})
+      d <- within(d, {up[nrow(d) - 1] <- NA})
+      d <- within(d, {lo[nrow(d) - 1] <- NA})
+      d <- within(d, {SNP <- ordered(SNP, levels = c("All", "", nom))})
       ggplot2::ggplot(d, ggplot2::aes(y = SNP, x = b)) +
       ggplot2::theme_bw() +
       cowplot::theme_cowplot(12) +
@@ -349,7 +361,7 @@ mr_leaveoneout_plot2 <- function (leaveoneout_results)
       ggplot2::scale_size_manual(values = c(0.3, 1)) +
       ggplot2::theme(legend.position = "none", axis.text.y = ggplot2::element_text(size = 8),
                      axis.ticks.y = ggplot2::element_line(size = 0), axis.title.x = ggplot2::element_text(size = 8)) +
-      ggplot2::labs(y = "", x = paste0("MR leave-one-out sensitivity analysis for\n'", d$exposure[1], "' on '", d$outcome[1], "'"))
+      ggplot2::labs(y = "", x = paste0("MR leave-one-out sensitivity analysis for\n'", with(d, exposure)[1], "' on '", with(d, outcome)[1], "'"))
   })
   res
 }
