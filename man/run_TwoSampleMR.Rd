@@ -1,7 +1,7 @@
 \name{run_TwoSampleMR}
 \alias{run_TwoSampleMR}
 \title{A generic wrapper for TwoSampleMR analysis}
-\usage{run_TwoSampleMR(TwoSampleMRinput, plot=TRUE, prefix)}
+\usage{run_TwoSampleMR(TwoSampleMRinput, plot="None", prefix)}
 \description{
 Given a compressed or uncompressed file containing exposure data, this function conducts a two-sample MR analysis using MR-Base.
 }
@@ -14,7 +14,7 @@ Given a compressed or uncompressed file containing exposure data, this function 
    \item harmonise result of TwoSampleMR's harmonise_data()
   }
 }
-\item{plot}{to produce plots}
+\item{plot}{one of "None", "TwoSampleMR", "New" for no, the original and (some) new plots, respectively}
 \item{prefix}{a prefix for output files}
 }
 \details{
@@ -52,7 +52,7 @@ clump <- clump_data(exposure)
 outcome <- extract_outcome_data(snps=exposure$SNP,outcomes=outcomes)
 harmonise <- harmonise_data(clump,outcome)
 input <- list(exposure,outcome,clump,harmonise)
-run_TwoSampleMR(input, prefix=paste(outcomes,prot,type,sep="-"))
+run_TwoSampleMR(input, plot="New", prefix=paste(outcomes,prot,type,sep="-"))
 }
 \note{Adapted from script by Dimou NL, Tsilidis KK}
 \keyword{utilities}

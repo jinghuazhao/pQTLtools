@@ -9,6 +9,7 @@
 \alias{hg19}
 \alias{hg19Tables}
 \alias{inf1}
+\alias{mr_scatter_plot2}
 \alias{Olink_NGS}
 \alias{Olink_qPCR}
 \alias{run_coloc}
