@@ -579,15 +579,13 @@
 <span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="st">"bottomright"</span>, bty<span class="op">=</span><span class="st">"n"</span>, pch<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">19</span>,<span class="fl">19</span><span class="op">)</span>, col<span class="op">=</span><span class="va">colors</span>, pt.cex<span class="op">=</span><span class="fl">0.4</span>, legend<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"cis"</span>, <span class="st">"trans"</span><span class="op">)</span>, text.col<span class="op">=</span><span class="va">colors</span>, cex<span class="op">=</span><span class="fl">0.8</span>, horiz<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>
 <span class="co"># kpPlotLinks(kp, data=loci, data2=panel, col=colors[2-cis])</span>
 <span class="kw"><a href="https://rdrr.io/r/base/detach.html">detach</a></span><span class="op">(</span><span class="va">INF1_merge_cvt</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/include_graphics.html">include_graphics</a></span><span class="op">(</span><span class="st">'karyoplot.png'</span>,dpi<span class="op">=</span><span class="fl">300</span><span class="op">)</span></code></pre></div>
-<p><img src="karyoplot.png" width="604" style="display:block; margin: auto"></p>
+<p><img src="karyoplot.png" width="768" style="display:block; margin: auto"></p>
 </div>
 <div id="eqtl-catalogue-for-colocalization-analysis" class="section level2">
 <h2 class="hasAnchor">
 <a href="#eqtl-catalogue-for-colocalization-analysis" class="anchor"></a>eQTL Catalogue for colocalization analysis</h2>
 <p>See example associated with <code>import_eQTLCatalogue</code>. A related function is <code>import_OpenGWAS</code> used to fetch data from OpenGWAS.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jinghuazhao/pQTLtools">pQTLtools</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Attaching package: 'pQTLtools'</span>
@@ -748,7 +746,7 @@
 <h2 class="hasAnchor">
 <a href="#pqtl-based-mendelian-randomization-mr" class="anchor"></a>pQTL-based Mendelian Randomization (MR)</h2>
 <p>The function <code>pqtlMR</code> is derived from <span class="citation">Zheng et al. (2020)</span>. It has an attractive feature that multiple pQTLs can be used together for conducting MR with a list of outcomes from MR-Base. To simplify matters while maintaining greater flexibility, a composite input is needed to run the function which is illustrated below.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">TwoSampleMR</span><span class="op">)</span>
 <span class="co">#&gt; TwoSampleMR version 0.5.6 </span>
 <span class="co">#&gt; [&gt;] New: Option to use non-European LD reference panels for clumping etc</span>
@@ -852,7 +850,7 @@
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/invisible.html">invisible</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"harmonise"</span>,<span class="st">"result"</span>,<span class="st">"single"</span><span class="op">)</span>,
                  <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"pQTL-combined-"</span>,<span class="va">x</span>,<span class="st">".txt"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </div>
@@ -860,7 +858,7 @@
 <h2 class="hasAnchor">
 <a href="#run_twosamplemr" class="anchor"></a>run_TwoSampleMR</h2>
 <p>The function has similiarity to <span class="citation">Dimou and Tsilidis (2018)</span>. The documentation example is quoted here,</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">TwoSampleMR</span><span class="op">)</span>
 <span class="va">outcomes</span> <span class="op">&lt;-</span> <span class="st">"ebi-a-GCST007432"</span>
 <span class="va">prot</span> <span class="op">&lt;-</span> <span class="st">"MMP.10"</span>
