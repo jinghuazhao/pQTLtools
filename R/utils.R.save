@@ -203,27 +203,15 @@ swap <- function(x,y)
    substitute(x), "<-", substitute(y), ";",
    substitute(y), "<-swap_unique_var_a")), envir=parent.frame())
 
-
-blank_plot <- function(message)
-{
-   requireNamespace("ggplot2", quietly=TRUE)
-   a <- b <- NA
-   ggplot2::ggplot(data.frame(a=0,b=0,n=message)) +
-   ggplot2::geom_text(ggplot2::aes(x=a,y=b,label=n)) +
-   ggplot2::labs(x=NULL,y=NULL) +
-   ggplot2::theme(axis.text=ggplot2::element_blank(), axis.ticks=ggplot2::element_blank())
-}
-
 mr_scatter_plot2 <- function (mr_results, dat, alpha=0.05)
 {
    requireNamespace("ggplot2", quietly = TRUE)
    requireNamespace("plyr", quietly = TRUE)
    c <- qnorm(alpha/2, lower.tail = FALSE)
-   a <- b <- id.exposure <- id.outcome <- method <- mr_keep <- se.exposure <- se.outcome <- NA
    mrres <- plyr::dlply(dat, c("id.exposure", "id.outcome"),
       function(d) {
           d <- plyr::mutate(d)
-          if (nrow(d) < 2 | with(d,sum(mr_keep)) == 0) return(blank_plot("Insufficient number of SNPs"))
+          if (nrow(d) < 2 | with(d,sum(mr_keep)) == 0) return(tourr::blank_plot("Insufficient number of SNPs"))
           d <- subset(d, mr_keep)
           index <- with(d, beta.exposure < 0)
           d <- within(d, {beta.exposure[index] <- beta.exposure[index] * -1})
@@ -258,21 +246,19 @@ mr_scatter_plot2 <- function (mr_results, dat, alpha=0.05)
    mrres
 }
 
-mr_forest_plot2 <- function (singlesnp_results, exponentiate = FALSE, alpha = 0.05)
+mr_forest_plot2 <- function (singlesnp_results, exponentiate = FALSE)
 {
   requireNamespace("ggplot2", quietly = TRUE)
   requireNamespace("plyr", quietly = TRUE)
-  c <- qnorm(alpha/2, lower.tail = FALSE)
-  b <- id.exposure <- id.outcome <- method <- mr_keep <- se <- se.exposure <- se.outcome <- NA
   res <- plyr::dlply(singlesnp_results, c("id.exposure", "id.outcome"),
       function(d) {
           d <- plyr::mutate(d)
-          if (with(d, sum(!grepl("All", SNP))) < 2) return(blank_plot("Insufficient number of SNPs"))
+          if (with(d, sum(!grepl("All", SNP))) < 2) return(tourr::blank_plot("Insufficient number of SNPs"))
           d <- within(d, {levels(SNP)[levels(SNP) == "All - Inverse variance weighted"] <- "All - IVW"})
           d <- within(d, {levels(SNP)[levels(SNP) == "All - MR Egger"] <- "All - Egger"})
-          am <- with(d, grep("All", SNP, value = TRUE))
-          d <- within(d, {up <- b + c * se})
-          d <- within(d, {lo <- b - c * se})
+          am <- with(grep("All", d$SNP, value = TRUE)
+          d <- within(d, {up <- b + 1.96 * se})
+          d <- within(d, {lo <- b - 1.96 * se})
           d <- within(d, {tot <- 0.01})
           d <- within(d, {tot[SNP %in% am] <- 1})
           d <- within(d, {SNP <- as.character(SNP)})
@@ -282,13 +268,13 @@ mr_forest_plot2 <- function (singlesnp_results, exponentiate = FALSE, alpha = 0.
           d <- within(d, {SNP[nrow(d) - 1] <- ""})
           d <- within(d, {b[nrow(d) - 1] <- NA})
           d <- within(d, {up[nrow(d) - 1] <- NA})
-          d <- within(d, {lo[nrow(d) - 1] <- NA})
+          d <- witin(d, {lo[nrow(d) - 1] <- NA})
           d <- within(d, {SNP <- ordered(SNP, levels = c(am, "", nom))})
           xint <- 0
           if (exponentiate) {
-              d <- within(d, {b <- exp(b)})
-              d <- within(d, {up <- exp(up)})
-              d <- within(d, {lo <- exp(lo)})
+              d$b <- exp(d$b)
+              d$up <- exp(d$up)
+              d$lo <- exp(d$lo)
               xint <- 1
           }
           ggplot2::ggplot(d, ggplot2::aes(y = SNP, x = b)) +
@@ -302,7 +288,7 @@ mr_forest_plot2 <- function (singlesnp_results, exponentiate = FALSE, alpha = 0.
           ggplot2::scale_size_manual(values = c(0.3, 1)) +
           ggplot2::theme(legend.position = "none", axis.text.y = ggplot2::element_text(size = 8),
                          axis.ticks.y = ggplot2::element_line(size = 0), axis.title.x = ggplot2::element_text(size = 8)) +
-          ggplot2::labs(y = "", x = paste0("MR effect size for\n'", with(d, exposure)[1], "' on '", with(d, outcome)[1], "'"))
+          ggplot2::labs(y = "", x = paste0("MR effect size for\n'", d$exposure[1], "' on '", d$outcome[1], "'"))
       })
   res
 }
@@ -315,8 +301,8 @@ mr_funnel_plot2 <- function (singlesnp_results)
   res <- plyr::dlply(singlesnp_results, c("id.exposure", "id.outcome"),
       function(d) {
           d <- plyr::mutate(d)
-          if (with(d, sum(!grepl("All", SNP))) < 2) return(blank_plot("Insufficient number of SNPs"))
-          am <- with(d, grep("All", SNP, value = TRUE))
+          if (with(d, sum(!grepl("All", SNP))) < 2) return(tourr::blank_plot("Insufficient number of SNPs"))
+          am <- grep("All", d$SNP, value = TRUE)
           d <- within(d, {SNP <- gsub("All - ", "", SNP)})
           am <- gsub("All - ", "", am)
           ggplot2::ggplot(subset(d, !SNP %in% am), ggplot2::aes(y = 1/se, x = b)) +
@@ -332,17 +318,15 @@ mr_funnel_plot2 <- function (singlesnp_results)
   res
 }
 
-mr_leaveoneout_plot2 <- function (leaveoneout_results, alpha = 0.05)
+mr_leaveoneout_plot2 <- function (leaveoneout_results)
 {
   requireNamespace("ggplot2", quietly = TRUE)
   requireNamespace("plyr", quietly = TRUE)
-  c <- qnorm(alpha/2, lower.tail = FALSE)
-  a <- b <- id.exposure <- id.outcome <- method <- mr_keep <- se <- se.exposure <- se.outcome <- NA
   res <- plyr::dlply(leaveoneout_results, c("id.exposure", "id.outcome"), function(d) {
       d <- plyr::mutate(d)
-      if (with(d, sum(!grepl("All", SNP))) < 3) return(blank_plot("Insufficient number of SNPs"))
-      d <- within(d, {up <- b + c * se})
-      d <- within(d, {lo <- b - c * se})
+      if (with(d, sum(!grepl("All", SNP))) < 3) return(tour::blank_plot("Insufficient number of SNPs"))
+      d <- within(d, {up <- b + 1.96 * se})
+      d <- within(d, {lo <- b - 1.96 * se})
       d <- within(d, {tot <- 1})
       d <- within(d, {tot[SNP != "All"] <- 0.01})
       d <- within(d, {SNP <- as.character(SNP)})
@@ -365,12 +349,12 @@ mr_leaveoneout_plot2 <- function (leaveoneout_results, alpha = 0.05)
       ggplot2::scale_size_manual(values = c(0.3, 1)) +
       ggplot2::theme(legend.position = "none", axis.text.y = ggplot2::element_text(size = 8),
                      axis.ticks.y = ggplot2::element_line(size = 0), axis.title.x = ggplot2::element_text(size = 8)) +
-      ggplot2::labs(y = "", x = paste0("MR leave-one-out sensitivity analysis for\n'", with(d, exposure)[1], "' on '", with(d, outcome)[1], "'"))
+      ggplot2::labs(y = "", x = paste0("MR leave-one-out sensitivity analysis for\n'", d$exposure[1], "' on '", d$outcome[1], "'"))
   })
   res
 }
 
-pqtlMR <- function(pqtlMRinput, plot=FALSE, prefix="pQTL-combined-",reverse=FALSE)
+pqtlMR <- function(pqtlMRinput, plot=TRUE, prefix="pQTL-combined-",reverse=FALSE)
 {
   Ins <- with(pqtlMRinput,Ins)
   Ids <- with(pqtlMRinput,Ids)
