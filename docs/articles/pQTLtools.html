@@ -772,15 +772,15 @@
 <span class="co">#&gt; Harmonising ABO (dU3C0x) and Coronary heart disease || id:ieu-a-7 (ieu-a-7)</span>
 <span class="co">#&gt; Harmonising LIFR (YmGdhW) and Coronary heart disease || id:ieu-a-7 (ieu-a-7)</span>
 <span class="va">input</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">Ins</span>, <span class="va">Ids</span>, <span class="va">harmonise</span><span class="op">)</span>
-<span class="fu"><a href="../reference/pqtlMR.html">pqtlMR</a></span><span class="op">(</span><span class="va">input</span>,plot<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span>
+<span class="fu"><a href="../reference/pqtlMR.html">pqtlMR</a></span><span class="op">(</span><span class="va">input</span><span class="op">)</span>
 <span class="co">#&gt; Analysing 'dU3C0x' on 'ebi-a-GCST007432'</span>
 <span class="co">#&gt; Analysing 'dU3C0x' on 'ieu-a-7'</span>
 <span class="co">#&gt; Analysing 'YmGdhW' on 'ebi-a-GCST007432'</span>
 <span class="co">#&gt; Analysing 'YmGdhW' on 'ieu-a-7'</span>
 <span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.delim</a></span><span class="op">(</span><span class="st">"pQTL-combined-result.txt"</span>,header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">result</span>,caption<span class="op">=</span><span class="st">"Table 2. ABO/LIFR variants and CHD/FEV1"</span><span class="op">)</span></code></pre></div>
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">result</span>,caption<span class="op">=</span><span class="st">"Table 2. ABO/LIFR variants and CHD/FEV1 (result)"</span><span class="op">)</span></code></pre></div>
 <table class="table">
-<caption>Table 2. ABO/LIFR variants and CHD/FEV1</caption>
+<caption>Table 2. ABO/LIFR variants and CHD/FEV1 (result)</caption>
 <colgroup>
 <col width="9%">
 <col width="13%">
@@ -851,6 +851,168 @@
 </tbody>
 </table>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">single</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.delim</a></span><span class="op">(</span><span class="st">"pQTL-combined-single.txt"</span>,header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">single</span>,caption<span class="op">=</span><span class="st">"Table 2. ABO/LIFR variants and CHD/FEV1 (single)"</span><span class="op">)</span></code></pre></div>
+<table class="table">
+<caption>Table 2. ABO/LIFR variants and CHD/FEV1 (single)</caption>
+<colgroup>
+<col width="5%">
+<col width="30%">
+<col width="7%">
+<col width="11%">
+<col width="7%">
+<col width="20%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">exposure</th>
+<th align="left">outcome</th>
+<th align="left">id.exposure</th>
+<th align="left">id.outcome</th>
+<th align="right">samplesize</th>
+<th align="left">SNP</th>
+<th align="left">b</th>
+<th align="left">se</th>
+<th align="left">p</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">ABO</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">dU3C0x</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs505922</td>
+<td align="left">-0.0109</td>
+<td align="left">0.00193</td>
+<td align="left">1.35e-08</td>
+</tr>
+<tr class="even">
+<td align="left">ABO</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">dU3C0x</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">All - Inverse variance weighted</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">ABO</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">dU3C0x</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">All - MR Egger</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">ABO</td>
+<td align="left">Coronary heart disease || id:ieu-a-7</td>
+<td align="left">dU3C0x</td>
+<td align="left">ieu-a-7</td>
+<td align="right">184305</td>
+<td align="left">rs505922</td>
+<td align="left">0.0334</td>
+<td align="left">0.00730</td>
+<td align="left">4.63e-06</td>
+</tr>
+<tr class="odd">
+<td align="left">ABO</td>
+<td align="left">Coronary heart disease || id:ieu-a-7</td>
+<td align="left">dU3C0x</td>
+<td align="left">ieu-a-7</td>
+<td align="right">184305</td>
+<td align="left">All - Inverse variance weighted</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">ABO</td>
+<td align="left">Coronary heart disease || id:ieu-a-7</td>
+<td align="left">dU3C0x</td>
+<td align="left">ieu-a-7</td>
+<td align="right">184305</td>
+<td align="left">All - MR Egger</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">LIFR</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">YmGdhW</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs635634</td>
+<td align="left">0.0620</td>
+<td align="left">0.01000</td>
+<td align="left">5.65e-10</td>
+</tr>
+<tr class="even">
+<td align="left">LIFR</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">YmGdhW</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">All - Inverse variance weighted</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">LIFR</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">YmGdhW</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">All - MR Egger</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">LIFR</td>
+<td align="left">Coronary heart disease || id:ieu-a-7</td>
+<td align="left">YmGdhW</td>
+<td align="left">ieu-a-7</td>
+<td align="right">184305</td>
+<td align="left">rs635634</td>
+<td align="left">-0.2572</td>
+<td align="left">0.03904</td>
+<td align="left">4.47e-11</td>
+</tr>
+<tr class="odd">
+<td align="left">LIFR</td>
+<td align="left">Coronary heart disease || id:ieu-a-7</td>
+<td align="left">YmGdhW</td>
+<td align="left">ieu-a-7</td>
+<td align="right">184305</td>
+<td align="left">All - Inverse variance weighted</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">LIFR</td>
+<td align="left">Coronary heart disease || id:ieu-a-7</td>
+<td align="left">YmGdhW</td>
+<td align="left">ieu-a-7</td>
+<td align="right">184305</td>
+<td align="left">All - MR Egger</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/invisible.html">invisible</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"harmonise"</span>,<span class="st">"result"</span>,<span class="st">"single"</span><span class="op">)</span>,
                  <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"pQTL-combined-"</span>,<span class="va">x</span>,<span class="st">".txt"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </div>
@@ -858,7 +1020,7 @@
 <h2 class="hasAnchor">
 <a href="#run_twosamplemr" class="anchor"></a>run_TwoSampleMR</h2>
 <p>The function has similiarity to <span class="citation">Dimou and Tsilidis (2018)</span>. The documentation example is quoted here,</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">TwoSampleMR</span><span class="op">)</span>
 <span class="va">outcomes</span> <span class="op">&lt;-</span> <span class="st">"ebi-a-GCST007432"</span>
 <span class="va">prot</span> <span class="op">&lt;-</span> <span class="st">"MMP.10"</span>
