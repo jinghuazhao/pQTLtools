@@ -852,21 +852,24 @@
 </table>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">single</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.delim</a></span><span class="op">(</span><span class="st">"pQTL-combined-single.txt"</span>,header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">single</span>,caption<span class="op">=</span><span class="st">"Table 2. ABO/LIFR variants and CHD/FEV1 (single)"</span><span class="op">)</span></code></pre></div>
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">single</span>,<span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span><span class="op">(</span><span class="st">"All"</span>,<span class="va">SNP</span><span class="op">)</span><span class="op">)</span>,
+             caption<span class="op">=</span><span class="st">"Table 2. ABO/LIFR variants and CHD/FEV1 (single)"</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <caption>Table 2. ABO/LIFR variants and CHD/FEV1 (single)</caption>
 <colgroup>
-<col width="5%">
-<col width="30%">
-<col width="7%">
-<col width="11%">
-<col width="7%">
-<col width="20%">
-<col width="5%">
-<col width="5%">
-<col width="5%">
+<col width="2%">
+<col width="6%">
+<col width="35%">
+<col width="9%">
+<col width="12%">
+<col width="8%">
+<col width="6%">
+<col width="6%">
+<col width="6%">
+<col width="6%">
 </colgroup>
 <thead><tr class="header">
+<th align="left"></th>
 <th align="left">exposure</th>
 <th align="left">outcome</th>
 <th align="left">id.exposure</th>
@@ -879,6 +882,7 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
+<td align="left">1</td>
 <td align="left">ABO</td>
 <td align="left">FEV1 || id:ebi-a-GCST007432</td>
 <td align="left">dU3C0x</td>
@@ -890,28 +894,7 @@
 <td align="left">1.35e-08</td>
 </tr>
 <tr class="even">
-<td align="left">ABO</td>
-<td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">dU3C0x</td>
-<td align="left">ebi-a-GCST007432</td>
-<td align="right">321047</td>
-<td align="left">All - Inverse variance weighted</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">ABO</td>
-<td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">dU3C0x</td>
-<td align="left">ebi-a-GCST007432</td>
-<td align="right">321047</td>
-<td align="left">All - MR Egger</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
+<td align="left">4</td>
 <td align="left">ABO</td>
 <td align="left">Coronary heart disease || id:ieu-a-7</td>
 <td align="left">dU3C0x</td>
@@ -923,28 +906,7 @@
 <td align="left">4.63e-06</td>
 </tr>
 <tr class="odd">
-<td align="left">ABO</td>
-<td align="left">Coronary heart disease || id:ieu-a-7</td>
-<td align="left">dU3C0x</td>
-<td align="left">ieu-a-7</td>
-<td align="right">184305</td>
-<td align="left">All - Inverse variance weighted</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">ABO</td>
-<td align="left">Coronary heart disease || id:ieu-a-7</td>
-<td align="left">dU3C0x</td>
-<td align="left">ieu-a-7</td>
-<td align="right">184305</td>
-<td align="left">All - MR Egger</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
+<td align="left">7</td>
 <td align="left">LIFR</td>
 <td align="left">FEV1 || id:ebi-a-GCST007432</td>
 <td align="left">YmGdhW</td>
@@ -956,28 +918,7 @@
 <td align="left">5.65e-10</td>
 </tr>
 <tr class="even">
-<td align="left">LIFR</td>
-<td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">YmGdhW</td>
-<td align="left">ebi-a-GCST007432</td>
-<td align="right">321047</td>
-<td align="left">All - Inverse variance weighted</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">LIFR</td>
-<td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">YmGdhW</td>
-<td align="left">ebi-a-GCST007432</td>
-<td align="right">321047</td>
-<td align="left">All - MR Egger</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
+<td align="left">10</td>
 <td align="left">LIFR</td>
 <td align="left">Coronary heart disease || id:ieu-a-7</td>
 <td align="left">YmGdhW</td>
@@ -987,28 +928,6 @@
 <td align="left">-0.2572</td>
 <td align="left">0.03904</td>
 <td align="left">4.47e-11</td>
-</tr>
-<tr class="odd">
-<td align="left">LIFR</td>
-<td align="left">Coronary heart disease || id:ieu-a-7</td>
-<td align="left">YmGdhW</td>
-<td align="left">ieu-a-7</td>
-<td align="right">184305</td>
-<td align="left">All - Inverse variance weighted</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">LIFR</td>
-<td align="left">Coronary heart disease || id:ieu-a-7</td>
-<td align="left">YmGdhW</td>
-<td align="left">ieu-a-7</td>
-<td align="right">184305</td>
-<td align="left">All - MR Egger</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
 </tr>
 </tbody>
 </table>
