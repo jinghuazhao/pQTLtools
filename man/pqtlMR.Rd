@@ -1,7 +1,7 @@
 \name{pqtlMR}
 \alias{pqtlMR}
 \title{Bidirectional pQTL-MR analysis}
-\usage{pqtlMR(pqtlMRinput, plot=TRUE, prefix="pQTL-combined-",reverse=FALSE)}
+\usage{pqtlMR(pqtlMRinput, plot=FALSE, prefix="pQTL-combined-",reverse=FALSE)}
 \description{
 Given a list of pQTLs as instrumental variables (IVs), this function performs MR analysis according to epigraphdb.
 }
