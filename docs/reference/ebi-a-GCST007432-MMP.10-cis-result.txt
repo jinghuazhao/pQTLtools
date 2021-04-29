@@ -1,0 +1,6 @@
+id.exposure	id.outcome	outcome	exposure	method	nsnp	b	se	pval
+l9vQxg	ebi-a-GCST007432	FEV1 || id:ebi-a-GCST007432	MMP.10	MR Egger	4	-0.000577	0.01001	0.959
+l9vQxg	ebi-a-GCST007432	FEV1 || id:ebi-a-GCST007432	MMP.10	Weighted median	4	 0.002002	0.00644	0.756
+l9vQxg	ebi-a-GCST007432	FEV1 || id:ebi-a-GCST007432	MMP.10	Inverse variance weighted	4	 0.002067	0.00594	0.728
+l9vQxg	ebi-a-GCST007432	FEV1 || id:ebi-a-GCST007432	MMP.10	Simple mode	4	 0.004152	0.00902	0.677
+l9vQxg	ebi-a-GCST007432	FEV1 || id:ebi-a-GCST007432	MMP.10	Weighted mode	4	 0.001134	0.00675	0.877
