@@ -19,8 +19,8 @@ import_OpenGWAS         Import OpenGWAS
 
 * MR analysis *
 
-pqtlMR                  Bidirectional pQTL-MR analysis
-run_TwoSampleMR         A generic wrapper for TwoSampleMR analysis
+pqtlMR                  Basic pQTL-MR analysis
+run_TwoSampleMR         Basic TwoSampleMR analysis
 
 * PhenoScanner Utilities *
 
