@@ -44,7 +44,15 @@ exposure <- format_data(within(d,{P=10^logP}), phenotype_col="prot", snp_col="rs
 clump <- clump_data(exposure)
 outcome <- extract_outcome_data(snps=exposure$SNP,outcomes=outcomes)
 harmonise <- harmonise_data(clump,outcome)
-run_TwoSampleMR(harmonise, plot="New", prefix=paste(outcomes,prot,type,sep="-"))
+prefix <- paste(outcomes,prot,type,sep="-")
+run_TwoSampleMR(harmonise, plot="New", prefix=prefix)
+caption <- "Table. MMP.10 variants and FEV1"
+knitr::kable(read.delim(paste0(prefix,"-result.txt"),header=TRUE),caption=paste(caption, "(result)"))
+knitr::kable(read.delim(paste0(prefix,"-heterogeneity.txt"),header=TRUE),caption=paste(caption,"(heterogeneity)"))
+knitr::kable(read.delim(paste0(prefix,"-pleiotropy.txt"),header=TRUE),caption=paste(caption,"(pleiotropy)"))
+knitr::kable(read.delim(paste0(prefix,"-single.txt"),header=TRUE),caption=paste(caption,"(single)"))
+knitr::kable(read.delim(paste0(prefix,"-loo.txt"),header=TRUE),caption=paste(caption,"(loo)"))
+for (x in c("result","heterogeneity","pleiotropy","single","loo")) unlink(paste0(prefix,"-",x,".txt"))
 }
 \note{Adapted from script by Dimou NL, Tsilidis KK}
 \keyword{utilities}
