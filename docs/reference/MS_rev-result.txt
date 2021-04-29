@@ -1,2 +1,0 @@
-id.exposure	id.outcome	outcome	exposure	method	nsnp	b	se	pval
-ieu-b-18	G6vQ58	multiple sclerosis || id:ieu-b-18	TNFB	Inverse variance weighted	2	389082	5e+06	0.938

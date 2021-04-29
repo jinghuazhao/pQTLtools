@@ -1,3 +1,0 @@
-id.exposure	id.outcome	outcome	exposure	method	Q	Q_df	Q_pval
-l9vQxg	ebi-a-GCST007432	FEV1 || id:ebi-a-GCST007432	MMP.10	MR Egger	0.114	2	0.944
-l9vQxg	ebi-a-GCST007432	FEV1 || id:ebi-a-GCST007432	MMP.10	Inverse variance weighted	0.222	3	0.974

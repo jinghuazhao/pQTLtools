@@ -1,2 +1,0 @@
-id.exposure	id.outcome	outcome	exposure	egger_intercept	se	pval
-l9vQxg	ebi-a-GCST007432	FEV1 || id:ebi-a-GCST007432	MMP.10	0.00143	0.00434	0.774
