@@ -6,14 +6,7 @@
 Given a compressed or uncompressed file containing exposure data, this function conducts a two-sample MR analysis using MR-Base.
 }
 \arguments{
-\item{TwoSampleMRinput}{A list containing the following elements to allow for greater flexibility,
-  \enumerate{
-   \item exposure result TwoSampleMR's format_data()
-   \item outcome result if TwoSampleMR's extract_outcome_data()
-   \item clump result of TwoSampleMR's clump_data()
-   \item harmonise result of TwoSampleMR's harmonise_data()
-  }
-}
+\item{TwoSampleMRinput}{Harmonised data}
 \item{plot}{one of "None", "TwoSampleMR", "New" for no, the original and (some) new plots, respectively}
 \item{prefix}{a prefix for output files}
 }
@@ -51,8 +44,7 @@ exposure <- format_data(within(d,{P=10^logP}), phenotype_col="prot", snp_col="rs
 clump <- clump_data(exposure)
 outcome <- extract_outcome_data(snps=exposure$SNP,outcomes=outcomes)
 harmonise <- harmonise_data(clump,outcome)
-input <- list(exposure,outcome,clump,harmonise)
-run_TwoSampleMR(input, plot="New", prefix=paste(outcomes,prot,type,sep="-"))
+run_TwoSampleMR(harmonise, plot="New", prefix=paste(outcomes,prot,type,sep="-"))
 }
 \note{Adapted from script by Dimou NL, Tsilidis KK}
 \keyword{utilities}

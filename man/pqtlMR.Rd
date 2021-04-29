@@ -1,18 +1,12 @@
 \name{pqtlMR}
 \alias{pqtlMR}
 \title{Bidirectional pQTL-MR analysis}
-\usage{pqtlMR(pqtlMRinput, plot=FALSE, prefix="pQTL-combined-",reverse=FALSE)}
+\usage{pqtlMR(TwoSampleMRinput, plot=FALSE, prefix="pQTL-combined-",reverse=FALSE)}
 \description{
 Given a list of pQTLs as instrumental variables (IVs), this function performs MR analysis according to epigraphdb.
 }
 \arguments{
-\item{pqtlMRinput}{A list of the following elements for greater flexibility,
-  \enumerate{
-    \item Ins result of format_data()
-    \item Ids result of extract_outcome_data()
-    \item harmonise result of harmonise_data()
-  }
-}
+\item{TwoSampleMRinput}{Harmonised data}
 \item{plot}{to produce plots}
 \item{prefix}{a prefix for output files}
 \item{reverse}{if TRUE, perform reverse MR}
@@ -46,11 +40,10 @@ ms <- read.table(file.path(find.package("pQTLtools",lib.loc=.libPaths()),"tests"
 Ins <- format_data(ms,samplesize_col="N")
 Ids <- extract_outcome_data(snps=with(Ins,SNP),outcomes="ieu-b-18")
 harmonise <- harmonise_data(Ins,Ids)
-input <- list(Ins, Ids, harmonise)
 # MR
-pqtlMR(input,prefix="MS-")
+pqtlMR(harmonise,prefix="MS-")
 # reverse MR
-pqtlMR(input,prefix="MS_rev-",reverse=TRUE)
+pqtlMR(harmonise,prefix="MS_rev-",reverse=TRUE)
 }
 \note{Adapted from script by Jie Zheng}
 \keyword{utilities}
