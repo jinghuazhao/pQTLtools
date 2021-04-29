@@ -203,22 +203,23 @@ The output are saved in the `.RDS` files.
 
 The function `pqtlMR` is derived from @zheng20. It has an attractive feature that multiple pQTLs
 can be used together for conducting MR with a list of outcomes from MR-Base. To simplify matters
-while maintaining greater flexibility, a composite input is needed to run the function which is
+while maintaining greater flexibility, steps are done a priori for a harmonised data as is
 illustrated below.
 
 ```{r, warning=FALSE}
 library(TwoSampleMR)
 ins <- read.csv(file.path(find.package("pQTLtools",lib.loc=.libPaths()),"tests","Ins.csv"))
+caption2 <- "Table 2. ABO/LIFR variants and CHD/FEV1"
+knitr::kable(ins, caption=paste(caption2,"(instruments)"))
 ids <- c("ieu-a-7","ebi-a-GCST007432")
 Ins <- format_data(ins)
 Ids <- extract_outcome_data(snps=with(Ins,SNP),outcomes=ids)
 harmonise <- harmonise_data(Ins,Ids)
 pqtlMR(harmonise)
 result <- read.delim("pQTL-combined-result.txt",header=TRUE)
-knitr::kable(result,caption="Table 2. ABO/LIFR variants and CHD/FEV1 (result)")
+knitr::kable(result,caption=paste(caption2, "(result)"))
 single <- read.delim("pQTL-combined-single.txt",header=TRUE)
-knitr::kable(subset(single,!grepl("All",SNP)),
-             caption="Table 2. ABO/LIFR variants and CHD/FEV1 (single)")
+knitr::kable(subset(single,!grepl("All",SNP)), caption=paste(caption2, "(single)"))
 invisible(sapply(c("harmonise","result","single"),
                  function(x) unlink(paste0("pQTL-combined-",x,".txt"))))
 ```
@@ -251,11 +252,12 @@ run_TwoSampleMR(harmonise, plot="New", prefix=prefix)
 The output is contained in individual `.txt` files, together with the scatter, forest, funnel and leave-one-out plots.
 
 ```{r, echo=FALSE}
-knitr::kable(read.delim(paste0(prefix,"-result.txt"),header=TRUE),caption="Table 3. MMP.10 variants and FEV1 (result)")
-knitr::kable(read.delim(paste0(prefix,"-heterogeneity.txt"),header=TRUE),caption="Table 3. MMP.10 variants and FEV1 (heterogeneity)")
-knitr::kable(read.delim(paste0(prefix,"-pleiotropy.txt"),header=TRUE),caption="Table 3. MMP.10 variants and FEV1 (pleiotropy)")
-knitr::kable(read.delim(paste0(prefix,"-single.txt"),header=TRUE),caption="Table 3. MMP.10 variants and FEV1 (single)")
-knitr::kable(read.delim(paste0(prefix,"-loo.txt"),header=TRUE),caption="Table 3. MMP.10 variants and FEV1 (loo)")
+caption3 <- "Table 3. MMP.10 variants and FEV1"
+knitr::kable(read.delim(paste0(prefix,"-result.txt"),header=TRUE),caption=paste(caption3, "(result)"))
+knitr::kable(read.delim(paste0(prefix,"-heterogeneity.txt"),header=TRUE),caption=paste(caption3,"(heterogeneity)"))
+knitr::kable(read.delim(paste0(prefix,"-pleiotropy.txt"),header=TRUE),caption=paste(caption3,"(pleiotropy)"))
+knitr::kable(read.delim(paste0(prefix,"-single.txt"),header=TRUE),caption=paste(caption3,"(single)"))
+knitr::kable(read.delim(paste0(prefix,"-loo.txt"),header=TRUE),caption=paste(caption3,"(loo)"))
 for (x in c("result","heterogeneity","pleiotropy","single","loo")) unlink(paste0(prefix,"-",x,".txt"))
 ```
 
