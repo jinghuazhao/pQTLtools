@@ -3,7 +3,7 @@
 \title{Basic pQTL-MR analysis}
 \usage{pqtlMR(TwoSampleMRinput, plot=FALSE, prefix="pQTL-combined-",reverse=FALSE)}
 \description{
-Given a list of pQTLs as instrumental variables (IVs), this function performs MR analysis according to epigraphdb.
+This function takes input based on pQTLs for MR analysis.
 }
 \arguments{
 \item{TwoSampleMRinput}{Harmonised data}

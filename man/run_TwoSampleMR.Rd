@@ -3,7 +3,7 @@
 \title{Basic TwoSampleMR analysis}
 \usage{run_TwoSampleMR(TwoSampleMRinput, plot="None", prefix)}
 \description{
-Given a compressed or uncompressed file containing exposure data, this function conducts a two-sample MR analysis using MR-Base.
+Given harmonised data, this function conducts a two-sample MR analysis.
 }
 \arguments{
 \item{TwoSampleMRinput}{Harmonised data}
