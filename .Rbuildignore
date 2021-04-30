@@ -1,4 +1,7 @@
+^\.git$
 ^\.github$
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
+^LICENSE.md$
+^.travis.yml$
