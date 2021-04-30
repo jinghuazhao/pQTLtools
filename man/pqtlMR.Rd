@@ -1,13 +1,15 @@
 \name{pqtlMR}
 \alias{pqtlMR}
 \title{Basic pQTL-MR analysis}
-\usage{pqtlMR(TwoSampleMRinput, plot=FALSE, prefix="pQTL-combined-",reverse=FALSE)}
+\usage{pqtlMR(ivs, ids, mr_plot=FALSE, prefix="pQTL-combined-",reverse=FALSE)}
 \description{
-This function takes input based on pQTLs for MR analysis.
+This function takes data intrumental variables as produced by format_data() and
+used to perform MR analysis against a list of outcomes from MR-Base.
 }
 \arguments{
-\item{TwoSampleMRinput}{Harmonised data}
-\item{plot}{to produce plots}
+\item{ivs}{Instrumental variables from format_data()}
+\item{ids}{A list of MR-Base IDs}
+\item{mr_plot}{to produce plots}
 \item{prefix}{a prefix for output files}
 \item{reverse}{if TRUE, perform reverse MR}
 }
@@ -27,23 +29,18 @@ Zheng J, et al. (2020). Phenome-wide Mendelian randomization mapping the influen
 library(TwoSampleMR)
 library(pQTLtools)
 # Original examples
-ins <- read.csv(file.path(find.package("pQTLtools",lib.loc=.libPaths()),"tests","Ins.csv"))
+f <- file.path(find.package("pQTLtools",lib.loc=.libPaths()),"tests","Ins.csv")
+ivs <- format_data(read.csv(f))
 ids <- c("ieu-a-7","ebi-a-GCST007432")
-Ins <- format_data(ins)
-Ids <- extract_outcome_data(snps=with(Ins,SNP),outcomes=ids)
-harmonise <- harmonise_data(Ins,Ids)
-input <- list(Ins, Ids, harmonise)
-pqtlMR(input,plot=FALSE)
+pqtlMR(ivs, ids, mr_plot=FALSE)
 # A bidirectional analysis
-ms <- read.table(file.path(find.package("pQTLtools",lib.loc=.libPaths()),"tests","ms.ins"),
-                 header=TRUE)
-Ins <- format_data(ms,samplesize_col="N")
-Ids <- extract_outcome_data(snps=with(Ins,SNP),outcomes="ieu-b-18")
-harmonise <- harmonise_data(Ins,Ids)
+f <- file.path(find.package("pQTLtools",lib.loc=.libPaths()),"tests","ms.ins")
+ivs <- format_data(read.table(f, header=TRUE), samplesize_col="N")
+ids <- "ieu-b-18"
 # MR
-pqtlMR(harmonise,prefix="MS-")
+pqtlMR(ivs, ids, prefix="MS-")
 # reverse MR
-pqtlMR(harmonise,prefix="MS_rev-",reverse=TRUE)
+pqtlMR(ivs, ids, ,prefix="MS_rev-",reverse=TRUE)
 }
 \note{Adapted from script by Jie Zheng}
 \keyword{utilities}
