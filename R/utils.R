@@ -370,9 +370,10 @@ mr_leaveoneout_plot2 <- function (leaveoneout_results, alpha = 0.05)
   res
 }
 
-pqtlMR <- function(TwoSampleMRinput, plot=FALSE, prefix="pQTL-combined-",reverse=FALSE)
+pqtlMR <- function(ivs, ids, mr_plot=FALSE, prefix="pQTL-combined-", reverse=FALSE)
 {
-  harmonise <- TwoSampleMRinput
+  outcome_data <- extract_outcome_data(snps=with(ivs,SNP),outcomes=ids)
+  harmonise <- harmonise_data(ivs,outcome_data)
   id.exposure <- NA
   id.outcome <- NA
   effect_allele.exposure <- NA
@@ -409,7 +410,7 @@ pqtlMR <- function(TwoSampleMRinput, plot=FALSE, prefix="pQTL-combined-",reverse
   invisible(lapply(c("harmonise","result","single"), function(x) if (exists(x))
             write.table(format(get(x),digits=3),file=paste0(prefix,x,".txt"),
                         quote=FALSE,row.names=FALSE,sep="\t")))
-  if (plot)
+  if (mr_plot)
   {
     scatter <- TwoSampleMR::mr_scatter_plot(result, harmonise)
     forest <- TwoSampleMR::mr_forest_plot(single)
@@ -418,7 +419,7 @@ pqtlMR <- function(TwoSampleMRinput, plot=FALSE, prefix="pQTL-combined-",reverse
   }
 }
 
-run_TwoSampleMR <- function(TwoSampleMRinput, plot="None", prefix="")
+run_TwoSampleMR <- function(TwoSampleMRinput, mr_plot="None", prefix="")
 {
   harmonise <- TwoSampleMRinput
   result <- heterogeneity <- pleiotropy <- single <- loo <- NULL
@@ -431,7 +432,7 @@ run_TwoSampleMR <- function(TwoSampleMRinput, plot="None", prefix="")
                    if (exists(x)) write.table(format(get(x),digits=3),
                                               file=paste0(prefix,"-",x,".txt"),
                                               quote=FALSE,row.names=FALSE,sep="\t")))
-  type <- match.arg(plot, c("None", "TwoSampleMR", "New"))
+  type <- match.arg(mr_plot, c("None", "TwoSampleMR", "New"))
   if (type == 1) return else if (type == "TwoSampleMR")
   { 
     scatter = TwoSampleMR::mr_scatter_plot(result, harmonise)
