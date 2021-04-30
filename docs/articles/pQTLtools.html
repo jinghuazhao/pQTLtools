@@ -761,9 +761,9 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     trim</span>
 <span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/find.package.html">find.package</a></span><span class="op">(</span><span class="st">"pQTLtools"</span>,lib.loc<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/libPaths.html">.libPaths</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,<span class="st">"tests"</span>,<span class="st">"Ins.csv"</span><span class="op">)</span>
-<span class="va">ins</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/TwoSampleMR/man/format_data.html">format_data</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span><span class="op">)</span>
+<span class="va">ivs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/TwoSampleMR/man/format_data.html">format_data</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span><span class="op">)</span>
 <span class="va">caption2</span> <span class="op">&lt;-</span> <span class="st">"Table 2. ABO/LIFR variants and CHD/FEV1"</span>
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">ins</span>, caption<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">caption2</span>,<span class="st">"(instruments)"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">ivs</span>, caption<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">caption2</span>,<span class="st">"(instruments)"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <caption>Table 2. ABO/LIFR variants and CHD/FEV1 (instruments)</caption>
 <colgroup>
@@ -823,7 +823,7 @@
 </table>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ieu-a-7"</span>,<span class="st">"ebi-a-GCST007432"</span><span class="op">)</span>
-<span class="fu"><a href="../reference/pqtlMR.html">pqtlMR</a></span><span class="op">(</span><span class="va">ins</span>, <span class="va">ids</span><span class="op">)</span>
+<span class="fu"><a href="../reference/pqtlMR.html">pqtlMR</a></span><span class="op">(</span><span class="va">ivs</span>, <span class="va">ids</span><span class="op">)</span>
 <span class="co">#&gt; API: public: http://gwas-api.mrcieu.ac.uk/</span>
 <span class="co">#&gt; Extracting data for 2 SNP(s) from 2 GWAS(s)</span>
 <span class="co">#&gt; Harmonising ABO (dU3C0x) and FEV1 || id:ebi-a-GCST007432 (ebi-a-GCST007432)</span>
