@@ -208,11 +208,11 @@ the `run_TwoSampleMR()` function can be used.
 ```{r, warning=FALSE}
 library(TwoSampleMR)
 f <- file.path(find.package("pQTLtools",lib.loc=.libPaths()),"tests","Ins.csv")
-ins <- format_data(read.csv(f))
+ivs <- format_data(read.csv(f))
 caption2 <- "Table 2. ABO/LIFR variants and CHD/FEV1"
-knitr::kable(ins, caption=paste(caption2,"(instruments)"))
+knitr::kable(ivs, caption=paste(caption2,"(instruments)"))
 ids <- c("ieu-a-7","ebi-a-GCST007432")
-pqtlMR(ins, ids)
+pqtlMR(ivs, ids)
 result <- read.delim("pQTL-combined-result.txt",header=TRUE)
 knitr::kable(result,caption=paste(caption2, "(result)"))
 single <- read.delim("pQTL-combined-single.txt",header=TRUE)
