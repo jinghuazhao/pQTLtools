@@ -202,8 +202,8 @@ The output are saved in the `.RDS` files.
 ## pQTL-based Mendelian Randomization (MR)
 
 The function `pqtlMR` is derived from @zheng20. It has an attractive feature that multiple pQTLs
-can be used together for conducting MR with a list of outcomes from MR-Base. For generic
-use the `run_TwoSampleMR()` function can be used.
+can be used together for conducting MR with a list of outcomes from MR-Base. For generic applications
+the `run_TwoSampleMR()` function can be used.
 
 ```{r, warning=FALSE}
 library(TwoSampleMR)
