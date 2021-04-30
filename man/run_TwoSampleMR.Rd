@@ -11,7 +11,7 @@ Given harmonised data, this function conducts a two-sample MR analysis.
 \item{prefix}{a prefix for output files}
 }
 \details{
-As TwoSampleMR includes seemingly daunting tasks, this function intends to simplify various steps in a two-sample MR. It is
+As TwoSampleMR faces seemingly perplexing options, this function intends to simplify various steps in a two-sample MR. It is
 particularly useful when a large numbher of MRs are necessary, e.g., multiple proteins and their cis/trans regions need to be examined,
 in which case prefix could direct the output to various directories.
 }
