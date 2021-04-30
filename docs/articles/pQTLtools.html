@@ -745,7 +745,7 @@
 <div id="pqtl-based-mendelian-randomization-mr" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pqtl-based-mendelian-randomization-mr" class="anchor"></a>pQTL-based Mendelian Randomization (MR)</h2>
-<p>The function <code>pqtlMR</code> is derived from <span class="citation">Zheng et al. (2020)</span>. It has an attractive feature that multiple pQTLs can be used together for conducting MR with a list of outcomes from MR-Base. To simplify matters while maintaining greater flexibility, steps are done a priori for a harmonised data as is illustrated below.</p>
+<p>The function <code>pqtlMR</code> is derived from <span class="citation">Zheng et al. (2020)</span>. It has an attractive feature that multiple pQTLs can be used together for conducting MR with a list of outcomes from MR-Base. For generic use the <code><a href="../reference/run_TwoSampleMR.html">run_TwoSampleMR()</a></code> function can be used.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">TwoSampleMR</span><span class="op">)</span>
 <span class="co">#&gt; TwoSampleMR version 0.5.6 </span>
@@ -760,24 +760,40 @@
 <span class="co">#&gt; The following object is masked from 'package:IRanges':</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     trim</span>
-<span class="va">ins</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/find.package.html">find.package</a></span><span class="op">(</span><span class="st">"pQTLtools"</span>,lib.loc<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/libPaths.html">.libPaths</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,<span class="st">"tests"</span>,<span class="st">"Ins.csv"</span><span class="op">)</span><span class="op">)</span>
+<span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/find.package.html">find.package</a></span><span class="op">(</span><span class="st">"pQTLtools"</span>,lib.loc<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/libPaths.html">.libPaths</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,<span class="st">"tests"</span>,<span class="st">"Ins.csv"</span><span class="op">)</span>
+<span class="va">ins</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/TwoSampleMR/man/format_data.html">format_data</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span><span class="op">)</span>
 <span class="va">caption2</span> <span class="op">&lt;-</span> <span class="st">"Table 2. ABO/LIFR variants and CHD/FEV1"</span>
 <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">ins</span>, caption<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">caption2</span>,<span class="st">"(instruments)"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <caption>Table 2. ABO/LIFR variants and CHD/FEV1 (instruments)</caption>
+<colgroup>
+<col width="5%">
+<col width="13%">
+<col width="13%">
+<col width="7%">
+<col width="8%">
+<col width="7%">
+<col width="8%">
+<col width="5%">
+<col width="10%">
+<col width="12%">
+<col width="7%">
+</colgroup>
 <thead><tr class="header">
-<th align="left">Phenotype</th>
 <th align="left">SNP</th>
-<th align="left">effect_allele</th>
-<th align="left">other_allele</th>
-<th align="right">eaf</th>
-<th align="right">beta</th>
-<th align="right">se</th>
-<th align="right">pval</th>
+<th align="left">effect_allele.exposure</th>
+<th align="left">other_allele.exposure</th>
+<th align="right">eaf.exposure</th>
+<th align="right">beta.exposure</th>
+<th align="right">se.exposure</th>
+<th align="right">pval.exposure</th>
+<th align="left">exposure</th>
+<th align="left">mr_keep.exposure</th>
+<th align="left">pval_origin.exposure</th>
+<th align="left">id.exposure</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">ABO</td>
 <td align="left">rs505922</td>
 <td align="left">C</td>
 <td align="left">T</td>
@@ -785,9 +801,12 @@
 <td align="right">1.298</td>
 <td align="right">0.014</td>
 <td align="right">0</td>
+<td align="left">ABO</td>
+<td align="left">TRUE</td>
+<td align="left">reported</td>
+<td align="left">dU3C0x</td>
 </tr>
 <tr class="even">
-<td align="left">LIFR</td>
 <td align="left">rs635634</td>
 <td align="left">T</td>
 <td align="left">C</td>
@@ -795,21 +814,22 @@
 <td align="right">-0.300</td>
 <td align="right">0.032</td>
 <td align="right">0</td>
+<td align="left">LIFR</td>
+<td align="left">TRUE</td>
+<td align="left">reported</td>
+<td align="left">YmGdhW</td>
 </tr>
 </tbody>
 </table>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ieu-a-7"</span>,<span class="st">"ebi-a-GCST007432"</span><span class="op">)</span>
-<span class="va">Ins</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/TwoSampleMR/man/format_data.html">format_data</a></span><span class="op">(</span><span class="va">ins</span><span class="op">)</span>
-<span class="va">Ids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/TwoSampleMR/man/extract_outcome_data.html">extract_outcome_data</a></span><span class="op">(</span>snps<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">Ins</span>,<span class="va">SNP</span><span class="op">)</span>,outcomes<span class="op">=</span><span class="va">ids</span><span class="op">)</span>
+<span class="fu"><a href="../reference/pqtlMR.html">pqtlMR</a></span><span class="op">(</span><span class="va">ins</span>, <span class="va">ids</span><span class="op">)</span>
 <span class="co">#&gt; API: public: http://gwas-api.mrcieu.ac.uk/</span>
 <span class="co">#&gt; Extracting data for 2 SNP(s) from 2 GWAS(s)</span>
-<span class="va">harmonise</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/TwoSampleMR/man/harmonise_data.html">harmonise_data</a></span><span class="op">(</span><span class="va">Ins</span>,<span class="va">Ids</span><span class="op">)</span>
 <span class="co">#&gt; Harmonising ABO (dU3C0x) and FEV1 || id:ebi-a-GCST007432 (ebi-a-GCST007432)</span>
 <span class="co">#&gt; Harmonising LIFR (YmGdhW) and FEV1 || id:ebi-a-GCST007432 (ebi-a-GCST007432)</span>
 <span class="co">#&gt; Harmonising ABO (dU3C0x) and Coronary heart disease || id:ieu-a-7 (ieu-a-7)</span>
 <span class="co">#&gt; Harmonising LIFR (YmGdhW) and Coronary heart disease || id:ieu-a-7 (ieu-a-7)</span>
-<span class="fu"><a href="../reference/pqtlMR.html">pqtlMR</a></span><span class="op">(</span><span class="va">harmonise</span><span class="op">)</span>
 <span class="co">#&gt; Analysing 'dU3C0x' on 'ebi-a-GCST007432'</span>
 <span class="co">#&gt; Analysing 'dU3C0x' on 'ieu-a-7'</span>
 <span class="co">#&gt; Analysing 'YmGdhW' on 'ebi-a-GCST007432'</span>
@@ -1000,7 +1020,7 @@
 <span class="va">harmonise</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/TwoSampleMR/man/harmonise_data.html">harmonise_data</a></span><span class="op">(</span><span class="va">clump</span>,<span class="va">outcome</span><span class="op">)</span>
 <span class="co">#&gt; Harmonising MMP.10 (ZoHewj) and FEV1 || id:ebi-a-GCST007432 (ebi-a-GCST007432)</span>
 <span class="va">prefix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">outcomes</span>,<span class="va">prot</span>,<span class="va">type</span>,sep<span class="op">=</span><span class="st">"-"</span><span class="op">)</span>
-<span class="fu"><a href="../reference/run_TwoSampleMR.html">run_TwoSampleMR</a></span><span class="op">(</span><span class="va">harmonise</span>, plot<span class="op">=</span><span class="st">"New"</span>, prefix<span class="op">=</span><span class="va">prefix</span><span class="op">)</span>
+<span class="fu"><a href="../reference/run_TwoSampleMR.html">run_TwoSampleMR</a></span><span class="op">(</span><span class="va">harmonise</span>, mr_plot<span class="op">=</span><span class="st">"New"</span>, prefix<span class="op">=</span><span class="va">prefix</span><span class="op">)</span>
 <span class="co">#&gt; Analysing 'ZoHewj' on 'ebi-a-GCST007432'</span></code></pre></div>
 <p><img src="pQTLtools/unnamed-chunk-5-1.png" width="672" style="display:block; margin: auto"><img src="pQTLtools/unnamed-chunk-5-2.png" width="672" style="display:block; margin: auto"><img src="pQTLtools/unnamed-chunk-5-3.png" width="672" style="display:block; margin: auto"><img src="pQTLtools/unnamed-chunk-5-4.png" width="672" style="display:block; margin: auto"></p>
 <p>The output is contained in individual <code>.txt</code> files, together with the scatter, forest, funnel and leave-one-out plots.</p>
