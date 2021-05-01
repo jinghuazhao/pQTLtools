@@ -455,3 +455,69 @@ make_ExpressionSet <- function(exprs,phenoData,experimentData=NULL,annotation=NU
                          experimentData=experimentData,
                          annotation="hgu95av2")
 }
+
+get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
+
+  ## A function to calculate no. of proteins i.e NA per sample (missing or <LLD per sample)
+  # arguments 'eset' and 'flagged'
+  # flagged indicates whether Flagged samples should be excluded (if they have not been already)
+
+  if(!inherits(eset, what= "ExpressionSet")){
+    stop("'eset' argument must inherit class ExpressionSet")
+  }
+
+  if (!flagged %in% c('IN','OUT')){
+    stop("'flagged' argument must be 'IN' or 'OUT")
+  }
+
+  require(stringr)
+
+  # best to cut flagged samples first at eset stage:
+  # risk of messing up if cutting from matrix, and then dont edit pData
+
+  ind.fl <- which(eset$Flagged == 'Flagged')
+
+  if (flagged == "IN"){
+
+    if (length(ind.fl) > 0){
+      panel <- unique(eset$panel)
+      mytit <- paste(toupper(panel), "panel \n (flagged retained)")
+    } else{
+      panel <- unique(eset$panel)
+      mytit <- paste(toupper(panel), "panel \n (no. flagged samples = 0)")
+    }
+
+  } else if (flagged == "OUT"){
+    # cut flagged samples
+
+    if (length(ind.fl) > 0){
+      eset <- eset[, -ind.fl] # nb annoying ESet behaviour: cols are samples
+      panel <- unique(eset$panel)
+      mytit <- paste(toupper(panel), "panel \n (flagged removed)")
+    } else{
+      panel <- unique(eset$panel)
+      mytit <- paste(toupper(panel), "panel \n (no. flagged samples = 0)")
+    }
+
+  }
+
+  E <- t(exprs(eset))
+
+  p.annot <- fData(eset)
+
+  p.annot$pc.belowLOD.new <- NA
+
+  # % proteins in each sample
+  ##miss.by.prot <- apply(E, 2, FUN=function(x) 100*sum(is.na(x))/nrow(E) )
+
+  for (i in 1:ncol(E)){
+    m <- sum( E[,i] <= p.annot$lod.max[i], na.rm=T ) # number of samples <= LLOD
+    t <- length( na.omit(E[,i] )) # denominator NB use this rather than just nrow(E) to make code robust in event of missing values
+    p.annot$pc.belowLOD.new[i] <- 100*m/t
+  }
+
+  fData(eset) <- p.annot
+
+  eset
+  #eof
+}
