@@ -68,7 +68,7 @@ lm(score~AFFX.MurIL2_at,data=as.data.frame(exampleSet))
 ## Composite plots
 
 We wish to examine the distribution of each feature via histogram, scatter and boxplot.
-One could resort to `esApply` for it simplicity as before
+One could resort to `esApply` for its simplicity as before
 
 ```r
 invisible(esApply(exampleSet[1:5],1,function(x){par(mfrow=c(3,1));boxplot(x);hist(x);plot(x)}))
@@ -77,14 +77,13 @@ but it is nicer to add feature name in the title.
 
 ```{r plots, fig.height=12}
 f <- featureNames(exampleSet[1:5])
-sapply(f,function(x) {
-     d <- t(exprs(exampleSet[x]))
-     t <- featureNames(exampleSet[x])
-     par(mfrow=c(3,1))
-     hist(d,main=t);
-     plot(d, ylab=t);
-     boxplot(d)
-   })
+invisible(sapply(f,function(x) {
+                     d <- t(exprs(exampleSet[x]))
+                     fn <- featureNames(exampleSet[x])
+                     par(mfrow=c(3,1)); hist(d,main=fn); plot(d, ylab=fn); boxplot(d)
+                   }
+          )
+)
 ```
 where the expression set is indexed using feature name(s).
 
@@ -99,7 +98,7 @@ exprs(exampleSet) <- log2.na(exprs(exampleSet))
 
 ## Limit of detection (LOD)
 
-The quantity has been shown to have a bit impact on protein abundance and therefore pQTL detection.
+The quantity has been shown to have a bit impact on protein abundance and therefore pQTL detection as is shown below.
 
 ```{r lod, fig.height=7}
 rm(list=ls())
