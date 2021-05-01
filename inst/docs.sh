@@ -13,6 +13,10 @@ function build()
     build_site()
   END
 
+  if [ -d vignettes/es ]; then
+     rm -rf docs/articles/es
+     mv vignettes/es docs/articles/
+  fi
   if [ -d vignettes/gap ]; then
      rm -rf docs/articles/gap
      mv vignettes/gap docs/articles/
