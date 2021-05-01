@@ -26,7 +26,7 @@ knitr::opts_chunk$set(
 
 We illustrate Bioconductor/Biobase's ExpressionSet with its example, see also the reference section.
 
-```{r}
+```{r, results='hide'}
 dataDirectory <- system.file("extdata", package="Biobase")
 exprsFile <- file.path(dataDirectory, "exprsData.txt")
 exprs <- as.matrix(read.table(exprsFile, header=TRUE, sep="\t", row.names=1, as.is=TRUE))
@@ -52,8 +52,51 @@ experimentData <- new("MIAME",
 exampleSet <- make_ExpressionSet(exprs,phenoData,experimentData,annotation="hgu95av2")
 data(sample.ExpressionSet)
 identical(exampleSet,sample.ExpressionSet)
-invisible(esApply(exampleSet,2,hist))
-lm(score~gender+X31739_at,data=exampleSet)
 ```
 
-Next, we use the so-called lower limit of detection to see its impact on pQTL detection.
+## data.frame
+
+The great benefit is to use the object directly as a data.frame.
+
+```{r}
+lm.result <- esApply(exampleSet,1,function(x) lm(score~x))
+beta.x <- unlist(lapply(lapply(lm.result,coef),"[",2))
+beta.x[1]
+lm(score~AFFX.MurIL2_at,data=as.data.frame(exampleSet))
+```
+
+## Composite plots
+
+We wish to examine the distribution of each feature via histogram, scatter and boxplot.
+One could resort to `esApply` for it simplicity as before
+
+```r
+invisible(esApply(exampleSet[1:5],1,function(x){par(mfrow=c(3,1));boxplot(x);hist(x);plot(x)}))
+```
+but it is nicer to add feature name in the title.
+
+```{r}
+fn <-featureNames(exampleSet[1:5])
+sapply(fn,function(x) {
+     d <- t(exprs(exampleSet[x]))
+     t <- featureNames(exampleSet[x])
+     par(mfrow=c(3,1))
+     hist(d,main=t);
+     plot(d);
+     boxplot(d)
+   })
+```
+where the expression set is indexed using feature name(s).
+
+## Data transformation
+
+Suppose we wish use log2 for those greater than zero but set those negative values to be missing.
+
+```r
+log.na <- function(x) log(ifelse(x>0, x, NA))
+exprs(exampleSet) <- log.na(exprs(exampleSet))
+```
+
+## Limit of detection (LOD)
+
+The quantity has been shown to have a bit impact on protein abundance and therefore pQTL detection.
