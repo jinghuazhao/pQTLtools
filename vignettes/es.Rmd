@@ -98,7 +98,7 @@ exprs(exampleSet) <- log2.na(exprs(exampleSet))
 
 ## Limit of detection (LOD)
 
-The quantity has been shown to have a bit impact on protein abundance and therefore pQTL detection as is shown below.
+The quantity has been shown to have a big impact on protein abundance and therefore pQTL detection as is shown below.
 
 ```{r lod, fig.height=7}
 rm(list=ls())
