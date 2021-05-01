@@ -156,8 +156,8 @@
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/invisible.html">invisible</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/Biobase/man/esApply.html">esApply</a></span><span class="op">(</span><span class="va">exampleSet</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>,<span class="fl">1</span>,<span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>;<span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>;<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>;<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">}</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>but it is nicer to add feature name in the title.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">fn</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/pkg/Biobase/man/featureNames.html">featureNames</a></span><span class="op">(</span><span class="va">exampleSet</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">fn</span>,<span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
+<code class="sourceCode R"><span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Biobase/man/featureNames.html">featureNames</a></span><span class="op">(</span><span class="va">exampleSet</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">f</span>,<span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
      <span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/Biobase/man/exprs.html">exprs</a></span><span class="op">(</span><span class="va">exampleSet</span><span class="op">[</span><span class="va">x</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>
      <span class="va">t</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Biobase/man/featureNames.html">featureNames</a></span><span class="op">(</span><span class="va">exampleSet</span><span class="op">[</span><span class="va">x</span><span class="op">]</span><span class="op">)</span>
      <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>
@@ -194,6 +194,131 @@
 <h2 class="hasAnchor">
 <a href="#limit-of-detection-lod" class="anchor"></a>Limit of detection (LOD)</h2>
 <p>The quantity has been shown to have a bit impact on protein abundance and therefore pQTL detection.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span>list<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<span class="va">HOME</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span><span class="op">(</span><span class="st">"HOME"</span><span class="op">)</span>
+<span class="va">dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">HOME</span>,<span class="st">"/rds/post_qc_data/interval/phenotype/olink_proteomics/post-qc/"</span><span class="op">)</span>
+<span class="va">rds</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">dir</span>,<span class="st">"eset.inf1.flag.out.outlier.in.rds"</span><span class="op">)</span><span class="op">)</span>
+<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pQTLtools-internal.html">get.prop.below.LLOD</a></span><span class="op">(</span><span class="va">rds</span><span class="op">)</span>
+<span class="co">#&gt; Loading required package: stringr</span>
+<span class="va">annot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Biobase/man/featureData.html">fData</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
+<span class="va">annot</span><span class="op">$</span><span class="va">MissDataProp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">"\\%$"</span>, <span class="st">""</span>, <span class="va">annot</span><span class="op">$</span><span class="va">MissDataProp</span><span class="op">)</span> <span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">annot</span><span class="op">$</span><span class="va">MissDataProp</span>, <span class="va">annot</span><span class="op">$</span><span class="va">pc.belowLOD.new</span>, xlab<span class="op">=</span><span class="st">"% &lt;LLOD in Original"</span>,
+     ylab<span class="op">=</span><span class="st">"% &lt;LLOD in post QC dataset"</span>, pch<span class="op">=</span><span class="fl">19</span><span class="op">)</span></code></pre></div>
+<p><img src="es/unnamed-chunk-4-1.png" width="700" style="display:block; margin: auto"></p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># get the proteins with no pQTL</span>
+<span class="va">INF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span><span class="op">(</span><span class="st">"INF"</span><span class="op">)</span>
+<span class="va">np</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">INF</span>, <span class="st">"work"</span>, <span class="st">"INF1.merge.nosig"</span>, sep<span class="op">=</span><span class="st">"/"</span><span class="op">)</span>, head<span class="op">=</span><span class="cn">F</span>,
+                 col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"prot"</span>, <span class="st">"uniprot.id"</span><span class="op">)</span><span class="op">)</span>
+<span class="va">annot</span><span class="op">$</span><span class="va">pQTL</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">annot</span><span class="op">)</span><span class="op">)</span>
+<span class="va">no.pQTL.ind</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">annot</span><span class="op">$</span><span class="va">uniprot.id</span> <span class="op">%in%</span> <span class="va">np</span><span class="op">$</span><span class="va">uniprot</span><span class="op">)</span>
+<span class="va">annot</span><span class="op">$</span><span class="va">pQTL</span><span class="op">[</span><span class="va">no.pQTL.ind</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"red"</span>
+<span class="va">annot</span><span class="op">$</span><span class="va">pQTL</span><span class="op">[</span><span class="op">-</span><span class="va">no.pQTL.ind</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"blue"</span>
+<span class="va">annot</span> <span class="op">&lt;-</span> <span class="va">annot</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="va">annot</span><span class="op">$</span><span class="va">pc.belowLOD.new</span>, decreasing <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>,<span class="op">]</span>
+<span class="va">annot</span> <span class="op">&lt;-</span> <span class="va">annot</span><span class="op">[</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="st">"^BDNF$"</span>, <span class="va">annot</span><span class="op">$</span><span class="va">ID</span><span class="op">)</span>,<span class="op">]</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mar<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">4</span>,<span class="fl">1</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">annot</span><span class="op">$</span><span class="va">pc.belowLOD.new</span>, col<span class="op">=</span><span class="va">annot</span><span class="op">$</span><span class="va">pQTL</span>, las<span class="op">=</span><span class="fl">1</span>,
+     ylab <span class="op">=</span> <span class="st">"% samples with very low abundance per protein"</span>, xaxt<span class="op">=</span> <span class="st">'n'</span>,
+     xlab <span class="op">=</span> <span class="st">"ordered proteins"</span>, cex<span class="op">=</span><span class="fl">0.8</span>, pch<span class="op">=</span><span class="fl">19</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span>side<span class="op">=</span><span class="fl">1</span>, at <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span>from<span class="op">=</span><span class="fl">0</span>, to<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">annot</span><span class="op">)</span>, by<span class="op">=</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="st">"topright"</span>, legend<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"no pQTL"</span>, <span class="st">"pQTL"</span><span class="op">)</span>, col<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"red"</span>,<span class="st">"blue"</span><span class="op">)</span>, pch <span class="op">=</span> <span class="fl">19</span><span class="op">)</span></code></pre></div>
+<p><img src="es/unnamed-chunk-4-2.png" width="700" style="display:block; margin: auto"></p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>width<span class="op">=</span><span class="fl">120</span><span class="op">)</span>
+<span class="va">annot</span>
+<span class="co">#&gt;                            ID dichot           olink.id uniprot.id lod.max MissDataProp pc.belowLOD.new pQTL</span>
+<span class="co">#&gt; IL.1.alpha         IL.1.alpha  FALSE     125_IL-1 alpha     P01583    4.76        99.88     99.87760098 blue</span>
+<span class="co">#&gt; IL.2                     IL.2  FALSE           127_IL-2     P60568    0.93        99.86     99.87760098  red</span>
+<span class="co">#&gt; IL.22.RA1           IL.22.RA1  FALSE      150_IL-22 RA1     Q8N6P7    1.79        99.61     99.61240310  red</span>
+<span class="co">#&gt; IFN.gamma           IFN.gamma  FALSE      178_IFN-gamma     P01579    1.40        99.53     99.53080375  red</span>
+<span class="co">#&gt; TSLP                     TSLP  FALSE           129_TSLP     Q969D9    1.80        99.49     99.49000408  red</span>
+<span class="co">#&gt; IL.33                   IL.33  FALSE          177_IL-33     O95760    1.17        98.54     98.55161159  red</span>
+<span class="co">#&gt; NRTN                     NRTN  FALSE           182_NRTN     Q99748    1.39        97.11     97.12362301  red</span>
+<span class="co">#&gt; IL.2RB                 IL.2RB  FALSE         124_IL-2RB     P14784    1.47        97.11     97.10322317  red</span>
+<span class="co">#&gt; IL.24                   IL.24  FALSE          158_IL-24     Q13007    1.95        97.13     97.08282334  red</span>
+<span class="co">#&gt; IL.20                   IL.20  FALSE          171_IL-20     Q9NYY1    1.30        96.72     96.71562627  red</span>
+<span class="co">#&gt; IL.13                   IL.13  FALSE          159_IL-13     P35225    1.71        96.51     96.55242758  red</span>
+<span class="co">#&gt; IL.15RA               IL.15RA  FALSE        148_IL-15RA     Q13261    1.18        96.10     96.16483068 blue</span>
+<span class="co">#&gt; ARTN                     ARTN  FALSE           160_ARTN     Q5T4W7    0.73        95.84     95.94043248  red</span>
+<span class="co">#&gt; IL.20RA               IL.20RA  FALSE        121_IL-20RA     Q9UHF4    0.79        95.16     95.77723378  red</span>
+<span class="co">#&gt; TNF                       TNF  FALSE            163_TNF     P01375    1.19        95.22     95.12443900  red</span>
+<span class="co">#&gt; LIF                       LIF  FALSE            181_LIF     P15018    1.45        94.90     94.81844145  red</span>
+<span class="co">#&gt; IL.4                     IL.4  FALSE           180_IL-4     P05112    1.11        93.91     94.41044472  red</span>
+<span class="co">#&gt; IL.17A                 IL.17A  FALSE         116_IL-17A     Q16552    0.97        84.73     84.70012240  red</span>
+<span class="co">#&gt; IL.17C                 IL.17C  FALSE         114_IL-17C     Q9P0M4    1.28        83.07     83.37413301 blue</span>
+<span class="co">#&gt; MCP.3                   MCP.3  FALSE          105_MCP-3     P80098    1.31        79.30     79.06976744 blue</span>
+<span class="co">#&gt; IL.5                     IL.5  FALSE           193_IL-5     P05113    1.55        78.21     77.84577723  red</span>
+<span class="co">#&gt; IL.6                     IL.6  FALSE           113_IL-6     P05231    1.97        69.06     68.62505100 blue</span>
+<span class="co">#&gt; IL.10RA               IL.10RA  FALSE        140_IL-10RA     Q13651    1.14        53.30     53.97796818  red</span>
+<span class="co">#&gt; GDNF                     GDNF  FALSE           106_GDNF     P39905    1.13        43.26     42.45206038 blue</span>
+<span class="co">#&gt; ST1A1                   ST1A1  FALSE          191_ST1A1     P50225    1.34        32.68     31.25254998 blue</span>
+<span class="co">#&gt; FGF.5                   FGF.5  FALSE          141_FGF-5     Q8NF90    1.00        31.71     30.39575683 blue</span>
+<span class="co">#&gt; NT.3                     NT.3  FALSE           188_NT-3     P20783    0.85        12.77     13.23949408 blue</span>
+<span class="co">#&gt; AXIN1                   AXIN1  FALSE          118_AXIN1     O15169    1.30        13.04     10.87311302  red</span>
+<span class="co">#&gt; IL.10                   IL.10  FALSE          162_IL-10     P22301    1.50         7.71      7.05834353 blue</span>
+<span class="co">#&gt; CCL28                   CCL28  FALSE          173_CCL28     Q9NRJ3    0.92         5.49      5.28355773  red</span>
+<span class="co">#&gt; Beta.NGF             Beta.NGF  FALSE       153_Beta-NGF     P01138    1.23         3.96      4.22276622 blue</span>
+<span class="co">#&gt; EN.RAGE               EN.RAGE  FALSE        175_EN-RAGE     P80511    1.57         3.28      3.52917177 blue</span>
+<span class="co">#&gt; SLAMF1                 SLAMF1  FALSE         134_SLAMF1     Q13291    1.55         2.13      1.52998776 blue</span>
+<span class="co">#&gt; IL.7                     IL.7  FALSE           109_IL-7     P13232    1.39         1.43      0.75479396 blue</span>
+<span class="co">#&gt; IL.8                     IL.8  FALSE           101_IL-8     P10145    3.17         0.25      0.24479804 blue</span>
+<span class="co">#&gt; SIRT2                   SIRT2  FALSE          172_SIRT2     Q8IXJ6    1.52         1.00      0.08159935 blue</span>
+<span class="co">#&gt; MMP.1                   MMP.1  FALSE          142_MMP-1     P03956    1.89         0.06      0.04079967 blue</span>
+<span class="co">#&gt; MIP.1.alpha       MIP.1.alpha  FALSE    166_MIP-1 alpha     P10147    1.92         0.06      0.02039984 blue</span>
+<span class="co">#&gt; VEGF.A                 VEGF.A  FALSE         102_VEGF-A     P15692    3.15         0.02      0.00000000 blue</span>
+<span class="co">#&gt; CDCP1                   CDCP1  FALSE          107_CDCP1     Q9H5V8    0.21         0.04      0.00000000 blue</span>
+<span class="co">#&gt; CD244                   CD244  FALSE          108_CD244     Q9BZW8    1.09         0.02      0.00000000 blue</span>
+<span class="co">#&gt; OPG                       OPG  FALSE            110_OPG     O00300    1.81         0.02      0.00000000 blue</span>
+<span class="co">#&gt; LAP.TGF.beta.1 LAP.TGF.beta.1  FALSE 111_LAP TGF-beta-1     P01137    0.86         0.02      0.00000000 blue</span>
+<span class="co">#&gt; uPA                       uPA  FALSE            112_uPA     P00749    1.75         0.02      0.00000000 blue</span>
+<span class="co">#&gt; MCP.1                   MCP.1  FALSE          115_MCP-1     P13500    1.90         0.02      0.00000000 blue</span>
+<span class="co">#&gt; CXCL11                 CXCL11  FALSE         117_CXCL11     O14625    1.40         0.02      0.00000000 blue</span>
+<span class="co">#&gt; TRAIL                   TRAIL  FALSE          120_TRAIL     P50591    1.22         0.02      0.00000000 blue</span>
+<span class="co">#&gt; CXCL9                   CXCL9  FALSE          122_CXCL9     Q07325    1.04         0.02      0.00000000 blue</span>
+<span class="co">#&gt; CST5                     CST5  FALSE           123_CST5     P28325    4.34         0.04      0.00000000 blue</span>
+<span class="co">#&gt; OSM                       OSM  FALSE            126_OSM     P13725    1.32         0.06      0.00000000 blue</span>
+<span class="co">#&gt; CXCL1                   CXCL1  FALSE          128_CXCL1     P09341    3.45         0.02      0.00000000 blue</span>
+<span class="co">#&gt; CCL4                     CCL4  FALSE           130_CCL4     P13236    2.15         0.02      0.00000000 blue</span>
+<span class="co">#&gt; CD6                       CD6  FALSE            131_CD6     Q8WWJ7    1.78         0.04      0.00000000 blue</span>
+<span class="co">#&gt; SCF                       SCF  FALSE            132_SCF     P21583    2.30         0.02      0.00000000 blue</span>
+<span class="co">#&gt; IL.18                   IL.18  FALSE          133_IL-18     Q14116    2.79         0.02      0.00000000 blue</span>
+<span class="co">#&gt; TGF.alpha           TGF.alpha  FALSE      135_TGF-alpha     P01135    0.07         0.02      0.00000000 blue</span>
+<span class="co">#&gt; MCP.4                   MCP.4  FALSE          136_MCP-4     Q99616    0.56         0.04      0.00000000 blue</span>
+<span class="co">#&gt; CCL11                   CCL11  FALSE          137_CCL11     P51671    2.09         0.02      0.00000000 blue</span>
+<span class="co">#&gt; TNFSF14               TNFSF14  FALSE        138_TNFSF14     O43557    1.81         0.02      0.00000000 blue</span>
+<span class="co">#&gt; FGF.23                 FGF.23  FALSE         139_FGF-23     Q9GZV9    0.66         0.04      0.00000000 blue</span>
+<span class="co">#&gt; LIF.R                   LIF.R  FALSE          143_LIF-R     P42702    2.08         0.04      0.00000000 blue</span>
+<span class="co">#&gt; FGF.21                 FGF.21  FALSE         144_FGF-21     Q9NSA1    1.14         0.02      0.00000000 blue</span>
+<span class="co">#&gt; CCL19                   CCL19  FALSE          145_CCL19     Q99731    2.13         0.02      0.00000000 blue</span>
+<span class="co">#&gt; IL.10RB               IL.10RB  FALSE        149_IL-10RB     Q08334    1.72         0.02      0.00000000 blue</span>
+<span class="co">#&gt; IL.18R1               IL.18R1  FALSE        151_IL-18R1     Q13478    1.21         0.02      0.00000000 blue</span>
+<span class="co">#&gt; PD.L1                   PD.L1  FALSE          152_PD-L1     Q9NZQ7    2.14         0.04      0.00000000 blue</span>
+<span class="co">#&gt; CXCL5                   CXCL5  FALSE          154_CXCL5     P42830    1.92         0.02      0.00000000 blue</span>
+<span class="co">#&gt; TRANCE                 TRANCE  FALSE         155_TRANCE     O14788    1.51         0.04      0.00000000 blue</span>
+<span class="co">#&gt; HGF                       HGF  FALSE            156_HGF     P14210    1.77         0.02      0.00000000 blue</span>
+<span class="co">#&gt; IL.12B                 IL.12B  FALSE         157_IL-12B     P29460    0.85         0.02      0.00000000 blue</span>
+<span class="co">#&gt; MMP.10                 MMP.10  FALSE         161_MMP-10     P09238    1.56         0.02      0.00000000 blue</span>
+<span class="co">#&gt; CCL23                   CCL23  FALSE          164_CCL23     P55773    2.10         0.02      0.00000000 blue</span>
+<span class="co">#&gt; CD5                       CD5  FALSE            165_CD5     P06127    1.42         0.02      0.00000000 blue</span>
+<span class="co">#&gt; Flt3L                   Flt3L  FALSE          167_Flt3L     P49771    2.12         0.02      0.00000000 blue</span>
+<span class="co">#&gt; CXCL6                   CXCL6  FALSE          168_CXCL6     P80162    1.80         0.02      0.00000000 blue</span>
+<span class="co">#&gt; CXCL10                 CXCL10  FALSE         169_CXCL10     P02778    2.03         0.02      0.00000000 blue</span>
+<span class="co">#&gt; 4E.BP1                 4E.BP1  FALSE         170_4E-BP1     Q13541    1.04         0.10      0.00000000 blue</span>
+<span class="co">#&gt; DNER                     DNER  FALSE           174_DNER    Q8NFT8     1.63         0.02      0.00000000 blue</span>
+<span class="co">#&gt; CD40                     CD40  FALSE           176_CD40     P25942    1.91         0.04      0.00000000 blue</span>
+<span class="co">#&gt; FGF.19                 FGF.19  FALSE         179_FGF-19     O95750    1.25         0.02      0.00000000 blue</span>
+<span class="co">#&gt; MCP.2                   MCP.2  FALSE          183_MCP-2     P80075    2.10         0.02      0.00000000 blue</span>
+<span class="co">#&gt; CASP.8                 CASP.8  FALSE         184_CASP-8     Q14790    1.38         0.04      0.00000000 blue</span>
+<span class="co">#&gt; CCL25                   CCL25  FALSE          185_CCL25     O15444    1.32         0.02      0.00000000 blue</span>
+<span class="co">#&gt; CX3CL1                 CX3CL1  FALSE         186_CX3CL1     P78423    1.76         0.02      0.00000000 blue</span>
+<span class="co">#&gt; TNFRSF9               TNFRSF9  FALSE        187_TNFRSF9     Q07011    1.86         0.02      0.00000000 blue</span>
+<span class="co">#&gt; TWEAK                   TWEAK  FALSE          189_TWEAK     O43508    1.78         0.02      0.00000000 blue</span>
+<span class="co">#&gt; CCL20                   CCL20  FALSE          190_CCL20     P78556    1.42         0.02      0.00000000 blue</span>
+<span class="co">#&gt; STAMPB                 STAMPB  FALSE         192_STAMPB     O95630    1.40         0.06      0.00000000  red</span>
+<span class="co">#&gt; ADA                       ADA  FALSE            194_ADA     P00813    1.80         0.04      0.00000000 blue</span>
+<span class="co">#&gt; TNFB                     TNFB  FALSE           195_TNFB     P01374    1.10         0.04      0.00000000 blue</span>
+<span class="co">#&gt; CSF.1                   CSF.1  FALSE          196_CSF-1     P09603    1.02         0.02      0.00000000 blue</span></code></pre></div>
 </div>
   </div>
 
