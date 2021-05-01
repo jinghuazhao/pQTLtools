@@ -76,8 +76,8 @@ invisible(esApply(exampleSet[1:5],1,function(x){par(mfrow=c(3,1));boxplot(x);his
 but it is nicer to add feature name in the title.
 
 ```{r, fig.height=12}
-fn <-featureNames(exampleSet[1:5])
-sapply(fn,function(x) {
+f <- featureNames(exampleSet[1:5])
+sapply(f,function(x) {
      d <- t(exprs(exampleSet[x]))
      t <- featureNames(exampleSet[x])
      par(mfrow=c(3,1))
@@ -100,3 +100,33 @@ exprs(exampleSet) <- log2.na(exprs(exampleSet))
 ## Limit of detection (LOD)
 
 The quantity has been shown to have a bit impact on protein abundance and therefore pQTL detection.
+
+```{r}
+rm(list=ls())
+HOME <- Sys.getenv("HOME")
+dir <- paste0(HOME,"/rds/post_qc_data/interval/phenotype/olink_proteomics/post-qc/")
+rds <- readRDS(paste0(dir,"eset.inf1.flag.out.outlier.in.rds"))
+x <- get.prop.below.LLOD(rds)
+annot <- fData(x)
+annot$MissDataProp <- as.numeric( gsub("\\%$", "", annot$MissDataProp) )
+plot(annot$MissDataProp, annot$pc.belowLOD.new, xlab="% <LLOD in Original",
+     ylab="% <LLOD in post QC dataset", pch=19)
+# get the proteins with no pQTL
+INF <- Sys.getenv("INF")
+np <- read.table(paste(INF, "work", "INF1.merge.nosig", sep="/"), head=F,
+                 col.names = c("prot", "uniprot.id"))
+annot$pQTL <- rep(NA, nrow(annot))
+no.pQTL.ind <- which(annot$uniprot.id %in% np$uniprot)
+annot$pQTL[no.pQTL.ind] <- "red"
+annot$pQTL[-no.pQTL.ind] <- "blue"
+annot <- annot[order(annot$pc.belowLOD.new, decreasing = T),]
+annot <- annot[-grep("^BDNF$", annot$ID),]
+par(mar=c(5,4,1,1))
+plot(annot$pc.belowLOD.new, col=annot$pQTL, las=1,
+     ylab = "% samples with very low abundance per protein", xaxt= 'n',
+     xlab = "ordered proteins", cex=0.8, pch=19)
+axis(side=1, at = seq(from=0, to=nrow(annot), by=20))
+legend("topright", legend= c("no pQTL", "pQTL"), col= c("red","blue"), pch = 19)
+options(width=120)
+annot
+```
