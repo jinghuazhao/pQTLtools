@@ -226,21 +226,9 @@
 <p><img src="es/lod-2.png" width="700" style="display:block; margin: auto"></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>width<span class="op">=</span><span class="fl">120</span><span class="op">)</span>
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">annot</span><span class="op">)</span></code></pre></div>
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">annot</span>,row.names<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <table class="table">
-<colgroup>
-<col width="13%">
-<col width="13%">
-<col width="6%">
-<col width="17%">
-<col width="10%">
-<col width="7%">
-<col width="11%">
-<col width="14%">
-<col width="4%">
-</colgroup>
 <thead><tr class="header">
-<th align="left"></th>
 <th align="left">ID</th>
 <th align="left">dichot</th>
 <th align="left">olink.id</th>
@@ -253,7 +241,6 @@
 <tbody>
 <tr class="odd">
 <td align="left">IL.1.alpha</td>
-<td align="left">IL.1.alpha</td>
 <td align="left">FALSE</td>
 <td align="left">125_IL-1 alpha</td>
 <td align="left">P01583</td>
@@ -263,7 +250,6 @@
 <td align="left">blue</td>
 </tr>
 <tr class="even">
-<td align="left">IL.2</td>
 <td align="left">IL.2</td>
 <td align="left">FALSE</td>
 <td align="left">127_IL-2</td>
@@ -275,7 +261,6 @@
 </tr>
 <tr class="odd">
 <td align="left">IL.22.RA1</td>
-<td align="left">IL.22.RA1</td>
 <td align="left">FALSE</td>
 <td align="left">150_IL-22 RA1</td>
 <td align="left">Q8N6P7</td>
@@ -285,7 +270,6 @@
 <td align="left">red</td>
 </tr>
 <tr class="even">
-<td align="left">IFN.gamma</td>
 <td align="left">IFN.gamma</td>
 <td align="left">FALSE</td>
 <td align="left">178_IFN-gamma</td>
@@ -297,7 +281,6 @@
 </tr>
 <tr class="odd">
 <td align="left">TSLP</td>
-<td align="left">TSLP</td>
 <td align="left">FALSE</td>
 <td align="left">129_TSLP</td>
 <td align="left">Q969D9</td>
@@ -307,7 +290,6 @@
 <td align="left">red</td>
 </tr>
 <tr class="even">
-<td align="left">IL.33</td>
 <td align="left">IL.33</td>
 <td align="left">FALSE</td>
 <td align="left">177_IL-33</td>
@@ -319,7 +301,6 @@
 </tr>
 <tr class="odd">
 <td align="left">NRTN</td>
-<td align="left">NRTN</td>
 <td align="left">FALSE</td>
 <td align="left">182_NRTN</td>
 <td align="left">Q99748</td>
@@ -329,7 +310,6 @@
 <td align="left">red</td>
 </tr>
 <tr class="even">
-<td align="left">IL.2RB</td>
 <td align="left">IL.2RB</td>
 <td align="left">FALSE</td>
 <td align="left">124_IL-2RB</td>
@@ -341,7 +321,6 @@
 </tr>
 <tr class="odd">
 <td align="left">IL.24</td>
-<td align="left">IL.24</td>
 <td align="left">FALSE</td>
 <td align="left">158_IL-24</td>
 <td align="left">Q13007</td>
@@ -351,7 +330,6 @@
 <td align="left">red</td>
 </tr>
 <tr class="even">
-<td align="left">IL.20</td>
 <td align="left">IL.20</td>
 <td align="left">FALSE</td>
 <td align="left">171_IL-20</td>
@@ -363,7 +341,6 @@
 </tr>
 <tr class="odd">
 <td align="left">IL.13</td>
-<td align="left">IL.13</td>
 <td align="left">FALSE</td>
 <td align="left">159_IL-13</td>
 <td align="left">P35225</td>
@@ -373,7 +350,6 @@
 <td align="left">red</td>
 </tr>
 <tr class="even">
-<td align="left">IL.15RA</td>
 <td align="left">IL.15RA</td>
 <td align="left">FALSE</td>
 <td align="left">148_IL-15RA</td>
@@ -385,7 +361,6 @@
 </tr>
 <tr class="odd">
 <td align="left">ARTN</td>
-<td align="left">ARTN</td>
 <td align="left">FALSE</td>
 <td align="left">160_ARTN</td>
 <td align="left">Q5T4W7</td>
@@ -395,7 +370,6 @@
 <td align="left">red</td>
 </tr>
 <tr class="even">
-<td align="left">IL.20RA</td>
 <td align="left">IL.20RA</td>
 <td align="left">FALSE</td>
 <td align="left">121_IL-20RA</td>
@@ -407,7 +381,6 @@
 </tr>
 <tr class="odd">
 <td align="left">TNF</td>
-<td align="left">TNF</td>
 <td align="left">FALSE</td>
 <td align="left">163_TNF</td>
 <td align="left">P01375</td>
@@ -417,7 +390,6 @@
 <td align="left">red</td>
 </tr>
 <tr class="even">
-<td align="left">LIF</td>
 <td align="left">LIF</td>
 <td align="left">FALSE</td>
 <td align="left">181_LIF</td>
@@ -429,7 +401,6 @@
 </tr>
 <tr class="odd">
 <td align="left">IL.4</td>
-<td align="left">IL.4</td>
 <td align="left">FALSE</td>
 <td align="left">180_IL-4</td>
 <td align="left">P05112</td>
@@ -439,7 +410,6 @@
 <td align="left">red</td>
 </tr>
 <tr class="even">
-<td align="left">IL.17A</td>
 <td align="left">IL.17A</td>
 <td align="left">FALSE</td>
 <td align="left">116_IL-17A</td>
@@ -451,7 +421,6 @@
 </tr>
 <tr class="odd">
 <td align="left">IL.17C</td>
-<td align="left">IL.17C</td>
 <td align="left">FALSE</td>
 <td align="left">114_IL-17C</td>
 <td align="left">Q9P0M4</td>
@@ -461,7 +430,6 @@
 <td align="left">blue</td>
 </tr>
 <tr class="even">
-<td align="left">MCP.3</td>
 <td align="left">MCP.3</td>
 <td align="left">FALSE</td>
 <td align="left">105_MCP-3</td>
@@ -473,7 +441,6 @@
 </tr>
 <tr class="odd">
 <td align="left">IL.5</td>
-<td align="left">IL.5</td>
 <td align="left">FALSE</td>
 <td align="left">193_IL-5</td>
 <td align="left">P05113</td>
@@ -483,7 +450,6 @@
 <td align="left">red</td>
 </tr>
 <tr class="even">
-<td align="left">IL.6</td>
 <td align="left">IL.6</td>
 <td align="left">FALSE</td>
 <td align="left">113_IL-6</td>
@@ -495,7 +461,6 @@
 </tr>
 <tr class="odd">
 <td align="left">IL.10RA</td>
-<td align="left">IL.10RA</td>
 <td align="left">FALSE</td>
 <td align="left">140_IL-10RA</td>
 <td align="left">Q13651</td>
@@ -505,7 +470,6 @@
 <td align="left">red</td>
 </tr>
 <tr class="even">
-<td align="left">GDNF</td>
 <td align="left">GDNF</td>
 <td align="left">FALSE</td>
 <td align="left">106_GDNF</td>
@@ -517,7 +481,6 @@
 </tr>
 <tr class="odd">
 <td align="left">ST1A1</td>
-<td align="left">ST1A1</td>
 <td align="left">FALSE</td>
 <td align="left">191_ST1A1</td>
 <td align="left">P50225</td>
@@ -527,7 +490,6 @@
 <td align="left">blue</td>
 </tr>
 <tr class="even">
-<td align="left">FGF.5</td>
 <td align="left">FGF.5</td>
 <td align="left">FALSE</td>
 <td align="left">141_FGF-5</td>
@@ -539,7 +501,6 @@
 </tr>
 <tr class="odd">
 <td align="left">NT.3</td>
-<td align="left">NT.3</td>
 <td align="left">FALSE</td>
 <td align="left">188_NT-3</td>
 <td align="left">P20783</td>
@@ -549,7 +510,6 @@
 <td align="left">blue</td>
 </tr>
 <tr class="even">
-<td align="left">AXIN1</td>
 <td align="left">AXIN1</td>
 <td align="left">FALSE</td>
 <td align="left">118_AXIN1</td>
@@ -561,7 +521,6 @@
 </tr>
 <tr class="odd">
 <td align="left">IL.10</td>
-<td align="left">IL.10</td>
 <td align="left">FALSE</td>
 <td align="left">162_IL-10</td>
 <td align="left">P22301</td>
@@ -571,7 +530,6 @@
 <td align="left">blue</td>
 </tr>
 <tr class="even">
-<td align="left">CCL28</td>
 <td align="left">CCL28</td>
 <td align="left">FALSE</td>
 <td align="left">173_CCL28</td>
@@ -583,7 +541,6 @@
 </tr>
 <tr class="odd">
 <td align="left">Beta.NGF</td>
-<td align="left">Beta.NGF</td>
 <td align="left">FALSE</td>
 <td align="left">153_Beta-NGF</td>
 <td align="left">P01138</td>
@@ -593,7 +550,6 @@
 <td align="left">blue</td>
 </tr>
 <tr class="even">
-<td align="left">EN.RAGE</td>
 <td align="left">EN.RAGE</td>
 <td align="left">FALSE</td>
 <td align="left">175_EN-RAGE</td>
@@ -605,7 +561,6 @@
 </tr>
 <tr class="odd">
 <td align="left">SLAMF1</td>
-<td align="left">SLAMF1</td>
 <td align="left">FALSE</td>
 <td align="left">134_SLAMF1</td>
 <td align="left">Q13291</td>
@@ -615,7 +570,6 @@
 <td align="left">blue</td>
 </tr>
 <tr class="even">
-<td align="left">IL.7</td>
 <td align="left">IL.7</td>
 <td align="left">FALSE</td>
 <td align="left">109_IL-7</td>
@@ -627,7 +581,6 @@
 </tr>
 <tr class="odd">
 <td align="left">IL.8</td>
-<td align="left">IL.8</td>
 <td align="left">FALSE</td>
 <td align="left">101_IL-8</td>
 <td align="left">P10145</td>
@@ -637,7 +590,6 @@
 <td align="left">blue</td>
 </tr>
 <tr class="even">
-<td align="left">SIRT2</td>
 <td align="left">SIRT2</td>
 <td align="left">FALSE</td>
 <td align="left">172_SIRT2</td>
@@ -649,7 +601,6 @@
 </tr>
 <tr class="odd">
 <td align="left">MMP.1</td>
-<td align="left">MMP.1</td>
 <td align="left">FALSE</td>
 <td align="left">142_MMP-1</td>
 <td align="left">P03956</td>
@@ -659,7 +610,6 @@
 <td align="left">blue</td>
 </tr>
 <tr class="even">
-<td align="left">MIP.1.alpha</td>
 <td align="left">MIP.1.alpha</td>
 <td align="left">FALSE</td>
 <td align="left">166_MIP-1 alpha</td>
@@ -671,7 +621,6 @@
 </tr>
 <tr class="odd">
 <td align="left">VEGF.A</td>
-<td align="left">VEGF.A</td>
 <td align="left">FALSE</td>
 <td align="left">102_VEGF-A</td>
 <td align="left">P15692</td>
@@ -681,7 +630,6 @@
 <td align="left">blue</td>
 </tr>
 <tr class="even">
-<td align="left">CDCP1</td>
 <td align="left">CDCP1</td>
 <td align="left">FALSE</td>
 <td align="left">107_CDCP1</td>
@@ -693,7 +641,6 @@
 </tr>
 <tr class="odd">
 <td align="left">CD244</td>
-<td align="left">CD244</td>
 <td align="left">FALSE</td>
 <td align="left">108_CD244</td>
 <td align="left">Q9BZW8</td>
@@ -703,7 +650,6 @@
 <td align="left">blue</td>
 </tr>
 <tr class="even">
-<td align="left">OPG</td>
 <td align="left">OPG</td>
 <td align="left">FALSE</td>
 <td align="left">110_OPG</td>
@@ -715,7 +661,6 @@
 </tr>
 <tr class="odd">
 <td align="left">LAP.TGF.beta.1</td>
-<td align="left">LAP.TGF.beta.1</td>
 <td align="left">FALSE</td>
 <td align="left">111_LAP TGF-beta-1</td>
 <td align="left">P01137</td>
@@ -725,7 +670,6 @@
 <td align="left">blue</td>
 </tr>
 <tr class="even">
-<td align="left">uPA</td>
 <td align="left">uPA</td>
 <td align="left">FALSE</td>
 <td align="left">112_uPA</td>
@@ -737,7 +681,6 @@
 </tr>
 <tr class="odd">
 <td align="left">MCP.1</td>
-<td align="left">MCP.1</td>
 <td align="left">FALSE</td>
 <td align="left">115_MCP-1</td>
 <td align="left">P13500</td>
@@ -747,7 +690,6 @@
 <td align="left">blue</td>
 </tr>
 <tr class="even">
-<td align="left">CXCL11</td>
 <td align="left">CXCL11</td>
 <td align="left">FALSE</td>
 <td align="left">117_CXCL11</td>
@@ -759,7 +701,6 @@
 </tr>
 <tr class="odd">
 <td align="left">TRAIL</td>
-<td align="left">TRAIL</td>
 <td align="left">FALSE</td>
 <td align="left">120_TRAIL</td>
 <td align="left">P50591</td>
@@ -769,7 +710,6 @@
 <td align="left">blue</td>
 </tr>
 <tr class="even">
-<td align="left">CXCL9</td>
 <td align="left">CXCL9</td>
 <td align="left">FALSE</td>
 <td align="left">122_CXCL9</td>
@@ -781,7 +721,6 @@
 </tr>
 <tr class="odd">
 <td align="left">CST5</td>
-<td align="left">CST5</td>
 <td align="left">FALSE</td>
 <td align="left">123_CST5</td>
 <td align="left">P28325</td>
@@ -791,7 +730,6 @@
 <td align="left">blue</td>
 </tr>
 <tr class="even">
-<td align="left">OSM</td>
 <td align="left">OSM</td>
 <td align="left">FALSE</td>
 <td align="left">126_OSM</td>
@@ -803,7 +741,6 @@
 </tr>
 <tr class="odd">
 <td align="left">CXCL1</td>
-<td align="left">CXCL1</td>
 <td align="left">FALSE</td>
 <td align="left">128_CXCL1</td>
 <td align="left">P09341</td>
@@ -813,7 +750,6 @@
 <td align="left">blue</td>
 </tr>
 <tr class="even">
-<td align="left">CCL4</td>
 <td align="left">CCL4</td>
 <td align="left">FALSE</td>
 <td align="left">130_CCL4</td>
@@ -825,7 +761,6 @@
 </tr>
 <tr class="odd">
 <td align="left">CD6</td>
-<td align="left">CD6</td>
 <td align="left">FALSE</td>
 <td align="left">131_CD6</td>
 <td align="left">Q8WWJ7</td>
@@ -835,7 +770,6 @@
 <td align="left">blue</td>
 </tr>
 <tr class="even">
-<td align="left">SCF</td>
 <td align="left">SCF</td>
 <td align="left">FALSE</td>
 <td align="left">132_SCF</td>
@@ -847,7 +781,6 @@
 </tr>
 <tr class="odd">
 <td align="left">IL.18</td>
-<td align="left">IL.18</td>
 <td align="left">FALSE</td>
 <td align="left">133_IL-18</td>
 <td align="left">Q14116</td>
@@ -857,7 +790,6 @@
 <td align="left">blue</td>
 </tr>
 <tr class="even">
-<td align="left">TGF.alpha</td>
 <td align="left">TGF.alpha</td>
 <td align="left">FALSE</td>
 <td align="left">135_TGF-alpha</td>
@@ -869,7 +801,6 @@
 </tr>
 <tr class="odd">
 <td align="left">MCP.4</td>
-<td align="left">MCP.4</td>
 <td align="left">FALSE</td>
 <td align="left">136_MCP-4</td>
 <td align="left">Q99616</td>
@@ -879,7 +810,6 @@
 <td align="left">blue</td>
 </tr>
 <tr class="even">
-<td align="left">CCL11</td>
 <td align="left">CCL11</td>
 <td align="left">FALSE</td>
 <td align="left">137_CCL11</td>
@@ -891,7 +821,6 @@
 </tr>
 <tr class="odd">
 <td align="left">TNFSF14</td>
-<td align="left">TNFSF14</td>
 <td align="left">FALSE</td>
 <td align="left">138_TNFSF14</td>
 <td align="left">O43557</td>
@@ -901,7 +830,6 @@
 <td align="left">blue</td>
 </tr>
 <tr class="even">
-<td align="left">FGF.23</td>
 <td align="left">FGF.23</td>
 <td align="left">FALSE</td>
 <td align="left">139_FGF-23</td>
@@ -913,7 +841,6 @@
 </tr>
 <tr class="odd">
 <td align="left">LIF.R</td>
-<td align="left">LIF.R</td>
 <td align="left">FALSE</td>
 <td align="left">143_LIF-R</td>
 <td align="left">P42702</td>
@@ -923,7 +850,6 @@
 <td align="left">blue</td>
 </tr>
 <tr class="even">
-<td align="left">FGF.21</td>
 <td align="left">FGF.21</td>
 <td align="left">FALSE</td>
 <td align="left">144_FGF-21</td>
@@ -935,7 +861,6 @@
 </tr>
 <tr class="odd">
 <td align="left">CCL19</td>
-<td align="left">CCL19</td>
 <td align="left">FALSE</td>
 <td align="left">145_CCL19</td>
 <td align="left">Q99731</td>
@@ -945,7 +870,6 @@
 <td align="left">blue</td>
 </tr>
 <tr class="even">
-<td align="left">IL.10RB</td>
 <td align="left">IL.10RB</td>
 <td align="left">FALSE</td>
 <td align="left">149_IL-10RB</td>
@@ -957,7 +881,6 @@
 </tr>
 <tr class="odd">
 <td align="left">IL.18R1</td>
-<td align="left">IL.18R1</td>
 <td align="left">FALSE</td>
 <td align="left">151_IL-18R1</td>
 <td align="left">Q13478</td>
@@ -967,7 +890,6 @@
 <td align="left">blue</td>
 </tr>
 <tr class="even">
-<td align="left">PD.L1</td>
 <td align="left">PD.L1</td>
 <td align="left">FALSE</td>
 <td align="left">152_PD-L1</td>
@@ -979,7 +901,6 @@
 </tr>
 <tr class="odd">
 <td align="left">CXCL5</td>
-<td align="left">CXCL5</td>
 <td align="left">FALSE</td>
 <td align="left">154_CXCL5</td>
 <td align="left">P42830</td>
@@ -989,7 +910,6 @@
 <td align="left">blue</td>
 </tr>
 <tr class="even">
-<td align="left">TRANCE</td>
 <td align="left">TRANCE</td>
 <td align="left">FALSE</td>
 <td align="left">155_TRANCE</td>
@@ -1001,7 +921,6 @@
 </tr>
 <tr class="odd">
 <td align="left">HGF</td>
-<td align="left">HGF</td>
 <td align="left">FALSE</td>
 <td align="left">156_HGF</td>
 <td align="left">P14210</td>
@@ -1011,7 +930,6 @@
 <td align="left">blue</td>
 </tr>
 <tr class="even">
-<td align="left">IL.12B</td>
 <td align="left">IL.12B</td>
 <td align="left">FALSE</td>
 <td align="left">157_IL-12B</td>
@@ -1023,7 +941,6 @@
 </tr>
 <tr class="odd">
 <td align="left">MMP.10</td>
-<td align="left">MMP.10</td>
 <td align="left">FALSE</td>
 <td align="left">161_MMP-10</td>
 <td align="left">P09238</td>
@@ -1033,7 +950,6 @@
 <td align="left">blue</td>
 </tr>
 <tr class="even">
-<td align="left">CCL23</td>
 <td align="left">CCL23</td>
 <td align="left">FALSE</td>
 <td align="left">164_CCL23</td>
@@ -1045,7 +961,6 @@
 </tr>
 <tr class="odd">
 <td align="left">CD5</td>
-<td align="left">CD5</td>
 <td align="left">FALSE</td>
 <td align="left">165_CD5</td>
 <td align="left">P06127</td>
@@ -1055,7 +970,6 @@
 <td align="left">blue</td>
 </tr>
 <tr class="even">
-<td align="left">Flt3L</td>
 <td align="left">Flt3L</td>
 <td align="left">FALSE</td>
 <td align="left">167_Flt3L</td>
@@ -1067,7 +981,6 @@
 </tr>
 <tr class="odd">
 <td align="left">CXCL6</td>
-<td align="left">CXCL6</td>
 <td align="left">FALSE</td>
 <td align="left">168_CXCL6</td>
 <td align="left">P80162</td>
@@ -1077,7 +990,6 @@
 <td align="left">blue</td>
 </tr>
 <tr class="even">
-<td align="left">CXCL10</td>
 <td align="left">CXCL10</td>
 <td align="left">FALSE</td>
 <td align="left">169_CXCL10</td>
@@ -1089,7 +1001,6 @@
 </tr>
 <tr class="odd">
 <td align="left">4E.BP1</td>
-<td align="left">4E.BP1</td>
 <td align="left">FALSE</td>
 <td align="left">170_4E-BP1</td>
 <td align="left">Q13541</td>
@@ -1099,7 +1010,6 @@
 <td align="left">blue</td>
 </tr>
 <tr class="even">
-<td align="left">DNER</td>
 <td align="left">DNER</td>
 <td align="left">FALSE</td>
 <td align="left">174_DNER</td>
@@ -1111,7 +1021,6 @@
 </tr>
 <tr class="odd">
 <td align="left">CD40</td>
-<td align="left">CD40</td>
 <td align="left">FALSE</td>
 <td align="left">176_CD40</td>
 <td align="left">P25942</td>
@@ -1121,7 +1030,6 @@
 <td align="left">blue</td>
 </tr>
 <tr class="even">
-<td align="left">FGF.19</td>
 <td align="left">FGF.19</td>
 <td align="left">FALSE</td>
 <td align="left">179_FGF-19</td>
@@ -1133,7 +1041,6 @@
 </tr>
 <tr class="odd">
 <td align="left">MCP.2</td>
-<td align="left">MCP.2</td>
 <td align="left">FALSE</td>
 <td align="left">183_MCP-2</td>
 <td align="left">P80075</td>
@@ -1143,7 +1050,6 @@
 <td align="left">blue</td>
 </tr>
 <tr class="even">
-<td align="left">CASP.8</td>
 <td align="left">CASP.8</td>
 <td align="left">FALSE</td>
 <td align="left">184_CASP-8</td>
@@ -1155,7 +1061,6 @@
 </tr>
 <tr class="odd">
 <td align="left">CCL25</td>
-<td align="left">CCL25</td>
 <td align="left">FALSE</td>
 <td align="left">185_CCL25</td>
 <td align="left">O15444</td>
@@ -1165,7 +1070,6 @@
 <td align="left">blue</td>
 </tr>
 <tr class="even">
-<td align="left">CX3CL1</td>
 <td align="left">CX3CL1</td>
 <td align="left">FALSE</td>
 <td align="left">186_CX3CL1</td>
@@ -1177,7 +1081,6 @@
 </tr>
 <tr class="odd">
 <td align="left">TNFRSF9</td>
-<td align="left">TNFRSF9</td>
 <td align="left">FALSE</td>
 <td align="left">187_TNFRSF9</td>
 <td align="left">Q07011</td>
@@ -1187,7 +1090,6 @@
 <td align="left">blue</td>
 </tr>
 <tr class="even">
-<td align="left">TWEAK</td>
 <td align="left">TWEAK</td>
 <td align="left">FALSE</td>
 <td align="left">189_TWEAK</td>
@@ -1199,7 +1101,6 @@
 </tr>
 <tr class="odd">
 <td align="left">CCL20</td>
-<td align="left">CCL20</td>
 <td align="left">FALSE</td>
 <td align="left">190_CCL20</td>
 <td align="left">P78556</td>
@@ -1209,7 +1110,6 @@
 <td align="left">blue</td>
 </tr>
 <tr class="even">
-<td align="left">STAMPB</td>
 <td align="left">STAMPB</td>
 <td align="left">FALSE</td>
 <td align="left">192_STAMPB</td>
@@ -1221,7 +1121,6 @@
 </tr>
 <tr class="odd">
 <td align="left">ADA</td>
-<td align="left">ADA</td>
 <td align="left">FALSE</td>
 <td align="left">194_ADA</td>
 <td align="left">P00813</td>
@@ -1232,7 +1131,6 @@
 </tr>
 <tr class="even">
 <td align="left">TNFB</td>
-<td align="left">TNFB</td>
 <td align="left">FALSE</td>
 <td align="left">195_TNFB</td>
 <td align="left">P01374</td>
@@ -1242,7 +1140,6 @@
 <td align="left">blue</td>
 </tr>
 <tr class="odd">
-<td align="left">CSF.1</td>
 <td align="left">CSF.1</td>
 <td align="left">FALSE</td>
 <td align="left">196_CSF-1</td>
