@@ -1,5 +1,5 @@
 ---
-title: "ExpressionSet object"
+title: "ExpressionSet"
 author: "Jing Hua Zhao"
 output:
   rmarkdown::html_vignette:
@@ -8,7 +8,7 @@ output:
     check_title: false
 bibliography: refs.bib
 vignette: >
-  %\VignetteIndexEntry{ExpressionSet object}
+  %\VignetteIndexEntry{ExpressionSet}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
