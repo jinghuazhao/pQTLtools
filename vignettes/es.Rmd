@@ -59,10 +59,10 @@ identical(exampleSet,sample.ExpressionSet)
 The great benefit is to use the object directly as a data.frame.
 
 ```{r}
-lm.result <- esApply(exampleSet,1,function(x) lm(score~x))
-beta.x <- unlist(lapply(lapply(lm.result,coef),"[",2))
+lm.result <- esApply(exampleSet,1,function(x) lm(score~gender+x))
+beta.x <- unlist(lapply(lapply(lm.result,coef),"[",3))
 beta.x[1]
-lm(score~AFFX.MurIL2_at,data=as.data.frame(exampleSet))
+lm(score~gender+AFFX.MurIL2_at,data=as.data.frame(exampleSet))
 ```
 
 ## Composite plots
@@ -71,12 +71,12 @@ We wish to examine the distribution of each feature via histogram, scatter and b
 One could resort to `esApply` for its simplicity as before
 
 ```r
-invisible(esApply(exampleSet[1:5],1,function(x){par(mfrow=c(3,1));boxplot(x);hist(x);plot(x)}))
+invisible(esApply(exampleSet[1:2],1,function(x){par(mfrow=c(3,1));boxplot(x);hist(x);plot(x)}))
 ```
 but it is nicer to add feature name in the title.
 
 ```{r plots, fig.height=12}
-f <- featureNames(exampleSet[1:5])
+f <- featureNames(exampleSet[1:2])
 invisible(sapply(f,function(x) {
                      d <- t(exprs(exampleSet[x]))
                      fn <- featureNames(exampleSet[x])
