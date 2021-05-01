@@ -44,7 +44,7 @@ exampleSet <- make_ExpressionSet(exprs,phenoData,experimentData,annotation="hgu9
 require(Biobase)
 data(sample.ExpressionSet)
 identical(exampleSet,sample.ExpressionSet)
-esApply(exampleSet,1,hist)
+invisible(esApply(exampleSet,2,hist))
 lm(score~gender+X31739_at,data=exampleSet)
 }
 \note{Adapted from Bioconductor/Biobase following a number of proteomic pilot studies}
