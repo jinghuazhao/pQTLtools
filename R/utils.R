@@ -447,3 +447,11 @@ run_TwoSampleMR <- function(TwoSampleMRinput, mr_plot="None", prefix="")
   }
   invisible(sapply(c(scatter,forest,funnel,leaveoneout), function(x) print(x)))
 }
+
+make_ExpressionSet <- function(exprs,phenoData,experimentData=NULL,annotation=NULL)
+{
+  Biobase::ExpressionSet(assayData=exprs,
+                         phenoData=phenoData,
+                         experimentData=experimentData,
+                         annotation="hgu95av2")
+}
