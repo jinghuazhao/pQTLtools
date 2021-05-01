@@ -101,7 +101,7 @@ exprs(exampleSet) <- log2.na(exprs(exampleSet))
 
 The quantity has been shown to have a bit impact on protein abundance and therefore pQTL detection.
 
-```{r lod, fig.height=8}
+```{r lod, fig.height=7}
 rm(list=ls())
 HOME <- Sys.getenv("HOME")
 dir <- paste0(HOME,"/rds/post_qc_data/interval/phenotype/olink_proteomics/post-qc/")
