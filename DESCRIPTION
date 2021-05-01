@@ -43,6 +43,7 @@ Suggests:
     reticulate,
     rmarkdown,
     seqminer,
+    stringr,
     tourr,
     GenomicRanges,
     IRanges
