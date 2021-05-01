@@ -3,7 +3,7 @@
 * ...
 * Add run_TwoSampleMR(), make_ExpressionSet
 * Import ggplot2
-* Suggest cowplot, gap.datasets, httr, plyr, rmarkdown, Biobase
+* Suggest cowplot, gap.datasets, httr, plyr, rmarkdown, Biobase, stringr
 * Add gap.Rmd and SCALLOP-INF.Rmd articles
 * Add LICENSE.md and README.md
 * Replace ChangeLog with NEWS.md and document with pkgdown
