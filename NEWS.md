@@ -1,9 +1,9 @@
 # pQTLtools 0.1
 
 * ...
-* Add run_TwoSampleMR()
+* Add run_TwoSampleMR(), make_ExpressionSet
 * Import ggplot2
-* Suggest cowplot, gap.datasets, httr, plyr, rmarkdown
+* Suggest cowplot, gap.datasets, httr, plyr, rmarkdown, Biobase
 * Add gap.Rmd and SCALLOP-INF.Rmd articles
 * Add LICENSE.md and README.md
 * Replace ChangeLog with NEWS.md and document with pkgdown
