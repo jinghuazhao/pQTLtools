@@ -42,6 +42,7 @@ experimentData <- new("MIAME",
   other=list(notes="Created from text files"))
 exampleSet <- make_ExpressionSet(exprs,phenoData,experimentData,annotation="hgu95av2")
 require(Biobase)
+require(pQTLtools)
 data(sample.ExpressionSet)
 identical(exampleSet,sample.ExpressionSet)
 invisible(esApply(exampleSet,2,hist))
