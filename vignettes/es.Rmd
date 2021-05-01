@@ -128,5 +128,5 @@ plot(annot$pc.belowLOD.new, col=annot$pQTL, las=1,
 axis(side=1, at = seq(from=0, to=nrow(annot), by=20))
 legend("topright", legend= c("no pQTL", "pQTL"), col= c("red","blue"), pch = 19)
 options(width=120)
-knitr::kable(annot)
+knitr::kable(annot,row.names=FALSE)
 ```
