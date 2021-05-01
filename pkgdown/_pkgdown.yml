@@ -33,6 +33,7 @@ articles:
     desc: >
       The logp, log10p, pvalue and a few other functions were developed during the SCALLOP-INF analysis (https://jinghuazhao.github.io/INF/) and are now part of R/gap,
     contents:
+    - es
     - gap
     - plogp
     - SCALLOP-INF
@@ -44,6 +45,7 @@ reference:
     - import_OpenGWAS
     - pQTLtools-internal
     - import_eQTLCatalogue
+    - make_ExpressionSet
     - pqtlMR
     - regionqueries
     - run_TwoSampleMR
