@@ -75,14 +75,14 @@ invisible(esApply(exampleSet[1:5],1,function(x){par(mfrow=c(3,1));boxplot(x);his
 ```
 but it is nicer to add feature name in the title.
 
-```{r}
+```{r, fig.height=12}
 fn <-featureNames(exampleSet[1:5])
 sapply(fn,function(x) {
      d <- t(exprs(exampleSet[x]))
      t <- featureNames(exampleSet[x])
      par(mfrow=c(3,1))
      hist(d,main=t);
-     plot(d);
+     plot(d, ylab=t);
      boxplot(d)
    })
 ```
@@ -93,8 +93,8 @@ where the expression set is indexed using feature name(s).
 Suppose we wish use log2 for those greater than zero but set those negative values to be missing.
 
 ```r
-log.na <- function(x) log(ifelse(x>0, x, NA))
-exprs(exampleSet) <- log.na(exprs(exampleSet))
+log2.na <- function(x) log2(ifelse(x>0, x, NA))
+exprs(exampleSet) <- log2.na(exprs(exampleSet))
 ```
 
 ## Limit of detection (LOD)
