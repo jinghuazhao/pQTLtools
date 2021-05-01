@@ -75,7 +75,7 @@ invisible(esApply(exampleSet[1:5],1,function(x){par(mfrow=c(3,1));boxplot(x);his
 ```
 but it is nicer to add feature name in the title.
 
-```{r, fig.height=12}
+```{r plots, fig.height=12}
 f <- featureNames(exampleSet[1:5])
 sapply(f,function(x) {
      d <- t(exprs(exampleSet[x]))
@@ -101,7 +101,7 @@ exprs(exampleSet) <- log2.na(exprs(exampleSet))
 
 The quantity has been shown to have a bit impact on protein abundance and therefore pQTL detection.
 
-```{r}
+```{r lod, fig.height=8}
 rm(list=ls())
 HOME <- Sys.getenv("HOME")
 dir <- paste0(HOME,"/rds/post_qc_data/interval/phenotype/olink_proteomics/post-qc/")
@@ -128,5 +128,5 @@ plot(annot$pc.belowLOD.new, col=annot$pQTL, las=1,
 axis(side=1, at = seq(from=0, to=nrow(annot), by=20))
 legend("topright", legend= c("no pQTL", "pQTL"), col= c("red","blue"), pch = 19)
 options(width=120)
-annot
+knitr::kable(annot)
 ```
