@@ -1,0 +1,59 @@
+---
+title: "ExpressionSet object"
+author: "Jing Hua Zhao"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+    toc_depth: 2
+    check_title: false
+bibliography: refs.bib
+vignette: >
+  %\VignetteIndexEntry{ExpressionSet object}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+set.seed(0)
+knitr::opts_chunk$set(
+  out.extra = 'style="display:block; margin: auto"',
+  fig.align = "center",
+  fig.path = "es/",
+  collapse = TRUE,
+  comment = "#>",
+  dev = "png")
+```
+
+We illustrate Bioconductor/Biobase's ExpressionSet with its example, see also the reference section.
+
+```{r}
+dataDirectory <- system.file("extdata", package="Biobase")
+exprsFile <- file.path(dataDirectory, "exprsData.txt")
+exprs <- as.matrix(read.table(exprsFile, header=TRUE, sep="\t", row.names=1, as.is=TRUE))
+pDataFile <- file.path(dataDirectory, "pData.txt")
+pData <- read.table(pDataFile, row.names=1, header=TRUE, sep="\t")
+all(rownames(pData)==colnames(exprs))
+metadata <- data.frame(labelDescription=
+                       c("Patient gender",
+                         "Case/control status",
+                         "Tumor progress on XYZ scale"),
+                       row.names=c("gender", "type", "score"))
+require(Biobase)
+require(pQTLtools)
+phenoData <- new("AnnotatedDataFrame", data=pData, varMetadata=metadata)
+experimentData <- new("MIAME",
+  name="Pierre Fermat",
+  lab="Francis Galton Lab",
+  contact="pfermat@lab.not.exist",
+  title="Smoking-Cancer Experiment",
+  abstract="An example ExpressionSet",
+  url="www.lab.not.exist",
+  other=list(notes="Created from text files"))
+exampleSet <- make_ExpressionSet(exprs,phenoData,experimentData,annotation="hgu95av2")
+data(sample.ExpressionSet)
+identical(exampleSet,sample.ExpressionSet)
+invisible(esApply(exampleSet,2,hist))
+lm(score~gender+X31739_at,data=exampleSet)
+```
+
+Next, we use the so-called lower limit of detection to see its impact on pQTL detection.
