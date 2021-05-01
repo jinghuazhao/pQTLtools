@@ -62,7 +62,7 @@ The great benefit is to use the object directly as a data.frame.
 lm.result <- esApply(exampleSet,1,function(x) lm(score~gender+x))
 beta.x <- unlist(lapply(lapply(lm.result,coef),"[",3))
 beta.x[1]
-lm(score~gender+AFFX.MurIL2_at,data=as.data.frame(exampleSet))
+lm(score~gender+AFFX.MurIL2_at,data=exampleSet)
 ```
 
 ## Composite plots
