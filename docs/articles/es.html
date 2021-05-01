@@ -151,50 +151,34 @@
 <div id="composite-plots" class="section level2">
 <h2 class="hasAnchor">
 <a href="#composite-plots" class="anchor"></a>Composite plots</h2>
-<p>We wish to examine the distribution of each feature via histogram, scatter and boxplot. One could resort to <code>esApply</code> for it simplicity as before</p>
+<p>We wish to examine the distribution of each feature via histogram, scatter and boxplot. One could resort to <code>esApply</code> for its simplicity as before</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/invisible.html">invisible</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/Biobase/man/esApply.html">esApply</a></span><span class="op">(</span><span class="va">exampleSet</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>,<span class="fl">1</span>,<span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>;<span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>;<span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>;<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">}</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>but it is nicer to add feature name in the title.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Biobase/man/featureNames.html">featureNames</a></span><span class="op">(</span><span class="va">exampleSet</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">f</span>,<span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
-     <span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/Biobase/man/exprs.html">exprs</a></span><span class="op">(</span><span class="va">exampleSet</span><span class="op">[</span><span class="va">x</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>
-     <span class="va">t</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Biobase/man/featureNames.html">featureNames</a></span><span class="op">(</span><span class="va">exampleSet</span><span class="op">[</span><span class="va">x</span><span class="op">]</span><span class="op">)</span>
-     <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>
-     <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">d</span>,main<span class="op">=</span><span class="va">t</span><span class="op">)</span>;
-     <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">d</span>, ylab<span class="op">=</span><span class="va">t</span><span class="op">)</span>;
-     <span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span>
-   <span class="op">}</span><span class="op">)</span></code></pre></div>
-<p><img src="es/plots-1.png" width="700" style="display:block; margin: auto"><img src="es/plots-2.png" width="700" style="display:block; margin: auto"><img src="es/plots-3.png" width="700" style="display:block; margin: auto"><img src="es/plots-4.png" width="700" style="display:block; margin: auto"><img src="es/plots-5.png" width="700" style="display:block; margin: auto"></p>
-<pre><code>#&gt;       AFFX-MurIL2_at   AFFX-MurIL10_at   AFFX-MurIL4_at   AFFX-MurFAS_at  
-#&gt; stats Numeric,5        Numeric,5         Numeric,5        Numeric,5       
-#&gt; n     26               26                26               26              
-#&gt; conf  Numeric,2        Numeric,2         Numeric,2        Numeric,2       
-#&gt; out   Numeric,0        Numeric,4         Numeric,0        Numeric,3       
-#&gt; group Numeric,0        Numeric,4         Numeric,0        Numeric,3       
-#&gt; names "AFFX-MurIL2_at" "AFFX-MurIL10_at" "AFFX-MurIL4_at" "AFFX-MurFAS_at"
-#&gt;       AFFX-BioB-5_at  
-#&gt; stats Numeric,5       
-#&gt; n     26              
-#&gt; conf  Numeric,2       
-#&gt; out   Numeric,0       
-#&gt; group Numeric,0       
-#&gt; names "AFFX-BioB-5_at"</code></pre>
-<p>where the expression set is indexed using feature name(s).</p>
+<span class="fu"><a href="https://rdrr.io/r/base/invisible.html">invisible</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html">sapply</a></span><span class="op">(</span><span class="va">f</span>,<span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
+                     <span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/t.html">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/Biobase/man/exprs.html">exprs</a></span><span class="op">(</span><span class="va">exampleSet</span><span class="op">[</span><span class="va">x</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>
+                     <span class="va">fn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Biobase/man/featureNames.html">featureNames</a></span><span class="op">(</span><span class="va">exampleSet</span><span class="op">[</span><span class="va">x</span><span class="op">]</span><span class="op">)</span>
+                     <span class="fu"><a href="https://rdrr.io/r/graphics/par.html">par</a></span><span class="op">(</span>mfrow<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span>; <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="va">d</span>,main<span class="op">=</span><span class="va">fn</span><span class="op">)</span>; <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">d</span>, ylab<span class="op">=</span><span class="va">fn</span><span class="op">)</span>; <span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span>
+                   <span class="op">}</span>
+          <span class="op">)</span>
+<span class="op">)</span></code></pre></div>
+<p><img src="es/plots-1.png" width="700" style="display:block; margin: auto"><img src="es/plots-2.png" width="700" style="display:block; margin: auto"><img src="es/plots-3.png" width="700" style="display:block; margin: auto"><img src="es/plots-4.png" width="700" style="display:block; margin: auto"><img src="es/plots-5.png" width="700" style="display:block; margin: auto"> where the expression set is indexed using feature name(s).</p>
 </div>
 <div id="data-transformation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#data-transformation" class="anchor"></a>Data transformation</h2>
 <p>Suppose we wish use log2 for those greater than zero but set those negative values to be missing.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">log2.na</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log2</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">x</span><span class="op">&gt;</span><span class="fl">0</span>, <span class="va">x</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/Biobase/man/exprs.html">exprs</a></span><span class="op">(</span><span class="va">exampleSet</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">log2.na</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/Biobase/man/exprs.html">exprs</a></span><span class="op">(</span><span class="va">exampleSet</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="limit-of-detection-lod" class="section level2">
 <h2 class="hasAnchor">
 <a href="#limit-of-detection-lod" class="anchor"></a>Limit of detection (LOD)</h2>
-<p>The quantity has been shown to have a bit impact on protein abundance and therefore pQTL detection.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<p>The quantity has been shown to have a bit impact on protein abundance and therefore pQTL detection as is shown below.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span>list<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 <span class="va">HOME</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span><span class="op">(</span><span class="st">"HOME"</span><span class="op">)</span>
 <span class="va">dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">HOME</span>,<span class="st">"/rds/post_qc_data/interval/phenotype/olink_proteomics/post-qc/"</span><span class="op">)</span>
@@ -206,7 +190,7 @@
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">annot</span><span class="op">$</span><span class="va">MissDataProp</span>, <span class="va">annot</span><span class="op">$</span><span class="va">pc.belowLOD.new</span>, xlab<span class="op">=</span><span class="st">"% &lt;LLOD in Original"</span>,
      ylab<span class="op">=</span><span class="st">"% &lt;LLOD in post QC dataset"</span>, pch<span class="op">=</span><span class="fl">19</span><span class="op">)</span></code></pre></div>
 <p><img src="es/lod-1.png" width="700" style="display:block; margin: auto"></p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># get the proteins with no pQTL</span>
 <span class="va">INF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span><span class="op">(</span><span class="st">"INF"</span><span class="op">)</span>
 <span class="va">np</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">INF</span>, <span class="st">"work"</span>, <span class="st">"INF1.merge.nosig"</span>, sep<span class="op">=</span><span class="st">"/"</span><span class="op">)</span>, head<span class="op">=</span><span class="cn">F</span>,
@@ -224,7 +208,7 @@
 <span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span>side<span class="op">=</span><span class="fl">1</span>, at <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span>from<span class="op">=</span><span class="fl">0</span>, to<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">annot</span><span class="op">)</span>, by<span class="op">=</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="st">"topright"</span>, legend<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"no pQTL"</span>, <span class="st">"pQTL"</span><span class="op">)</span>, col<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"red"</span>,<span class="st">"blue"</span><span class="op">)</span>, pch <span class="op">=</span> <span class="fl">19</span><span class="op">)</span></code></pre></div>
 <p><img src="es/lod-2.png" width="700" style="display:block; margin: auto"></p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>width<span class="op">=</span><span class="fl">120</span><span class="op">)</span>
 <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">annot</span>,row.names<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <table class="table">
