@@ -165,7 +165,7 @@
      <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">d</span>, ylab<span class="op">=</span><span class="va">t</span><span class="op">)</span>;
      <span class="fu"><a href="https://rdrr.io/r/graphics/boxplot.html">boxplot</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span>
    <span class="op">}</span><span class="op">)</span></code></pre></div>
-<p><img src="es/unnamed-chunk-3-1.png" width="700" style="display:block; margin: auto"><img src="es/unnamed-chunk-3-2.png" width="700" style="display:block; margin: auto"><img src="es/unnamed-chunk-3-3.png" width="700" style="display:block; margin: auto"><img src="es/unnamed-chunk-3-4.png" width="700" style="display:block; margin: auto"><img src="es/unnamed-chunk-3-5.png" width="700" style="display:block; margin: auto"></p>
+<p><img src="es/plots-1.png" width="700" style="display:block; margin: auto"><img src="es/plots-2.png" width="700" style="display:block; margin: auto"><img src="es/plots-3.png" width="700" style="display:block; margin: auto"><img src="es/plots-4.png" width="700" style="display:block; margin: auto"><img src="es/plots-5.png" width="700" style="display:block; margin: auto"></p>
 <pre><code>#&gt;       AFFX-MurIL2_at   AFFX-MurIL10_at   AFFX-MurIL4_at   AFFX-MurFAS_at  
 #&gt; stats Numeric,5        Numeric,5         Numeric,5        Numeric,5       
 #&gt; n     26               26                26               26              
@@ -205,7 +205,7 @@
 <span class="va">annot</span><span class="op">$</span><span class="va">MissDataProp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">"\\%$"</span>, <span class="st">""</span>, <span class="va">annot</span><span class="op">$</span><span class="va">MissDataProp</span><span class="op">)</span> <span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">annot</span><span class="op">$</span><span class="va">MissDataProp</span>, <span class="va">annot</span><span class="op">$</span><span class="va">pc.belowLOD.new</span>, xlab<span class="op">=</span><span class="st">"% &lt;LLOD in Original"</span>,
      ylab<span class="op">=</span><span class="st">"% &lt;LLOD in post QC dataset"</span>, pch<span class="op">=</span><span class="fl">19</span><span class="op">)</span></code></pre></div>
-<p><img src="es/unnamed-chunk-4-1.png" width="700" style="display:block; margin: auto"></p>
+<p><img src="es/lod-1.png" width="700" style="display:block; margin: auto"></p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># get the proteins with no pQTL</span>
 <span class="va">INF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span><span class="op">(</span><span class="st">"INF"</span><span class="op">)</span>
@@ -223,102 +223,1037 @@
      xlab <span class="op">=</span> <span class="st">"ordered proteins"</span>, cex<span class="op">=</span><span class="fl">0.8</span>, pch<span class="op">=</span><span class="fl">19</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/axis.html">axis</a></span><span class="op">(</span>side<span class="op">=</span><span class="fl">1</span>, at <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span>from<span class="op">=</span><span class="fl">0</span>, to<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">annot</span><span class="op">)</span>, by<span class="op">=</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/legend.html">legend</a></span><span class="op">(</span><span class="st">"topright"</span>, legend<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"no pQTL"</span>, <span class="st">"pQTL"</span><span class="op">)</span>, col<span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"red"</span>,<span class="st">"blue"</span><span class="op">)</span>, pch <span class="op">=</span> <span class="fl">19</span><span class="op">)</span></code></pre></div>
-<p><img src="es/unnamed-chunk-4-2.png" width="700" style="display:block; margin: auto"></p>
+<p><img src="es/lod-2.png" width="700" style="display:block; margin: auto"></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>width<span class="op">=</span><span class="fl">120</span><span class="op">)</span>
-<span class="va">annot</span>
-<span class="co">#&gt;                            ID dichot           olink.id uniprot.id lod.max MissDataProp pc.belowLOD.new pQTL</span>
-<span class="co">#&gt; IL.1.alpha         IL.1.alpha  FALSE     125_IL-1 alpha     P01583    4.76        99.88     99.87760098 blue</span>
-<span class="co">#&gt; IL.2                     IL.2  FALSE           127_IL-2     P60568    0.93        99.86     99.87760098  red</span>
-<span class="co">#&gt; IL.22.RA1           IL.22.RA1  FALSE      150_IL-22 RA1     Q8N6P7    1.79        99.61     99.61240310  red</span>
-<span class="co">#&gt; IFN.gamma           IFN.gamma  FALSE      178_IFN-gamma     P01579    1.40        99.53     99.53080375  red</span>
-<span class="co">#&gt; TSLP                     TSLP  FALSE           129_TSLP     Q969D9    1.80        99.49     99.49000408  red</span>
-<span class="co">#&gt; IL.33                   IL.33  FALSE          177_IL-33     O95760    1.17        98.54     98.55161159  red</span>
-<span class="co">#&gt; NRTN                     NRTN  FALSE           182_NRTN     Q99748    1.39        97.11     97.12362301  red</span>
-<span class="co">#&gt; IL.2RB                 IL.2RB  FALSE         124_IL-2RB     P14784    1.47        97.11     97.10322317  red</span>
-<span class="co">#&gt; IL.24                   IL.24  FALSE          158_IL-24     Q13007    1.95        97.13     97.08282334  red</span>
-<span class="co">#&gt; IL.20                   IL.20  FALSE          171_IL-20     Q9NYY1    1.30        96.72     96.71562627  red</span>
-<span class="co">#&gt; IL.13                   IL.13  FALSE          159_IL-13     P35225    1.71        96.51     96.55242758  red</span>
-<span class="co">#&gt; IL.15RA               IL.15RA  FALSE        148_IL-15RA     Q13261    1.18        96.10     96.16483068 blue</span>
-<span class="co">#&gt; ARTN                     ARTN  FALSE           160_ARTN     Q5T4W7    0.73        95.84     95.94043248  red</span>
-<span class="co">#&gt; IL.20RA               IL.20RA  FALSE        121_IL-20RA     Q9UHF4    0.79        95.16     95.77723378  red</span>
-<span class="co">#&gt; TNF                       TNF  FALSE            163_TNF     P01375    1.19        95.22     95.12443900  red</span>
-<span class="co">#&gt; LIF                       LIF  FALSE            181_LIF     P15018    1.45        94.90     94.81844145  red</span>
-<span class="co">#&gt; IL.4                     IL.4  FALSE           180_IL-4     P05112    1.11        93.91     94.41044472  red</span>
-<span class="co">#&gt; IL.17A                 IL.17A  FALSE         116_IL-17A     Q16552    0.97        84.73     84.70012240  red</span>
-<span class="co">#&gt; IL.17C                 IL.17C  FALSE         114_IL-17C     Q9P0M4    1.28        83.07     83.37413301 blue</span>
-<span class="co">#&gt; MCP.3                   MCP.3  FALSE          105_MCP-3     P80098    1.31        79.30     79.06976744 blue</span>
-<span class="co">#&gt; IL.5                     IL.5  FALSE           193_IL-5     P05113    1.55        78.21     77.84577723  red</span>
-<span class="co">#&gt; IL.6                     IL.6  FALSE           113_IL-6     P05231    1.97        69.06     68.62505100 blue</span>
-<span class="co">#&gt; IL.10RA               IL.10RA  FALSE        140_IL-10RA     Q13651    1.14        53.30     53.97796818  red</span>
-<span class="co">#&gt; GDNF                     GDNF  FALSE           106_GDNF     P39905    1.13        43.26     42.45206038 blue</span>
-<span class="co">#&gt; ST1A1                   ST1A1  FALSE          191_ST1A1     P50225    1.34        32.68     31.25254998 blue</span>
-<span class="co">#&gt; FGF.5                   FGF.5  FALSE          141_FGF-5     Q8NF90    1.00        31.71     30.39575683 blue</span>
-<span class="co">#&gt; NT.3                     NT.3  FALSE           188_NT-3     P20783    0.85        12.77     13.23949408 blue</span>
-<span class="co">#&gt; AXIN1                   AXIN1  FALSE          118_AXIN1     O15169    1.30        13.04     10.87311302  red</span>
-<span class="co">#&gt; IL.10                   IL.10  FALSE          162_IL-10     P22301    1.50         7.71      7.05834353 blue</span>
-<span class="co">#&gt; CCL28                   CCL28  FALSE          173_CCL28     Q9NRJ3    0.92         5.49      5.28355773  red</span>
-<span class="co">#&gt; Beta.NGF             Beta.NGF  FALSE       153_Beta-NGF     P01138    1.23         3.96      4.22276622 blue</span>
-<span class="co">#&gt; EN.RAGE               EN.RAGE  FALSE        175_EN-RAGE     P80511    1.57         3.28      3.52917177 blue</span>
-<span class="co">#&gt; SLAMF1                 SLAMF1  FALSE         134_SLAMF1     Q13291    1.55         2.13      1.52998776 blue</span>
-<span class="co">#&gt; IL.7                     IL.7  FALSE           109_IL-7     P13232    1.39         1.43      0.75479396 blue</span>
-<span class="co">#&gt; IL.8                     IL.8  FALSE           101_IL-8     P10145    3.17         0.25      0.24479804 blue</span>
-<span class="co">#&gt; SIRT2                   SIRT2  FALSE          172_SIRT2     Q8IXJ6    1.52         1.00      0.08159935 blue</span>
-<span class="co">#&gt; MMP.1                   MMP.1  FALSE          142_MMP-1     P03956    1.89         0.06      0.04079967 blue</span>
-<span class="co">#&gt; MIP.1.alpha       MIP.1.alpha  FALSE    166_MIP-1 alpha     P10147    1.92         0.06      0.02039984 blue</span>
-<span class="co">#&gt; VEGF.A                 VEGF.A  FALSE         102_VEGF-A     P15692    3.15         0.02      0.00000000 blue</span>
-<span class="co">#&gt; CDCP1                   CDCP1  FALSE          107_CDCP1     Q9H5V8    0.21         0.04      0.00000000 blue</span>
-<span class="co">#&gt; CD244                   CD244  FALSE          108_CD244     Q9BZW8    1.09         0.02      0.00000000 blue</span>
-<span class="co">#&gt; OPG                       OPG  FALSE            110_OPG     O00300    1.81         0.02      0.00000000 blue</span>
-<span class="co">#&gt; LAP.TGF.beta.1 LAP.TGF.beta.1  FALSE 111_LAP TGF-beta-1     P01137    0.86         0.02      0.00000000 blue</span>
-<span class="co">#&gt; uPA                       uPA  FALSE            112_uPA     P00749    1.75         0.02      0.00000000 blue</span>
-<span class="co">#&gt; MCP.1                   MCP.1  FALSE          115_MCP-1     P13500    1.90         0.02      0.00000000 blue</span>
-<span class="co">#&gt; CXCL11                 CXCL11  FALSE         117_CXCL11     O14625    1.40         0.02      0.00000000 blue</span>
-<span class="co">#&gt; TRAIL                   TRAIL  FALSE          120_TRAIL     P50591    1.22         0.02      0.00000000 blue</span>
-<span class="co">#&gt; CXCL9                   CXCL9  FALSE          122_CXCL9     Q07325    1.04         0.02      0.00000000 blue</span>
-<span class="co">#&gt; CST5                     CST5  FALSE           123_CST5     P28325    4.34         0.04      0.00000000 blue</span>
-<span class="co">#&gt; OSM                       OSM  FALSE            126_OSM     P13725    1.32         0.06      0.00000000 blue</span>
-<span class="co">#&gt; CXCL1                   CXCL1  FALSE          128_CXCL1     P09341    3.45         0.02      0.00000000 blue</span>
-<span class="co">#&gt; CCL4                     CCL4  FALSE           130_CCL4     P13236    2.15         0.02      0.00000000 blue</span>
-<span class="co">#&gt; CD6                       CD6  FALSE            131_CD6     Q8WWJ7    1.78         0.04      0.00000000 blue</span>
-<span class="co">#&gt; SCF                       SCF  FALSE            132_SCF     P21583    2.30         0.02      0.00000000 blue</span>
-<span class="co">#&gt; IL.18                   IL.18  FALSE          133_IL-18     Q14116    2.79         0.02      0.00000000 blue</span>
-<span class="co">#&gt; TGF.alpha           TGF.alpha  FALSE      135_TGF-alpha     P01135    0.07         0.02      0.00000000 blue</span>
-<span class="co">#&gt; MCP.4                   MCP.4  FALSE          136_MCP-4     Q99616    0.56         0.04      0.00000000 blue</span>
-<span class="co">#&gt; CCL11                   CCL11  FALSE          137_CCL11     P51671    2.09         0.02      0.00000000 blue</span>
-<span class="co">#&gt; TNFSF14               TNFSF14  FALSE        138_TNFSF14     O43557    1.81         0.02      0.00000000 blue</span>
-<span class="co">#&gt; FGF.23                 FGF.23  FALSE         139_FGF-23     Q9GZV9    0.66         0.04      0.00000000 blue</span>
-<span class="co">#&gt; LIF.R                   LIF.R  FALSE          143_LIF-R     P42702    2.08         0.04      0.00000000 blue</span>
-<span class="co">#&gt; FGF.21                 FGF.21  FALSE         144_FGF-21     Q9NSA1    1.14         0.02      0.00000000 blue</span>
-<span class="co">#&gt; CCL19                   CCL19  FALSE          145_CCL19     Q99731    2.13         0.02      0.00000000 blue</span>
-<span class="co">#&gt; IL.10RB               IL.10RB  FALSE        149_IL-10RB     Q08334    1.72         0.02      0.00000000 blue</span>
-<span class="co">#&gt; IL.18R1               IL.18R1  FALSE        151_IL-18R1     Q13478    1.21         0.02      0.00000000 blue</span>
-<span class="co">#&gt; PD.L1                   PD.L1  FALSE          152_PD-L1     Q9NZQ7    2.14         0.04      0.00000000 blue</span>
-<span class="co">#&gt; CXCL5                   CXCL5  FALSE          154_CXCL5     P42830    1.92         0.02      0.00000000 blue</span>
-<span class="co">#&gt; TRANCE                 TRANCE  FALSE         155_TRANCE     O14788    1.51         0.04      0.00000000 blue</span>
-<span class="co">#&gt; HGF                       HGF  FALSE            156_HGF     P14210    1.77         0.02      0.00000000 blue</span>
-<span class="co">#&gt; IL.12B                 IL.12B  FALSE         157_IL-12B     P29460    0.85         0.02      0.00000000 blue</span>
-<span class="co">#&gt; MMP.10                 MMP.10  FALSE         161_MMP-10     P09238    1.56         0.02      0.00000000 blue</span>
-<span class="co">#&gt; CCL23                   CCL23  FALSE          164_CCL23     P55773    2.10         0.02      0.00000000 blue</span>
-<span class="co">#&gt; CD5                       CD5  FALSE            165_CD5     P06127    1.42         0.02      0.00000000 blue</span>
-<span class="co">#&gt; Flt3L                   Flt3L  FALSE          167_Flt3L     P49771    2.12         0.02      0.00000000 blue</span>
-<span class="co">#&gt; CXCL6                   CXCL6  FALSE          168_CXCL6     P80162    1.80         0.02      0.00000000 blue</span>
-<span class="co">#&gt; CXCL10                 CXCL10  FALSE         169_CXCL10     P02778    2.03         0.02      0.00000000 blue</span>
-<span class="co">#&gt; 4E.BP1                 4E.BP1  FALSE         170_4E-BP1     Q13541    1.04         0.10      0.00000000 blue</span>
-<span class="co">#&gt; DNER                     DNER  FALSE           174_DNER    Q8NFT8     1.63         0.02      0.00000000 blue</span>
-<span class="co">#&gt; CD40                     CD40  FALSE           176_CD40     P25942    1.91         0.04      0.00000000 blue</span>
-<span class="co">#&gt; FGF.19                 FGF.19  FALSE         179_FGF-19     O95750    1.25         0.02      0.00000000 blue</span>
-<span class="co">#&gt; MCP.2                   MCP.2  FALSE          183_MCP-2     P80075    2.10         0.02      0.00000000 blue</span>
-<span class="co">#&gt; CASP.8                 CASP.8  FALSE         184_CASP-8     Q14790    1.38         0.04      0.00000000 blue</span>
-<span class="co">#&gt; CCL25                   CCL25  FALSE          185_CCL25     O15444    1.32         0.02      0.00000000 blue</span>
-<span class="co">#&gt; CX3CL1                 CX3CL1  FALSE         186_CX3CL1     P78423    1.76         0.02      0.00000000 blue</span>
-<span class="co">#&gt; TNFRSF9               TNFRSF9  FALSE        187_TNFRSF9     Q07011    1.86         0.02      0.00000000 blue</span>
-<span class="co">#&gt; TWEAK                   TWEAK  FALSE          189_TWEAK     O43508    1.78         0.02      0.00000000 blue</span>
-<span class="co">#&gt; CCL20                   CCL20  FALSE          190_CCL20     P78556    1.42         0.02      0.00000000 blue</span>
-<span class="co">#&gt; STAMPB                 STAMPB  FALSE         192_STAMPB     O95630    1.40         0.06      0.00000000  red</span>
-<span class="co">#&gt; ADA                       ADA  FALSE            194_ADA     P00813    1.80         0.04      0.00000000 blue</span>
-<span class="co">#&gt; TNFB                     TNFB  FALSE           195_TNFB     P01374    1.10         0.04      0.00000000 blue</span>
-<span class="co">#&gt; CSF.1                   CSF.1  FALSE          196_CSF-1     P09603    1.02         0.02      0.00000000 blue</span></code></pre></div>
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">annot</span><span class="op">)</span></code></pre></div>
+<table class="table">
+<colgroup>
+<col width="13%">
+<col width="13%">
+<col width="6%">
+<col width="17%">
+<col width="10%">
+<col width="7%">
+<col width="11%">
+<col width="14%">
+<col width="4%">
+</colgroup>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="left">ID</th>
+<th align="left">dichot</th>
+<th align="left">olink.id</th>
+<th align="left">uniprot.id</th>
+<th align="right">lod.max</th>
+<th align="right">MissDataProp</th>
+<th align="right">pc.belowLOD.new</th>
+<th align="left">pQTL</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">IL.1.alpha</td>
+<td align="left">IL.1.alpha</td>
+<td align="left">FALSE</td>
+<td align="left">125_IL-1 alpha</td>
+<td align="left">P01583</td>
+<td align="right">4.76</td>
+<td align="right">99.88</td>
+<td align="right">99.8776010</td>
+<td align="left">blue</td>
+</tr>
+<tr class="even">
+<td align="left">IL.2</td>
+<td align="left">IL.2</td>
+<td align="left">FALSE</td>
+<td align="left">127_IL-2</td>
+<td align="left">P60568</td>
+<td align="right">0.93</td>
+<td align="right">99.86</td>
+<td align="right">99.8776010</td>
+<td align="left">red</td>
+</tr>
+<tr class="odd">
+<td align="left">IL.22.RA1</td>
+<td align="left">IL.22.RA1</td>
+<td align="left">FALSE</td>
+<td align="left">150_IL-22 RA1</td>
+<td align="left">Q8N6P7</td>
+<td align="right">1.79</td>
+<td align="right">99.61</td>
+<td align="right">99.6124031</td>
+<td align="left">red</td>
+</tr>
+<tr class="even">
+<td align="left">IFN.gamma</td>
+<td align="left">IFN.gamma</td>
+<td align="left">FALSE</td>
+<td align="left">178_IFN-gamma</td>
+<td align="left">P01579</td>
+<td align="right">1.40</td>
+<td align="right">99.53</td>
+<td align="right">99.5308038</td>
+<td align="left">red</td>
+</tr>
+<tr class="odd">
+<td align="left">TSLP</td>
+<td align="left">TSLP</td>
+<td align="left">FALSE</td>
+<td align="left">129_TSLP</td>
+<td align="left">Q969D9</td>
+<td align="right">1.80</td>
+<td align="right">99.49</td>
+<td align="right">99.4900041</td>
+<td align="left">red</td>
+</tr>
+<tr class="even">
+<td align="left">IL.33</td>
+<td align="left">IL.33</td>
+<td align="left">FALSE</td>
+<td align="left">177_IL-33</td>
+<td align="left">O95760</td>
+<td align="right">1.17</td>
+<td align="right">98.54</td>
+<td align="right">98.5516116</td>
+<td align="left">red</td>
+</tr>
+<tr class="odd">
+<td align="left">NRTN</td>
+<td align="left">NRTN</td>
+<td align="left">FALSE</td>
+<td align="left">182_NRTN</td>
+<td align="left">Q99748</td>
+<td align="right">1.39</td>
+<td align="right">97.11</td>
+<td align="right">97.1236230</td>
+<td align="left">red</td>
+</tr>
+<tr class="even">
+<td align="left">IL.2RB</td>
+<td align="left">IL.2RB</td>
+<td align="left">FALSE</td>
+<td align="left">124_IL-2RB</td>
+<td align="left">P14784</td>
+<td align="right">1.47</td>
+<td align="right">97.11</td>
+<td align="right">97.1032232</td>
+<td align="left">red</td>
+</tr>
+<tr class="odd">
+<td align="left">IL.24</td>
+<td align="left">IL.24</td>
+<td align="left">FALSE</td>
+<td align="left">158_IL-24</td>
+<td align="left">Q13007</td>
+<td align="right">1.95</td>
+<td align="right">97.13</td>
+<td align="right">97.0828233</td>
+<td align="left">red</td>
+</tr>
+<tr class="even">
+<td align="left">IL.20</td>
+<td align="left">IL.20</td>
+<td align="left">FALSE</td>
+<td align="left">171_IL-20</td>
+<td align="left">Q9NYY1</td>
+<td align="right">1.30</td>
+<td align="right">96.72</td>
+<td align="right">96.7156263</td>
+<td align="left">red</td>
+</tr>
+<tr class="odd">
+<td align="left">IL.13</td>
+<td align="left">IL.13</td>
+<td align="left">FALSE</td>
+<td align="left">159_IL-13</td>
+<td align="left">P35225</td>
+<td align="right">1.71</td>
+<td align="right">96.51</td>
+<td align="right">96.5524276</td>
+<td align="left">red</td>
+</tr>
+<tr class="even">
+<td align="left">IL.15RA</td>
+<td align="left">IL.15RA</td>
+<td align="left">FALSE</td>
+<td align="left">148_IL-15RA</td>
+<td align="left">Q13261</td>
+<td align="right">1.18</td>
+<td align="right">96.10</td>
+<td align="right">96.1648307</td>
+<td align="left">blue</td>
+</tr>
+<tr class="odd">
+<td align="left">ARTN</td>
+<td align="left">ARTN</td>
+<td align="left">FALSE</td>
+<td align="left">160_ARTN</td>
+<td align="left">Q5T4W7</td>
+<td align="right">0.73</td>
+<td align="right">95.84</td>
+<td align="right">95.9404325</td>
+<td align="left">red</td>
+</tr>
+<tr class="even">
+<td align="left">IL.20RA</td>
+<td align="left">IL.20RA</td>
+<td align="left">FALSE</td>
+<td align="left">121_IL-20RA</td>
+<td align="left">Q9UHF4</td>
+<td align="right">0.79</td>
+<td align="right">95.16</td>
+<td align="right">95.7772338</td>
+<td align="left">red</td>
+</tr>
+<tr class="odd">
+<td align="left">TNF</td>
+<td align="left">TNF</td>
+<td align="left">FALSE</td>
+<td align="left">163_TNF</td>
+<td align="left">P01375</td>
+<td align="right">1.19</td>
+<td align="right">95.22</td>
+<td align="right">95.1244390</td>
+<td align="left">red</td>
+</tr>
+<tr class="even">
+<td align="left">LIF</td>
+<td align="left">LIF</td>
+<td align="left">FALSE</td>
+<td align="left">181_LIF</td>
+<td align="left">P15018</td>
+<td align="right">1.45</td>
+<td align="right">94.90</td>
+<td align="right">94.8184415</td>
+<td align="left">red</td>
+</tr>
+<tr class="odd">
+<td align="left">IL.4</td>
+<td align="left">IL.4</td>
+<td align="left">FALSE</td>
+<td align="left">180_IL-4</td>
+<td align="left">P05112</td>
+<td align="right">1.11</td>
+<td align="right">93.91</td>
+<td align="right">94.4104447</td>
+<td align="left">red</td>
+</tr>
+<tr class="even">
+<td align="left">IL.17A</td>
+<td align="left">IL.17A</td>
+<td align="left">FALSE</td>
+<td align="left">116_IL-17A</td>
+<td align="left">Q16552</td>
+<td align="right">0.97</td>
+<td align="right">84.73</td>
+<td align="right">84.7001224</td>
+<td align="left">red</td>
+</tr>
+<tr class="odd">
+<td align="left">IL.17C</td>
+<td align="left">IL.17C</td>
+<td align="left">FALSE</td>
+<td align="left">114_IL-17C</td>
+<td align="left">Q9P0M4</td>
+<td align="right">1.28</td>
+<td align="right">83.07</td>
+<td align="right">83.3741330</td>
+<td align="left">blue</td>
+</tr>
+<tr class="even">
+<td align="left">MCP.3</td>
+<td align="left">MCP.3</td>
+<td align="left">FALSE</td>
+<td align="left">105_MCP-3</td>
+<td align="left">P80098</td>
+<td align="right">1.31</td>
+<td align="right">79.30</td>
+<td align="right">79.0697674</td>
+<td align="left">blue</td>
+</tr>
+<tr class="odd">
+<td align="left">IL.5</td>
+<td align="left">IL.5</td>
+<td align="left">FALSE</td>
+<td align="left">193_IL-5</td>
+<td align="left">P05113</td>
+<td align="right">1.55</td>
+<td align="right">78.21</td>
+<td align="right">77.8457772</td>
+<td align="left">red</td>
+</tr>
+<tr class="even">
+<td align="left">IL.6</td>
+<td align="left">IL.6</td>
+<td align="left">FALSE</td>
+<td align="left">113_IL-6</td>
+<td align="left">P05231</td>
+<td align="right">1.97</td>
+<td align="right">69.06</td>
+<td align="right">68.6250510</td>
+<td align="left">blue</td>
+</tr>
+<tr class="odd">
+<td align="left">IL.10RA</td>
+<td align="left">IL.10RA</td>
+<td align="left">FALSE</td>
+<td align="left">140_IL-10RA</td>
+<td align="left">Q13651</td>
+<td align="right">1.14</td>
+<td align="right">53.30</td>
+<td align="right">53.9779682</td>
+<td align="left">red</td>
+</tr>
+<tr class="even">
+<td align="left">GDNF</td>
+<td align="left">GDNF</td>
+<td align="left">FALSE</td>
+<td align="left">106_GDNF</td>
+<td align="left">P39905</td>
+<td align="right">1.13</td>
+<td align="right">43.26</td>
+<td align="right">42.4520604</td>
+<td align="left">blue</td>
+</tr>
+<tr class="odd">
+<td align="left">ST1A1</td>
+<td align="left">ST1A1</td>
+<td align="left">FALSE</td>
+<td align="left">191_ST1A1</td>
+<td align="left">P50225</td>
+<td align="right">1.34</td>
+<td align="right">32.68</td>
+<td align="right">31.2525500</td>
+<td align="left">blue</td>
+</tr>
+<tr class="even">
+<td align="left">FGF.5</td>
+<td align="left">FGF.5</td>
+<td align="left">FALSE</td>
+<td align="left">141_FGF-5</td>
+<td align="left">Q8NF90</td>
+<td align="right">1.00</td>
+<td align="right">31.71</td>
+<td align="right">30.3957568</td>
+<td align="left">blue</td>
+</tr>
+<tr class="odd">
+<td align="left">NT.3</td>
+<td align="left">NT.3</td>
+<td align="left">FALSE</td>
+<td align="left">188_NT-3</td>
+<td align="left">P20783</td>
+<td align="right">0.85</td>
+<td align="right">12.77</td>
+<td align="right">13.2394941</td>
+<td align="left">blue</td>
+</tr>
+<tr class="even">
+<td align="left">AXIN1</td>
+<td align="left">AXIN1</td>
+<td align="left">FALSE</td>
+<td align="left">118_AXIN1</td>
+<td align="left">O15169</td>
+<td align="right">1.30</td>
+<td align="right">13.04</td>
+<td align="right">10.8731130</td>
+<td align="left">red</td>
+</tr>
+<tr class="odd">
+<td align="left">IL.10</td>
+<td align="left">IL.10</td>
+<td align="left">FALSE</td>
+<td align="left">162_IL-10</td>
+<td align="left">P22301</td>
+<td align="right">1.50</td>
+<td align="right">7.71</td>
+<td align="right">7.0583435</td>
+<td align="left">blue</td>
+</tr>
+<tr class="even">
+<td align="left">CCL28</td>
+<td align="left">CCL28</td>
+<td align="left">FALSE</td>
+<td align="left">173_CCL28</td>
+<td align="left">Q9NRJ3</td>
+<td align="right">0.92</td>
+<td align="right">5.49</td>
+<td align="right">5.2835577</td>
+<td align="left">red</td>
+</tr>
+<tr class="odd">
+<td align="left">Beta.NGF</td>
+<td align="left">Beta.NGF</td>
+<td align="left">FALSE</td>
+<td align="left">153_Beta-NGF</td>
+<td align="left">P01138</td>
+<td align="right">1.23</td>
+<td align="right">3.96</td>
+<td align="right">4.2227662</td>
+<td align="left">blue</td>
+</tr>
+<tr class="even">
+<td align="left">EN.RAGE</td>
+<td align="left">EN.RAGE</td>
+<td align="left">FALSE</td>
+<td align="left">175_EN-RAGE</td>
+<td align="left">P80511</td>
+<td align="right">1.57</td>
+<td align="right">3.28</td>
+<td align="right">3.5291718</td>
+<td align="left">blue</td>
+</tr>
+<tr class="odd">
+<td align="left">SLAMF1</td>
+<td align="left">SLAMF1</td>
+<td align="left">FALSE</td>
+<td align="left">134_SLAMF1</td>
+<td align="left">Q13291</td>
+<td align="right">1.55</td>
+<td align="right">2.13</td>
+<td align="right">1.5299878</td>
+<td align="left">blue</td>
+</tr>
+<tr class="even">
+<td align="left">IL.7</td>
+<td align="left">IL.7</td>
+<td align="left">FALSE</td>
+<td align="left">109_IL-7</td>
+<td align="left">P13232</td>
+<td align="right">1.39</td>
+<td align="right">1.43</td>
+<td align="right">0.7547940</td>
+<td align="left">blue</td>
+</tr>
+<tr class="odd">
+<td align="left">IL.8</td>
+<td align="left">IL.8</td>
+<td align="left">FALSE</td>
+<td align="left">101_IL-8</td>
+<td align="left">P10145</td>
+<td align="right">3.17</td>
+<td align="right">0.25</td>
+<td align="right">0.2447980</td>
+<td align="left">blue</td>
+</tr>
+<tr class="even">
+<td align="left">SIRT2</td>
+<td align="left">SIRT2</td>
+<td align="left">FALSE</td>
+<td align="left">172_SIRT2</td>
+<td align="left">Q8IXJ6</td>
+<td align="right">1.52</td>
+<td align="right">1.00</td>
+<td align="right">0.0815993</td>
+<td align="left">blue</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.1</td>
+<td align="left">MMP.1</td>
+<td align="left">FALSE</td>
+<td align="left">142_MMP-1</td>
+<td align="left">P03956</td>
+<td align="right">1.89</td>
+<td align="right">0.06</td>
+<td align="right">0.0407997</td>
+<td align="left">blue</td>
+</tr>
+<tr class="even">
+<td align="left">MIP.1.alpha</td>
+<td align="left">MIP.1.alpha</td>
+<td align="left">FALSE</td>
+<td align="left">166_MIP-1 alpha</td>
+<td align="left">P10147</td>
+<td align="right">1.92</td>
+<td align="right">0.06</td>
+<td align="right">0.0203998</td>
+<td align="left">blue</td>
+</tr>
+<tr class="odd">
+<td align="left">VEGF.A</td>
+<td align="left">VEGF.A</td>
+<td align="left">FALSE</td>
+<td align="left">102_VEGF-A</td>
+<td align="left">P15692</td>
+<td align="right">3.15</td>
+<td align="right">0.02</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="even">
+<td align="left">CDCP1</td>
+<td align="left">CDCP1</td>
+<td align="left">FALSE</td>
+<td align="left">107_CDCP1</td>
+<td align="left">Q9H5V8</td>
+<td align="right">0.21</td>
+<td align="right">0.04</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="odd">
+<td align="left">CD244</td>
+<td align="left">CD244</td>
+<td align="left">FALSE</td>
+<td align="left">108_CD244</td>
+<td align="left">Q9BZW8</td>
+<td align="right">1.09</td>
+<td align="right">0.02</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="even">
+<td align="left">OPG</td>
+<td align="left">OPG</td>
+<td align="left">FALSE</td>
+<td align="left">110_OPG</td>
+<td align="left">O00300</td>
+<td align="right">1.81</td>
+<td align="right">0.02</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="odd">
+<td align="left">LAP.TGF.beta.1</td>
+<td align="left">LAP.TGF.beta.1</td>
+<td align="left">FALSE</td>
+<td align="left">111_LAP TGF-beta-1</td>
+<td align="left">P01137</td>
+<td align="right">0.86</td>
+<td align="right">0.02</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="even">
+<td align="left">uPA</td>
+<td align="left">uPA</td>
+<td align="left">FALSE</td>
+<td align="left">112_uPA</td>
+<td align="left">P00749</td>
+<td align="right">1.75</td>
+<td align="right">0.02</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="odd">
+<td align="left">MCP.1</td>
+<td align="left">MCP.1</td>
+<td align="left">FALSE</td>
+<td align="left">115_MCP-1</td>
+<td align="left">P13500</td>
+<td align="right">1.90</td>
+<td align="right">0.02</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="even">
+<td align="left">CXCL11</td>
+<td align="left">CXCL11</td>
+<td align="left">FALSE</td>
+<td align="left">117_CXCL11</td>
+<td align="left">O14625</td>
+<td align="right">1.40</td>
+<td align="right">0.02</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="odd">
+<td align="left">TRAIL</td>
+<td align="left">TRAIL</td>
+<td align="left">FALSE</td>
+<td align="left">120_TRAIL</td>
+<td align="left">P50591</td>
+<td align="right">1.22</td>
+<td align="right">0.02</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="even">
+<td align="left">CXCL9</td>
+<td align="left">CXCL9</td>
+<td align="left">FALSE</td>
+<td align="left">122_CXCL9</td>
+<td align="left">Q07325</td>
+<td align="right">1.04</td>
+<td align="right">0.02</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="odd">
+<td align="left">CST5</td>
+<td align="left">CST5</td>
+<td align="left">FALSE</td>
+<td align="left">123_CST5</td>
+<td align="left">P28325</td>
+<td align="right">4.34</td>
+<td align="right">0.04</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="even">
+<td align="left">OSM</td>
+<td align="left">OSM</td>
+<td align="left">FALSE</td>
+<td align="left">126_OSM</td>
+<td align="left">P13725</td>
+<td align="right">1.32</td>
+<td align="right">0.06</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="odd">
+<td align="left">CXCL1</td>
+<td align="left">CXCL1</td>
+<td align="left">FALSE</td>
+<td align="left">128_CXCL1</td>
+<td align="left">P09341</td>
+<td align="right">3.45</td>
+<td align="right">0.02</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="even">
+<td align="left">CCL4</td>
+<td align="left">CCL4</td>
+<td align="left">FALSE</td>
+<td align="left">130_CCL4</td>
+<td align="left">P13236</td>
+<td align="right">2.15</td>
+<td align="right">0.02</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="odd">
+<td align="left">CD6</td>
+<td align="left">CD6</td>
+<td align="left">FALSE</td>
+<td align="left">131_CD6</td>
+<td align="left">Q8WWJ7</td>
+<td align="right">1.78</td>
+<td align="right">0.04</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="even">
+<td align="left">SCF</td>
+<td align="left">SCF</td>
+<td align="left">FALSE</td>
+<td align="left">132_SCF</td>
+<td align="left">P21583</td>
+<td align="right">2.30</td>
+<td align="right">0.02</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="odd">
+<td align="left">IL.18</td>
+<td align="left">IL.18</td>
+<td align="left">FALSE</td>
+<td align="left">133_IL-18</td>
+<td align="left">Q14116</td>
+<td align="right">2.79</td>
+<td align="right">0.02</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="even">
+<td align="left">TGF.alpha</td>
+<td align="left">TGF.alpha</td>
+<td align="left">FALSE</td>
+<td align="left">135_TGF-alpha</td>
+<td align="left">P01135</td>
+<td align="right">0.07</td>
+<td align="right">0.02</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="odd">
+<td align="left">MCP.4</td>
+<td align="left">MCP.4</td>
+<td align="left">FALSE</td>
+<td align="left">136_MCP-4</td>
+<td align="left">Q99616</td>
+<td align="right">0.56</td>
+<td align="right">0.04</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="even">
+<td align="left">CCL11</td>
+<td align="left">CCL11</td>
+<td align="left">FALSE</td>
+<td align="left">137_CCL11</td>
+<td align="left">P51671</td>
+<td align="right">2.09</td>
+<td align="right">0.02</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="odd">
+<td align="left">TNFSF14</td>
+<td align="left">TNFSF14</td>
+<td align="left">FALSE</td>
+<td align="left">138_TNFSF14</td>
+<td align="left">O43557</td>
+<td align="right">1.81</td>
+<td align="right">0.02</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="even">
+<td align="left">FGF.23</td>
+<td align="left">FGF.23</td>
+<td align="left">FALSE</td>
+<td align="left">139_FGF-23</td>
+<td align="left">Q9GZV9</td>
+<td align="right">0.66</td>
+<td align="right">0.04</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="odd">
+<td align="left">LIF.R</td>
+<td align="left">LIF.R</td>
+<td align="left">FALSE</td>
+<td align="left">143_LIF-R</td>
+<td align="left">P42702</td>
+<td align="right">2.08</td>
+<td align="right">0.04</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="even">
+<td align="left">FGF.21</td>
+<td align="left">FGF.21</td>
+<td align="left">FALSE</td>
+<td align="left">144_FGF-21</td>
+<td align="left">Q9NSA1</td>
+<td align="right">1.14</td>
+<td align="right">0.02</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="odd">
+<td align="left">CCL19</td>
+<td align="left">CCL19</td>
+<td align="left">FALSE</td>
+<td align="left">145_CCL19</td>
+<td align="left">Q99731</td>
+<td align="right">2.13</td>
+<td align="right">0.02</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="even">
+<td align="left">IL.10RB</td>
+<td align="left">IL.10RB</td>
+<td align="left">FALSE</td>
+<td align="left">149_IL-10RB</td>
+<td align="left">Q08334</td>
+<td align="right">1.72</td>
+<td align="right">0.02</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="odd">
+<td align="left">IL.18R1</td>
+<td align="left">IL.18R1</td>
+<td align="left">FALSE</td>
+<td align="left">151_IL-18R1</td>
+<td align="left">Q13478</td>
+<td align="right">1.21</td>
+<td align="right">0.02</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="even">
+<td align="left">PD.L1</td>
+<td align="left">PD.L1</td>
+<td align="left">FALSE</td>
+<td align="left">152_PD-L1</td>
+<td align="left">Q9NZQ7</td>
+<td align="right">2.14</td>
+<td align="right">0.04</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="odd">
+<td align="left">CXCL5</td>
+<td align="left">CXCL5</td>
+<td align="left">FALSE</td>
+<td align="left">154_CXCL5</td>
+<td align="left">P42830</td>
+<td align="right">1.92</td>
+<td align="right">0.02</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="even">
+<td align="left">TRANCE</td>
+<td align="left">TRANCE</td>
+<td align="left">FALSE</td>
+<td align="left">155_TRANCE</td>
+<td align="left">O14788</td>
+<td align="right">1.51</td>
+<td align="right">0.04</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="odd">
+<td align="left">HGF</td>
+<td align="left">HGF</td>
+<td align="left">FALSE</td>
+<td align="left">156_HGF</td>
+<td align="left">P14210</td>
+<td align="right">1.77</td>
+<td align="right">0.02</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="even">
+<td align="left">IL.12B</td>
+<td align="left">IL.12B</td>
+<td align="left">FALSE</td>
+<td align="left">157_IL-12B</td>
+<td align="left">P29460</td>
+<td align="right">0.85</td>
+<td align="right">0.02</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">MMP.10</td>
+<td align="left">FALSE</td>
+<td align="left">161_MMP-10</td>
+<td align="left">P09238</td>
+<td align="right">1.56</td>
+<td align="right">0.02</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="even">
+<td align="left">CCL23</td>
+<td align="left">CCL23</td>
+<td align="left">FALSE</td>
+<td align="left">164_CCL23</td>
+<td align="left">P55773</td>
+<td align="right">2.10</td>
+<td align="right">0.02</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="odd">
+<td align="left">CD5</td>
+<td align="left">CD5</td>
+<td align="left">FALSE</td>
+<td align="left">165_CD5</td>
+<td align="left">P06127</td>
+<td align="right">1.42</td>
+<td align="right">0.02</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="even">
+<td align="left">Flt3L</td>
+<td align="left">Flt3L</td>
+<td align="left">FALSE</td>
+<td align="left">167_Flt3L</td>
+<td align="left">P49771</td>
+<td align="right">2.12</td>
+<td align="right">0.02</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="odd">
+<td align="left">CXCL6</td>
+<td align="left">CXCL6</td>
+<td align="left">FALSE</td>
+<td align="left">168_CXCL6</td>
+<td align="left">P80162</td>
+<td align="right">1.80</td>
+<td align="right">0.02</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="even">
+<td align="left">CXCL10</td>
+<td align="left">CXCL10</td>
+<td align="left">FALSE</td>
+<td align="left">169_CXCL10</td>
+<td align="left">P02778</td>
+<td align="right">2.03</td>
+<td align="right">0.02</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="odd">
+<td align="left">4E.BP1</td>
+<td align="left">4E.BP1</td>
+<td align="left">FALSE</td>
+<td align="left">170_4E-BP1</td>
+<td align="left">Q13541</td>
+<td align="right">1.04</td>
+<td align="right">0.10</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="even">
+<td align="left">DNER</td>
+<td align="left">DNER</td>
+<td align="left">FALSE</td>
+<td align="left">174_DNER</td>
+<td align="left">Q8NFT8 </td>
+<td align="right">1.63</td>
+<td align="right">0.02</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="odd">
+<td align="left">CD40</td>
+<td align="left">CD40</td>
+<td align="left">FALSE</td>
+<td align="left">176_CD40</td>
+<td align="left">P25942</td>
+<td align="right">1.91</td>
+<td align="right">0.04</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="even">
+<td align="left">FGF.19</td>
+<td align="left">FGF.19</td>
+<td align="left">FALSE</td>
+<td align="left">179_FGF-19</td>
+<td align="left">O95750</td>
+<td align="right">1.25</td>
+<td align="right">0.02</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="odd">
+<td align="left">MCP.2</td>
+<td align="left">MCP.2</td>
+<td align="left">FALSE</td>
+<td align="left">183_MCP-2</td>
+<td align="left">P80075</td>
+<td align="right">2.10</td>
+<td align="right">0.02</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="even">
+<td align="left">CASP.8</td>
+<td align="left">CASP.8</td>
+<td align="left">FALSE</td>
+<td align="left">184_CASP-8</td>
+<td align="left">Q14790</td>
+<td align="right">1.38</td>
+<td align="right">0.04</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="odd">
+<td align="left">CCL25</td>
+<td align="left">CCL25</td>
+<td align="left">FALSE</td>
+<td align="left">185_CCL25</td>
+<td align="left">O15444</td>
+<td align="right">1.32</td>
+<td align="right">0.02</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="even">
+<td align="left">CX3CL1</td>
+<td align="left">CX3CL1</td>
+<td align="left">FALSE</td>
+<td align="left">186_CX3CL1</td>
+<td align="left">P78423</td>
+<td align="right">1.76</td>
+<td align="right">0.02</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="odd">
+<td align="left">TNFRSF9</td>
+<td align="left">TNFRSF9</td>
+<td align="left">FALSE</td>
+<td align="left">187_TNFRSF9</td>
+<td align="left">Q07011</td>
+<td align="right">1.86</td>
+<td align="right">0.02</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="even">
+<td align="left">TWEAK</td>
+<td align="left">TWEAK</td>
+<td align="left">FALSE</td>
+<td align="left">189_TWEAK</td>
+<td align="left">O43508</td>
+<td align="right">1.78</td>
+<td align="right">0.02</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="odd">
+<td align="left">CCL20</td>
+<td align="left">CCL20</td>
+<td align="left">FALSE</td>
+<td align="left">190_CCL20</td>
+<td align="left">P78556</td>
+<td align="right">1.42</td>
+<td align="right">0.02</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="even">
+<td align="left">STAMPB</td>
+<td align="left">STAMPB</td>
+<td align="left">FALSE</td>
+<td align="left">192_STAMPB</td>
+<td align="left">O95630</td>
+<td align="right">1.40</td>
+<td align="right">0.06</td>
+<td align="right">0.0000000</td>
+<td align="left">red</td>
+</tr>
+<tr class="odd">
+<td align="left">ADA</td>
+<td align="left">ADA</td>
+<td align="left">FALSE</td>
+<td align="left">194_ADA</td>
+<td align="left">P00813</td>
+<td align="right">1.80</td>
+<td align="right">0.04</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="even">
+<td align="left">TNFB</td>
+<td align="left">TNFB</td>
+<td align="left">FALSE</td>
+<td align="left">195_TNFB</td>
+<td align="left">P01374</td>
+<td align="right">1.10</td>
+<td align="right">0.04</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+<tr class="odd">
+<td align="left">CSF.1</td>
+<td align="left">CSF.1</td>
+<td align="left">FALSE</td>
+<td align="left">196_CSF-1</td>
+<td align="left">P09603</td>
+<td align="right">1.02</td>
+<td align="right">0.02</td>
+<td align="right">0.0000000</td>
+<td align="left">blue</td>
+</tr>
+</tbody>
+</table>
 </div>
   </div>
 
