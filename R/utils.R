@@ -448,13 +448,17 @@ run_TwoSampleMR <- function(TwoSampleMRinput, mr_plot="None", prefix="")
   invisible(sapply(c(scatter,forest,funnel,leaveoneout), function(x) print(x)))
 }
 
-make_ExpressionSet <- function(exprs,phenoData,experimentData=NULL,annotation=NULL)
-{
-  Biobase::ExpressionSet(assayData=exprs,
-                         phenoData=phenoData,
-                         experimentData=experimentData,
-                         annotation="hgu95av2")
-}
+make_ExpressionSet <- function(assayData,
+                      phenoData=annotatedDataFrameFrom(assayData, byrow=FALSE),
+                      featureData=annotatedDataFrameFrom(assayData, byrow=TRUE),
+                      experimentData=MIAME(),
+                      annotation=character(),
+                      protocolData=annotatedDataFrameFrom(assayData, byrow=FALSE),...)
+Biobase::ExpressionSet(assayData,phenoData=phenoData,
+                       featureData=featureData,
+                       experimentData=experimentData,
+                       annotation=annotation,
+                       protocolData=protocolData,...)
 
 get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 
