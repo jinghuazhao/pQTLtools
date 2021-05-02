@@ -81,7 +81,8 @@ f <- featureNames(exampleSet[1:2])
 invisible(sapply(f,function(x) {
                      d <- t(exprs(exampleSet[x]))
                      fn <- featureNames(exampleSet[x])
-                     par(mfrow=c(3,1)); hist(d,main=fn); plot(d, ylab=fn); boxplot(d)
+                     par(mfrow=c(3,1))
+                     hist(d,xlab=fn); plot(d, ylab=fn); boxplot(d,ylab=fn)
                    }
           )
 )
