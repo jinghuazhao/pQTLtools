@@ -98,15 +98,15 @@ See example associated with `import_eQTLCatalogue`. A related function is `impor
 
 ```{r, results='hide', warning=FALSE}
 library(pQTLtools)
-f <- file.path(find.package("pQTLtools",lib.loc=.libPaths()),"eQTL-Catalogue","hg19ToHg38.over.chain")
+f <- file.path(system.file(package="pQTLtools"),"eQTL-Catalogue","hg19ToHg38.over.chain")
 chain <- rtracklayer::import.chain(f)
 invisible(lapply(c("dplyr", "ggplot2", "readr", "coloc", "GenomicRanges","seqminer"), require, character.only = TRUE))
 HPC_WORK <- Sys.getenv("HPC_WORK")
 gwasvcf::set_bcftools(file.path(HPC_WORK,"bin","bcftools"))
-f <- file.path(find.package("pQTLtools",lib.loc=.libPaths()),"eQTL-Catalogue","tabix_ftp_paths.tsv")
+f <- file.path(system.file(package="pQTLtools"),"eQTL-Catalogue","tabix_ftp_paths.tsv")
 tabix_paths <- read.delim(f, sep = "\t", header = TRUE, stringsAsFactors = FALSE) %>% dplyr::as_tibble()
 HOME <- Sys.getenv("HOME")
-f <- file.path(find.package("pQTLtools",lib.loc=.libPaths()),"eQTL-Catalogue","tabix_ftp_paths_imported.tsv")
+f <- file.path(system.file(package="pQTLtools"),"eQTL-Catalogue","tabix_ftp_paths_imported.tsv")
 imported_tabix_paths <- within(read.delim(f, sep = "\t", header = TRUE, stringsAsFactors = FALSE) %>% dplyr::as_tibble(),
       {ftp_path <- gsub("ftp://ftp.ebi.ac.uk/pub/databases/spot/eQTL/csv/GTEx_V8/ge",
                         paste0(HOME,"/rds/public_databases/GTEx/csv"),ftp_path)})
@@ -151,7 +151,7 @@ coloc_c <- function(gwas_stats_hg38,ensGene,region38)
   cat("c. GTEx_v8 imported eQTL datasets\n")
   rnaseq_df <- dplyr::filter(imported_tabix_paths, quant_method == "ge") %>% dplyr::mutate(qtl_id = paste(study, qtl_group, sep = "_"))
   ftp_path_list <- setNames(as.list(rnaseq_df$ftp_path), rnaseq_df$qtl_id)
-  hdr <- file.path(find.package("pQTLtools",lib.loc=.libPaths()),"eQTL-Catalogue","column_names.GTEx")
+  hdr <- file.path(system.file(package="pQTLtools"),"eQTL-Catalogue","column_names.GTEx")
   column_names <- names(read.delim(hdr))
   safe_import <- purrr::safely(import_eQTLCatalogue)
   summary_list <- purrr::map(ftp_path_list, ~safe_import(., region38, selected_gene_id = ensGene, column_names))
@@ -168,7 +168,7 @@ mixed_coloc <- function(prot,chr,ensGene,chain,region37,region38,out)
   if (exists("coloc_df_imported"))
   {
     saveRDS(coloc_df_imported,file=paste0(out,".RDS"))
-    dplyr::arrange(coloc_df_imported, -PP.H4.abf)
+    dplyr::arrange(coloc_df_imported, desc(PP.H4.abf))
     ggplot(coloc_df_imported, aes(x = PP.H4.abf)) + geom_histogram()
   }
 }
@@ -207,7 +207,7 @@ the `run_TwoSampleMR()` function can be used.
 
 ```{r, warning=FALSE}
 library(TwoSampleMR)
-f <- file.path(find.package("pQTLtools",lib.loc=.libPaths()),"tests","Ins.csv")
+f <- file.path(system.file(package="pQTLtools"),"tests","Ins.csv")
 ivs <- format_data(read.csv(f))
 caption2 <- "Table 2. ABO/LIFR variants and CHD/FEV1"
 knitr::kable(ivs, caption=paste(caption2,"(instruments)"))
@@ -231,7 +231,7 @@ outcomes <- "ebi-a-GCST007432"
 prot <- "MMP.10"
 type <- "cis"
 f <- paste0(prot,"-",type,".mrx")
-d <- read.table(file.path(find.package("pQTLtools",lib.loc=.libPaths()),"tests",f),
+d <- read.table(file.path(system.file(package="pQTLtools"),"tests",f),
                 header=TRUE)
 exposure <- format_data(within(d,{P=10^logP}), phenotype_col="prot", snp_col="rsid",
                         chr_col="Chromosome", pos_col="Posistion",
