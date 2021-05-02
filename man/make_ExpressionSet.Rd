@@ -1,15 +1,26 @@
 \name{make_ExpressionSet}
 \alias{make_ExpressionSet}
 \title{A call to expressionSet class}
-\usage{make_ExpressionSet(exprs,phenoData,experimentData=NULL,annotation=NULL)}
+\usage{make_ExpressionSet(assayData,
+                   phenoData=annotatedDataFrameFrom(assayData, byrow=FALSE),
+                   featureData=annotatedDataFrameFrom(assayData, byrow=TRUE),
+                   experimentData=MIAME(),
+                   annotation=character(),
+                   protocolData=annotatedDataFrameFrom(assayData, byrow=FALSE),
+                   ...
+           )
+      }
 \description{
 This is really a direct call to the Bioconductor/Biobase class.
 }
 \arguments{
-\item{exprs}{Expression data}
+\item{assayData}{Expression data}
 \item{phenoData}{Phenotype}
+\item{featureData}{featureData}
 \item{experimentData}{Information on data source}
 \item{annotation}{Annotation information}
+\item{protocolData}{protocol information}
+\item{...}{Other options}
 }
 \details{
 The explicit call make it easier to handle proteomic data for other downstream analyses.
@@ -31,6 +42,8 @@ metadata <- data.frame(labelDescription=
                          "Case/control status",
                          "Tumor progress on XYZ scale"),
                        row.names=c("gender", "type", "score"))
+require(Biobase)
+require(pQTLtools)
 phenoData <- new("AnnotatedDataFrame", data=pData, varMetadata=metadata)
 experimentData <- new("MIAME",
   name="Pierre Fermat",
@@ -40,9 +53,8 @@ experimentData <- new("MIAME",
   abstract="An example ExpressionSet",
   url="www.lab.not.exist",
   other=list(notes="Created from text files"))
-exampleSet <- make_ExpressionSet(exprs,phenoData,experimentData,annotation="hgu95av2")
-require(Biobase)
-require(pQTLtools)
+exampleSet <- make_ExpressionSet(exprs,phenoData,experimentData=experimentData,
+                                 annotation="hgu95av2")
 data(sample.ExpressionSet)
 identical(exampleSet,sample.ExpressionSet)
 invisible(esApply(exampleSet,2,hist))
