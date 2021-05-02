@@ -53,8 +53,6 @@ exampleSet <- make_ExpressionSet(exprs,phenoData,experimentData=experimentData,
                                  annotation="hgu95av2")
 data(sample.ExpressionSet)
 identical(exampleSet,sample.ExpressionSet)
-invisible(esApply(exampleSet,2,hist))
-lm(score~gender+X31739_at,data=exampleSet)
 ```
 
 ## data.frame
