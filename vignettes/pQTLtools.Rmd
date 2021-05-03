@@ -94,7 +94,8 @@ knitr::include_graphics('karyoplot.png',dpi=300)
 
 ## eQTL Catalogue for colocalization analysis
 
-See example associated with `import_eQTLCatalogue`. A related function is `import_OpenGWAS` used to fetch data from OpenGWAS.
+See example associated with `import_eQTLCatalogue`. A related function is `import_OpenGWAS` used to fetch data from OpenGWAS. The cis-pQTLs and 1e+6 
+flanking regions were considered and data are actually fetched from files stored locally. For illustration, only the first sentinel was used.
 
 ```{r, results='hide', warning=FALSE}
 library(pQTLtools)
@@ -113,6 +114,7 @@ imported_tabix_paths <- within(read.delim(f, sep = "\t", header = TRUE, stringsA
 INF <- Sys.getenv("INF")
 M <- 1e6
 sentinels <- subset(read.csv(file.path(INF,"work","INF1.merge.cis.vs.trans")),cis)
+
 liftRegion <- function(x,chain)
 {
   require(GenomicRanges)
@@ -126,7 +128,7 @@ liftRegion <- function(x,chain)
   invisible(list(chr=chr,start=start,end=end,region=paste0(chr,":",start,"-",end)))
 }
 
-coloc_sumstats <- function(prot,chr,region37)
+sumstats <- function(prot,chr,region37)
 {
   cat("GWAS sumstats\n")
   gwas_stats <- gwasvcf::query_gwas(file.path(INF,"METAL/gwas2vcf",paste0(prot,".vcf.gz")), chrompos = region37)
@@ -146,7 +148,7 @@ coloc_sumstats <- function(prot,chr,region37)
   gwas_stats_hg38
 }
 
-coloc_c <- function(gwas_stats_hg38,ensGene,region38)
+coloc <- function(gwas_stats_hg38,ensGene,region38)
 {
   cat("c. GTEx_v8 imported eQTL datasets\n")
   rnaseq_df <- dplyr::filter(imported_tabix_paths, quant_method == "ge") %>% dplyr::mutate(qtl_id = paste(study, qtl_group, sep = "_"))
@@ -159,18 +161,6 @@ coloc_c <- function(gwas_stats_hg38,ensGene,region38)
   result_list <- result_list[!unlist(purrr::map(result_list, is.null))]
   result_filtered <- purrr::map(result_list[lapply(result_list,nrow)!=0], ~dplyr::filter(., !is.na(se)))
   coloc_df_imported <- purrr::map_df(result_filtered, ~run_coloc(., gwas_stats_hg38), .id = "qtl_id")
-}
-
-mixed_coloc <- function(prot,chr,ensGene,chain,region37,region38,out)
-{
-  gwas_stats_hg38 <- coloc_sumstats(prot,chr,region37)
-  coloc_df_imported <- coloc_c(gwas_stats_hg38,ensGene,region38)
-  if (exists("coloc_df_imported"))
-  {
-    saveRDS(coloc_df_imported,file=paste0(out,".RDS"))
-#   dplyr::arrange(coloc_df_imported, desc(PP.H4.abf))
-#   ggplot(coloc_df_imported, aes(x = PP.H4.abf)) + geom_histogram()
-  }
 }
 
 single_run <- function(r)
@@ -190,14 +180,22 @@ single_run <- function(r)
   region38 <- with(liftRegion(isnpid,chain),region)
   ensGene <- subset(inf1,prot==sentinel[["prot"]])[["ensembl_gene_id"]]
   ensRegion38 <- with(liftRegion(subset(inf1,prot==sentinel[["prot"]]),chain),region)
-  f <- file.path(INF,"coloc",with(sentinel,paste0(prot,"-",SNP)))
-  cat(chr,region37,region38,ensGene,ensRegion37,ensRegion38,"\n")
-  mixed_coloc(sentinel[["prot"]],chr,ensGene,chain,region37,region38,f)
+  f <- with(sentinel,paste0(prot,"-",SNP))
+  gwas_stats_hg38 <- sumstats(sentinel[["prot"]],chr,region37)
+  coloc_df_imported <- coloc(gwas_stats_hg38,ensGene,region38)
+  if (exists("coloc_df_imported"))
+  {
+    saveRDS(coloc_df_imported,file=paste0(f,".RDS"))
+    dplyr::arrange(coloc_df_imported, desc(PP.H4.abf))
+    ggplot(coloc_df_imported, aes(x = PP.H4.abf)) + geom_histogram()
+  }
 }
 
 single_run(1)
 ```
-The output are saved in the `.RDS` files.
+
+The function `sumstats()` obtained meta-analysis summary statistics (in build 37 and therefore lifted over to build 38) to be used in colocalisation 
+analysis.  The output are saved in the `.RDS` files.
 
 ## pQTL-based Mendelian Randomization (MR)
 
