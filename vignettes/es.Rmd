@@ -107,8 +107,9 @@ library(stringr)
 fData(exampleSet)
 fData(exampleSet)$lod.max <- apply(exprs(exampleSet),1,quantile,runif(nrow(exampleSet)))
 lod <- get.prop.below.LLOD(exampleSet)
+x <- dplyr::arrange(fData(lod),desc(pc.belowLOD.new))
 knitr::kable(head(lod))
-plot(fData(lod)[,2], main="Random quantile cut off", ylab="<lod%")
+plot(x[,2], main="Random quantile cut off", ylab="<lod%")
 ```
 
 The quantity has been shown to have a big impact on protein abundance and therefore pQTL detection as is shown with a real example.
