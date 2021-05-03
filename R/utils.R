@@ -474,7 +474,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
     stop("'flagged' argument must be 'IN' or 'OUT")
   }
 
-  requireNamespace(stringr)
+  requireNamespace("stringr")
 
   # best to cut flagged samples first at eset stage:
   # risk of messing up if cutting from matrix, and then dont edit pData
