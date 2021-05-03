@@ -2,12 +2,12 @@
 \alias{make_ExpressionSet}
 \title{A call to expressionSet class}
 \usage{make_ExpressionSet(assayData,
-                   phenoData=annotatedDataFrameFrom(assayData, byrow=FALSE),
-                   featureData=annotatedDataFrameFrom(assayData, byrow=TRUE),
-                   experimentData=MIAME(),
-                   annotation=character(),
-                   protocolData=annotatedDataFrameFrom(assayData, byrow=FALSE),
-                   ...
+            phenoData=Biobase::annotatedDataFrameFrom(assayData, byrow=FALSE),
+            featureData=Biobase::annotatedDataFrameFrom(assayData, byrow=TRUE),
+            experimentData=Biobase::MIAME(),
+            annotation=character(),
+            protocolData=Biobase::annotatedDataFrameFrom(assayData, byrow=FALSE),
+           ...
            )
       }
 \description{
