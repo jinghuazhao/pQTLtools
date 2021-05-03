@@ -97,7 +97,7 @@ knitr::include_graphics('karyoplot.png',dpi=300)
 See example associated with `import_eQTLCatalogue`. A related function is `import_OpenGWAS` used to fetch data from OpenGWAS. The cis-pQTLs and 1e+6 
 flanking regions were considered and data are actually fetched from files stored locally. For illustration, only the first sentinel was used.
 
-```{r, results='hide', warning=FALSE}
+```{r coloc, results='hide', warning=FALSE}
 library(pQTLtools)
 f <- file.path(system.file(package="pQTLtools"),"eQTL-Catalogue","hg19ToHg38.over.chain")
 chain <- rtracklayer::import.chain(f)
