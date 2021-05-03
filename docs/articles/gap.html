@@ -101,8 +101,8 @@
 <code class="sourceCode R"><span class="co"># zcat METAL/4E.BP1-1.tbl.gz | \</span>
 <span class="co"># awk 'NR==1 || ($1==4 &amp;&amp; $2 &gt;= 187158034 - 1e6 &amp;&amp; $2 &lt; 187158034 + 1e6)' &gt;  4E.BP1.z</span>
 <span class="va">tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html">within</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.delim</a></span><span class="op">(</span><span class="st">"4E.BP1.z"</span><span class="op">)</span>,<span class="op">{</span><span class="va">logp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gap/man/gap-internal.html">logp</a></span><span class="op">(</span><span class="va">Effect</span><span class="op">/</span><span class="va">StdErr</span><span class="op">)</span><span class="op">}</span><span class="op">)</span>
-<span class="va">z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gap/man/gap-internal.html">cs</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span>
-<span class="va">l</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gap/man/gap-internal.html">cs</a></span><span class="op">(</span><span class="va">tbl</span>,log_p<span class="op">=</span><span class="st">"logp"</span><span class="op">)</span></code></pre></div>
+<span class="va">z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gap/man/cs.html">cs</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span>
+<span class="va">l</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gap/man/cs.html">cs</a></span><span class="op">(</span><span class="va">tbl</span>,log_p<span class="op">=</span><span class="st">"logp"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="gc-lambda" class="section level2">
 <h2 class="hasAnchor">
@@ -233,7 +233,7 @@
 </tbody>
 </table>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gap/man/gap-internal.html">gsmr</a></span><span class="op">(</span><span class="va">mr</span>, <span class="st">"LIF.R"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"CAD"</span>,<span class="st">"FEV1"</span><span class="op">)</span>,other_plots<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gap/man/gsmr.html">gsmr</a></span><span class="op">(</span><span class="va">mr</span>, <span class="st">"LIF.R"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"CAD"</span>,<span class="st">"FEV1"</span><span class="op">)</span>,other_plots<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p><img src="gap/unnamed-chunk-3-1.png" width="700" style="display:block; margin: auto"><img src="gap/unnamed-chunk-3-2.png" width="700" style="display:block; margin: auto"><img src="gap/unnamed-chunk-3-3.png" width="700" style="display:block; margin: auto"><img src="gap/unnamed-chunk-3-4.png" width="700" style="display:block; margin: auto"><img src="gap/unnamed-chunk-3-5.png" width="700" style="display:block; margin: auto"><img src="gap/unnamed-chunk-3-6.png" width="700" style="display:block; margin: auto"></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">f</span> <span class="op">&lt;-</span> <span class="st">"INF1_CAD-FEV1.csv"</span>
@@ -340,13 +340,13 @@
 <span class="co">#&gt; </span>
 <span class="co">#&gt;  0  1  2  3  4  5  6  7  8  9 </span>
 <span class="co">#&gt;  2  4  6 11  8 10  4  2  2  1</span>
-<span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gap/man/gap-internal.html">invnormal</a></span><span class="op">(</span><span class="va">Ni</span><span class="op">)</span>
+<span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gap/man/invnormal.html">invnormal</a></span><span class="op">(</span><span class="va">Ni</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span>
 <span class="co">#&gt; [1] 0.9755074</span>
 <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span>
 <span class="co">#&gt; [1] 0.002650512</span>
 <span class="va">Ni</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">50</span>
-<span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gap/man/gap-internal.html">invnormal</a></span><span class="op">(</span><span class="va">Ni</span><span class="op">)</span>
+<span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/gap/man/invnormal.html">invnormal</a></span><span class="op">(</span><span class="va">Ni</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span>
 <span class="co">#&gt; [1] -1.810184e-17</span>
 <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span>
@@ -416,7 +416,7 @@
 <p>This is a function to output sample file for SNPTEST.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>ID_1<span class="op">=</span><span class="fl">1</span>,ID_2<span class="op">=</span><span class="fl">1</span>,missing<span class="op">=</span><span class="fl">0</span>,PC1<span class="op">=</span><span class="fl">1</span>,PC2<span class="op">=</span><span class="fl">2</span>,D1<span class="op">=</span><span class="fl">1</span>,P1<span class="op">=</span><span class="fl">10</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/gap/man/gap-internal.html">snptest_sample</a></span><span class="op">(</span><span class="va">d</span>,C<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"PC"</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span>,D<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"D"</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>,P<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"P"</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/gap/man/snptest_sample.html">snptest_sample</a></span><span class="op">(</span><span class="va">d</span>,C<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"PC"</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span>,D<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"D"</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>,P<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"P"</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>The commands above generates a file named ``snptest.sample.</p>
 </div>
   </div>
