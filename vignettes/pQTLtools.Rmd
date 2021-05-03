@@ -183,9 +183,8 @@ coloc_df_imported <- coloc(gwas_stats_hg38,ensGene,region38)
 saveRDS(coloc_df_imported,file=f)
 ```
 
-```{r coloc, fig.height=8, fig.width=8, echo=FALSE}
-ggplot(gwas_stats_hg38, aes(x = position, y = LP)) + geom_point()
-ggplot(coloc_df_imported, aes(x = PP.H4.abf)) + geom_histogram()
+```{r coloc, fig.height=7, fig.width=8, echo=FALSE}
+ggplot(gwas_stats_hg38, aes(x = position, y = LP)) + geom_point() + ggtitle(with(sentinel,paste0(prot,"-",SNP," association plot")))
 rds <- readRDS(f)
 knitr::kable(rds,caption=with(sentinel,paste0("Table 3. Colocalisation results for ",prot,"-",SNP)))
 unlink(f)
@@ -220,7 +219,7 @@ invisible(sapply(c("harmonise","result","single"),
 
 The function has similiarity to @dt18. The documentation example is quoted here,
 
-```{r, results='hide', warning=FALSE}
+```{r run_TwoSampleMR, fig.height=8, fig.width=7, results='hide', warning=FALSE}
 library(TwoSampleMR)
 outcomes <- "ebi-a-GCST007432"
 prot <- "MMP.10"
@@ -243,7 +242,7 @@ run_TwoSampleMR(harmonise, mr_plot="New", prefix=prefix)
 
 The output is contained in individual `.txt` files, together with the scatter, forest, funnel and leave-one-out plots.
 
-```{r run_TwoSampleMR, fig.height=8, fig.width=7, echo=FALSE}
+```{r, echo=FALSE}
 caption4 <- "Table 4. MMP.10 variants and FEV1"
 knitr::kable(read.delim(paste0(prefix,"-result.txt"),header=TRUE),caption=paste(caption4, "(result)"))
 knitr::kable(read.delim(paste0(prefix,"-heterogeneity.txt"),header=TRUE),caption=paste(caption4,"(heterogeneity)"))
