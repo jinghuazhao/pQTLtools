@@ -36,6 +36,7 @@ swath_ms            |    SWATH-MS panel
 **eQTL/GWAS**       |
 import_eQTLCatalogue |   Import eQTL Catalogue
 import_OpenGWAS      |   Import OpenGWAS
+make_ExpressionSet   |   A call to ExpressionSet class
 **MR analysis**      |
 pqtlMR               |   Bidirectional pQTL-MR analysis
 run_TwoSampleMR      |   A generic wrapper for TwoSampleMR analysis
