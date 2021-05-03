@@ -134,16 +134,17 @@ sumstats <- function(prot,chr,region37)
   gwas_stats <- gwasvcf::query_gwas(file.path(INF,"METAL/gwas2vcf",paste0(prot,".vcf.gz")), chrompos = region37)
   gwas_stats <- gwasvcf::vcf_to_granges(gwas_stats) %>% keepSeqlevels(chr) %>% renameSeqlevels(paste0("chr",chr))
   gwas_stats_hg38 <- rtracklayer::liftOver(gwas_stats, chain) %>%
-    unlist() %>%
-    renameSeqlevels(chr) %>%
-    dplyr::as_tibble() %>%
-    dplyr::transmute(chromosome = seqnames, position = start, AF, ES, SE, LP, SS) %>%
-    dplyr::mutate(id = paste(chromosome, position, sep = ":")) %>%
-    dplyr::mutate(MAF = pmin(AF, 1-AF)) %>%
-    dplyr::group_by(id) %>%
-    dplyr::mutate(row_count = n()) %>%
-    dplyr::ungroup() %>%
-    dplyr::filter(row_count == 1)
+                     unlist() %>%
+                     renameSeqlevels(chr) %>%
+                     dplyr::as_tibble() %>%
+                     dplyr::transmute(chromosome = seqnames,
+                                      position = start, AF, ES, SE, LP, SS) %>%
+                     dplyr::mutate(id = paste(chromosome, position, sep = ":")) %>%
+                     dplyr::mutate(MAF = pmin(AF, 1-AF)) %>%
+                     dplyr::group_by(id) %>%
+                     dplyr::mutate(row_count = n()) %>%
+                     dplyr::ungroup() %>%
+                     dplyr::filter(row_count == 1)
   ggplot(gwas_stats_hg38, aes(x = position, y = LP)) + geom_point()
   gwas_stats_hg38
 }
@@ -163,35 +164,29 @@ coloc <- function(gwas_stats_hg38,ensGene,region38)
   coloc_df_imported <- purrr::map_df(result_filtered, ~run_coloc(., gwas_stats_hg38), .id = "qtl_id")
 }
 
-single_run <- function(r)
+sentinel <- sentinels[1,]
+isnpid <- within(gap::inv_chr_pos_a1_a2(sentinel[["SNP"]]),
 {
-  sentinel <- sentinels[r,]
-  isnpid <- within(gap::inv_chr_pos_a1_a2(sentinel[["SNP"]]),
-  {
     chr <- gsub("chr","",chr)
     pos <- as.integer(pos)
     start <- pos-M
     if (start<0) start <- 0
     end <- pos+M
-  })
-  chr <- with(isnpid,chr)
-  region37 <- with(isnpid, paste0(chr,":",start,"-",end))
-  ensRegion37 <- with(subset(inf1,prot==sentinel[["prot"]]),paste0(chr,":",start,"-",end))
-  region38 <- with(liftRegion(isnpid,chain),region)
-  ensGene <- subset(inf1,prot==sentinel[["prot"]])[["ensembl_gene_id"]]
-  ensRegion38 <- with(liftRegion(subset(inf1,prot==sentinel[["prot"]]),chain),region)
-  f <- with(sentinel,paste0(prot,"-",SNP))
-  gwas_stats_hg38 <- sumstats(sentinel[["prot"]],chr,region37)
-  coloc_df_imported <- coloc(gwas_stats_hg38,ensGene,region38)
-  if (exists("coloc_df_imported"))
-  {
-    saveRDS(coloc_df_imported,file=paste0(f,".RDS"))
-    dplyr::arrange(coloc_df_imported, desc(PP.H4.abf))
-    ggplot(coloc_df_imported, aes(x = PP.H4.abf)) + geom_histogram()
-  }
-}
+})
+chr <- with(isnpid,chr)
+region37 <- with(isnpid, paste0(chr,":",start,"-",end))
+ensRegion37 <- with(subset(inf1,prot==sentinel[["prot"]]),paste0(chr,":",start,"-",end))
+region38 <- with(liftRegion(isnpid,chain),region)
+ensGene <- subset(inf1,prot==sentinel[["prot"]])[["ensembl_gene_id"]]
+ensRegion38 <- with(liftRegion(subset(inf1,prot==sentinel[["prot"]]),chain),region)
+f <- with(sentinel,paste0(prot,"-",SNP,".RDS"))
+gwas_stats_hg38 <- sumstats(sentinel[["prot"]],chr,region37)
+coloc_df_imported <- coloc(gwas_stats_hg38,ensGene,region38)
+if (exists("coloc_df_imported")) saveRDS(coloc_df_imported,file=f)
 
-single_run(1)
+rds <- readRDS(f)
+knitr::kable(rds,caption=with(sentinel,paste0("Table 3. Colocalisation results for ",prot,"-",SNP)))
+unlink(f)
 ```
 
 The function `sumstats()` obtained meta-analysis summary statistics (in build 37 and therefore lifted over to build 38) to be used in colocalisation 
@@ -247,12 +242,12 @@ run_TwoSampleMR(harmonise, mr_plot="New", prefix=prefix)
 The output is contained in individual `.txt` files, together with the scatter, forest, funnel and leave-one-out plots.
 
 ```{r run_TwoSampleMR, fig.height=7, fig.width=7, echo=FALSE}
-caption3 <- "Table 3. MMP.10 variants and FEV1"
-knitr::kable(read.delim(paste0(prefix,"-result.txt"),header=TRUE),caption=paste(caption3, "(result)"))
-knitr::kable(read.delim(paste0(prefix,"-heterogeneity.txt"),header=TRUE),caption=paste(caption3,"(heterogeneity)"))
-knitr::kable(read.delim(paste0(prefix,"-pleiotropy.txt"),header=TRUE),caption=paste(caption3,"(pleiotropy)"))
-knitr::kable(read.delim(paste0(prefix,"-single.txt"),header=TRUE),caption=paste(caption3,"(single)"))
-knitr::kable(read.delim(paste0(prefix,"-loo.txt"),header=TRUE),caption=paste(caption3,"(loo)"))
+caption4 <- "Table 4. MMP.10 variants and FEV1"
+knitr::kable(read.delim(paste0(prefix,"-result.txt"),header=TRUE),caption=paste(caption4, "(result)"))
+knitr::kable(read.delim(paste0(prefix,"-heterogeneity.txt"),header=TRUE),caption=paste(caption4,"(heterogeneity)"))
+knitr::kable(read.delim(paste0(prefix,"-pleiotropy.txt"),header=TRUE),caption=paste(caption4,"(pleiotropy)"))
+knitr::kable(read.delim(paste0(prefix,"-single.txt"),header=TRUE),caption=paste(caption4,"(single)"))
+knitr::kable(read.delim(paste0(prefix,"-loo.txt"),header=TRUE),caption=paste(caption4,"(loo)"))
 for (x in c("result","heterogeneity","pleiotropy","single","loo")) unlink(paste0(prefix,"-",x,".txt"))
 ```
 
