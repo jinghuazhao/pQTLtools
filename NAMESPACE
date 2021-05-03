@@ -9,7 +9,7 @@ importFrom("graphics", "abline", "arrows", "axis", "box", "identify",
            "segments", "text")
 importFrom("grDevices", "palette", "xy.coords")
 importFrom("stats", "as.formula", "coefficients", "cor", "dnorm",
-           "glm", "integrate", "median", "nlm", "pchisq", "pf",
+           "glm", "integrate", "median", "na.omit", "nlm", "pchisq", "pf",
            "pnorm", "ppoints", "pt", "qchisq", "qnorm", "qqplot", "qt",
            "quantile", "rbinom", "rexp", "rnorm", "runif", "var")
 importFrom("grDevices", "dev.off")
