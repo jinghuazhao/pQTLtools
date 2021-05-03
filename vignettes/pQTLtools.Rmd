@@ -108,7 +108,8 @@ f <- file.path(system.file(package="pQTLtools"),"eQTL-Catalogue","tabix_ftp_path
 tabix_paths <- read.delim(f, sep = "\t", header = TRUE, stringsAsFactors = FALSE) %>% dplyr::as_tibble()
 HOME <- Sys.getenv("HOME")
 f <- file.path(system.file(package="pQTLtools"),"eQTL-Catalogue","tabix_ftp_paths_imported.tsv")
-imported_tabix_paths <- within(read.delim(f, sep = "\t", header = TRUE, stringsAsFactors = FALSE) %>% dplyr::as_tibble(),
+imported_tabix_paths <- within(read.delim(f, sep = "\t", header = TRUE, stringsAsFactors = FALSE) %>%
+                        dplyr::as_tibble(),
       {ftp_path <- gsub("ftp://ftp.ebi.ac.uk/pub/databases/spot/eQTL/csv/GTEx_V8/ge",
                         paste0(HOME,"/rds/public_databases/GTEx/csv"),ftp_path)})
 INF <- Sys.getenv("INF")
@@ -150,7 +151,8 @@ sumstats <- function(prot,chr,region37)
 coloc <- function(gwas_stats_hg38,ensGene,region38)
 {
   cat("c. GTEx_v8 imported eQTL datasets\n")
-  rnaseq_df <- dplyr::filter(imported_tabix_paths, quant_method == "ge") %>% dplyr::mutate(qtl_id = paste(study, qtl_group, sep = "_"))
+  rnaseq_df <- dplyr::filter(imported_tabix_paths, quant_method == "ge") %>%
+               dplyr::mutate(qtl_id = paste(study, qtl_group, sep = "_"))
   ftp_path_list <- setNames(as.list(rnaseq_df$ftp_path), rnaseq_df$qtl_id)
   hdr <- file.path(system.file(package="pQTLtools"),"eQTL-Catalogue","column_names.GTEx")
   column_names <- names(read.delim(hdr))
@@ -184,7 +186,9 @@ saveRDS(coloc_df_imported,file=f)
 ```
 
 ```{r coloc, fig.height=7, fig.width=8, echo=FALSE}
-ggplot(gwas_stats_hg38, aes(x = position, y = LP)) + geom_point() + ggtitle(with(sentinel,paste0(prot,"-",SNP," association plot")))
+ggplot(gwas_stats_hg38, aes(x = position, y = LP)) +
+geom_point() +
+ggtitle(with(sentinel,paste0(prot,"-",SNP," association plot")))
 rds <- readRDS(f)
 knitr::kable(rds,caption=with(sentinel,paste0("Table 3. Colocalisation results for ",prot,"-",SNP)))
 unlink(f)
@@ -219,7 +223,7 @@ invisible(sapply(c("harmonise","result","single"),
 
 The function has similiarity to @dt18. The documentation example is quoted here,
 
-```{r run_TwoSampleMR, fig.height=8, fig.width=7, results='hide', warning=FALSE}
+```{r run_TwoSampleMR, fig.height=7, fig.width=7, results='hide', warning=FALSE}
 library(TwoSampleMR)
 outcomes <- "ebi-a-GCST007432"
 prot <- "MMP.10"
