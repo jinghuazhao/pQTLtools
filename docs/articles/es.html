@@ -181,11 +181,11 @@
 <a href="#limit-of-detection-lod" class="anchor"></a>Limit of detection (LOD)</h2>
 <p>We generate a <code>lod.max</code> ~ U[0,1] variable to experiment</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/Biobase/man/featureData.html">fData</a></span><span class="op">(</span><span class="va">exampleSet</span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://stringr.tidyverse.org">stringr</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/Biobase/man/featureData.html">fData</a></span><span class="op">(</span><span class="va">exampleSet</span><span class="op">)</span>
 <span class="co">#&gt; data frame with 0 columns and 500 rows</span>
 <span class="fu"><a href="https://rdrr.io/pkg/Biobase/man/featureData.html">fData</a></span><span class="op">(</span><span class="va">exampleSet</span><span class="op">)</span><span class="op">$</span><span class="va">lod.max</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html">apply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/Biobase/man/exprs.html">exprs</a></span><span class="op">(</span><span class="va">exampleSet</span><span class="op">)</span>,<span class="fl">1</span>,<span class="va">quantile</span>,<span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">exampleSet</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 <span class="va">lod</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pQTLtools-internal.html">get.prop.below.LLOD</a></span><span class="op">(</span><span class="va">exampleSet</span><span class="op">)</span>
-<span class="co">#&gt; Loading required package: stringr</span>
 <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">lod</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <colgroup>
@@ -528,7 +528,7 @@
 </tbody>
 </table>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/Biobase/man/featureData.html">fData</a></span><span class="op">(</span><span class="va">lod</span><span class="op">)</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>, main<span class="op">=</span><span class="st">"Random quantile cut off"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/Biobase/man/featureData.html">fData</a></span><span class="op">(</span><span class="va">lod</span><span class="op">)</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>, main<span class="op">=</span><span class="st">"Random quantile cut off"</span>, ylab<span class="op">=</span><span class="st">"&lt;lod%"</span><span class="op">)</span></code></pre></div>
 <p><img src="es/test-1.png" width="700" style="display:block; margin: auto"></p>
 <p>The quantity has been shown to have a big impact on protein abundance and therefore pQTL detection as is shown with a real example.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
