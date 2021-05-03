@@ -103,11 +103,12 @@ exprs(exampleSet) <- log2.na(exprs(exampleSet))
 We generate a `lod.max` ~ U[0,1] variable to experiment
 
 ```{r test, fig.height=7}
+library(stringr)
 fData(exampleSet)
 fData(exampleSet)$lod.max <- apply(exprs(exampleSet),1,quantile,runif(nrow(exampleSet)))
 lod <- get.prop.below.LLOD(exampleSet)
 knitr::kable(head(lod))
-hist(fData(lod)[,2], main="Random quantile cut off")
+plot(fData(lod)[,2], main="Random quantile cut off", ylab="<lod%")
 ```
 
 The quantity has been shown to have a big impact on protein abundance and therefore pQTL detection as is shown with a real example.

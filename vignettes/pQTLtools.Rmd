@@ -168,8 +168,8 @@ mixed_coloc <- function(prot,chr,ensGene,chain,region37,region38,out)
   if (exists("coloc_df_imported"))
   {
     saveRDS(coloc_df_imported,file=paste0(out,".RDS"))
-    dplyr::arrange(coloc_df_imported, desc(PP.H4.abf))
-    ggplot(coloc_df_imported, aes(x = PP.H4.abf)) + geom_histogram()
+#   dplyr::arrange(coloc_df_imported, desc(PP.H4.abf))
+#   ggplot(coloc_df_imported, aes(x = PP.H4.abf)) + geom_histogram()
   }
 }
 
