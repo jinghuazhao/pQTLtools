@@ -449,11 +449,11 @@ run_TwoSampleMR <- function(TwoSampleMRinput, mr_plot="None", prefix="")
 }
 
 make_ExpressionSet <- function(assayData,
-                      phenoData=annotatedDataFrameFrom(assayData, byrow=FALSE),
-                      featureData=annotatedDataFrameFrom(assayData, byrow=TRUE),
-                      experimentData=MIAME(),
+                      phenoData=Biobase::annotatedDataFrameFrom(assayData, byrow=FALSE),
+                      featureData=Biobase::annotatedDataFrameFrom(assayData, byrow=TRUE),
+                      experimentData=Biobase::MIAME(),
                       annotation=character(),
-                      protocolData=annotatedDataFrameFrom(assayData, byrow=FALSE),...)
+                      protocolData=Biobase::annotatedDataFrameFrom(assayData, byrow=FALSE),...)
 Biobase::ExpressionSet(assayData,phenoData=phenoData,
                        featureData=featureData,
                        experimentData=experimentData,
@@ -474,7 +474,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
     stop("'flagged' argument must be 'IN' or 'OUT")
   }
 
-  require(stringr)
+  requireNamespace(stringr)
 
   # best to cut flagged samples first at eset stage:
   # risk of messing up if cutting from matrix, and then dont edit pData
@@ -505,9 +505,9 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 
   }
 
-  E <- t(exprs(eset))
+  E <- t(Biobase::exprs(eset))
 
-  p.annot <- fData(eset)
+  p.annot <- Biobase::fData(eset)
 
   p.annot$pc.belowLOD.new <- NA
 
@@ -520,7 +520,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
     p.annot$pc.belowLOD.new[i] <- 100*m/t
   }
 
-  fData(eset) <- p.annot
+  Biobase::fData(eset) <- p.annot
 
   eset
   #eof
