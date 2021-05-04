@@ -34,9 +34,11 @@ st4                 |    ST4 of the INTERVAL SomaLogic paper
 st6                 |    ST6 of the INTERVAL SomaLogic paper
 swath_ms            |    SWATH-MS panel
 **eQTL/GWAS**       |
+get.prop.below.LLOD  |   Limit of detection analysis
 import_eQTLCatalogue |   Import eQTL Catalogue
 import_OpenGWAS      |   Import OpenGWAS
 make_ExpressionSet   |   A call to ExpressionSet class
+run_coloc            |   Colocalisation analysis
 **MR analysis**      |
 pqtlMR               |   Bidirectional pQTL-MR analysis
 run_TwoSampleMR      |   A generic wrapper for TwoSampleMR analysis
