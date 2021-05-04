@@ -14,9 +14,11 @@ swath_ms                SWATH-MS panel
 
 * eQTL/GWAS *
 
+get.prop.below.LLOD     Limit of detection analysis
 import_eQTLCatalogue    Import eQTL Catalogue
 import_OpenGWAS         Import OpenGWAS
 make_ExpressionSet      A call to ExpressionSet class
+run_coloc               Colocalisation analysis
 
 * MR analysis *
 
