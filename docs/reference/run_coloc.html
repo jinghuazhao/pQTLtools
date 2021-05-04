@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • pQTLtools</title>
+<title>Colocalisation analysis — run_coloc • pQTLtools</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,8 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Colocalisation analysis — run_coloc" />
+<meta property="og:description" content="The function takes eQTL and GWAS summary statistics for a colocalisation analysis.." />
 
 
 
@@ -58,7 +59,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -102,127 +103,37 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Colocalisation analysis</h1>
+    <small class="dont-index">Source: <a href='https://github.com/jinghuazhao/pQTLtools/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
+    <div class="hidden name"><code>run_coloc.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>The function takes eQTL and GWAS summary statistics for a colocalisation analysis..</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>run_coloc</span><span class='op'>(</span><span class='va'>eqtl_sumstats</span>, <span class='va'>gwas_sumstats</span><span class='op'>)</span></pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-functions" class="hasAnchor"><a href="#section-functions" class="anchor"></a>Functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="genequeries.html">genequeries()</a></code> </p>
-        </td>
-        <td><p>phenoscanner genequeries in batches</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get.prop.below.LLOD.html">get.prop.below.LLOD()</a></code> </p>
-        </td>
-        <td><p>Limit of detection analysis</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="import_OpenGWAS.html">import_OpenGWAS()</a></code> </p>
-        </td>
-        <td><p>Import OpenGWAS</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pQTLtools-internal.html">pQTLtools-internal</a></code> </p>
-        </td>
-        <td><p>Internal data/functions for pQTLtools</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="import_eQTLCatalogue.html">import_eQTLCatalogue()</a></code> </p>
-        </td>
-        <td><p>Import eQTL Catalogue</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="make_ExpressionSet.html">make_ExpressionSet()</a></code> </p>
-        </td>
-        <td><p>A call to expressionSet class</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="pqtlMR.html">pqtlMR()</a></code> </p>
-        </td>
-        <td><p>Basic pQTL-MR analysis</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="regionqueries.html">regionqueries()</a></code> </p>
-        </td>
-        <td><p>phenoscanner regionqueries in batches</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="run_coloc.html">run_coloc()</a></code> </p>
-        </td>
-        <td><p>Colocalisation analysis</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="run_TwoSampleMR.html">run_TwoSampleMR()</a></code> </p>
-        </td>
-        <td><p>Basic TwoSampleMR analysis</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="snpqueries.html">snpqueries()</a></code> </p>
-        </td>
-        <td><p>phenoscanner snpqueries in batches</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="uniprot2ids.html">uniprot2ids()</a></code> </p>
-        </td>
-        <td><p>UniProt IDs to others</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-datasets" class="hasAnchor"><a href="#section-datasets" class="anchor"></a>Datasets</h2>
-          <p class="section-desc"><p>The following datasets are available as internal objects: biomaRt, caprion, hg19, hg19Tables, inf1, Olink_NGS, Olink_qPCR, SomaLogic160410, st4, s6, swath_ms.</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="pQTLtools-internal.html">pQTLtools-internal</a></code> </p>
-        </td>
-        <td><p>Internal data/functions for pQTLtools</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>eqtl_sumstats</th>
+      <td><p>eQTL summary data.</p></td>
+    </tr>
+    <tr>
+      <th>gwas_sumstats</th>
+      <td><p>GWAS summary data.</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>Summary from <code>coloc.abf</code>.</p>
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
