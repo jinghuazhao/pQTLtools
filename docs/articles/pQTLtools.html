@@ -665,10 +665,10 @@
 <span class="va">M</span> <span class="op">&lt;-</span> <span class="fl">1e6</span>
 <span class="va">sentinels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="va">INF</span>,<span class="st">"work"</span>,<span class="st">"INF1.merge.cis.vs.trans"</span><span class="op">)</span><span class="op">)</span>,<span class="va">cis</span><span class="op">)</span>
 
-<span class="va">liftRegion</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>,<span class="va">chain</span><span class="op">)</span>
+<span class="va">liftRegion</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>,<span class="va">chain</span>,<span class="va">flanking</span><span class="op">=</span><span class="fl">1e6</span><span class="op">)</span>
 <span class="op">{</span>
   <span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va">GenomicRanges</span><span class="op">)</span>
-  <span class="va">gr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">x</span>,<span class="fu">GenomicRanges</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GenomicRanges/man/GRanges-class.html">GRanges</a></span><span class="op">(</span>seqnames<span class="op">=</span><span class="va">chr</span>,<span class="fu">IRanges</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/IRanges/man/IRanges-constructor.html">IRanges</a></span><span class="op">(</span><span class="va">start</span>,<span class="va">end</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+  <span class="va">gr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">x</span>,<span class="fu">GenomicRanges</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GenomicRanges/man/GRanges-class.html">GRanges</a></span><span class="op">(</span>seqnames<span class="op">=</span><span class="va">chr</span>,<span class="fu">IRanges</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/IRanges/man/IRanges-constructor.html">IRanges</a></span><span class="op">(</span><span class="va">start</span>,<span class="va">end</span><span class="op">)</span><span class="op">)</span><span class="op">+</span><span class="va">flanking</span><span class="op">)</span>
   <span class="fu">seqlevelsStyle</span><span class="op">(</span><span class="va">gr</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"UCSC"</span>
   <span class="va">gr38</span> <span class="op">&lt;-</span> <span class="fu">rtracklayer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rtracklayer/man/liftOver.html">liftOver</a></span><span class="op">(</span><span class="va">gr</span>, <span class="va">chain</span><span class="op">)</span>
   <span class="va">chr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="fu">seqnames</span><span class="op">(</span><span class="va">gr38</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
@@ -693,7 +693,7 @@
                      <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">transmute</a></span><span class="op">(</span>chromosome <span class="op">=</span> <span class="va">seqnames</span>,
                                       position <span class="op">=</span> <span class="va">start</span>, <span class="va">AF</span>, <span class="va">ES</span>, <span class="va">SE</span>, <span class="va">LP</span>, <span class="va">SS</span><span class="op">)</span> <span class="op">%&gt;%</span>
                      <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">chromosome</span>, <span class="va">position</span>, sep <span class="op">=</span> <span class="st">":"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-                     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>MAF <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/Rmpfr/man/pmax.html">pmin</a></span><span class="op">(</span><span class="va">AF</span>, <span class="fl">1</span><span class="op">-</span><span class="va">AF</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+                     <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>MAF <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">pmin</a></span><span class="op">(</span><span class="va">AF</span>, <span class="fl">1</span><span class="op">-</span><span class="va">AF</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
                      <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">id</span><span class="op">)</span> <span class="op">%&gt;%</span>
                      <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>row_count <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
                      <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -773,171 +773,171 @@
 <td align="right">6503</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.0876948</td>
-<td align="right">0.9086670</td>
-<td align="right">0.0036383</td>
+<td align="right">0.0876412</td>
+<td align="right">0.9087234</td>
+<td align="right">0.0036354</td>
 </tr>
 <tr class="odd">
 <td align="left">GTEx_V8_Adrenal_Gland</td>
 <td align="right">6502</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.4590980</td>
-<td align="right">0.3621222</td>
-<td align="right">0.1787797</td>
+<td align="right">0.4590944</td>
+<td align="right">0.3621218</td>
+<td align="right">0.1787838</td>
 </tr>
 <tr class="even">
 <td align="left">GTEx_V8_Artery_Aorta</td>
 <td align="right">6503</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.5949841</td>
-<td align="right">0.3794289</td>
-<td align="right">0.0255870</td>
+<td align="right">0.5949843</td>
+<td align="right">0.3794290</td>
+<td align="right">0.0255867</td>
 </tr>
 <tr class="odd">
 <td align="left">GTEx_V8_Artery_Coronary</td>
 <td align="right">6501</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.4843150</td>
-<td align="right">0.4784204</td>
-<td align="right">0.0372646</td>
+<td align="right">0.4842157</td>
+<td align="right">0.4785330</td>
+<td align="right">0.0372513</td>
 </tr>
 <tr class="even">
 <td align="left">GTEx_V8_Artery_Tibial</td>
 <td align="right">6503</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.5942474</td>
-<td align="right">0.3340032</td>
-<td align="right">0.0717493</td>
+<td align="right">0.5942509</td>
+<td align="right">0.3340019</td>
+<td align="right">0.0717473</td>
 </tr>
 <tr class="odd">
 <td align="left">GTEx_V8_Brain_Amygdala</td>
 <td align="right">6462</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.5608684</td>
-<td align="right">0.3599445</td>
-<td align="right">0.0791872</td>
+<td align="right">0.5608736</td>
+<td align="right">0.3599302</td>
+<td align="right">0.0791962</td>
 </tr>
 <tr class="even">
 <td align="left">GTEx_V8_Brain_Anterior_cingulate_cortex_BA24</td>
 <td align="right">6491</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.5293569</td>
-<td align="right">0.4331177</td>
-<td align="right">0.0375254</td>
+<td align="right">0.5292426</td>
+<td align="right">0.4332750</td>
+<td align="right">0.0374824</td>
 </tr>
 <tr class="odd">
 <td align="left">GTEx_V8_Brain_Caudate_basal_ganglia</td>
 <td align="right">6502</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.5620171</td>
-<td align="right">0.4053818</td>
-<td align="right">0.0326011</td>
+<td align="right">0.5619994</td>
+<td align="right">0.4054190</td>
+<td align="right">0.0325816</td>
 </tr>
 <tr class="even">
 <td align="left">GTEx_V8_Brain_Cerebellar_Hemisphere</td>
 <td align="right">6499</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.5444376</td>
-<td align="right">0.4133754</td>
-<td align="right">0.0421870</td>
+<td align="right">0.5444076</td>
+<td align="right">0.4134213</td>
+<td align="right">0.0421711</td>
 </tr>
 <tr class="odd">
 <td align="left">GTEx_V8_Brain_Cerebellum</td>
 <td align="right">6499</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.5452801</td>
-<td align="right">0.3768197</td>
-<td align="right">0.0779002</td>
+<td align="right">0.5452786</td>
+<td align="right">0.3768191</td>
+<td align="right">0.0779023</td>
 </tr>
 <tr class="even">
 <td align="left">GTEx_V8_Brain_Cortex</td>
 <td align="right">6502</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.4784309</td>
-<td align="right">0.4674533</td>
-<td align="right">0.0541158</td>
+<td align="right">0.4784115</td>
+<td align="right">0.4674776</td>
+<td align="right">0.0541109</td>
 </tr>
 <tr class="odd">
 <td align="left">GTEx_V8_Brain_Frontal_Cortex_BA9</td>
 <td align="right">6497</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.4765750</td>
-<td align="right">0.4749283</td>
-<td align="right">0.0484966</td>
+<td align="right">0.4764782</td>
+<td align="right">0.4750426</td>
+<td align="right">0.0484792</td>
 </tr>
 <tr class="even">
 <td align="left">GTEx_V8_Brain_Hippocampus</td>
 <td align="right">6494</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.5505357</td>
-<td align="right">0.3449175</td>
-<td align="right">0.1045468</td>
+<td align="right">0.5505402</td>
+<td align="right">0.3448977</td>
+<td align="right">0.1045621</td>
 </tr>
 <tr class="odd">
 <td align="left">GTEx_V8_Brain_Hypothalamus</td>
 <td align="right">6498</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.5027835</td>
-<td align="right">0.4498402</td>
-<td align="right">0.0473763</td>
+<td align="right">0.5028164</td>
+<td align="right">0.4497974</td>
+<td align="right">0.0473862</td>
 </tr>
 <tr class="even">
 <td align="left">GTEx_V8_Brain_Nucleus_accumbens_basal_ganglia</td>
 <td align="right">6502</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.5634266</td>
-<td align="right">0.3758261</td>
-<td align="right">0.0607473</td>
+<td align="right">0.5634252</td>
+<td align="right">0.3758260</td>
+<td align="right">0.0607487</td>
 </tr>
 <tr class="odd">
 <td align="left">GTEx_V8_Brain_Putamen_basal_ganglia</td>
 <td align="right">6492</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.5770813</td>
-<td align="right">0.3807133</td>
-<td align="right">0.0422054</td>
+<td align="right">0.5771079</td>
+<td align="right">0.3807054</td>
+<td align="right">0.0421867</td>
 </tr>
 <tr class="even">
 <td align="left">GTEx_V8_Brain_Spinal_cord_cervical_c-1</td>
 <td align="right">6488</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.5670855</td>
-<td align="right">0.3860811</td>
-<td align="right">0.0468335</td>
+<td align="right">0.5670848</td>
+<td align="right">0.3860970</td>
+<td align="right">0.0468182</td>
 </tr>
 <tr class="odd">
 <td align="left">GTEx_V8_Brain_Substantia_nigra</td>
 <td align="right">6467</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.5796345</td>
-<td align="right">0.3816147</td>
-<td align="right">0.0387508</td>
+<td align="right">0.5796436</td>
+<td align="right">0.3816247</td>
+<td align="right">0.0387318</td>
 </tr>
 <tr class="even">
 <td align="left">GTEx_V8_Breast_Mammary_Tissue</td>
 <td align="right">6503</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.5514943</td>
-<td align="right">0.4210710</td>
-<td align="right">0.0274346</td>
+<td align="right">0.5514870</td>
+<td align="right">0.4210831</td>
+<td align="right">0.0274299</td>
 </tr>
 <tr class="odd">
 <td align="left">GTEx_V8_Cells_Cultured_fibroblasts</td>
@@ -953,243 +953,243 @@
 <td align="right">6491</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.4843162</td>
-<td align="right">0.4845665</td>
-<td align="right">0.0311173</td>
+<td align="right">0.4843476</td>
+<td align="right">0.4845294</td>
+<td align="right">0.0311231</td>
 </tr>
 <tr class="odd">
 <td align="left">GTEx_V8_Colon_Sigmoid</td>
 <td align="right">6503</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.5247947</td>
-<td align="right">0.4368257</td>
-<td align="right">0.0383795</td>
+<td align="right">0.5247981</td>
+<td align="right">0.4368204</td>
+<td align="right">0.0383815</td>
 </tr>
 <tr class="even">
 <td align="left">GTEx_V8_Colon_Transverse</td>
 <td align="right">6503</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.0075111</td>
-<td align="right">0.9921397</td>
-<td align="right">0.0003492</td>
+<td align="right">0.0075175</td>
+<td align="right">0.9921330</td>
+<td align="right">0.0003495</td>
 </tr>
 <tr class="odd">
 <td align="left">GTEx_V8_Esophagus_Gastroesophageal_Junction</td>
 <td align="right">6503</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.5776196</td>
-<td align="right">0.3951683</td>
-<td align="right">0.0272120</td>
+<td align="right">0.5776470</td>
+<td align="right">0.3951605</td>
+<td align="right">0.0271926</td>
 </tr>
 <tr class="even">
 <td align="left">GTEx_V8_Esophagus_Mucosa</td>
 <td align="right">6503</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.3666626</td>
-<td align="right">0.6162865</td>
-<td align="right">0.0170509</td>
+<td align="right">0.3665945</td>
+<td align="right">0.6163646</td>
+<td align="right">0.0170409</td>
 </tr>
 <tr class="odd">
 <td align="left">GTEx_V8_Esophagus_Muscularis</td>
 <td align="right">6503</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.0107416</td>
-<td align="right">0.9787614</td>
-<td align="right">0.0104969</td>
+<td align="right">0.0107281</td>
+<td align="right">0.9787870</td>
+<td align="right">0.0104848</td>
 </tr>
 <tr class="even">
 <td align="left">GTEx_V8_Heart_Atrial_Appendage</td>
 <td align="right">6503</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.0005054</td>
-<td align="right">0.9994714</td>
-<td align="right">0.0000232</td>
+<td align="right">0.0005034</td>
+<td align="right">0.9994734</td>
+<td align="right">0.0000231</td>
 </tr>
 <tr class="odd">
 <td align="left">GTEx_V8_Heart_Left_Ventricle</td>
 <td align="right">6503</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.0246588</td>
-<td align="right">0.9741515</td>
-<td align="right">0.0011896</td>
+<td align="right">0.0245834</td>
+<td align="right">0.9742316</td>
+<td align="right">0.0011850</td>
 </tr>
 <tr class="even">
 <td align="left">GTEx_V8_Kidney_Cortex</td>
 <td align="right">6394</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.5345330</td>
-<td align="right">0.4205248</td>
-<td align="right">0.0449422</td>
+<td align="right">0.5343563</td>
+<td align="right">0.4207386</td>
+<td align="right">0.0449051</td>
 </tr>
 <tr class="odd">
 <td align="left">GTEx_V8_Liver</td>
 <td align="right">6503</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.4682979</td>
-<td align="right">0.4739513</td>
-<td align="right">0.0577508</td>
+<td align="right">0.4682800</td>
+<td align="right">0.4739733</td>
+<td align="right">0.0577468</td>
 </tr>
 <tr class="even">
 <td align="left">GTEx_V8_Lung</td>
 <td align="right">6503</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.0103972</td>
-<td align="right">0.9885610</td>
-<td align="right">0.0010418</td>
+<td align="right">0.0103903</td>
+<td align="right">0.9885687</td>
+<td align="right">0.0010410</td>
 </tr>
 <tr class="odd">
 <td align="left">GTEx_V8_Minor_Salivary_Gland</td>
 <td align="right">6483</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.5746104</td>
-<td align="right">0.3678229</td>
-<td align="right">0.0575667</td>
+<td align="right">0.5746596</td>
+<td align="right">0.3677993</td>
+<td align="right">0.0575411</td>
 </tr>
 <tr class="even">
 <td align="left">GTEx_V8_Muscle_Skeletal</td>
 <td align="right">6503</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.6118945</td>
-<td align="right">0.3657476</td>
-<td align="right">0.0223579</td>
+<td align="right">0.6119075</td>
+<td align="right">0.3657389</td>
+<td align="right">0.0223535</td>
 </tr>
 <tr class="odd">
 <td align="left">GTEx_V8_Nerve_Tibial</td>
 <td align="right">6503</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.1863450</td>
-<td align="right">0.8057384</td>
-<td align="right">0.0079166</td>
+<td align="right">0.1865351</td>
+<td align="right">0.8055366</td>
+<td align="right">0.0079283</td>
 </tr>
 <tr class="even">
 <td align="left">GTEx_V8_Ovary</td>
 <td align="right">6501</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.5498506</td>
-<td align="right">0.4132609</td>
-<td align="right">0.0368885</td>
+<td align="right">0.5498469</td>
+<td align="right">0.4132680</td>
+<td align="right">0.0368851</td>
 </tr>
 <tr class="odd">
 <td align="left">GTEx_V8_Pancreas</td>
 <td align="right">6503</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.0189078</td>
-<td align="right">0.9801355</td>
-<td align="right">0.0009568</td>
+<td align="right">0.0189863</td>
+<td align="right">0.9800524</td>
+<td align="right">0.0009613</td>
 </tr>
 <tr class="even">
 <td align="left">GTEx_V8_Pituitary</td>
 <td align="right">6503</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.6116924</td>
-<td align="right">0.3523559</td>
-<td align="right">0.0359517</td>
+<td align="right">0.6117170</td>
+<td align="right">0.3523399</td>
+<td align="right">0.0359430</td>
 </tr>
 <tr class="odd">
 <td align="left">GTEx_V8_Prostate</td>
 <td align="right">6503</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.5124842</td>
-<td align="right">0.4530054</td>
-<td align="right">0.0345104</td>
+<td align="right">0.5124355</td>
+<td align="right">0.4530660</td>
+<td align="right">0.0344985</td>
 </tr>
 <tr class="even">
 <td align="left">GTEx_V8_Skin_Not_Sun_Exposed_Suprapubic</td>
 <td align="right">6503</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.5511300</td>
-<td align="right">0.4270324</td>
-<td align="right">0.0218376</td>
+<td align="right">0.5511321</td>
+<td align="right">0.4270291</td>
+<td align="right">0.0218388</td>
 </tr>
 <tr class="odd">
 <td align="left">GTEx_V8_Skin_Sun_Exposed_Lower_leg</td>
 <td align="right">6503</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.4276544</td>
-<td align="right">0.5545345</td>
-<td align="right">0.0178111</td>
+<td align="right">0.4276388</td>
+<td align="right">0.5545539</td>
+<td align="right">0.0178072</td>
 </tr>
 <tr class="even">
 <td align="left">GTEx_V8_Small_Intestine_Terminal_Ileum</td>
 <td align="right">6499</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.5691859</td>
-<td align="right">0.3527850</td>
-<td align="right">0.0780291</td>
+<td align="right">0.5691833</td>
+<td align="right">0.3527877</td>
+<td align="right">0.0780290</td>
 </tr>
 <tr class="odd">
 <td align="left">GTEx_V8_Spleen</td>
 <td align="right">6501</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.5452826</td>
-<td align="right">0.4077569</td>
-<td align="right">0.0469606</td>
+<td align="right">0.5452676</td>
+<td align="right">0.4077794</td>
+<td align="right">0.0469530</td>
 </tr>
 <tr class="even">
 <td align="left">GTEx_V8_Stomach</td>
 <td align="right">6503</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.5804279</td>
-<td align="right">0.3773151</td>
-<td align="right">0.0422571</td>
+<td align="right">0.5804486</td>
+<td align="right">0.3773085</td>
+<td align="right">0.0422429</td>
 </tr>
 <tr class="odd">
 <td align="left">GTEx_V8_Testis</td>
 <td align="right">6503</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.6150218</td>
-<td align="right">0.3529520</td>
-<td align="right">0.0320262</td>
+<td align="right">0.6150498</td>
+<td align="right">0.3529337</td>
+<td align="right">0.0320165</td>
 </tr>
 <tr class="even">
 <td align="left">GTEx_V8_Thyroid</td>
 <td align="right">6503</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.1499457</td>
-<td align="right">0.8435010</td>
-<td align="right">0.0065533</td>
+<td align="right">0.1500978</td>
+<td align="right">0.8433403</td>
+<td align="right">0.0065619</td>
 </tr>
 <tr class="odd">
 <td align="left">GTEx_V8_Uterus</td>
 <td align="right">6496</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.5716493</td>
-<td align="right">0.3896371</td>
-<td align="right">0.0387136</td>
+<td align="right">0.5716498</td>
+<td align="right">0.3896383</td>
+<td align="right">0.0387119</td>
 </tr>
 <tr class="even">
 <td align="left">GTEx_V8_Vagina</td>
 <td align="right">6482</td>
 <td align="right">0</td>
 <td align="right">0</td>
-<td align="right">0.5951066</td>
-<td align="right">0.3635270</td>
-<td align="right">0.0413664</td>
+<td align="right">0.5950913</td>
+<td align="right">0.3635310</td>
+<td align="right">0.0413778</td>
 </tr>
 </tbody>
 </table>
