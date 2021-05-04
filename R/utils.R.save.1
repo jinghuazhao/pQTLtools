@@ -130,13 +130,21 @@ import_eQTLCatalogue <- function(ftp_path, region, selected_gene_id, column_name
 
 #' Colocalisation analysis
 #'
-#' The function takes eQTL and GWAS summary statistics for a colocalisation analysis..
+#' The function takes eQTL and GWAS ds to rework on GSMR outputs, but it would be appropriate for general use.
 #'
 #' @md
-#' @param eqtl_sumstats eQTL summary data.
-#' @param gwas_sumstats GWAS summary data.
+#' @param data data to be used.
+#' @param X Exposure.
+#' @param Y Outcome.
+#' @param alpha type I error rate for confidence intervals.
+#' @param other_plots To add funnel and forest plots.
 #' @export
-#' @return Summary from `coloc.abf`.
+#' @return The result and plots.
+#' @examples
+#' library(cowplot)
+#' library(ggplot2)
+#' library(gap)
+#' r <- gsmr(mr, "LIF.R", c("CAD","FEV1"))
 
 run_coloc <- function(eqtl_sumstats, gwas_sumstats)
 {
@@ -154,6 +162,7 @@ run_coloc <- function(eqtl_sumstats, gwas_sumstats)
                        N = gwas_sumstats$SS)
   coloc_res <- coloc::coloc.abf(dataset1 = eQTL_dataset, dataset2 = gwas_dataset,p1 = 1e-4, p2 = 1e-4, p12 = 1e-5)
   res_formatted <- dplyr::as_tibble(t(as.data.frame(coloc_res$summary)))
+  return(res_formatted)
 }
 
 import_OpenGWAS <- function(opengwas_id, region, verbose = TRUE)
@@ -468,26 +477,6 @@ Biobase::ExpressionSet(assayData,phenoData=phenoData,
                        experimentData=experimentData,
                        annotation=annotation,
                        protocolData=protocolData,...)
-
-#' Limit of detection analysis
-#'
-#' The function obtains lower limit of detection as in proteomic analysis.
-#'
-#' @md
-#' @param eset An ExpressionSet object.
-#' @param Flagged A flag is an indicator for sample exclusion.
-#' @export
-#' @return An updated ExpressionSet object.
-#' @examples
-#' library(Biobase)
-#' data(sample.ExpressionSet)
-#' exampleSet <- sample.ExpressionSet
-#' fData(exampleSet)
-#' fData(exampleSet)$lod.max <- apply(exprs(exampleSet),1,quantile,runif(nrow(exampleSet)))
-#' lod <- get.prop.below.LLOD(exampleSet)
-#' x <- dplyr::arrange(fData(lod),desc(pc.belowLOD.new))
-#' knitr::kable(head(lod))
-#' plot(x[,2], main="Random quantile cut off", ylab="<lod%")
 
 get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 
