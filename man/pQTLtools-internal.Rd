@@ -5,7 +5,6 @@
 \alias{clump_data.args}
 \alias{extract_outcome_data.args}
 \alias{format_data.args}
-\alias{get.prop.below.LLOD}
 \alias{harmonise_data.args}
 \alias{hg19}
 \alias{hg19Tables}
@@ -16,7 +15,6 @@
 \alias{mr_scatter_plot2}
 \alias{Olink_NGS}
 \alias{Olink_qPCR}
-\alias{run_coloc}
 \alias{SomaLogic160410}
 \alias{st4}
 \alias{st6}
