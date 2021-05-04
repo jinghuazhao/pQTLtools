@@ -243,6 +243,9 @@
   <span class="fu">coloc</span><span class="op">(</span><span class="va">sentinel</span><span class="op">[[</span><span class="st">"prot"</span><span class="op">]</span><span class="op">]</span>,<span class="va">chr</span>,<span class="va">ensGene</span>,<span class="va">chain</span>,<span class="va">ensRegion37</span>,<span class="va">ensRegion38</span>,<span class="va">f</span><span class="op">)</span>
 <span class="op">}</span>
 
+<span class="co"># slow with the following loop:</span>
+<span class="va">loop</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="kw">for</span> <span class="op">(</span><span class="va">r</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">sentinels</span><span class="op">)</span><span class="op">)</span> <span class="fu">single_run</span><span class="op">(</span><span class="va">r</span><span class="op">)</span>
+
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jinghuazhao/pQTLtools">pQTLtools</a></span><span class="op">)</span>
 <span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/find.package.html">path.package</a></span><span class="op">(</span><span class="st">"pQTLtools"</span><span class="op">)</span>,<span class="st">"eQTL-Catalogue"</span>,<span class="st">"hg19ToHg38.over.chain"</span><span class="op">)</span>
 <span class="va">chain</span> <span class="op">&lt;-</span> <span class="fu">rtracklayer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rtracklayer/man/Chain-class.html">import.chain</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span>
@@ -258,18 +261,19 @@
       <span class="op">{</span><span class="va">ftp_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span><span class="op">(</span><span class="st">"ftp://ftp.ebi.ac.uk/pub/databases/spot/eQTL/csv/GTEx_V8/ge"</span>,
                         <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="va">HOME</span>,<span class="st">"/rds/public_databases/GTEx/csv"</span><span class="op">)</span>,<span class="va">ftp_path</span><span class="op">)</span><span class="op">}</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>width<span class="op">=</span><span class="fl">200</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 <span class="va">INF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span><span class="op">(</span><span class="st">"INF"</span><span class="op">)</span>
 <span class="va">M</span> <span class="op">&lt;-</span> <span class="fl">1e6</span>
 <span class="va">sentinels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="va">INF</span>,<span class="st">"work"</span>,<span class="st">"INF1.merge.cis.vs.trans"</span><span class="op">)</span><span class="op">)</span>,<span class="va">cis</span><span class="op">)</span>
 <span class="va">cvt_rsid</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="va">INF</span>,<span class="st">"work"</span>,<span class="st">"INF1.merge.cis.vs.trans-rsid"</span><span class="op">)</span>
 <span class="va">prot_rsid</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.delim</a></span><span class="op">(</span><span class="va">cvt_rsid</span>,sep<span class="op">=</span><span class="st">" "</span><span class="op">)</span>,<span class="va">cis</span>,select<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">prot</span>,<span class="va">SNP</span><span class="op">)</span><span class="op">)</span>
-<span class="co"># for (r in 1:nrow(sentinels))</span>
-<span class="op">{</span>
-  <span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span><span class="op">(</span><span class="st">"r"</span><span class="op">)</span><span class="op">)</span>
-  <span class="fu">single_run</span><span class="op">(</span><span class="va">r</span><span class="op">)</span>
-<span class="op">}</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
-<span class="va">collect</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span>
+<span class="co"># Faster with parallel Bash runs.</span>
+<span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html">Sys.getenv</a></span><span class="op">(</span><span class="st">"r"</span><span class="op">)</span><span class="op">)</span>
+<span class="fu">single_run</span><span class="op">(</span><span class="va">r</span><span class="op">)</span></code></pre></div>
+<p>where options for protein GWAS, microarray, RNA-Seq are available with respect to variant-flanking or gene regions. When no results are generated, there would have problem with <code><a href="https://dplyr.tidyverse.org/reference/arrange.html">dplyr::arrange(df_gtex, -PP.H4.abf);p &lt;- ggplot(df_gtex, aes(x = PP.H4.abf)) + geom_histogram()</a></code>.</p>
+<p>When these are furnished we keep results as follows,</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">collect</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span>
 <span class="op">{</span>
   <span class="va">df_coloc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="op">)</span>
   <span class="kw">for</span><span class="op">(</span><span class="va">r</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">sentinels</span><span class="op">)</span><span class="op">)</span>
@@ -290,8 +294,9 @@
               <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>H0<span class="op">=</span><span class="va">PP.H0.abf</span>,H1<span class="op">=</span><span class="va">PP.H1.abf</span>,H2<span class="op">=</span><span class="va">PP.H2.abf</span>,H3<span class="op">=</span><span class="va">PP.H3.abf</span>,H4<span class="op">=</span><span class="va">PP.H4.abf</span><span class="op">)</span>
   <span class="fu"><a href="https://rdrr.io/r/utils/write.table.html">write.table</a></span><span class="op">(</span><span class="va">df_coloc</span>,file<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="va">INF</span>,<span class="st">"coloc"</span>,<span class="st">"GTEx.tsv"</span><span class="op">)</span>,
               quote<span class="op">=</span><span class="cn">FALSE</span>,row.names<span class="op">=</span><span class="cn">FALSE</span>,sep<span class="op">=</span><span class="st">"\t"</span><span class="op">)</span>
-<span class="op">}</span></code></pre></div>
-<p>where it can be seen that there are options for microarray, RNA-Seq and with respect to the gene regions.</p>
+<span class="op">}</span>
+<span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html">collect</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p>i.e., PP3+PP4&gt;=0.9 and PP4/PP3&gt;=3.</p>
 </div>
   </div>
 
