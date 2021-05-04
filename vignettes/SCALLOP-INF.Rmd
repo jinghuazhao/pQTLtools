@@ -179,7 +179,13 @@ single_run <- function(r)
   })
   chr <- with(isnpid,chr)
   region37 <- with(isnpid, paste0(chr,":",start,"-",end))
-  ensRegion37 <- with(subset(inf1,prot==sentinel[["prot"]]),paste0(chr,":",start,"-",end))
+  ensRegion37 <- with(subset(inf1,prot==sentinel[["prot"]]),
+                      {
+                        start <- start-M
+                        if (start<0) start <- 0
+                        end <- end+M
+                        paste0(chr,":",start,"-",end)
+                      })
   region38 <- with(liftRegion(isnpid,chain),region)
   ensGene <- subset(inf1,prot==sentinel[["prot"]])[["ensembl_gene_id"]]
   ensRegion38 <- with(liftRegion(subset(inf1,prot==sentinel[["prot"]]),chain),region)
