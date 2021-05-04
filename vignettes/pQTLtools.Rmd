@@ -123,10 +123,10 @@ INF <- Sys.getenv("INF")
 M <- 1e6
 sentinels <- subset(read.csv(file.path(INF,"work","INF1.merge.cis.vs.trans")),cis)
 
-liftRegion <- function(x,chain)
+liftRegion <- function(x,chain,flanking=1e6)
 {
   require(GenomicRanges)
-  gr <- with(x,GenomicRanges::GRanges(seqnames=chr,IRanges::IRanges(start,end)))
+  gr <- with(x,GenomicRanges::GRanges(seqnames=chr,IRanges::IRanges(start,end))+flanking)
   seqlevelsStyle(gr) <- "UCSC"
   gr38 <- rtracklayer::liftOver(gr, chain)
   chr <- colnames(table(seqnames(gr38)))

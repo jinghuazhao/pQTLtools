@@ -54,10 +54,10 @@ done
 and the corresponding coloc.R contains minor modification to the documentation example
 
 ```r
-liftRegion <- function(x,chain)
+liftRegion <- function(x,chain,flanking=1e6)
 {
   require(GenomicRanges)
-  gr <- with(x,GenomicRanges::GRanges(seqnames=chr,IRanges::IRanges(start,end)))
+  gr <- with(x,GenomicRanges::GRanges(seqnames=chr,IRanges::IRanges(start,end))+flanking)
   seqlevelsStyle(gr) <- "UCSC"
   gr38 <- rtracklayer::liftOver(gr, chain)
   chr <- gsub("chr","",colnames(table(seqnames(gr38))))
