@@ -9,7 +9,7 @@ get.prop.below.LLOD(eset, flagged = "OUT")
 \arguments{
 \item{eset}{An ExpressionSet object.}
 
-\item{Flagged}{A flag is an indicator for sample exclusion.}
+\item{flagged}{A flag is an indicator for sample exclusion.}
 }
 \value{
 An updated ExpressionSet object.
