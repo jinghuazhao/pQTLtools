@@ -49,7 +49,8 @@ t2d <- mhtplot2d(d)
 and ideogram (biomaRt is not always on so we include the plot below)
 ```r
 INF <- Sys.getenv("INF")
-INF1_merge <- read.delim(file.path(INF,"work","INF1.merge"))[c("Chrom","Start","End","prot","MarkerName")]
+f <- file.path(INF,"work","INF1.merge")
+INF1_merge <- read.delim(f)[c("Chrom","Start","End","prot","MarkerName")]
 singletons <- with(INF1_merge,End-Start==1)
 INF1_merge[singletons,"Start"] <- INF1_merge[singletons,"Start"] - 1e6
 INF1_merge[singletons,"End"] <- INF1_merge[singletons,"End"] + 1e6
@@ -65,7 +66,8 @@ set_config(config(ssl_verifypeer = 0L))
 library(biomaRt)
 library(regioneR)
 mart <- useMart(biomart = "ensembl", dataset = "hsapiens_gene_ensembl")
-bm <- with(INF1_merge_cvt, getBM(attributes = c("hgnc_symbol", "chromosome_name", "start_position", "end_position", "band"),
+attrs <- c("hgnc_symbol", "chromosome_name", "start_position", "end_position", "band")
+bm <- with(INF1_merge_cvt, getBM(attributes = attrs,
            filters="chromosomal_region", values=paste0(Chr,":",bp,":",bp), mart=mart))
 genes <- with(bm,toGRanges(chromosome_name,start_position,end_position,labels=hgnc_symbol))
 
@@ -81,10 +83,12 @@ kp <- plotKaryotype(genome="hg19",chromosomes=levels(seqnames(sentinels)))
 kpAddBaseNumbers(kp)
 kpPlotRegions(kp,data=loci,r0=0.05,r1=0.15,border="black")
 kpPlotMarkers(kp, data=sentinels, labels=p.gene, text.orientation="vertical",
-              cex=0.45, y=0.3*seq_along(p.gene)/length(p.gene), srt=30, ignore.chromosome.ends=TRUE,
+              cex=0.45, y=0.3*seq_along(p.gene)/length(p.gene), srt=30,
+              ignore.chromosome.ends=TRUE,
               adjust.label.position=TRUE, label.color=colors[2-cis], label.dist=0.002,
               cex.axis=3, cex.lab=3)
-legend("bottomright", bty="n", pch=c(19,19), col=colors, pt.cex=0.4, legend=c("cis", "trans"), text.col=colors, cex=0.8, horiz=FALSE)
+legend("bottomright", bty="n", pch=c(19,19), col=colors, pt.cex=0.4,
+       legend=c("cis", "trans"), text.col=colors, cex=0.8, horiz=FALSE)
 # kpPlotLinks(kp, data=loci, data2=panel, col=colors[2-cis])
 detach(INF1_merge_cvt)
 ```
@@ -101,14 +105,17 @@ flanking regions were considered and data are actually fetched from files stored
 library(pQTLtools)
 f <- file.path(system.file(package="pQTLtools"),"eQTL-Catalogue","hg19ToHg38.over.chain")
 chain <- rtracklayer::import.chain(f)
-invisible(lapply(c("dplyr", "ggplot2", "readr", "coloc", "GenomicRanges","seqminer"), require, character.only = TRUE))
+pkgs <- c("dplyr", "ggplot2", "readr", "coloc", "GenomicRanges","seqminer")
+invisible(lapply(pkgs, require, character.only = TRUE))
 HPC_WORK <- Sys.getenv("HPC_WORK")
 gwasvcf::set_bcftools(file.path(HPC_WORK,"bin","bcftools"))
 f <- file.path(system.file(package="pQTLtools"),"eQTL-Catalogue","tabix_ftp_paths.tsv")
-tabix_paths <- read.delim(f, sep = "\t", header = TRUE, stringsAsFactors = FALSE) %>% dplyr::as_tibble()
+tabix_paths <- read.delim(f, sep = "\t", header = TRUE, stringsAsFactors = FALSE) %>%
+               dplyr::as_tibble()
 HOME <- Sys.getenv("HOME")
-f <- file.path(system.file(package="pQTLtools"),"eQTL-Catalogue","tabix_ftp_paths_imported.tsv")
-imported_tabix_paths <- within(read.delim(f, sep = "\t", header = TRUE, stringsAsFactors = FALSE) %>%
+f <- file.path(system.file(package="pQTLtools"),"eQTL-Catalogue",
+               "tabix_ftp_paths_imported.tsv")
+imported_tabix_paths <- within(read.delim(f, stringsAsFactors = FALSE) %>%
                         dplyr::as_tibble(),
       {ftp_path <- gsub("ftp://ftp.ebi.ac.uk/pub/databases/spot/eQTL/csv/GTEx_V8/ge",
                         paste0(HOME,"/rds/public_databases/GTEx/csv"),ftp_path)})
@@ -132,8 +139,11 @@ liftRegion <- function(x,chain)
 sumstats <- function(prot,chr,region37)
 {
   cat("GWAS sumstats\n")
-  gwas_stats <- gwasvcf::query_gwas(file.path(INF,"METAL/gwas2vcf",paste0(prot,".vcf.gz")), chrompos = region37)
-  gwas_stats <- gwasvcf::vcf_to_granges(gwas_stats) %>% keepSeqlevels(chr) %>% renameSeqlevels(paste0("chr",chr))
+  f <- file.path(INF,"METAL/gwas2vcf",paste0(prot,".vcf.gz"))
+  gwas_stats <- gwasvcf::query_gwas(f, chrompos = region37)
+  gwas_stats <- gwasvcf::vcf_to_granges(gwas_stats) %>%
+                keepSeqlevels(chr) %>%
+                renameSeqlevels(paste0("chr",chr))
   gwas_stats_hg38 <- rtracklayer::liftOver(gwas_stats, chain) %>%
                      unlist() %>%
                      renameSeqlevels(chr) %>%
@@ -157,10 +167,12 @@ coloc <- function(gwas_stats_hg38,ensGene,region38)
   hdr <- file.path(system.file(package="pQTLtools"),"eQTL-Catalogue","column_names.GTEx")
   column_names <- names(read.delim(hdr))
   safe_import <- purrr::safely(import_eQTLCatalogue)
-  summary_list <- purrr::map(ftp_path_list, ~safe_import(., region38, selected_gene_id = ensGene, column_names))
+  summary_list <- purrr::map(ftp_path_list, ~safe_import(., region38,
+                             selected_gene_id = ensGene, column_names))
   result_list <- purrr::map(summary_list, ~.$result)
   result_list <- result_list[!unlist(purrr::map(result_list, is.null))]
-  result_filtered <- purrr::map(result_list[lapply(result_list,nrow)!=0], ~dplyr::filter(., !is.na(se)))
+  result_filtered <- purrr::map(result_list[lapply(result_list,nrow)!=0],
+                                ~dplyr::filter(., !is.na(se)))
   purrr::map_df(result_filtered, ~run_coloc(., gwas_stats_hg38), .id = "qtl_id")
 }
 
@@ -190,7 +202,8 @@ ggplot(gwas_stats_hg38, aes(x = position, y = LP)) +
 geom_point() +
 ggtitle(with(sentinel,paste0(prot,"-",SNP," association plot")))
 rds <- readRDS(f)
-knitr::kable(rds,caption=with(sentinel,paste0("Table 3. Colocalisation results for ",prot,"-",SNP)))
+ktitle <- with(sentinel,paste0("Table 3. Colocalisation results for ",prot,"-",SNP))
+knitr::kable(rds, caption=ktitle)
 unlink(f)
 ```
 

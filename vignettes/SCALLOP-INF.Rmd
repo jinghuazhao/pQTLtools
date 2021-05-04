@@ -25,19 +25,27 @@ knitr::opts_chunk$set(
 ```
 
 ## Colocalisation
+
+This is the actual script for cis-pQTL colocalisation analysis for SCALLOP-INF. The driver is in Bash.
+
 ```bash
 #!/usr/bin/bash
 
 for r in {1..59}
 do
    export r=${r}
-   read prot MarkerName < <(awk -vFS="," '$14=="cis"' ${INF}/work/INF1.merge.cis.vs.trans | awk -vFS="," -vr=${r} 'NR==r{print $2,$5}')
+   export cvt=${INF}/work/INF1.merge.cis.vs.trans
+   read prot MarkerName < \
+                        <(awk -vFS="," '$14=="cis"' ${cvt} | \
+                          awk -vFS="," -vr=${r} 'NR==r{print $2,$5}')
    echo ${r} - ${prot} - ${MarkerName}
    export prot=${prot}
    export MarkerName=${MarkerName}
-   if [ ! -f ${prot}-${MarkerName}.pdf ] || [ ! -f ${prot}-${MarkerName}.RDS ]; then
+   if [ ! -f ${INF}/coloc/${prot}-${MarkerName}.pdf ] || \
+      [ ! -f ${INF}/coloc/${prot}-${MarkerName}.RDS ]; then
      cd ${INF}/coloc
-     R --no-save < coloc.R 2>&1 | tee ${prot}-${MarkerName}.log
+     R --no-save < ${INF}/rsid/coloc.R 2>&1 | \
+     tee ${prot}-${MarkerName}.log
 #    ls *tbi | xargs -I {} bash -c "rm {}"
      cd -
    fi
@@ -52,18 +60,20 @@ liftRegion <- function(x,chain)
   gr <- with(x,GenomicRanges::GRanges(seqnames=chr,IRanges::IRanges(start,end)))
   seqlevelsStyle(gr) <- "UCSC"
   gr38 <- rtracklayer::liftOver(gr, chain)
-  chr <- colnames(table(seqnames(gr38)))
-  chr <- gsub("chr","",chr)
+  chr <- gsub("chr","",colnames(table(seqnames(gr38))))
   start <- min(unlist(start(gr38)))
   end <- max(unlist(end(gr38)))
   invisible(list(chr=chr,start=start,end=end,region=paste0(chr,":",start,"-",end)))
 }
 
-coloc_sumstats <- function(prot,chr,region37)
+sumstats <- function(prot,chr,region37)
 {
   cat("GWAS sumstats\n")
-  gwas_stats <- gwasvcf::query_gwas(file.path(INF,"METAL/gwas2vcf",paste0(prot,".vcf.gz")), chrompos = region37)
-  gwas_stats <- gwasvcf::vcf_to_granges(gwas_stats) %>% keepSeqlevels(chr) %>% renameSeqlevels(paste0("chr",chr))
+  vcf <- file.path(INF,"METAL/gwas2vcf",paste0(prot,".vcf.gz"))
+  gwas_stats <- gwasvcf::query_gwas(vcf, chrompos = region37)
+  gwas_stats <- gwasvcf::vcf_to_granges(gwas_stats) %>%
+                keepSeqlevels(chr) %>%
+                renameSeqlevels(paste0("chr",chr))
   gwas_stats_hg38 <- rtracklayer::liftOver(gwas_stats, chain) %>%
     unlist() %>%
     renameSeqlevels(chr) %>%
@@ -75,75 +85,84 @@ coloc_sumstats <- function(prot,chr,region37)
     dplyr::mutate(row_count = n()) %>%
     dplyr::ungroup() %>%
     dplyr::filter(row_count == 1)
-  ggplot(gwas_stats_hg38, aes(x = position, y = LP)) + geom_point()
-  gwas_stats_hg38
 }
 
-coloc_a <- function(gwas_stats_hg38,ensGene,region38)
+microarray <- function(gwas_stats_hg38,ensGene,region38)
 {
   cat("a. eQTL datasets\n")
-  microarray_df <- dplyr::filter(tabix_paths, quant_method == "microarray") %>% dplyr::mutate(qtl_id = paste(study, qtl_group, sep = "_"))
+  microarray_df <- dplyr::filter(tabix_paths, quant_method == "microarray") %>%
+                   dplyr::mutate(qtl_id = paste(study, qtl_group, sep = "_"))
   ftp_path_list <- setNames(as.list(microarray_df$ftp_path), microarray_df$qtl_id[1])
-  hdr <- file.path(find.package("pQTLtools",lib.loc=.libPaths()),"eQTL-Catalogue","column_names.CEDAR")
+  hdr <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","column_names.CEDAR")
   column_names <- names(read.delim(hdr))
-  summary_list <- purrr::map(ftp_path_list, ~import_eQTLCatalogue(., region38, selected_gene_id = ensGene, column_names))
-  coloc_df_microarray <- purrr::map_df(summary_list[lapply(summary_list,nrow)!=0], ~run_coloc(., gwas_stats_hg38), .id = "qtl_id")
+  summary_list <- purrr::map(ftp_path_list, ~import_eQTLCatalogue(., region38,
+                             selected_gene_id = ensGene, column_names))
+  purrr::map_df(summary_list[lapply(summary_list,nrow)!=0],
+                ~run_coloc(., gwas_stats_hg38), .id = "qtl_id")
 }
 
-coloc_b <- function(gwas_stats_hg38,ensGene,region38)
+rnaseq <- function(gwas_stats_hg38,ensGene,region38)
 {
   cat("b. Uniformly processed RNA-seq datasets\n")
-  rnaseq_df <- dplyr::filter(tabix_paths, quant_method == "ge") %>% dplyr::mutate(qtl_id = paste(study, qtl_group, sep = "_"))
+  rnaseq_df <- dplyr::filter(tabix_paths, quant_method == "ge") %>%
+               dplyr::mutate(qtl_id = paste(study, qtl_group, sep = "_"))
   ftp_path_list <- setNames(as.list(rnaseq_df$ftp_path), rnaseq_df$qtl_id)
-  hdr <- file.path(find.package("pQTLtools",lib.loc=.libPaths()),"eQTL-Catalogue","column_names.Alasoo")
+  hdr <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","column_names.Alasoo")
   column_names <- names(read.delim(hdr))
   safe_import <- purrr::safely(import_eQTLCatalogue)
-  summary_list <- purrr::map(ftp_path_list, ~safe_import(., region38, selected_gene_id = ensGene, column_names))
+  summary_list <- purrr::map(ftp_path_list, ~safe_import(., region38,
+                             selected_gene_id = ensGene, column_names))
   result_list <- purrr::map(summary_list[lapply(result_list,nrow)!=0], ~.$result)
   result_list <- result_list[!unlist(purrr::map(result_list, is.null))]
-  coloc_df_rnaseq <- purrr::map_df(result_list, ~run_coloc(., gwas_stats_hg38), .id = "qtl_id")
+  purrr::map_df(result_list, ~run_coloc(., gwas_stats_hg38), .id = "qtl_id")
 }
 
-coloc_c <- function(gwas_stats_hg38,ensGene,region38)
+gtex <- function(gwas_stats_hg38,ensGene,region38)
 {
   cat("c. GTEx_v8 imported eQTL datasets\n")
-  rnaseq_df <- dplyr::filter(imported_tabix_paths, quant_method == "ge") %>% dplyr::mutate(qtl_id = paste(study, qtl_group, sep = "_"))
+  rnaseq_df <- dplyr::filter(imported_tabix_paths, quant_method == "ge") %>%
+               dplyr::mutate(qtl_id = paste(study, qtl_group, sep = "_"))
   ftp_path_list <- setNames(as.list(rnaseq_df$ftp_path), rnaseq_df$qtl_id)
-  hdr <- file.path(find.package("pQTLtools",lib.loc=.libPaths()),"eQTL-Catalogue","column_names.GTEx")
+  hdr <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","column_names.GTEx")
   column_names <- names(read.delim(hdr))
   safe_import <- purrr::safely(import_eQTLCatalogue)
-  summary_list <- purrr::map(ftp_path_list, ~safe_import(., region38, selected_gene_id = ensGene, column_names))
+  summary_list <- purrr::map(ftp_path_list,
+                             ~safe_import(., region38, selected_gene_id = ensGene, column_names))
   result_list <- purrr::map(summary_list, ~.$result)
   result_list <- result_list[!unlist(purrr::map(result_list, is.null))]
-  result_filtered <- purrr::map(result_list[lapply(result_list,nrow)!=0], ~dplyr::filter(., !is.na(se)))
-  coloc_df_imported <- purrr::map_df(result_filtered, ~run_coloc(., gwas_stats_hg38), .id = "qtl_id")
+  result_filtered <- purrr::map(result_list[lapply(result_list,nrow)!=0],
+                                ~dplyr::filter(., !is.na(se)))
+  purrr::map_df(result_filtered, ~run_coloc(., gwas_stats_hg38), .id = "qtl_id")
 }
 
-mixed_coloc <- function(prot,chr,ensGene,chain,region37,region38,out,run_all=FALSE)
+coloc <- function(prot,chr,ensGene,chain,region37,region38,out,run_all=FALSE)
 {
-  gwas_stats_hg38 <- coloc_sumstats(prot,chr,region37)
+  gwas_stats_hg38 <- sumstats(prot,chr,region37)
   if (run_all)
   {
-    coloc_df_microarray <- coloc_a(gwas_stats_hg38,ensGene,region38)
-    coloc_df_rnaseq <- coloc_b(gwas_stats_hg38,ensGene,region38)
-    coloc_df_imported <- coloc_c(gwas_stats_hg38,ensGene,region38)
-    if (exists("coloc_df_microarray") & exits("coloc_df_rnaseq") & exists("coloc_df_imported"))
+    df_microarray <- microarray(gwas_stats_hg38,ensGene,region38)
+    df_rnaseq <- rnaseq(gwas_stats_hg38,ensGene,region38)
+    df_gtex <- gtex(gwas_stats_hg38,ensGene,region38)
+    if (exists("df_microarray") & exits("df_rnaseq") & exists("df_gtex"))
     {
-      coloc_df = dplyr::bind_rows(coloc_df_microarray, coloc_df_rnaseq, coloc_df_imported)
+      coloc_df = dplyr::bind_rows(df_microarray, df_rnaseq, df_gtex)
       saveRDS(coloc_df, file=paste0(out,".RDS"))
       dplyr::arrange(coloc_df, -PP.H4.abf)
       p <- ggplot(coloc_df, aes(x = PP.H4.abf)) + geom_histogram()
     }
   } else {
-    coloc_df_imported <- coloc_c(gwas_stats_hg38,ensGene,region38)
-    if (exists("coloc_df_imported"))
+    df_gtex <- gtex(gwas_stats_hg38,ensGene,region38)
+    if (exists("df_gtex"))
     {
-      saveRDS(coloc_df_imported,file=paste0(out,".RDS"))
-      dplyr::arrange(coloc_df_imported, -PP.H4.abf)
-      p <- ggplot(coloc_df_imported, aes(x = PP.H4.abf)) + geom_histogram()
+      saveRDS(df_gtex,file=paste0(out,".RDS"))
+      dplyr::arrange(df_gtex, -PP.H4.abf)
+      p <- ggplot(df_gtex, aes(x = PP.H4.abf)) + geom_histogram()
     }
   }
-  ggsave(plot = p, filename = paste0(out, ".pdf"), path = "", device = "pdf",
+  s <- ggplot(gwas_stats_hg38, aes(x = position, y = LP)) + geom_point()
+  ggsave(plot = s, filename = paste0(out, "-assoc.pdf"), path = "", device = "pdf",
+         height = 15, width = 15, units = "cm", dpi = 300)
+  ggsave(plot = p, filename = paste0(out, "-hist.pdf"), path = "", device = "pdf",
          height = 15, width = 15, units = "cm", dpi = 300)
 }
 
@@ -166,28 +185,30 @@ single_run <- function(r)
   ensRegion38 <- with(liftRegion(subset(inf1,prot==sentinel[["prot"]]),chain),region)
   f <- file.path(INF,"coloc",with(sentinel,paste0(prot,"-",SNP)))
   cat(chr,region37,region38,ensGene,ensRegion37,ensRegion38,"\n")
-  mixed_coloc(sentinel[["prot"]],chr,ensGene,chain,region37,region38,f)
-# mixed_coloc(sentinel[["prot"]],chr,ensGene,chain,ensRegion37,ensRegion38,f)
+# coloc(sentinel[["prot"]],chr,ensGene,chain,region37,region38,f)
+  coloc(sentinel[["prot"]],chr,ensGene,chain,ensRegion37,ensRegion38,f)
 }
 
 library(pQTLtools)
-f <- file.path(find.package("pQTLtools",lib.loc=.libPaths()),"eQTL-Catalogue","hg19ToHg38.over.chain")
+f <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","hg19ToHg38.over.chain")
 chain <- rtracklayer::import.chain(f)
-invisible(lapply(c("dplyr", "ggplot2", "readr", "coloc", "GenomicRanges","seqminer"), require, character.only = TRUE))
+pkgs <- c("dplyr", "ggplot2", "readr", "coloc", "GenomicRanges","seqminer")
+invisible(lapply(pkgs, require, character.only = TRUE))
 HPC_WORK <- Sys.getenv("HPC_WORK")
 gwasvcf::set_bcftools(file.path(HPC_WORK,"bin","bcftools"))
-f <- file.path(find.package("pQTLtools",lib.loc=.libPaths()),"eQTL-Catalogue","tabix_ftp_paths.tsv")
-tabix_paths <- read.delim(f, sep = "\t", header = TRUE, stringsAsFactors = FALSE) %>% dplyr::as_tibble()
+f <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","tabix_ftp_paths.tsv")
+tabix_paths <- read.delim(f, stringsAsFactors = FALSE) %>% dplyr::as_tibble()
 HOME <- Sys.getenv("HOME")
-f <- file.path(find.package("pQTLtools",lib.loc=.libPaths()),"eQTL-Catalogue","tabix_ftp_paths_imported.tsv")
-imported_tabix_paths <- within(read.delim(f, sep = "\t", header = TRUE, stringsAsFactors = FALSE) %>% dplyr::as_tibble(),
+f <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","tabix_ftp_paths_imported.tsv")
+imported_tabix_paths <- within(read.delim(f, stringsAsFactors = FALSE) %>% dplyr::as_tibble(),
       {ftp_path <- gsub("ftp://ftp.ebi.ac.uk/pub/databases/spot/eQTL/csv/GTEx_V8/ge",
                         paste0(HOME,"/rds/public_databases/GTEx/csv"),ftp_path)})
 options(width=200)
 INF <- Sys.getenv("INF")
 M <- 1e6
 sentinels <- subset(read.csv(file.path(INF,"work","INF1.merge.cis.vs.trans")),cis)
-prot_rsid <- subset(read.delim(file.path(INF,"work","INF1.merge.cis.vs.trans-rsid"),sep=" "),cis,select=c(prot,SNP))
+cvt_rsid <- file.path(INF,"work","INF1.merge.cis.vs.trans-rsid")
+prot_rsid <- subset(read.delim(cvt_rsid,sep=" "),cis,select=c(prot,SNP))
 # for (r in 1:nrow(sentinels))
 {
   r <- as.integer(Sys.getenv("r"))
@@ -196,7 +217,7 @@ prot_rsid <- subset(read.delim(file.path(INF,"work","INF1.merge.cis.vs.trans-rsi
 library(dplyr)
 collect <- function()
 {
-  coloc <- data.frame()
+  df_coloc <- data.frame()
   for(r in 1:nrow(sentinels))
   {
     prot <- sentinels[["prot"]][r]
@@ -211,7 +232,10 @@ collect <- function()
     if (nrow(select)==0) next
     coloc <- rbind(coloc,data.frame(prot=prot,rsid=rsid,snpid=snpid,select))
   }
-  coloc <- within(coloc,{qtl_id <- gsub("GTEx_V8_","",qtl_id)}) %>% rename(H0=PP.H0.abf,H1=PP.H1.abf,H2=PP.H2.abf,H3=PP.H3.abf,H4=PP.H4.abf)
-  write.table(coloc,file=file.path(INF,"coloc","GTEx.tsv"),quote=FALSE,row.names=FALSE,sep="\t")
+  df_coloc <- within(dr_coloc,{qtl_id <- gsub("GTEx_V8_","",qtl_id)}) %>%
+              rename(H0=PP.H0.abf,H1=PP.H1.abf,H2=PP.H2.abf,H3=PP.H3.abf,H4=PP.H4.abf)
+  write.table(df_coloc,file=file.path(INF,"coloc","GTEx.tsv"),
+              quote=FALSE,row.names=FALSE,sep="\t")
 }
 ```
+where it can be seen that there are options for microarray, RNA-Seq and with respect to the gene regions.
