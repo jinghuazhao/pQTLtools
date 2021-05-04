@@ -42,12 +42,14 @@ reference:
   - title: Functions
     contents:
     - genequeries
+    - get.prop.below.LLOD
     - import_OpenGWAS
     - pQTLtools-internal
     - import_eQTLCatalogue
     - make_ExpressionSet
     - pqtlMR
     - regionqueries
+    - run_coloc
     - run_TwoSampleMR
     - snpqueries
     - uniprot2ids
