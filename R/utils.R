@@ -475,7 +475,7 @@ Biobase::ExpressionSet(assayData,phenoData=phenoData,
 #'
 #' @md
 #' @param eset An ExpressionSet object.
-#' @param Flagged A flag is an indicator for sample exclusion.
+#' @param flagged A flag is an indicator for sample exclusion.
 #' @export
 #' @return An updated ExpressionSet object.
 #' @examples
