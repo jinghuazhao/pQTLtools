@@ -1,8 +1,6 @@
 # pQTLtools 0.1
 
 * ...
-* Replace ChangeLog with NEWS.md and document with pkgdown.
-  Invoke Roxygen2 for documentation
 * Suggest cowplot, gap.datasets, httr, plyr, rmarkdown, Biobase, stringr
 * Suggest circlize, openxlsx, knitr and add HTML vignette (biomaRt, karyoploteR, regioneR)
   with cis/trans-classification/ideogram/mhtplot2d examples
@@ -21,5 +19,7 @@
   Q8NF90 and Q8WWJ7 in inf1.rda were not listed at the UCSC, and replaced with P12034 and P30203 as on UniProt
   Tidy up various options of SomaLogic lookup (panel, box, ST4, ST6)
 * Import ggplot2
+* Replace ChangeLog with NEWS.md and document with pkgdown.
+  Invoke Roxygen2 for documentation
 * Import from lmm as template, use save(,compress='xz')
 * First release
