@@ -20,7 +20,7 @@
 \alias{st6}
 \alias{swath_ms}
 \description{
-A list of protein panels: caprion, hg10Tables, Olink_NGS, Olink_qPCR (inf1 is heavily edited), SomaLogic160410, swath_ms.
+A list of protein panels: caprion, hg10Tables, Olink_NGS, Olink_qPCR (inf1 is edited so differs with counterpart in R/gap), SomaLogic160410, swath_ms.
 
 In cases of incomplete information, datasets called hg19Tables based on UCSC and biomaRt from Ensembl are provided.
 }
