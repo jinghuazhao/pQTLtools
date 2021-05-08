@@ -91,6 +91,8 @@ knitr::kable(data.frame(r,p),caption="Table 2. LIFR variant rs635634 and CAD/FEV
 unlink(f)
 ```
 
+The nearest references for the implemented approaches were described in @ligthart18.
+
 ## invnormal
 
 The function is widely used in various consortium analyses and defined as follows,
@@ -168,3 +170,5 @@ d <- data.frame(ID_1=1,ID_2=1,missing=0,PC1=1,PC2=2,D1=1,P1=10)
 snptest_sample(d,C=paste0("PC",1:2),D=paste0("D",1:1),P=paste0("P",1:1))
 ```
 The commands above generates a file named ``snptest.sample.
+
+## References
