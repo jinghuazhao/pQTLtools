@@ -326,6 +326,7 @@
 </table>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/unlink.html">unlink</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span></code></pre></div>
+<p>The nearest references for the implemented approaches were described in <span class="citation">Ligthart et al. (2018)</span>.</p>
 </div>
 <div id="invnormal" class="section level2">
 <h2 class="hasAnchor">
@@ -399,7 +400,7 @@
 <p>These are a functions to plot distribution of CNVs,</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jinghuazhao/R">gap</a></span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/gap/man/gap-internal.html">cnvplot</a></span><span class="op">(</span><span class="va">cnv</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/gap/man/cnvplot.html">cnvplot</a></span><span class="op">(</span><span class="va">cnv</span><span class="op">)</span></code></pre></div>
 <p><img src="gap/unnamed-chunk-7-1.png" width="700" style="display:block; margin: auto"></p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/pkg/gap/man/gap-internal.html">circos.cnvplot</a></span><span class="op">(</span><span class="va">cnv</span><span class="op">)</span>
@@ -418,6 +419,15 @@
 <code class="sourceCode R"><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>ID_1<span class="op">=</span><span class="fl">1</span>,ID_2<span class="op">=</span><span class="fl">1</span>,missing<span class="op">=</span><span class="fl">0</span>,PC1<span class="op">=</span><span class="fl">1</span>,PC2<span class="op">=</span><span class="fl">2</span>,D1<span class="op">=</span><span class="fl">1</span>,P1<span class="op">=</span><span class="fl">10</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/gap/man/snptest_sample.html">snptest_sample</a></span><span class="op">(</span><span class="va">d</span>,C<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"PC"</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span>,D<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"D"</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span>,P<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"P"</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>The commands above generates a file named ``snptest.sample.</p>
+</div>
+<div id="references" class="section level2 unnumbered">
+<h2 class="hasAnchor">
+<a href="#references" class="anchor"></a>References</h2>
+<div id="refs" class="references">
+<div id="ref-ligthart18">
+<p>Ligthart, S., A. Vaez, U. Võsa, M. G. Stathopoulou, P. S. de Vries, B. P. Prins, P. J. Van der Most, et al. 2018. “Genome Analyses of &gt;200,000 Individuals Identify 58 Loci for Chronic Inflammation and Highlight Pathways That Link Inflammation and Complex Disorders.” Journal Article. <em>Am J Hum Genet</em> 103 (5):691–706. <a href="https://doi.org/10.1016/j.ajhg.2018.09.009" class="uri">https://doi.org/10.1016/j.ajhg.2018.09.009</a>.</p>
+</div>
+</div>
 </div>
   </div>
 
