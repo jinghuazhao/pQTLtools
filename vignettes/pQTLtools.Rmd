@@ -265,6 +265,12 @@ saveRDS(coloc_df_imported,file=f)
 ggplot(gwas_stats_hg38, aes(x = position, y = LP)) +
 geom_point() +
 ggtitle(with(sentinel,paste0(prot,"-",SNP," association plot")))
+if (nrow(coloc_df_imported)>0)
+{
+  dplyr::arrange(coloc_df_imported, -PP.H4.abf)
+  ggplot(coloc_df_imported, aes(x = PP.H4.abf)) + geom_histogram() +
+  ggtitle(with(sentinel,paste0(prot,"-",SNP," histogram")))
+}
 rds <- readRDS(f)
 ktitle <- with(sentinel,paste0("Table 4. Colocalisation results for ",prot,"-",SNP))
 knitr::kable(rds, caption=ktitle)
