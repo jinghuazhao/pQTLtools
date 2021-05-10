@@ -1,7 +1,7 @@
 # pQTLtools 0.1
 
 * ...
-* Suggest cowplot, gap.datasets, httr, plyr, rmarkdown, Biobase, stringr
+* Suggest cowplot, gap.datasets, httr, plyr, rmarkdown, Biobase, rGREAT, stringr
 * Suggest circlize, openxlsx, knitr and add HTML vignette (biomaRt, karyoploteR, regioneR)
   with cis/trans-classification/ideogram/mhtplot2d examples
 * Suggest GenomicRanges & IRanges to handle >1MB region in regionqueries with wait= option
