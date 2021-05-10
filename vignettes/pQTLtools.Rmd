@@ -100,7 +100,7 @@ knitr::include_graphics('karyoplot.png',dpi=300)
 
 It is now considerably easier with Genomic Regions Enrichment of Annotations Tool (GREAT).
 
-```{r GREAT, fig.height=6,fig.width=8, warning=FALSE}
+```{r GREAT, fig.height=6,fig.width=8, results='hide', warning=FALSE}
 post <- function(regions)
 {
   library(rGREAT)
@@ -164,6 +164,9 @@ great <- read.delim("cistrans.tsv") %>%
          mutate(flag=if_else(BinomP<1e-4,"x","")) %>% arrange(desc(flag))
 knitr::kable(subset(great,flag=="x"),caption="Table 2. GREAT results (All regions)")
 unlink("IL12B-KITLG-TNFSF10.tsv")
+unlink("IL12B.tsv")
+unlink("KITLG.tsv")
+unlink("TNFSF10.tsv")
 unlink("cistrans.tsv")
 ```
 
