@@ -100,12 +100,12 @@ knitr::include_graphics('karyoplot.png',dpi=300)
 
 It is now considerably easier with Genomic Regions Enrichment of Annotations Tool (GREAT).
 
-```{r GREAT, fig.height=8,fig.width=8, warning=FALSE}
+```{r GREAT, fig.height=6,fig.width=8, warning=FALSE}
 post <- function(regions)
 {
   library(rGREAT)
-  job = submitGreatJob(get(regions), species="hg19", version="3.0.0")
-  et = getEnrichmentTables(job,download_by = 'tsv')
+  job <- invisible(submitGreatJob(get(regions), species="hg19", version="3.0.0"))
+  et <- invisible(getEnrichmentTables(job,download_by = 'tsv'))
   tb <- do.call('rbind',et)
   write.table(tb,file=paste0(regions,".tsv"),quote=FALSE,row.names=FALSE,sep="\t")
   invisible(list(job=job,tb=tb))
@@ -156,6 +156,7 @@ three_regions()
 ```
 The top terms could be extracted as follows,
 ```{r, echo=FALSE}
+options(width=100)
 great3 <- read.delim("IL12B-KITLG-TNFSF10.tsv") %>%
           mutate(flag=if_else(BinomP<1e-4,"x","")) %>% arrange(desc(flag))
 knitr::kable(subset(great3,flag=="x"),caption="Table 2. GREAT results (IL12B-KITLG-TNFSF10)")
