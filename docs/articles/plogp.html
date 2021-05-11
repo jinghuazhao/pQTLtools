@@ -61,7 +61,7 @@
 
       
 
-      </header><div class="row">
+      </header><script src="plogp_files/header-attrs-2.8/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>log(p), log10(p) and p value for a very large z from Normal(0,1)</h1>
@@ -82,21 +82,21 @@
 <p>First thing first, here are the answers for log(p) and log10(p) given z,</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># log(p) for a standard normal deviate z based on log()</span>
-<span class="va">logp</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">z</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/pkg/Rmpfr/man/distr-etc.html">pnorm</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span>, lower.tail<span class="op">=</span><span class="cn">TRUE</span>, log.p<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
+<span class="va">logp</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">z</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span>, lower.tail<span class="op">=</span><span class="cn">TRUE</span>, log.p<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
 
 <span class="co"># log10(p) for a standard normal deviate z based on log()</span>
-<span class="va">log10p</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">z</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">2</span>, base<span class="op">=</span><span class="fl">10</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/pkg/Rmpfr/man/distr-etc.html">pnorm</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span>, lower.tail<span class="op">=</span><span class="cn">TRUE</span>, log.p<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></code></pre></div>
-<p>Note <code><a href="https://rdrr.io/pkg/gap/man/gap-internal.html">logp()</a></code> will be used for functions such as <code><a href="https://rdrr.io/r/stats/Normal.html">qnorm()</a></code> as in R/gap function <code><a href="https://rdrr.io/pkg/gap/man/cs.html">cs()</a></code> whereas <code><a href="https://rdrr.io/pkg/gap/man/gap-internal.html">log10p()</a></code> is more appropriate for Manhattan plot and used in R/gap <code><a href="https://rdrr.io/pkg/gap/man/sentinels.html">sentinels()</a></code>.</p>
+<span class="va">log10p</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">z</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">2</span>, base<span class="op">=</span><span class="fl">10</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span>, lower.tail<span class="op">=</span><span class="cn">TRUE</span>, log.p<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></code></pre></div>
+<p>Note <code><a href="https://rdrr.io/pkg/gap/man/gap-internal.html">logp()</a></code> will be used for functions such as <code><a href="https://rdrr.io/r/stats/Normal.html">qnorm()</a></code> as in R/gap function <code><a href="https://rdrr.io/pkg/gap/man/gap-internal.html">cs()</a></code> whereas <code><a href="https://rdrr.io/pkg/gap/man/gap-internal.html">log10p()</a></code> is more appropriate for Manhattan plot and used in R/gap <code><a href="https://rdrr.io/pkg/gap/man/sentinels.html">sentinels()</a></code>.</p>
 </div>
 <div id="rationale" class="section level2">
 <h2 class="hasAnchor">
 <a href="#rationale" class="anchor"></a>Rationale</h2>
 <p>We start with z=1.96 whose corresponding p value is approximately 0.05.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/pkg/Rmpfr/man/distr-etc.html">pnorm</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1.96</span>,lower.tail<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fl">2</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1.96</span>,lower.tail<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p>giving an acceptable value 0.04999579, so we proceed to get log10(p)</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/Rmpfr/man/distr-etc.html">pnorm</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span>,lower.tail<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span><span class="op">+</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html">log10</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span>,lower.tail<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>leading to the expression above from the fact that log10(X)=log(X)/log(10) since log(), being the natural log function, ln() – so log(exp(1)) = 1, in R, works far better on the numerator of the second term. The use of -abs() just makes sure we are working on the lower tail of the standard Normal distribution from which our p value is calculated.</p>
 </div>
 <div id="benchmark" class="section level2">
@@ -105,7 +105,7 @@
 <p>Now we have a stress test,</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">z</span> <span class="op">&lt;-</span> <span class="fl">20000</span>
-<span class="op">-</span><span class="fu"><a href="https://rdrr.io/pkg/gap/man/gap-internal.html">log10p</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span></code></pre></div>
+<span class="op">-</span><span class="fu">log10p</span><span class="op">(</span><span class="va">z</span><span class="op">)</span></code></pre></div>
 <p>giving -log10(p) = 86858901.</p>
 </div>
 <div id="p-logp-log10p-and-the-multiple-precision-arithmetic" class="section level2">
@@ -127,7 +127,7 @@
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pvalue</span> <span class="op">&lt;-</span> <span class="kw">function</span> <span class="op">(</span><span class="va">z</span>, <span class="va">decimals</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="op">{</span>
-    <span class="va">lp</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fu"><a href="https://rdrr.io/pkg/gap/man/gap-internal.html">log10p</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span>
+    <span class="va">lp</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fu">log10p</span><span class="op">(</span><span class="va">z</span><span class="op">)</span>
     <span class="va">exponent</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">ceiling</a></span><span class="op">(</span><span class="va">lp</span><span class="op">)</span>
     <span class="va">base</span> <span class="op">&lt;-</span> <span class="fl">10</span><span class="op">^</span><span class="op">-</span><span class="op">(</span><span class="va">lp</span> <span class="op">-</span> <span class="va">exponent</span><span class="op">)</span>
     <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">base</span>, <span class="va">decimals</span><span class="op">)</span>, <span class="st">"e"</span>, <span class="op">-</span><span class="va">exponent</span><span class="op">)</span>
@@ -149,13 +149,11 @@
 <p>One can also derive logpvalue for natural base (e) similarly.</p>
 <p>We end with a quick look-up table</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">grid1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">30</span>,<span class="fl">5</span><span class="op">)</span>
-<span class="va">grid2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">40</span>,<span class="fl">5000</span>,<span class="fl">300</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jinghuazhao/R">gap</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jinghuazhao/R">gap</a></span><span class="op">)</span>
 <span class="co">#&gt; Loading required package: gap</span>
-<span class="co">#&gt; gap version 1.2.3-2</span>
+<span class="co">#&gt; gap version 1.2.3-1</span>
 <span class="va">v</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="op">)</span>
-<span class="kw">for</span> <span class="op">(</span><span class="va">z</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">grid1</span>,<span class="va">grid2</span><span class="op">)</span><span class="op">)</span>
+<span class="kw">for</span> <span class="op">(</span><span class="va">z</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">10</span>,<span class="fl">30</span>,<span class="fl">50</span>,<span class="fl">100</span>,<span class="fl">500</span>,<span class="fl">1000</span>,<span class="fl">2000</span>,<span class="fl">3000</span>,<span class="fl">5000</span><span class="op">)</span><span class="op">)</span>
 <span class="op">{</span>
   <span class="va">vi</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">z</span>,<span class="fu"><a href="https://rdrr.io/pkg/gap/man/gap-internal.html">pvalue</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/pkg/gap/man/gap-internal.html">logp</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/pkg/gap/man/gap-internal.html">log10p</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span><span class="op">)</span>
   <span class="va">v</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/Rmpfr/man/bind-methods.html">rbind</a></span><span class="op">(</span><span class="va">v</span>,<span class="va">vi</span><span class="op">)</span>
@@ -172,40 +170,16 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">0</td>
-<td align="left">1e0</td>
-<td align="left">0</td>
-<td align="left">5.55111512312578e-17</td>
-</tr>
-<tr class="even">
 <td align="left">5</td>
 <td align="left">5.73e-7</td>
 <td align="left">-14.3718512134288</td>
 <td align="left">-6.24161567672667</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">10</td>
 <td align="left">1.52e-23</td>
 <td align="left">-52.5381379699525</td>
 <td align="left">-22.8170234098221</td>
-</tr>
-<tr class="even">
-<td align="left">15</td>
-<td align="left">7.34e-51</td>
-<td align="left">-115.438237665152</td>
-<td align="left">-50.1341896186115</td>
-</tr>
-<tr class="odd">
-<td align="left">20</td>
-<td align="left">5.51e-89</td>
-<td align="left">-203.224008190537</td>
-<td align="left">-88.2590653474116</td>
-</tr>
-<tr class="even">
-<td align="left">25</td>
-<td align="left">6.11e-138</td>
-<td align="left">-315.94626082746</td>
-<td align="left">-137.213717655332</td>
 </tr>
 <tr class="odd">
 <td align="left">30</td>
@@ -214,106 +188,46 @@
 <td align="left">-197.008179265997</td>
 </tr>
 <tr class="even">
-<td align="left">40</td>
-<td align="left">7.31e-350</td>
-<td align="left">-803.915294833194</td>
-<td align="left">-349.135976463682</td>
+<td align="left">50</td>
+<td align="left">2.16e-545</td>
+<td align="left">-1254.13821395886</td>
+<td align="left">-544.665305866333</td>
 </tr>
 <tr class="odd">
-<td align="left">340</td>
-<td align="left">1.41e-25105</td>
-<td align="left">-57806.0547456206</td>
-<td align="left">-25104.8505966203</td>
+<td align="left">100</td>
+<td align="left">2.69e-2174</td>
+<td align="left">-5004.83106151365</td>
+<td align="left">-2173.57051287337</td>
 </tr>
 <tr class="even">
-<td align="left">640</td>
-<td align="left">3.85e-88947</td>
-<td align="left">-204806.68726197</td>
-<td align="left">-88946.4141347587</td>
+<td align="left">500</td>
+<td align="left">2.47e-54290</td>
+<td align="left">-125006.440403451</td>
+<td align="left">-54289.6072695865</td>
 </tr>
 <tr class="odd">
-<td align="left">940</td>
-<td align="left">4.23e-191875</td>
-<td align="left">-441807.07167236</td>
-<td align="left">-191874.37329314</td>
+<td align="left">1000</td>
+<td align="left">4.58e-217151</td>
+<td align="left">-500007.133547632</td>
+<td align="left">-217150.339011999</td>
 </tr>
 <tr class="even">
-<td align="left">1240</td>
-<td align="left">1.62e-333889</td>
-<td align="left">-768807.348658662</td>
-<td align="left">-333888.789169126</td>
+<td align="left">2000</td>
+<td align="left">4.34e-868593</td>
+<td align="left">-2000007.82669406</td>
+<td align="left">-868592.362896546</td>
 </tr>
 <tr class="odd">
-<td align="left">1540</td>
-<td align="left">2.08e-514990</td>
-<td align="left">-1185807.56532947</td>
-<td align="left">-514989.682221718</td>
+<td align="left">3000</td>
+<td align="left">1.8e-1954329</td>
+<td align="left">-4500008.23215903</td>
+<td align="left">-1954328.74374587</td>
 </tr>
 <tr class="even">
-<td align="left">1840</td>
-<td align="left">8.67e-735178</td>
-<td align="left">-1692807.7433125</td>
-<td align="left">-735177.061843714</td>
-</tr>
-<tr class="odd">
-<td align="left">2140</td>
-<td align="left">1.17e-994451</td>
-<td align="left">-2289807.89435268</td>
-<td align="left">-994450.933135873</td>
-</tr>
-<tr class="even">
-<td align="left">2440</td>
-<td align="left">5.02e-1292812</td>
-<td align="left">-2976808.02554484</td>
-<td align="left">-1292811.29917944</td>
-</tr>
-<tr class="odd">
-<td align="left">2740</td>
-<td align="left">6.89e-1630259</td>
-<td align="left">-3753808.14150469</td>
-<td align="left">-1630258.16197899</td>
-</tr>
-<tr class="even">
-<td align="left">3040</td>
-<td align="left">3e-2006792</td>
-<td align="left">-4620808.24540426</td>
-<td align="left">-2006791.52291212</td>
-</tr>
-<tr class="odd">
-<td align="left">3340</td>
-<td align="left">4.14e-2422412</td>
-<td align="left">-5577808.33951753</td>
-<td align="left">-2422411.3829664</td>
-</tr>
-<tr class="even">
-<td align="left">3640</td>
-<td align="left">1.81e-2877118</td>
-<td align="left">-6624808.42553039</td>
-<td align="left">-2877117.74287402</td>
-</tr>
-<tr class="odd">
-<td align="left">3940</td>
-<td align="left">2.49e-3370911</td>
-<td align="left">-7761808.50472742</td>
-<td align="left">-3370910.60319285</td>
-</tr>
-<tr class="even">
-<td align="left">4240</td>
-<td align="left">1.09e-3903790</td>
-<td align="left">-8988808.57810996</td>
-<td align="left">-3903789.96435777</td>
-</tr>
-<tr class="odd">
-<td align="left">4540</td>
-<td align="left">1.49e-4475756</td>
-<td align="left">-10305808.6464737</td>
-<td align="left">-4475755.82671434</td>
-</tr>
-<tr class="even">
-<td align="left">4840</td>
-<td align="left">6.45e-5086809</td>
-<td align="left">-11712808.7104614</td>
-<td align="left">-5086808.19054173</td>
+<td align="left">5000</td>
+<td align="left">1.51e-5428685</td>
+<td align="left">-12500008.7429846</td>
+<td align="left">-5428684.82082061</td>
 </tr>
 </tbody>
 </table>
@@ -332,7 +246,7 @@
 </ol></li>
 </ol>
 <p>In all three cases, a log10(P) counterpart is obtained internally and to accommodate extreme value, the y-axis allows for truncation leaving out a given range to highlight the largest.</p>
-<p>A plot for the GIANT data is shown here, <a href="https://jinghuazhao.github.io/Omics-analysis/BMI/" class="uri">https://jinghuazhao.github.io/Omics-analysis/BMI/</a>.</p>
+<p>A plot for the GIANT data is shown here, <a href="https://jinghuazhao.github.io/Omics-analysis/BMI/">https://jinghuazhao.github.io/Omics-analysis/BMI/</a>.</p>
 </div>
   </div>
 
