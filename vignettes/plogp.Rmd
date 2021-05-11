@@ -112,11 +112,9 @@ One can also derive logpvalue for natural base (e) similarly.
 
 We end with a quick look-up table
 ```{r}
-grid1 <- seq(0,30,5)
-grid2 <- seq(40,5000,300)
 require(gap)
 v <- data.frame()
-for (z in c(grid1,grid2))
+for (z in c(5,10,30,50,100,500,1000,2000,3000,5000))
 {
   vi <- c(z,pvalue(z),logp(z),log10p(z))
   v <- rbind(v,vi)
@@ -137,4 +135,3 @@ In all three cases, a log10(P) counterpart is obtained internally and to accommo
 the y-axis allows for truncation leaving out a given range to highlight the largest.
 
 A plot for the GIANT data is shown here, [https://jinghuazhao.github.io/Omics-analysis/BMI/](https://jinghuazhao.github.io/Omics-analysis/BMI/).
-
