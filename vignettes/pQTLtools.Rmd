@@ -151,7 +151,7 @@ great3 <- read.delim("IL12B-KITLG-TNFSF10.tsv") %>%
           mutate(flag=if_else(BinomP<=1e-5,"x","")) %>% arrange(desc(flag))
 knitr::kable(subset(great3,flag=="x"),caption="Table 2. GREAT results (IL12B-KITLG-TNFSF10)")
 great <- read.delim("cistrans.tsv") %>%
-         mutate(flag=if_else(BinomP<=1e-8,"x","")) %>% arrange(desc(flag))
+         mutate(flag=if_else(BinomBonfP<=1e-8,"x","")) %>% arrange(desc(flag))
 knitr::kable(subset(great,flag=="x"),caption="Table 2. GREAT results (All regions)")
 unlink("IL12B-KITLG-TNFSF10.tsv")
 unlink("IL12B.tsv")
