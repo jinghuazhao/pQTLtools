@@ -328,7 +328,7 @@ clump <- clump_data(exposure)
 outcome <- extract_outcome_data(snps=exposure$SNP,outcomes=outcomes)
 harmonise <- harmonise_data(clump,outcome)
 prefix <- paste(outcomes,prot,type,sep="-")
-run_TwoSampleMR(harmonise, mr_plot="New", prefix=prefix)
+run_TwoSampleMR(harmonise, mr_plot="pQTLtools", prefix=prefix)
 ```
 
 The output is contained in individual `.txt` files, together with the scatter, forest, funnel and leave-one-out plots.
