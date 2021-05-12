@@ -112,7 +112,7 @@ mean(y)
 sd(y)
 ```
 
-## METAL.forestplot
+## METAL_forestplot
 
 The following is the documentation example,
 ```{r, message = FALSE, fig.height=6, fig.width=12, results='hide'}
