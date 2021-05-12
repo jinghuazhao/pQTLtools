@@ -7,7 +7,7 @@ Given harmonised data, this function conducts a two-sample MR analysis.
 }
 \arguments{
 \item{TwoSampleMRinput}{Harmonised data}
-\item{mr_plot}{one of "None", "TwoSampleMR", "New" for no, the original and (some) new plots, respectively}
+\item{mr_plot}{one of "None", "TwoSampleMR", "pQTLtools" for no, the original and the revised plots, respectively}
 \item{prefix}{a prefix for output files}
 }
 \details{
@@ -45,7 +45,7 @@ clump <- clump_data(exposure)
 outcome <- extract_outcome_data(snps=exposure$SNP,outcomes=outcomes)
 harmonise <- harmonise_data(clump,outcome)
 prefix <- paste(outcomes,prot,type,sep="-")
-run_TwoSampleMR(harmonise, mr_plot="New", prefix=prefix)
+run_TwoSampleMR(harmonise, mr_plot="pQTLtools", prefix=prefix)
 caption <- "Table. MMP.10 variants and FEV1"
 knitr::kable(read.delim(paste0(prefix,"-result.txt"),header=TRUE),
              caption=paste(caption, "(result)"))
