@@ -18,6 +18,7 @@
 \alias{SomaLogic160410}
 \alias{st4}
 \alias{st6}
+\alias{st18}
 \alias{swath_ms}
 \description{
 A list of protein panels: caprion, hg10Tables, Olink_NGS, Olink_qPCR (inf1 is edited so differs with counterpart in R/gap), SomaLogic160410, swath_ms.
