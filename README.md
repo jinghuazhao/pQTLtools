@@ -32,6 +32,7 @@ Olink_qPCR          |    Olink/qPCR panels
 SomaLogic160410     |    SomaLogic panel
 st4                 |    ST4 of the INTERVAL SomaLogic paper
 st6                 |    ST6 of the INTERVAL SomaLogic paper
+st18                |    ST18 of the INTERVAL SomaLogic paper
 swath_ms            |    SWATH-MS panel
 **eQTL/GWAS**       |
 get.prop.below.LLOD  |   Limit of detection analysis
