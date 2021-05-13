@@ -49,6 +49,8 @@ subset(inf1,uniprot %in% doubles)
 write.table(merge(inf1,z,by.x="uniprot",by.y="UniProt")[c("snpid","prot","uniprot")],
             file="SomaLogic.id3",col.names=FALSE,row.names=FALSE,quote=FALSE)
 
+st18 <- openxlsx::readWorkbook(xlsx,sheet="ST18 - proteins assayed",startRow=3)
+save(st18,file='st18.rda',compress='xz')
 st20 <- openxlsx::read.xlsx(xlsx, sheet=20, colNames=TRUE, skipEmptyRows=TRUE,
                             cols=c(1:10), rows=c(3:786))
 ov <- intersect(unique(st20$UniProt),inf1$uniprot)
