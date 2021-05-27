@@ -48,13 +48,8 @@ t2d <- mhtplot2d(d)
 ```
 whose result can be also viewed in a plotly style,
 ```{r plotly, fig.height=8, fig.width=8, plotly=TRUE}
-library(plotly)
-fig <- mhtplot3d(xyz=file.path(INF,"work","INF1.merge.cis.vs.trans"),
-                 cols=c("id","chr1","pos1","chr2","pos2","gene","target","log10p","x","y","col"),
-                 xy.scale=c(1.3e8,1.3e8),marker.size=4,log10p.max=400,
-                 prefix=c("Sentinel","CHR","POS","CHR","POS","Gene","Target","-log10(p)"),
-                 postfix="\u003c/br>",
-                 json.file="d3.json",pretty=TRUE)
+d <- read.csv(file.path(INF,"work","INF1.merge.cis.vs.trans"), as.is=TRUE)
+fig <- mhtplot3d(d)
 fig
 # We can save the figure for a browser independently
 htmlwidgets::saveWidget(fig,file="fig.html")
