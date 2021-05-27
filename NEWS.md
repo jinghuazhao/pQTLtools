@@ -1,6 +1,7 @@
 # pQTLtools 0.1
 
 * ...
+* Suggest htmlwidgets, plotly
 * Suggest cowplot, gap.datasets, httr, plyr, rmarkdown, Biobase, rGREAT, stringr
 * Suggest circlize, openxlsx, knitr and add HTML vignette (biomaRt, karyoploteR, regioneR)
   with cis/trans-classification/ideogram/mhtplot2d examples
