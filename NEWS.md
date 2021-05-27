@@ -6,7 +6,7 @@
 * Suggest circlize, openxlsx, knitr and add HTML vignette (biomaRt, karyoploteR, regioneR)
   with cis/trans-classification/ideogram/mhtplot2d examples
 * Suggest GenomicRanges & IRanges to handle >1MB region in regionqueries with wait= option
-* Add pQTLtools.Rmd, es.Rmd, gap.Rmd, plogp.Rmd and SCALLOP-INF.Rmd articles
+* Add pQTLtools.Rmd, es.Rmd, gap.Rmd and SCALLOP-INF.Rmd articles
 * Add LICENSE.md and README.md
 * Add listed publications on pQTLs by Sun et al. (2018) and Suhre et al. (2020)
 * Add run_TwoSampleMR(), make_ExpressionSet
