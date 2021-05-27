@@ -57,7 +57,7 @@ fig <- mhtplot3d(xyz=file.path(INF,"work","INF1.merge.cis.vs.trans"),
                  json.file="d3.json",pretty=TRUE)
 fig
 # We can save the figure for a browser independently
-# htmlwidgets::saveWidget(fig,file="fig.html")
+htmlwidgets::saveWidget(fig,file="fig.html")
 ```
 and ideogram (biomaRt is not always on so we include the plot below)
 ```r
