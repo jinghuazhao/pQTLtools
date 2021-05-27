@@ -34,7 +34,6 @@ articles:
       The logp, log10p, pvalue and a few other functions were developed during the SCALLOP-INF analysis (https://jinghuazhao.github.io/INF/) and are now part of R/gap,
     contents:
     - es
-    - gap
     - SCALLOP-INF
 
 reference:
