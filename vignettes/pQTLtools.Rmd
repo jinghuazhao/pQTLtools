@@ -47,7 +47,7 @@ d <- read.csv(file.path(INF,"work","INF1.merge.cis.vs.trans"),as.is=TRUE)
 t2d <- mhtplot2d(d)
 ```
 whose result can be also viewed in a plotly style,
-```{r mht3d, plotly=TRUE}
+```{r plotly, fig.height=7, fig.width=7, plotly=TRUE}
 library(plotly)
 fig <- mhtplot3d(xyz=file.path(INF,"work","INF1.merge.cis.vs.trans"),
                  cols=c("id","chr1","pos1","chr2","pos2","gene","target","log10p","x","y","col"),
