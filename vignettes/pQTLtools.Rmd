@@ -47,7 +47,7 @@ d <- read.csv(file.path(INF,"work","INF1.merge.cis.vs.trans"),as.is=TRUE)
 t2d <- mhtplot2d(d)
 ```
 whose result can be also viewed in a plotly style,
-```{r plotly, fig.height=7, fig.width=7, plotly=TRUE}
+```{r plotly, fig.height=8, fig.width=8, plotly=TRUE}
 library(plotly)
 fig <- mhtplot3d(xyz=file.path(INF,"work","INF1.merge.cis.vs.trans"),
                  cols=c("id","chr1","pos1","chr2","pos2","gene","target","log10p","x","y","col"),
@@ -57,7 +57,7 @@ fig <- mhtplot3d(xyz=file.path(INF,"work","INF1.merge.cis.vs.trans"),
                  json.file="d3.json",pretty=TRUE)
 fig
 # We can save the figure for a browser independently
-htmlwidgets::saveWidget(fig,file="fig.html")
+# htmlwidgets::saveWidget(fig,file="fig.html")
 ```
 and ideogram (biomaRt is not always on so we include the plot below)
 ```r
