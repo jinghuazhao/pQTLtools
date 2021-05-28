@@ -49,7 +49,7 @@ t2d <- mhtplot2d(d)
 whose result can be also viewed in a plotly style,
 ```{r plotly, fig.height=8, fig.width=8, plotly=TRUE}
 d <- read.csv(file.path(INF,"work","INF1.merge.cis.vs.trans"), as.is=TRUE)
-fig <- mhtplot3d(d,zmax=400)
+fig <- mhtplot3d(d,zmax=300)
 fig
 # We can save the figure for a browser independently
 htmlwidgets::saveWidget(fig,file="fig.html")
