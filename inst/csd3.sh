@@ -11,3 +11,5 @@ R CMD INSTALL pQTLtools_0.1.tar.gz
 # also work:
 # R CMD INSTALL pQTLtools
 
+rm -rf pQTLtools/pQTLtools.Rcheck
+mv pQTLtools_0.1.tar.gz R
