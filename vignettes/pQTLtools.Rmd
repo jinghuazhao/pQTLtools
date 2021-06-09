@@ -351,6 +351,32 @@ knitr::kable(read.delim(paste0(prefix,"-loo.txt"),header=TRUE),caption=paste(cap
 for (x in c("result","heterogeneity","pleiotropy","single","loo")) unlink(paste0(prefix,"-",x,".txt"))
 ```
 
+## MR using cis, trans and cis+trans (pan) instruments
+
+This is illustrated with IL-12B.
+
+```{r mr, fig.cap="MR with cis, trans and cis+trans variants of IL-12B"}
+library(dplyr)
+efo <- read.delim(file.path(INF,"rsid","efo.txt")) %>%
+       mutate(x=1:n()) %>%
+       select(MRBASEID,trait,x)
+d3 <- read.delim(file.path(INF,"mr","efo-result.txt")) %>%
+      filter(exposure=="IL.12B") %>%
+      mutate(MRBASEID=unlist(lapply(strsplit(outcome,"id:"),"[",2)),y=b) %>%
+      select(-outcome,-method) %>%
+      left_join(efo) %>%
+      arrange(trait)
+knitr::kable(head(d3,29),caption="Table 6. MR with IL-12B variants")
+p <- ggplot(d3,aes(y = trait, x = y))+
+theme_bw()+
+geom_point()+
+facet_wrap(~cistrans,ncol=3)+
+geom_segment(aes(x = b-1.96*se, xend = b+1.96*se, yend = trait))+
+geom_vline(lty=2, aes(xintercept=0), colour = 'red')+
+xlab("Effect size")+
+ylab("Trait")
+```
+
 ## Literature on pQTLs
 
 Those as identified by @sun18 and @suhre20 are included as EndNote libraries.
