@@ -442,7 +442,7 @@ run_TwoSampleMR <- function(TwoSampleMRinput, mr_plot="None", prefix="")
                                               file=paste0(prefix,"-",x,".txt"),
                                               quote=FALSE,row.names=FALSE,sep="\t")))
   type <- match.arg(mr_plot, c("None", "TwoSampleMR", "pQTLtools"))
-  if (type == 1) return else if (type == "TwoSampleMR")
+  if (type == 1) return(0) else if (type == "TwoSampleMR")
   { 
     scatter = TwoSampleMR::mr_scatter_plot(result, harmonise)
     forest <- TwoSampleMR::mr_forest_plot(single)
