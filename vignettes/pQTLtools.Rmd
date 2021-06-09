@@ -375,6 +375,7 @@ geom_segment(aes(x = b-1.96*se, xend = b+1.96*se, yend = trait))+
 geom_vline(lty=2, aes(xintercept=0), colour = 'red')+
 xlab("Effect size")+
 ylab("Trait")
+p
 ```
 
 ## Literature on pQTLs
