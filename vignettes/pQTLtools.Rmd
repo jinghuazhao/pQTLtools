@@ -365,7 +365,7 @@ d3 <- read.delim(file.path(INF,"mr","efo-result.txt")) %>%
       mutate(MRBASEID=unlist(lapply(strsplit(outcome,"id:"),"[",2)),y=b) %>%
       select(-outcome,-method) %>%
       left_join(efo) %>%
-      arrange(trait)
+      arrange(cistrans)
 knitr::kable(head(d3[c("MRBASEID","trait","cistrans","nsnp","b","se","pval")],29),caption="Table 6. MR with IL-12B variants")
 p <- ggplot(d3,aes(y = trait, x = y))+
 theme_bw()+
