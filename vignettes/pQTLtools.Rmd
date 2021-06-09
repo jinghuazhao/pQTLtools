@@ -355,7 +355,7 @@ for (x in c("result","heterogeneity","pleiotropy","single","loo")) unlink(paste0
 
 This is illustrated with IL-12B.
 
-```{r mr, fig.cap="MR with cis, trans and cis+trans variants of IL-12B"}
+```{r mr, fig.cap="MR with cis, trans and cis+trans variants of IL-12B", fig.height=9}
 library(dplyr)
 efo <- read.delim(file.path(INF,"rsid","efo.txt")) %>%
        mutate(x=1:n()) %>%
@@ -374,7 +374,7 @@ facet_wrap(~cistrans,ncol=3)+
 geom_segment(aes(x = b-1.96*se, xend = b+1.96*se, yend = trait))+
 geom_vline(lty=2, aes(xintercept=0), colour = 'red')+
 xlab("Effect size")+
-ylab("Trait")
+ylab("")
 p
 ```
 
