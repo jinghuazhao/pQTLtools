@@ -3,9 +3,12 @@ title: "An Overview of pQTLtools"
 author: "Jing Hua Zhao"
 output:
   rmarkdown::html_vignette:
+    check_title: false
+    fig_caption:  true
+    mathjax:  default
+    section_numbering: true
     toc: true
     toc_depth: 2
-    check_title: false
 bibliography: refs.bib
 vignette: >
   %\VignetteIndexEntry{An Overview of pQTLtools}
@@ -40,6 +43,7 @@ knitr::kable(with(cistrans,table),caption="Table 1. cis/trans classification")
 with(cistrans,total)
 circos.cis.vs.trans.plot(hits=f,inf1,"uniprot")
 ```
+
 This is used to generate 2d-pQTL plot
 ```{r mht2d, fig.cap="2d pQTL plot", fig.height=8}
 INF <- Sys.getenv("INF")
