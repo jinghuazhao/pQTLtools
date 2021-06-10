@@ -61,7 +61,7 @@
 
       
 
-      </header><div class="row">
+      </header><script src="SCALLOP-INF_files/header-attrs-2.8/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>SCALLOP-INF scripts</h1>
@@ -79,32 +79,32 @@
 <h2 class="hasAnchor">
 <a href="#colocalisation" class="anchor"></a>Colocalisation</h2>
 <p>This is the actual script for cis-pQTL colocalisation analysis for SCALLOP-INF. The driver is in Bash.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co">#!/usr/bin/bash</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">for</span> <span class="ex">r</span> in <span class="dt">{1..59}</span></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw">do</span></a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">   <span class="bu">export</span> <span class="va">r=${r}</span></a>
-<a class="sourceLine" id="cb1-6" data-line-number="6">   <span class="bu">export</span> <span class="va">cvt=${INF}</span>/work/INF1.merge.cis.vs.trans</a>
-<a class="sourceLine" id="cb1-7" data-line-number="7">   <span class="bu">read</span> <span class="va">prot</span> <span class="va">MarkerName</span> <span class="op">&lt;</span> <span class="kw">\</span></a>
-<a class="sourceLine" id="cb1-8" data-line-number="8">                        <span class="op">&lt;(</span><span class="fu">awk</span> -vFS=<span class="st">","</span> <span class="st">'$14=="cis"'</span> <span class="va">${cvt}</span> <span class="kw">|</span> <span class="kw">\</span></a>
-<a class="sourceLine" id="cb1-9" data-line-number="9">                          <span class="fu">awk</span> -vFS=<span class="st">","</span> -vr=<span class="va">${r}</span> <span class="st">'NR==r{print $2,$5}'</span><span class="op">)</span></a>
-<a class="sourceLine" id="cb1-10" data-line-number="10">   <span class="bu">echo</span> <span class="va">${r}</span> - <span class="va">${prot}</span> - <span class="va">${MarkerName}</span></a>
-<a class="sourceLine" id="cb1-11" data-line-number="11">   <span class="bu">export</span> <span class="va">prot=${prot}</span></a>
-<a class="sourceLine" id="cb1-12" data-line-number="12">   <span class="bu">export</span> <span class="va">MarkerName=${MarkerName}</span></a>
-<a class="sourceLine" id="cb1-13" data-line-number="13">   <span class="kw">if</span><span class="bu"> [</span> <span class="ot">!</span> <span class="ot">-f</span> <span class="va">${INF}</span>/coloc/<span class="va">${prot}</span>-<span class="va">${MarkerName}</span>.pdf<span class="bu"> ]</span> <span class="kw">||</span> <span class="kw">\</span></a>
-<a class="sourceLine" id="cb1-14" data-line-number="14">      [ ! <span class="ex">-f</span> <span class="va">${INF}</span>/coloc/<span class="va">${prot}</span>-<span class="va">${MarkerName}</span>.RDS ]<span class="kw">;</span> <span class="kw">then</span></a>
-<a class="sourceLine" id="cb1-15" data-line-number="15">     <span class="bu">cd</span> <span class="va">${INF}</span>/coloc</a>
-<a class="sourceLine" id="cb1-16" data-line-number="16">     <span class="ex">R</span> --no-save <span class="op">&lt;</span> <span class="va">${INF}</span>/rsid/coloc.R <span class="op">2&gt;&amp;1</span> <span class="kw">|</span> <span class="kw">\</span></a>
-<a class="sourceLine" id="cb1-17" data-line-number="17">     <span class="fu">tee</span> <span class="va">${prot}</span>-<span class="va">${MarkerName}</span>.log</a>
-<a class="sourceLine" id="cb1-18" data-line-number="18"><span class="co">#    ls *tbi | xargs -I {} bash -c "rm {}"</span></a>
-<a class="sourceLine" id="cb1-19" data-line-number="19">     <span class="bu">cd</span> -</a>
-<a class="sourceLine" id="cb1-20" data-line-number="20">   <span class="kw">fi</span></a>
-<a class="sourceLine" id="cb1-21" data-line-number="21"><span class="kw">done</span></a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/bash</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> r <span class="kw">in</span> <span class="dt">{</span><span class="dv">1</span><span class="dt">..</span><span class="dv">59</span><span class="dt">}</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="cf">do</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>   <span class="bu">export</span> <span class="va">r</span><span class="op">=</span><span class="va">${r}</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>   <span class="bu">export</span> <span class="va">cvt</span><span class="op">=</span><span class="va">${INF}</span>/work/INF1.merge.cis.vs.trans</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>   <span class="bu">read</span> <span class="va">prot</span> <span class="va">MarkerName</span> <span class="op">&lt;</span> <span class="dt">\</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                        <span class="op">&lt;(</span><span class="fu">awk</span> <span class="at">-vFS</span><span class="op">=</span><span class="st">","</span> <span class="st">'$14=="cis"'</span> <span class="va">${cvt}</span> <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">awk</span> <span class="at">-vFS</span><span class="op">=</span><span class="st">","</span> <span class="at">-vr</span><span class="op">=</span><span class="va">${r}</span> <span class="st">'NR==r{print $2,$5}'</span><span class="op">)</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>   <span class="bu">echo</span> <span class="va">${r}</span> <span class="at">-</span> <span class="va">${prot}</span> <span class="at">-</span> <span class="va">${MarkerName}</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>   <span class="bu">export</span> <span class="va">prot</span><span class="op">=</span><span class="va">${prot}</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>   <span class="bu">export</span> <span class="va">MarkerName</span><span class="op">=</span><span class="va">${MarkerName}</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>   <span class="cf">if</span> <span class="bu">[</span> <span class="ot">!</span> <span class="ot">-f</span> <span class="va">${INF}</span>/coloc/<span class="va">${prot}</span>-<span class="va">${MarkerName}</span>.pdf <span class="bu">]</span> <span class="kw">||</span> <span class="dt">\</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>      <span class="bu">[</span> <span class="ot">!</span> <span class="ot">-f</span> <span class="va">${INF}</span>/coloc/<span class="va">${prot}</span>-<span class="va">${MarkerName}</span>.RDS <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>     <span class="bu">cd</span> <span class="va">${INF}</span>/coloc</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>     <span class="ex">R</span> <span class="at">--no-save</span> <span class="op">&lt;</span> <span class="va">${INF}</span>/rsid/coloc.R <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span> <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>     <span class="fu">tee</span> <span class="va">${prot}</span>-<span class="va">${MarkerName}</span>.log</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">#    ls *tbi | xargs -I {} bash -c "rm {}"</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>     <span class="bu">cd</span> <span class="at">-</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>   <span class="cf">fi</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre></div>
 <p>and the corresponding coloc.R contains minor modification to the documentation example</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">liftRegion</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>,<span class="va">chain</span>,<span class="va">flanking</span><span class="op">=</span><span class="fl">1e6</span><span class="op">)</span>
 <span class="op">{</span>
-  <span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va">GenomicRanges</span><span class="op">)</span>
+  <span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="va"><a href="https://bioconductor.org/packages/GenomicRanges">GenomicRanges</a></span><span class="op">)</span>
   <span class="va">gr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html">with</a></span><span class="op">(</span><span class="va">x</span>,<span class="fu">GenomicRanges</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GenomicRanges/man/GRanges-class.html">GRanges</a></span><span class="op">(</span>seqnames<span class="op">=</span><span class="va">chr</span>,<span class="fu">IRanges</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/IRanges/man/IRanges-constructor.html">IRanges</a></span><span class="op">(</span><span class="va">start</span>,<span class="va">end</span><span class="op">)</span><span class="op">)</span><span class="op">+</span><span class="va">flanking</span><span class="op">)</span>
   <span class="fu">seqlevelsStyle</span><span class="op">(</span><span class="va">gr</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"UCSC"</span>
   <span class="va">gr38</span> <span class="op">&lt;-</span> <span class="fu">rtracklayer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rtracklayer/man/liftOver.html">liftOver</a></span><span class="op">(</span><span class="va">gr</span>, <span class="va">chain</span><span class="op">)</span>
