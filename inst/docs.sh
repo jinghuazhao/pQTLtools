@@ -25,8 +25,8 @@ function build()
      rm -rf docs/articles/pQTLtools
      mv vignettes/pQTLtools docs/articles/
   fi
-  if [ -f vignettes/fig.html ]; then
-     mv vignettes/fig.html docs/articles/
+  if [ -f vignettes/fig*.html ]; then
+     mv vignettes/fig*.html docs/articles/
   fi
 # add entry for reference to pkgdown/_pkgdown.yml  
 }
