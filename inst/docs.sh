@@ -17,10 +17,6 @@ function build()
      rm -rf docs/articles/es
      mv vignettes/es docs/articles/
   fi
-  if [ -d vignettes/gap ]; then
-     rm -rf docs/articles/gap
-     mv vignettes/gap docs/articles/
-  fi
   if [ -d vignettes/pQTLtools ]; then
      rm -rf docs/articles/pQTLtools
      mv vignettes/pQTLtools docs/articles/
