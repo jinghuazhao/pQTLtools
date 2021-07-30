@@ -82,10 +82,10 @@ attrs <- c("hgnc_symbol", "chromosome_name", "start_position", "end_position", "
 hgnc <- vector("character",180)
 for(i in 1:180)
 {
-  print(i)
   v <- with(INF1_merge_cvt[i,],paste0(Chr,":",bp,":",bp))
-  g <- getBM(attributes = attrs, filters="chromosomal_region", values=v, mart=mart)
+  g <- subset(getBM(attributes = attrs, filters="chromosomal_region", values=v, mart=mart),!is.na(hgnc_symbol))
   hgnc[i] <- paste(g[["hgnc_symbol"]],collapse=";")
+  cat(i,g[["hgnc_symbol"]],hgnc[i],"\n")
 }
 INF1_merge_cvt <- within(INF1_merge_cvt,{
   hgnc <- hgnc
@@ -105,7 +105,7 @@ with(INF1_merge_cvt, {
   kpAddBaseNumbers(kp)
   kpPlotRegions(kp,data=loci,r0=0.05,r1=0.15,border="black")
   kpPlotMarkers(kp, data=sentinels, labels=hgnc, text.orientation="vertical",
-                cex=0.45, y=0.3*seq_along(p.gene)/length(p.gene), srt=30,
+                cex=0.5, y=0.3*seq_along(hgnc)/length(hgnc), srt=30,
                 ignore.chromosome.ends=TRUE,
                 adjust.label.position=TRUE, label.color=colors[2-cis], label.dist=0.002,
                 cex.axis=3, cex.lab=3)
