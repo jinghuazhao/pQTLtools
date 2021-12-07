@@ -134,63 +134,74 @@
     <p>An updated ExpressionSet object.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>Biobase</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>Loading required package: BiocGenerics</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: parallel</span></div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: ‘BiocGenerics’</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:parallel’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,</span>
-#&gt; <span class='message'>    clusterExport, clusterMap, parApply, parCapply, parLapply,</span>
-#&gt; <span class='message'>    parLapplyLB, parRapply, parSapply, parSapplyLB</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:stats’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    IQR, mad, sd, var, xtabs</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:base’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    anyDuplicated, append, as.data.frame, basename, cbind, colnames,</span>
-#&gt; <span class='message'>    dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep,</span>
-#&gt; <span class='message'>    grepl, intersect, is.unsorted, lapply, Map, mapply, match, mget,</span>
-#&gt; <span class='message'>    order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,</span>
-#&gt; <span class='message'>    rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,</span>
-#&gt; <span class='message'>    union, unique, unsplit, which, which.max, which.min</span></div><div class='output co'>#&gt; <span class='message'>Welcome to Bioconductor</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    Vignettes contain introductory material; view with</span>
-#&gt; <span class='message'>    'browseVignettes()'. To cite Bioconductor, see</span>
-#&gt; <span class='message'>    'citation("Biobase")', and for packages 'citation("pkgname")'.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>sample.ExpressionSet</span><span class='op'>)</span>
-<span class='va'>exampleSet</span> <span class='op'>&lt;-</span> <span class='va'>sample.ExpressionSet</span>
-<span class='fu'><a href='https://rdrr.io/pkg/Biobase/man/featureData.html'>fData</a></span><span class='op'>(</span><span class='va'>exampleSet</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; data frame with 0 columns and 500 rows</div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/Biobase/man/featureData.html'>fData</a></span><span class='op'>(</span><span class='va'>exampleSet</span><span class='op'>)</span><span class='op'>$</span><span class='va'>lod.max</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/Biobase/man/exprs.html'>exprs</a></span><span class='op'>(</span><span class='va'>exampleSet</span><span class='op'>)</span>,<span class='fl'>1</span>,<span class='va'>quantile</span>,<span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>exampleSet</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
-<span class='va'>lod</span> <span class='op'>&lt;-</span> <span class='fu'>get.prop.below.LLOD</span><span class='op'>(</span><span class='va'>exampleSet</span><span class='op'>)</span>
-<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/Biobase/man/featureData.html'>fData</a></span><span class='op'>(</span><span class='va'>lod</span><span class='op'>)</span>,<span class='fu'>desc</span><span class='op'>(</span><span class='va'>pc.belowLOD.new</span><span class='op'>)</span><span class='op'>)</span>
-<span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>lod</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; 
-#&gt; 
-#&gt; |   | AFFX.MurIL2_at| AFFX.MurIL10_at| AFFX.MurIL4_at| AFFX.MurFAS_at| AFFX.BioB.5_at| AFFX.BioB.M_at|sex    |type    | score|
-#&gt; |:--|--------------:|---------------:|--------------:|--------------:|--------------:|--------------:|:------|:-------|-----:|
-#&gt; |A  |       192.7420|        97.13700|       45.81920|       22.54450|        96.7875|        89.0730|Female |Control |  0.75|
-#&gt; |B  |        85.7533|       126.19600|        8.83135|        3.60093|        30.4380|        25.8461|Male   |Case    |  0.40|
-#&gt; |C  |       176.7570|        77.92160|       33.06320|       14.68830|        46.1271|        57.2033|Male   |Control |  0.73|
-#&gt; |D  |       135.5750|        93.37130|       28.70720|       12.33970|        70.9319|        69.9766|Male   |Case    |  0.42|
-#&gt; |E  |        64.4939|        24.39860|        5.94492|       36.86630|        56.1744|        49.5822|Female |Case    |  0.93|
-#&gt; |F  |        76.3569|        85.50880|       28.29250|       11.25680|        42.6756|        26.1262|Male   |Control |  0.22|
-#&gt; |G  |       160.5050|        98.90860|       30.96940|       23.00340|        86.5156|        75.0083|Male   |Case    |  0.96|
-#&gt; |H  |        65.9631|        81.69320|       14.79230|       16.21340|        30.7927|        42.3352|Male   |Case    |  0.79|
-#&gt; |I  |        56.9039|        97.80150|       14.23990|       12.03750|        19.7183|        41.1207|Female |Case    |  0.37|
-#&gt; |J  |       135.6080|        90.48380|       34.48740|        4.54978|        46.3520|        91.5307|Male   |Control |  0.63|
-#&gt; |K  |        63.4432|        70.57330|       20.35210|        8.51782|        39.1326|        39.9136|Male   |Case    |  0.26|
-#&gt; |L  |        78.2126|        94.54180|       14.15540|       27.28520|        41.7698|        49.8397|Female |Control |  0.36|
-#&gt; |M  |        83.0943|        75.34550|       20.62510|       10.16160|        80.2197|        63.4794|Male   |Case    |  0.41|
-#&gt; |N  |        89.3372|        68.58270|       15.92310|       20.24880|        36.4903|        24.7007|Male   |Case    |  0.80|
-#&gt; |O  |        91.0615|        87.40500|       20.15790|       15.78490|        36.4021|        47.4641|Female |Case    |  0.10|
-#&gt; |P  |        95.9377|        84.45810|       27.81390|       14.32760|        35.3054|        47.3578|Female |Control |  0.41|
-#&gt; |Q  |       179.8450|        87.68060|       32.79110|       15.94880|        58.6239|        58.1331|Female |Case    |  0.16|
-#&gt; |R  |       152.4670|       108.03200|       33.52920|       14.67530|       114.0620|       104.1220|Male   |Control |  0.72|
-#&gt; |S  |       180.8340|       134.26300|       19.81720|       -7.91911|        93.4402|       115.8310|Male   |Case    |  0.17|
-#&gt; |T  |        85.4146|        91.40310|       20.41900|       12.88750|        22.5168|        58.1224|Female |Case    |  0.74|
-#&gt; |U  |       157.9890|        -8.68811|       26.87200|       11.91860|        48.6462|        73.4221|Male   |Control |  0.35|
-#&gt; |V  |       146.8000|        85.02120|       31.14880|       12.83240|        90.2215|        64.6066|Female |Control |  0.77|
-#&gt; |W  |        93.8829|        79.29980|       22.34200|       11.13900|        42.0053|        40.3068|Male   |Control |  0.27|
-#&gt; |X  |       103.8550|        71.65520|       19.01350|        7.55564|        57.5738|        41.8209|Male   |Control |  0.98|
-#&gt; |Y  |        64.4340|        64.23690|       12.16860|       19.98490|        44.8216|        46.1087|Female |Case    |  0.94|
-#&gt; |Z  |       175.6150|        78.70680|       17.37800|        8.96849|        61.7044|        49.4122|Female |Case    |  0.32|</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>[</span>,<span class='fl'>2</span><span class='op'>]</span>, main<span class='op'>=</span><span class='st'>"Random quantile cut off"</span>, ylab<span class='op'>=</span><span class='st'>"&lt;lod%"</span><span class='op'>)</span>
-</div><div class='img'><img src='get.prop.below.LLOD-1.png' alt='' width='700' height='433' /></div></pre>
+    <pre class="examples"><span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://bioconductor.org/packages/Biobase'>Biobase</a></span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Loading required package: BiocGenerics</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Loading required package: parallel</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Attaching package: ‘BiocGenerics’</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> The following objects are masked from ‘package:parallel’:</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     clusterApply, clusterApplyLB, clusterCall, clusterEvalQ,</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     clusterExport, clusterMap, parApply, parCapply, parLapply,</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     parLapplyLB, parRapply, parSapply, parSapplyLB</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> The following objects are masked from ‘package:stats’:</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     IQR, mad, sd, var, xtabs</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> The following objects are masked from ‘package:base’:</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     anyDuplicated, append, as.data.frame, basename, cbind, colnames,</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep,</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     grepl, intersect, is.unsorted, lapply, Map, mapply, match, mget,</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     union, unique, unsplit, which.max, which.min</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Welcome to Bioconductor</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     Vignettes contain introductory material; view with</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     'browseVignettes()'. To cite Bioconductor, see</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span>     'citation("Biobase")', and for packages 'citation("pkgname")'.</span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>sample.ExpressionSet</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>exampleSet</span> <span class='op'>&lt;-</span> <span class='va'>sample.ExpressionSet</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/pkg/Biobase/man/featureData.html'>fData</a></span><span class='op'>(</span><span class='va'>exampleSet</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> data frame with 0 columns and 500 rows</span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/pkg/Biobase/man/featureData.html'>fData</a></span><span class='op'>(</span><span class='va'>exampleSet</span><span class='op'>)</span><span class='op'>$</span><span class='va'>lod.max</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/Biobase/man/exprs.html'>exprs</a></span><span class='op'>(</span><span class='va'>exampleSet</span><span class='op'>)</span>,<span class='fl'>1</span>,<span class='va'>quantile</span>,<span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/BiocGenerics/man/nrow.html'>nrow</a></span><span class='op'>(</span><span class='va'>exampleSet</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>lod</span> <span class='op'>&lt;-</span> <span class='fu'>get.prop.below.LLOD</span><span class='op'>(</span><span class='va'>exampleSet</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> Loading required namespace: stringr</span>
+<span class='r-in'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/Biobase/man/featureData.html'>fData</a></span><span class='op'>(</span><span class='va'>lod</span><span class='op'>)</span>,<span class='fu'>desc</span><span class='op'>(</span><span class='va'>pc.belowLOD.new</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>lod</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> |   | AFFX.MurIL2_at| AFFX.MurIL10_at| AFFX.MurIL4_at| AFFX.MurFAS_at| AFFX.BioB.5_at| AFFX.BioB.M_at|sex    |type    | score|</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> |:--|--------------:|---------------:|--------------:|--------------:|--------------:|--------------:|:------|:-------|-----:|</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> |A  |       192.7420|        97.13700|       45.81920|       22.54450|        96.7875|        89.0730|Female |Control |  0.75|</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> |B  |        85.7533|       126.19600|        8.83135|        3.60093|        30.4380|        25.8461|Male   |Case    |  0.40|</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> |C  |       176.7570|        77.92160|       33.06320|       14.68830|        46.1271|        57.2033|Male   |Control |  0.73|</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> |D  |       135.5750|        93.37130|       28.70720|       12.33970|        70.9319|        69.9766|Male   |Case    |  0.42|</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> |E  |        64.4939|        24.39860|        5.94492|       36.86630|        56.1744|        49.5822|Female |Case    |  0.93|</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> |F  |        76.3569|        85.50880|       28.29250|       11.25680|        42.6756|        26.1262|Male   |Control |  0.22|</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> |G  |       160.5050|        98.90860|       30.96940|       23.00340|        86.5156|        75.0083|Male   |Case    |  0.96|</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> |H  |        65.9631|        81.69320|       14.79230|       16.21340|        30.7927|        42.3352|Male   |Case    |  0.79|</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> |I  |        56.9039|        97.80150|       14.23990|       12.03750|        19.7183|        41.1207|Female |Case    |  0.37|</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> |J  |       135.6080|        90.48380|       34.48740|        4.54978|        46.3520|        91.5307|Male   |Control |  0.63|</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> |K  |        63.4432|        70.57330|       20.35210|        8.51782|        39.1326|        39.9136|Male   |Case    |  0.26|</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> |L  |        78.2126|        94.54180|       14.15540|       27.28520|        41.7698|        49.8397|Female |Control |  0.36|</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> |M  |        83.0943|        75.34550|       20.62510|       10.16160|        80.2197|        63.4794|Male   |Case    |  0.41|</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> |N  |        89.3372|        68.58270|       15.92310|       20.24880|        36.4903|        24.7007|Male   |Case    |  0.80|</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> |O  |        91.0615|        87.40500|       20.15790|       15.78490|        36.4021|        47.4641|Female |Case    |  0.10|</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> |P  |        95.9377|        84.45810|       27.81390|       14.32760|        35.3054|        47.3578|Female |Control |  0.41|</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> |Q  |       179.8450|        87.68060|       32.79110|       15.94880|        58.6239|        58.1331|Female |Case    |  0.16|</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> |R  |       152.4670|       108.03200|       33.52920|       14.67530|       114.0620|       104.1220|Male   |Control |  0.72|</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> |S  |       180.8340|       134.26300|       19.81720|       -7.91911|        93.4402|       115.8310|Male   |Case    |  0.17|</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> |T  |        85.4146|        91.40310|       20.41900|       12.88750|        22.5168|        58.1224|Female |Case    |  0.74|</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> |U  |       157.9890|        -8.68811|       26.87200|       11.91860|        48.6462|        73.4221|Male   |Control |  0.35|</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> |V  |       146.8000|        85.02120|       31.14880|       12.83240|        90.2215|        64.6066|Female |Control |  0.77|</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> |W  |        93.8829|        79.29980|       22.34200|       11.13900|        42.0053|        40.3068|Male   |Control |  0.27|</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> |X  |       103.8550|        71.65520|       19.01350|        7.55564|        57.5738|        41.8209|Male   |Control |  0.98|</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> |Y  |        64.4340|        64.23690|       12.16860|       19.98490|        44.8216|        46.1087|Female |Case    |  0.94|</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> |Z  |       175.6150|        78.70680|       17.37800|        8.96849|        61.7044|        49.4122|Female |Case    |  0.32|</span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>[</span>,<span class='fl'>2</span><span class='op'>]</span>, main<span class='op'>=</span><span class='st'>"Random quantile cut off"</span>, ylab<span class='op'>=</span><span class='st'>"&lt;lod%"</span><span class='op'>)</span></span>
+<span class='r-plt img'><img src='get.prop.below.LLOD-1.png' alt='' width='700' height='433' /></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

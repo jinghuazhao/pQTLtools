@@ -167,42 +167,71 @@
     <p>Adapted from Bioconductor/Biobase following a number of proteomic pilot studies</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>dataDirectory</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"extdata"</span>, package<span class='op'>=</span><span class='st'>"Biobase"</span><span class='op'>)</span>
-<span class='va'>exprsFile</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>dataDirectory</span>, <span class='st'>"exprsData.txt"</span><span class='op'>)</span>
-<span class='va'>exprs</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.table</a></span><span class='op'>(</span><span class='va'>exprsFile</span>, header<span class='op'>=</span><span class='cn'>TRUE</span>, sep<span class='op'>=</span><span class='st'>"\t"</span>, row.names<span class='op'>=</span><span class='fl'>1</span>, as.is<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
-<span class='va'>pDataFile</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>dataDirectory</span>, <span class='st'>"pData.txt"</span><span class='op'>)</span>
-<span class='va'>pData</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.table</a></span><span class='op'>(</span><span class='va'>pDataFile</span>, row.names<span class='op'>=</span><span class='fl'>1</span>, header<span class='op'>=</span><span class='cn'>TRUE</span>, sep<span class='op'>=</span><span class='st'>"\t"</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/all.html'>all</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span><span class='op'>(</span><span class='va'>pData</span><span class='op'>)</span><span class='op'>==</span><span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span><span class='op'>(</span><span class='va'>exprs</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='va'>metadata</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>labelDescription<span class='op'>=</span>
-                       <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Patient gender"</span>,
-                         <span class='st'>"Case/control status"</span>,
-                         <span class='st'>"Tumor progress on XYZ scale"</span><span class='op'>)</span>,
-                       row.names<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"gender"</span>, <span class='st'>"type"</span>, <span class='st'>"score"</span><span class='op'>)</span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'>Biobase</span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/jinghuazhao/pQTLtools'>pQTLtools</a></span><span class='op'>)</span>
-<span class='va'>phenoData</span> <span class='op'>&lt;-</span> <span class='fu'>new</span><span class='op'>(</span><span class='st'>"AnnotatedDataFrame"</span>, data<span class='op'>=</span><span class='va'>pData</span>, varMetadata<span class='op'>=</span><span class='va'>metadata</span><span class='op'>)</span>
-<span class='va'>experimentData</span> <span class='op'>&lt;-</span> <span class='fu'>new</span><span class='op'>(</span><span class='st'>"MIAME"</span>,
-  name<span class='op'>=</span><span class='st'>"Pierre Fermat"</span>,
-  lab<span class='op'>=</span><span class='st'>"Francis Galton Lab"</span>,
-  contact<span class='op'>=</span><span class='st'>"pfermat@lab.not.exist"</span>,
-  title<span class='op'>=</span><span class='st'>"Smoking-Cancer Experiment"</span>,
-  abstract<span class='op'>=</span><span class='st'>"An example ExpressionSet"</span>,
-  url<span class='op'>=</span><span class='st'>"www.lab.not.exist"</span>,
-  other<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>notes<span class='op'>=</span><span class='st'>"Created from text files"</span><span class='op'>)</span><span class='op'>)</span>
-<span class='va'>exampleSet</span> <span class='op'>&lt;-</span> <span class='fu'>make_ExpressionSet</span><span class='op'>(</span><span class='va'>exprs</span>,<span class='va'>phenoData</span>,experimentData<span class='op'>=</span><span class='va'>experimentData</span>,
-                                 annotation<span class='op'>=</span><span class='st'>"hgu95av2"</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>sample.ExpressionSet</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/identical.html'>identical</a></span><span class='op'>(</span><span class='va'>exampleSet</span>,<span class='va'>sample.ExpressionSet</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/invisible.html'>invisible</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/Biobase/man/esApply.html'>esApply</a></span><span class='op'>(</span><span class='va'>exampleSet</span>,<span class='fl'>2</span>,<span class='va'>hist</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='img'><img src='make_ExpressionSet-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='make_ExpressionSet-2.png' alt='' width='700' height='433' /></div><div class='img'><img src='make_ExpressionSet-3.png' alt='' width='700' height='433' /></div><div class='img'><img src='make_ExpressionSet-4.png' alt='' width='700' height='433' /></div><div class='img'><img src='make_ExpressionSet-5.png' alt='' width='700' height='433' /></div><div class='img'><img src='make_ExpressionSet-6.png' alt='' width='700' height='433' /></div><div class='img'><img src='make_ExpressionSet-7.png' alt='' width='700' height='433' /></div><div class='img'><img src='make_ExpressionSet-8.png' alt='' width='700' height='433' /></div><div class='img'><img src='make_ExpressionSet-9.png' alt='' width='700' height='433' /></div><div class='img'><img src='make_ExpressionSet-10.png' alt='' width='700' height='433' /></div><div class='img'><img src='make_ExpressionSet-11.png' alt='' width='700' height='433' /></div><div class='img'><img src='make_ExpressionSet-12.png' alt='' width='700' height='433' /></div><div class='img'><img src='make_ExpressionSet-13.png' alt='' width='700' height='433' /></div><div class='img'><img src='make_ExpressionSet-14.png' alt='' width='700' height='433' /></div><div class='img'><img src='make_ExpressionSet-15.png' alt='' width='700' height='433' /></div><div class='img'><img src='make_ExpressionSet-16.png' alt='' width='700' height='433' /></div><div class='img'><img src='make_ExpressionSet-17.png' alt='' width='700' height='433' /></div><div class='img'><img src='make_ExpressionSet-18.png' alt='' width='700' height='433' /></div><div class='img'><img src='make_ExpressionSet-19.png' alt='' width='700' height='433' /></div><div class='img'><img src='make_ExpressionSet-20.png' alt='' width='700' height='433' /></div><div class='img'><img src='make_ExpressionSet-21.png' alt='' width='700' height='433' /></div><div class='img'><img src='make_ExpressionSet-22.png' alt='' width='700' height='433' /></div><div class='img'><img src='make_ExpressionSet-23.png' alt='' width='700' height='433' /></div><div class='img'><img src='make_ExpressionSet-24.png' alt='' width='700' height='433' /></div><div class='img'><img src='make_ExpressionSet-25.png' alt='' width='700' height='433' /></div><div class='img'><img src='make_ExpressionSet-26.png' alt='' width='700' height='433' /></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>score</span><span class='op'>~</span><span class='va'>gender</span><span class='op'>+</span><span class='va'>X31739_at</span>,data<span class='op'>=</span><span class='va'>exampleSet</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; 
-#&gt; Call:
-#&gt; lm(formula = score ~ gender + X31739_at, data = exampleSet)
-#&gt; 
-#&gt; Coefficients:
-#&gt; (Intercept)   genderMale    X31739_at  
-#&gt;   0.6006673    0.0108515   -0.0003012  
-#&gt; </div></pre>
+    <pre class="examples"><span class='r-in'><span class='va'>dataDirectory</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/system.file.html'>system.file</a></span><span class='op'>(</span><span class='st'>"extdata"</span>, package<span class='op'>=</span><span class='st'>"Biobase"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>exprsFile</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>dataDirectory</span>, <span class='st'>"exprsData.txt"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>exprs</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>as.matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.table</a></span><span class='op'>(</span><span class='va'>exprsFile</span>, header<span class='op'>=</span><span class='cn'>TRUE</span>, sep<span class='op'>=</span><span class='st'>"\t"</span>, row.names<span class='op'>=</span><span class='fl'>1</span>, as.is<span class='op'>=</span><span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>pDataFile</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='va'>dataDirectory</span>, <span class='st'>"pData.txt"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>pData</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.table</a></span><span class='op'>(</span><span class='va'>pDataFile</span>, row.names<span class='op'>=</span><span class='fl'>1</span>, header<span class='op'>=</span><span class='cn'>TRUE</span>, sep<span class='op'>=</span><span class='st'>"\t"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/all.html'>all</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/BiocGenerics/man/row_colnames.html'>rownames</a></span><span class='op'>(</span><span class='va'>pData</span><span class='op'>)</span><span class='op'>==</span><span class='fu'><a href='https://rdrr.io/pkg/BiocGenerics/man/row_colnames.html'>colnames</a></span><span class='op'>(</span><span class='va'>exprs</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] TRUE</span>
+<span class='r-in'><span class='va'>metadata</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>labelDescription<span class='op'>=</span></span>
+<span class='r-in'>                       <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Patient gender"</span>,</span>
+<span class='r-in'>                         <span class='st'>"Case/control status"</span>,</span>
+<span class='r-in'>                         <span class='st'>"Tumor progress on XYZ scale"</span><span class='op'>)</span>,</span>
+<span class='r-in'>                       row.names<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"gender"</span>, <span class='st'>"type"</span>, <span class='st'>"score"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'><a href='https://bioconductor.org/packages/Biobase'>Biobase</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/jinghuazhao/pQTLtools'>pQTLtools</a></span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>phenoData</span> <span class='op'>&lt;-</span> <span class='fu'>new</span><span class='op'>(</span><span class='st'>"AnnotatedDataFrame"</span>, data<span class='op'>=</span><span class='va'>pData</span>, varMetadata<span class='op'>=</span><span class='va'>metadata</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>experimentData</span> <span class='op'>&lt;-</span> <span class='fu'>new</span><span class='op'>(</span><span class='st'>"MIAME"</span>,</span>
+<span class='r-in'>  name<span class='op'>=</span><span class='st'>"Pierre Fermat"</span>,</span>
+<span class='r-in'>  lab<span class='op'>=</span><span class='st'>"Francis Galton Lab"</span>,</span>
+<span class='r-in'>  contact<span class='op'>=</span><span class='st'>"pfermat@lab.not.exist"</span>,</span>
+<span class='r-in'>  title<span class='op'>=</span><span class='st'>"Smoking-Cancer Experiment"</span>,</span>
+<span class='r-in'>  abstract<span class='op'>=</span><span class='st'>"An example ExpressionSet"</span>,</span>
+<span class='r-in'>  url<span class='op'>=</span><span class='st'>"www.lab.not.exist"</span>,</span>
+<span class='r-in'>  other<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>notes<span class='op'>=</span><span class='st'>"Created from text files"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>exampleSet</span> <span class='op'>&lt;-</span> <span class='fu'>make_ExpressionSet</span><span class='op'>(</span><span class='va'>exprs</span>,<span class='va'>phenoData</span>,experimentData<span class='op'>=</span><span class='va'>experimentData</span>,</span>
+<span class='r-in'>                                 annotation<span class='op'>=</span><span class='st'>"hgu95av2"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>sample.ExpressionSet</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/identical.html'>identical</a></span><span class='op'>(</span><span class='va'>exampleSet</span>,<span class='va'>sample.ExpressionSet</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] FALSE</span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/invisible.html'>invisible</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/pkg/Biobase/man/esApply.html'>esApply</a></span><span class='op'>(</span><span class='va'>exampleSet</span>,<span class='fl'>2</span>,<span class='va'>hist</span><span class='op'>)</span><span class='op'>)</span></span>
+<span class='r-plt img'><img src='make_ExpressionSet-1.png' alt='' width='700' height='433' /></span>
+<span class='r-plt img'><img src='make_ExpressionSet-2.png' alt='' width='700' height='433' /></span>
+<span class='r-plt img'><img src='make_ExpressionSet-3.png' alt='' width='700' height='433' /></span>
+<span class='r-plt img'><img src='make_ExpressionSet-4.png' alt='' width='700' height='433' /></span>
+<span class='r-plt img'><img src='make_ExpressionSet-5.png' alt='' width='700' height='433' /></span>
+<span class='r-plt img'><img src='make_ExpressionSet-6.png' alt='' width='700' height='433' /></span>
+<span class='r-plt img'><img src='make_ExpressionSet-7.png' alt='' width='700' height='433' /></span>
+<span class='r-plt img'><img src='make_ExpressionSet-8.png' alt='' width='700' height='433' /></span>
+<span class='r-plt img'><img src='make_ExpressionSet-9.png' alt='' width='700' height='433' /></span>
+<span class='r-plt img'><img src='make_ExpressionSet-10.png' alt='' width='700' height='433' /></span>
+<span class='r-plt img'><img src='make_ExpressionSet-11.png' alt='' width='700' height='433' /></span>
+<span class='r-plt img'><img src='make_ExpressionSet-12.png' alt='' width='700' height='433' /></span>
+<span class='r-plt img'><img src='make_ExpressionSet-13.png' alt='' width='700' height='433' /></span>
+<span class='r-plt img'><img src='make_ExpressionSet-14.png' alt='' width='700' height='433' /></span>
+<span class='r-plt img'><img src='make_ExpressionSet-15.png' alt='' width='700' height='433' /></span>
+<span class='r-plt img'><img src='make_ExpressionSet-16.png' alt='' width='700' height='433' /></span>
+<span class='r-plt img'><img src='make_ExpressionSet-17.png' alt='' width='700' height='433' /></span>
+<span class='r-plt img'><img src='make_ExpressionSet-18.png' alt='' width='700' height='433' /></span>
+<span class='r-plt img'><img src='make_ExpressionSet-19.png' alt='' width='700' height='433' /></span>
+<span class='r-plt img'><img src='make_ExpressionSet-20.png' alt='' width='700' height='433' /></span>
+<span class='r-plt img'><img src='make_ExpressionSet-21.png' alt='' width='700' height='433' /></span>
+<span class='r-plt img'><img src='make_ExpressionSet-22.png' alt='' width='700' height='433' /></span>
+<span class='r-plt img'><img src='make_ExpressionSet-23.png' alt='' width='700' height='433' /></span>
+<span class='r-plt img'><img src='make_ExpressionSet-24.png' alt='' width='700' height='433' /></span>
+<span class='r-plt img'><img src='make_ExpressionSet-25.png' alt='' width='700' height='433' /></span>
+<span class='r-plt img'><img src='make_ExpressionSet-26.png' alt='' width='700' height='433' /></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>score</span><span class='op'>~</span><span class='va'>gender</span><span class='op'>+</span><span class='va'>X31739_at</span>,data<span class='op'>=</span><span class='va'>exampleSet</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Call:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> lm(formula = score ~ gender + X31739_at, data = exampleSet)</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Coefficients:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> (Intercept)   genderMale    X31739_at  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   0.6006673    0.0108515   -0.0003012  </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
