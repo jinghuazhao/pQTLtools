@@ -16,6 +16,7 @@
 \alias{Olink_NGS}
 \alias{Olink_qPCR}
 \alias{SomaLogic160410}
+\alias{SomaScanV4.1}
 \alias{st4}
 \alias{st6}
 \alias{st18}
