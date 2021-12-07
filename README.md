@@ -30,6 +30,7 @@ inf1                |    Olink/INF panel
 Olink_NGS           |    Olink/NGS panels
 Olink_qPCR          |    Olink/qPCR panels
 SomaLogic160410     |    SomaLogic panel
+SomaScanV4.1        |    SomaScan v4.1 panel
 st4                 |    ST4 of the INTERVAL SomaLogic paper
 st6                 |    ST6 of the INTERVAL SomaLogic paper
 st18                |    ST18 of the INTERVAL SomaLogic paper
