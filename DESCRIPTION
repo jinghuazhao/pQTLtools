@@ -55,4 +55,5 @@ VignetteBuilder:
 LazyData: Yes
 LazyLoad: Yes
 NeedsCompilation: no
-RoxygenNote: 7.1.1
+Encoding: UTF-8
+RoxygenNote: 7.1.2
