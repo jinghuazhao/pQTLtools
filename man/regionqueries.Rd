@@ -2,9 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{regionqueries}
 \alias{regionqueries}
-\title{phenoscanner regionqueries in batches
-R/phenoscanner only allows for certain number of items supplied. This simple function return
-a large number of calls in batches as well as generating SNPIDs.}
+\title{phenoscanner regionqueries in batches}
 \usage{
 regionqueries(
   regionlist,
@@ -35,7 +33,6 @@ regionqueries(
 The returned value is a list containing tiles, regions and results.
 }
 \description{
-phenoscanner regionqueries in batches
 R/phenoscanner only allows for certain number of items supplied. This simple function return
 a large number of calls in batches as well as generating SNPIDs.
 }
@@ -56,8 +53,8 @@ INF1_merge <- merge(inf1,
                   read.delim(file.path(INF,"work","INF1.merge-rsid"),as.is=TRUE),
                   by="prot")
 INF1_merge_uniprot <- with(INF1_merge,unique(uniprot))
-SomaLogic_INF1_merge <- subset(SomaLogic160410,UniProt \\%in\\% INF1_merge_uniprot)
-regions <- subset(INF1_merge,uniprot \\%in\\% with(SomaLogic_INF1_merge,UniProt))
+SomaLogic_INF1_merge <- subset(SomaLogic160410,UniProt \%in\% INF1_merge_uniprot)
+regions <- subset(INF1_merge,uniprot \%in\% with(SomaLogic_INF1_merge,UniProt))
 singletons <- with(regions, Start-End<=2)
 flank <- 5e+2
 regions[singletons,"Start"] <- regions[singletons,"Start"] - flank

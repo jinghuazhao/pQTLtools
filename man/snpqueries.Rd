@@ -2,9 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{snpqueries}
 \alias{snpqueries}
-\title{phenoscanner snpqueries in batches
-R/phenoscanner only allows for certain number of items supplied. This simple function return
-a large number of calls in batches as well as generating SNPIDs.}
+\title{phenoscanner snpqueries in batches}
 \usage{
 snpqueries(
   snplist,
@@ -35,7 +33,6 @@ snpqueries(
 The returned value is a list containing snps and results:
 }
 \description{
-phenoscanner snpqueries in batches
 R/phenoscanner only allows for certain number of items supplied. This simple function return
 a large number of calls in batches as well as generating SNPIDs.
 }
@@ -57,7 +54,7 @@ INTERVAL_Olink <- subset(with(r,results),efo=='EFO_0004747' & pmid=='29875488')
 save(INTERVAL_Olink,file='INTERVAL_Olink.rda',compress='xz')
 # --- query intersect proteins ---
 # SomaLogic intersect
-SomaLogic_overlap_list <- subset(st4,UniProt \\%in\\% intersect_list)
+SomaLogic_overlap_list <- subset(st4,UniProt \%in\% intersect_list)
 r <- snpqueries(SomaLogic_overlap_list[,6],catalogue='pQTL',p=1e-11)
 SomaLogic_overlap <- subset(with(r,results),efo=='EFO_0004747' & pmid=='29875488')
 save(SomaLogic_overlap_list,SomaLogic_overlap,file='SomaLogic_overlap.rda',compress='xz')

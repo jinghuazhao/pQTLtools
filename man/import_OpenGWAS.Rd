@@ -2,8 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{import_OpenGWAS}
 \alias{import_OpenGWAS}
-\title{Import OpenGWAS
-A function which imports OpenGWAS.}
+\title{Import OpenGWAS}
 \usage{
 import_OpenGWAS(opengwas_id, region, verbose = TRUE)
 }
@@ -18,7 +17,6 @@ import_OpenGWAS(opengwas_id, region, verbose = TRUE)
 A summary statistic object
 }
 \description{
-Import OpenGWAS
 A function which imports OpenGWAS.
 }
 \details{

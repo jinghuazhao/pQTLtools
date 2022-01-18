@@ -2,9 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{genequeries}
 \alias{genequeries}
-\title{phenoscanner genequeries in batches
-R/phenoscanner only allows for certain number of items supplied. This simple function return
-a large number of calls in batches as well as generating SNPIDs.}
+\title{phenoscanner genequeries in batches}
 \usage{
 genequeries(
   genelist,
@@ -35,7 +33,6 @@ genequeries(
 The returned value is a list containing genes and results.
 }
 \description{
-phenoscanner genequeries in batches
 R/phenoscanner only allows for certain number of items supplied. This simple function return
 a large number of calls in batches as well as generating SNPIDs.
 }
