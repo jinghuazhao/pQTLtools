@@ -1,3 +1,31 @@
+#' phenoscanner genequeries in batches
+#' R/phenoscanner only allows for certain number of items supplied. This simple function return
+#' a large number of calls in batches as well as generating SNPIDs.
+#'
+#' @md
+#' @param genelist a list of SNPs.
+#' @param catalogue "None","eQTL","mQTL","methQTL","pQTL","GWAS".
+#' @param proxies "None", "AFR","AMR","EAS","EUR","SAS".
+#' @param p p value threshold.
+#' @param r2 r2 for LD.
+#' @param build 37, 38.
+#' @param wait a flag to wait for 1hr for every 50 genes.
+#'
+#' @details
+#' Batches are generated and queries are combined into one.
+#'
+#' @export
+#' @return The returned value is a list containing genes and results.
+#' @references
+#' Sun BB, et al. (2018). Genomic atlas of the human plasma proteome. *Nature* 558: 73-79.
+#' @seealso \code{\link[phenoscanner]{phenoscanner}}
+#' @examples
+#' \dontrun{
+#' # single gene
+#'   genequeries("TNFRSF11B")
+#' }
+#' @keywords utilities
+
 genequeries <- function(genelist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.8,build=37,wait=TRUE)
 {
   a1 <- a2 <- hg19_coordinates <- hg38_coordinates <- NULL
@@ -26,6 +54,77 @@ genequeries <- function(genelist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.8,bu
   })
   list(genes=genes,results=results)
 }
+
+#'
+#' phenoscanner regionqueries in batches
+#' R/phenoscanner only allows for certain number of items supplied. This simple function return
+#' a large number of calls in batches as well as generating SNPIDs.
+#'
+#' @md
+#' @param regionlist a list of SNPs
+#' @param catalogue "None","eQTL","mQTL","methQTL","pQTL","GWAS".
+#' @param proxies "None", "AFR","AMR","EAS","EUR","SAS".
+#' @param p p value threshold.
+#' @param r2 r2 for LD.
+#' @param build 37, 38.
+#' @param wait a flag to wait for 1hr for every 50 regions.
+#'
+#' @details
+#' Batches are generated and queries are combined into one.
+#'
+#' @return The returned value is a list containing tiles, regions and results.
+#'
+#' @references
+#' Sun BB, et al. (2018). Genomic atlas of the human plasma proteome. *Nature* 558: 73-79.
+#'
+#' @seealso \code{\link[phenoscanner]{phenoscanner}}
+#'
+#' @examples
+#' \dontrun{
+#' # single region
+#' regionqueries("chr17:26691290-26700110")
+#'
+#' # SCALLOP -- SomaLogic lookup from PhenoScanner
+#' INF <- Sys.getenv("INF")
+#' INF1_merge <- merge(inf1,
+#'                   read.delim(file.path(INF,"work","INF1.merge-rsid"),as.is=TRUE),
+#'                   by="prot")
+#' INF1_merge_uniprot <- with(INF1_merge,unique(uniprot))
+#' SomaLogic_INF1_merge <- subset(SomaLogic160410,UniProt \%in\% INF1_merge_uniprot)
+#' regions <- subset(INF1_merge,uniprot \%in\% with(SomaLogic_INF1_merge,UniProt))
+#' singletons <- with(regions, Start-End<=2)
+#' flank <- 5e+2
+#' regions[singletons,"Start"] <- regions[singletons,"Start"] - flank
+#' regions[singletons,"End"] <- regions[singletons,"End"] + flank
+#' reset <- with(regions,Start < 0)
+#' regions[reset,"Start"] <- 0
+#' r <- regionqueries(with(regions,paste0(Chrom,":",Start,"-",End)))
+#' save(r,file="INF1_merge.rda",compress='xz')
+#' r2 <- with(r,
+#' {
+#'  region_ext <- cbind(tiles,regions)
+#'  results_ext <- merge(region_ext,results,by="region")
+#'  ord <- with(results_ext,order(group))
+#'  results_ext[ord,]
+#' })
+#' results <- subset(r2,pmid=="29875488")
+#' grp <- names(table(with(results,group)))
+#' sink("INF1_merge.txt")
+#' options(width=250)
+#' for(g in as.numeric(grp))
+#' {
+#'   uniprot <- regions[g,"uniprot"]
+#'   SNP <- regions[g,"SNP"]
+#'   print(regions[g,])
+#'   s <- subset(results,group==g&rsid==SNP)
+#'   vars <- c("region","group","rsid","hg19_coordinates","hgnc","beta","se","p","snpid") 
+#'   if(nrow(s)>1) print(s[vars])
+#' }
+#' sink()
+#' }
+#' @note
+#' adapted from custom codings
+#' @keywords utilities
 
 regionqueries <- function(regionlist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.8,build=37,wait=TRUE)
 {
@@ -66,6 +165,60 @@ regionqueries <- function(regionlist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.
   list(tiles=tiles,regions=regions,results=results)
 }
 
+#' phenoscanner snpqueries in batches
+#' R/phenoscanner only allows for certain number of items supplied. This simple function return
+#' a large number of calls in batches as well as generating SNPIDs.
+#'
+#' @md
+#' @param snplist a list of SNPs.
+#' @param catalogue "None","eQTL","mQTL","methQTL","pQTL","GWAS".
+#' @param proxies "None", "AFR","AMR","EAS","EUR","SAS".
+#' @param p p value threshold.
+#' @param r2 r2 for LD.
+#' @param build 37, 38.
+#' @param wait a flag to wait for 1hr for every 500 SNPs.
+#'
+#' @details
+#' Batches are generated and queries are combined into one.
+#'
+#' @export
+#' @return
+#' The returned value is a list containing snps and results:
+#' @references
+#' Sun BB, et al. (2018). Genomic atlas of the human plasma proteome. *Nature* 558: 73-79.
+#' @seealso \code{\link[phenoscanner]{phenoscanner}}
+#'
+#' @examples
+#' \dontrun{
+#'  # single SNP
+#'  snpqueries("rs704")
+#'  # SCALLOP/INF
+#' INF <- Sys.getenv("INF")
+#' rsid <- scan(paste(INF,'work','INF1.merge.snp',sep='/'),"")
+#' r <- snpqueries(rsid,catalogue='pQTL',p=1e-11)
+#' INTERVAL_Olink <- subset(with(r,results),efo=='EFO_0004747' & pmid=='29875488')
+#' save(INTERVAL_Olink,file='INTERVAL_Olink.rda',compress='xz')
+#' # --- query intersect proteins ---
+#' # SomaLogic intersect
+#' SomaLogic_overlap_list <- subset(st4,UniProt \%in\% intersect_list)
+#' r <- snpqueries(SomaLogic_overlap_list[,6],catalogue='pQTL',p=1e-11)
+#' SomaLogic_overlap <- subset(with(r,results),efo=='EFO_0004747' & pmid=='29875488')
+#' save(SomaLogic_overlap_list,SomaLogic_overlap,file='SomaLogic_overlap.rda',compress='xz')
+#' SomaLogic_result <- merge(SomaLogic_overlap_list,SomaLogic_overlap,
+#'                           by.x="Sentinel.variant*",by.y="snp")
+#' # Olink intersect
+#' INF1_merge_rsid <- read.delim(paste(INF,"work","INF1.merge-rsid",sep="/"))
+#' INF1_merge_rsid_uniprot <- merge(INF1_merge_rsid,inf1,by="prot")
+#' Olink_overlap_list <- subset(INF1_merge_rsid_uniprot,uniprot \%in\% intersect_list)
+#' r <- snpqueries(with(Olink_overlap_list,MarkerName),catalogue='pQTL',p=1e-11)
+#' Olink_overlap <- subset(with(r,results),efo=='EFO_0004747' & pmid=='29875488')
+#' save(Olink_overlap_list,Olink_overlap,file='Olink_overlap.rda',compress='xz')
+#' Olink_result <- merge(Olink_overlap_list,Olink_overlap,by.x="MarkerName",by.y="snp")
+#' }
+#' @note
+#' adapted from custom codings
+#' @keywords utilities
+
 snpqueries <- function(snplist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.8,build=37,wait=TRUE)
 {
   a1 <- a2 <- hg19_coordinates <- hg38_coordinates <- NULL
@@ -105,6 +258,34 @@ snpqueries <- function(snplist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.8,buil
   list(snps=snps,results=results)
 }
 
+#' UniProt IDs to others
+#'
+#' A function which converts UniProt IDs to others.
+#'
+#' @param uniprotid Source IDs.
+#' @param to To IDs.
+#' @param query A query.
+#'
+#' @details
+#' This function is based on the Python3 script from UniProt.
+#'
+#' @return A UniProt-ID mapping
+#'
+#' @references
+#' See https://www.uniprot.org/help/api_idmapping
+#' @examples
+#' \dontrun{
+#' uniprotid <- "ACC+ID"
+#' to <- "CHEMBL_ID"
+#' query <- noquote(inf1[["uniprot"]])
+#' query <- paste(query,collapse=" ")
+#' r <- pQTLtools::uniprot2ids(uniprotid,to,query)
+#' cat(r,file="INF1.merge.chembl")
+#' }
+#' @note
+#' Adapted from script by UniProt
+#' @keywords utilities
+
 uniprot2ids <- function(uniprotid="ACC+ID",to,query)
 {
   rt <- find.package("pQTLtools")
@@ -112,6 +293,127 @@ uniprot2ids <- function(uniprotid="ACC+ID",to,query)
   reticulate::source_python(f)
   invisible(uniprot2ids(uniprotid,to,query))
 }
+
+#' Import eQTL Catalogue
+#'
+#' An adopted function which imports eQTL Catalogue.
+#'
+#' @md
+#' @param ftp_path URL.
+#' @param region chr:start-end.
+#' @param selected_gene_id An Ensembl gene ID.
+#' @param column_names Column names of the dataset.
+#' @param verbose Extra information.
+#'
+#' @details
+#' This function is based on the eQTL-Catalogue-resources.
+#'
+#' @export
+#' @return A summary statistic object.
+#'
+#' @references
+#' Kerimov N., et al. (2020). "eQTL Catalogue: a compendium of uniformly processed human gene expression and splicing QTLs",
+#'    bioRxiv: 2020.2001.2029.924266, https://www.ebi.ac.uk/eqtl/.
+#'
+#' @examples
+#' \dontrun{
+#' library(pQTLtools)
+#' invisible(lapply(c("dplyr", "ggplot2", "readr", "coloc", "GenomicRanges","seqminer"),
+#'                  require, character.only = TRUE))
+#' ftp <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","tabix_ftp_paths.tsv")
+#' tabix_paths <- read.delim(ftp, sep = "\t", header = TRUE, stringsAsFactors = FALSE) %>%
+#'                dplyr::as_tibble()
+#' tfpi <- file.path(find.package("pQTLtools", lib.loc=.libPaths()),"eQTL-Catalogue",
+#'                  "tabix_ftp_paths_imported.tsv")
+#' imported_tabix_paths <- read.delim(tfpi, sep = "\t", stringsAsFactors = FALSE) %>%
+#'                         dplyr::as_tibble()
+#'
+#' # MPV association at the ARHGEF3 locus
+#' region <- "3:56615721-57015721"
+#' ensGene <- "ENSG00000163947"
+#' platelet_df <- dplyr::filter(tabix_paths, study == "CEDAR", tissue_label == "platelet")
+#' hdr <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","column_names.CEDAR")
+#' column_names <- names(read.delim(hdr))
+#' summary_stats <- import_eQTLCatalogue(platelet_df$ftp_path, region,
+#'                                       selected_gene_id = ensGene, column_names)
+#' summary_stats
+#' ggplot(summary_stats, aes(x = position, y = -log(pvalue, 10))) + geom_point()
+#' # gwasvcf::set_bcftools(path=file.path(HPC_WORK,"bin","bcftools"))
+#' # GWAS sumstat from the same region
+#' # manually download and parse with gwasvcf
+#' # wget https://gwas.mrcieu.ac.uk/files/ebi-a-GCST004599/ebi-a-GCST004599.vcf.gz
+#' # wget https://gwas.mrcieu.ac.uk/files/ebi-a-GCST004599/ebi-a-GCST004599.vcf.gz.tbi
+#' # gwas_stats <- gwasvcf::query_gwas("ebi-a-GCST004599.vcf.gz", chrompos = "3:56649749-57049749")
+#' # gwas_stats <- gwasvcf::vcf_to_granges(gwas_stats) %>% keepSeqlevels("3") %>% renameSeqlevels("chr3")
+#' # via import_OpenGWAS
+#' opengwas_id <- "ebi-a-GCST004599"
+#' region <- "3:56649749-57049749"
+#' gwas_stats <- import_OpenGWAS(opengwas_id,region) %>% keepSeqlevels("3") %>%
+#'               renameSeqlevels("chr3")
+#' f <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","hg19ToHg38.over.chain")
+#' chain <- rtracklayer::import.chain(f)
+#' gwas_stats_hg38 <- rtracklayer::liftOver(gwas_stats, chain) %>%
+#'   unlist() %>%
+#'   renameSeqlevels("3") %>%
+#'   dplyr::as_tibble() %>%
+#'   dplyr::transmute(chromosome = seqnames, position = start, AF, ES, SE, LP, SS) %>%
+#'   dplyr::mutate(id = paste(chromosome, position, sep = ":")) %>%
+#'   dplyr::mutate(MAF = pmin(AF, 1-AF)) %>%
+#'   dplyr::group_by(id) %>%
+#'   dplyr::mutate(row_count = n()) %>%
+#'   dplyr::ungroup() %>%
+#'   dplyr::filter(row_count == 1)
+#' ggplot(gwas_stats_hg38, aes(x = position, y = LP)) + geom_point()
+#' # Colocalisation
+#' res <- run_coloc(summary_stats, gwas_stats_hg38)
+#'
+#' # a. all other eQTL datasets
+#' microarray_df <- dplyr::filter(tabix_paths, quant_method == "microarray") %>%
+#'                  dplyr::mutate(qtl_id = paste(study, qtl_group, sep = "_"))
+#' ftp_path_list <- setNames(as.list(microarray_df$ftp_path), microarray_df$qtl_id[1])
+#' hdr <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","column_names.CEDAR")
+#' column_names <- names(read.delim(hdr))
+#' summary_list <- purrr::map(ftp_path_list, ~import_eQTLCatalogue(., region,
+#'                            selected_gene_id = ensGene, column_names))
+#' coloc_df_microarray <- purrr::map_df(summary_list, ~run_coloc(., gwas_stats_hg38),
+#'                                      .id = "qtl_id")
+#'
+#' # b. Uniformly processed RNA-seq datasets
+#' rnaseq_df <- dplyr::filter(tabix_paths, quant_method == "ge") %>%
+#'              dplyr::mutate(qtl_id = paste(study, qtl_group, sep = "_"))
+#' ftp_path_list <- setNames(as.list(rnaseq_df$ftp_path), rnaseq_df$qtl_id)
+#' hdr <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","column_names.Alasoo")
+#' column_names <- names(read.delim(hdr))
+#' safe_import <- purrr::safely(import_eQTLCatalogue)
+#' summary_list <- purrr::map(ftp_path_list, ~safe_import(., region,
+#'                            selected_gene_id = ensGene, column_names))
+#' result_list <- purrr::map(summary_list, ~.$result)
+#' result_list <- result_list[!unlist(purrr::map(result_list, is.null))]
+#' coloc_df_rnaseq <- purrr::map_df(result_list, ~run_coloc(., gwas_stats_hg38),
+#'                                  .id = "qtl_id")
+#'
+#' # c. GTEx_v8 imported eQTL datasets
+#' rnaseq_df <- dplyr::filter(imported_tabix_paths, quant_method == "ge") %>%
+#'              dplyr::mutate(qtl_id = paste(study, qtl_group, sep = "_"))
+#' ftp_path_list <- setNames(as.list(rnaseq_df$ftp_path), rnaseq_df$qtl_id)
+#' hdr <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","column_names.GTEx")
+#' column_names <- names(read.delim(hdr))
+#' safe_import <- purrr::safely(import_eQTLCatalogue)
+#' summary_list <- purrr::map(ftp_path_list, ~safe_import(., region,
+#'                            selected_gene_id = ensGene, column_names))
+#' result_list <- purrr::map(summary_list, ~.$result)
+#' result_list <- result_list[!unlist(purrr::map(result_list, is.null))]
+#' result_filtered <- purrr::map(result_list, ~dplyr::filter(., !is.na(se)))
+#' coloc_df_imported <- purrr::map_df(result_filtered, ~run_coloc(., gwas_stats_hg38),
+#'                                    .id = "qtl_id")
+#'
+#' coloc_df = dplyr::bind_rows(coloc_df_microarray, coloc_df_rnaseq, coloc_df_imported)
+#' dplyr::arrange(coloc_df, -PP.H4.abf)
+#' ggplot(coloc_df, aes(x = PP.H4.abf)) + geom_histogram()
+#' }
+#' @note
+#' Adapted function.
+#' @keywords utilities
 
 import_eQTLCatalogue <- function(ftp_path, region, selected_gene_id, column_names, verbose = TRUE)
 {
@@ -155,6 +457,45 @@ run_coloc <- function(eqtl_sumstats, gwas_sumstats)
   coloc_res <- coloc::coloc.abf(dataset1 = eQTL_dataset, dataset2 = gwas_dataset,p1 = 1e-4, p2 = 1e-4, p12 = 1e-5)
   res_formatted <- dplyr::as_tibble(t(as.data.frame(coloc_res$summary)))
 }
+
+#' Import OpenGWAS
+#' A function which imports OpenGWAS.
+#'
+#' @md
+#' @param opengwas_id An OpenGWAS id.
+#' @param region chr:start-end.
+#' @param verbose Extra information
+#'
+#' @details
+#' This function is derived from SCALLOP/INF work.
+#'
+#' @return
+#' A summary statistic object
+#'
+#' @references
+#' Lyon M, Andrews SJ, Elsworth B, Gaunt TR, Hemani G, Marcora E. The variant call format provides efficient and robust storage of GWAS summary statistics. bioRxiv 2020.05.29.115824; doi: https://doi.org/10.1101/2020.05.29.115824
+#'
+#' @examples
+#' \dontrun{
+#' options(width=200)
+#' gwasvcf::set_bcftools(path=file.path(HPC_WORK,"bin","bcftools"))
+#' # MPV ARHGEF3 region
+#' opengwas_id <- "ebi-a-GCST004599"
+#' region <- "3:56649749-57049749"
+#' mpv_ARHGEF3 <- import_OpenGWAS(opengwas_id,region)
+#' # all immune-related
+#' INF <- Sys.getenv("INF")
+#' HPC_WORK <- Sys.getenv("HPC_WORK")
+#' opengwas_ids <- scan(file.path(INF,"OpenGWAS","ieu.list"),what="")
+#' unavail <-c("ieu-b-18","finn-a-M13_SLE","finn-a-D3_SARCOIDOSIS")
+#' opengwas_ids <- subset(opengwas_ids,!opengwas_ids\%in\%unavail)
+#' region <- "1:100-2000000"
+#' library(pQTLtools)
+#' summary_list = purrr::map(opengwas_ids[1:2], ~import_OpenGWAS(., region))
+#' }
+#' @note
+#' Adapted function.
+#' @keywords utilities
 
 import_OpenGWAS <- function(opengwas_id, region, verbose = TRUE)
 {
@@ -302,7 +643,7 @@ mr_forest_plot2 <- function (singlesnp_results, exponentiate = FALSE, alpha = 0.
           }
           ggplot2::ggplot(d, ggplot2::aes(y = SNP, x = b)) +
           ggplot2::theme_bw() +
-          cowplot::theme_cowplot(12) +
+#         cowplot::theme_cowplot(12) +
           ggplot2::geom_vline(xintercept = xint, linetype = "dotted") +
           ggplot2::geom_errorbarh(ggplot2::aes(xmin = lo, xmax = up, size = as.factor(tot), colour = as.factor(tot)), height = 0) +
           ggplot2::geom_point(ggplot2::aes(colour = as.factor(tot))) +
@@ -310,7 +651,8 @@ mr_forest_plot2 <- function (singlesnp_results, exponentiate = FALSE, alpha = 0.
           ggplot2::scale_colour_manual(values = c("black", "red")) +
           ggplot2::scale_size_manual(values = c(0.3, 1)) +
           ggplot2::theme(legend.position = "none", axis.text.y = ggplot2::element_text(size = 8),
-                         axis.ticks.y = ggplot2::element_line(size = 0), axis.title.x = ggplot2::element_text(size = 8)) +
+                         axis.ticks.y = ggplot2::element_line(size = 0), axis.title.x = ggplot2::element_text(size = 8),
+                         panel.grid=ggplot2::element_blank()) +
           ggplot2::labs(y = "", x = paste0("MR effect size for\n'", with(d, exposure)[1], "' on '", with(d, outcome)[1], "'"))
       })
   res
@@ -365,7 +707,7 @@ mr_leaveoneout_plot2 <- function (leaveoneout_results, alpha = 0.05)
       d <- within(d, {SNP <- ordered(SNP, levels = c("All", "", nom))})
       ggplot2::ggplot(d, ggplot2::aes(y = SNP, x = b)) +
       ggplot2::theme_bw() +
-      cowplot::theme_cowplot(12) +
+#     cowplot::theme_cowplot(12) +
       ggplot2::geom_vline(xintercept = 0, linetype = "dotted") +
       ggplot2::geom_errorbarh(ggplot2::aes(xmin = lo, xmax = up, size = as.factor(tot), colour = as.factor(tot)), height = 0) +
       ggplot2::geom_point(ggplot2::aes(colour = as.factor(tot))) +
@@ -373,11 +715,53 @@ mr_leaveoneout_plot2 <- function (leaveoneout_results, alpha = 0.05)
       ggplot2::scale_colour_manual(values = c("black", "red")) +
       ggplot2::scale_size_manual(values = c(0.3, 1)) +
       ggplot2::theme(legend.position = "none", axis.text.y = ggplot2::element_text(size = 8),
-                     axis.ticks.y = ggplot2::element_line(size = 0), axis.title.x = ggplot2::element_text(size = 8)) +
+                     axis.ticks.y = ggplot2::element_line(size = 0), axis.title.x = ggplot2::element_text(size = 8),panel.grid=ggplot2::element_blank()) +
       ggplot2::labs(y = "", x = paste0("MR leave-one-out sensitivity analysis for\n'", with(d, exposure)[1], "' on '", with(d, outcome)[1], "'"))
   })
   res
 }
+
+#' Basic pQTL-MR analysis
+#'
+#' This function takes data intrumental variables as produced by format_data() and
+#' used to perform MR analysis against a list of outcomes from MR-Base.
+#'
+#' @md
+#' @param ivs Instrumental variables from format_data().
+#' @param ids A list of MR-Base IDs.
+#' @param mr_plot to produce plots.
+#' @param prefix a prefix for output files.
+#' @param reverse if TRUE, perform reverse MR.
+#'
+#' @details
+#' This function is based on TwoSampleMR.
+#'
+#' @return
+#' No value is returned but several files.
+#'
+#' @references
+#' Zheng J, et al. (2020). Phenome-wide Mendelian randomization mapping the influence of the plasma proteome on complex diseases. *Nature Genetics* 52(10): 1122-1131.
+#'
+#' @examples
+#' library(TwoSampleMR)
+#' library(pQTLtools)
+#' # Original examples
+#' f <- file.path(find.package("pQTLtools",lib.loc=.libPaths()),"tests","Ins.csv")
+#' ivs <- format_data(read.csv(f))
+#' ids <- c("ieu-a-7","ebi-a-GCST007432")
+#' pqtlMR(ivs, ids, mr_plot=FALSE)
+#' # A bidirectional analysis
+#' f <- file.path(find.package("pQTLtools",lib.loc=.libPaths()),"tests","ms.ins")
+#' ivs <- format_data(read.table(f, header=TRUE), samplesize_col="N")
+#' ids <- "ieu-b-18"
+#' # MR
+#' pqtlMR(ivs, ids, prefix="MS-")
+#' # reverse MR
+#' pqtlMR(ivs, ids, ,prefix="MS_rev-",reverse=TRUE)
+#'
+#' @note
+#' Adapted from script by Jie Zheng.
+#' @keywords utilities
 
 pqtlMR <- function(ivs, ids, mr_plot=FALSE, prefix="pQTL-combined-", reverse=FALSE)
 {
@@ -428,6 +812,67 @@ pqtlMR <- function(ivs, ids, mr_plot=FALSE, prefix="pQTL-combined-", reverse=FAL
   }
 }
 
+#' Basic TwoSampleMR analysis
+#'
+#' Given harmonised data, this function conducts a two-sample MR analysis.
+#'
+#' @md
+#' @param TwoSampleMRinput Harmonised data.
+#' @param mr_plot one of "None", "TwoSampleMR", "pQTLtools" for no, the original and the revised plots, respectively.
+#' @param prefix a prefix for output files.
+#'
+#' @details
+#' As TwoSampleMR faces seemingly perplexing options, this function intends to simplify various steps in a two-sample MR. It is
+#' particularly useful when a large numbher of MRs are necessary, e.g., multiple proteins and their cis/trans regions need to be examined,
+#' in which case prefix could direct the output to various directories.
+#'
+#' @export
+#' @return
+#' No value is returned but several files.
+#'
+#' @references
+#' Dimou NL, Tsilidis KK. A Primer in Mendelian Randomization Methodology with a Focus on Utilizing Published Summary Association Data. In
+#' Evangelos Evangelou (ed.), Genetic Epidemiology: Methods and Protocols, Methods in Molecular Biology, vol. 1793,
+#' https://doi.org/10.1007/978-1-4939-7868-7_13, Springer Science+Business Media, LLC, part of Springer Nature 2018
+#'
+#' @examples
+#' library(TwoSampleMR)
+#' library(pQTLtools)
+#' outcomes <- "ebi-a-GCST007432"
+#' prot <- "MMP.10"
+#' type <- "cis"
+#' f <- paste0(prot,"-",type,".mrx")
+#' d <- read.table(file.path(find.package("pQTLtools",lib.loc=.libPaths()),"tests",f),
+#'                 header=TRUE)
+#' exposure <- format_data(within(d,{P=10^logP}), phenotype_col="prot", snp_col="rsid",
+#'                         chr_col="Chromosome", pos_col="Posistion",
+#'                         effect_allele_col="Allele1", other_allele_col="Allele2",
+#'                         eaf_col="Freq1", beta_col="Effect", se_col="StdErr",
+#'                         pval_col="P", log_pval=FALSE,
+#'                         samplesize_col="N")
+#' clump <- clump_data(exposure)
+#' outcome <- extract_outcome_data(snps=exposure$SNP,outcomes=outcomes)
+#' harmonise <- harmonise_data(clump,outcome)
+#' prefix <- paste(outcomes,prot,type,sep="-")
+#' run_TwoSampleMR(harmonise, mr_plot="pQTLtools", prefix=prefix)
+#' caption <- "Table. MMP.10 variants and FEV1"
+#' knitr::kable(read.delim(paste0(prefix,"-result.txt"),header=TRUE),
+#'              caption=paste(caption, "(result)"))
+#' knitr::kable(read.delim(paste0(prefix,"-heterogeneity.txt"),header=TRUE),
+#'              caption=paste(caption,"(heterogeneity)"))
+#' knitr::kable(read.delim(paste0(prefix,"-pleiotropy.txt"),header=TRUE),
+#'              caption=paste(caption,"(pleiotropy)"))
+#' knitr::kable(read.delim(paste0(prefix,"-single.txt"),header=TRUE),
+#'              caption=paste(caption,"(single)"))
+#' knitr::kable(read.delim(paste0(prefix,"-loo.txt"),header=TRUE),
+#'              caption=paste(caption,"(loo)"))
+#' for (x in c("result","heterogeneity","pleiotropy","single","loo"))
+#'     unlink(paste0(prefix,"-",x,".txt"))
+#'
+#' @note
+#' Adapted from script by Dimou NL, Tsilidis KK.
+#' @keywords utilities
+
 run_TwoSampleMR <- function(TwoSampleMRinput, mr_plot="None", prefix="")
 {
   harmonise <- TwoSampleMRinput
@@ -456,6 +901,60 @@ run_TwoSampleMR <- function(TwoSampleMRinput, mr_plot="None", prefix="")
   }
   invisible(sapply(c(scatter,forest,funnel,leaveoneout), function(x) print(x)))
 }
+
+#' A call to expressionSet class
+#'
+#' This is really a direct call to the Bioconductor/Biobase class.
+#'
+#' @md
+#' @param assayData Expression data.
+#' @param phenoData Phenotype.
+#' @param featureData featureData.
+#' @param experimentData Information on data source.
+#' @param annotation Annotation information.
+#' @param protocolData protocol information.
+#' @param ... Other options.
+#'
+#' @details
+#' The explicit call make it easier to handle proteomic data for other downstream analyses.
+#'
+#' @export
+#' @return
+#' An ExpressionSet object.
+#'
+#' @examples
+#' dataDirectory <- system.file("extdata", package="Biobase")
+#' exprsFile <- file.path(dataDirectory, "exprsData.txt")
+#' exprs <- as.matrix(read.table(exprsFile, header=TRUE, sep="\t", row.names=1, as.is=TRUE))
+#' pDataFile <- file.path(dataDirectory, "pData.txt")
+#' pData <- read.table(pDataFile, row.names=1, header=TRUE, sep="\t")
+#' all(rownames(pData)==colnames(exprs))
+#' metadata <- data.frame(labelDescription=
+#'                        c("Patient gender",
+#'                          "Case/control status",
+#'                          "Tumor progress on XYZ scale"),
+#'                        row.names=c("gender", "type", "score"))
+#' require(Biobase)
+#' require(pQTLtools)
+#' phenoData <- new("AnnotatedDataFrame", data=pData, varMetadata=metadata)
+#' experimentData <- new("MIAME",
+#'   name="Pierre Fermat",
+#'   lab="Francis Galton Lab",
+#'   contact="pfermat@lab.not.exist",
+#'   title="Smoking-Cancer Experiment",
+#'   abstract="An example ExpressionSet",
+#'   url="www.lab.not.exist",
+#'   other=list(notes="Created from text files"))
+#' exampleSet <- make_ExpressionSet(exprs,phenoData,experimentData=experimentData,
+#'                                  annotation="hgu95av2")
+#' data(sample.ExpressionSet)
+#' identical(exampleSet,sample.ExpressionSet)
+#' invisible(esApply(exampleSet,2,hist))
+#' lm(score~gender+X31739_at,data=exampleSet)
+#'
+#' @note
+#' Adapted from Bioconductor/Biobase following a number of proteomic pilot studies.
+#' @keywords utilities
 
 make_ExpressionSet <- function(assayData,
                       phenoData=Biobase::annotatedDataFrameFrom(assayData, byrow=FALSE),
