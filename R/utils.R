@@ -1,4 +1,5 @@
 #' phenoscanner genequeries in batches
+#'
 #' R/phenoscanner only allows for certain number of items supplied. This simple function return
 #' a large number of calls in batches as well as generating SNPIDs.
 #'
@@ -55,8 +56,8 @@ genequeries <- function(genelist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.8,bu
   list(genes=genes,results=results)
 }
 
-#'
 #' phenoscanner regionqueries in batches
+#'
 #' R/phenoscanner only allows for certain number of items supplied. This simple function return
 #' a large number of calls in batches as well as generating SNPIDs.
 #'
@@ -90,8 +91,8 @@ genequeries <- function(genelist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.8,bu
 #'                   read.delim(file.path(INF,"work","INF1.merge-rsid"),as.is=TRUE),
 #'                   by="prot")
 #' INF1_merge_uniprot <- with(INF1_merge,unique(uniprot))
-#' SomaLogic_INF1_merge <- subset(SomaLogic160410,UniProt \%in\% INF1_merge_uniprot)
-#' regions <- subset(INF1_merge,uniprot \%in\% with(SomaLogic_INF1_merge,UniProt))
+#' SomaLogic_INF1_merge <- subset(SomaLogic160410,UniProt %in% INF1_merge_uniprot)
+#' regions <- subset(INF1_merge,uniprot %in% with(SomaLogic_INF1_merge,UniProt))
 #' singletons <- with(regions, Start-End<=2)
 #' flank <- 5e+2
 #' regions[singletons,"Start"] <- regions[singletons,"Start"] - flank
@@ -166,6 +167,7 @@ regionqueries <- function(regionlist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.
 }
 
 #' phenoscanner snpqueries in batches
+#'
 #' R/phenoscanner only allows for certain number of items supplied. This simple function return
 #' a large number of calls in batches as well as generating SNPIDs.
 #'
@@ -200,7 +202,7 @@ regionqueries <- function(regionlist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.
 #' save(INTERVAL_Olink,file='INTERVAL_Olink.rda',compress='xz')
 #' # --- query intersect proteins ---
 #' # SomaLogic intersect
-#' SomaLogic_overlap_list <- subset(st4,UniProt \%in\% intersect_list)
+#' SomaLogic_overlap_list <- subset(st4,UniProt %in% intersect_list)
 #' r <- snpqueries(SomaLogic_overlap_list[,6],catalogue='pQTL',p=1e-11)
 #' SomaLogic_overlap <- subset(with(r,results),efo=='EFO_0004747' & pmid=='29875488')
 #' save(SomaLogic_overlap_list,SomaLogic_overlap,file='SomaLogic_overlap.rda',compress='xz')
@@ -459,6 +461,7 @@ run_coloc <- function(eqtl_sumstats, gwas_sumstats)
 }
 
 #' Import OpenGWAS
+#'
 #' A function which imports OpenGWAS.
 #'
 #' @md
