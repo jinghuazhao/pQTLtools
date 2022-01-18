@@ -9,6 +9,7 @@ function build()
     library(pkgdown)
   # keep as appropriate
     clean_site()
+    init_site()
     build_home()
     build_news()
     build_articles()
