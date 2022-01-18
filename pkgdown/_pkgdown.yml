@@ -1,5 +1,5 @@
 home:
-  title: Protein Quantitative Trait Locus Tools
+  title: Protein Quantitative Trait Locus tools
   description: This package contains various Protein Quantitative Trait Locus (pQTL) handling functinos.
   links:
   - text: See related R packages
