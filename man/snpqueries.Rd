@@ -63,7 +63,7 @@ SomaLogic_result <- merge(SomaLogic_overlap_list,SomaLogic_overlap,
 # Olink intersect
 INF1_merge_rsid <- read.delim(paste(INF,"work","INF1.merge-rsid",sep="/"))
 INF1_merge_rsid_uniprot <- merge(INF1_merge_rsid,inf1,by="prot")
-Olink_overlap_list <- subset(INF1_merge_rsid_uniprot,uniprot \\%in\\% intersect_list)
+Olink_overlap_list <- subset(INF1_merge_rsid_uniprot,uniprot \%in\% intersect_list)
 r <- snpqueries(with(Olink_overlap_list,MarkerName),catalogue='pQTL',p=1e-11)
 Olink_overlap <- subset(with(r,results),efo=='EFO_0004747' & pmid=='29875488')
 save(Olink_overlap_list,Olink_overlap,file='Olink_overlap.rda',compress='xz')

@@ -38,7 +38,7 @@ INF <- Sys.getenv("INF")
 HPC_WORK <- Sys.getenv("HPC_WORK")
 opengwas_ids <- scan(file.path(INF,"OpenGWAS","ieu.list"),what="")
 unavail <-c("ieu-b-18","finn-a-M13_SLE","finn-a-D3_SARCOIDOSIS")
-opengwas_ids <- subset(opengwas_ids,!opengwas_ids\\%in\\%unavail)
+opengwas_ids <- subset(opengwas_ids,!opengwas_ids \%in\% unavail)
 region <- "1:100-2000000"
 library(pQTLtools)
 summary_list = purrr::map(opengwas_ids[1:2], ~import_OpenGWAS(., region))
