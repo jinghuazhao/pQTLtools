@@ -30,6 +30,12 @@ function build()
 # add entry for reference to pkgdown/_pkgdown.yml  
 }
 
+Rscript -e "
+  libs <- c('gwasvcf','rtracklayer','VariantAnnotation')
+  invisible(suppressMessages(lapply(libs, require, character.only = TRUE)))
+  devtools::document()
+"
+
 for f in .github .gitignore .Rbuildignore .Rinstignore .travis.yml \
          data/ DESCRIPTION docs/ INDEX inst/ LICENSE LICENSE.md man/ NAMESPACE NEWS.md pkgdown/ R/ README.md vignettes/
 do
