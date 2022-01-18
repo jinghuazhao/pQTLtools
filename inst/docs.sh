@@ -2,7 +2,10 @@
 
 function build()
 {
-  R --no-save -q <<\ \ END
+  Rscript -e "
+    libs <- c('gwasvcf','rtracklayer','VariantAnnotation')
+    invisible(suppressMessages(lapply(libs, require, character.only = TRUE)))
+    devtools::document()
     library(pkgdown)
   # keep as appropriate
     clean_site()
@@ -11,7 +14,7 @@ function build()
     build_articles()
     build_reference()
     build_site()
-  END
+  "
 
   if [ -d vignettes/es ]; then
      rm -rf docs/articles/es
@@ -29,12 +32,6 @@ function build()
   fi
 # add entry for reference to pkgdown/_pkgdown.yml  
 }
-
-Rscript -e "
-  libs <- c('gwasvcf','rtracklayer','VariantAnnotation')
-  invisible(suppressMessages(lapply(libs, require, character.only = TRUE)))
-  devtools::document()
-"
 
 for f in .github .gitignore .Rbuildignore .Rinstignore .travis.yml \
          data/ DESCRIPTION docs/ INDEX inst/ LICENSE LICENSE.md man/ NAMESPACE NEWS.md pkgdown/ R/ README.md vignettes/
