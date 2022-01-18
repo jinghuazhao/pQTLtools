@@ -33,6 +33,8 @@ function build()
 # add entry for reference to pkgdown/_pkgdown.yml  
 }
 
+build
+
 for f in .github .gitignore .Rbuildignore .Rinstignore .travis.yml \
          data/ DESCRIPTION docs/ INDEX inst/ LICENSE LICENSE.md man/ NAMESPACE NEWS.md pkgdown/ R/ README.md vignettes/
 do
