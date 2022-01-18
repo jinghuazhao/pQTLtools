@@ -197,12 +197,12 @@ pkgs <- c("dplyr", "ggplot2", "readr", "coloc", "GenomicRanges","seqminer")
 invisible(lapply(pkgs, require, character.only = TRUE))
 HPC_WORK <- Sys.getenv("HPC_WORK")
 gwasvcf::set_bcftools(file.path(HPC_WORK,"bin","bcftools"))
-f <- file.path(system.file(package="pQTLtools"),"eQTL-Catalogue","tabix_ftp_paths.tsv")
+f <- file.path(system.file(package="pQTLtools"),"eQTL-Catalogue","tabix_ftp_paths_gtex.tsv")
 tabix_paths <- read.delim(f, sep = "\t", header = TRUE, stringsAsFactors = FALSE) %>%
                dplyr::as_tibble()
 HOME <- Sys.getenv("HOME")
 f <- file.path(system.file(package="pQTLtools"),"eQTL-Catalogue",
-               "tabix_ftp_paths_imported.tsv")
+               "tabix_ftp_paths_gtex.tsv")
 imported_tabix_paths <- within(read.delim(f, stringsAsFactors = FALSE) %>%
                         dplyr::as_tibble(),
       {ftp_path <- gsub("ftp://ftp.ebi.ac.uk/pub/databases/spot/eQTL/csv/GTEx_V8/ge",
