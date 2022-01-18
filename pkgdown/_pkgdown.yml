@@ -9,7 +9,9 @@ authors:
   Jing Hua Zhao:
     href: https://jinghuazhao.github.io/
 
+url: ~
 template:
+  bootstrap: 5
   params:
     bootswatch: united
 
