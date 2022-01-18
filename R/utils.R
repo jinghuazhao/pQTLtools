@@ -211,7 +211,7 @@ regionqueries <- function(regionlist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.
 #' # Olink intersect
 #' INF1_merge_rsid <- read.delim(paste(INF,"work","INF1.merge-rsid",sep="/"))
 #' INF1_merge_rsid_uniprot <- merge(INF1_merge_rsid,inf1,by="prot")
-#' Olink_overlap_list <- subset(INF1_merge_rsid_uniprot,uniprot \%in\% intersect_list)
+#' Olink_overlap_list <- subset(INF1_merge_rsid_uniprot,uniprot %in% intersect_list)
 #' r <- snpqueries(with(Olink_overlap_list,MarkerName),catalogue='pQTL',p=1e-11)
 #' Olink_overlap <- subset(with(r,results),efo=='EFO_0004747' & pmid=='29875488')
 #' save(Olink_overlap_list,Olink_overlap,file='Olink_overlap.rda',compress='xz')
@@ -491,7 +491,7 @@ run_coloc <- function(eqtl_sumstats, gwas_sumstats)
 #' HPC_WORK <- Sys.getenv("HPC_WORK")
 #' opengwas_ids <- scan(file.path(INF,"OpenGWAS","ieu.list"),what="")
 #' unavail <-c("ieu-b-18","finn-a-M13_SLE","finn-a-D3_SARCOIDOSIS")
-#' opengwas_ids <- subset(opengwas_ids,!opengwas_ids\%in\%unavail)
+#' opengwas_ids <- subset(opengwas_ids,!opengwas_ids %in% unavail)
 #' region <- "1:100-2000000"
 #' library(pQTLtools)
 #' summary_list = purrr::map(opengwas_ids[1:2], ~import_OpenGWAS(., region))
