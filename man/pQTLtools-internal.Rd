@@ -77,7 +77,7 @@ ps <- merge(subset(read.delim(file.path(INF,"work","pQTL_2018.txt.gz"),as.is=TRU
             box,by.x="trait",by.y="TargetFullName")
 z <- subset(ps,UniProtgwas \%in\% INF1_uniprot & p<=1.5e-11)
 
-# ST4 at Nature
+# ST4 on Nature
 st4regions <- subset(st4, UniProt \%in\% INF1_uniprot)
 unique_uniprot_list <- setdiff(intersect(st4$UniProt,inf1$uniprot),"P23560")
 subset(INF1_merge,uniprot \%in\% unique_uniprot_list)
