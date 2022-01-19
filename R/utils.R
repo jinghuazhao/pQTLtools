@@ -567,6 +567,25 @@ blank_plot <- function(message)
    ggplot2::theme(axis.text=ggplot2::element_blank(), axis.ticks=ggplot2::element_blank())
 }
 
+#' @title MR scatter plot
+#' @description Adaptation of TwoSampleMR::mr_scatter_plot()
+#' @param mr_results MR results.
+#' @param dat data.
+#' @param alpha Confidentce level, Default: 0.05.
+#' @return A graphic object.
+#' @seealso
+#'  \code{\link[plyr]{dlply}},\code{\link[plyr]{mutate}}
+#'  \code{\link[TwoSampleMR]{mr_egger_regression}},\code{\link[TwoSampleMR]{mr_egger_regression_bootstrap}}
+#'  \code{\link[ggplot2]{ggplot}},\code{\link[ggplot2]{aes}},\code{\link[ggplot2]{geom_crossbar}},\code{\link[ggplot2]{geom_errorbarh}},\code{\link[ggplot2]{geom_point}},\code{\link[ggplot2]{ggtheme}},\code{\link[ggplot2]{geom_abline}},\code{\link[ggplot2]{scale_manual}},\code{\link[ggplot2]{labs}},\code{\link[ggplot2]{theme}},\code{\link[ggplot2]{c("guide_bins", "guide_colourbar", "guide_coloursteps", "guide_legend", "guides", "guides")}},\code{\link[ggplot2]{guide_legend}}
+#'  \code{\link[cowplot]{theme_cowplot}}
+#' @rdname mr_scatter_plot2
+#' @export
+#' @importFrom plyr dlply mutate
+#' @importFrom TwoSampleMR mr_egger_regression mr_egger_regression_bootstrap
+#' @importFrom ggplot2 ggplot aes geom_errorbar geom_errorbarh geom_point theme_bw geom_abline scale_colour_manual labs theme guides guide_legend geom_vline
+#' @importFrom cowplot theme_cowplot
+#' @keywords internal
+
 mr_scatter_plot2 <- function (mr_results, dat, alpha=0.05)
 {
    requireNamespace("ggplot2", quietly = TRUE)
@@ -610,6 +629,21 @@ mr_scatter_plot2 <- function (mr_results, dat, alpha=0.05)
       })
    mrres
 }
+
+#' @title MR forest plot
+#' @description Adaptation from TwoSampleMR::mr_forest_plot()
+#' @param singlesnp_results Results based on single variants.
+#' @param exponentiate Logic variable to indicate exponentiation, Default: FALSE.
+#' @param alpha Confidence level, Default: 0.05.
+#' @return A graphic object.
+#' @seealso
+#'  \code{\link[plyr]{dlply}},\code{\link[plyr]{mutate}}
+#'  \code{\link[ggplot2]{ggplot}},\code{\link[ggplot2]{aes}},\code{\link[ggplot2]{ggtheme}},\code{\link[ggplot2]{geom_abline}},\code{\link[ggplot2]{geom_errorbarh}},\code{\link[ggplot2]{geom_point}},\code{\link[ggplot2]{scale_manual}},\code{\link[ggplot2]{theme}},\code{\link[ggplot2]{margin}},\code{\link[ggplot2]{labs}}
+#' @rdname mr_forest_plot2
+#' @export
+#' @importFrom plyr dlply mutate
+#' @importFrom ggplot2 ggplot aes theme_bw geom_vline geom_errorbarh geom_point geom_hline scale_colour_manual scale_size_manual theme element_text element_line element_blank labs
+#' @keywords internal
 
 mr_forest_plot2 <- function (singlesnp_results, exponentiate = FALSE, alpha = 0.05)
 {
@@ -661,6 +695,21 @@ mr_forest_plot2 <- function (singlesnp_results, exponentiate = FALSE, alpha = 0.
   res
 }
 
+#' @title MR funnel plot
+#' @description Adaptation from TwoSampleMR::mr_funnel_plot()
+#' @param singlesnp_results Results based on single variants.
+#' @return A graphic object.
+#' @seealso
+#'  \code{\link[plyr]{dlply}},\code{\link[plyr]{mutate}}
+#'  \code{\link[ggplot2]{ggplot}},\code{\link[ggplot2]{aes}},\code{\link[ggplot2]{geom_point}},\code{\link[ggplot2]{ggtheme}},\code{\link[ggplot2]{geom_abline}},\code{\link[ggplot2]{scale_manual}},\code{\link[ggplot2]{labs}},\code{\link[ggplot2]{theme}}
+#'  \code{\link[cowplot]{theme_cowplot}}
+#' @rdname mr_funnel_plot2
+#' @export
+#' @importFrom plyr dlply mutate
+#' @importFrom ggplot2 ggplot aes geom_point theme_bw geom_vline scale_colour_manual labs theme
+#' @importFrom cowplot theme_cowplot
+#' @keywords internal
+
 mr_funnel_plot2 <- function (singlesnp_results)
 {
   requireNamespace("ggplot2", quietly = TRUE)
@@ -685,6 +734,20 @@ mr_funnel_plot2 <- function (singlesnp_results)
       })
   res
 }
+
+#' @title MR leave-one-out analysis
+#' @description Adapatation from TwoSampleMR::mr_leaveoneout_plot()
+#' @param leaveoneout_results Results from leave-one-out analysis.
+#' @param alpha PARAM_DESCRIPTION, Default: 0.05.
+#' @return A graphic object.
+#' @seealso
+#'  \code{\link[plyr]{dlply}},\code{\link[plyr]{mutate}}
+#'  \code{\link[ggplot2]{ggplot}},\code{\link[ggplot2]{aes}},\code{\link[ggplot2]{ggtheme}},\code{\link[ggplot2]{geom_abline}},\code{\link[ggplot2]{geom_errorbarh}},\code{\link[ggplot2]{geom_point}},\code{\link[ggplot2]{scale_manual}},\code{\link[ggplot2]{theme}},\code{\link[ggplot2]{margin}},\code{\link[ggplot2]{labs}}
+#' @rdname mr_leaveoneout_plot2
+#' @export
+#' @importFrom plyr dlply mutate
+#' @importFrom ggplot2 ggplot aes theme_bw geom_vline geom_errorbarh geom_point geom_hline scale_colour_manual scale_size_manual theme element_text element_line element_blank labs
+#' @keywords internal
 
 mr_leaveoneout_plot2 <- function (leaveoneout_results, alpha = 0.05)
 {
@@ -1075,6 +1138,8 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 
 #' @title biomaRt
 #' @description Curation of biomaRt
+#' @docType data
+#' @keywords datasets
 #' @format A data frame with 42198 rows and 11 variables:
 #' \describe{
 #'   \item{\code{ensembl_gene_id}}{ENSEMBL gene id}
@@ -1088,12 +1153,14 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #'   \item{\code{transcript_start}}{Transcript start}
 #'   \item{\code{transcript_end}}{Transcript end}
 #'   \item{\code{uniprotswissprot}}{UnitProt id}
-#'}
+#' }
 #' @details extraction using R.
 "biomaRt"
 
 #' @title Caprion panel
 #' @description Information based on Caprion pilot studies
+#' @docType data
+#' @keywords datasets
 #' @format A data frame with 987 rows and 7 variables:
 #' \describe{
 #'   \item{\code{Protein}}{Protein name as in UniProt}
@@ -1103,12 +1170,14 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #'   \item{\code{GO.Cellular.Component}}{GO Ceullular component}
 #'   \item{\code{GO.Function}}{GO function}
 #'   \item{\code{GO.Process}}{GO process}
-#'}
+#' }
 #' @details See the Caprion repository involving its use.
 "caprion"
 
 #' @title hg19 information
 #' @description protein information
+#' @docType data
+#' @keywords datasets
 #' @format A data frame with 62559 rows and 8 variables:
 #' \describe{
 #'   \item{\code{chr}}{Chromosome [chr1-22,X,Y,...]}
@@ -1119,12 +1188,14 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #'   \item{\code{ENSEMBL}}{ENSMEBL gene}
 #'   \item{\code{SYMBOL}}{HGNC symbol}
 #'   \item{\code{UNIPROT}}{UniProt id}
-#'}
+#' }
 #' @details Curation from R
 "hg19"
 
 #' @title hg19 Table
 #' @description Gene information
+#' @docType data
+#' @keywords datasets
 #' @format A data frame with 19872 rows and 12 variables:
 #' \describe{
 #'   \item{\code{X.chrom}}{Chromosome}
@@ -1139,12 +1210,14 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #'   \item{\code{geneSynonyms}}{geneSynonyms}
 #'   \item{\code{hgncSym}}{HGNC symbol}
 #'   \item{\code{ensGene}}{ENSEMBL gene}
-#'}
+#' }
 #' @details Curation from UCSC.
 "hg19Tables"
 
 #' @title Olink/INF1 panel
 #' @description The panel is based on SCALLOP-INF
+#' @docType data
+#' @keywords datasets
 #' @format A data frame with 92 rows and 9 variables:
 #' \describe{
 #'   \item{\code{uniprot}}{UniProt id}
@@ -1156,23 +1229,27 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #'   \item{\code{start}}{start}
 #'   \item{\code{end}}{end}
 #'   \item{\code{ensembl_gene_id}}{ENSEMBL gene}
-#'}
+#' }
 #' @details Assembled for SCALLOP-INF
 "inf1"
 
 #' @title Olink/NGS panel
 #' @description Information based on pilot studies
+#' @docType data
+#' @keywords datasets
 #' @format A data frame with 1472 rows and 3 variables:
 #' \describe{
 #'   \item{\code{UniProt}}{UniProt id}
 #'   \item{\code{Assay}}{Experimental assay}
 #'   \item{\code{Panel}}{Olink panel}
-#'}
+#' }
 #' @details Curated from R.
 "Olink_NGS"
 
 #' @title Olink/qPCR panels
 #' @description Information on all qPCR panels
+#' @docType data
+#' @keywords datasets
 #' @format A data frame with 1112 rows and 7 variables:
 #' \describe{
 #'   \item{\code{UniProt}}{character COLUMN_DESCRIPTION}
@@ -1182,12 +1259,14 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #'   \item{\code{chr}}{character COLUMN_DESCRIPTION}
 #'   \item{\code{start}}{integer COLUMN_DESCRIPTION}
 #'   \item{\code{end}}{integer COLUMN_DESCRIPTION}
-#'}
+#' }
 #' @details Curated from Excel.
 "Olink_qPCR"
 
 #' @title Somascan panel
 #' @description This is based on panel used in Sun et al. (2018) Nature.
+#' @docType data
+#' @keywords datasets
 #' @format A data frame with 5178 rows and 10 variables:
 #' \describe{
 #'   \item{\code{SOMAMER_ID}}{Somamer id}
@@ -1200,12 +1279,14 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #'   \item{\code{entGene}}{entrez gene}
 #'   \item{\code{ensGene}}{ENSEMBL gene}
 #'   \item{\code{extGene}}{external gene}
-#'}
+#' }
 #' @details from the INTERVAL study.
 "SomaLogic160410"
 
 #' @title SomaScan v4.1
 #' @description This is also the latest panel
+#' @docType data
+#' @keywords datasets
 #' @format A data frame with 7288 rows and 6 variables:
 #' \describe{
 #'   \item{\code{#}}{A serial number}
@@ -1214,12 +1295,14 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #'   \item{\code{UniProt.ID}}{UniProt id}
 #'   \item{\code{GeneID}}{HGNC symbol}
 #'   \item{\code{Type}}{"Protein"}
-#'}
+#' }
 #' @details obtained directly from SomaLogic.
 "SomaScanV4.1"
 
 #' @title DATASET_TITLE
 #' @description Curated during INTERVAL pilot study.
+#' @docType data
+#' @keywords datasets
 #' @format A data frame with 684 rows and 5 variables:
 #' \describe{
 #'   \item{\code{Accession}}{UniProt id}
@@ -1227,12 +1310,14 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #'   \item{\code{uniprotName}}{Protein}
 #'   \item{\code{ensGene}}{ENSEMBL gene}
 #'   \item{\code{geneName}}{HGNC symbol}
-#'}
+#' }
 #' @details As above.
 "swath_ms"
 
 #' @title Supplementary table 4
 #' @description Supplementary information for Sun et al. (2018) Nature
+#' @docType data
+#' @keywords datasets
 #' @format A data frame with 1980 rows and 31 variables:
 #' \describe{
 #'   \item{\code{Locus.ID}}{character COLUMN_DESCRIPTION}
@@ -1266,12 +1351,14 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #'   \item{\code{Uncorrelated.with.PAV.(r2≥0.1)}}{character COLUMN_DESCRIPTION}
 #'   \item{\code{Significant.after.adjusting.for.PAVs}}{character COLUMN_DESCRIPTION}
 #'   \item{\code{Is.a.cis.eQTL.for.same.gene?}}{character COLUMN_DESCRIPTION}
-#'}
+#' }
 #' @details As above.
 "st4"
 
 #' @title Supplementary table 6
 #' @description Supplementary information for Sun et al. (2018) Nature
+#' @docType data
+#' @keywords datasets
 #' @format A data frame with 163 rows and 20 variables:
 #' \describe{
 #'   \item{\code{Locus.ID}}{character COLUMN_DESCRIPTION}
@@ -1294,17 +1381,19 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #'   \item{\code{SE}}{double COLUMN_DESCRIPTION}
 #'   \item{\code{p}}{character COLUMN_DESCRIPTION}
 #'   \item{\code{Replicates?}}{character COLUMN_DESCRIPTION}
-#'}
+#' }
 #' @details As above.
 "st6"
 
 #' @title Supplementary table 18
 #' @description Supplementary information for Sun et al. (2018) Nature
+#' @docType data
+#' @keywords datasets
 #' @format A data frame with 3622 rows and 3 variables:
 #' \describe{
 #'   \item{\code{Number}}{double COLUMN_DESCRIPTION}
 #'   \item{\code{Analyte}}{character COLUMN_DESCRIPTION}
 #'   \item{\code{UniProt.ID(s)}}{character COLUMN_DESCRIPTION}
-#'}
+#' }
 #' @details As above.
 "st18"
