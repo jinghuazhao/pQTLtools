@@ -5,5 +5,8 @@ articles:
   SCALLOP-INF: SCALLOP-INF.html
   es: es.html
   pQTLtools: pQTLtools.html
-last_built: 2022-01-18T16:15Z
+last_built: 2022-01-19T10:58Z
+urls:
+  reference: https://jinghuazhao.github.io/pQTLtools/reference
+  article: https://jinghuazhao.github.io/pQTLtools/articles
 
