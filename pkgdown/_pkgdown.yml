@@ -9,11 +9,15 @@ authors:
   Jing Hua Zhao:
     href: https://jinghuazhao.github.io/
 
-url: ~
+url: https://jinghuazhao.github.io/pQTLtools/
 template:
   bootstrap: 5
   params:
     bootswatch: united
+  opengraph:
+    image:
+      src: images/bees.svg
+      alt: pQTLtools
 
 navbar:
   left:
