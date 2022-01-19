@@ -1056,3 +1056,255 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
   eset
   #eof
 }
+
+#' @importFrom phenoscanner phenoscanner
+#' @importFrom GenomicRanges GRanges width tile
+#' @importFrom IRanges IRanges
+#' @importFrom reticulate source_python
+#' @importFrom seqminer tabix.read.table
+#' @importFrom dplyr as_tibble filter select distinct mutate group_by ungroup
+#' @importFrom coloc coloc.abf
+#' @importFrom VariantAnnotation VcfFile vcfFields ScanVcfParam readVcf
+#' @importFrom gwasvcf vcf_to_granges
+#' @importFrom ieugwasr check_access_token
+#' @importFrom ggplot2 ggplot geom_text aes labs theme element_blank geom_errorbar geom_errorbarh geom_point theme_bw geom_abline scale_colour_manual guides guide_legend geom_vline geom_hline scale_size_manual element_text element_line
+#' @importFrom plyr dlply mutate
+#' @importFrom TwoSampleMR mr_egger_regression mr_egger_regression_bootstrap mr mr_singlesnp mr_scatter_plot mr_forest_plot mr_funnel_plot mr_heterogeneity mr_pleiotropy_test mr_leaveoneout mr_leaveoneout_plot
+#' @importFrom cowplot theme_cowplot
+#' @importFrom Biobase annotatedDataFrameFrom MIAME ExpressionSet exprs fData
+
+#' @title biomaRt
+#' @description Curation of biomaRt
+#' @format A data frame with 42198 rows and 11 variables:
+#' \describe{
+#'   \item{\code{ensembl_gene_id}}{ENSEMBL gene id}
+#'   \item{\code{chromosome_name}}{Chromosome name [1-22,X,Y]}
+#'   \item{\code{start_position}}{start}
+#'   \item{\code{end_position}}{end}
+#'   \item{\code{description}}{Description}
+#'   \item{\code{hgnc_symbol}}{HGNC symbol}
+#'   \item{\code{ensembl_transcript_id}}{ENSEMBL transcript id}
+#'   \item{\code{transcription_start_site}}{TSS}
+#'   \item{\code{transcript_start}}{Transcript start}
+#'   \item{\code{transcript_end}}{Transcript end}
+#'   \item{\code{uniprotswissprot}}{UnitProt id}
+#'}
+#' @details extraction using R.
+"biomaRt"
+
+#' @title Caprion panel
+#' @description Information based on Caprion pilot studies
+#' @format A data frame with 987 rows and 7 variables:
+#' \describe{
+#'   \item{\code{Protein}}{Protein name as in UniProt}
+#'   \item{\code{Accession}}{UniProt id}
+#'   \item{\code{Gene}}{HGNC symbol}
+#'   \item{\code{Protein.Description}}{Detailed information on protein}
+#'   \item{\code{GO.Cellular.Component}}{GO Ceullular component}
+#'   \item{\code{GO.Function}}{GO function}
+#'   \item{\code{GO.Process}}{GO process}
+#'}
+#' @details See the Caprion repository involving its use.
+"caprion"
+
+#' @title hg19 information
+#' @description protein information
+#' @format A data frame with 62559 rows and 8 variables:
+#' \describe{
+#'   \item{\code{chr}}{Chromosome [chr1-22,X,Y,...]}
+#'   \item{\code{start}}{start}
+#'   \item{\code{end}}{end}
+#'   \item{\code{width}}{width}
+#'   \item{\code{strand}}{strand}
+#'   \item{\code{ENSEMBL}}{ENSMEBL gene}
+#'   \item{\code{SYMBOL}}{HGNC symbol}
+#'   \item{\code{UNIPROT}}{UniProt id}
+#'}
+#' @details Curation from R
+"hg19"
+
+#' @title hg19 Table
+#' @description Gene information
+#' @format A data frame with 19872 rows and 12 variables:
+#' \describe{
+#'   \item{\code{X.chrom}}{Chromosome}
+#'   \item{\code{chromStart}}{chromStart}
+#'   \item{\code{chromEnd}}{chromEnd}
+#'   \item{\code{strand}}{Strand}
+#'   \item{\code{acc}}{UniProt id}
+#'   \item{\code{uniprotName}}{Protein}
+#'   \item{\code{accList}}{List of UniProt ids}
+#'   \item{\code{isoIds}}{isoIds}
+#'   \item{\code{geneName}}{geneName}
+#'   \item{\code{geneSynonyms}}{geneSynonyms}
+#'   \item{\code{hgncSym}}{HGNC symbol}
+#'   \item{\code{ensGene}}{ENSEMBL gene}
+#'}
+#' @details Curation from UCSC.
+"hg19Tables"
+
+#' @title Olink/INF1 panel
+#' @description The panel is based on SCALLOP-INF
+#' @format A data frame with 92 rows and 9 variables:
+#' \describe{
+#'   \item{\code{uniprot}}{UniProt id}
+#'   \item{\code{prot}}{Protein}
+#'   \item{\code{target}}{Protein target name}
+#'   \item{\code{target.short}}{Protein target short name}
+#'   \item{\code{gene}}{HGNC symbol}
+#'   \item{\code{chr}}{chromosome[1-13,16-17,19-22]}
+#'   \item{\code{start}}{start}
+#'   \item{\code{end}}{end}
+#'   \item{\code{ensembl_gene_id}}{ENSEMBL gene}
+#'}
+#' @details Assembled for SCALLOP-INF
+"inf1"
+
+#' @title Olink/NGS panel
+#' @description Information based on pilot studies
+#' @format A data frame with 1472 rows and 3 variables:
+#' \describe{
+#'   \item{\code{UniProt}}{UniProt id}
+#'   \item{\code{Assay}}{Experimental assay}
+#'   \item{\code{Panel}}{Olink panel}
+#'}
+#' @details Curated from R.
+"Olink_NGS"
+
+#' @title Olink/qPCR panels
+#' @description Information on all qPCR panels
+#' @format A data frame with 1112 rows and 7 variables:
+#' \describe{
+#'   \item{\code{UniProt}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{Panel}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{Target}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{gene}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{chr}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{start}}{integer COLUMN_DESCRIPTION}
+#'   \item{\code{end}}{integer COLUMN_DESCRIPTION}
+#'}
+#' @details Curated from Excel.
+"Olink_qPCR"
+
+#' @title Somascan panel
+#' @description This is based on panel used in Sun et al. (2018) Nature.
+#' @format A data frame with 5178 rows and 10 variables:
+#' \describe{
+#'   \item{\code{SOMAMER_ID}}{Somamer id}
+#'   \item{\code{UniProt}}{UniProt id}
+#'   \item{\code{Target}}{Protein target}
+#'   \item{\code{TargetFullName}}{Protein target full name}
+#'   \item{\code{chr}}{chromosome[1-22,X,Y]}
+#'   \item{\code{start}}{start}
+#'   \item{\code{end}}{end}
+#'   \item{\code{entGene}}{entrez gene}
+#'   \item{\code{ensGene}}{ENSEMBL gene}
+#'   \item{\code{extGene}}{external gene}
+#'}
+#' @details from the INTERVAL study.
+"SomaLogic160410"
+
+#' @title SomaScan v4.1
+#' @description This is also the latest panel
+#' @format A data frame with 7288 rows and 6 variables:
+#' \describe{
+#'   \item{\code{#}}{A serial number}
+#'   \item{\code{SeqID}}{SeqID}
+#'   \item{\code{Human.Target.or.Analyte}}{Human target/analyte}
+#'   \item{\code{UniProt.ID}}{UniProt id}
+#'   \item{\code{GeneID}}{HGNC symbol}
+#'   \item{\code{Type}}{"Protein"}
+#'}
+#' @details obtained directly from SomaLogic.
+"SomaScanV4.1"
+
+#' @title DATASET_TITLE
+#' @description Curated during INTERVAL pilot study.
+#' @format A data frame with 684 rows and 5 variables:
+#' \describe{
+#'   \item{\code{Accession}}{UniProt id}
+#'   \item{\code{accList}}{List of UniProt ids}
+#'   \item{\code{uniprotName}}{Protein}
+#'   \item{\code{ensGene}}{ENSEMBL gene}
+#'   \item{\code{geneName}}{HGNC symbol}
+#'}
+#' @details As above.
+"swath_ms"
+
+#' @title Supplementary table 4
+#' @description Supplementary information for Sun et al. (2018) Nature
+#' @format A data frame with 1980 rows and 31 variables:
+#' \describe{
+#'   \item{\code{Locus.ID}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{SOMAmer.ID}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{Target}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{Target.fullname}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{UniProt}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{Sentinel.variant*}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{Chr}}{double COLUMN_DESCRIPTION}
+#'   \item{\code{Pos}}{double COLUMN_DESCRIPTION}
+#'   \item{\code{Region.start}}{double COLUMN_DESCRIPTION}
+#'   \item{\code{Region.end}}{double COLUMN_DESCRIPTION}
+#'   \item{\code{Effect.Allele.(EA)}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{Other.Allele.(OA)}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{EAF}}{double COLUMN_DESCRIPTION}
+#'   \item{\code{INFO}}{double COLUMN_DESCRIPTION}
+#'   \item{\code{cis/.trans}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{Mapped.gene}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{No..conditionally.significant.variants}}{double COLUMN_DESCRIPTION}
+#'   \item{\code{Previously.reported}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{Replicates?}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{beta}}{double COLUMN_DESCRIPTION}
+#'   \item{\code{SE}}{double COLUMN_DESCRIPTION}
+#'   \item{\code{p}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{beta}}{double COLUMN_DESCRIPTION}
+#'   \item{\code{SE}}{double COLUMN_DESCRIPTION}
+#'   \item{\code{p}}{double COLUMN_DESCRIPTION}
+#'   \item{\code{beta}}{double COLUMN_DESCRIPTION}
+#'   \item{\code{SE}}{double COLUMN_DESCRIPTION}
+#'   \item{\code{p}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{Uncorrelated.with.PAV.(r2≥0.1)}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{Significant.after.adjusting.for.PAVs}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{Is.a.cis.eQTL.for.same.gene?}}{character COLUMN_DESCRIPTION}
+#'}
+#' @details As above.
+"st4"
+
+#' @title Supplementary table 6
+#' @description Supplementary information for Sun et al. (2018) Nature
+#' @format A data frame with 163 rows and 20 variables:
+#' \describe{
+#'   \item{\code{Locus.ID}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{Sentinel.variant*}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{Chr}}{double COLUMN_DESCRIPTION}
+#'   \item{\code{Pos}}{double COLUMN_DESCRIPTION}
+#'   \item{\code{SOMAmer.ID}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{Target}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{Target.fullname}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{UniProt}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{cis/.trans}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{Mapped.gene}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{Effect.Allele.(EA)}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{Other.Allele.(OA)}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{Previously.reported}}{double COLUMN_DESCRIPTION}
+#'   \item{\code{beta}}{double COLUMN_DESCRIPTION}
+#'   \item{\code{SE}}{double COLUMN_DESCRIPTION}
+#'   \item{\code{p}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{beta}}{double COLUMN_DESCRIPTION}
+#'   \item{\code{SE}}{double COLUMN_DESCRIPTION}
+#'   \item{\code{p}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{Replicates?}}{character COLUMN_DESCRIPTION}
+#'}
+#' @details As above.
+"st6"
+
+#' @title Supplementary table 18
+#' @description Supplementary information for Sun et al. (2018) Nature
+#' @format A data frame with 3622 rows and 3 variables:
+#' \describe{
+#'   \item{\code{Number}}{double COLUMN_DESCRIPTION}
+#'   \item{\code{Analyte}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{UniProt.ID(s)}}{character COLUMN_DESCRIPTION}
+#'}
+#' @details As above.
+"st18"
