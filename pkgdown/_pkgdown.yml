@@ -62,6 +62,19 @@ reference:
       The following datasets are available as internal objects: biomaRt, caprion, hg19, hg19Tables, inf1, Olink_NGS, Olink_qPCR, SomaLogic160410, st4, s6, swath_ms.
     contents:
     - pQTLtools-internal
+    - Olink_NGS
+    - Olink_qPCR
+    - SomaLogic160410
+    - SomaScanV4.1
+    - biomaRt
+    - caprion
+    - hg19
+    - hg19Tables
+    - inf1
+    - st18
+    - st4
+    - st6
+    - swath_ms
 
 env:
  global:
