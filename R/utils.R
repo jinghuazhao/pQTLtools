@@ -326,7 +326,7 @@ uniprot2ids <- function(uniprotid="ACC+ID",to,query)
 #' tabix_paths <- read.delim(ftp, sep = "\t", header = TRUE, stringsAsFactors = FALSE) %>%
 #'                dplyr::as_tibble()
 #' tfpi <- file.path(find.package("pQTLtools", lib.loc=.libPaths()),"eQTL-Catalogue",
-#'                  "tabix_ftp_paths_imported.tsv")
+#'                  "tabix_ftp_paths_gtex.tsv")
 #' imported_tabix_paths <- read.delim(tfpi, sep = "\t", stringsAsFactors = FALSE) %>%
 #'                         dplyr::as_tibble()
 #'
@@ -576,7 +576,7 @@ blank_plot <- function(message)
 #' @seealso
 #'  \code{\link[plyr]{dlply}},\code{\link[plyr]{mutate}}
 #'  \code{\link[TwoSampleMR]{mr_egger_regression}},\code{\link[TwoSampleMR]{mr_egger_regression_bootstrap}}
-#'  \code{\link[ggplot2]{ggplot}},\code{\link[ggplot2]{aes}},\code{\link[ggplot2]{geom_crossbar}},\code{\link[ggplot2]{geom_errorbarh}},\code{\link[ggplot2]{geom_point}},\code{\link[ggplot2]{ggtheme}},\code{\link[ggplot2]{geom_abline}},\code{\link[ggplot2]{scale_manual}},\code{\link[ggplot2]{labs}},\code{\link[ggplot2]{theme}},\code{\link[ggplot2]{c("guide_bins", "guide_colourbar", "guide_coloursteps", "guide_legend", "guides", "guides")}},\code{\link[ggplot2]{guide_legend}}
+#'  \code{\link[ggplot2]{ggplot}},\code{\link[ggplot2]{aes}},\code{\link[ggplot2]{geom_crossbar}},\code{\link[ggplot2]{geom_errorbarh}},\code{\link[ggplot2]{geom_point}},\code{\link[ggplot2]{ggtheme}},\code{\link[ggplot2]{geom_abline}},\code{\link[ggplot2]{scale_manual}},\code{\link[ggplot2]{labs}},\code{\link[ggplot2]{theme}},\code{\link[ggplot2]{guide_legend}}
 #'  \code{\link[cowplot]{theme_cowplot}}
 #' @rdname mr_scatter_plot2
 #' @export
@@ -802,6 +802,7 @@ mr_leaveoneout_plot2 <- function (leaveoneout_results, alpha = 0.05)
 #' @details
 #' This function is based on TwoSampleMR.
 #'
+#' @export
 #' @return
 #' No value is returned but several files.
 #'
@@ -1252,13 +1253,13 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #' @keywords datasets
 #' @format A data frame with 1112 rows and 7 variables:
 #' \describe{
-#'   \item{\code{UniProt}}{character COLUMN_DESCRIPTION}
-#'   \item{\code{Panel}}{character COLUMN_DESCRIPTION}
-#'   \item{\code{Target}}{character COLUMN_DESCRIPTION}
-#'   \item{\code{gene}}{character COLUMN_DESCRIPTION}
-#'   \item{\code{chr}}{character COLUMN_DESCRIPTION}
-#'   \item{\code{start}}{integer COLUMN_DESCRIPTION}
-#'   \item{\code{end}}{integer COLUMN_DESCRIPTION}
+#'   \item{\code{UniProt}}{UniProt id}
+#'   \item{\code{Panel}}{Panels}
+#'   \item{\code{Target}}{Protein}
+#'   \item{\code{gene}}{HGNC symbol}
+#'   \item{\code{chr}}{Chromosome}
+#'   \item{\code{start}}{start}
+#'   \item{\code{end}}{end}
 #' }
 #' @details Curated from Excel.
 "Olink_qPCR"
@@ -1393,7 +1394,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #' \describe{
 #'   \item{\code{Number}}{double COLUMN_DESCRIPTION}
 #'   \item{\code{Analyte}}{character COLUMN_DESCRIPTION}
-#'   \item{\code{UniProt.ID(s)}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{UniProt.ID(s)}}{UniProt id}
 #' }
 #' @details As above.
 "st18"
