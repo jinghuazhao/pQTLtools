@@ -48,7 +48,6 @@ reference:
     - genequeries
     - get.prop.below.LLOD
     - import_OpenGWAS
-    - pQTLtools-internal
     - import_eQTLCatalogue
     - make_ExpressionSet
     - pqtlMR
@@ -61,7 +60,6 @@ reference:
     desc: >
       The following datasets are available as internal objects: biomaRt, caprion, hg19, hg19Tables, inf1, Olink_NGS, Olink_qPCR, SomaLogic160410, st4, s6, swath_ms.
     contents:
-    - pQTLtools-internal
     - Olink_NGS
     - Olink_qPCR
     - SomaLogic160410
