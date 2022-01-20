@@ -1155,6 +1155,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #'   \item{\code{uniprotswissprot}}{UnitProt id}
 #' }
 #' @details extraction using R.
+
 "biomaRt"
 
 #' @title Caprion panel
@@ -1172,6 +1173,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #'   \item{\code{GO.Process}}{GO process}
 #' }
 #' @details See the Caprion repository involving its use.
+
 "caprion"
 
 #' @title hg19 information
@@ -1190,6 +1192,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #'   \item{\code{UNIPROT}}{UniProt id}
 #' }
 #' @details Curation from R
+
 "hg19"
 
 #' @title hg19 Table
@@ -1212,6 +1215,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #'   \item{\code{ensGene}}{ENSEMBL gene}
 #' }
 #' @details Curation from UCSC.
+
 "hg19Tables"
 
 #' @title Olink/INF1 panel
@@ -1231,6 +1235,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #'   \item{\code{ensembl_gene_id}}{ENSEMBL gene}
 #' }
 #' @details Assembled for SCALLOP-INF
+
 "inf1"
 
 #' @title Olink/NGS panel
@@ -1244,6 +1249,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #'   \item{\code{Panel}}{Olink panel}
 #' }
 #' @details Curated from R.
+
 "Olink_NGS"
 
 #' @title Olink/qPCR panels
@@ -1261,6 +1267,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #'   \item{\code{end}}{end}
 #' }
 #' @details Curated from Excel.
+
 "Olink_qPCR"
 
 #' @title Somascan panel
@@ -1281,6 +1288,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #'   \item{\code{extGene}}{external gene}
 #' }
 #' @details from the INTERVAL study.
+
 "SomaLogic160410"
 
 #' @title SomaScan v4.1
@@ -1297,6 +1305,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #'   \item{\code{Type}}{"Protein"}
 #' }
 #' @details obtained directly from SomaLogic.
+
 "SomaScanV4.1"
 
 #' @title DATASET_TITLE
@@ -1312,6 +1321,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #'   \item{\code{geneName}}{HGNC symbol}
 #' }
 #' @details As above.
+
 "swath_ms"
 
 #' @title Supplementary table 4
@@ -1353,6 +1363,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #'   \item{\code{Is.a.cis.eQTL.for.same.gene?}}{character COLUMN_DESCRIPTION}
 #' }
 #' @details As above.
+
 "st4"
 
 #' @title Supplementary table 6
@@ -1383,6 +1394,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #'   \item{\code{Replicates?}}{character COLUMN_DESCRIPTION}
 #' }
 #' @details As above.
+
 "st6"
 
 #' @title Supplementary table 18
@@ -1396,4 +1408,5 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #'   \item{\code{UniProt.ID(s)}}{UniProt id}
 #' }
 #' @details As above.
+
 "st18"

@@ -1,8 +1,9 @@
 #' Internal data/functions for pQTLtools
 #'
-#' A list of protein panels: caprion, hg10Tables, Olink_NGS, Olink_qPCR (inf1 is edited so differs with counterpart in R/gap.datasets), SomaLogic160410, swath_ms.
+#' Functions used by others internally.
 #'
-#' In cases of incomplete information, datasets called hg19Tables based on UCSC and biomaRt from Ensembl are provided.
+#' @details
+#' Some generic description for the datasets are as follows.
 #'
 #' \describe{
 #'   \item{chr}{chromosome}
@@ -25,11 +26,11 @@
 #' m <- merge(inf1,SomaLogic160410,by.x="uniprot",by.y="UniProt")
 #' u <- setdiff(with(m,unique(uniprot)),"P23560")
 #' options(width=220)
-#' o <- subset(inf1,uniprot \%in\% u)
+#' o <- subset(inf1,uniprot %in% u)
 #' dim(o)
 #' o
 #' vars <- c("UniProt","chr","start","end","extGene","Target","TargetFullName")
-#' s <- subset(SomaLogic160410[vars], UniProt \%in\% u)
+#' s <- subset(SomaLogic160410[vars], UniProt %in% u)
 #' dim(s)
 #' us <- s[!duplicated(s),]
 #' dim(us)
@@ -45,7 +46,7 @@
 #' # INTERVAL SomaLogic at box
 #' HOME <- Sys.getenv("HOME")
 #' box <- read.delim(file.path(HOME,"SomaLogic","doc","INTERVAL-box.tsv"),as.is=TRUE)
-#' box_INF1 <- subset(box,UniProt \%in\% INF1_uniprot)
+#' box_INF1 <- subset(box,UniProt %in% INF1_uniprot)
 #' box_uniprot <- setdiff(unique(with(box_INF1,UniProt)),"P23560")
 #' setdiff(INF1_uniprot,box_uniprot)
 #'
@@ -53,16 +54,14 @@
 #' ps <- merge(subset(read.delim(file.path(INF,"work","pQTL_2018.txt.gz"),as.is=TRUE),
 #'             pmid==29875488),
 #'             box,by.x="trait",by.y="TargetFullName")
-#' z <- subset(ps,UniProtgwas \%in\% INF1_uniprot & p<=1.5e-11)
+#' z <- subset(ps,UniProtgwas %in% INF1_uniprot & p<=1.5e-11)
 #'
 #' # ST4 on Nature
-#' st4regions <- subset(st4, UniProt \%in\% INF1_uniprot)
+#' st4regions <- subset(st4, UniProt %in% INF1_uniprot)
 #' unique_uniprot_list <- setdiff(intersect(st4$UniProt,inf1$uniprot),"P23560")
-#' subset(INF1_merge,uniprot \%in\% unique_uniprot_list)
+#' subset(INF1_merge,uniprot %in% unique_uniprot_list)
 #' }
 #'
-#' @details This seeds for prototype for extensions
-#' @keywords internal
 #' @aliases clump_data.args
 #' @aliases extract_outcome_data.args
 #' @aliases format_data.args
