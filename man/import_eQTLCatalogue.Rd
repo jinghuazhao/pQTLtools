@@ -44,7 +44,7 @@ ftp <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","tabix_ftp_paths.tsv
 tabix_paths <- read.delim(ftp, sep = "\t", header = TRUE, stringsAsFactors = FALSE) \%>\%
                dplyr::as_tibble()
 tfpi <- file.path(find.package("pQTLtools", lib.loc=.libPaths()),"eQTL-Catalogue",
-                 "tabix_ftp_paths_imported.tsv")
+                 "tabix_ftp_paths_gtex.tsv")
 imported_tabix_paths <- read.delim(tfpi, sep = "\t", stringsAsFactors = FALSE) \%>\%
                         dplyr::as_tibble()
 

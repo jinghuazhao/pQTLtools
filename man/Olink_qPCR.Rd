@@ -7,13 +7,13 @@
 \format{
 A data frame with 1112 rows and 7 variables:
 \describe{
-  \item{\code{UniProt}}{character COLUMN_DESCRIPTION}
-  \item{\code{Panel}}{character COLUMN_DESCRIPTION}
-  \item{\code{Target}}{character COLUMN_DESCRIPTION}
-  \item{\code{gene}}{character COLUMN_DESCRIPTION}
-  \item{\code{chr}}{character COLUMN_DESCRIPTION}
-  \item{\code{start}}{integer COLUMN_DESCRIPTION}
-  \item{\code{end}}{integer COLUMN_DESCRIPTION}
+  \item{\code{UniProt}}{UniProt id}
+  \item{\code{Panel}}{Panels}
+  \item{\code{Target}}{Protein}
+  \item{\code{gene}}{HGNC symbol}
+  \item{\code{chr}}{Chromosome}
+  \item{\code{start}}{start}
+  \item{\code{end}}{end}
 }
 }
 \usage{

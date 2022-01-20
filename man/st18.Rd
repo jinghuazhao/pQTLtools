@@ -9,7 +9,7 @@ A data frame with 3622 rows and 3 variables:
 \describe{
   \item{\code{Number}}{double COLUMN_DESCRIPTION}
   \item{\code{Analyte}}{character COLUMN_DESCRIPTION}
-  \item{\code{UniProt.ID(s)}}{character COLUMN_DESCRIPTION}
+  \item{\code{UniProt.ID(s)}}{UniProt id}
 }
 }
 \usage{
