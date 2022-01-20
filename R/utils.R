@@ -1132,7 +1132,6 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #' @importFrom gwasvcf vcf_to_granges
 #' @importFrom ieugwasr check_access_token
 #' @importFrom ggplot2 ggplot geom_text aes labs theme element_blank geom_errorbar geom_errorbarh geom_point theme_bw geom_abline scale_colour_manual guides guide_legend geom_vline geom_hline scale_size_manual element_text element_line
-#' @importFrom plyr dlply mutate
 #' @importFrom TwoSampleMR mr_egger_regression mr_egger_regression_bootstrap mr mr_singlesnp mr_scatter_plot mr_forest_plot mr_funnel_plot mr_heterogeneity mr_pleiotropy_test mr_leaveoneout mr_leaveoneout_plot
 #' @importFrom cowplot theme_cowplot
 #' @importFrom Biobase annotatedDataFrameFrom MIAME ExpressionSet exprs fData
