@@ -26,7 +26,7 @@ knitr::opts_chunk$set(
 
 ## Colocalisation
 
-This is the actual script for cis-pQTL colocalisation analysis for SCALLOP-INF. 
+This is the actual script for cis-pQTL colocalisation analysis on GTEx v8, as reported in @kerimov21, for SCALLOP-INF. 
 
 ### The driver program
 
@@ -58,7 +58,7 @@ done
 
 ### coloc.R
 
-It contains minor modification to the documentation example
+It contains minor modification to the documentation example,
 
 ```r
 liftRegion <- function(x,chain,flanking=1e6)
@@ -307,3 +307,5 @@ function gtex()
 
 gtex
 ```
+
+### References
