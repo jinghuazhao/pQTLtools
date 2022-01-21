@@ -37,10 +37,34 @@
     <loc>https://jinghuazhao.github.io/pQTLtools/news/index.html</loc>
   </url>
   <url>
+    <loc>https://jinghuazhao.github.io/pQTLtools/reference/Olink_NGS.html</loc>
+  </url>
+  <url>
+    <loc>https://jinghuazhao.github.io/pQTLtools/reference/Olink_qPCR.html</loc>
+  </url>
+  <url>
+    <loc>https://jinghuazhao.github.io/pQTLtools/reference/SomaLogic160410.html</loc>
+  </url>
+  <url>
+    <loc>https://jinghuazhao.github.io/pQTLtools/reference/SomaScanV4.1.html</loc>
+  </url>
+  <url>
+    <loc>https://jinghuazhao.github.io/pQTLtools/reference/biomaRt.html</loc>
+  </url>
+  <url>
+    <loc>https://jinghuazhao.github.io/pQTLtools/reference/caprion.html</loc>
+  </url>
+  <url>
     <loc>https://jinghuazhao.github.io/pQTLtools/reference/genequeries.html</loc>
   </url>
   <url>
     <loc>https://jinghuazhao.github.io/pQTLtools/reference/get.prop.below.LLOD.html</loc>
+  </url>
+  <url>
+    <loc>https://jinghuazhao.github.io/pQTLtools/reference/hg19.html</loc>
+  </url>
+  <url>
+    <loc>https://jinghuazhao.github.io/pQTLtools/reference/hg19Tables.html</loc>
   </url>
   <url>
     <loc>https://jinghuazhao.github.io/pQTLtools/reference/import_OpenGWAS.html</loc>
@@ -52,7 +76,22 @@
     <loc>https://jinghuazhao.github.io/pQTLtools/reference/index.html</loc>
   </url>
   <url>
+    <loc>https://jinghuazhao.github.io/pQTLtools/reference/inf1.html</loc>
+  </url>
+  <url>
     <loc>https://jinghuazhao.github.io/pQTLtools/reference/make_ExpressionSet.html</loc>
+  </url>
+  <url>
+    <loc>https://jinghuazhao.github.io/pQTLtools/reference/mr_forest_plot2.html</loc>
+  </url>
+  <url>
+    <loc>https://jinghuazhao.github.io/pQTLtools/reference/mr_funnel_plot2.html</loc>
+  </url>
+  <url>
+    <loc>https://jinghuazhao.github.io/pQTLtools/reference/mr_leaveoneout_plot2.html</loc>
+  </url>
+  <url>
+    <loc>https://jinghuazhao.github.io/pQTLtools/reference/mr_scatter_plot2.html</loc>
   </url>
   <url>
     <loc>https://jinghuazhao.github.io/pQTLtools/reference/pQTLtools-internal.html</loc>
@@ -71,6 +110,18 @@
   </url>
   <url>
     <loc>https://jinghuazhao.github.io/pQTLtools/reference/snpqueries.html</loc>
+  </url>
+  <url>
+    <loc>https://jinghuazhao.github.io/pQTLtools/reference/st18.html</loc>
+  </url>
+  <url>
+    <loc>https://jinghuazhao.github.io/pQTLtools/reference/st4.html</loc>
+  </url>
+  <url>
+    <loc>https://jinghuazhao.github.io/pQTLtools/reference/st6.html</loc>
+  </url>
+  <url>
+    <loc>https://jinghuazhao.github.io/pQTLtools/reference/swath_ms.html</loc>
   </url>
   <url>
     <loc>https://jinghuazhao.github.io/pQTLtools/reference/uniprot2ids.html</loc>
