@@ -255,3 +255,44 @@ collect()
 ```
 
 i.e., PP3+PP4>=0.9 and PP4/PP3>=3.
+
+To speed up the analysis, we resort to [SLURM](https://slurm.schedmd.com/documentation.html),
+
+```bash
+#!/usr/bin/bash
+
+#SBATCH --job-name=_coloc
+#SBATCH --account CARDIO-SL0-CPU
+#SBATCH --partition cardio
+#SBATCH --qos=cardio
+#SBATCH --array=1-59
+#SBATCH --mem=28800
+#SBATCH --time=5-00:00:00
+#SBATCH --error=/rds/user/jhz22/hpc-work/work/_coloc_%A_%a.err
+#SBATCH --output=/rds/user/jhz22/hpc-work/work/_coloc_%A_%a.out
+#SBATCH --export ALL
+
+export job=${SLURM_ARRAY_TASK_ID}
+export trait=$(awk -v job=${job} 'NR==job {print $1}' ${INF}/work/inf1.tmp)
+
+function gtex()
+{
+  export r=${SLURM_ARRAY_TASK_ID}
+  export cvt=${INF}/work/INF1.merge.cis.vs.trans
+  read prot MarkerName < \
+                       <(awk -vFS="," '$14=="cis"' ${cvt} | \
+                         awk -vFS="," -vr=${r} 'NR==r{print $2,$5}')
+  echo ${r} - ${prot} - ${MarkerName}
+  export prot=${prot}
+  export MarkerName=${MarkerName}
+  if [ ! -f ${INF}/coloc/${prot}-${MarkerName}.pdf ] || \
+     [ ! -f ${INF}/coloc/${prot}-${MarkerName}.RDS ]; then
+    cd ${INF}/coloc
+    R --no-save < ${INF}/rsid/coloc.R 2>&1 | \
+    tee ${prot}-${MarkerName}.log
+    cd -
+  fi
+}
+
+gtex
+```
