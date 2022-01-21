@@ -1135,7 +1135,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #' @title biomaRt
 #' @description Curation of biomaRt
 #' @docType data
-#' @keywords datasets
+#' @keywords datasets internal
 #' @format A data frame with 42198 rows and 11 variables:
 #' \describe{
 #'   \item{\code{ensembl_gene_id}}{ENSEMBL gene id}
@@ -1157,7 +1157,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #' @title Caprion panel
 #' @description Information based on Caprion pilot studies
 #' @docType data
-#' @keywords datasets
+#' @keywords datasets internal
 #' @format A data frame with 987 rows and 7 variables:
 #' \describe{
 #'   \item{\code{Protein}}{Protein name as in UniProt}
@@ -1175,7 +1175,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #' @title hg19 information
 #' @description protein information
 #' @docType data
-#' @keywords datasets
+#' @keywords datasets internal
 #' @format A data frame with 62559 rows and 8 variables:
 #' \describe{
 #'   \item{\code{chr}}{Chromosome [chr1-22,X,Y,...]}
@@ -1194,7 +1194,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #' @title hg19 Table
 #' @description Gene information
 #' @docType data
-#' @keywords datasets
+#' @keywords datasets internal
 #' @format A data frame with 19872 rows and 12 variables:
 #' \describe{
 #'   \item{\code{X.chrom}}{Chromosome}
@@ -1217,7 +1217,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #' @title Olink/INF1 panel
 #' @description The panel is based on SCALLOP-INF
 #' @docType data
-#' @keywords datasets
+#' @keywords datasets internal
 #' @format A data frame with 92 rows and 9 variables:
 #' \describe{
 #'   \item{\code{uniprot}}{UniProt id}
@@ -1237,7 +1237,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #' @title Olink/NGS panel
 #' @description Information based on pilot studies
 #' @docType data
-#' @keywords datasets
+#' @keywords datasets internal
 #' @format A data frame with 1472 rows and 3 variables:
 #' \describe{
 #'   \item{\code{UniProt}}{UniProt id}
@@ -1251,7 +1251,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #' @title Olink/qPCR panels
 #' @description Information on all qPCR panels
 #' @docType data
-#' @keywords datasets
+#' @keywords datasets internal
 #' @format A data frame with 1112 rows and 7 variables:
 #' \describe{
 #'   \item{\code{UniProt}}{UniProt id}
@@ -1269,7 +1269,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #' @title Somascan panel
 #' @description This is based on panel used in Sun et al. (2018) Nature.
 #' @docType data
-#' @keywords datasets
+#' @keywords datasets internal
 #' @format A data frame with 5178 rows and 10 variables:
 #' \describe{
 #'   \item{\code{SOMAMER_ID}}{Somamer id}
@@ -1290,7 +1290,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #' @title SomaScan v4.1
 #' @description This is also the latest panel
 #' @docType data
-#' @keywords datasets
+#' @keywords datasets internal
 #' @format A data frame with 7288 rows and 6 variables:
 #' \describe{
 #'   \item{\code{#}}{A serial number}
@@ -1307,7 +1307,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #' @title SWATH-MS panel
 #' @description Curated during INTERVAL pilot study.
 #' @docType data
-#' @keywords datasets
+#' @keywords datasets internal
 #' @format A data frame with 684 rows and 5 variables:
 #' \describe{
 #'   \item{\code{Accession}}{UniProt id}
@@ -1323,7 +1323,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #' @title Supplementary table 4
 #' @description Supplementary information for Sun et al. (2018) Nature
 #' @docType data
-#' @keywords datasets
+#' @keywords datasets internal
 #' @format A data frame with 1980 rows and 31 variables:
 #' \describe{
 #'   \item{\code{Locus.ID}}{Locus id}
@@ -1365,7 +1365,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #' @title Supplementary table 6
 #' @description Supplementary information for Sun et al. (2018) Nature
 #' @docType data
-#' @keywords datasets
+#' @keywords datasets internal
 #' @format A data frame with 163 rows and 20 variables:
 #' \describe{
 #'   \item{\code{Locus.ID}}{Locus id}
@@ -1396,7 +1396,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #' @title Supplementary table 18
 #' @description Supplementary information for Sun et al. (2018) Nature
 #' @docType data
-#' @keywords datasets
+#' @keywords datasets internal
 #' @format A data frame with 3622 rows and 3 variables:
 #' \describe{
 #'   \item{\code{Number}}{A serial number}
