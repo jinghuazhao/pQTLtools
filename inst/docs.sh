@@ -14,6 +14,7 @@ function build()
     build_news()
     build_articles()
     build_reference()
+    build_search()
     build_site()
   "
 
