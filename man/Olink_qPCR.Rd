@@ -26,3 +26,4 @@ Information on all qPCR panels
 Curated from Excel.
 }
 \keyword{datasets}
+\keyword{internal}

@@ -28,3 +28,4 @@ The panel is based on SCALLOP-INF
 Assembled for SCALLOP-INF
 }
 \keyword{datasets}
+\keyword{internal}

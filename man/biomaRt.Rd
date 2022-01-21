@@ -30,3 +30,4 @@ Curation of biomaRt
 extraction using R.
 }
 \keyword{datasets}
+\keyword{internal}
