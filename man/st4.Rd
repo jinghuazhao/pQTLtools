@@ -7,37 +7,37 @@
 \format{
 A data frame with 1980 rows and 31 variables:
 \describe{
-  \item{\code{Locus.ID}}{character COLUMN_DESCRIPTION}
-  \item{\code{SOMAmer.ID}}{character COLUMN_DESCRIPTION}
-  \item{\code{Target}}{character COLUMN_DESCRIPTION}
-  \item{\code{Target.fullname}}{character COLUMN_DESCRIPTION}
-  \item{\code{UniProt}}{character COLUMN_DESCRIPTION}
-  \item{\code{Sentinel.variant*}}{character COLUMN_DESCRIPTION}
-  \item{\code{Chr}}{double COLUMN_DESCRIPTION}
-  \item{\code{Pos}}{double COLUMN_DESCRIPTION}
-  \item{\code{Region.start}}{double COLUMN_DESCRIPTION}
-  \item{\code{Region.end}}{double COLUMN_DESCRIPTION}
-  \item{\code{Effect.Allele.(EA)}}{character COLUMN_DESCRIPTION}
-  \item{\code{Other.Allele.(OA)}}{character COLUMN_DESCRIPTION}
-  \item{\code{EAF}}{double COLUMN_DESCRIPTION}
-  \item{\code{INFO}}{double COLUMN_DESCRIPTION}
-  \item{\code{cis/.trans}}{character COLUMN_DESCRIPTION}
-  \item{\code{Mapped.gene}}{character COLUMN_DESCRIPTION}
-  \item{\code{No..conditionally.significant.variants}}{double COLUMN_DESCRIPTION}
-  \item{\code{Previously.reported}}{character COLUMN_DESCRIPTION}
-  \item{\code{Replicates?}}{character COLUMN_DESCRIPTION}
-  \item{\code{beta}}{double COLUMN_DESCRIPTION}
-  \item{\code{SE}}{double COLUMN_DESCRIPTION}
-  \item{\code{p}}{character COLUMN_DESCRIPTION}
-  \item{\code{beta}}{double COLUMN_DESCRIPTION}
-  \item{\code{SE}}{double COLUMN_DESCRIPTION}
-  \item{\code{p}}{double COLUMN_DESCRIPTION}
-  \item{\code{beta}}{double COLUMN_DESCRIPTION}
-  \item{\code{SE}}{double COLUMN_DESCRIPTION}
-  \item{\code{p}}{character COLUMN_DESCRIPTION}
-  \item{\code{Uncorrelated.with.PAV.(r2≥0.1)}}{character COLUMN_DESCRIPTION}
-  \item{\code{Significant.after.adjusting.for.PAVs}}{character COLUMN_DESCRIPTION}
-  \item{\code{Is.a.cis.eQTL.for.same.gene?}}{character COLUMN_DESCRIPTION}
+  \item{\code{Locus.ID}}{Locus id}
+  \item{\code{SOMAmer.ID}}{SOMAmer id}
+  \item{\code{Target}}{Protein}
+  \item{\code{Target.fullname}}{Protein full name}
+  \item{\code{UniProt}}{UniProt id}
+  \item{\code{Sentinel.variant*}}{Sentinel variant}
+  \item{\code{Chr}}{Chromosome}
+  \item{\code{Pos}}{Position}
+  \item{\code{Region.start}}{Region start}
+  \item{\code{Region.end}}{Region end}
+  \item{\code{Effect.Allele.(EA)}}{Effect allele}
+  \item{\code{Other.Allele.(OA)}}{Other allele}
+  \item{\code{EAF}}{Effect allele frequency}
+  \item{\code{INFO}}{Information score}
+  \item{\code{cis/.trans}}{"cis"/"trans"}
+  \item{\code{Mapped.gene}}{Mapped gene}
+  \item{\code{No..conditionally.significant.variants}}{Number of conditionally significant variants}
+  \item{\code{Previously.reported}}{Previously reported}
+  \item{\code{Replicates?}}{Yes/No}
+  \item{\code{beta}}{b}
+  \item{\code{SE}}{SE}
+  \item{\code{p}}{p value}
+  \item{\code{beta}}{b}
+  \item{\code{SE}}{SE}
+  \item{\code{p}}{p value}
+  \item{\code{beta}}{b}
+  \item{\code{SE}}{SE}
+  \item{\code{p}}{p value}
+  \item{\code{Uncorrelated.with.PAV.(r2≥0.1)}}{Uncorrelated with PAV}
+  \item{\code{Significant.after.adjusting.for.PAVs}}{Significant after adjustment for PAVs}
+  \item{\code{Is.a.cis.eQTL.for.same.gene?}}{Is a cis eQTL for the same gene?}
 }
 }
 \usage{

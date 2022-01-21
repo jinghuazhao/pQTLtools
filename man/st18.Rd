@@ -7,8 +7,8 @@
 \format{
 A data frame with 3622 rows and 3 variables:
 \describe{
-  \item{\code{Number}}{double COLUMN_DESCRIPTION}
-  \item{\code{Analyte}}{character COLUMN_DESCRIPTION}
+  \item{\code{Number}}{A serial number}
+  \item{\code{Analyte}}{Name}
   \item{\code{UniProt.ID(s)}}{UniProt id}
 }
 }

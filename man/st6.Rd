@@ -7,26 +7,26 @@
 \format{
 A data frame with 163 rows and 20 variables:
 \describe{
-  \item{\code{Locus.ID}}{character COLUMN_DESCRIPTION}
-  \item{\code{Sentinel.variant*}}{character COLUMN_DESCRIPTION}
-  \item{\code{Chr}}{double COLUMN_DESCRIPTION}
-  \item{\code{Pos}}{double COLUMN_DESCRIPTION}
-  \item{\code{SOMAmer.ID}}{character COLUMN_DESCRIPTION}
-  \item{\code{Target}}{character COLUMN_DESCRIPTION}
-  \item{\code{Target.fullname}}{character COLUMN_DESCRIPTION}
-  \item{\code{UniProt}}{character COLUMN_DESCRIPTION}
-  \item{\code{cis/.trans}}{character COLUMN_DESCRIPTION}
-  \item{\code{Mapped.gene}}{character COLUMN_DESCRIPTION}
-  \item{\code{Effect.Allele.(EA)}}{character COLUMN_DESCRIPTION}
-  \item{\code{Other.Allele.(OA)}}{character COLUMN_DESCRIPTION}
-  \item{\code{Previously.reported}}{double COLUMN_DESCRIPTION}
-  \item{\code{beta}}{double COLUMN_DESCRIPTION}
-  \item{\code{SE}}{double COLUMN_DESCRIPTION}
-  \item{\code{p}}{character COLUMN_DESCRIPTION}
-  \item{\code{beta}}{double COLUMN_DESCRIPTION}
-  \item{\code{SE}}{double COLUMN_DESCRIPTION}
-  \item{\code{p}}{character COLUMN_DESCRIPTION}
-  \item{\code{Replicates?}}{character COLUMN_DESCRIPTION}
+  \item{\code{Locus.ID}}{Locus id}
+  \item{\code{Sentinel.variant*}}{Sentinel variant}
+  \item{\code{Chr}}{Chromosome [1-12,14-20,22]}
+  \item{\code{Pos}}{Position}
+  \item{\code{SOMAmer.ID}}{SOMAmer id}
+  \item{\code{Target}}{Protein}
+  \item{\code{Target.fullname}}{Protein full name}
+  \item{\code{UniProt}}{UniProt id}
+  \item{\code{cis/.trans}}{"cis"/"trans"}
+  \item{\code{Mapped.gene}}{Mapped gene}
+  \item{\code{Effect.Allele.(EA)}}{Effect allele}
+  \item{\code{Other.Allele.(OA)}}{Other allele}
+  \item{\code{Previously.reported}}{Previously reported (0/1)}
+  \item{\code{beta}}{b}
+  \item{\code{SE}}{SE}
+  \item{\code{p}}{p value}
+  \item{\code{beta}}{b}
+  \item{\code{SE}}{SE}
+  \item{\code{p}}{p value}
+  \item{\code{Replicates?}}{Yes/No}
 }
 }
 \usage{

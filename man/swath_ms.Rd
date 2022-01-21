@@ -3,7 +3,7 @@
 \docType{data}
 \name{swath_ms}
 \alias{swath_ms}
-\title{DATASET_TITLE}
+\title{SWATH-MS panel}
 \format{
 A data frame with 684 rows and 5 variables:
 \describe{
