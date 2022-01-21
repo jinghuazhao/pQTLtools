@@ -295,6 +295,43 @@
 <span class="op">}</span>
 <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html" class="external-link">collect</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>i.e., PP3+PP4&gt;=0.9 and PP4/PP3&gt;=3.</p>
+<p>To speed up the analysis, we resort to <a href="https://slurm.schedmd.com/documentation.html" class="external-link">SLURM</a>,</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/bash</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --job-name=_coloc</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --account CARDIO-SL0-CPU</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --partition cardio</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --qos=cardio</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --array=1-59</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --mem=28800</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --time=5-00:00:00</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --error=/rds/user/jhz22/hpc-work/work/_coloc_%A_%a.err</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --output=/rds/user/jhz22/hpc-work/work/_coloc_%A_%a.out</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --export ALL</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">job</span><span class="op">=</span><span class="va">${SLURM_ARRAY_TASK_ID}</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">trait</span><span class="op">=</span><span class="va">$(</span><span class="fu">awk</span> <span class="at">-v</span> job=<span class="va">${job}</span> <span class="st">'NR==job {print $1}'</span> <span class="va">${INF}</span>/work/inf1.tmp<span class="va">)</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> gtex()</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="bu">export</span> <span class="va">r</span><span class="op">=</span><span class="va">${SLURM_ARRAY_TASK_ID}</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  <span class="bu">export</span> <span class="va">cvt</span><span class="op">=</span><span class="va">${INF}</span>/work/INF1.merge.cis.vs.trans</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="bu">read</span> <span class="va">prot</span> <span class="va">MarkerName</span> <span class="op">&lt;</span> <span class="dt">\</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>                       <span class="op">&lt;(</span><span class="fu">awk</span> <span class="at">-vFS</span><span class="op">=</span><span class="st">","</span> <span class="st">'$14=="cis"'</span> <span class="va">${cvt}</span> <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">awk</span> <span class="at">-vFS</span><span class="op">=</span><span class="st">","</span> <span class="at">-vr</span><span class="op">=</span><span class="va">${r}</span> <span class="st">'NR==r{print $2,$5}'</span><span class="op">)</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  <span class="bu">echo</span> <span class="va">${r}</span> <span class="at">-</span> <span class="va">${prot}</span> <span class="at">-</span> <span class="va">${MarkerName}</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>  <span class="bu">export</span> <span class="va">prot</span><span class="op">=</span><span class="va">${prot}</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>  <span class="bu">export</span> <span class="va">MarkerName</span><span class="op">=</span><span class="va">${MarkerName}</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="bu">[</span> <span class="ot">!</span> <span class="ot">-f</span> <span class="va">${INF}</span>/coloc/<span class="va">${prot}</span>-<span class="va">${MarkerName}</span>.pdf <span class="bu">]</span> <span class="kw">||</span> <span class="dt">\</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>     <span class="bu">[</span> <span class="ot">!</span> <span class="ot">-f</span> <span class="va">${INF}</span>/coloc/<span class="va">${prot}</span>-<span class="va">${MarkerName}</span>.RDS <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>    <span class="bu">cd</span> <span class="va">${INF}</span>/coloc</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>    <span class="ex">R</span> <span class="at">--no-save</span> <span class="op">&lt;</span> <span class="va">${INF}</span>/rsid/coloc.R <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span> <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tee</span> <span class="va">${prot}</span>-<span class="va">${MarkerName}</span>.log</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>    <span class="bu">cd</span> <span class="at">-</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>  <span class="cf">fi</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="ex">gtex</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
