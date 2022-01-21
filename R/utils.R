@@ -578,9 +578,8 @@ blank_plot <- function(message)
 #'  \code{\link[TwoSampleMR]{mr_egger_regression}},\code{\link[TwoSampleMR]{mr_egger_regression_bootstrap}}
 #'  \code{\link[ggplot2]{ggplot}},\code{\link[ggplot2]{aes}},\code{\link[ggplot2]{geom_crossbar}},\code{\link[ggplot2]{geom_errorbarh}},\code{\link[ggplot2]{geom_point}},\code{\link[ggplot2]{ggtheme}},\code{\link[ggplot2]{geom_abline}},\code{\link[ggplot2]{scale_manual}},\code{\link[ggplot2]{labs}},\code{\link[ggplot2]{theme}},\code{\link[ggplot2]{guide_legend}}
 #'  \code{\link[cowplot]{theme_cowplot}}
-#' @rdname mr_scatter_plot2
 #' @export
-#' @importFrom plyr dlply mutate
+#' @importFrom plyr dlply
 #' @importFrom TwoSampleMR mr_egger_regression mr_egger_regression_bootstrap
 #' @importFrom ggplot2 ggplot aes geom_errorbar geom_errorbarh geom_point theme_bw geom_abline scale_colour_manual labs theme guides guide_legend geom_vline
 #' @importFrom cowplot theme_cowplot
@@ -639,9 +638,8 @@ mr_scatter_plot2 <- function (mr_results, dat, alpha=0.05)
 #' @seealso
 #'  \code{\link[plyr]{dlply}},\code{\link[plyr]{mutate}}
 #'  \code{\link[ggplot2]{ggplot}},\code{\link[ggplot2]{aes}},\code{\link[ggplot2]{ggtheme}},\code{\link[ggplot2]{geom_abline}},\code{\link[ggplot2]{geom_errorbarh}},\code{\link[ggplot2]{geom_point}},\code{\link[ggplot2]{scale_manual}},\code{\link[ggplot2]{theme}},\code{\link[ggplot2]{margin}},\code{\link[ggplot2]{labs}}
-#' @rdname mr_forest_plot2
 #' @export
-#' @importFrom plyr dlply mutate
+#' @importFrom plyr dlply
 #' @importFrom ggplot2 ggplot aes theme_bw geom_vline geom_errorbarh geom_point geom_hline scale_colour_manual scale_size_manual theme element_text element_line element_blank labs
 #' @keywords internal
 
@@ -703,9 +701,8 @@ mr_forest_plot2 <- function (singlesnp_results, exponentiate = FALSE, alpha = 0.
 #'  \code{\link[plyr]{dlply}},\code{\link[plyr]{mutate}}
 #'  \code{\link[ggplot2]{ggplot}},\code{\link[ggplot2]{aes}},\code{\link[ggplot2]{geom_point}},\code{\link[ggplot2]{ggtheme}},\code{\link[ggplot2]{geom_abline}},\code{\link[ggplot2]{scale_manual}},\code{\link[ggplot2]{labs}},\code{\link[ggplot2]{theme}}
 #'  \code{\link[cowplot]{theme_cowplot}}
-#' @rdname mr_funnel_plot2
 #' @export
-#' @importFrom plyr dlply mutate
+#' @importFrom plyr dlply
 #' @importFrom ggplot2 ggplot aes geom_point theme_bw geom_vline scale_colour_manual labs theme
 #' @importFrom cowplot theme_cowplot
 #' @keywords internal
@@ -743,9 +740,8 @@ mr_funnel_plot2 <- function (singlesnp_results)
 #' @seealso
 #'  \code{\link[plyr]{dlply}},\code{\link[plyr]{mutate}}
 #'  \code{\link[ggplot2]{ggplot}},\code{\link[ggplot2]{aes}},\code{\link[ggplot2]{ggtheme}},\code{\link[ggplot2]{geom_abline}},\code{\link[ggplot2]{geom_errorbarh}},\code{\link[ggplot2]{geom_point}},\code{\link[ggplot2]{scale_manual}},\code{\link[ggplot2]{theme}},\code{\link[ggplot2]{margin}},\code{\link[ggplot2]{labs}}
-#' @rdname mr_leaveoneout_plot2
 #' @export
-#' @importFrom plyr dlply mutate
+#' @importFrom plyr dlply
 #' @importFrom ggplot2 ggplot aes theme_bw geom_vline geom_errorbarh geom_point geom_hline scale_colour_manual scale_size_manual theme element_text element_line element_blank labs
 #' @keywords internal
 
@@ -1308,7 +1304,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 
 "SomaScanV4.1"
 
-#' @title DATASET_TITLE
+#' @title SWATH-MS panel
 #' @description Curated during INTERVAL pilot study.
 #' @docType data
 #' @keywords datasets
@@ -1330,37 +1326,37 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #' @keywords datasets
 #' @format A data frame with 1980 rows and 31 variables:
 #' \describe{
-#'   \item{\code{Locus.ID}}{character COLUMN_DESCRIPTION}
-#'   \item{\code{SOMAmer.ID}}{character COLUMN_DESCRIPTION}
-#'   \item{\code{Target}}{character COLUMN_DESCRIPTION}
-#'   \item{\code{Target.fullname}}{character COLUMN_DESCRIPTION}
-#'   \item{\code{UniProt}}{character COLUMN_DESCRIPTION}
-#'   \item{\code{Sentinel.variant*}}{character COLUMN_DESCRIPTION}
-#'   \item{\code{Chr}}{double COLUMN_DESCRIPTION}
-#'   \item{\code{Pos}}{double COLUMN_DESCRIPTION}
-#'   \item{\code{Region.start}}{double COLUMN_DESCRIPTION}
-#'   \item{\code{Region.end}}{double COLUMN_DESCRIPTION}
-#'   \item{\code{Effect.Allele.(EA)}}{character COLUMN_DESCRIPTION}
-#'   \item{\code{Other.Allele.(OA)}}{character COLUMN_DESCRIPTION}
-#'   \item{\code{EAF}}{double COLUMN_DESCRIPTION}
-#'   \item{\code{INFO}}{double COLUMN_DESCRIPTION}
-#'   \item{\code{cis/.trans}}{character COLUMN_DESCRIPTION}
-#'   \item{\code{Mapped.gene}}{character COLUMN_DESCRIPTION}
-#'   \item{\code{No..conditionally.significant.variants}}{double COLUMN_DESCRIPTION}
-#'   \item{\code{Previously.reported}}{character COLUMN_DESCRIPTION}
-#'   \item{\code{Replicates?}}{character COLUMN_DESCRIPTION}
-#'   \item{\code{beta}}{double COLUMN_DESCRIPTION}
-#'   \item{\code{SE}}{double COLUMN_DESCRIPTION}
-#'   \item{\code{p}}{character COLUMN_DESCRIPTION}
-#'   \item{\code{beta}}{double COLUMN_DESCRIPTION}
-#'   \item{\code{SE}}{double COLUMN_DESCRIPTION}
-#'   \item{\code{p}}{double COLUMN_DESCRIPTION}
-#'   \item{\code{beta}}{double COLUMN_DESCRIPTION}
-#'   \item{\code{SE}}{double COLUMN_DESCRIPTION}
-#'   \item{\code{p}}{character COLUMN_DESCRIPTION}
-#'   \item{\code{Uncorrelated.with.PAV.(r2≥0.1)}}{character COLUMN_DESCRIPTION}
-#'   \item{\code{Significant.after.adjusting.for.PAVs}}{character COLUMN_DESCRIPTION}
-#'   \item{\code{Is.a.cis.eQTL.for.same.gene?}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{Locus.ID}}{Locus id}
+#'   \item{\code{SOMAmer.ID}}{SOMAmer id}
+#'   \item{\code{Target}}{Protein}
+#'   \item{\code{Target.fullname}}{Protein full name}
+#'   \item{\code{UniProt}}{UniProt id}
+#'   \item{\code{Sentinel.variant*}}{Sentinel variant}
+#'   \item{\code{Chr}}{Chromosome}
+#'   \item{\code{Pos}}{Position}
+#'   \item{\code{Region.start}}{Region start}
+#'   \item{\code{Region.end}}{Region end}
+#'   \item{\code{Effect.Allele.(EA)}}{Effect allele}
+#'   \item{\code{Other.Allele.(OA)}}{Other allele}
+#'   \item{\code{EAF}}{Effect allele frequency}
+#'   \item{\code{INFO}}{Information score}
+#'   \item{\code{cis/.trans}}{"cis"/"trans"}
+#'   \item{\code{Mapped.gene}}{Mapped gene}
+#'   \item{\code{No..conditionally.significant.variants}}{Number of conditionally significant variants}
+#'   \item{\code{Previously.reported}}{Previously reported}
+#'   \item{\code{Replicates?}}{Yes/No}
+#'   \item{\code{beta}}{b}
+#'   \item{\code{SE}}{SE}
+#'   \item{\code{p}}{p value}
+#'   \item{\code{beta}}{b}
+#'   \item{\code{SE}}{SE}
+#'   \item{\code{p}}{p value}
+#'   \item{\code{beta}}{b}
+#'   \item{\code{SE}}{SE}
+#'   \item{\code{p}}{p value}
+#'   \item{\code{Uncorrelated.with.PAV.(r2≥0.1)}}{Uncorrelated with PAV}
+#'   \item{\code{Significant.after.adjusting.for.PAVs}}{Significant after adjustment for PAVs}
+#'   \item{\code{Is.a.cis.eQTL.for.same.gene?}}{Is a cis eQTL for the same gene?}
 #' }
 #' @details As above.
 
@@ -1372,26 +1368,26 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #' @keywords datasets
 #' @format A data frame with 163 rows and 20 variables:
 #' \describe{
-#'   \item{\code{Locus.ID}}{character COLUMN_DESCRIPTION}
-#'   \item{\code{Sentinel.variant*}}{character COLUMN_DESCRIPTION}
-#'   \item{\code{Chr}}{double COLUMN_DESCRIPTION}
-#'   \item{\code{Pos}}{double COLUMN_DESCRIPTION}
-#'   \item{\code{SOMAmer.ID}}{character COLUMN_DESCRIPTION}
-#'   \item{\code{Target}}{character COLUMN_DESCRIPTION}
-#'   \item{\code{Target.fullname}}{character COLUMN_DESCRIPTION}
-#'   \item{\code{UniProt}}{character COLUMN_DESCRIPTION}
-#'   \item{\code{cis/.trans}}{character COLUMN_DESCRIPTION}
-#'   \item{\code{Mapped.gene}}{character COLUMN_DESCRIPTION}
-#'   \item{\code{Effect.Allele.(EA)}}{character COLUMN_DESCRIPTION}
-#'   \item{\code{Other.Allele.(OA)}}{character COLUMN_DESCRIPTION}
-#'   \item{\code{Previously.reported}}{double COLUMN_DESCRIPTION}
-#'   \item{\code{beta}}{double COLUMN_DESCRIPTION}
-#'   \item{\code{SE}}{double COLUMN_DESCRIPTION}
-#'   \item{\code{p}}{character COLUMN_DESCRIPTION}
-#'   \item{\code{beta}}{double COLUMN_DESCRIPTION}
-#'   \item{\code{SE}}{double COLUMN_DESCRIPTION}
-#'   \item{\code{p}}{character COLUMN_DESCRIPTION}
-#'   \item{\code{Replicates?}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{Locus.ID}}{Locus id}
+#'   \item{\code{Sentinel.variant*}}{Sentinel variant}
+#'   \item{\code{Chr}}{Chromosome [1-12,14-20,22]}
+#'   \item{\code{Pos}}{Position}
+#'   \item{\code{SOMAmer.ID}}{SOMAmer id}
+#'   \item{\code{Target}}{Protein}
+#'   \item{\code{Target.fullname}}{Protein full name}
+#'   \item{\code{UniProt}}{UniProt id}
+#'   \item{\code{cis/.trans}}{"cis"/"trans"}
+#'   \item{\code{Mapped.gene}}{Mapped gene}
+#'   \item{\code{Effect.Allele.(EA)}}{Effect allele}
+#'   \item{\code{Other.Allele.(OA)}}{Other allele}
+#'   \item{\code{Previously.reported}}{Previously reported (0/1)}
+#'   \item{\code{beta}}{b}
+#'   \item{\code{SE}}{SE}
+#'   \item{\code{p}}{p value}
+#'   \item{\code{beta}}{b}
+#'   \item{\code{SE}}{SE}
+#'   \item{\code{p}}{p value}
+#'   \item{\code{Replicates?}}{Yes/No}
 #' }
 #' @details As above.
 
@@ -1403,8 +1399,8 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #' @keywords datasets
 #' @format A data frame with 3622 rows and 3 variables:
 #' \describe{
-#'   \item{\code{Number}}{double COLUMN_DESCRIPTION}
-#'   \item{\code{Analyte}}{character COLUMN_DESCRIPTION}
+#'   \item{\code{Number}}{A serial number}
+#'   \item{\code{Analyte}}{Name}
 #'   \item{\code{UniProt.ID(s)}}{UniProt id}
 #' }
 #' @details As above.
