@@ -26,7 +26,11 @@ knitr::opts_chunk$set(
 
 ## Colocalisation
 
-This is the actual script for cis-pQTL colocalisation analysis for SCALLOP-INF. The driver is in Bash.
+This is the actual script for cis-pQTL colocalisation analysis for SCALLOP-INF. 
+
+### The driver program
+
+It is in Bash.
 
 ```bash
 #!/usr/bin/bash
@@ -51,7 +55,10 @@ do
    fi
 done
 ```
-and the corresponding coloc.R contains minor modification to the documentation example
+
+### coloc.R
+
+It contains minor modification to the documentation example
 
 ```r
 liftRegion <- function(x,chain,flanking=1e6)
@@ -227,6 +234,8 @@ single_run(r)
 where options for protein GWAS, microarray, RNA-Seq are available with respect to variant-flanking or gene regions. When no results are generated,
 there would have problem with `dplyr::arrange(df_gtex, -PP.H4.abf);p <- ggplot(df_gtex, aes(x = PP.H4.abf)) + geom_histogram()`.
 
+### Collection of results
+
 When these are furnished we keep results as follows,
 
 ```r
@@ -255,6 +264,8 @@ collect()
 ```
 
 i.e., PP3+PP4>=0.9 and PP4/PP3>=3.
+
+### Parallel computing
 
 To speed up the analysis, we resort to [SLURM](https://slurm.schedmd.com/documentation.html),
 
