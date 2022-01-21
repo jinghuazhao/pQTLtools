@@ -77,7 +77,11 @@
 <div class="section level2">
 <h2 id="colocalisation">Colocalisation<a class="anchor" aria-label="anchor" href="#colocalisation"></a>
 </h2>
-<p>This is the actual script for cis-pQTL colocalisation analysis for SCALLOP-INF. The driver is in Bash.</p>
+<p>This is the actual script for cis-pQTL colocalisation analysis for SCALLOP-INF.</p>
+<div class="section level3">
+<h3 id="the-driver-program">The driver program<a class="anchor" aria-label="anchor" href="#the-driver-program"></a>
+</h3>
+<p>It is in Bash.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/bash</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> r <span class="kw">in</span> <span class="dt">{</span><span class="dv">1</span><span class="dt">..</span><span class="dv">59</span><span class="dt">}</span></span>
@@ -99,7 +103,11 @@
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>     <span class="bu">cd</span> <span class="at">-</span></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>   <span class="cf">fi</span></span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre></div>
-<p>and the corresponding coloc.R contains minor modification to the documentation example</p>
+</div>
+<div class="section level3">
+<h3 id="coloc-r">coloc.R<a class="anchor" aria-label="anchor" href="#coloc-r"></a>
+</h3>
+<p>It contains minor modification to the documentation example</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">liftRegion</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>,<span class="va">chain</span>,<span class="va">flanking</span><span class="op">=</span><span class="fl">1e6</span><span class="op">)</span>
 <span class="op">{</span>
@@ -270,6 +278,10 @@
 <span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html" class="external-link">as.integer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"r"</span><span class="op">)</span><span class="op">)</span>
 <span class="fu">single_run</span><span class="op">(</span><span class="va">r</span><span class="op">)</span></code></pre></div>
 <p>where options for protein GWAS, microarray, RNA-Seq are available with respect to variant-flanking or gene regions. When no results are generated, there would have problem with <code>dplyr::arrange(df_gtex, -PP.H4.abf);p &lt;- ggplot(df_gtex, aes(x = PP.H4.abf)) + geom_histogram()</code>.</p>
+</div>
+<div class="section level3">
+<h3 id="collection-of-results">Collection of results<a class="anchor" aria-label="anchor" href="#collection-of-results"></a>
+</h3>
 <p>When these are furnished we keep results as follows,</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">collect</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span>
@@ -295,6 +307,10 @@
 <span class="op">}</span>
 <span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html" class="external-link">collect</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>i.e., PP3+PP4&gt;=0.9 and PP4/PP3&gt;=3.</p>
+</div>
+<div class="section level3">
+<h3 id="parallel-computing">Parallel computing<a class="anchor" aria-label="anchor" href="#parallel-computing"></a>
+</h3>
 <p>To speed up the analysis, we resort to <a href="https://slurm.schedmd.com/documentation.html" class="external-link">SLURM</a>,</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/bash</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -332,6 +348,7 @@
 <span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
 <span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="ex">gtex</span></span></code></pre></div>
+</div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
