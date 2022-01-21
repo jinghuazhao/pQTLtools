@@ -30,7 +30,7 @@ navbar:
   right:
     - text: "Source"
       href: https://github.com/jinghuazhao/pQTLtools
-      html: <img src='https://jinghuazhao.github.io/pQTLtools/images/bees.svg' alt='GitHub' width='72' />
+      html: <img src='https://github.com/jinghuazhao/pQTLtools/blob/master/images/bees.svg' alt='GitHub' width='72' />
 
 articles:
   - title: Vignettes
