@@ -7,8 +7,7 @@ function build()
     invisible(suppressMessages(lapply(libs, require, character.only = TRUE)))
     devtools::document()
     library(pkgdown)
-  # keep as appropriate
-  # clean_site()
+    clean_site()
     init_site()
     build_home()
     build_news()
@@ -32,7 +31,6 @@ function build()
   if [ -f vignettes/fig3d.html ]; then
      mv vignettes/fig3d.html docs/articles/
   fi
-# add entry for reference to pkgdown/_pkgdown.yml  
 }
 
 build
