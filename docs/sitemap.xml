@@ -52,13 +52,28 @@
     <loc>https://jinghuazhao.github.io/pQTLtools/reference/biomaRt.html</loc>
   </url>
   <url>
+    <loc>https://jinghuazhao.github.io/pQTLtools/reference/blank_plot.html</loc>
+  </url>
+  <url>
     <loc>https://jinghuazhao.github.io/pQTLtools/reference/caprion.html</loc>
+  </url>
+  <url>
+    <loc>https://jinghuazhao.github.io/pQTLtools/reference/clump_data.args.html</loc>
+  </url>
+  <url>
+    <loc>https://jinghuazhao.github.io/pQTLtools/reference/extract_outcome_data.args.html</loc>
+  </url>
+  <url>
+    <loc>https://jinghuazhao.github.io/pQTLtools/reference/format_data.args.html</loc>
   </url>
   <url>
     <loc>https://jinghuazhao.github.io/pQTLtools/reference/genequeries.html</loc>
   </url>
   <url>
     <loc>https://jinghuazhao.github.io/pQTLtools/reference/get.prop.below.LLOD.html</loc>
+  </url>
+  <url>
+    <loc>https://jinghuazhao.github.io/pQTLtools/reference/harmonise_data.args.html</loc>
   </url>
   <url>
     <loc>https://jinghuazhao.github.io/pQTLtools/reference/hg19.html</loc>
@@ -94,6 +109,9 @@
     <loc>https://jinghuazhao.github.io/pQTLtools/reference/mr_scatter_plot2.html</loc>
   </url>
   <url>
+    <loc>https://jinghuazhao.github.io/pQTLtools/reference/pQTLtools-package.html</loc>
+  </url>
+  <url>
     <loc>https://jinghuazhao.github.io/pQTLtools/reference/pqtlMR.html</loc>
   </url>
   <url>
@@ -116,6 +134,9 @@
   </url>
   <url>
     <loc>https://jinghuazhao.github.io/pQTLtools/reference/st6.html</loc>
+  </url>
+  <url>
+    <loc>https://jinghuazhao.github.io/pQTLtools/reference/swap.html</loc>
   </url>
   <url>
     <loc>https://jinghuazhao.github.io/pQTLtools/reference/swath_ms.html</loc>
