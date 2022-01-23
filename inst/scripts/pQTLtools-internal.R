@@ -61,8 +61,3 @@
 #' unique_uniprot_list <- setdiff(intersect(st4$UniProt,inf1$uniprot),"P23560")
 #' subset(INF1_merge,uniprot %in% unique_uniprot_list)
 #' }
-#'
-#' @aliases clump_data.args
-#' @aliases extract_outcome_data.args
-#' @aliases format_data.args
-#' @aliases harmonise_data.args
