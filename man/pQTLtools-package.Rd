@@ -21,7 +21,7 @@ A summary of datasets and functions
 
 \tabular{ll}{
 Objects             \tab    Description\cr
-\strong{Datasets}   \tab    &nbsp;\cr
+\strong{Datasets}   \tab    \cr
 biomaRt             \tab    Curated data from biomaRt\cr
 caprion             \tab    Caprion panel\cr
 hg19                \tab    Curated data from Bioconductor\cr
@@ -35,20 +35,20 @@ st4                 \tab    ST4 of the INTERVAL SomaLogic paper\cr
 st6                 \tab    ST6 of the INTERVAL SomaLogic paper\cr
 st18                \tab    ST18 of the INTERVAL SomaLogic paper\cr
 swath_ms            \tab    SWATH-MS panel\cr
-\strong{eQTL/GWAS}  \tab    &nbsp;\cr
+\strong{eQTL/GWAS}  \tab    \cr
 get.prop.below.LLOD  \tab   Limit of detection analysis\cr
 import_eQTLCatalogue \tab   Import eQTL Catalogue\cr
 import_OpenGWAS      \tab   Import OpenGWAS\cr
 make_ExpressionSet   \tab   A call to ExpressionSet class\cr
 run_coloc            \tab   Colocalisation analysis\cr
-\strong{MR analysis} \tab   &nbsp;\cr
+\strong{MR analysis} \tab   \cr
 pqtlMR               \tab   Bidirectional pQTL-MR analysis\cr
 run_TwoSampleMR      \tab   A generic wrapper for TwoSampleMR analysis\cr
 \strong{PhenoScanner Utilities} \tab &nbsp;\cr
 genequeries          \tab   phenoscanner genequeries in batches\cr
 regionqueries        \tab   phenoscanner regionqueries in batches\cr
 snpqueries           \tab   phenoscanner snpqueries in batches\cr
-\strong{UniProt API} \tab   &nbsp;\cr
+\strong{UniProt API} \tab   \cr
 uniprot2ids          \tab   UniProt ID to others\cr
 }
 
