@@ -13,11 +13,7 @@ url: https://jinghuazhao.github.io/pQTLtools/
 template:
   bootstrap: 5
   params:
-    bootswatch: united
-  opengraph:
-    image:
-      src: images/bees.svg
-      alt: pQTLtools
+    bootswatch: simplex
 
 navbar:
   left:
@@ -43,9 +39,6 @@ articles:
     - SCALLOP-INF
 
 reference:
-  - title: A summary
-    contents:
-    - pQTLtools-package
   - title: Functions
     contents:
     - genequeries
