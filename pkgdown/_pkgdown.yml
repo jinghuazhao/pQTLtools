@@ -13,10 +13,13 @@ url: https://jinghuazhao.github.io/pQTLtools/
 template:
   bootstrap: 5
   params:
-    bootswatch: simplex
+    bootswatch: spacelab
 
 navbar:
   left:
+    - text: "Home"
+      icon: fa-home
+      href: index.html
     - text: "Articles"
       href: articles/index.html
     - text: "Reference"
@@ -24,7 +27,8 @@ navbar:
     - text: "Changelog"
       href: "news/index.html"
   right:
-    - text: "Source"
+    - text: "GitHub"
+      icon: fa-github
       href: https://github.com/jinghuazhao/pQTLtools
 
 articles:
@@ -40,6 +44,9 @@ articles:
     - SCALLOP-INF
 
 reference:
+  - title: A summary
+    contents:
+    - pQTLtools-package
   - title: Functions
     contents:
     - genequeries
