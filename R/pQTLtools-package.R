@@ -16,7 +16,7 @@
 #' Title: \tab pQTL Tools\cr
 #' Author: \tab Jing Hua Zhao\cr
 #' Maintainer: \tab Jing hua Zhao <jinghuazhao@hotmail.com>\cr
-#' License: MIT + file LICENSE
+#' License: \tab MIT + file LICENSE\cr
 #' URL: \tab https://github.com/jinghuazhao/pQTLtools\cr
 #' BugReports: \tab https://github.com/jinghuazhao/pQTLtools/issues\cr
 #' }
