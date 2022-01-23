@@ -21,41 +21,50 @@
 #' BugReports: \tab https://github.com/jinghuazhao/pQTLtools/issues\cr
 #' }
 #'
-#' @md
-#'
 #' ## A summary of datasets and functions
 #'
-#' Objects             |    Description
-#' --------------------|-----------------------------------------
-#' **Datasets**        |    
-#' biomaRt             |    Curated data from biomaRt
-#' caprion             |    Caprion panel
-#' hg19                |    Curated data from Bioconductor
-#' hg19Tables          |    Curated data from UCSC genome browser
-#' inf1                |    Olink/INF panel
-#' Olink_NGS           |    Olink/NGS panels
-#' Olink_qPCR          |    Olink/qPCR panels
-#' SomaLogic160410     |    SomaLogic panel
-#' SomaScanV4.1        |    SomaScan v4.1 panel
-#' st4                 |    ST4 of the INTERVAL SomaLogic paper
-#' st6                 |    ST6 of the INTERVAL SomaLogic paper
-#' st18                |    ST18 of the INTERVAL SomaLogic paper
-#' swath_ms            |    SWATH-MS panel
-#' **eQTL/GWAS**       |
-#' get.prop.below.LLOD  |   Limit of detection analysis
-#' import_eQTLCatalogue |   Import eQTL Catalogue
-#' import_OpenGWAS      |   Import OpenGWAS
-#' make_ExpressionSet   |   A call to ExpressionSet class
-#' run_coloc            |   Colocalisation analysis
-#' **MR analysis**      |
-#' pqtlMR               |   Bidirectional pQTL-MR analysis
-#' run_TwoSampleMR      |   A generic wrapper for TwoSampleMR analysis
-#' **PhenoScanner Utilities** |
-#' genequeries          |   phenoscanner genequeries in batches
-#' regionqueries        |   phenoscanner regionqueries in batches
-#' snpqueries           |   phenoscanner snpqueries in batches
-#' **UniProt API**      |
-#' uniprot2ids          |   UniProt ID to others
+#' \tabular{ll}{
+#' Objects             \tab    Description\cr
+#' \cr
+#' \strong{Datasets}\cr
+#' \cr
+#' biomaRt             \tab    Curated data from biomaRt\cr
+#' caprion             \tab    Caprion panel\cr
+#' hg19                \tab    Curated data from Bioconductor\cr
+#' hg19Tables          \tab    Curated data from UCSC genome browser\cr
+#' inf1                \tab    Olink/INF panel\cr
+#' Olink_NGS           \tab    Olink/NGS panels\cr
+#' Olink_qPCR          \tab    Olink/qPCR panels\cr
+#' SomaLogic160410     \tab    SomaLogic panel\cr
+#' SomaScanV4.1        \tab    SomaScan v4.1 panel\cr
+#' st4                 \tab    ST4 of the INTERVAL SomaLogic paper\cr
+#' st6                 \tab    ST6 of the INTERVAL SomaLogic paper\cr
+#' st18                \tab    ST18 of the INTERVAL SomaLogic paper\cr
+#' swath_ms            \tab    SWATH-MS panel\cr
+#' \cr
+#' \strong{eQTL/GWAS}\cr
+#' \cr
+#' get.prop.below.LLOD  \tab   Limit of detection analysis\cr
+#' import_eQTLCatalogue \tab   Import eQTL Catalogue\cr
+#' import_OpenGWAS      \tab   Import OpenGWAS\cr
+#' make_ExpressionSet   \tab   A call to ExpressionSet class\cr
+#' run_coloc            \tab   Colocalisation analysis\cr
+#' \cr
+#' \strong{MR analysis}\cr
+#' \cr
+#' pqtlMR               \tab   Bidirectional pQTL-MR analysis\cr
+#' run_TwoSampleMR      \tab   A generic wrapper for TwoSampleMR analysis\cr
+#' \cr
+#' \strong{PhenoScanner Utilities}\cr
+#' \cr
+#' genequeries          \tab   phenoscanner genequeries in batches\cr
+#' regionqueries        \tab   phenoscanner regionqueries in batches\cr
+#' snpqueries           \tab   phenoscanner snpqueries in batches\cr
+#' \cr
+#' \strong{UniProt API}\cr
+#' \cr
+#' uniprot2ids          \tab   UniProt ID to others\cr
+#' }
 #'
 #' Some generic description for the datasets are as follows.
 #'
