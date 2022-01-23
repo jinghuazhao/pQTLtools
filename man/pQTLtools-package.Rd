@@ -17,16 +17,6 @@ pQTL-Mendelian Randomization via TwoSampleMR, linkage through UniProt
 IDs to other resources.
 }
 \details{
-\tabular{ll}{
-Package: \tab pQTLtools\cr
-Title: \tab pQTL Tools\cr
-Author: \tab Jing Hua Zhao\cr
-Maintainer: \tab Jing hua Zhao <jinghuazhao@hotmail.com>\cr
-License: \tab MIT + file LICENSE\cr
-URL: \tab https://github.com/jinghuazhao/pQTLtools\cr
-BugReports: \tab https://github.com/jinghuazhao/pQTLtools/issues\cr
-}
-
 A summary of datasets and functions
 
 \tabular{ll}{
