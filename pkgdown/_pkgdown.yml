@@ -29,11 +29,12 @@ navbar:
 
 articles:
   - title: Vignettes
+    navbar: ~
     contents:
     - pQTLtools
   - title: Articles
     desc: >
-      The logp, log10p, pvalue and a few other functions were developed during the SCALLOP-INF analysis (https://jinghuazhao.github.io/INF/) and are now part of R/gap,
+      Some functions were developed during the SCALLOP-INF analysis (https://jinghuazhao.github.io/INF/) and are now part of R/gap,
     contents:
     - es
     - SCALLOP-INF
