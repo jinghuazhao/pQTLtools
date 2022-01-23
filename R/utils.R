@@ -523,6 +523,36 @@ import_OpenGWAS <- function(opengwas_id, region, verbose = TRUE)
   gwasvcf::vcf_to_granges(vcf)
 }
 
+#' @title FUNCTION_TITLE
+#' @description FUNCTION_DESCRIPTION
+#' @param dat PARAM_DESCRIPTION, Default: NULL
+#' @param type PARAM_DESCRIPTION, Default: 'exposure'
+#' @param snps PARAM_DESCRIPTION, Default: NULL
+#' @param header PARAM_DESCRIPTION, Default: TRUE
+#' @param phenotype_col PARAM_DESCRIPTION, Default: 'Phenotype'
+#' @param snp_col PARAM_DESCRIPTION, Default: 'SNP'
+#' @param beta_col PARAM_DESCRIPTION, Default: 'beta'
+#' @param se_col PARAM_DESCRIPTION, Default: 'se'
+#' @param eaf_col PARAM_DESCRIPTION, Default: 'eaf'
+#' @param effect_allele_col PARAM_DESCRIPTION, Default: 'effect_allele'
+#' @param other_allele_col PARAM_DESCRIPTION, Default: 'other_allele'
+#' @param pval_col PARAM_DESCRIPTION, Default: 'pval'
+#' @param units_col PARAM_DESCRIPTION, Default: 'units'
+#' @param ncase_col PARAM_DESCRIPTION, Default: 'ncase'
+#' @param ncontrol_col PARAM_DESCRIPTION, Default: 'ncontrol'
+#' @param samplesize_col PARAM_DESCRIPTION, Default: 'samplesize'
+#' @param gene_col PARAM_DESCRIPTION, Default: 'gene'
+#' @param id_col PARAM_DESCRIPTION, Default: 'id'
+#' @param min_pval PARAM_DESCRIPTION, Default: 1e-200
+#' @param z_col PARAM_DESCRIPTION, Default: 'z'
+#' @param info_col PARAM_DESCRIPTION, Default: 'info'
+#' @param chr_col PARAM_DESCRIPTION, Default: 'chr'
+#' @param pos_col PARAM_DESCRIPTION, Default: 'pos'
+#' @param log_pval PARAM_DESCRIPTION, Default: FALSE
+#' @return OUTPUT_DESCRIPTION
+#' @rdname format_data.args
+#' @keywords internal
+
 format_data.args <- function(dat=NULL, type = "exposure", snps = NULL, header = TRUE,
                              phenotype_col = "Phenotype", snp_col = "SNP", beta_col = "beta",
                              se_col = "se", eaf_col = "eaf", effect_allele_col = "effect_allele",
@@ -538,6 +568,26 @@ format_data.args <- function(dat=NULL, type = "exposure", snps = NULL, header = 
                  gene_col = gene_col, id_col = id_col, min_pval = min_pval, z_col = z_col,
                  info_col = info_col, chr_col = chr_col, pos_col = pos_col, log_pval = FALSE))
 
+#' @title FUNCTION_TITLE
+#' @description FUNCTION_DESCRIPTION
+#' @param snps PARAM_DESCRIPTION, Default: NULL
+#' @param outcomes PARAM_DESCRIPTION, Default: NULL
+#' @param proxies PARAM_DESCRIPTION, Default: TRUE
+#' @param rsq PARAM_DESCRIPTION, Default: 0.8
+#' @param align_alleles PARAM_DESCRIPTION, Default: 1
+#' @param palindromes PARAM_DESCRIPTION, Default: 1
+#' @param maf_threshold PARAM_DESCRIPTION, Default: 0.3
+#' @param access_token PARAM_DESCRIPTION, Default: ieugwasr::check_access_token()
+#' @param splitsize PARAM_DESCRIPTION, Default: 10000
+#' @param proxy_splitsize PARAM_DESCRIPTION, Default: 500
+#' @return OUTPUT_DESCRIPTION
+#' @details DETAILS
+#' @seealso
+#'  \code{\link[ieugwasr]{check_access_token}}
+#' @rdname extract_outcome_data.args
+#' @importFrom ieugwasr check_access_token
+#' @keywords internal
+
 extract_outcome_data.args <- function(snps=NULL, outcomes=NULL, proxies=TRUE, rsq=0.8, align_alleles=1,
                                       palindromes=1, maf_threshold=0.3, access_token=ieugwasr::check_access_token(),
                                       splitsize=10000, proxy_splitsize=500)
@@ -545,17 +595,56 @@ extract_outcome_data.args <- function(snps=NULL, outcomes=NULL, proxies=TRUE, rs
                            palindromes=palindromes,maf_threshold=maf_threshold,access_token=access_token,
                            splitsize=splitsize,proxy_splitsize=proxy_splitsize))
 
+#' @title FUNCTION_TITLE
+#' @description FUNCTION_DESCRIPTION
+#' @param dat PARAM_DESCRIPTION, Default: NULL
+#' @param clump_kb PARAM_DESCRIPTION, Default: 10000
+#' @param clump_r2 PARAM_DESCRIPTION, Default: 0.001
+#' @param clump_p1 PARAM_DESCRIPTION, Default: 1
+#' @param clump_p2 PARAM_DESCRIPTION, Default: 1
+#' @param pop PARAM_DESCRIPTION, Default: 'EUR'
+#' @return OUTPUT_DESCRIPTION
+#' @details DETAILS
+#' @rdname clump_data.args
+#' @keywords internal
+
 clump_data.args <- function(dat=NULL, clump_kb = 10000, clump_r2 = 0.001, clump_p1 = 1, clump_p2 = 1, pop = "EUR")
   invisible(list(dat=dat,clump_kb=clump_kb,clump_r2=clump_r2,clump_p1=clump_p1,clump_p2=clump_p2,pop=pop))
 
+#' @title FUNCTION_TITLE
+#' @description FUNCTION_DESCRIPTION
+#' @param exposure_dat PARAM_DESCRIPTION, Default: NULL
+#' @param outcome_dat PARAM_DESCRIPTION, Default: NULL
+#' @param action PARAM_DESCRIPTION, Default: 2
+#' @return OUTPUT_DESCRIPTION
+#' @rdname harmonise_data.args
+#' @keywords internal
+
 harmonise_data.args <- function(exposure_dat=NULL, outcome_dat=NULL, action = 2)
   invisible(list(exporesure_dat=exposure_dat,outcome_dat=outcome_dat,action=action))
+
+#' @title FUNCTION_TITLE
+#' @description FUNCTION_DESCRIPTION
+#' @param x PARAM_DESCRIPTION
+#' @param y PARAM_DESCRIPTION
+#' @return OUTPUT_DESCRIPTION
+#' @keywords internal
 
 swap <- function(x,y)
    eval(parse(text = paste("swap_unique_var_a <-", substitute(x), ";",
    substitute(x), "<-", substitute(y), ";",
    substitute(y), "<-swap_unique_var_a")), envir=parent.frame())
 
+#' @title FUNCTION_TITLE
+#' @description FUNCTION_DESCRIPTION
+#' @param message PARAM_DESCRIPTION
+#' @return OUTPUT_DESCRIPTION
+#' @details DETAILS
+#' @seealso
+#'  \code{\link[ggplot2]{ggplot}},\code{\link[ggplot2]{geom_label}},\code{\link[ggplot2]{aes}},\code{\link[ggplot2]{labs}},\code{\link[ggplot2]{theme}},\code{\link[ggplot2]{margin}}
+#' @rdname blank_plot
+#' @importFrom ggplot2 ggplot geom_text aes labs theme element_blank
+#' @keywords internal
 
 blank_plot <- function(message)
 {
