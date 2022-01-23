@@ -44,7 +44,7 @@ run_coloc            \tab   Colocalisation analysis\cr
 \strong{MR analysis} \tab   \cr
 pqtlMR               \tab   Bidirectional pQTL-MR analysis\cr
 run_TwoSampleMR      \tab   A generic wrapper for TwoSampleMR analysis\cr
-\strong{PhenoScanner Utilities} \tab &nbsp;\cr
+\strong{PhenoScanner Utilities} \tab \cr
 genequeries          \tab   phenoscanner genequeries in batches\cr
 regionqueries        \tab   phenoscanner regionqueries in batches\cr
 snpqueries           \tab   phenoscanner snpqueries in batches\cr
