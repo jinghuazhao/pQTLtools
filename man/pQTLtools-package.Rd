@@ -21,10 +21,65 @@ IDs to other resources.
 Package: \tab pQTLtools\cr
 Title: \tab pQTL Tools\cr
 Author: \tab Jing Hua Zhao\cr
-Maintainer: \tab Jing hua Zhao \href{mailto:jinghuazhao@hotmail.com}{jinghuazhao@hotmail.com}\cr
+Maintainer: \tab Jing hua Zhao <jinghuazhao@hotmail.com>\cr
 License: \tab MIT + file LICENSE\cr
 URL: \tab https://github.com/jinghuazhao/pQTLtools\cr
 BugReports: \tab https://github.com/jinghuazhao/pQTLtools/issues\cr
+}
+
+A summary of datasets and functions
+
+\tabular{ll}{
+Objects             \tab    Description\cr
+\cr
+\strong{Datasets}\cr
+\cr
+biomaRt             \tab    Curated data from biomaRt\cr
+caprion             \tab    Caprion panel\cr
+hg19                \tab    Curated data from Bioconductor\cr
+hg19Tables          \tab    Curated data from UCSC genome browser\cr
+inf1                \tab    Olink/INF panel\cr
+Olink_NGS           \tab    Olink/NGS panels\cr
+Olink_qPCR          \tab    Olink/qPCR panels\cr
+SomaLogic160410     \tab    SomaLogic panel\cr
+SomaScanV4.1        \tab    SomaScan v4.1 panel\cr
+st4                 \tab    ST4 of the INTERVAL SomaLogic paper\cr
+st6                 \tab    ST6 of the INTERVAL SomaLogic paper\cr
+st18                \tab    ST18 of the INTERVAL SomaLogic paper\cr
+swath_ms            \tab    SWATH-MS panel\cr
+\cr
+\strong{eQTL/GWAS}\cr
+\cr
+get.prop.below.LLOD  \tab   Limit of detection analysis\cr
+import_eQTLCatalogue \tab   Import eQTL Catalogue\cr
+import_OpenGWAS      \tab   Import OpenGWAS\cr
+make_ExpressionSet   \tab   A call to ExpressionSet class\cr
+run_coloc            \tab   Colocalisation analysis\cr
+\cr
+\strong{MR analysis}\cr
+\cr
+pqtlMR               \tab   Bidirectional pQTL-MR analysis\cr
+run_TwoSampleMR      \tab   A generic wrapper for TwoSampleMR analysis\cr
+\cr
+\strong{PhenoScanner Utilities}\cr
+\cr
+genequeries          \tab   phenoscanner genequeries in batches\cr
+regionqueries        \tab   phenoscanner regionqueries in batches\cr
+snpqueries           \tab   phenoscanner snpqueries in batches\cr
+\cr
+\strong{UniProt API}\cr
+\cr
+uniprot2ids          \tab   UniProt ID to others\cr
+}
+
+Some generic description for the datasets are as follows.
+
+\describe{
+  \item{chr}{chromosome}
+  \item{start}{Start position}
+  \item{end}{End position}
+  \item{gene}{Gene name}
+  \item{UniProt}{UniProt ID}
 }
 }
 \examples{
