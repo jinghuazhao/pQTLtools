@@ -21,8 +21,7 @@
 #' BugReports: \tab https://github.com/jinghuazhao/pQTLtools/issues\cr
 #' }
 #'
-#' @md
-#' ## A summary of datasets and functions
+#' A summary of datasets and functions
 #'
 #' \tabular{ll}{
 #' Objects             \tab    Description\cr
