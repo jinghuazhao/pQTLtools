@@ -43,6 +43,9 @@ articles:
     - SCALLOP-INF
 
 reference:
+  - title: A summary
+    contents:
+    - pQTLtools-package
   - title: Functions
     contents:
     - genequeries
