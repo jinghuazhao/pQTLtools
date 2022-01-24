@@ -346,11 +346,14 @@ uniprot2ids <- function(uniprotid="ACC+ID",to,query)
 #' # wget https://gwas.mrcieu.ac.uk/files/ebi-a-GCST004599/ebi-a-GCST004599.vcf.gz
 #' # wget https://gwas.mrcieu.ac.uk/files/ebi-a-GCST004599/ebi-a-GCST004599.vcf.gz.tbi
 #' # gwas_stats <- gwasvcf::query_gwas("ebi-a-GCST004599.vcf.gz", chrompos = "3:56649749-57049749")
-#' # gwas_stats <- gwasvcf::vcf_to_granges(gwas_stats) %>% keepSeqlevels("3") %>% renameSeqlevels("chr3")
+#' # gwas_stats <- gwasvcf::vcf_to_granges(gwas_stats) %>%
+#'                 keepSeqlevels("3") %>%
+#'                 renameSeqlevels("chr3")
 #' # via import_OpenGWAS
 #' opengwas_id <- "ebi-a-GCST004599"
 #' region <- "3:56649749-57049749"
-#' gwas_stats <- import_OpenGWAS(opengwas_id,region) %>% keepSeqlevels("3") %>%
+#' gwas_stats <- import_OpenGWAS(opengwas_id,region) %>%
+#'               keepSeqlevels("3") %>%
 #'               renameSeqlevels("chr3")
 #' f <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","hg19ToHg38.over.chain")
 #' chain <- rtracklayer::import.chain(f)
