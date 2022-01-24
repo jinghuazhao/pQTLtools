@@ -21,7 +21,7 @@ install.packages("remotes")
 remotes::install_github("jinghuazhao/pQTLtools")
 ```
 
-Depdendencies are detailed in the DECRIPTION file of the package at GitHub.
+Dependencies are detailed in the DECRIPTION file of the package at GitHub.
 
 ## February 2021 update 
 
