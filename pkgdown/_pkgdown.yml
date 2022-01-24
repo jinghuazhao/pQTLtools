@@ -12,10 +12,8 @@ authors:
 url: https://jinghuazhao.github.io/pQTLtools/
 template:
   bootstrap: 5
-  bslib:
-    bg: "#202123"
-    fg: "#B8BCC2"
-    primary: "#306cc9"
+  params:
+    bootswatch: litera
 
 navbar:
   left:
@@ -32,7 +30,7 @@ navbar:
       - text: ExpressionSet
         href: articles/es.html
       - text: SCALLOP-INF scripts
-        href: articles/SCALLOP_INF.html
+        href: articles/SCALLOP-INF.html
     - text: Reference
       href: reference/index.html
     - text: Changelog
