@@ -2,8 +2,8 @@
 
 ## A protein Quantitative Trait Locus toolkit
 
-The seeds collection of data and utilties for (pQTL) analysis. At
-this early stage, this repository collects information on a number of
+This seeds collection of data and utilties for (pQTL) analysis. At
+this early stage, the repository collects information on a number of
 protein panels, linking function for cis/trans classification, 2D
 manhattan plots, 3D-plotly plots, forest plots among others availale
 from R/gap; query results on genes, regions, and SNPs via
@@ -20,6 +20,8 @@ The latest version of pQTLtools can be installed as usual:
 install.packages("remotes")
 remotes::install_github("jinghuazhao/pQTLtools")
 ```
+
+Depdendencies are detailed in the DECRIPTION file of the package at GitHub.
 
 ## February 2021 update 
 
