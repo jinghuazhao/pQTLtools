@@ -1,13 +1,13 @@
 exposure	outcome	id.exposure	id.outcome	samplesize	SNP	b	se	p
-ABO	FEV1 || id:ebi-a-GCST007432	QdJUcV	ebi-a-GCST007432	321047	rs505922	-0.0109	0.00193	1.35e-08
-ABO	FEV1 || id:ebi-a-GCST007432	QdJUcV	ebi-a-GCST007432	321047	All - Inverse variance weighted	     NA	     NA	      NA
-ABO	FEV1 || id:ebi-a-GCST007432	QdJUcV	ebi-a-GCST007432	321047	All - MR Egger	     NA	     NA	      NA
-ABO	Coronary heart disease || id:ieu-a-7	QdJUcV	ieu-a-7	184305	rs505922	 0.0334	0.00730	4.63e-06
-ABO	Coronary heart disease || id:ieu-a-7	QdJUcV	ieu-a-7	184305	All - Inverse variance weighted	     NA	     NA	      NA
-ABO	Coronary heart disease || id:ieu-a-7	QdJUcV	ieu-a-7	184305	All - MR Egger	     NA	     NA	      NA
-LIFR	FEV1 || id:ebi-a-GCST007432	y1YX9g	ebi-a-GCST007432	321047	rs635634	 0.0620	0.01000	5.65e-10
-LIFR	FEV1 || id:ebi-a-GCST007432	y1YX9g	ebi-a-GCST007432	321047	All - Inverse variance weighted	     NA	     NA	      NA
-LIFR	FEV1 || id:ebi-a-GCST007432	y1YX9g	ebi-a-GCST007432	321047	All - MR Egger	     NA	     NA	      NA
-LIFR	Coronary heart disease || id:ieu-a-7	y1YX9g	ieu-a-7	184305	rs635634	-0.2572	0.03904	4.47e-11
-LIFR	Coronary heart disease || id:ieu-a-7	y1YX9g	ieu-a-7	184305	All - Inverse variance weighted	     NA	     NA	      NA
-LIFR	Coronary heart disease || id:ieu-a-7	y1YX9g	ieu-a-7	184305	All - MR Egger	     NA	     NA	      NA
+ABO	FEV1 || id:ebi-a-GCST007432	4ZBYaf	ebi-a-GCST007432	321047	rs505922	-0.0109	0.00193	1.35e-08
+ABO	FEV1 || id:ebi-a-GCST007432	4ZBYaf	ebi-a-GCST007432	321047	All - Inverse variance weighted	     NA	     NA	      NA
+ABO	FEV1 || id:ebi-a-GCST007432	4ZBYaf	ebi-a-GCST007432	321047	All - MR Egger	     NA	     NA	      NA
+ABO	Coronary heart disease || id:ieu-a-7	4ZBYaf	ieu-a-7	184305	rs505922	 0.0334	0.00730	4.63e-06
+ABO	Coronary heart disease || id:ieu-a-7	4ZBYaf	ieu-a-7	184305	All - Inverse variance weighted	     NA	     NA	      NA
+ABO	Coronary heart disease || id:ieu-a-7	4ZBYaf	ieu-a-7	184305	All - MR Egger	     NA	     NA	      NA
+LIFR	FEV1 || id:ebi-a-GCST007432	hvsqhA	ebi-a-GCST007432	321047	rs635634	 0.0620	0.01000	5.65e-10
+LIFR	FEV1 || id:ebi-a-GCST007432	hvsqhA	ebi-a-GCST007432	321047	All - Inverse variance weighted	     NA	     NA	      NA
+LIFR	FEV1 || id:ebi-a-GCST007432	hvsqhA	ebi-a-GCST007432	321047	All - MR Egger	     NA	     NA	      NA
+LIFR	Coronary heart disease || id:ieu-a-7	hvsqhA	ieu-a-7	184305	rs635634	-0.2572	0.03904	4.47e-11
+LIFR	Coronary heart disease || id:ieu-a-7	hvsqhA	ieu-a-7	184305	All - Inverse variance weighted	     NA	     NA	      NA
+LIFR	Coronary heart disease || id:ieu-a-7	hvsqhA	ieu-a-7	184305	All - MR Egger	     NA	     NA	      NA
