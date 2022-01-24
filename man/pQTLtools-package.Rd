@@ -4,21 +4,8 @@
 \name{pQTLtools-package}
 \alias{pQTLtools}
 \alias{pQTLtools-package}
-\title{A protein Quantitative Trait Locus toolkit}
+\title{A summary of datasets and functions}
 \description{
-The seeds collection of data and utilties for (pQTL) analysis. At
-this early stage, this repository collects information on a number of
-protein panels, linking function for cis/trans classification, 2D
-manhattan plots, 3D-plotly plots, forest plots among others availale
-from R/gap; query results on genes, regions, and SNPs via
-PhenoScanner, adding functionality to check for replication across
-platforms and aspects of protein-related analysis such as
-pQTL-Mendelian Randomization via TwoSampleMR, linkage through UniProt
-IDs to other resources.
-}
-\details{
-A summary of datasets and functions
-
 \tabular{ll}{
 Objects             \tab    Description\cr
 \strong{Datasets}   \tab    \cr
@@ -51,7 +38,8 @@ snpqueries           \tab   phenoscanner snpqueries in batches\cr
 \strong{UniProt API} \tab   \cr
 uniprot2ids          \tab   UniProt ID to others\cr
 }
-
+}
+\details{
 Some generic description for the datasets are as follows.
 
 \describe{
