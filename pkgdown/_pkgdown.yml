@@ -18,48 +18,29 @@ template:
     primary: "#306cc9"
 
 navbar:
-  structure:
-    left:  [home, articles, reference, news]
-    right: [search, github]
-  components:
-    home:
-    - text: Home
+  left:
+    - text: "Home"
       icon: fa-home
       href: index.html
-    articles:
-    text: Articles
-    menu:
-    - text: Vignettes
-    - text: An overview of pQTLtools
-      href: articles/pQTLtools.html
-    - text: -------
     - text: Articles
-    - text: ExpressionSet
-      href: articles/es.html
-    - text: SCALLOP-INF scripts
-      href: articles/SCALLOP_INF.html
-    reference:
+      menu:
+      - text: Vignettes
+      - text: An overview of pQTLtools
+        href: articles/pQTLtools.html
+      - text: -------
+      - text: Articles
+      - text: ExpressionSet
+        href: articles/es.html
+      - text: SCALLOP-INF scripts
+        href: articles/SCALLOP_INF.html
     - text: Reference
       href: reference/index.html
-    news:
     - text: Changelog
       href: news/index.html
-    github:
-    - text: GitHub
+  right:
+    - text: "GitHub"
       icon: fa-github
       href: https://github.com/jinghuazhao/pQTLtools
-
-articles:
-  - title: Vignettes
-    navbar: ~
-    contents:
-    - pQTLtools
-  - title: Articles
-    desc: >
-      Some functions were developed during the SCALLOP-INF analysis (https://jinghuazhao.github.io/INF/) and are now part of R/gap,
-    contents:
-    - es
-    - SCALLOP-INF
 
 reference:
   - title: A summary
