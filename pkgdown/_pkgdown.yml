@@ -12,22 +12,40 @@ authors:
 url: https://jinghuazhao.github.io/pQTLtools/
 template:
   bootstrap: 5
-  params:
-    bootswatch: spacelab
+  bslib:
+    bg: "#202123"
+    fg: "#B8BCC2"
+    primary: "#306cc9"
 
 navbar:
-  left:
-    - text: "Home"
+  structure:
+    left:  [home, articles, reference, news]
+    right: [search, github]
+  components:
+    home:
+    - text: Home
       icon: fa-home
       href: index.html
-    - text: "Articles"
-      href: articles/index.html
-    - text: "Reference"
+    articles:
+    text: Articles
+    menu:
+    - text: Vignettes
+    - text: An overview of pQTLtools
+      href: articles/pQTLtools.html
+    - text: -------
+    - text: Articles
+    - text: ExpressionSet
+      href: articles/es.html
+    - text: SCALLOP-INF scripts
+      href: articles/SCALLOP_INF.html
+    reference:
+    - text: Reference
       href: reference/index.html
-    - text: "Changelog"
-      href: "news/index.html"
-  right:
-    - text: "GitHub"
+    news:
+    - text: Changelog
+      href: news/index.html
+    github:
+    - text: GitHub
       icon: fa-github
       href: https://github.com/jinghuazhao/pQTLtools
 
