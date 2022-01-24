@@ -1,8 +1,8 @@
 home:
   title: Protein Quantitative Trait Locus tools
-  description: This package contains various Protein Quantitative Trait Locus (pQTL) handling functinos.
+  description: A protein Quantitative Trait Locus toolkit.
   links:
-  - text: See related R packages
+  - text: Other R packages
     href: https://jinghuazhao.github.io/R/
 
 authors:
