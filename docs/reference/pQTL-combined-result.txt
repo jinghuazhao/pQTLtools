@@ -1,5 +1,5 @@
 id.exposure	id.outcome	outcome	exposure	method	nsnp	b	se	pval
-hr3XUN	ebi-a-GCST007432	FEV1 || id:ebi-a-GCST007432	ABO	Wald ratio	1	-0.0109	0.00193	1.35e-08
-hr3XUN	ieu-a-7	Coronary heart disease || id:ieu-a-7	ABO	Wald ratio	1	 0.0334	0.00730	4.63e-06
-yAsA8h	ebi-a-GCST007432	FEV1 || id:ebi-a-GCST007432	LIFR	Wald ratio	1	 0.0620	0.01000	5.65e-10
-yAsA8h	ieu-a-7	Coronary heart disease || id:ieu-a-7	LIFR	Wald ratio	1	-0.2572	0.03904	4.47e-11
+5lBAUZ	ebi-a-GCST007432	FEV1 || id:ebi-a-GCST007432	ABO	Wald ratio	1	-0.0109	0.00193	1.35e-08
+5lBAUZ	ieu-a-7	Coronary heart disease || id:ieu-a-7	ABO	Wald ratio	1	 0.0334	0.00730	4.63e-06
+hUFiw2	ebi-a-GCST007432	FEV1 || id:ebi-a-GCST007432	LIFR	Wald ratio	1	 0.0620	0.01000	5.65e-10
+hUFiw2	ieu-a-7	Coronary heart disease || id:ieu-a-7	LIFR	Wald ratio	1	-0.2572	0.03904	4.47e-11
