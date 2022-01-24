@@ -1,16 +1,3 @@
-#' A protein Quantitative Trait Locus toolkit
-#'
-#' The seeds collection of data and utilties for (pQTL) analysis. At
-#' this early stage, this repository collects information on a number of
-#' protein panels, linking function for cis/trans classification, 2D
-#' manhattan plots, 3D-plotly plots, forest plots among others availale
-#' from R/gap; query results on genes, regions, and SNPs via
-#' PhenoScanner, adding functionality to check for replication across
-#' platforms and aspects of protein-related analysis such as
-#' pQTL-Mendelian Randomization via TwoSampleMR, linkage through UniProt
-#' IDs to other resources.
-#'
-#' @details
 #' A summary of datasets and functions
 #'
 #' \tabular{ll}{
