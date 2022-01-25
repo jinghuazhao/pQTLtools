@@ -1089,8 +1089,8 @@ run_TwoSampleMR <- function(TwoSampleMRinput, mr_plot="None", prefix="")
 #'                          "Case/control status",
 #'                          "Tumor progress on XYZ scale"),
 #'                        row.names=c("gender", "type", "score"))
-#' require(Biobase)
-#' require(pQTLtools)
+#' suppressMessages((Biobase))
+#' suppressMessages((pQTLtools))
 #' phenoData <- new("AnnotatedDataFrame", data=pData, varMetadata=metadata)
 #' experimentData <- new("MIAME",
 #'   name="Pierre Fermat",
@@ -1133,7 +1133,7 @@ Biobase::ExpressionSet(assayData,phenoData=phenoData,
 #' @export
 #' @return An updated ExpressionSet object.
 #' @examples
-#' library(Biobase)
+#' suppressMessages(library(Biobase))
 #' data(sample.ExpressionSet)
 #' exampleSet <- sample.ExpressionSet
 #' fData(exampleSet)
@@ -1142,7 +1142,7 @@ Biobase::ExpressionSet(assayData,phenoData=phenoData,
 #' x <- dplyr::arrange(fData(lod),desc(pc.belowLOD.new))
 #' knitr::kable(head(lod))
 #' plot(x[,2], main="Random quantile cut off", ylab="<lod%")
-#' @author Jimmy Peters
+#' @author James Peters
 
 get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 
