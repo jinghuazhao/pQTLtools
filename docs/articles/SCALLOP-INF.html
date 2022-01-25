@@ -52,10 +52,10 @@
 <li class="active nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <h6 class="dropdown-header" data-toc-skip>Vignettes</h6>
+    <h6 class="dropdown-header" data-toc-skip>Vignettes:</h6>
     <a class="dropdown-item" href="../articles/pQTLtools.html">An overview of pQTLtools</a>
     <div class="dropdown-divider"></div>
-    <h6 class="dropdown-header" data-toc-skip>Articles</h6>
+    <h6 class="dropdown-header" data-toc-skip>Articles:</h6>
     <a class="dropdown-item" href="../articles/es.html">ExpressionSet</a>
     <a class="dropdown-item" href="../articles/SCALLOP-INF.html">SCALLOP-INF scripts</a>
   </div>
@@ -102,6 +102,11 @@
 <h2 id="colocalisation">Colocalisation<a class="anchor" aria-label="anchor" href="#colocalisation"></a>
 </h2>
 <p>This is the actual script for cis-pQTL colocalisation analysis on GTEx v8, as reported in <span class="citation">Kerimov et al. (2021)</span>, for SCALLOP-INF.</p>
+<div class="section level3">
+<h3 id="data">Data<a class="anchor" aria-label="anchor" href="#data"></a>
+</h3>
+<p>The data were GWAS summary statistics in GRCh37 and VCF format, converted by <code>gwasvcf</code>. The GTEx association statistics were in GRCh38 and downloaded from the eQTL Catalogue and stored locally. Data on RNA-Seq remains on website hosted at eQTL Catalogue.</p>
+</div>
 <div class="section level3">
 <h3 id="the-driver-program">The driver program<a class="anchor" aria-label="anchor" href="#the-driver-program"></a>
 </h3>
@@ -287,7 +292,7 @@
 <span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/find.package.html" class="external-link">path.package</a></span><span class="op">(</span><span class="st">"pQTLtools"</span><span class="op">)</span>,<span class="st">"eQTL-Catalogue"</span>,<span class="st">"tabix_ftp_paths.tsv"</span><span class="op">)</span>
 <span class="va">tabix_paths</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.delim</a></span><span class="op">(</span><span class="va">f</span>, stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html" class="external-link">as_tibble</a></span><span class="op">(</span><span class="op">)</span>
 <span class="va">HOME</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"HOME"</span><span class="op">)</span>
-<span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/find.package.html" class="external-link">path.package</a></span><span class="op">(</span><span class="st">"pQTLtools"</span><span class="op">)</span>,<span class="st">"eQTL-Catalogue"</span>,<span class="st">"tabix_ftp_paths_imported.tsv"</span><span class="op">)</span>
+<span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/find.package.html" class="external-link">path.package</a></span><span class="op">(</span><span class="st">"pQTLtools"</span><span class="op">)</span>,<span class="st">"eQTL-Catalogue"</span>,<span class="st">"tabix_ftp_paths_gtex.tsv"</span><span class="op">)</span>
 <span class="va">imported_tabix_paths</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">within</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.delim</a></span><span class="op">(</span><span class="va">f</span>, stringsAsFactors <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html" class="external-link">as_tibble</a></span><span class="op">(</span><span class="op">)</span>,
       <span class="op">{</span><span class="va">ftp_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">"ftp://ftp.ebi.ac.uk/pub/databases/spot/eQTL/csv/GTEx_V8/ge"</span>,
                         <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">HOME</span>,<span class="st">"/rds/public_databases/GTEx/csv"</span><span class="op">)</span>,<span class="va">ftp_path</span><span class="op">)</span><span class="op">}</span><span class="op">)</span>
