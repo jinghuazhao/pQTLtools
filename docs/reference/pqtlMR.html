@@ -121,14 +121,14 @@ used to perform MR analysis against a list of outcomes from MR-Base.</p>
 <span class="r-in"><span class="fu">pqtlMR</span><span class="op">(</span><span class="va">ivs</span>, <span class="va">ids</span>, mr_plot<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> API: public: http://gwas-api.mrcieu.ac.uk/</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting data for 2 SNP(s) from 2 GWAS(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising ABO (ygNR1d) and FEV1 || id:ebi-a-GCST007432 (ebi-a-GCST007432)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising LIFR (5fGCbw) and FEV1 || id:ebi-a-GCST007432 (ebi-a-GCST007432)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising ABO (ygNR1d) and Coronary heart disease || id:ieu-a-7 (ieu-a-7)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising LIFR (5fGCbw) and Coronary heart disease || id:ieu-a-7 (ieu-a-7)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing '5fGCbw' on 'ebi-a-GCST007432'</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing '5fGCbw' on 'ieu-a-7'</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'ygNR1d' on 'ebi-a-GCST007432'</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'ygNR1d' on 'ieu-a-7'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising ABO (iS3CNJ) and FEV1 || id:ebi-a-GCST007432 (ebi-a-GCST007432)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising LIFR (JkWJMV) and FEV1 || id:ebi-a-GCST007432 (ebi-a-GCST007432)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising ABO (iS3CNJ) and Coronary heart disease || id:ieu-a-7 (ieu-a-7)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising LIFR (JkWJMV) and Coronary heart disease || id:ieu-a-7 (ieu-a-7)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'JkWJMV' on 'ebi-a-GCST007432'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'JkWJMV' on 'ieu-a-7'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'iS3CNJ' on 'ebi-a-GCST007432'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'iS3CNJ' on 'ieu-a-7'</span>
 <span class="r-in"><span class="co"># A bidirectional analysis</span></span>
 <span class="r-in"><span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/find.package.html" class="external-link">find.package</a></span><span class="op">(</span><span class="st">"pQTLtools"</span>,lib.loc<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">.libPaths</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,<span class="st">"tests"</span>,<span class="st">"ms.ins"</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">ivs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/TwoSampleMR/man/format_data.html" class="external-link">format_data</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span><span class="va">f</span>, header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>, samplesize_col<span class="op">=</span><span class="st">"N"</span><span class="op">)</span></span>
@@ -138,15 +138,15 @@ used to perform MR analysis against a list of outcomes from MR-Base.</p>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting data for 2 SNP(s) from 1 GWAS(s)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Finding proxies for 1 SNPs in outcome ieu-b-18</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting data for 1 SNP(s) from 1 GWAS(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising TNFB (uyOmng) and multiple sclerosis || id:ieu-b-18 (ieu-b-18)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'uyOmng' on 'ieu-b-18'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising TNFB (nlV69y) and multiple sclerosis || id:ieu-b-18 (ieu-b-18)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'nlV69y' on 'ieu-b-18'</span>
 <span class="r-in"><span class="co"># reverse MR</span></span>
 <span class="r-in"><span class="fu">pqtlMR</span><span class="op">(</span><span class="va">ivs</span>, <span class="va">ids</span>, ,prefix<span class="op">=</span><span class="st">"MS_rev-"</span>,reverse<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting data for 2 SNP(s) from 1 GWAS(s)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Finding proxies for 1 SNPs in outcome ieu-b-18</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting data for 1 SNP(s) from 1 GWAS(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising TNFB (uyOmng) and multiple sclerosis || id:ieu-b-18 (ieu-b-18)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'ieu-b-18' on 'uyOmng'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising TNFB (nlV69y) and multiple sclerosis || id:ieu-b-18 (ieu-b-18)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'ieu-b-18' on 'nlV69y'</span>
 <span class="r-in"></span>
 </code></pre></div>
     </div>
