@@ -28,6 +28,10 @@ knitr::opts_chunk$set(
 
 This is the actual script for cis-pQTL colocalisation analysis on GTEx v8, as reported in @kerimov21, for SCALLOP-INF. 
 
+### Data
+
+The data were GWAS summary statistics in GRCh37 and VCF format, converted by `gwasvcf`. The GTEx association statistics were in GRCh38 and downloaded from the eQTL Catalogue and stored locally. Data on RNA-Seq remains on website hosted at eQTL Catalogue.
+
 ### The driver program
 
 It is in Bash.
@@ -215,7 +219,7 @@ gwasvcf::set_bcftools(file.path(HPC_WORK,"bin","bcftools"))
 f <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","tabix_ftp_paths.tsv")
 tabix_paths <- read.delim(f, stringsAsFactors = FALSE) %>% dplyr::as_tibble()
 HOME <- Sys.getenv("HOME")
-f <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","tabix_ftp_paths_imported.tsv")
+f <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","tabix_ftp_paths_gtex.tsv")
 imported_tabix_paths <- within(read.delim(f, stringsAsFactors = FALSE) %>% dplyr::as_tibble(),
       {ftp_path <- gsub("ftp://ftp.ebi.ac.uk/pub/databases/spot/eQTL/csv/GTEx_V8/ge",
                         paste0(HOME,"/rds/public_databases/GTEx/csv"),ftp_path)})

@@ -157,4 +157,8 @@ options(width=120)
 knitr::kable(annot,row.names=FALSE)
 ```
 
-Finally, quality metrics as with linear models for differential expression and enrichment analysis are illustrated by the Bioconductor `maEndtoEnd` package.
+## maEndtoEnd
+
+Web: [https://bioconductor.org/packages/release/workflows/html/maEndToEnd.html](https://bioconductor.org/packages/release/workflows/html/maEndToEnd.html).
+
+Examples can be found on PCA, heatmap, normalisation, linear models, and enrichment analysis from this Bioconductor package.
