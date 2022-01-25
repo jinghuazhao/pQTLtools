@@ -86,159 +86,15 @@
   </div>
 </nav><div class="container template-home">
 <div class="row">
-  <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header">
-<img src="logo.svg" class="logo" alt=""><h1 id="pqtltools">pQTLtools<a class="anchor" aria-label="anchor" href="#pqtltools"></a>
-</h1>
-</div>
-<div class="section level2">
-<h2 id="a-protein-quantitative-trait-locus-toolkit">A protein Quantitative Trait Locus toolkit<a class="anchor" aria-label="anchor" href="#a-protein-quantitative-trait-locus-toolkit"></a>
-</h2>
-<p>This seeds collection of data and utilties for (pQTL) analysis. At this early stage, the repository collects information on a number of protein panels, linking function for cis/trans classification, 2D manhattan plots, 3D-plotly plots, forest plots among others availale from R/gap; query results on genes, regions, and SNPs via PhenoScanner, adding functionality to check for replication across platforms and aspects of protein-related analysis such as pQTL-Mendelian Randomization via TwoSampleMR, linkage through UniProt IDs to other resources.</p>
-</div>
-<div class="section level2">
-<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
-</h2>
-<p>The latest version of pQTLtools can be installed as usual:</p>
-<pre><code><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"jinghuazhao/pQTLtools"</span><span class="op">)</span></code></pre>
-<p>Dependencies are detailed in the DECRIPTION file of the package at GitHub.</p>
-</div>
-<div class="section level2">
-<h2 id="february-2021-update">February 2021 update<a class="anchor" aria-label="anchor" href="#february-2021-update"></a>
-</h2>
-<p><strong>A web-driven documentation is now available</strong></p>
-<p><a href="https://jinghuazhao.github.io/pQTLtools/">https://jinghuazhao.github.io/pQTLtools/</a></p>
-</div>
-<div class="section level2">
-<h2 id="a-summary-of-datasets-and-functions">A summary of datasets and functions<a class="anchor" aria-label="anchor" href="#a-summary-of-datasets-and-functions"></a>
-</h2>
-<table class="table">
-<thead><tr class="header">
-<th>Objects</th>
-<th>Description</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td><strong>Datasets</strong></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>biomaRt</td>
-<td>Curated data from biomaRt</td>
-</tr>
-<tr class="odd">
-<td>caprion</td>
-<td>Caprion panel</td>
-</tr>
-<tr class="even">
-<td>hg19</td>
-<td>Curated data from Bioconductor</td>
-</tr>
-<tr class="odd">
-<td>hg19Tables</td>
-<td>Curated data from UCSC genome browser</td>
-</tr>
-<tr class="even">
-<td>inf1</td>
-<td>Olink/INF panel</td>
-</tr>
-<tr class="odd">
-<td>Olink_NGS</td>
-<td>Olink/NGS panels</td>
-</tr>
-<tr class="even">
-<td>Olink_qPCR</td>
-<td>Olink/qPCR panels</td>
-</tr>
-<tr class="odd">
-<td>SomaLogic160410</td>
-<td>SomaLogic panel</td>
-</tr>
-<tr class="even">
-<td>SomaScanV4.1</td>
-<td>SomaScan v4.1 panel</td>
-</tr>
-<tr class="odd">
-<td>st4</td>
-<td>ST4 of the INTERVAL SomaLogic paper</td>
-</tr>
-<tr class="even">
-<td>st6</td>
-<td>ST6 of the INTERVAL SomaLogic paper</td>
-</tr>
-<tr class="odd">
-<td>st18</td>
-<td>ST18 of the INTERVAL SomaLogic paper</td>
-</tr>
-<tr class="even">
-<td>swath_ms</td>
-<td>SWATH-MS panel</td>
-</tr>
-<tr class="odd">
-<td><strong>eQTL/GWAS</strong></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>get.prop.below.LLOD</td>
-<td>Limit of detection analysis</td>
-</tr>
-<tr class="odd">
-<td>import_eQTLCatalogue</td>
-<td>Import eQTL Catalogue</td>
-</tr>
-<tr class="even">
-<td>import_OpenGWAS</td>
-<td>Import OpenGWAS</td>
-</tr>
-<tr class="odd">
-<td>make_ExpressionSet</td>
-<td>A call to ExpressionSet class</td>
-</tr>
-<tr class="even">
-<td>run_coloc</td>
-<td>Colocalisation analysis</td>
-</tr>
-<tr class="odd">
-<td><strong>MR analysis</strong></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>pqtlMR</td>
-<td>Bidirectional pQTL-MR analysis</td>
-</tr>
-<tr class="odd">
-<td>run_TwoSampleMR</td>
-<td>A generic wrapper for TwoSampleMR analysis</td>
-</tr>
-<tr class="even">
-<td><strong>PhenoScanner Utilities</strong></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>genequeries</td>
-<td>phenoscanner genequeries in batches</td>
-</tr>
-<tr class="even">
-<td>regionqueries</td>
-<td>phenoscanner regionqueries in batches</td>
-</tr>
-<tr class="odd">
-<td>snpqueries</td>
-<td>phenoscanner snpqueries in batches</td>
-</tr>
-<tr class="even">
-<td><strong>UniProt API</strong></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>uniprot2ids</td>
-<td>UniProt ID to others</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+  <main id="main" class="col-md-9">
+This repository collects information on a number of
+    protein panels, linking function for cis/trans classification, 2D
+    manhattan plots, 3D-plotly plots, forest plots among others availale
+    from R/gap; query results on genes, regions, and SNPs via
+    PhenoScanner, adding functionality to check for replication across
+    platforms and aspects of protein-related analysis such as
+    pQTL-Mendelian Randomization via TwoSampleMR, linkage through UniProt
+    IDs to other resources.
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
@@ -279,12 +135,12 @@
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by Jing hua Zhao.</p>
+<p>NULL</p>
 </div>
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>NULL Provided without <strong>any warranty</strong>.</p>
 </div>
 
     </footer>
