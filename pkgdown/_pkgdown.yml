@@ -22,11 +22,11 @@ navbar:
       href: index.html
     - text: Articles
       menu:
-      - text: Vignettes
+      - text: "Vignettes:"
       - text: An overview of pQTLtools
         href: articles/pQTLtools.html
-      - text: -------
-      - text: Articles
+      - text: ---------
+      - text: "Articles:"
       - text: ExpressionSet
         href: articles/es.html
       - text: SCALLOP-INF scripts
