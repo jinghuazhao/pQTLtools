@@ -2,7 +2,7 @@ home:
   title: Protein Quantitative Trait Locus tools
   description: A protein Quantitative Trait Locus toolkit.
   links:
-  - text: Other R packages
+  - text: See other R packages
     href: https://jinghuazhao.github.io/R/
 
 authors:
