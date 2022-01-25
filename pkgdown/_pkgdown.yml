@@ -4,11 +4,16 @@ home:
   links:
   - text: See other R packages
     href: https://jinghuazhao.github.io/R/
+  - text: Roadmap
+    href: /roadmap.html
 
 authors:
   Jing Hua Zhao:
     href: https://jinghuazhao.github.io/
     html: "<img src='https://jinghuazhao.github.io/en/consortium/bees.svg' width=72>"
+  footer:
+    roles: [cre, fnd]
+    text: "Crafted by"
 
 url: https://jinghuazhao.github.io/pQTLtools/
 template:
@@ -78,8 +83,8 @@ reference:
 
 footer:
   structure:
-    left: pQTLtools
-    right: [authors, legal]
+    left: [developed_by, built_with]
+    right: [legal]
   components:
     legal: Provided without **any warranty**.
 
