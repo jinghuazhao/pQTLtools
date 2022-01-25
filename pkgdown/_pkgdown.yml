@@ -4,8 +4,8 @@ home:
   links:
   - text: See other R packages
     href: https://jinghuazhao.github.io/R/
-  - text: Roadmap
-    href: /roadmap.html
+  - text: Sitemap
+    href: /sitemap.xml
 
 authors:
   Jing Hua Zhao:
