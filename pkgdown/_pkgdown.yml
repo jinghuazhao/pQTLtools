@@ -4,7 +4,6 @@ home:
   links:
   - text: See other R packages
     href: https://jinghuazhao.github.io/R/
-  strip_header: true
 
 authors:
   Jing Hua Zhao:
