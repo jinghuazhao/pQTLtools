@@ -30,7 +30,7 @@ This is the actual script for cis-pQTL colocalisation analysis on GTEx v8, as re
 
 ### Data
 
-The data were GWAS summary statistics in GRCh37 and VCF format, converted by `gwasvcf`. The GTEx association statistics were in GRCh38 and downloaded from the eQTL Catalogue and stored locally. Data on RNA-Seq remains on website hosted at eQTL Catalogue.
+The data were GWAS summary statistics in GRCh37 and VCF format, converted by `gwasvcf`. The GTEx association statistics were in GRCh38 and downloaded from the eQTL Catalogue and stored locally. Data on microarray and RNA-Seq remain on the eQTL Catalogue website.
 
 ### The driver program
 
