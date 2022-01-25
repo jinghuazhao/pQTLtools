@@ -1,4 +1,4 @@
-# pQTLtools <img src="man/figures/logo.svg" align="right" alt="" width="120" />
+<img src="man/figures/logo.svg" align="right" alt="" width="120" />
 
 ## A protein Quantitative Trait Locus toolkit
 
