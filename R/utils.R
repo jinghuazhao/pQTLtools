@@ -1089,8 +1089,8 @@ run_TwoSampleMR <- function(TwoSampleMRinput, mr_plot="None", prefix="")
 #'                          "Case/control status",
 #'                          "Tumor progress on XYZ scale"),
 #'                        row.names=c("gender", "type", "score"))
-#' suppressMessages((Biobase))
-#' suppressMessages((pQTLtools))
+#' suppressMessages(library(Biobase))
+#' suppressMessages(library(pQTLtools))
 #' phenoData <- new("AnnotatedDataFrame", data=pData, varMetadata=metadata)
 #' experimentData <- new("MIAME",
 #'   name="Pierre Fermat",
