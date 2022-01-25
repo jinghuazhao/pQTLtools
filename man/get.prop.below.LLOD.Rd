@@ -28,3 +28,6 @@ x <- dplyr::arrange(fData(lod),desc(pc.belowLOD.new))
 knitr::kable(head(lod))
 plot(x[,2], main="Random quantile cut off", ylab="<lod\%")
 }
+\author{
+Jimmy Peters
+}
