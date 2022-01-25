@@ -53,8 +53,8 @@ metadata <- data.frame(labelDescription=
                          "Case/control status",
                          "Tumor progress on XYZ scale"),
                        row.names=c("gender", "type", "score"))
-require(Biobase)
-require(pQTLtools)
+suppressMessages((Biobase))
+suppressMessages((pQTLtools))
 phenoData <- new("AnnotatedDataFrame", data=pData, varMetadata=metadata)
 experimentData <- new("MIAME",
   name="Pierre Fermat",

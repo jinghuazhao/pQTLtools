@@ -18,7 +18,7 @@ An updated ExpressionSet object.
 The function obtains lower limit of detection as in proteomic analysis.
 }
 \examples{
-library(Biobase)
+suppressMessages(library(Biobase))
 data(sample.ExpressionSet)
 exampleSet <- sample.ExpressionSet
 fData(exampleSet)
@@ -29,5 +29,5 @@ knitr::kable(head(lod))
 plot(x[,2], main="Random quantile cut off", ylab="<lod\%")
 }
 \author{
-Jimmy Peters
+James Peters
 }
