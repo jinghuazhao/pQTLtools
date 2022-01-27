@@ -8,20 +8,20 @@ home:
     structure: [links, custom, license, community, citation, authors, dev]
     components:
       custom:
-        title: Funding
-        text: I am *grateful* for funding from BHF during this work!
+        title: Support
+        text: Cambridge-CEU is greatly acknowledged.
 
 authors:
   Jing Hua Zhao:
     href: https://jinghuazhao.github.io/
-    html: "<img src='https://jinghuazhao.github.io/en/consortium/bees.svg' width=72>"
+    html: "<img src='https://jinghuazhao.github.io/en/consortium/bees.svg' width=48>"
   footer:
     roles: [cre, fnd]
     text: "Crafted by"
   sidebar:
     roles: [aut, ctb]
+    before: "Proudly brought to you by:"
     after: "Welcome!"
-  before: "Proudly:"
 
 url: https://jinghuazhao.github.io/pQTLtools/
 template:
