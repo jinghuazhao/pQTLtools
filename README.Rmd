@@ -2,7 +2,7 @@
 output: github_document
 ---
 
-```{r, echo = FALSE}
+```{r logo, echo = FALSE, include=FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
@@ -28,7 +28,7 @@ IDs to other resources.
 
 The latest version of pQTLtools can be installed as usual:
 
-```
+```r
 install.packages("remotes")
 remotes::install_github("jinghuazhao/pQTLtools")
 ```
