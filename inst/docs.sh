@@ -2,7 +2,7 @@
 
 function build()
 {
-  Rscript -e "knitr::knit('README.Rmd')"
+  Rscript -e "devtools::build_readme()"
   Rscript -e "
     libs <- c('gwasvcf','rtracklayer','VariantAnnotation')
     invisible(suppressMessages(lapply(libs, require, character.only = TRUE)))
