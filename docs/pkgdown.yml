@@ -1,11 +1,11 @@
 pandoc: '2.13'
-pkgdown: 2.0.1
+pkgdown: 2.0.2
 pkgdown_sha: ~
 articles:
   SCALLOP-INF: SCALLOP-INF.html
   es: es.html
   pQTLtools: pQTLtools.html
-last_built: 2022-01-25T19:24Z
+last_built: 2022-01-27T09:20Z
 urls:
   reference: https://jinghuazhao.github.io/pQTLtools/reference
   article: https://jinghuazhao.github.io/pQTLtools/articles
