@@ -31,7 +31,7 @@ template:
 
 navbar:
   left:
-    - text: "Home"
+    - text: ""
       icon: fa-home
       href: index.html
     - text: Articles
@@ -50,7 +50,7 @@ navbar:
     - text: Changelog
       href: news/index.html
   right:
-    - text: "GitHub"
+    - text: ""
       icon: fa-github
       href: https://github.com/jinghuazhao/pQTLtools
 
