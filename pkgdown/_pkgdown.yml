@@ -4,6 +4,12 @@ home:
   links:
   - text: See other R packages
     href: https://jinghuazhao.github.io/R/
+  sidebar:
+    structure: [links, custom, license, community, citation, authors, dev]
+    components:
+      custom:
+        title: Funding
+        text: I am *grateful* for funding from BHF during this work!
 
 authors:
   Jing Hua Zhao:
@@ -12,6 +18,10 @@ authors:
   footer:
     roles: [cre, fnd]
     text: "Crafted by"
+  sidebar:
+    roles: [aut, ctb]
+    after: "Welcome!"
+  before: "Proudly:"
 
 url: https://jinghuazhao.github.io/pQTLtools/
 template:
