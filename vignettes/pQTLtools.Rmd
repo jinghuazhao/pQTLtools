@@ -94,7 +94,7 @@ INF1_merge_cvt <- within(INF1_merge_cvt,{
 
 library(regioneR)
 with(INF1_merge_cvt, {
-# png("karyoplot.png",res= 300, units="in", width=12, height=20)
+  png("karyoplot.png",res= 300, units="in", width=12, height=20)
   sentinels <- toGRanges(Chr,bp-1,bp,labels=hgnc)
   cis.regions <- toGRanges(Chr,cis.start,cis.end)
   loci <- toGRanges(Chr,Start,End)
