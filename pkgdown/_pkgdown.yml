@@ -5,9 +5,9 @@ home:
   - text: See other R packages
     href: https://jinghuazhao.github.io/R/
   sidebar:
-    structure: [links, custom, license, community, citation, authors, dev]
+    structure: [links, support, license, community, authors, dev]
     components:
-      custom:
+      support:
         title: Support
         text: "[Cambridge-CEU](https://www.phpc.cam.ac.uk/ceu/)"
 
@@ -56,6 +56,8 @@ navbar:
 
 reference:
   - title: A summary
+    desc: >
+      Some functions are merged into R/gap as shown here, [https://jinghuazhao.github.io/R/vignettes/gap.html](https://jinghuazhao.github.io/R/vignettes/gap.html). The following datasets are available as internal objects: biomaRt, caprion, hg19, hg19Tables, inf1, Olink_NGS, Olink_qPCR, SomaLogic160410, st4, s6, swath_ms.
     contents:
     - pQTLtools-package
   - title: Functions
@@ -72,8 +74,6 @@ reference:
     - snpqueries
     - uniprot2ids
   - title: Datasets
-    desc: >
-      The following datasets are available as internal objects: biomaRt, caprion, hg19, hg19Tables, inf1, Olink_NGS, Olink_qPCR, SomaLogic160410, st4, s6, swath_ms.
     contents:
     - Olink_NGS
     - Olink_qPCR
