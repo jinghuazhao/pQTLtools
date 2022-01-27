@@ -4,7 +4,7 @@ Version: 0.1
 Date: 2022-1-27
 Authors@R: c(
     person("Jing Hua", "Zhao", , "jinghuazhao@hotmail.com", role = c("aut", "cre"),
-      comment = c(ORCID = "0000-0003-4930-3582", "0000-0002-1463-5870")
+      comment = c(ORCID = "0000-0002-1463-5870", "0000-0003-4930-3582")
     )
   )
 Maintainer: Jing hua Zhao <jinghuazhao@hotmail.com>
