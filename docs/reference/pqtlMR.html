@@ -121,14 +121,14 @@ used to perform MR analysis against a list of outcomes from MR-Base.</p>
 <span class="r-in"><span class="fu">pqtlMR</span><span class="op">(</span><span class="va">ivs</span>, <span class="va">ids</span>, mr_plot<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> API: public: http://gwas-api.mrcieu.ac.uk/</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting data for 2 SNP(s) from 2 GWAS(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising ABO (Y20I7I) and FEV1 || id:ebi-a-GCST007432 (ebi-a-GCST007432)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising LIFR (OKYzUx) and FEV1 || id:ebi-a-GCST007432 (ebi-a-GCST007432)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising ABO (Y20I7I) and Coronary heart disease || id:ieu-a-7 (ieu-a-7)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising LIFR (OKYzUx) and Coronary heart disease || id:ieu-a-7 (ieu-a-7)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'OKYzUx' on 'ebi-a-GCST007432'</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'OKYzUx' on 'ieu-a-7'</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'Y20I7I' on 'ebi-a-GCST007432'</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'Y20I7I' on 'ieu-a-7'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising ABO (lwCOIC) and FEV1 || id:ebi-a-GCST007432 (ebi-a-GCST007432)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising LIFR (c4Dh9w) and FEV1 || id:ebi-a-GCST007432 (ebi-a-GCST007432)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising ABO (lwCOIC) and Coronary heart disease || id:ieu-a-7 (ieu-a-7)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising LIFR (c4Dh9w) and Coronary heart disease || id:ieu-a-7 (ieu-a-7)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'c4Dh9w' on 'ebi-a-GCST007432'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'c4Dh9w' on 'ieu-a-7'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'lwCOIC' on 'ebi-a-GCST007432'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'lwCOIC' on 'ieu-a-7'</span>
 <span class="r-in"><span class="co"># A bidirectional analysis</span></span>
 <span class="r-in"><span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/find.package.html" class="external-link">find.package</a></span><span class="op">(</span><span class="st">"pQTLtools"</span>,lib.loc<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">.libPaths</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,<span class="st">"tests"</span>,<span class="st">"ms.ins"</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">ivs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/TwoSampleMR/man/format_data.html" class="external-link">format_data</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span><span class="va">f</span>, header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>, samplesize_col<span class="op">=</span><span class="st">"N"</span><span class="op">)</span></span>
@@ -138,15 +138,15 @@ used to perform MR analysis against a list of outcomes from MR-Base.</p>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting data for 2 SNP(s) from 1 GWAS(s)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Finding proxies for 1 SNPs in outcome ieu-b-18</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting data for 1 SNP(s) from 1 GWAS(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising TNFB (neGoqM) and multiple sclerosis || id:ieu-b-18 (ieu-b-18)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'neGoqM' on 'ieu-b-18'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising TNFB (81khBr) and multiple sclerosis || id:ieu-b-18 (ieu-b-18)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing '81khBr' on 'ieu-b-18'</span>
 <span class="r-in"><span class="co"># reverse MR</span></span>
 <span class="r-in"><span class="fu">pqtlMR</span><span class="op">(</span><span class="va">ivs</span>, <span class="va">ids</span>, ,prefix<span class="op">=</span><span class="st">"MS_rev-"</span>,reverse<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting data for 2 SNP(s) from 1 GWAS(s)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Finding proxies for 1 SNPs in outcome ieu-b-18</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting data for 1 SNP(s) from 1 GWAS(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising TNFB (neGoqM) and multiple sclerosis || id:ieu-b-18 (ieu-b-18)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'ieu-b-18' on 'neGoqM'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising TNFB (81khBr) and multiple sclerosis || id:ieu-b-18 (ieu-b-18)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'ieu-b-18' on '81khBr'</span>
 <span class="r-in"></span>
 </code></pre></div>
     </div>
@@ -155,7 +155,7 @@ used to perform MR analysis against a list of outcomes from MR-Base.</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Crafted by <a href="https://jinghuazhao.github.io/" class="external-link"><img src="https://jinghuazhao.github.io/en/consortium/bees.svg" width="48"></a>. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Crafted by <a href="https://jinghuazhao.github.io/" class="external-link"><img src="https://jinghuazhao.github.io/en/consortium/bees.svg" width="36"></a>. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
 <div class="pkgdown-footer-right">
