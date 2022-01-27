@@ -1,5 +1,5 @@
 Package: pQTLtools
-Title: Protein Quantitative Trait Locus tools
+Title:  A protein Quantitative Trait Locus toolkit
 Version: 0.1
 Date: 2022-1-27
 Authors@R: c(
