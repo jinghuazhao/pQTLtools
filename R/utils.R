@@ -361,7 +361,8 @@ uniprot2ids <- function(uniprotid="ACC+ID",to,query)
 #'   unlist() %>%
 #'   renameSeqlevels("3") %>%
 #'   dplyr::as_tibble() %>%
-#'   dplyr::transmute(chromosome = seqnames, position = start, AF, ES, SE, LP, SS) %>%
+#'   dplyr::transmute(chromosome = seqnames,
+#'                    position = start, REF, ALT, AF, ES, SE, LP, SS) %>%
 #'   dplyr::mutate(id = paste(chromosome, position, sep = ":")) %>%
 #'   dplyr::mutate(MAF = pmin(AF, 1-AF)) %>%
 #'   dplyr::group_by(id) %>%
@@ -442,24 +443,40 @@ import_eQTLCatalogue <- function(ftp_path, region, selected_gene_id, column_name
 #' @md
 #' @param eqtl_sumstats eQTL summary data.
 #' @param gwas_sumstats GWAS summary data.
+#' @harmonise a flag to harmonise data.
 #' @export
 #' @return Summary from `coloc.abf`.
 
-run_coloc <- function(eqtl_sumstats, gwas_sumstats)
+run_coloc <- function(eqtl_sumstats, gwas_sumstats, harmonise=TRUE)
 {
-  eQTL_dataset <- list(beta = eqtl_sumstats$beta,
-                       varbeta = eqtl_sumstats$se^2,
-                       N = (eqtl_sumstats$an)[1]/2,
-                       MAF = eqtl_sumstats$maf,
-                       type = "quant",
-                       snp = eqtl_sumstats$id)
-  gwas_dataset <- list(beta = gwas_sumstats$ES,
-                       varbeta = gwas_sumstats$SE^2,
-                       type = "quant",
-                       snp = gwas_sumstats$id,
-                       MAF = gwas_sumstats$MAF,
-                       N = gwas_sumstats$SS)
-  coloc_res <- coloc::coloc.abf(dataset1 = eQTL_dataset, dataset2 = gwas_dataset,p1 = 1e-4, p2 = 1e-4, p12 = 1e-5)
+  if (harmonise)
+  {
+    chromsome <- position <- ref <- alt <- REF <- ALT <- beta <- se <- ES <- SE <- NA
+    eqtl_sumstats <- filter(eqtl_sumstats, !any(is.na(c(chromosome,position,ref,alt,beta,se)))) %>%
+                     mutate(snpid = gap::chr_pos_a1_a2(chromosome, position, ref, alt))
+    gwas_sumstats <- filter(gwas_sumstats, !any(is.na(c(chromosome,position,REF,ALT,ES,SE)))) %>%
+                     mutate(snpid = gap::chr_pos_a1_a2(chromosome, position, REF, ALT)) %>%
+                     select(-chromosome,-position)
+    harmonise_data <- left_join(eqtl_sumstats,gwas_sumstats,by='snpid') %>%
+                      mutate(flag=if_else(ref==REF,1,-1)) %>%
+                      filter(!is.na(beta) & !is.na(ES))
+    eqtl_dataset <- with(harmonise_data, list(beta = flag*beta, varbeta = se^2, N = an/2, MAF = maf, snp = snpid, type = "quant"))
+    gwas_dataset <- with(harmonise_data, list(beta = ES, varbeta = SE^2, MAF = MAF, N = SS, snp = snpid, type = "quant"))
+  } else {
+    eqtl_dataset <- list(beta = eqtl_sumstats$beta,
+                         varbeta = eqtl_sumstats$se^2,
+                         N = (eqtl_sumstats$an)[1]/2,
+                         MAF = eqtl_sumstats$maf,
+                         type = "quant",
+                         snp = eqtl_sumstats$id)
+    gwas_dataset <- list(beta = gwas_sumstats$ES,
+                         varbeta = gwas_sumstats$SE^2,
+                         type = "quant",
+                         snp = gwas_sumstats$id,
+                         MAF = gwas_sumstats$MAF,
+                         N = gwas_sumstats$SS)
+  }
+  coloc_res <- coloc::coloc.abf(dataset1 = eqtl_dataset, dataset2 = gwas_dataset, p1 = 1e-4, p2 = 1e-4, p12 = 1e-5)
   res_formatted <- dplyr::as_tibble(t(as.data.frame(coloc_res$summary)))
 }
 
