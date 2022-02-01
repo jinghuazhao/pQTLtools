@@ -4,7 +4,7 @@
 \alias{run_coloc}
 \title{Colocalisation analysis}
 \usage{
-run_coloc(eqtl_sumstats, gwas_sumstats)
+run_coloc(eqtl_sumstats, gwas_sumstats, harmonise = TRUE)
 }
 \arguments{
 \item{eqtl_sumstats}{eQTL summary data.}

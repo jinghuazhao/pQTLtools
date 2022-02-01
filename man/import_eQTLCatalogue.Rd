@@ -79,7 +79,8 @@ gwas_stats_hg38 <- rtracklayer::liftOver(gwas_stats, chain) \%>\%
   unlist() \%>\%
   renameSeqlevels("3") \%>\%
   dplyr::as_tibble() \%>\%
-  dplyr::transmute(chromosome = seqnames, position = start, AF, ES, SE, LP, SS) \%>\%
+  dplyr::transmute(chromosome = seqnames,
+                   position = start, REF, ALT, AF, ES, SE, LP, SS) \%>\%
   dplyr::mutate(id = paste(chromosome, position, sep = ":")) \%>\%
   dplyr::mutate(MAF = pmin(AF, 1-AF)) \%>\%
   dplyr::group_by(id) \%>\%
