@@ -1,5 +1,5 @@
 exposure	outcome	id.exposure	id.outcome	samplesize	SNP	b	se	p
-TNFB	multiple sclerosis || id:ieu-b-18	ieu-b-18	vEfI74	11787	rs1800693	-2.82e-01	1.36e-01	0.0381
-TNFB	multiple sclerosis || id:ieu-b-18	ieu-b-18	vEfI74	11787	rs2364485	 6.46e+07	1.74e+00	0.0000
-TNFB	multiple sclerosis || id:ieu-b-18	ieu-b-18	vEfI74	11787	All - Inverse variance weighted	 3.90e+05	5.00e+06	0.9379
-TNFB	multiple sclerosis || id:ieu-b-18	ieu-b-18	vEfI74	11787	All - MR Egger	       NA	      NA	    NA
+TNFB	multiple sclerosis || id:ieu-b-18	ieu-b-18	XmLArK	11787	rs1800693	-2.56e-01	1.24e-01	0.0381
+TNFB	multiple sclerosis || id:ieu-b-18	ieu-b-18	XmLArK	11787	rs2364485	 6.46e+07	1.74e+00	0.0000
+TNFB	multiple sclerosis || id:ieu-b-18	ieu-b-18	XmLArK	11787	All - Inverse variance weighted	 3.23e+05	4.55e+06	0.9435
+TNFB	multiple sclerosis || id:ieu-b-18	ieu-b-18	XmLArK	11787	All - MR Egger	       NA	      NA	    NA
