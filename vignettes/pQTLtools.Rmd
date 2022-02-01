@@ -237,7 +237,7 @@ sumstats <- function(prot,chr,region37)
                      renameSeqlevels(chr) %>%
                      dplyr::as_tibble() %>%
                      dplyr::transmute(chromosome = seqnames,
-                                      position = start, AF, ES, SE, LP, SS) %>%
+                                      position = start, REF, ALT, AF, ES, SE, LP, SS) %>%
                      dplyr::mutate(id = paste(chromosome, position, sep = ":")) %>%
                      dplyr::mutate(MAF = pmin(AF, 1-AF)) %>%
                      dplyr::group_by(id) %>%
