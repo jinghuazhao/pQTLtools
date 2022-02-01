@@ -443,7 +443,7 @@ import_eQTLCatalogue <- function(ftp_path, region, selected_gene_id, column_name
 #' @md
 #' @param eqtl_sumstats eQTL summary data.
 #' @param gwas_sumstats GWAS summary data.
-#' @harmonise a flag to harmonise data.
+#' @param harmonise a flag to harmonise data.
 #' @export
 #' @return Summary from `coloc.abf`.
 
@@ -451,7 +451,7 @@ run_coloc <- function(eqtl_sumstats, gwas_sumstats, harmonise=TRUE)
 {
   if (harmonise)
   {
-    chromsome <- position <- ref <- alt <- REF <- ALT <- beta <- se <- ES <- SE <- NA
+    chromosome <- position <- ref <- alt <- REF <- ALT <- beta <- se <- ES <- SE <- NA
     eqtl_sumstats <- filter(eqtl_sumstats, !any(is.na(c(chromosome,position,ref,alt,beta,se)))) %>%
                      mutate(snpid = gap::chr_pos_a1_a2(chromosome, position, ref, alt))
     gwas_sumstats <- filter(gwas_sumstats, !any(is.na(c(chromosome,position,REF,ALT,ES,SE)))) %>%
