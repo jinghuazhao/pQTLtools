@@ -10,6 +10,8 @@ run_coloc(eqtl_sumstats, gwas_sumstats, harmonise = TRUE)
 \item{eqtl_sumstats}{eQTL summary data.}
 
 \item{gwas_sumstats}{GWAS summary data.}
+
+\item{harmonise}{a flag to harmonise data.}
 }
 \value{
 Summary from \code{coloc.abf}.
