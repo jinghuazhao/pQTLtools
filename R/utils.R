@@ -452,14 +452,14 @@ run_coloc <- function(eqtl_sumstats, gwas_sumstats, harmonise=TRUE)
   if (harmonise)
   {
     chromosome <- position <- ref <- alt <- REF <- ALT <- beta <- se <- ES <- SE <- NA
-    eqtl_sumstats <- filter(eqtl_sumstats, !any(is.na(c(chromosome,position,ref,alt,beta,se)))) %>%
+    eqtl_sumstats <- filter(eqtl_sumstats, !any(is.na(c(chromosome,position,ref,alt)))) %>%
                      mutate(snpid = gap::chr_pos_a1_a2(chromosome, position, ref, alt))
-    gwas_sumstats <- filter(gwas_sumstats, !any(is.na(c(chromosome,position,REF,ALT,ES,SE)))) %>%
+    gwas_sumstats <- filter(gwas_sumstats, !any(is.na(c(chromosome,position,REF,ALT)))) %>%
                      mutate(snpid = gap::chr_pos_a1_a2(chromosome, position, REF, ALT)) %>%
                      select(-chromosome,-position)
     harmonise_data <- left_join(eqtl_sumstats,gwas_sumstats,by='snpid') %>%
                       mutate(flag=if_else(ref==REF,1,-1)) %>%
-                      filter(!is.na(beta) & !is.na(ES))
+                      filter(!is.na(beta)&!is.na(se)&!is.na(ES)&!is.na(SE))
     eqtl_dataset <- with(harmonise_data, list(beta = flag*beta, varbeta = se^2, N = an/2, MAF = maf, snp = snpid, type = "quant"))
     gwas_dataset <- with(harmonise_data, list(beta = ES, varbeta = SE^2, MAF = MAF, N = SS, snp = snpid, type = "quant"))
   } else {
