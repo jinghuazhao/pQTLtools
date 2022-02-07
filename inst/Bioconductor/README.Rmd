@@ -18,9 +18,12 @@ Package | Description
 org.Hs.eg.db | Conversion of Entrez ID -- Gene Symbols
 TxDb.Hsapiens.UCSC.hg38.knownGene | Annotation of the human genome
 INSPEcT | Quantification of the intronic and exonic gene features and the post-transcriptional regulation analysis
+graphite | GRAPH Interaction from pathway Topological Environment
+clusterProfiler | Functional profiles for genes and gene clusters
 recount3 | Interface to uniformly processed RNA-seq data
 **CRAN** | 
 pheatmap | results visualisation
+plyr | Splitting, Applying and Combining Data
 
 ```r
 options(width=200)
@@ -43,7 +46,22 @@ txdb <- TxDb.Hsapiens.UCSC.hg38.knownGene
 library(INSPEcT)
 liverExprs <- quantifyExpressionsFromBWs(txdb = txdb,BWfiles=,experimentalDesign=)
 
-library(recount3)
+library(graphite)
+reactome <- pathways("hsapiens", "reactome")
+kegg <- pathways("hsapiens","kegg")
+pharmgkb <- pathways("hsapiens","pharmgkb")
+nodes(kegg)
+suppressMessages(library(plyr))
+kegg_t2g <- ldply(lapply(kegg, nodes), data.frame)
+names(kegg_t2g) <- c("gs_name", "gene_symbol")
+suppress(library(clusterProfiler))
+eKEGG <- enricher(gene = , TERM2GENE = kegg_t2g,
+                  universe = ,
+                  pAdjustMethod = "BH",
+                  pvalueCutoff = 0.1, qvalueCutoff = 0.05,
+                  minGSSize = 10, maxGSSize = 500)
+
+suppressMessages(library(recount3))
 hs <- available_projects()
 dim(subset(hs,file_source=="gtex"))
 annotation_options("human")
