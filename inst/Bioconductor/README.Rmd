@@ -1,0 +1,56 @@
+---
+output: github_document
+---
+
+```{r logo, echo = FALSE, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/"
+)
+```
+
+## Bioconductor/CRAN packages
+
+Package | Description
+--------|------------
+**Bioconductor** |
+org.Hs.eg.db | Conversion of Entrez ID -- Gene Symbols
+TxDb.Hsapiens.UCSC.hg38.knownGene | Annotation of the human genome
+INSPEcT | Quantification of the intronic and exonic gene features and the post-transcriptional regulation analysis
+recount3 | Interface to uniformly processed RNA-seq data
+**CRAN** | 
+pheatmap | results visualisation
+
+```r
+options(width=200)
+
+suppressMessages(library(org.Hs.eg.db))
+columns(org.Hs.eg.db)
+keyref <- keys(org.Hs.eg.db, keytype="ENTREZID")
+symbol_uniprot <- select(org.Hs.eg.db,keys=keyref,columns = c("SYMBOL","UNIPROT"))
+subset(symbol_uniprot,SYMBOL=="MC4R")
+
+library(RMariaDB)
+library(GenomicFeatures)
+txdbEnsemblGRCh38 <- makeTxDbFromEnsembl(organism="Homo sapiens", release=98)
+txdb <- as.list(txdbEnsemblGRCh38)
+lapply(txdb,head)
+
+library(TxDb.Hsapiens.UCSC.hg38.knownGene)
+txdb <- TxDb.Hsapiens.UCSC.hg38.knownGene
+
+library(INSPEcT)
+liverExprs <- quantifyExpressionsFromBWs(txdb = txdb,BWfiles=,experimentalDesign=)
+
+library(recount3)
+hs <- available_projects()
+dim(subset(hs,file_source=="gtex"))
+annotation_options("human")
+blood_rse <- create_rse(subset(hs,project=="BLOOD"))
+metadata(blood_rse)
+dim(blood_rse)
+rowRanges(blood_rse)
+colnames(colData(blood_rse))
+expand_sra_attributes(blood_rse)
+```
