@@ -56,7 +56,7 @@ eKEGG <- enricher(gene = , TERM2GENE = kegg_t2g,
 
 ## Differential expression
 
-```{r}
+```{r DESeq2, echo=FALSE}
 suppressMessages(library(DESeq2))
 ex <- makeExampleDESeqDataSet(m=4)
 dds <- DESeq(ex)

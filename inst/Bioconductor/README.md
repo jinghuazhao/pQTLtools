@@ -2,6 +2,8 @@
 output: github_document
 ---
 
+
+
 ## Transcript databases
 
 ```r
@@ -49,32 +51,18 @@ eKEGG <- enricher(gene = , TERM2GENE = kegg_t2g,
 ## Differential expression
 
 
-```r
-suppressMessages(library(DESeq2))
-ex <- makeExampleDESeqDataSet(m=4)
-dds <- DESeq(ex)
+```
 #> estimating size factors
 #> estimating dispersions
 #> gene-wise dispersion estimates
 #> mean-dispersion relationship
 #> final dispersion estimates
 #> fitting model and testing
-res <- results(dds, contrast=c("condition","B","A"))
-rld <- rlogTransformation(ex, blind=TRUE)
-dat <- plotPCA(rld, intgroup=c("condition"),returnData=TRUE)
-percentVar <- round(100 * attr(dat,"percentVar"))
-suppressMessages(library(ggplot2))
-ggplot(dat, aes(PC1, PC2, color=condition, shape=condition)) +
-geom_point(size=3) +
-xlab(paste0("PC1:",percentVar[1],"% variance")) +
-ylab(paste0("PC2:",percentVar[2],"% variance"))
 ```
 
-![plot of chunk unnamed-chunk-1](figures/unnamed-chunk-1-1.png)
+![plot of chunk DESeq2](figures/DESeq2-1.png)
 
-```r
-ex$condition <- relevel(ex$condition, ref="B")
-dds2 <- DESeq(dds)
+```
 #> using pre-existing size factors
 #> estimating dispersions
 #> found already estimated dispersions, replacing these
@@ -82,8 +70,6 @@ dds2 <- DESeq(dds)
 #> mean-dispersion relationship
 #> final dispersion estimates
 #> fitting model and testing
-res <- results(dds2)
-write.csv(as.data.frame(res),file="A_vs_B.csv")
 ```
 
 ## Meta-data
