@@ -15,6 +15,21 @@ STRING | https://string-db.org/ | [59]
 PIBASE database|  https://modbase.compbio.ucsf.edu/pibase/queries.html | [60]
 3did database | https://3did.irbbarcelona.org/ | [61]
 
+## Tools
+
+Tools | Web link | References
+------|----------|-----------
+Cytoscape | https://cytoscape.org/ | [62]
+PathVisio | https://pathvisio.github.io/ | [63]
+Systrip | https://tulip.labri.fr/TulipDrupal/?q=systrip | [64]
+MAPPIS | http://bioinfo3d.cs.tau.ac.il/MAPPIS/ | [64]
+PSOPIA | https://mizuguchilab.org/PSOPIA/ | [65]
+Agile Protein Interaction DataAnalyzer | http://cicblade.dep.usal.es:8080/APID/init.action | [66]
+iFrag | http://sbi.imim.es/web/index.php/research/servers/iFrag [67]
+Interactome3D | https://interactome3d.irbbarcelona.org/ | [68]
+PCRPi-W | http://www.bioinsilico.org/PCRPi/ | [69]
+PPCheck | http://caps.ncbs.res.in/ppcheck/ | [69]
+
 ## References
 
 https://link.springer.com/protocol/10.1007/7653_2020_62
@@ -30,3 +45,11 @@ https://link.springer.com/protocol/10.1007/7653_2020_62
 59. Stein A, Russell R, Aloy P (2005) 3did: interacting protein domains of known three-dimensional structure. Nucleic Acids Res 33:D413
 60. Shannon P, Markiel A, Ozier O et al (2003) Cytoscape: a software environment for integrated models of biomolecular interaction networks. Genome Res 13:2498–2504.  https://doi.org/10.1101/gr.1239303
 61. Kutmon M, van Iersel MP, Bohler A et al (2015) PathVisio 3: an extendable pathway analysis toolbox. PLoS Comput Biol 11:e1004085.  https://doi.org/10.1371/journal.pcbi.1004085
+62. Dubois J, Cottret L, Ghozlane A et al (2012) Systrip: a visual environment for the investigation of time-series data in the context of metabolic networks. IEEE, Washington, DC
+63. Shulman-Peleg A, Shatsky M, Nussinov R, Wolfson HJ (2005) MAPPIS: multiple 3D alignment of protein-protein interfaces. In: Lecture notes in computer science (including subseries Lecture notes in artificial intelligence and Lecture notes in bioinformatics). Springer, Berlin, pp 91–103
+64. Murakami Y, Mizuguchi K (2018) PSOPIA: toward more reliable protein-protein interaction prediction from sequence information. In: ICIIBMS 2017 - 2nd International Conference on Intelligent Informatics and Biomedical Sciences. Institute of Electrical and Electronics Engineers Inc, Washington, DC, pp 255–261
+65. Prieto C, de Las RJ (2006) APID: agile protein interaction DataAnalyzer. Nucleic Acids Res 34:W298–W302.  https://doi.org/10.1093/nar/gkl128
+66. Garcia-Garcia J, Valls-Comamala V, Guney E et al (2017) iFrag: a protein–protein interface prediction server based on sequence fragments. J Mol Biol 429:382–389.  https://doi.org/10.1016/j.jmb.2016.11.034
+67. Mosca R, Céol A, Aloy P (2013) Interactome3D: adding structural details to protein networks. Nat Methods 10:47
+68. Segura Mora S, Assi SA, Fernandez-Fuentes N (2010) Presaging critical residues in protein interfaces-web server (PCRPi-W): a web server to chart Hot spots in protein interfaces. PLoS One 5:e12352.  https://doi.org/10.1371/journal.pone.0012352
+69. Sukhwal A, Sowdhamini R (2015) PPcheck: a webserver for the quantitative analysis of protein-protein interfaces and prediction of residue hotspots. Bioinformatics Biol Insights 9:141–151.  https://doi.org/10.4137/BBI.S25928
