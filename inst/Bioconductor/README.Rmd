@@ -75,6 +75,26 @@ res <- results(dds2)
 write.csv(as.data.frame(res),file="A_vs_B.csv")
 ```
 
+## Gene co-expression network analysis
+
+```r
+set.seed(123454321)
+m <- matrix(runif(2500),50)
+r <- cor(m)
+g <- as.matrix(r>=0.7)+0
+f1 <- Heatmap(r)
+f2 <- Heatmap(g)
+f <- f1+f2
+draw(f) # f2 is somewhat twisted
+suppressMessages(library(WGCNA))
+pwr <- c(1:10, seq(from = 12, to=30, by=2))
+sft <- pickSoftThreshold(dat, powerVector = pwr, verbose = 5)
+meg <- moduleEigengenes(t(tpm), color=Colors, softPower=6)
+TOM <- TOMsimilarity(adjMatrix)
+Tree <- hclust(as.dist(1-TOM), method = "average")
+plotDendroAndColors(Tree, colors, "Dynamic Tree Cut", dendroLabels = FALSE, hang = 0.03, addGuide = TRUE, guideHang = 0.05)
+```
+
 ## Meta-data
 
 ```r
@@ -103,6 +123,9 @@ INSPEcT | Quantification of the intronic and exonic gene features and the post-t
 graphite | GRAPH Interaction from pathway Topological Environment
 clusterProfiler | Functional profiles for genes and gene clusters
 DESSeq2 | Differential gene expression analysis based on the negative binomial distribution
+edgeR | Empirical Analysis of Digital Gene Expression
+WGCNA | Weighted Correlation Network Analysis
+ComplexHeatmap | Make Complex Heatmaps
 recount3 | Interface to uniformly processed RNA-seq data
 **CRAN** |
 ggplot2 | Data Visualisations Using the grammar of graphics
