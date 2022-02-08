@@ -1,5 +1,7 @@
 
-## Protein–protein interaction database
+# Protein–protein interaction (PPI)
+
+## database
 
 Database | Web link | References
 ---------|----------|-----------
