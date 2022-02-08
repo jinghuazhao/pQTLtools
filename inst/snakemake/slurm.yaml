@@ -1,0 +1,15 @@
+
+jobs: 50
+cluster: 'sbatch -A 'HPC-account-name'
+--cpus-per-task {resources.cpus}
+-p {resources.p}
+-n 1
+-t {resources.time}
+--mem {resources.mem}
+--cluster {resources.cluster}
+-o 'slurm_logs/%j.{rule}_{wildcards}.out'
+-e 'slurm_logs/%j.{rule}_{wildcards}.err' '
+use-conda: true
+keep-going: true
+rerun-incomplete: true
+default-resources: [cpus=20, mem='58G', time='24:00:00', p='workq']
