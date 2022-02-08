@@ -1,7 +1,7 @@
 
 # Protein–protein interaction (PPI)
 
-## database
+## Databases
 
 Database | Web link | References
 ---------|----------|-----------
