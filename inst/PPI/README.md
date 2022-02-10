@@ -1,6 +1,20 @@
 
 # Protein–protein interaction (PPI)
 
+## HIPPIE REST API
+
+```
+http://cbdm-01.zdv.uni-mainz.de/~mschaefer/hippie/queryHIPPIE.php?proteins¼xxx,xxx;xxx|xxx&layers¼xxx&conf_thres¼xxx&out_type¼xxx.
+```
+- proteins = One or more proteins of interest separated by “,”,“;” or “|” (mandatory).
+- layers = 0 to query interactions within the input set or 1 to query interactions between the input set and HIPPIE (optional, default = 1).
+- conf_thres = Only protein interactions with confidence scores above this threshold, which ranges between 0 and 1, are considered (optional, default = 0).
+- out_type = The query output format. Browser shows the list of interactions in a table in HIPPIE, viz shows a network visualization, mitab generates a MITAB file, and conc_file generates a simple tab-separated text file (optional, default = conc_file).
+
+### Refereences
+
+https://link.springer.com/protocol/10.1007/978-1-4939-9873-9_11
+
 ## Databases
 
 Database | Web link | References
@@ -32,7 +46,7 @@ Interactome3D | https://interactome3d.irbbarcelona.org/ | [68]
 PCRPi-W | http://www.bioinsilico.org/PCRPi/ | [69]
 PPCheck | http://caps.ncbs.res.in/ppcheck/ | [69]
 
-## References
+### References
 
 https://link.springer.com/protocol/10.1007/7653_2020_62
 
