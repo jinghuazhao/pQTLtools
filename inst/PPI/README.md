@@ -11,7 +11,7 @@ http://cbdm-01.zdv.uni-mainz.de/~mschaefer/hippie/queryHIPPIE.php?proteins¼xxx,
 - conf_thres = Only protein interactions with confidence scores above this threshold, which ranges between 0 and 1, are considered (optional, default = 0).
 - out_type = The query output format. Browser shows the list of interactions in a table in HIPPIE, viz shows a network visualization, mitab generates a MITAB file, and conc_file generates a simple tab-separated text file (optional, default = conc_file).
 
-### Refereences
+### References
 
 https://link.springer.com/protocol/10.1007/978-1-4939-9873-9_11
 
