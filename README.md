@@ -3,7 +3,7 @@
 
 ## A protein Quantitative Trait Locus toolkit
 
-This seeds collection of data and utilties for (pQTL) analysis. At this
+This seeds collection of data and utilties for pQTL analysis. At this
 early stage, the repository collects information on a number of protein
 panels, linking function for cis/trans classification, 2D manhattan
 plots, 3D-plotly plots, forest plots among others availale from R/gap;
