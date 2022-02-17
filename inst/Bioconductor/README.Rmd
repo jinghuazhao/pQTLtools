@@ -15,6 +15,13 @@ knitr::opts_chunk$set(
 ```r
 options(width=200)
 
+suppressMessages(library(AnnotationDbi))
+suppressMessages(library(org.Hs.eg.db))
+columns(org.Hs.eg.db)
+keyref <- keys(org.Hs.eg.db, keytype="ENTREZID")
+symbol_uniprot <- select(org.Hs.eg.db,keys=keyref,columns = c("SYMBOL","UNIPROT"))
+subset(symbol_uniprot,SYMBOL=="MC4R")
+
 suppressMessages(library(EnsDb.Hsapiens.v86))
 x <- EnsDb.Hsapiens.v86
 listColumns(x, "protein", skip.keys=TRUE)
@@ -28,20 +35,9 @@ seqinfo(x)
 seqlevels(x)
 updateEnsDb(x)
 
-library(AnnotationDbi)
-keys(x)
-keytypes(x)
-columns(x)
-
 suppressMessages(library(ensembldb))
 genes(x, columns=c("gene_name"), filter=list(SeqNameFilter("X"), GeneBiotypeFilter("protein_coding")))
 transcripts(x, columns=listColumns(x, "tx"), filter = AnnotationFilterList(), order.type = "asc", return.type = "GRanges")
-
-suppressMessages(library(org.Hs.eg.db))
-columns(org.Hs.eg.db)
-keyref <- keys(org.Hs.eg.db, keytype="ENTREZID")
-symbol_uniprot <- select(org.Hs.eg.db,keys=keyref,columns = c("SYMBOL","UNIPROT"))
-subset(symbol_uniprot,SYMBOL=="MC4R")
 
 library(RMariaDB)
 library(GenomicFeatures)
@@ -140,9 +136,9 @@ Package | Description
 --------|------------
 **Bioconductor** |
 AnnotationDbi | AnnotationDb objects and their progeny, methods etc.
+org.Hs.eg.db | Conversion of Entrez ID -- Gene Symbols
 EnsDb.Hsapiens.v86 | Exposes an annotation databases generated from Ensembl
 ensembldb | Retrieve annotation data from an Ensembl based package
-org.Hs.eg.db | Conversion of Entrez ID -- Gene Symbols
 TxDb.Hsapiens.UCSC.hg38.knownGene | Annotation of the human genome
 INSPEcT | Quantification of the intronic and exonic gene features and the post-transcriptional regulation analysis
 graphite | GRAPH Interaction from pathway Topological Environment
