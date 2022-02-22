@@ -291,7 +291,7 @@ snpqueries <- function(snplist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.8,buil
 uniprot2ids <- function(uniprotid="ACC+ID",to,query)
 {
   rt <- find.package("pQTLtools")
-  f <- file.path(rt ,"python","uniprot2ids.py")
+  f <- file.path(rt ,"UniProt","uniprot2ids.py")
   reticulate::source_python(f)
   invisible(uniprot2ids(uniprotid,to,query))
 }
