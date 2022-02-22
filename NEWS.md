@@ -1,7 +1,11 @@
 # pQTLtools 0.1
 
 * ...
+* Add inst/UniProt|PPI/README.md
 * Add inst/Bioconductor/README.Rmd
+* Add inst/snakemake placeholder
+* Add inst/STRING/change_STRING_colors.py
+* Add inst/Olink
 * Suggest htmlwidgets, plotly
 * Suggest cowplot, gap.datasets, httr, plyr, rmarkdown, Biobase, rGREAT, stringr
 * Suggest circlize, openxlsx, knitr and add HTML vignette (biomaRt, karyoploteR, regioneR)
