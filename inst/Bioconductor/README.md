@@ -143,19 +143,20 @@ Package | Description
 --------|------------
 **Bioconductor** |
 AnnotationDbi | AnnotationDb objects and their progeny, methods etc.
-org.Hs.eg.db | Conversion of Entrez ID -- Gene Symbols
+org.Hs.eg.db | Conversion of Entrez ID -- gene symbols
 EnsDb.Hsapiens.v86 | Exposes an annotation databases generated from Ensembl
 ensembldb | Retrieve annotation data from an Ensembl based package
 TxDb.Hsapiens.UCSC.hg38.knownGene | Annotation of the human genome
 INSPEcT | Quantification of the intronic and exonic gene features and the post-transcriptional regulation analysis
-graphite | GRAPH Interaction from pathway Topological Environment
+graphite | GRAPH Interaction from pathway topological environment
 clusterProfiler | Functional profiles for genes and gene clusters
 DESSeq2 | Differential gene expression analysis based on the negative binomial distribution
-edgeR | Empirical Analysis of Digital Gene Expression
-WGCNA | Weighted Correlation Network Analysis
-ComplexHeatmap | Make Complex Heatmaps
+edgeR | Empirical analysis of digital gene expression
+WGCNA | Weighted correlation network analysis
+ComplexHeatmap | Make complex heatmaps
 recount3 | Interface to uniformly processed RNA-seq data
+Pi | Priority index, leveraging genetic evidence to prioritise drug targets at the gene and pathway level
 **CRAN** |
 ggplot2 | Data Visualisations Using the grammar of graphics
 pheatmap | results visualisation
-plyr | Splitting, Applying and Combining Data
+plyr | Splitting, applying and combining data
