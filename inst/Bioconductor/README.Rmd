@@ -149,7 +149,9 @@ WGCNA | Weighted correlation network analysis
 ComplexHeatmap | Make complex heatmaps
 recount3 | Interface to uniformly processed RNA-seq data
 Pi | Priority index, leveraging genetic evidence to prioritise drug targets at the gene and pathway level
+Rgraphiz | Interfaces R with the AT&T graphviz library for plotting R graph objects from the graph package
 **CRAN** |
+GeneNet | Modeling and Inferring Gene Networks
 ggplot2 | Data Visualisations Using the grammar of graphics
 pheatmap | results visualisation
 plyr | Splitting, applying and combining data
