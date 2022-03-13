@@ -100,7 +100,106 @@ res <- results(dds2)
 write.csv(as.data.frame(res),file="A_vs_B.csv")
 ```
 
-## Gene co-expression network analysis
+## Gene co-expression and network analysis
+
+A simple network is furnished with the `GeneNet` documentation example,
+
+
+```r
+library("GeneNet")
+#> Loading required package: corpcor
+#> Loading required package: longitudinal
+#> Loading required package: fdrtool
+
+# A random network with 20 nodes and 10 percent (=19) edges
+true.pcor <- ggm.simulate.pcor(20, 0.1)
+
+# convert to edge list
+test.results <- ggm.list.edges(true.pcor)[1:19,]
+
+# Rgraphviz
+nlab <- LETTERS[1:20]
+gr <- network.make.graph( test.results, nlab)
+gr
+#> A graphNEL graph with directed edges
+#> Number of Nodes = 20 
+#> Number of Edges = 38
+num.nodes(gr)
+#> [1] 20
+edge.info(gr)
+#> $weight
+#>      A~G      A~N      B~G      D~T      D~M      D~G      D~K      E~O 
+#>  0.47991 -0.52410  0.41918 -0.17285  0.29350 -0.32985 -0.34516  0.99964 
+#>      H~I      H~P      I~J      J~R      K~P      K~R      K~M      L~R 
+#>  0.39039  0.72445 -0.58593  0.25108 -0.11564 -0.20274 -0.33219  0.75108 
+#>      M~N      M~T      N~S 
+#>  0.15757 -0.48960  0.42935 
+#> 
+#> $dir
+#>    A~G    A~N    B~G    D~T    D~M    D~G    D~K    E~O    H~I    H~P    I~J 
+#> "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" 
+#>    J~R    K~P    K~R    K~M    L~R    M~N    M~T    N~S 
+#> "none" "none" "none" "none" "none" "none" "none" "none"
+gr2 <- network.make.graph( test.results, nlab, drop.singles=TRUE)
+gr2
+#> A graphNEL graph with directed edges
+#> Number of Nodes = 17 
+#> Number of Edges = 38
+num.nodes(gr2)
+#> [1] 17
+edge.info(gr2)
+#> $weight
+#>      A~G      A~N      B~G      D~T      D~M      D~G      D~K      E~O 
+#>  0.47991 -0.52410  0.41918 -0.17285  0.29350 -0.32985 -0.34516  0.99964 
+#>      H~I      H~P      I~J      J~R      K~P      K~R      K~M      L~R 
+#>  0.39039  0.72445 -0.58593  0.25108 -0.11564 -0.20274 -0.33219  0.75108 
+#>      M~N      M~T      N~S 
+#>  0.15757 -0.48960  0.42935 
+#> 
+#> $dir
+#>    A~G    A~N    B~G    D~T    D~M    D~G    D~K    E~O    H~I    H~P    I~J 
+#> "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" 
+#>    J~R    K~P    K~R    K~M    L~R    M~N    M~T    N~S 
+#> "none" "none" "none" "none" "none" "none" "none" "none"
+
+# plot network
+library("Rgraphviz")
+#> Loading required package: graph
+#> Loading required package: grid
+#> 
+#> Attaching package: 'Rgraphviz'
+#> The following objects are masked from 'package:IRanges':
+#> 
+#>     from, to
+#> The following objects are masked from 'package:S4Vectors':
+#> 
+#>     from, to
+plot(gr, "fdp")
+#> Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+#> Warning in arrows(head_from[1], head_from[2], head_to[1], head_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+```
+
+![plot of chunk GeneNet](figures/GeneNet-1.png)
+
+```r
+plot(gr2, "fdp")
+#> Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+
+#> Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+#> Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+
+#> Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+```
+
+![plot of chunk GeneNet](figures/GeneNet-2.png)
+
+and a more involved version
 
 ```r
 set.seed(123454321)
