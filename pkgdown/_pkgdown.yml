@@ -51,7 +51,7 @@ navbar:
       href: news/index.html
   right:
     - text: ""
-      icon: fa-github
+      icon: fa-r-project
       href: https://github.com/jinghuazhao/pQTLtools
 
 reference:
