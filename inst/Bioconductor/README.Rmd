@@ -100,7 +100,24 @@ A simple network is furnished with the `GeneNet` documentation example,
 ```{r GeneNet}
 library("GeneNet")
 
-# A random network with 20 nodes and 10 percent (=19) edges
+## A random network with 40 nodes 
+# it contains 780=40*39/2 edges of which 5 percent (=39) are non-zero
+true.pcor <- ggm.simulate.pcor(40)
+  
+# A data set with 40 observations
+m.sim <- ggm.simulate.data(40, true.pcor)
+
+# A simple estimate of partial correlations
+estimated.pcor <- cor2pcor( cor(m.sim) )
+
+# A comparison of estimated and true values
+sum((true.pcor-estimated.pcor)^2)
+
+# A slightly better estimate ...
+estimated.pcor.2 <- ggm.estimate.pcor(m.sim)
+sum((true.pcor-estimated.pcor.2)^2)
+
+## A random network with 20 nodes and 10 percent (=19) edges
 true.pcor <- ggm.simulate.pcor(20, 0.1)
 
 # convert to edge list
