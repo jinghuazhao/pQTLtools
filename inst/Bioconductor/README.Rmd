@@ -150,13 +150,13 @@ true.pcor <- ggm.simulate.pcor(20, 0.1)
 
 # convert to edge list
 test.results <- ggm.list.edges(true.pcor)[1:19,]
+nlab <- LETTERS[1:20]
 
 # graphviz
 network.make.dot(filename="test.dot", test.results, nlab, main = "A graph")
 system("fdp -T svg -o test.svg test.dot")
 
 # Rgraphviz
-nlab <- LETTERS[1:20]
 gr <- network.make.graph( test.results, nlab)
 gr
 num.nodes(gr)
