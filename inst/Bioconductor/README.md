@@ -123,13 +123,13 @@ estimated.pcor <- cor2pcor( cor(m.sim) )
 
 # A comparison of estimated and true values
 sum((true.pcor-estimated.pcor)^2)
-#> [1] 629.2271
+#> [1] 447.1242
 
 # A slightly better estimate ...
 estimated.pcor.2 <- ggm.estimate.pcor(m.sim)
-#> Estimating optimal shrinkage intensity lambda (correlation matrix): 0.3045
+#> Estimating optimal shrinkage intensity lambda (correlation matrix): 0.1665
 sum((true.pcor-estimated.pcor.2)^2)
-#> [1] 9.546233
+#> [1] 11.74945
 
 ## ecoli data 
 data(ecoli)
@@ -409,6 +409,11 @@ true.pcor <- ggm.simulate.pcor(20, 0.1)
 # convert to edge list
 test.results <- ggm.list.edges(true.pcor)[1:19,]
 
+# graphviz
+network.make.dot(filename="test.dot", test.results, nlab, main = "A graph")
+#> Error in cat("\"", node.labels[n1[i]], "\" -> \"", node.labels[n2[i]], : object 'nlab' not found
+system("fdp -T svg -o test.svg test.dot")
+
 # Rgraphviz
 nlab <- LETTERS[1:20]
 gr <- network.make.graph( test.results, nlab)
@@ -420,17 +425,17 @@ num.nodes(gr)
 #> [1] 20
 edge.info(gr)
 #> $weight
-#>      A~F      B~J      B~E      B~Q      B~P      C~I      D~N      D~H 
-#>  0.81987  0.23337  0.33379 -0.34096  0.36501  0.99989 -0.38179 -0.76499 
-#>      E~Q      E~J      E~N      F~J      G~S      J~R      K~T      K~S 
-#> -0.26339 -0.30567 -0.43662 -0.22628  0.30270  0.44004 -0.16414 -0.50789 
-#>      L~T      O~S      Q~S 
-#>  0.94208 -0.55770  0.21595 
+#>      A~J      A~H      B~K      B~J      C~E      D~Q      E~O      E~T 
+#>  0.16340  0.39006 -0.11606 -0.80967  0.62286 -0.33519 -0.24863 -0.74159 
+#>      F~R      F~P      F~G      F~H      F~K      H~S      I~M      K~Q 
+#> -0.22652  0.27809  0.34064  0.42024  0.47572  0.24685 -0.91573 -0.23116 
+#>      L~Q      M~R      P~S 
+#> -0.80963  0.23899  0.65363 
 #> 
 #> $dir
-#>    A~F    B~J    B~E    B~Q    B~P    C~I    D~N    D~H    E~Q    E~J    E~N 
+#>    A~J    A~H    B~K    B~J    C~E    D~Q    E~O    E~T    F~R    F~P    F~G 
 #> "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" 
-#>    F~J    G~S    J~R    K~T    K~S    L~T    O~S    Q~S 
+#>    F~H    F~K    H~S    I~M    K~Q    L~Q    M~R    P~S 
 #> "none" "none" "none" "none" "none" "none" "none" "none"
 gr2 <- network.make.graph( test.results, nlab, drop.singles=TRUE)
 gr2
@@ -441,17 +446,17 @@ num.nodes(gr2)
 #> [1] 19
 edge.info(gr2)
 #> $weight
-#>      A~F      B~J      B~E      B~Q      B~P      C~I      D~N      D~H 
-#>  0.81987  0.23337  0.33379 -0.34096  0.36501  0.99989 -0.38179 -0.76499 
-#>      E~Q      E~J      E~N      F~J      G~S      J~R      K~T      K~S 
-#> -0.26339 -0.30567 -0.43662 -0.22628  0.30270  0.44004 -0.16414 -0.50789 
-#>      L~T      O~S      Q~S 
-#>  0.94208 -0.55770  0.21595 
+#>      A~J      A~H      B~K      B~J      C~E      D~Q      E~O      E~T 
+#>  0.16340  0.39006 -0.11606 -0.80967  0.62286 -0.33519 -0.24863 -0.74159 
+#>      F~R      F~P      F~G      F~H      F~K      H~S      I~M      K~Q 
+#> -0.22652  0.27809  0.34064  0.42024  0.47572  0.24685 -0.91573 -0.23116 
+#>      L~Q      M~R      P~S 
+#> -0.80963  0.23899  0.65363 
 #> 
 #> $dir
-#>    A~F    B~J    B~E    B~Q    B~P    C~I    D~N    D~H    E~Q    E~J    E~N 
+#>    A~J    A~H    B~K    B~J    C~E    D~Q    E~O    E~T    F~R    F~P    F~G 
 #> "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" 
-#>    F~J    G~S    J~R    K~T    K~S    L~T    O~S    Q~S 
+#>    F~H    F~K    H~S    I~M    K~Q    L~Q    M~R    P~S 
 #> "none" "none" "none" "none" "none" "none" "none" "none"
 
 # plot network
@@ -471,12 +476,25 @@ plot(gr, "fdp")
 #> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
 #> Warning in arrows(head_from[1], head_from[2], head_to[1], head_to[2], col =
 #> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+#> Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+#> Warning in arrows(head_from[1], head_from[2], head_to[1], head_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
 ```
 
 ![plot of chunk GeneNet](figures/GeneNet-2.png)
 
 ```r
 plot(gr2, "fdp")
+#> Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+
+#> Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+#> Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+#> Warning in arrows(head_from[1], head_from[2], head_to[1], head_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
 ```
 
 ![plot of chunk GeneNet](figures/GeneNet-3.png)
