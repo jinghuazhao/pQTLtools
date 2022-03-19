@@ -24,14 +24,14 @@ edata = exprs(dat)
 batch = pheno$batch
 mod = model.matrix(~as.factor(cancer), data=pheno)
 
-# parametric adjustment
-combat_edata1 = ComBat(dat=edata, batch=batch, mod=NULL, par.prior=TRUE, prior.plots=FALSE)
+# 1. parametric adjustment
+combat_edata1 = ComBat(dat=edata, batch=batch, mod=NULL, par.prior=TRUE, prior.plots=TRUE)
 
-# non-parametric adjustment, mean-only version
+# 2. non-parametric adjustment, mean-only version
 combat_edata2 = ComBat(dat=edata, batch=batch, mod=NULL, par.prior=FALSE, mean.only=TRUE)
 
-# reference-batch version, with covariates
-combat_edata3 = ComBat(dat=edata, batch=batch, mod=mod, par.prior=TRUE, ref.batch=3)
+# 3. reference-batch version, with covariates
+combat_edata3 = ComBat(dat=edata, batch=batch, mod=mod, par.prior=TRUE, ref.batch=3, prior.plots=TRUE)
 ```
 
 ## Differential expression
