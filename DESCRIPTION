@@ -9,7 +9,7 @@ Authors@R: c(
   )
 Description: This repository collects information on a number of
     protein panels, linking function for cis/trans classification, 2D
-    manhattan plots, 3D-plotly plots, forest plots among others availale
+    manhattan plots, 3D-plotly plots, forest plots among others available
     from R/gap; query results on genes, regions, and SNPs via
     PhenoScanner, adding functionality to check for replication across
     platforms and aspects of protein-related analysis such as
