@@ -4,6 +4,12 @@ This is the documentation example, based on Bioconductor 3.14.
 
 
 ```r
+library(sva)
+#> Loading required package: mgcv
+#> Loading required package: nlme
+#> This is mgcv 1.8-39. For overview type 'help("mgcv-package")'.
+#> Loading required package: genefilter
+#> Loading required package: BiocParallel
 library(bladderbatch)
 #> Loading required package: Biobase
 #> Loading required package: BiocGenerics
@@ -35,16 +41,40 @@ mod = model.matrix(~as.factor(cancer), data=pheno)
 
 # 1. parametric adjustment
 combat_edata1 = ComBat(dat=edata, batch=batch, mod=NULL, par.prior=TRUE, prior.plots=TRUE)
-#> Error in ComBat(dat = edata, batch = batch, mod = NULL, par.prior = TRUE, : could not find function "ComBat"
+#> Found5batches
+#> Adjusting for0covariate(s) or covariate level(s)
+#> Standardizing Data across genes
+#> Fitting L/S model and finding priors
+#> Finding parametric adjustments
+#> Adjusting the Data
+```
+
+![plot of chunk ComBat](figures/ComBat-1.png)
+
+```r
 
 # 2. non-parametric adjustment, mean-only version
 combat_edata2 = ComBat(dat=edata, batch=batch, mod=NULL, par.prior=FALSE, mean.only=TRUE)
-#> Error in ComBat(dat = edata, batch = batch, mod = NULL, par.prior = FALSE, : could not find function "ComBat"
+#> Using the 'mean only' version of ComBat
+#> Found5batches
+#> Adjusting for0covariate(s) or covariate level(s)
+#> Standardizing Data across genes
+#> Fitting L/S model and finding priors
+#> Finding nonparametric adjustments
+#> Adjusting the Data
 
 # 3. reference-batch version, with covariates
 combat_edata3 = ComBat(dat=edata, batch=batch, mod=mod, par.prior=TRUE, ref.batch=3, prior.plots=TRUE)
-#> Error in ComBat(dat = edata, batch = batch, mod = mod, par.prior = TRUE, : could not find function "ComBat"
+#> Using batch =3as a reference batch (this batch won't change)
+#> Found5batches
+#> Adjusting for2covariate(s) or covariate level(s)
+#> Standardizing Data across genes
+#> Fitting L/S model and finding priors
+#> Finding parametric adjustments
+#> Adjusting the Data
 ```
+
+![plot of chunk ComBat](figures/ComBat-2.png)
 
 ## Differential expression
 
@@ -109,13 +139,13 @@ estimated.pcor <- cor2pcor( cor(m.sim) )
 
 # A comparison of estimated and true values
 sum((true.pcor-estimated.pcor)^2)
-#> [1] 485.3661
+#> [1] 1074.933
 
 # A slightly better estimate ...
 estimated.pcor.2 <- ggm.estimate.pcor(m.sim)
-#> Estimating optimal shrinkage intensity lambda (correlation matrix): 0.4146
+#> Estimating optimal shrinkage intensity lambda (correlation matrix): 0.354
 sum((true.pcor-estimated.pcor.2)^2)
-#> [1] 9.409779
+#> [1] 9.716128
 
 ## ecoli data 
 data(ecoli)
@@ -410,17 +440,17 @@ num.nodes(gr)
 #> [1] 20
 edge.info(gr)
 #> $weight
-#>      A~S      A~K      A~F      A~H      B~E      C~D      C~K      D~O 
-#> -0.15336  0.26614 -0.39258  0.61266  0.64742  0.07149 -0.70853  0.44840 
-#>      D~M      E~P      E~Q      F~N      F~M      I~P      L~Q      L~R 
-#> -0.55883  0.35639 -0.46159  0.28920 -0.31394  0.75689 -0.17690 -0.36683 
-#>      L~N      M~S      N~R 
-#>  0.44811  0.42591 -0.45427 
+#>      A~S      A~H      A~M      C~K      D~H      E~K      E~G      E~P 
+#> -0.20723 -0.41069  0.59161  0.32481 -0.30811  0.21950  0.25362  0.29182 
+#>      E~F      E~R      F~J      F~O      G~L      G~M      H~T      I~P 
+#>  0.36377 -0.40016 -0.43237  0.65653 -0.13772  0.29308  0.63355 -0.35221 
+#>      K~R      K~T      L~R 
+#> -0.25565 -0.29900 -0.39885 
 #> 
 #> $dir
-#>    A~S    A~K    A~F    A~H    B~E    C~D    C~K    D~O    D~M    E~P    E~Q 
+#>    A~S    A~H    A~M    C~K    D~H    E~K    E~G    E~P    E~F    E~R    F~J 
 #> "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" 
-#>    F~N    F~M    I~P    L~Q    L~R    L~N    M~S    N~R 
+#>    F~O    G~L    G~M    H~T    I~P    K~R    K~T    L~R 
 #> "none" "none" "none" "none" "none" "none" "none" "none"
 gr2 <- network.make.graph( test.results, nlab, drop.singles=TRUE)
 gr2
@@ -431,17 +461,17 @@ num.nodes(gr2)
 #> [1] 17
 edge.info(gr2)
 #> $weight
-#>      A~S      A~K      A~F      A~H      B~E      C~D      C~K      D~O 
-#> -0.15336  0.26614 -0.39258  0.61266  0.64742  0.07149 -0.70853  0.44840 
-#>      D~M      E~P      E~Q      F~N      F~M      I~P      L~Q      L~R 
-#> -0.55883  0.35639 -0.46159  0.28920 -0.31394  0.75689 -0.17690 -0.36683 
-#>      L~N      M~S      N~R 
-#>  0.44811  0.42591 -0.45427 
+#>      A~S      A~H      A~M      C~K      D~H      E~K      E~G      E~P 
+#> -0.20723 -0.41069  0.59161  0.32481 -0.30811  0.21950  0.25362  0.29182 
+#>      E~F      E~R      F~J      F~O      G~L      G~M      H~T      I~P 
+#>  0.36377 -0.40016 -0.43237  0.65653 -0.13772  0.29308  0.63355 -0.35221 
+#>      K~R      K~T      L~R 
+#> -0.25565 -0.29900 -0.39885 
 #> 
 #> $dir
-#>    A~S    A~K    A~F    A~H    B~E    C~D    C~K    D~O    D~M    E~P    E~Q 
+#>    A~S    A~H    A~M    C~K    D~H    E~K    E~G    E~P    E~F    E~R    F~J 
 #> "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" 
-#>    F~N    F~M    I~P    L~Q    L~R    L~N    M~S    N~R 
+#>    F~O    G~L    G~M    H~T    I~P    K~R    K~T    L~R 
 #> "none" "none" "none" "none" "none" "none" "none" "none"
 
 # plot network

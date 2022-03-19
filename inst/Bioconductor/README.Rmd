@@ -15,6 +15,7 @@ knitr::opts_chunk$set(
 This is the documentation example, based on Bioconductor 3.14.
 
 ```{r ComBat}
+library(sva)
 library(bladderbatch)
 data(bladderdata)
 dat <- bladderEset[1:50,]
