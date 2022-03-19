@@ -10,66 +10,28 @@ knitr::opts_chunk$set(
 )
 ```
 
-## Transcript databases
+## Normalization
 
-```r
-options(width=200)
+This is the documentation example, based on Bioconductor 3.14.
 
-suppressMessages(library(AnnotationDbi))
-suppressMessages(library(org.Hs.eg.db))
-columns(org.Hs.eg.db)
-keyref <- keys(org.Hs.eg.db, keytype="ENTREZID")
-symbol_uniprot <- select(org.Hs.eg.db,keys=keyref,columns = c("SYMBOL","UNIPROT"))
-subset(symbol_uniprot,SYMBOL=="MC4R")
+```{r ComBat}
+library(bladderbatch)
+data(bladderdata)
+dat <- bladderEset[1:50,]
 
-suppressMessages(library(EnsDb.Hsapiens.v86))
-x <- EnsDb.Hsapiens.v86
-listColumns(x, "protein", skip.keys=TRUE)
-listGenebiotypes(x)
-listTxbiotypes(x)
-listTables(x)
-metadata(x)
-organism(x)
-returnFilterColumns(x)
-seqinfo(x)
-seqlevels(x)
-updateEnsDb(x)
+pheno = pData(dat)
+edata = exprs(dat)
+batch = pheno$batch
+mod = model.matrix(~as.factor(cancer), data=pheno)
 
-suppressMessages(library(ensembldb))
-genes(x, columns=c("gene_name"), filter=list(SeqNameFilter("X"), GeneBiotypeFilter("protein_coding")))
-transcripts(x, columns=listColumns(x, "tx"), filter = AnnotationFilterList(), order.type = "asc", return.type = "GRanges")
+# parametric adjustment
+combat_edata1 = ComBat(dat=edata, batch=batch, mod=NULL, par.prior=TRUE, prior.plots=FALSE)
 
-library(RMariaDB)
-library(GenomicFeatures)
-txdbEnsemblGRCh38 <- makeTxDbFromEnsembl(organism="Homo sapiens", release=98)
-txdb <- as.list(txdbEnsemblGRCh38)
-lapply(txdb,head)
+# non-parametric adjustment, mean-only version
+combat_edata2 = ComBat(dat=edata, batch=batch, mod=NULL, par.prior=FALSE, mean.only=TRUE)
 
-library(TxDb.Hsapiens.UCSC.hg38.knownGene)
-txdb <- TxDb.Hsapiens.UCSC.hg38.knownGene
-
-library(INSPEcT)
-liverExprs <- quantifyExpressionsFromBWs(txdb = txdb,BWfiles=,experimentalDesign=)
-```
-
-## Pathway and enrichment analysis
-
-```r
-library(graphite)
-reactome <- pathways("hsapiens", "reactome")
-kegg <- pathways("hsapiens","kegg")
-pharmgkb <- pathways("hsapiens","pharmgkb")
-nodes(kegg)
-suppressMessages(library(plyr))
-kegg_t2g <- ldply(lapply(kegg, nodes), data.frame)
-names(kegg_t2g) <- c("gs_name", "gene_symbol")
-suppress(library(clusterProfiler))
-eKEGG <- enricher(gene = , TERM2GENE = kegg_t2g,
-                  universe = ,
-                  pAdjustMethod = "BH",
-                  pvalueCutoff = 0.1, qvalueCutoff = 0.05,
-                  minGSSize = 10, maxGSSize = 500)
-
+# reference-batch version, with covariates
+combat_edata3 = ComBat(dat=edata, batch=batch, mod=mod, par.prior=TRUE, ref.batch=3)
 ```
 
 ## Differential expression
@@ -207,6 +169,68 @@ colnames(colData(blood_rse))
 expand_sra_attributes(blood_rse)
 ```
 
+## Pathway and enrichment analysis
+
+```r
+library(graphite)
+reactome <- pathways("hsapiens", "reactome")
+kegg <- pathways("hsapiens","kegg")
+pharmgkb <- pathways("hsapiens","pharmgkb")
+nodes(kegg)
+suppressMessages(library(plyr))
+kegg_t2g <- ldply(lapply(kegg, nodes), data.frame)
+names(kegg_t2g) <- c("gs_name", "gene_symbol")
+suppress(library(clusterProfiler))
+eKEGG <- enricher(gene = , TERM2GENE = kegg_t2g,
+                  universe = ,
+                  pAdjustMethod = "BH",
+                  pvalueCutoff = 0.1, qvalueCutoff = 0.05,
+                  minGSSize = 10, maxGSSize = 500)
+
+```
+
+## Transcript databases
+
+```r
+options(width=200)
+
+suppressMessages(library(AnnotationDbi))
+suppressMessages(library(org.Hs.eg.db))
+columns(org.Hs.eg.db)
+keyref <- keys(org.Hs.eg.db, keytype="ENTREZID")
+symbol_uniprot <- select(org.Hs.eg.db,keys=keyref,columns = c("SYMBOL","UNIPROT"))
+subset(symbol_uniprot,SYMBOL=="MC4R")
+
+suppressMessages(library(EnsDb.Hsapiens.v86))
+x <- EnsDb.Hsapiens.v86
+listColumns(x, "protein", skip.keys=TRUE)
+listGenebiotypes(x)
+listTxbiotypes(x)
+listTables(x)
+metadata(x)
+organism(x)
+returnFilterColumns(x)
+seqinfo(x)
+seqlevels(x)
+updateEnsDb(x)
+
+suppressMessages(library(ensembldb))
+genes(x, columns=c("gene_name"), filter=list(SeqNameFilter("X"), GeneBiotypeFilter("protein_coding")))
+transcripts(x, columns=listColumns(x, "tx"), filter = AnnotationFilterList(), order.type = "asc", return.type = "GRanges")
+
+library(RMariaDB)
+library(GenomicFeatures)
+txdbEnsemblGRCh38 <- makeTxDbFromEnsembl(organism="Homo sapiens", release=98)
+txdb <- as.list(txdbEnsemblGRCh38)
+lapply(txdb,head)
+
+library(TxDb.Hsapiens.UCSC.hg38.knownGene)
+txdb <- TxDb.Hsapiens.UCSC.hg38.knownGene
+
+library(INSPEcT)
+liverExprs <- quantifyExpressionsFromBWs(txdb = txdb,BWfiles=,experimentalDesign=)
+```
+
 ---
 
 ## A list of Bioconductor/CRAN packages
@@ -215,6 +239,7 @@ Package | Description
 --------|------------
 **Bioconductor** |
 AnnotationDbi | AnnotationDb objects and their progeny, methods etc.
+Biobase | Base functions for Bioconductor
 org.Hs.eg.db | Conversion of Entrez ID -- gene symbols
 EnsDb.Hsapiens.v86 | Exposes an annotation databases generated from Ensembl
 ensembldb | Retrieve annotation data from an Ensembl based package
@@ -229,6 +254,7 @@ ComplexHeatmap | Make complex heatmaps
 recount3 | Interface to uniformly processed RNA-seq data
 Pi | Priority index, leveraging genetic evidence to prioritise drug targets at the gene and pathway level
 Rgraphiz | Interfaces R with the AT&T graphviz library for plotting R graph objects from the graph package
+sva | Surrogate Variable Analysis
 **CRAN** |
 GeneNet | Modeling and Inferring Gene Networks
 ggplot2 | Data Visualisations Using the grammar of graphics

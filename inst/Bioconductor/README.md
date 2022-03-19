@@ -1,63 +1,49 @@
-## Transcript databases
+## Normalization
+
+This is the documentation example, based on Bioconductor 3.14.
+
 
 ```r
-options(width=200)
+library(bladderbatch)
+#> Loading required package: Biobase
+#> Loading required package: BiocGenerics
+#> 
+#> Attaching package: 'BiocGenerics'
+#> The following objects are masked from 'package:stats':
+#> 
+#>     IQR, mad, sd, var, xtabs
+#> The following objects are masked from 'package:base':
+#> 
+#>     anyDuplicated, append, as.data.frame, basename, cbind, colnames,
+#>     dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep,
+#>     grepl, intersect, is.unsorted, lapply, Map, mapply, match, mget,
+#>     order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
+#>     rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,
+#>     union, unique, unsplit, which.max, which.min
+#> Welcome to Bioconductor
+#> 
+#>     Vignettes contain introductory material; view with
+#>     'browseVignettes()'. To cite Bioconductor, see
+#>     'citation("Biobase")', and for packages 'citation("pkgname")'.
+data(bladderdata)
+dat <- bladderEset[1:50,]
 
-suppressMessages(library(AnnotationDbi))
-suppressMessages(library(org.Hs.eg.db))
-columns(org.Hs.eg.db)
-keyref <- keys(org.Hs.eg.db, keytype="ENTREZID")
-symbol_uniprot <- select(org.Hs.eg.db,keys=keyref,columns = c("SYMBOL","UNIPROT"))
-subset(symbol_uniprot,SYMBOL=="MC4R")
+pheno = pData(dat)
+edata = exprs(dat)
+batch = pheno$batch
+mod = model.matrix(~as.factor(cancer), data=pheno)
 
-suppressMessages(library(EnsDb.Hsapiens.v86))
-x <- EnsDb.Hsapiens.v86
-listColumns(x, "protein", skip.keys=TRUE)
-listGenebiotypes(x)
-listTxbiotypes(x)
-listTables(x)
-metadata(x)
-organism(x)
-returnFilterColumns(x)
-seqinfo(x)
-seqlevels(x)
-updateEnsDb(x)
+# parametric adjustment
+combat_edata1 = ComBat(dat=edata, batch=batch, mod=NULL, par.prior=TRUE, prior.plots=FALSE)
+#> Error in ComBat(dat = edata, batch = batch, mod = NULL, par.prior = TRUE, : could not find function "ComBat"
 
-suppressMessages(library(ensembldb))
-genes(x, columns=c("gene_name"), filter=list(SeqNameFilter("X"), GeneBiotypeFilter("protein_coding")))
-transcripts(x, columns=listColumns(x, "tx"), filter = AnnotationFilterList(), order.type = "asc", return.type = "GRanges")
+# non-parametric adjustment, mean-only version
+combat_edata2 = ComBat(dat=edata, batch=batch, mod=NULL, par.prior=FALSE, mean.only=TRUE)
+#> Error in ComBat(dat = edata, batch = batch, mod = NULL, par.prior = FALSE, : could not find function "ComBat"
 
-library(RMariaDB)
-library(GenomicFeatures)
-txdbEnsemblGRCh38 <- makeTxDbFromEnsembl(organism="Homo sapiens", release=98)
-txdb <- as.list(txdbEnsemblGRCh38)
-lapply(txdb,head)
-
-library(TxDb.Hsapiens.UCSC.hg38.knownGene)
-txdb <- TxDb.Hsapiens.UCSC.hg38.knownGene
-
-library(INSPEcT)
-liverExprs <- quantifyExpressionsFromBWs(txdb = txdb,BWfiles=,experimentalDesign=)
-```
-
-## Pathway and enrichment analysis
-
-```r
-library(graphite)
-reactome <- pathways("hsapiens", "reactome")
-kegg <- pathways("hsapiens","kegg")
-pharmgkb <- pathways("hsapiens","pharmgkb")
-nodes(kegg)
-suppressMessages(library(plyr))
-kegg_t2g <- ldply(lapply(kegg, nodes), data.frame)
-names(kegg_t2g) <- c("gs_name", "gene_symbol")
-suppress(library(clusterProfiler))
-eKEGG <- enricher(gene = , TERM2GENE = kegg_t2g,
-                  universe = ,
-                  pAdjustMethod = "BH",
-                  pvalueCutoff = 0.1, qvalueCutoff = 0.05,
-                  minGSSize = 10, maxGSSize = 500)
-
+# reference-batch version, with covariates
+combat_edata3 = ComBat(dat=edata, batch=batch, mod=mod, par.prior=TRUE, ref.batch=3)
+#> Error in ComBat(dat = edata, batch = batch, mod = mod, par.prior = TRUE, : could not find function "ComBat"
 ```
 
 ## Differential expression
@@ -123,13 +109,13 @@ estimated.pcor <- cor2pcor( cor(m.sim) )
 
 # A comparison of estimated and true values
 sum((true.pcor-estimated.pcor)^2)
-#> [1] 651.7707
+#> [1] 667.8421
 
 # A slightly better estimate ...
 estimated.pcor.2 <- ggm.estimate.pcor(m.sim)
-#> Estimating optimal shrinkage intensity lambda (correlation matrix): 0.2471
+#> Estimating optimal shrinkage intensity lambda (correlation matrix): 0.0502
 sum((true.pcor-estimated.pcor.2)^2)
-#> [1] 9.727815
+#> [1] 11.63984
 
 ## ecoli data 
 data(ecoli)
@@ -424,38 +410,38 @@ num.nodes(gr)
 #> [1] 20
 edge.info(gr)
 #> $weight
-#>      A~B      B~P      C~H      D~J      D~Q      E~M      E~O      F~N 
-#> -0.87538  0.17362  0.54742  0.25655 -0.42332 -0.56086 -0.64612  0.42926 
-#>      F~H      H~Q      I~N      I~P      I~T      I~L      J~S      J~R 
-#> -0.49179 -0.23455 -0.00804 -0.36495  0.42278 -0.67880 -0.61040 -0.66001 
-#>      M~N      N~O      P~Q 
-#> -0.34482  0.21437 -0.50636 
+#>      A~O      A~M      A~B      B~T      B~J      B~R      D~I      E~Q 
+#>  0.20653 -0.39841 -0.42984 -0.13861  0.36080  0.53772 -0.58767  0.39114 
+#>      E~N      H~I      H~M      H~T      I~L      I~O      I~K      K~T 
+#> -0.67354 -0.22266  0.24540 -0.32198  0.05381  0.29239  0.29393 -0.56676 
+#>      M~O      N~S      O~T 
+#>  0.39088  0.68130 -0.07119 
 #> 
 #> $dir
-#>    A~B    B~P    C~H    D~J    D~Q    E~M    E~O    F~N    F~H    H~Q    I~N 
+#>    A~O    A~M    A~B    B~T    B~J    B~R    D~I    E~Q    E~N    H~I    H~M 
 #> "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" 
-#>    I~P    I~T    I~L    J~S    J~R    M~N    N~O    P~Q 
+#>    H~T    I~L    I~O    I~K    K~T    M~O    N~S    O~T 
 #> "none" "none" "none" "none" "none" "none" "none" "none"
 gr2 <- network.make.graph( test.results, nlab, drop.singles=TRUE)
 gr2
 #> A graphNEL graph with directed edges
-#> Number of Nodes = 18 
+#> Number of Nodes = 16 
 #> Number of Edges = 38
 num.nodes(gr2)
-#> [1] 18
+#> [1] 16
 edge.info(gr2)
 #> $weight
-#>      A~B      B~P      C~H      D~J      D~Q      E~M      E~O      F~N 
-#> -0.87538  0.17362  0.54742  0.25655 -0.42332 -0.56086 -0.64612  0.42926 
-#>      F~H      H~Q      I~N      I~P      I~T      I~L      J~S      J~R 
-#> -0.49179 -0.23455 -0.00804 -0.36495  0.42278 -0.67880 -0.61040 -0.66001 
-#>      M~N      N~O      P~Q 
-#> -0.34482  0.21437 -0.50636 
+#>      A~O      A~M      A~B      B~T      B~J      B~R      D~I      E~Q 
+#>  0.20653 -0.39841 -0.42984 -0.13861  0.36080  0.53772 -0.58767  0.39114 
+#>      E~N      H~I      H~M      H~T      I~L      I~O      I~K      K~T 
+#> -0.67354 -0.22266  0.24540 -0.32198  0.05381  0.29239  0.29393 -0.56676 
+#>      M~O      N~S      O~T 
+#>  0.39088  0.68130 -0.07119 
 #> 
 #> $dir
-#>    A~B    B~P    C~H    D~J    D~Q    E~M    E~O    F~N    F~H    H~Q    I~N 
+#>    A~O    A~M    A~B    B~T    B~J    B~R    D~I    E~Q    E~N    H~I    H~M 
 #> "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" 
-#>    I~P    I~T    I~L    J~S    J~R    M~N    N~O    P~Q 
+#>    H~T    I~L    I~O    I~K    K~T    M~O    N~S    O~T 
 #> "none" "none" "none" "none" "none" "none" "none" "none"
 
 # plot network
@@ -471,12 +457,44 @@ library("Rgraphviz")
 #> 
 #>     from, to
 plot(gr, "fdp")
+#> Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+#> Warning in arrows(head_from[1], head_from[2], head_to[1], head_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+#> Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+#> Warning in arrows(head_from[1], head_from[2], head_to[1], head_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+#> Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+#> Warning in arrows(head_from[1], head_from[2], head_to[1], head_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
 ```
 
 ![plot of chunk GeneNet](figures/GeneNet-2.png)
 
 ```r
 plot(gr2, "fdp")
+#> Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+
+#> Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+#> Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+#> Warning in arrows(head_from[1], head_from[2], head_to[1], head_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+#> Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+#> Warning in arrows(head_from[1], head_from[2], head_to[1], head_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+#> Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+#> Warning in arrows(head_from[1], head_from[2], head_to[1], head_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+
+#> Warning in arrows(head_from[1], head_from[2], head_to[1], head_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
 ```
 
 ![plot of chunk GeneNet](figures/GeneNet-3.png)
@@ -516,6 +534,68 @@ colnames(colData(blood_rse))
 expand_sra_attributes(blood_rse)
 ```
 
+## Pathway and enrichment analysis
+
+```r
+library(graphite)
+reactome <- pathways("hsapiens", "reactome")
+kegg <- pathways("hsapiens","kegg")
+pharmgkb <- pathways("hsapiens","pharmgkb")
+nodes(kegg)
+suppressMessages(library(plyr))
+kegg_t2g <- ldply(lapply(kegg, nodes), data.frame)
+names(kegg_t2g) <- c("gs_name", "gene_symbol")
+suppress(library(clusterProfiler))
+eKEGG <- enricher(gene = , TERM2GENE = kegg_t2g,
+                  universe = ,
+                  pAdjustMethod = "BH",
+                  pvalueCutoff = 0.1, qvalueCutoff = 0.05,
+                  minGSSize = 10, maxGSSize = 500)
+
+```
+
+## Transcript databases
+
+```r
+options(width=200)
+
+suppressMessages(library(AnnotationDbi))
+suppressMessages(library(org.Hs.eg.db))
+columns(org.Hs.eg.db)
+keyref <- keys(org.Hs.eg.db, keytype="ENTREZID")
+symbol_uniprot <- select(org.Hs.eg.db,keys=keyref,columns = c("SYMBOL","UNIPROT"))
+subset(symbol_uniprot,SYMBOL=="MC4R")
+
+suppressMessages(library(EnsDb.Hsapiens.v86))
+x <- EnsDb.Hsapiens.v86
+listColumns(x, "protein", skip.keys=TRUE)
+listGenebiotypes(x)
+listTxbiotypes(x)
+listTables(x)
+metadata(x)
+organism(x)
+returnFilterColumns(x)
+seqinfo(x)
+seqlevels(x)
+updateEnsDb(x)
+
+suppressMessages(library(ensembldb))
+genes(x, columns=c("gene_name"), filter=list(SeqNameFilter("X"), GeneBiotypeFilter("protein_coding")))
+transcripts(x, columns=listColumns(x, "tx"), filter = AnnotationFilterList(), order.type = "asc", return.type = "GRanges")
+
+library(RMariaDB)
+library(GenomicFeatures)
+txdbEnsemblGRCh38 <- makeTxDbFromEnsembl(organism="Homo sapiens", release=98)
+txdb <- as.list(txdbEnsemblGRCh38)
+lapply(txdb,head)
+
+library(TxDb.Hsapiens.UCSC.hg38.knownGene)
+txdb <- TxDb.Hsapiens.UCSC.hg38.knownGene
+
+library(INSPEcT)
+liverExprs <- quantifyExpressionsFromBWs(txdb = txdb,BWfiles=,experimentalDesign=)
+```
+
 ---
 
 ## A list of Bioconductor/CRAN packages
@@ -524,6 +604,7 @@ Package | Description
 --------|------------
 **Bioconductor** |
 AnnotationDbi | AnnotationDb objects and their progeny, methods etc.
+Biobase | Base functions for Bioconductor
 org.Hs.eg.db | Conversion of Entrez ID -- gene symbols
 EnsDb.Hsapiens.v86 | Exposes an annotation databases generated from Ensembl
 ensembldb | Retrieve annotation data from an Ensembl based package
@@ -538,6 +619,7 @@ ComplexHeatmap | Make complex heatmaps
 recount3 | Interface to uniformly processed RNA-seq data
 Pi | Priority index, leveraging genetic evidence to prioritise drug targets at the gene and pathway level
 Rgraphiz | Interfaces R with the AT&T graphviz library for plotting R graph objects from the graph package
+sva | Surrogate Variable Analysis
 **CRAN** |
 GeneNet | Modeling and Inferring Gene Networks
 ggplot2 | Data Visualisations Using the grammar of graphics
