@@ -4,33 +4,8 @@ This is the documentation example, based on Bioconductor 3.14.
 
 
 ```r
-library(sva)
-#> Loading required package: mgcv
-#> Loading required package: nlme
-#> This is mgcv 1.8-39. For overview type 'help("mgcv-package")'.
-#> Loading required package: genefilter
-#> Loading required package: BiocParallel
-library(bladderbatch)
-#> Loading required package: Biobase
-#> Loading required package: BiocGenerics
-#> 
-#> Attaching package: 'BiocGenerics'
-#> The following objects are masked from 'package:stats':
-#> 
-#>     IQR, mad, sd, var, xtabs
-#> The following objects are masked from 'package:base':
-#> 
-#>     anyDuplicated, append, as.data.frame, basename, cbind, colnames,
-#>     dirname, do.call, duplicated, eval, evalq, Filter, Find, get, grep,
-#>     grepl, intersect, is.unsorted, lapply, Map, mapply, match, mget,
-#>     order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
-#>     rbind, Reduce, rownames, sapply, setdiff, sort, table, tapply,
-#>     union, unique, unsplit, which.max, which.min
-#> Welcome to Bioconductor
-#> 
-#>     Vignettes contain introductory material; view with
-#>     'browseVignettes()'. To cite Bioconductor, see
-#>     'citation("Biobase")', and for packages 'citation("pkgname")'.
+suppressMessages(library(sva))
+suppressMessages(library(bladderbatch))
 data(bladderdata)
 dat <- bladderEset[1:50,]
 
@@ -139,13 +114,13 @@ estimated.pcor <- cor2pcor( cor(m.sim) )
 
 # A comparison of estimated and true values
 sum((true.pcor-estimated.pcor)^2)
-#> [1] 1074.933
+#> [1] 357.2913
 
 # A slightly better estimate ...
 estimated.pcor.2 <- ggm.estimate.pcor(m.sim)
-#> Estimating optimal shrinkage intensity lambda (correlation matrix): 0.354
+#> Estimating optimal shrinkage intensity lambda (correlation matrix): 0.481
 sum((true.pcor-estimated.pcor.2)^2)
-#> [1] 9.716128
+#> [1] 10.27036
 
 ## ecoli data 
 data(ecoli)
@@ -440,38 +415,38 @@ num.nodes(gr)
 #> [1] 20
 edge.info(gr)
 #> $weight
-#>      A~S      A~H      A~M      C~K      D~H      E~K      E~G      E~P 
-#> -0.20723 -0.41069  0.59161  0.32481 -0.30811  0.21950  0.25362  0.29182 
-#>      E~F      E~R      F~J      F~O      G~L      G~M      H~T      I~P 
-#>  0.36377 -0.40016 -0.43237  0.65653 -0.13772  0.29308  0.63355 -0.35221 
-#>      K~R      K~T      L~R 
-#> -0.25565 -0.29900 -0.39885 
+#>      A~Q      A~N      B~C      B~L      B~R      C~L      C~O      C~M 
+#> -0.29784 -0.74624  0.16941  0.19779 -0.74612 -0.20953 -0.37628 -0.45698 
+#>      D~O      D~H      D~P      E~G      E~Q      F~T      G~J      I~S 
+#>  0.35419 -0.52824 -0.62275  0.59165 -0.60461 -0.99978  0.59570 -0.16869 
+#>      I~P      K~R      M~S 
+#> -0.33408  0.51669 -0.70400 
 #> 
 #> $dir
-#>    A~S    A~H    A~M    C~K    D~H    E~K    E~G    E~P    E~F    E~R    F~J 
+#>    A~Q    A~N    B~C    B~L    B~R    C~L    C~O    C~M    D~O    D~H    D~P 
 #> "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" 
-#>    F~O    G~L    G~M    H~T    I~P    K~R    K~T    L~R 
+#>    E~G    E~Q    F~T    G~J    I~S    I~P    K~R    M~S 
 #> "none" "none" "none" "none" "none" "none" "none" "none"
 gr2 <- network.make.graph( test.results, nlab, drop.singles=TRUE)
 gr2
 #> A graphNEL graph with directed edges
-#> Number of Nodes = 17 
+#> Number of Nodes = 20 
 #> Number of Edges = 38
 num.nodes(gr2)
-#> [1] 17
+#> [1] 20
 edge.info(gr2)
 #> $weight
-#>      A~S      A~H      A~M      C~K      D~H      E~K      E~G      E~P 
-#> -0.20723 -0.41069  0.59161  0.32481 -0.30811  0.21950  0.25362  0.29182 
-#>      E~F      E~R      F~J      F~O      G~L      G~M      H~T      I~P 
-#>  0.36377 -0.40016 -0.43237  0.65653 -0.13772  0.29308  0.63355 -0.35221 
-#>      K~R      K~T      L~R 
-#> -0.25565 -0.29900 -0.39885 
+#>      A~Q      A~N      B~C      B~L      B~R      C~L      C~O      C~M 
+#> -0.29784 -0.74624  0.16941  0.19779 -0.74612 -0.20953 -0.37628 -0.45698 
+#>      D~O      D~H      D~P      E~G      E~Q      F~T      G~J      I~S 
+#>  0.35419 -0.52824 -0.62275  0.59165 -0.60461 -0.99978  0.59570 -0.16869 
+#>      I~P      K~R      M~S 
+#> -0.33408  0.51669 -0.70400 
 #> 
 #> $dir
-#>    A~S    A~H    A~M    C~K    D~H    E~K    E~G    E~P    E~F    E~R    F~J 
+#>    A~Q    A~N    B~C    B~L    B~R    C~L    C~O    C~M    D~O    D~H    D~P 
 #> "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" 
-#>    F~O    G~L    G~M    H~T    I~P    K~R    K~T    L~R 
+#>    E~G    E~Q    F~T    G~J    I~S    I~P    K~R    M~S 
 #> "none" "none" "none" "none" "none" "none" "none" "none"
 
 # plot network
@@ -487,19 +462,41 @@ library("Rgraphviz")
 #> 
 #>     from, to
 plot(gr, "fdp")
+#> Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+#> Warning in arrows(head_from[1], head_from[2], head_to[1], head_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+#> Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+#> Warning in arrows(head_from[1], head_from[2], head_to[1], head_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+#> Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+#> Warning in arrows(head_from[1], head_from[2], head_to[1], head_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+plot(gr2, "fdp")
+#> Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+
+#> Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+#> Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+#> Warning in arrows(head_from[1], head_from[2], head_to[1], head_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+#> Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+#> Warning in arrows(head_from[1], head_from[2], head_to[1], head_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
 ```
 
 ![plot of chunk GeneNet](figures/GeneNet-2.png)
 
-```r
-plot(gr2, "fdp")
-```
+A side-by-side heatmaps
 
-![plot of chunk GeneNet](figures/GeneNet-3.png)
-
-and a more involved version
 
 ```r
+suppressMessages(library(ComplexHeatmap))
 set.seed(123454321)
 m <- matrix(runif(2500),50)
 r <- cor(m)
@@ -507,14 +504,39 @@ g <- as.matrix(r>=0.7)+0
 f1 <- Heatmap(r)
 f2 <- Heatmap(g)
 f <- f1+f2
-draw(f) # f2 is somewhat twisted
-suppressMessages(library(WGCNA))
-pwr <- c(1:10, seq(from = 12, to=30, by=2))
-sft <- pickSoftThreshold(dat, powerVector = pwr, verbose = 5)
-meg <- moduleEigengenes(t(tpm), color=Colors, softPower=6)
-TOM <- TOMsimilarity(adjMatrix)
-Tree <- hclust(as.dist(1-TOM), method = "average")
-plotDendroAndColors(Tree, colors, "Dynamic Tree Cut", dendroLabels = FALSE, hang = 0.03, addGuide = TRUE, guideHang = 0.05)
+draw(f)
+```
+
+![plot of chunk heatmap](figures/heatmap-1.png)
+
+and a module analysis with WGCNA,
+
+```r
+suppressMessages(require(WGCNA))
+suppressMessages(require(cluster))
+
+pwr <- c(1:10, seq(from=12, to=30, by=2))
+sft <- pickSoftThreshold(dat, powerVector=pwr, verbose=5)
+ADJ <- abs(cor(dat, method="pearson", use="pairwise.complete.obs"))^6
+dissADJ <- 1-ADJ
+dissTOM <- TOMdist(ADJ)
+TOM <- TOMsimilarityFromExpr(dat)
+Tree <- hclust(as.dist(1-TOM), method="average")
+for(j in pwr)
+{
+  pam_name <- paste0("pam",j)
+  assign(pam_name, pam(as.dist(dissADJ),j))
+  pamTOM_name <- paste0("pamTOM",j)
+  assign(pamTOM_name,pam(as.dist(dissTOM),j))
+  tc <- table(get(pam_name)$clustering,get(pamTOM_name)$clustering)
+  print(tc)
+  print(diag(tc))
+}
+colorStaticTOM <- as.character(cutreeStaticColor(Tree,cutHeight=.99,minSize=5))
+colorDynamicTOM <- labels2colors(cutreeDynamic(Tree,method="tree",minClusterSize=5))
+Colors <- data.frame(pamTOM6$clustering,colorStaticTOM,colorDynamicTOM)
+plotDendroAndColors(Tree, Colors, dendroLabels=FALSE, hang=0.03, addGuide=TRUE, guideHang=0.05)
+meg <- moduleEigengenes(dat, color=1:ncol(dat), softPower=6)
 ```
 
 ## Meta-data

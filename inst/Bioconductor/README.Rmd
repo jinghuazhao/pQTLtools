@@ -14,9 +14,9 @@ knitr::opts_chunk$set(
 
 This is the documentation example, based on Bioconductor 3.14.
 
-```{r ComBat}
-library(sva)
-library(bladderbatch)
+```{r ComBat, messages=FALSE}
+suppressMessages(library(sva))
+suppressMessages(library(bladderbatch))
 data(bladderdata)
 dat <- bladderEset[1:50,]
 
@@ -135,9 +135,10 @@ plot(gr, "fdp")
 plot(gr2, "fdp")
 ```
 
-and a more involved version
+A side-by-side heatmaps
 
-```r
+```{r heatmap}
+suppressMessages(library(ComplexHeatmap))
 set.seed(123454321)
 m <- matrix(runif(2500),50)
 r <- cor(m)
@@ -145,14 +146,37 @@ g <- as.matrix(r>=0.7)+0
 f1 <- Heatmap(r)
 f2 <- Heatmap(g)
 f <- f1+f2
-draw(f) # f2 is somewhat twisted
-suppressMessages(library(WGCNA))
-pwr <- c(1:10, seq(from = 12, to=30, by=2))
-sft <- pickSoftThreshold(dat, powerVector = pwr, verbose = 5)
-meg <- moduleEigengenes(t(tpm), color=Colors, softPower=6)
-TOM <- TOMsimilarity(adjMatrix)
-Tree <- hclust(as.dist(1-TOM), method = "average")
-plotDendroAndColors(Tree, colors, "Dynamic Tree Cut", dendroLabels = FALSE, hang = 0.03, addGuide = TRUE, guideHang = 0.05)
+draw(f)
+```
+
+and a module analysis with WGCNA,
+
+```r
+suppressMessages(require(WGCNA))
+suppressMessages(require(cluster))
+
+pwr <- c(1:10, seq(from=12, to=30, by=2))
+sft <- pickSoftThreshold(dat, powerVector=pwr, verbose=5)
+ADJ <- abs(cor(dat, method="pearson", use="pairwise.complete.obs"))^6
+dissADJ <- 1-ADJ
+dissTOM <- TOMdist(ADJ)
+TOM <- TOMsimilarityFromExpr(dat)
+Tree <- hclust(as.dist(1-TOM), method="average")
+for(j in pwr)
+{
+  pam_name <- paste0("pam",j)
+  assign(pam_name, pam(as.dist(dissADJ),j))
+  pamTOM_name <- paste0("pamTOM",j)
+  assign(pamTOM_name,pam(as.dist(dissTOM),j))
+  tc <- table(get(pam_name)$clustering,get(pamTOM_name)$clustering)
+  print(tc)
+  print(diag(tc))
+}
+colorStaticTOM <- as.character(cutreeStaticColor(Tree,cutHeight=.99,minSize=5))
+colorDynamicTOM <- labels2colors(cutreeDynamic(Tree,method="tree",minClusterSize=5))
+Colors <- data.frame(pamTOM6$clustering,colorStaticTOM,colorDynamicTOM)
+plotDendroAndColors(Tree, Colors, dendroLabels=FALSE, hang=0.03, addGuide=TRUE, guideHang=0.05)
+meg <- moduleEigengenes(dat, color=1:ncol(dat), softPower=6)
 ```
 
 ## Meta-data
