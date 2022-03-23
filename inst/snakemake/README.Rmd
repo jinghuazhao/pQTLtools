@@ -18,7 +18,7 @@ The remove option is useful when resolving compatibility issues.
 ## Miniconda3
 
 ```bash
-wget OL https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh
 conda config --add channels bioconda
 conda config --add channels conda-forge
@@ -34,8 +34,8 @@ snakemake --dag | \
 dot -Tpdf > dag.pdf
 snakemake --rulegraph | \
 dot -Tpdf > rulegraph.pdf
-Snakemake -j 4
-Snakemake --j 4 --use-conda
+Snakemake -j4
+Snakemake --j4 --use-conda
 Snakemake --profile slurm
 ```
 
@@ -52,3 +52,5 @@ touch $HOME/.config/Snakemake/slurm/slurm.yaml
 Edwards D. Plant Bioinformatics-Methods and Protocols, 3e. https://link.springer.com/book/10.1007/978-1-0716-2067-0. [Chapter 11](https://link.springer.com/protocol/10.1007/978-1-0716-2067-0_11); [Chapter 9](https://link.springer.com/protocol/10.1007/978-1-0716-2067-0_9).
 
 snakemake, [homepage](https://snakemake.github.io/), [documentation](https://snakemake.readthedocs.io/en/stable/), [GitHub](https://github.com/snakemake/snakemake).
+
+snakemake, [https://cambridge-ceu.github.io/csd3/applications/snakemake.html](https://cambridge-ceu.github.io/csd3/applications/snakemake.html).
