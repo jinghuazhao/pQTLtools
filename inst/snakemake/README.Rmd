@@ -49,4 +49,6 @@ touch $HOME/.config/Snakemake/slurm/slurm.yaml
 
 ## Reference
 
-Edwards D. Plant Bioinformatics-Methods and Protocols, 3e. https://link.springer.com/book/10.1007/978-1-0716-2067-0. Chapter 11, https://link.springer.com/protocol/10.1007/978-1-0716-2067-0_11; Chapter 9. https://link.springer.com/protocol/10.1007/978-1-0716-2067-0_9.
+Edwards D. Plant Bioinformatics-Methods and Protocols, 3e. https://link.springer.com/book/10.1007/978-1-0716-2067-0. [Chapter 11](https://link.springer.com/protocol/10.1007/978-1-0716-2067-0_11); [Chapter 9](https://link.springer.com/protocol/10.1007/978-1-0716-2067-0_9).
+
+snakemake, [homepage](https://snakemake.github.io/), [documentation](https://snakemake.readthedocs.io/en/stable/), [GitHub](https://github.com/snakemake/snakemake).
