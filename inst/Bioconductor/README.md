@@ -1,5 +1,7 @@
 ## Normalization
 
+### ComBat
+
 This is the documentation example, based on Bioconductor 3.14.
 
 
@@ -50,6 +52,126 @@ combat_edata3 = ComBat(dat=edata, batch=batch, mod=mod, par.prior=TRUE, ref.batc
 ```
 
 ![plot of chunk ComBat](figures/ComBat-2.png)
+
+### quantro
+
+Again, this is adapted from the package vignette. noting that `FlowSorted.DLPFC.450k` instead of `FlowSorted` is used.
+
+
+```r
+library(FlowSorted.DLPFC.450k)
+#> Loading required package: minfi
+#> Loading required package: GenomicRanges
+#> Loading required package: stats4
+#> Loading required package: S4Vectors
+#> 
+#> Attaching package: 'S4Vectors'
+#> The following objects are masked from 'package:base':
+#> 
+#>     expand.grid, I, unname
+#> Loading required package: IRanges
+#> 
+#> Attaching package: 'IRanges'
+#> The following object is masked from 'package:nlme':
+#> 
+#>     collapse
+#> Loading required package: GenomeInfoDb
+#> Loading required package: SummarizedExperiment
+#> Loading required package: MatrixGenerics
+#> Loading required package: matrixStats
+#> 
+#> Attaching package: 'matrixStats'
+#> The following objects are masked from 'package:Biobase':
+#> 
+#>     anyMissing, rowMedians
+#> The following objects are masked from 'package:genefilter':
+#> 
+#>     rowSds, rowVars
+#> 
+#> Attaching package: 'MatrixGenerics'
+#> The following objects are masked from 'package:matrixStats':
+#> 
+#>     colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,
+#>     colCounts, colCummaxs, colCummins, colCumprods, colCumsums,
+#>     colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,
+#>     colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,
+#>     colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds,
+#>     colSums2, colTabulates, colVarDiffs, colVars, colWeightedMads,
+#>     colWeightedMeans, colWeightedMedians, colWeightedSds,
+#>     colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet,
+#>     rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,
+#>     rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,
+#>     rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,
+#>     rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,
+#>     rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs, rowVars,
+#>     rowWeightedMads, rowWeightedMeans, rowWeightedMedians,
+#>     rowWeightedSds, rowWeightedVars
+#> The following object is masked from 'package:Biobase':
+#> 
+#>     rowMedians
+#> The following objects are masked from 'package:genefilter':
+#> 
+#>     rowSds, rowVars
+#> Loading required package: Biostrings
+#> Loading required package: XVector
+#> 
+#> Attaching package: 'Biostrings'
+#> The following object is masked from 'package:base':
+#> 
+#>     strsplit
+#> Loading required package: bumphunter
+#> Loading required package: foreach
+#> Loading required package: iterators
+#> Loading required package: parallel
+#> Loading required package: locfit
+#> locfit 1.5-9.5 	 2022-03-01
+#> Setting options('download.file.method.GEOquery'='auto')
+#> Setting options('GEOquery.inmemory.gpl'=FALSE)
+p <- getBeta(FlowSorted.DLPFC.450k,offset=100)
+#> Loading required package: IlluminaHumanMethylation450kmanifest
+pd <- pData(FlowSorted.DLPFC.450k)
+library(quantro)
+matdensity(p, groupFactor = pd$CellType, xlab = " ", ylab = "density",
+           main = "Beta Values", brewer.n = 8, brewer.name = "Dark2")
+legend('top', c("NeuN_neg", "NeuN_pos"), col = c(1, 2), lty = 1, lwd = 3)
+```
+
+![plot of chunk quantro](figures/quantro-1.png)
+
+```r
+matboxplot(p, groupFactor = pd$CellType, xaxt = "n", main = "Beta Values")
+```
+
+![plot of chunk quantro](figures/quantro-2.png)
+
+```r
+qtest <- quantro(object = p, groupFactor = pd$CellType)
+#> [quantro] Average medians of the distributions are 
+#>                         not equal across groups.
+#> [quantro] Calculating the quantro test statistic.
+#> [quantro] No permutation testing performed. 
+#>                          Use B > 0 for permutation testing.
+library(doParallel)
+registerDoParallel(cores=10)
+qtestPerm <- quantro(p, groupFactor = pd$CellType, B = 1000)
+#> [quantro] Average medians of the distributions are 
+#>                         not equal across groups.
+#> [quantro] Calculating the quantro test statistic.
+#> [quantro] Starting permutation testing.
+#> [quantro] Parallelizing using 10 workers/cores 
+#>                         (backend: doParallelMC, version: 1.0.17).
+qtestPerm
+#> quantro: Test for global differences in distributions
+#>    nGroups:  2 
+#>    nTotSamples:  58 
+#>    nSamplesinGroups:  29 29 
+#>    anovaPval:  0.02205 
+#>    quantroStat:  7.98279 
+#>    quantroPvalPerm:  0.003
+quantroPlot(qtestPerm)
+```
+
+![plot of chunk quantro](figures/quantro-3.png)
 
 ## Differential expression
 
@@ -114,13 +236,13 @@ estimated.pcor <- cor2pcor( cor(m.sim) )
 
 # A comparison of estimated and true values
 sum((true.pcor-estimated.pcor)^2)
-#> [1] 357.2913
+#> [1] 425.4112
 
 # A slightly better estimate ...
 estimated.pcor.2 <- ggm.estimate.pcor(m.sim)
-#> Estimating optimal shrinkage intensity lambda (correlation matrix): 0.481
+#> Estimating optimal shrinkage intensity lambda (correlation matrix): 0.33
 sum((true.pcor-estimated.pcor.2)^2)
-#> [1] 10.27036
+#> [1] 10.14642
 
 ## ecoli data 
 data(ecoli)
@@ -415,44 +537,54 @@ num.nodes(gr)
 #> [1] 20
 edge.info(gr)
 #> $weight
-#>      A~Q      A~N      B~C      B~L      B~R      C~L      C~O      C~M 
-#> -0.29784 -0.74624  0.16941  0.19779 -0.74612 -0.20953 -0.37628 -0.45698 
-#>      D~O      D~H      D~P      E~G      E~Q      F~T      G~J      I~S 
-#>  0.35419 -0.52824 -0.62275  0.59165 -0.60461 -0.99978  0.59570 -0.16869 
-#>      I~P      K~R      M~S 
-#> -0.33408  0.51669 -0.70400 
+#>      A~I      A~O      B~D      B~L      B~C      C~R      D~L      D~M 
+#>  0.10626 -0.99410  0.26869 -0.28909 -0.55996  0.49247 -0.12681  0.15912 
+#>      D~F      D~K      E~H      E~F      F~L      F~N      G~R      G~M 
+#> -0.23272  0.44652  0.24557  0.44390  0.37173  0.38792 -0.14811  0.78194 
+#>      K~P      L~M      N~Q 
+#>  0.61297 -0.06504 -0.63161 
 #> 
 #> $dir
-#>    A~Q    A~N    B~C    B~L    B~R    C~L    C~O    C~M    D~O    D~H    D~P 
+#>    A~I    A~O    B~D    B~L    B~C    C~R    D~L    D~M    D~F    D~K    E~H 
 #> "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" 
-#>    E~G    E~Q    F~T    G~J    I~S    I~P    K~R    M~S 
+#>    E~F    F~L    F~N    G~R    G~M    K~P    L~M    N~Q 
 #> "none" "none" "none" "none" "none" "none" "none" "none"
 gr2 <- network.make.graph( test.results, nlab, drop.singles=TRUE)
 gr2
 #> A graphNEL graph with directed edges
-#> Number of Nodes = 20 
+#> Number of Nodes = 17 
 #> Number of Edges = 38
 num.nodes(gr2)
-#> [1] 20
+#> [1] 17
 edge.info(gr2)
 #> $weight
-#>      A~Q      A~N      B~C      B~L      B~R      C~L      C~O      C~M 
-#> -0.29784 -0.74624  0.16941  0.19779 -0.74612 -0.20953 -0.37628 -0.45698 
-#>      D~O      D~H      D~P      E~G      E~Q      F~T      G~J      I~S 
-#>  0.35419 -0.52824 -0.62275  0.59165 -0.60461 -0.99978  0.59570 -0.16869 
-#>      I~P      K~R      M~S 
-#> -0.33408  0.51669 -0.70400 
+#>      A~I      A~O      B~D      B~L      B~C      C~R      D~L      D~M 
+#>  0.10626 -0.99410  0.26869 -0.28909 -0.55996  0.49247 -0.12681  0.15912 
+#>      D~F      D~K      E~H      E~F      F~L      F~N      G~R      G~M 
+#> -0.23272  0.44652  0.24557  0.44390  0.37173  0.38792 -0.14811  0.78194 
+#>      K~P      L~M      N~Q 
+#>  0.61297 -0.06504 -0.63161 
 #> 
 #> $dir
-#>    A~Q    A~N    B~C    B~L    B~R    C~L    C~O    C~M    D~O    D~H    D~P 
+#>    A~I    A~O    B~D    B~L    B~C    C~R    D~L    D~M    D~F    D~K    E~H 
 #> "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" 
-#>    E~G    E~Q    F~T    G~J    I~S    I~P    K~R    M~S 
+#>    E~F    F~L    F~N    G~R    G~M    K~P    L~M    N~Q 
 #> "none" "none" "none" "none" "none" "none" "none" "none"
 
 # plot network
 library("Rgraphviz")
 #> Loading required package: graph
+#> 
+#> Attaching package: 'graph'
+#> The following object is masked from 'package:Biostrings':
+#> 
+#>     complement
 #> Loading required package: grid
+#> 
+#> Attaching package: 'grid'
+#> The following object is masked from 'package:Biostrings':
+#> 
+#>     pattern
 #> 
 #> Attaching package: 'Rgraphviz'
 #> The following objects are masked from 'package:IRanges':
@@ -468,29 +600,22 @@ plot(gr, "fdp")
 #> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
 #> Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =
 #> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
-#> Warning in arrows(head_from[1], head_from[2], head_to[1], head_to[2], col =
-#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
-#> Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =
-#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
-#> Warning in arrows(head_from[1], head_from[2], head_to[1], head_to[2], col =
-#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+```
+
+![plot of chunk GeneNet](figures/GeneNet-2.png)
+
+```r
 plot(gr2, "fdp")
-#> Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =
+#> Warning in arrows(head_from[1], head_from[2], head_to[1], head_to[2], col =
 #> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
 
-#> Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =
-#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
-#> Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =
-#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
 #> Warning in arrows(head_from[1], head_from[2], head_to[1], head_to[2], col =
-#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
-#> Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =
 #> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
 #> Warning in arrows(head_from[1], head_from[2], head_to[1], head_to[2], col =
 #> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
 ```
 
-![plot of chunk GeneNet](figures/GeneNet-2.png)
+![plot of chunk GeneNet](figures/GeneNet-3.png)
 
 A side-by-side heatmaps
 
@@ -638,6 +763,8 @@ WGCNA | Weighted correlation network analysis
 ComplexHeatmap | Make complex heatmaps
 recount3 | Interface to uniformly processed RNA-seq data
 Pi | Priority index, leveraging genetic evidence to prioritise drug targets at the gene and pathway level
+quantro | A test for when to use quantile normalization
+FlowSorted.DLPFC.450k | Illumina HumanMethylation data on sorted frontal cortex cell populations
 Rgraphiz | Interfaces R with the AT&T graphviz library for plotting R graph objects from the graph package
 sva | Surrogate Variable Analysis
 **CRAN** |
