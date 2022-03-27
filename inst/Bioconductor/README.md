@@ -1,3 +1,9 @@
+---
+output: github_document
+---
+
+
+
 ## Normalization
 
 ### ComBat
@@ -167,7 +173,7 @@ qtestPerm
 #>    nSamplesinGroups:  29 29 
 #>    anovaPval:  0.02205 
 #>    quantroStat:  7.98279 
-#>    quantroPvalPerm:  0.003
+#>    quantroPvalPerm:  0.001
 quantroPlot(qtestPerm)
 ```
 
@@ -236,13 +242,13 @@ estimated.pcor <- cor2pcor( cor(m.sim) )
 
 # A comparison of estimated and true values
 sum((true.pcor-estimated.pcor)^2)
-#> [1] 425.4112
+#> [1] 687.6572
 
 # A slightly better estimate ...
 estimated.pcor.2 <- ggm.estimate.pcor(m.sim)
-#> Estimating optimal shrinkage intensity lambda (correlation matrix): 0.33
+#> Estimating optimal shrinkage intensity lambda (correlation matrix): 0.4278
 sum((true.pcor-estimated.pcor.2)^2)
-#> [1] 10.14642
+#> [1] 9.485306
 
 ## ecoli data 
 data(ecoli)
@@ -537,38 +543,38 @@ num.nodes(gr)
 #> [1] 20
 edge.info(gr)
 #> $weight
-#>      A~I      A~O      B~D      B~L      B~C      C~R      D~L      D~M 
-#>  0.10626 -0.99410  0.26869 -0.28909 -0.55996  0.49247 -0.12681  0.15912 
-#>      D~F      D~K      E~H      E~F      F~L      F~N      G~R      G~M 
-#> -0.23272  0.44652  0.24557  0.44390  0.37173  0.38792 -0.14811  0.78194 
-#>      K~P      L~M      N~Q 
-#>  0.61297 -0.06504 -0.63161 
+#>      A~T      A~E      B~I      B~R      C~K      D~H      E~P      F~K 
+#>  0.25628  0.74117 -0.09470  0.94059  0.51162  0.65747 -0.13188 -0.20492 
+#>      F~L      F~N      F~T      F~P      G~K      G~J      H~T      I~K 
+#>  0.27605 -0.31063  0.32107 -0.40740  0.30678  0.59939  0.50008  0.56518 
+#>      K~O      L~Q      P~S 
+#> -0.13924  0.77870 -0.46168 
 #> 
 #> $dir
-#>    A~I    A~O    B~D    B~L    B~C    C~R    D~L    D~M    D~F    D~K    E~H 
+#>    A~T    A~E    B~I    B~R    C~K    D~H    E~P    F~K    F~L    F~N    F~T 
 #> "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" 
-#>    E~F    F~L    F~N    G~R    G~M    K~P    L~M    N~Q 
+#>    F~P    G~K    G~J    H~T    I~K    K~O    L~Q    P~S 
 #> "none" "none" "none" "none" "none" "none" "none" "none"
 gr2 <- network.make.graph( test.results, nlab, drop.singles=TRUE)
 gr2
 #> A graphNEL graph with directed edges
-#> Number of Nodes = 17 
+#> Number of Nodes = 19 
 #> Number of Edges = 38
 num.nodes(gr2)
-#> [1] 17
+#> [1] 19
 edge.info(gr2)
 #> $weight
-#>      A~I      A~O      B~D      B~L      B~C      C~R      D~L      D~M 
-#>  0.10626 -0.99410  0.26869 -0.28909 -0.55996  0.49247 -0.12681  0.15912 
-#>      D~F      D~K      E~H      E~F      F~L      F~N      G~R      G~M 
-#> -0.23272  0.44652  0.24557  0.44390  0.37173  0.38792 -0.14811  0.78194 
-#>      K~P      L~M      N~Q 
-#>  0.61297 -0.06504 -0.63161 
+#>      A~T      A~E      B~I      B~R      C~K      D~H      E~P      F~K 
+#>  0.25628  0.74117 -0.09470  0.94059  0.51162  0.65747 -0.13188 -0.20492 
+#>      F~L      F~N      F~T      F~P      G~K      G~J      H~T      I~K 
+#>  0.27605 -0.31063  0.32107 -0.40740  0.30678  0.59939  0.50008  0.56518 
+#>      K~O      L~Q      P~S 
+#> -0.13924  0.77870 -0.46168 
 #> 
 #> $dir
-#>    A~I    A~O    B~D    B~L    B~C    C~R    D~L    D~M    D~F    D~K    E~H 
+#>    A~T    A~E    B~I    B~R    C~K    D~H    E~P    F~K    F~L    F~N    F~T 
 #> "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" 
-#>    E~F    F~L    F~N    G~R    G~M    K~P    L~M    N~Q 
+#>    F~P    G~K    G~J    H~T    I~K    K~O    L~Q    P~S 
 #> "none" "none" "none" "none" "none" "none" "none" "none"
 
 # plot network
@@ -598,21 +604,12 @@ plot(gr, "fdp")
 #> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
 #> Warning in arrows(head_from[1], head_from[2], head_to[1], head_to[2], col =
 #> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
-#> Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =
-#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
 ```
 
 ![plot of chunk GeneNet](figures/GeneNet-2.png)
 
 ```r
 plot(gr2, "fdp")
-#> Warning in arrows(head_from[1], head_from[2], head_to[1], head_to[2], col =
-#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
-
-#> Warning in arrows(head_from[1], head_from[2], head_to[1], head_to[2], col =
-#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
-#> Warning in arrows(head_from[1], head_from[2], head_to[1], head_to[2], col =
-#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
 ```
 
 ![plot of chunk GeneNet](figures/GeneNet-3.png)
@@ -633,6 +630,16 @@ draw(f)
 ```
 
 ![plot of chunk heatmap](figures/heatmap-1.png)
+
+```r
+
+suppressMessages(library(RColorBrewer))
+suppressMessages(library(heatmaply))
+df <- normalize(mtcars)
+heatmaply(df,k_col=5,k_row=5,colors = colorRampPalette(brewer.pal(3, "RdBu"))(256))
+```
+
+![plot of chunk heatmap](figures/heatmap-2.png)
 
 and a module analysis with WGCNA,
 
@@ -767,8 +774,10 @@ quantro | A test for when to use quantile normalization
 FlowSorted.DLPFC.450k | Illumina HumanMethylation data on sorted frontal cortex cell populations
 Rgraphiz | Interfaces R with the AT&T graphviz library for plotting R graph objects from the graph package
 sva | Surrogate Variable Analysis
+doParallel | Foreach Parallel Adaptor for the 'parallel' Package
 **CRAN** |
 GeneNet | Modeling and Inferring Gene Networks
 ggplot2 | Data Visualisations Using the grammar of graphics
+heatmaply | Interactive Cluster Heat Maps Using `plotly` and `ggplot2`
 pheatmap | results visualisation
 plyr | Splitting, applying and combining data
