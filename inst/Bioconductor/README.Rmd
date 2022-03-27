@@ -170,6 +170,11 @@ f1 <- Heatmap(r)
 f2 <- Heatmap(g)
 f <- f1+f2
 draw(f)
+
+suppressMessages(library(RColorBrewer))
+suppressMessages(library(heatmaply))
+df <- normalize(mtcars)
+heatmaply(df,k_col=5,k_row=5,colors = colorRampPalette(brewer.pal(3, "RdBu"))(256))
 ```
 
 and a module analysis with WGCNA,
@@ -305,8 +310,10 @@ quantro | A test for when to use quantile normalization
 FlowSorted.DLPFC.450k | Illumina HumanMethylation data on sorted frontal cortex cell populations
 Rgraphiz | Interfaces R with the AT&T graphviz library for plotting R graph objects from the graph package
 sva | Surrogate Variable Analysis
+doParallel | Foreach Parallel Adaptor for the 'parallel' Package
 **CRAN** |
 GeneNet | Modeling and Inferring Gene Networks
 ggplot2 | Data Visualisations Using the grammar of graphics
+heatmaply | Interactive Cluster Heat Maps Using `plotly` and `ggplot2`
 pheatmap | results visualisation
 plyr | Splitting, applying and combining data
