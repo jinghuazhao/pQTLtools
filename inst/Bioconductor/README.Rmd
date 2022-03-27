@@ -313,6 +313,7 @@ sva | Surrogate Variable Analysis
 doParallel | Foreach Parallel Adaptor for the 'parallel' Package
 **CRAN** |
 GeneNet | Modeling and Inferring Gene Networks
+RColorBrewer | ColorBrewer Palettes
 ggplot2 | Data Visualisations Using the grammar of graphics
 heatmaply | Interactive Cluster Heat Maps Using `plotly` and `ggplot2`
 pheatmap | results visualisation
