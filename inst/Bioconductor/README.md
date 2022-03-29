@@ -65,74 +65,7 @@ Again, this is adapted from the package vignette. noting that `FlowSorted.DLPFC.
 
 
 ```r
-library(FlowSorted.DLPFC.450k)
-#> Loading required package: minfi
-#> Loading required package: GenomicRanges
-#> Loading required package: stats4
-#> Loading required package: S4Vectors
-#> 
-#> Attaching package: 'S4Vectors'
-#> The following objects are masked from 'package:base':
-#> 
-#>     expand.grid, I, unname
-#> Loading required package: IRanges
-#> 
-#> Attaching package: 'IRanges'
-#> The following object is masked from 'package:nlme':
-#> 
-#>     collapse
-#> Loading required package: GenomeInfoDb
-#> Loading required package: SummarizedExperiment
-#> Loading required package: MatrixGenerics
-#> Loading required package: matrixStats
-#> 
-#> Attaching package: 'matrixStats'
-#> The following objects are masked from 'package:Biobase':
-#> 
-#>     anyMissing, rowMedians
-#> The following objects are masked from 'package:genefilter':
-#> 
-#>     rowSds, rowVars
-#> 
-#> Attaching package: 'MatrixGenerics'
-#> The following objects are masked from 'package:matrixStats':
-#> 
-#>     colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,
-#>     colCounts, colCummaxs, colCummins, colCumprods, colCumsums,
-#>     colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,
-#>     colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,
-#>     colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds,
-#>     colSums2, colTabulates, colVarDiffs, colVars, colWeightedMads,
-#>     colWeightedMeans, colWeightedMedians, colWeightedSds,
-#>     colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet,
-#>     rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,
-#>     rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,
-#>     rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,
-#>     rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,
-#>     rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs, rowVars,
-#>     rowWeightedMads, rowWeightedMeans, rowWeightedMedians,
-#>     rowWeightedSds, rowWeightedVars
-#> The following object is masked from 'package:Biobase':
-#> 
-#>     rowMedians
-#> The following objects are masked from 'package:genefilter':
-#> 
-#>     rowSds, rowVars
-#> Loading required package: Biostrings
-#> Loading required package: XVector
-#> 
-#> Attaching package: 'Biostrings'
-#> The following object is masked from 'package:base':
-#> 
-#>     strsplit
-#> Loading required package: bumphunter
-#> Loading required package: foreach
-#> Loading required package: iterators
-#> Loading required package: parallel
-#> Loading required package: locfit
-#> locfit 1.5-9.5 	 2022-03-01
-#> Setting options('download.file.method.GEOquery'='auto')
-#> Setting options('GEOquery.inmemory.gpl'=FALSE)
+suppressMessages(library(FlowSorted.DLPFC.450k))
 p <- getBeta(FlowSorted.DLPFC.450k,offset=100)
 #> Loading required package: IlluminaHumanMethylation450kmanifest
 pd <- pData(FlowSorted.DLPFC.450k)
@@ -173,7 +106,7 @@ qtestPerm
 #>    nSamplesinGroups:  29 29 
 #>    anovaPval:  0.02205 
 #>    quantroStat:  7.98279 
-#>    quantroPvalPerm:  0.001
+#>    quantroPvalPerm:  0.003
 quantroPlot(qtestPerm)
 ```
 
@@ -242,13 +175,13 @@ estimated.pcor <- cor2pcor( cor(m.sim) )
 
 # A comparison of estimated and true values
 sum((true.pcor-estimated.pcor)^2)
-#> [1] 687.6572
+#> [1] 299.0784
 
 # A slightly better estimate ...
 estimated.pcor.2 <- ggm.estimate.pcor(m.sim)
-#> Estimating optimal shrinkage intensity lambda (correlation matrix): 0.4278
+#> Estimating optimal shrinkage intensity lambda (correlation matrix): 0.3236
 sum((true.pcor-estimated.pcor.2)^2)
-#> [1] 9.485306
+#> [1] 10.88297
 
 ## ecoli data 
 data(ecoli)
@@ -543,17 +476,17 @@ num.nodes(gr)
 #> [1] 20
 edge.info(gr)
 #> $weight
-#>      A~T      A~E      B~I      B~R      C~K      D~H      E~P      F~K 
-#>  0.25628  0.74117 -0.09470  0.94059  0.51162  0.65747 -0.13188 -0.20492 
-#>      F~L      F~N      F~T      F~P      G~K      G~J      H~T      I~K 
-#>  0.27605 -0.31063  0.32107 -0.40740  0.30678  0.59939  0.50008  0.56518 
-#>      K~O      L~Q      P~S 
-#> -0.13924  0.77870 -0.46168 
+#>      A~N      B~O      B~Q      C~I      D~O      E~O      E~M      F~H 
+#>  0.46758  0.03212 -0.70333 -0.56180 -0.27928 -0.14427  0.55860  0.19646 
+#>      F~J      G~I      G~H      J~O      K~L      K~S      L~R      M~N 
+#> -0.59105 -0.48762  0.73507 -0.25269  0.17645 -0.82827  0.94885  0.23734 
+#>      M~O      N~O      Q~T 
+#> -0.33263  0.45808  0.69213 
 #> 
 #> $dir
-#>    A~T    A~E    B~I    B~R    C~K    D~H    E~P    F~K    F~L    F~N    F~T 
+#>    A~N    B~O    B~Q    C~I    D~O    E~O    E~M    F~H    F~J    G~I    G~H 
 #> "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" 
-#>    F~P    G~K    G~J    H~T    I~K    K~O    L~Q    P~S 
+#>    J~O    K~L    K~S    L~R    M~N    M~O    N~O    Q~T 
 #> "none" "none" "none" "none" "none" "none" "none" "none"
 gr2 <- network.make.graph( test.results, nlab, drop.singles=TRUE)
 gr2
@@ -564,17 +497,17 @@ num.nodes(gr2)
 #> [1] 19
 edge.info(gr2)
 #> $weight
-#>      A~T      A~E      B~I      B~R      C~K      D~H      E~P      F~K 
-#>  0.25628  0.74117 -0.09470  0.94059  0.51162  0.65747 -0.13188 -0.20492 
-#>      F~L      F~N      F~T      F~P      G~K      G~J      H~T      I~K 
-#>  0.27605 -0.31063  0.32107 -0.40740  0.30678  0.59939  0.50008  0.56518 
-#>      K~O      L~Q      P~S 
-#> -0.13924  0.77870 -0.46168 
+#>      A~N      B~O      B~Q      C~I      D~O      E~O      E~M      F~H 
+#>  0.46758  0.03212 -0.70333 -0.56180 -0.27928 -0.14427  0.55860  0.19646 
+#>      F~J      G~I      G~H      J~O      K~L      K~S      L~R      M~N 
+#> -0.59105 -0.48762  0.73507 -0.25269  0.17645 -0.82827  0.94885  0.23734 
+#>      M~O      N~O      Q~T 
+#> -0.33263  0.45808  0.69213 
 #> 
 #> $dir
-#>    A~T    A~E    B~I    B~R    C~K    D~H    E~P    F~K    F~L    F~N    F~T 
+#>    A~N    B~O    B~Q    C~I    D~O    E~O    E~M    F~H    F~J    G~I    G~H 
 #> "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" 
-#>    F~P    G~K    G~J    H~T    I~K    K~O    L~Q    P~S 
+#>    J~O    K~L    K~S    L~R    M~N    M~O    N~O    Q~T 
 #> "none" "none" "none" "none" "none" "none" "none" "none"
 
 # plot network
@@ -610,6 +543,11 @@ plot(gr, "fdp")
 
 ```r
 plot(gr2, "fdp")
+#> Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+
+#> Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
 ```
 
 ![plot of chunk GeneNet](figures/GeneNet-3.png)

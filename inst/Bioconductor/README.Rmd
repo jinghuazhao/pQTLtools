@@ -42,7 +42,7 @@ combat_edata3 = ComBat(dat=edata, batch=batch, mod=mod, par.prior=TRUE, ref.batc
 Again, this is adapted from the package vignette. noting that `FlowSorted.DLPFC.450k` instead of `FlowSorted` is used.
 
 ```{r quantro}
-library(FlowSorted.DLPFC.450k)
+suppressMessages(library(FlowSorted.DLPFC.450k))
 p <- getBeta(FlowSorted.DLPFC.450k,offset=100)
 pd <- pData(FlowSorted.DLPFC.450k)
 library(quantro)
