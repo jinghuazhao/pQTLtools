@@ -1,5 +1,16 @@
 ---
-output: github_document
+title: Bioconductor Applications
+output:
+  html_document:
+    mathjax:  default
+    fig_caption:  true
+    toc: true
+    section_numbering: true
+bibliography: bioc.bib
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Bioconductor Applications}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r logo, echo = FALSE, include=FALSE}
@@ -244,6 +255,8 @@ eKEGG <- enricher(gene = , TERM2GENE = kegg_t2g,
 
 ## Transcript databases
 
+An overview of annotation is given in @carlson16.
+
 ```r
 options(width=200)
 
@@ -318,3 +331,5 @@ ggplot2 | Data Visualisations Using the grammar of graphics
 heatmaply | Interactive Cluster Heat Maps Using `plotly` and `ggplot2`
 pheatmap | results visualisation
 plyr | Splitting, applying and combining data
+
+## References

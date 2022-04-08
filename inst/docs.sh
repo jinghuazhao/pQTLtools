@@ -19,6 +19,12 @@ function build()
   "
 }
 
+function rmd()
+{
+  Rscript -e "knitr::knit('README.Rmd')"
+  pandoc README.md --citeproc --mathjax -s --self-contained -o index.html
+}
+
 build
 
 if [ -d vignettes/es ]; then
@@ -37,7 +43,8 @@ if [ -f vignettes/fig3d.html ]; then
 fi
 
 for f in .github .gitignore .Rbuildignore .Rinstignore .travis.yml \
-         data/ DESCRIPTION docs/ INDEX inst/ LICENSE LICENSE.md man/ NAMESPACE NEWS.md pkgdown/ R/ README.* vignettes/
+         data/ DESCRIPTION docs/ INDEX inst/ LICENSE LICENSE.md man/ \
+         NAMESPACE NEWS.md pkgdown/ R/ README.* vignettes/
 do
   echo adding ${f}
   git add -f ${f}

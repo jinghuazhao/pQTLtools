@@ -1,5 +1,16 @@
 ---
-output: github_document
+title: Bioconductor Applications
+output:
+  html_document:
+    mathjax:  default
+    fig_caption:  true
+    toc: true
+    section_numbering: true
+bibliography: bioc.bib
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Bioconductor Applications}
+  %\VignetteEncoding{UTF-8}
 ---
 
 
@@ -106,7 +117,7 @@ qtestPerm
 #>    nSamplesinGroups:  29 29 
 #>    anovaPval:  0.02205 
 #>    quantroStat:  7.98279 
-#>    quantroPvalPerm:  0.003
+#>    quantroPvalPerm:  0.008
 quantroPlot(qtestPerm)
 ```
 
@@ -175,13 +186,13 @@ estimated.pcor <- cor2pcor( cor(m.sim) )
 
 # A comparison of estimated and true values
 sum((true.pcor-estimated.pcor)^2)
-#> [1] 299.0784
+#> [1] 450.0384
 
 # A slightly better estimate ...
 estimated.pcor.2 <- ggm.estimate.pcor(m.sim)
-#> Estimating optimal shrinkage intensity lambda (correlation matrix): 0.3236
+#> Estimating optimal shrinkage intensity lambda (correlation matrix): 0.2601
 sum((true.pcor-estimated.pcor.2)^2)
-#> [1] 10.88297
+#> [1] 11.62953
 
 ## ecoli data 
 data(ecoli)
@@ -476,17 +487,17 @@ num.nodes(gr)
 #> [1] 20
 edge.info(gr)
 #> $weight
-#>      A~N      B~O      B~Q      C~I      D~O      E~O      E~M      F~H 
-#>  0.46758  0.03212 -0.70333 -0.56180 -0.27928 -0.14427  0.55860  0.19646 
-#>      F~J      G~I      G~H      J~O      K~L      K~S      L~R      M~N 
-#> -0.59105 -0.48762  0.73507 -0.25269  0.17645 -0.82827  0.94885  0.23734 
-#>      M~O      N~O      Q~T 
-#> -0.33263  0.45808  0.69213 
+#>      A~E      A~B      A~P      A~F      B~F      C~J      C~S      C~N 
+#>  0.15935  0.23109 -0.26384 -0.41019  0.59334 -0.04816  0.39586  0.54020 
+#>      C~O      D~H      D~Q      E~L      F~K      F~I      J~T      J~R 
+#> -0.71509 -0.70200 -0.71205  0.89345 -0.12435  0.12952  0.28221 -0.79246 
+#>      K~P      K~T      M~P 
+#>  0.32108 -0.64176 -0.61725 
 #> 
 #> $dir
-#>    A~N    B~O    B~Q    C~I    D~O    E~O    E~M    F~H    F~J    G~I    G~H 
+#>    A~E    A~B    A~P    A~F    B~F    C~J    C~S    C~N    C~O    D~H    D~Q 
 #> "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" 
-#>    J~O    K~L    K~S    L~R    M~N    M~O    N~O    Q~T 
+#>    E~L    F~K    F~I    J~T    J~R    K~P    K~T    M~P 
 #> "none" "none" "none" "none" "none" "none" "none" "none"
 gr2 <- network.make.graph( test.results, nlab, drop.singles=TRUE)
 gr2
@@ -497,17 +508,17 @@ num.nodes(gr2)
 #> [1] 19
 edge.info(gr2)
 #> $weight
-#>      A~N      B~O      B~Q      C~I      D~O      E~O      E~M      F~H 
-#>  0.46758  0.03212 -0.70333 -0.56180 -0.27928 -0.14427  0.55860  0.19646 
-#>      F~J      G~I      G~H      J~O      K~L      K~S      L~R      M~N 
-#> -0.59105 -0.48762  0.73507 -0.25269  0.17645 -0.82827  0.94885  0.23734 
-#>      M~O      N~O      Q~T 
-#> -0.33263  0.45808  0.69213 
+#>      A~E      A~B      A~P      A~F      B~F      C~J      C~S      C~N 
+#>  0.15935  0.23109 -0.26384 -0.41019  0.59334 -0.04816  0.39586  0.54020 
+#>      C~O      D~H      D~Q      E~L      F~K      F~I      J~T      J~R 
+#> -0.71509 -0.70200 -0.71205  0.89345 -0.12435  0.12952  0.28221 -0.79246 
+#>      K~P      K~T      M~P 
+#>  0.32108 -0.64176 -0.61725 
 #> 
 #> $dir
-#>    A~N    B~O    B~Q    C~I    D~O    E~O    E~M    F~H    F~J    G~I    G~H 
+#>    A~E    A~B    A~P    A~F    B~F    C~J    C~S    C~N    C~O    D~H    D~Q 
 #> "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" 
-#>    J~O    K~L    K~S    L~R    M~N    M~O    N~O    Q~T 
+#>    E~L    F~K    F~I    J~T    J~R    K~P    K~T    M~P 
 #> "none" "none" "none" "none" "none" "none" "none" "none"
 
 # plot network
@@ -535,6 +546,12 @@ library("Rgraphviz")
 plot(gr, "fdp")
 #> Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =
 #> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+
+#> Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+#> Warning in arrows(head_from[1], head_from[2], head_to[1], head_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+
 #> Warning in arrows(head_from[1], head_from[2], head_to[1], head_to[2], col =
 #> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
 ```
@@ -545,8 +562,9 @@ plot(gr, "fdp")
 plot(gr2, "fdp")
 #> Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =
 #> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
-
 #> Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =
+#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
+#> Warning in arrows(head_from[1], head_from[2], head_to[1], head_to[2], col =
 #> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
 ```
 
@@ -646,6 +664,8 @@ eKEGG <- enricher(gene = , TERM2GENE = kegg_t2g,
 
 ## Transcript databases
 
+An overview of annotation is given in @carlson16.
+
 ```r
 options(width=200)
 
@@ -720,3 +740,5 @@ ggplot2 | Data Visualisations Using the grammar of graphics
 heatmaply | Interactive Cluster Heat Maps Using `plotly` and `ggplot2`
 pheatmap | results visualisation
 plyr | Splitting, applying and combining data
+
+## References
