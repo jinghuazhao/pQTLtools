@@ -1,7 +1,6 @@
 #!/usr/bin/bash
 
 module load gcc/6
-module load pcre/8.38
 module load texlive
 
 R CMD build --resave-data --compact-vignettes pQTLtools
