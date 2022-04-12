@@ -1,11 +1,4 @@
----
-title: Bioconductor Applications
-output:
-  html_document:
-    mathjax:  default
-    fig_caption:  true
-    toc: true
-    section_numbering: true
+--- title: Bioconductor Applications output: html_document: mathjax: default fig_caption: true toc: true section_numbering: true
 bibliography: bioc.bib
 link-citations: yes
 csl: nature-genetics.csl
@@ -23,7 +16,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-This article collects notes on Bioconductor packages, made available here to faciliate their extensions.
+This article collect documentation examples related to Bioconductor packages.
 
 ## Normalization
 
