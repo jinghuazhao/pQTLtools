@@ -1,6 +1,5 @@
 ---
 title: "SCALLOP-INF scripts"
-author: "Jing Hua Zhao"
 output:
   rmarkdown::html_vignette:
     toc: true

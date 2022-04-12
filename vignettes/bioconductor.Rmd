@@ -23,6 +23,8 @@ knitr::opts_chunk$set(
 )
 ```
 
+This article collect notes on Bioconductor packages, made available here to faciliate their extensions.
+
 ## Normalization
 
 ### ComBat

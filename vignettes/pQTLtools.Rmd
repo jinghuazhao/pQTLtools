@@ -1,6 +1,5 @@
 ---
 title: "An Overview of pQTLtools"
-author: "Jing Hua Zhao"
 output:
   rmarkdown::html_vignette:
     check_title: false
