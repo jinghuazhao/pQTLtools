@@ -30,8 +30,7 @@ build
 if [ -d vignettes/bioconductor ]; then
    rm -rf docs/articles/bioconductor
    mv vignettes/bioconductor docs/articles/
-   rm vignettes/A_vs_B.csv
-   rm vignettes/test.dot vignettes/test.svg
+   rm vignettes/A_vs_B.csv vignettes/test.dot vignettes/test.svg
 fi
 if [ -d vignettes/es ]; then
    rm -rf docs/articles/es
