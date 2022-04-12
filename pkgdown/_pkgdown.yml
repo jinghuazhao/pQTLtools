@@ -41,6 +41,8 @@ navbar:
         href: articles/pQTLtools.html
       - text: ---------
       - text: "Articles:"
+      - text: Bioconductor
+        href: articles/bioconductor.html
       - text: ExpressionSet
         href: articles/es.html
       - text: SCALLOP-INF scripts
