@@ -257,7 +257,7 @@ eKEGG <- enricher(gene = , TERM2GENE = kegg_t2g,
 
 ## Transcript databases
 
-An overview of annotation is available@carlson16.
+An overview of annotation is available @carlson16.
 
 ```r
 options(width=200)
