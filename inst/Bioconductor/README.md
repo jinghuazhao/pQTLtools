@@ -165,13 +165,13 @@ estimated.pcor <- cor2pcor( cor(m.sim) )
 
 # A comparison of estimated and true values
 sum((true.pcor-estimated.pcor)^2)
-#> [1] 782.0344
+#> [1] 482.2539
 
 # A slightly better estimate ...
 estimated.pcor.2 <- ggm.estimate.pcor(m.sim)
-#> Estimating optimal shrinkage intensity lambda (correlation matrix): 0.056
+#> Estimating optimal shrinkage intensity lambda (correlation matrix): 0.3255
 sum((true.pcor-estimated.pcor.2)^2)
-#> [1] 11.05601
+#> [1] 10.17632
 
 ## ecoli data 
 data(ecoli)
@@ -466,38 +466,38 @@ num.nodes(gr)
 #> [1] 20
 edge.info(gr)
 #> $weight
-#>      A~K      B~G      B~J      C~E      D~J      E~H      E~M      E~P 
-#> -0.65148  0.26239 -0.76234 -0.17530  0.59676  0.27283  0.37505 -0.52802 
-#>      F~S      F~K      G~O      H~S      H~K      H~N      I~P      N~R 
-#>  0.20084  0.45483  0.07975  0.21882 -0.28549  0.33130 -0.24367  0.64826 
-#>      O~P      O~S      R~T 
-#> -0.41999 -0.56927 -0.56915 
+#>      A~I      A~C      A~T      A~L      B~M      B~K      C~G      C~I 
+#> -0.16339  0.16397 -0.33646  0.62925 -0.10836  0.66416 -0.28844 -0.29846 
+#>      C~E      D~M      G~Q      G~S      G~N      H~Q      I~T      J~Q 
+#>  0.60053  0.94764 -0.11248  0.13178  0.52525 -0.39155  0.50970 -0.51114 
+#>      K~Q      N~Q      Q~S 
+#> -0.34855 -0.27504 -0.22645 
 #> 
 #> $dir
-#>    A~K    B~G    B~J    C~E    D~J    E~H    E~M    E~P    F~S    F~K    G~O 
+#>    A~I    A~C    A~T    A~L    B~M    B~K    C~G    C~I    C~E    D~M    G~Q 
 #> "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" 
-#>    H~S    H~K    H~N    I~P    N~R    O~P    O~S    R~T 
+#>    G~S    G~N    H~Q    I~T    J~Q    K~Q    N~Q    Q~S 
 #> "none" "none" "none" "none" "none" "none" "none" "none"
 gr2 <- network.make.graph( test.results, nlab, drop.singles=TRUE)
 gr2
 #> A graphNEL graph with directed edges
-#> Number of Nodes = 18 
+#> Number of Nodes = 16 
 #> Number of Edges = 38
 num.nodes(gr2)
-#> [1] 18
+#> [1] 16
 edge.info(gr2)
 #> $weight
-#>      A~K      B~G      B~J      C~E      D~J      E~H      E~M      E~P 
-#> -0.65148  0.26239 -0.76234 -0.17530  0.59676  0.27283  0.37505 -0.52802 
-#>      F~S      F~K      G~O      H~S      H~K      H~N      I~P      N~R 
-#>  0.20084  0.45483  0.07975  0.21882 -0.28549  0.33130 -0.24367  0.64826 
-#>      O~P      O~S      R~T 
-#> -0.41999 -0.56927 -0.56915 
+#>      A~I      A~C      A~T      A~L      B~M      B~K      C~G      C~I 
+#> -0.16339  0.16397 -0.33646  0.62925 -0.10836  0.66416 -0.28844 -0.29846 
+#>      C~E      D~M      G~Q      G~S      G~N      H~Q      I~T      J~Q 
+#>  0.60053  0.94764 -0.11248  0.13178  0.52525 -0.39155  0.50970 -0.51114 
+#>      K~Q      N~Q      Q~S 
+#> -0.34855 -0.27504 -0.22645 
 #> 
 #> $dir
-#>    A~K    B~G    B~J    C~E    D~J    E~H    E~M    E~P    F~S    F~K    G~O 
+#>    A~I    A~C    A~T    A~L    B~M    B~K    C~G    C~I    C~E    D~M    G~Q 
 #> "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" 
-#>    H~S    H~K    H~N    I~P    N~R    O~P    O~S    R~T 
+#>    G~S    G~N    H~Q    I~T    J~Q    K~Q    N~Q    Q~S 
 #> "none" "none" "none" "none" "none" "none" "none" "none"
 
 # plot network
@@ -521,14 +521,6 @@ plot(gr, "fdp")
 
 ```r
 plot(gr2, "fdp")
-#> Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =
-#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
-#> Warning in arrows(head_from[1], head_from[2], head_to[1], head_to[2], col =
-#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
-#> Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =
-#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
-#> Warning in arrows(head_from[1], head_from[2], head_to[1], head_to[2], col =
-#> edgeColor, : zero-length arrow is of indeterminate angle and so skipped
 ```
 
 ![plot of chunk GeneNet](figures/GeneNet-3.png)
@@ -632,7 +624,7 @@ eKEGG <- enricher(gene = , TERM2GENE = kegg_t2g,
 
 ## Transcript databases
 
-An overview of annotation is given in @carlson16.
+An overview of annotation is available@carlson16.
 
 ```r
 options(width=200)
