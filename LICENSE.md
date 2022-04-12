@@ -1,6 +1,6 @@
 # MIT License
 
-Copyright (c) 2020-2021 Jing Hua Zhao
+Copyright (c) 2020-2022 Jing Hua Zhao
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
