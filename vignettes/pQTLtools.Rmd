@@ -41,7 +41,8 @@ options(width=200)
 f <- file.path("~","pQTLtools","tests","INF1.merge")
 merged <- read.delim(f,as.is=TRUE)
 hits <- merge(merged[c("CHR","POS","MarkerName","prot","log10p")],
-              inf1[c("prot","uniprot")],by="prot")
+              inf1[c("prot","uniprot")],by="prot") %>%
+        mutate(log10p=-log10p)
 names(hits) <- c("prot","Chr","bp","SNP","log10p","uniprot")
 cistrans <- cis.vs.trans.classification(hits,inf1,"uniprot")
 cis.vs.trans <- with(cistrans,data)
