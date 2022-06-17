@@ -1,5 +1,5 @@
 ---
-title: Bioconductor Applications
+title: Bioconductor Notes
 output:
   html_document:
     mathjax:  default
@@ -23,17 +23,28 @@ knitr::opts_chunk$set(
 )
 ```
 
-This article collects notes on Bioconductor packages, made available here to faciliate their extensions.
+This article collects notes on Bioconductor packages, made available here to faciliate their use and extensions.
 
-## Normalization
+```{r, message=FALSE, warning=FALSE}
+pkgs <- c("AnnotationDbi", "ComplexHeatmap", "DESeq2", "EnsDb.Hsapiens.v86",
+          "FlowSorted.DLPFC.450k", "GeneNet", "GenomicFeatures", "RColorBrewer",
+          "RMariaDB", "Rgraphviz", "S4Vectors", "SummarizedExperiment",
+          "TxDb.Hsapiens.UCSC.hg38.knownGene", "bladderbatch", "clusterProfiler",
+          "corpcor", "ensembldb", "fdrtool", "graph", "graphite", "heatmaply",
+          "minfi", "org.Hs.eg.db", "plyr", "quantro", "recount3", "sva")
+for (p in pkgs) if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
+    if (!requireNamespace(p)) warning(paste0("This vignette needs package `", p, "'; please install"))
+}
+invisible(suppressMessages(lapply(pkgs, require, character.only = TRUE)))
+```
+
+## Normalisation
 
 ### ComBat
 
 This is the documentation example, based on Bioconductor 3.14.
 
 ```{r ComBat, messages=FALSE}
-suppressMessages(library(sva))
-suppressMessages(library(bladderbatch))
 data(bladderdata)
 dat <- bladderEset[1:50,]
 
@@ -56,34 +67,30 @@ combat_edata3 = ComBat(dat=edata, batch=batch, mod=mod, par.prior=TRUE, ref.batc
 
 Again, this is adapted from the package vignette. noting that `FlowSorted.DLPFC.450k` instead of `FlowSorted` is used.
 
-```{r quantro}
-suppressMessages(library(FlowSorted.DLPFC.450k))
+```{r quantro, messages=FALSE}
 p <- getBeta(FlowSorted.DLPFC.450k,offset=100)
 pd <- pData(FlowSorted.DLPFC.450k)
-library(quantro)
 matdensity(p, groupFactor = pd$CellType, xlab = " ", ylab = "density",
            main = "Beta Values", brewer.n = 8, brewer.name = "Dark2")
 legend('top', c("NeuN_neg", "NeuN_pos"), col = c(1, 2), lty = 1, lwd = 3)
 matboxplot(p, groupFactor = pd$CellType, xaxt = "n", main = "Beta Values")
 qtest <- quantro(object = p, groupFactor = pd$CellType)
-library(doParallel)
-registerDoParallel(cores=10)
-qtestPerm <- quantro(p, groupFactor = pd$CellType, B = 1000)
-qtestPerm
-quantroPlot(qtestPerm)
+# commented since `R CMD check` returns error with multithreads
+# registerDoParallel(cores=10)
+# qtestPerm <- quantro(p, groupFactor = pd$CellType, B = 1000)
+# qtestPerm
+# quantroPlot(qtestPerm)
 ```
 
 ## Differential expression
 
-```{r DESeq2}
-suppressMessages(library(DESeq2))
+```{r DESeq2, messages=FALSE}
 ex <- makeExampleDESeqDataSet(m=4)
 dds <- DESeq(ex)
 res <- results(dds, contrast=c("condition","B","A"))
 rld <- rlogTransformation(ex, blind=TRUE)
 dat <- plotPCA(rld, intgroup=c("condition"),returnData=TRUE)
 percentVar <- round(100 * attr(dat,"percentVar"))
-suppressMessages(library(ggplot2))
 ggplot(dat, aes(PC1, PC2, color=condition, shape=condition)) +
 geom_point(size=3) +
 xlab(paste0("PC1:",percentVar[1],"% variance")) +
@@ -91,16 +98,14 @@ ylab(paste0("PC2:",percentVar[2],"% variance"))
 ex$condition <- relevel(ex$condition, ref="B")
 dds2 <- DESeq(dds)
 res <- results(dds2)
-write.csv(as.data.frame(res),file="A_vs_B.csv")
+knitr::kable(head(as.data.frame(res)))
 ```
 
 ## Gene co-expression and network analysis
 
 A simple network is furnished with the `GeneNet` documentation example,
 
-```{r GeneNet}
-library("GeneNet")
-
+```{r GeneNet, messages=FALSE}
 ## A random network with 40 nodes 
 # it contains 780=40*39/2 edges of which 5 percent (=39) are non-zero
 true.pcor <- ggm.simulate.pcor(40)
@@ -154,8 +159,8 @@ test.results <- ggm.list.edges(true.pcor)[1:19,]
 nlab <- LETTERS[1:20]
 
 # graphviz
-network.make.dot(filename="test.dot", test.results, nlab, main = "A graph")
-system("fdp -T svg -o test.svg test.dot")
+# network.make.dot(filename="test.dot", test.results, nlab, main = "A graph")
+# system("fdp -T svg -o test.svg test.dot")
 
 # Rgraphviz
 gr <- network.make.graph( test.results, nlab)
@@ -168,15 +173,13 @@ num.nodes(gr2)
 edge.info(gr2)
 
 # plot network
-library("Rgraphviz")
 plot(gr, "fdp")
 plot(gr2, "fdp")
 ```
 
 A side-by-side heatmaps
 
-```{r heatmap}
-suppressMessages(library(ComplexHeatmap))
+```{r heatmap, messages=FALSE}
 set.seed(123454321)
 m <- matrix(runif(2500),50)
 r <- cor(m)
@@ -186,8 +189,6 @@ f2 <- Heatmap(g)
 f <- f1+f2
 draw(f)
 
-suppressMessages(library(RColorBrewer))
-suppressMessages(library(heatmaply))
 df <- normalize(mtcars)
 heatmaply(df,k_col=5,k_row=5,colors = colorRampPalette(brewer.pal(3, "RdBu"))(256))
 ```
@@ -195,9 +196,6 @@ heatmaply(df,k_col=5,k_row=5,colors = colorRampPalette(brewer.pal(3, "RdBu"))(25
 and a module analysis with WGCNA,
 
 ```r
-suppressMessages(require(WGCNA))
-suppressMessages(require(cluster))
-
 pwr <- c(1:10, seq(from=12, to=30, by=2))
 sft <- pickSoftThreshold(dat, powerVector=pwr, verbose=5)
 ADJ <- abs(cor(dat, method="pearson", use="pairwise.complete.obs"))^6
@@ -224,33 +222,29 @@ meg <- moduleEigengenes(dat, color=1:ncol(dat), softPower=6)
 
 ## Meta-data
 
-```r
-suppressMessages(library(recount3))
+```{r meta-data, messages=FALSE}
 hs <- available_projects()
 dim(subset(hs,file_source=="gtex"))
 annotation_options("human")
 blood_rse <- create_rse(subset(hs,project=="BLOOD"))
 metadata(blood_rse)
-dim(blood_rse)
 rowRanges(blood_rse)
-colnames(colData(blood_rse))
+colnames(colData(blood_rse))[1:20]
 expand_sra_attributes(blood_rse)
 ```
 
 ## Pathway and enrichment analysis
 
-```r
-library(graphite)
+```{r pathway-enrichment, messages=FALSE}
 reactome <- pathways("hsapiens", "reactome")
 kegg <- pathways("hsapiens","kegg")
 pharmgkb <- pathways("hsapiens","pharmgkb")
-nodes(kegg)
-suppressMessages(library(plyr))
+nodes(kegg[[21]])
 kegg_t2g <- ldply(lapply(kegg, nodes), data.frame)
 names(kegg_t2g) <- c("gs_name", "gene_symbol")
-suppress(library(clusterProfiler))
-eKEGG <- enricher(gene = , TERM2GENE = kegg_t2g,
-                  universe = ,
+VEGF <- subset(kegg_t2g,gs_name=="VEGF signaling pathway")[[2]]
+eKEGG <- enricher(gene=VEGF, TERM2GENE = kegg_t2g,
+                  universe=,
                   pAdjustMethod = "BH",
                   pvalueCutoff = 0.1, qvalueCutoff = 0.05,
                   minGSSize = 10, maxGSSize = 500)
@@ -259,19 +253,16 @@ eKEGG <- enricher(gene = , TERM2GENE = kegg_t2g,
 
 ## Transcript databases
 
-An overview of annotation is available @carlson16.
+An overview of annotation is available @carlson2016.
 
-```r
+```{r ts-data, messages=FALSE}
 options(width=200)
 
-suppressMessages(library(AnnotationDbi))
-suppressMessages(library(org.Hs.eg.db))
-columns(org.Hs.eg.db)
-keyref <- keys(org.Hs.eg.db, keytype="ENTREZID")
-symbol_uniprot <- select(org.Hs.eg.db,keys=keyref,columns = c("SYMBOL","UNIPROT"))
-subset(symbol_uniprot,SYMBOL=="MC4R")
+# columns(org.Hs.eg.db)
+# keyref <- keys(org.Hs.eg.db, keytype="ENTREZID")
+# symbol_uniprot <- select(org.Hs.eg.db,keys=keyref,columns = c("SYMBOL","UNIPROT"))
+# subset(symbol_uniprot,SYMBOL=="MC4R")
 
-suppressMessages(library(EnsDb.Hsapiens.v86))
 x <- EnsDb.Hsapiens.v86
 listColumns(x, "protein", skip.keys=TRUE)
 listGenebiotypes(x)
@@ -284,24 +275,21 @@ seqinfo(x)
 seqlevels(x)
 updateEnsDb(x)
 
-suppressMessages(library(ensembldb))
 genes(x, columns=c("gene_name"), filter=list(SeqNameFilter("X"), GeneBiotypeFilter("protein_coding")))
 transcripts(x, columns=listColumns(x, "tx"), filter = AnnotationFilterList(), order.type = "asc", return.type = "GRanges")
 
-library(RMariaDB)
-library(GenomicFeatures)
 txdbEnsemblGRCh38 <- makeTxDbFromEnsembl(organism="Homo sapiens", release=98)
 txdb <- as.list(txdbEnsemblGRCh38)
 lapply(txdb,head)
 
-library(TxDb.Hsapiens.UCSC.hg38.knownGene)
 txdb <- TxDb.Hsapiens.UCSC.hg38.knownGene
 
-library(INSPEcT)
-liverExprs <- quantifyExpressionsFromBWs(txdb = txdb,BWfiles=,experimentalDesign=)
+# liverExprs <- quantifyExpressionsFromBWs(txdb = txdb,BWfiles=,experimentalDesign=)
 ```
 
----
+## Bionconductor forum
+
+Web: [https://support.bioconductor.org/](https://support.bioconductor.org/)
 
 ## A list of Bioconductor/CRAN packages
 
@@ -323,7 +311,7 @@ WGCNA | Weighted correlation network analysis
 ComplexHeatmap | Make complex heatmaps
 recount3 | Interface to uniformly processed RNA-seq data
 Pi | Priority index, leveraging genetic evidence to prioritise drug targets at the gene and pathway level
-quantro | A test for when to use quantile normalization
+quantro | A test for when to use quantile normalisation
 FlowSorted.DLPFC.450k | Illumina HumanMethylation data on sorted frontal cortex cell populations
 Rgraphiz | Interfaces R with the AT&T graphviz library for plotting R graph objects from the graph package
 sva | Surrogate Variable Analysis

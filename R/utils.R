@@ -452,14 +452,14 @@ run_coloc <- function(eqtl_sumstats, gwas_sumstats, harmonise=TRUE)
   if (harmonise)
   {
     chromosome <- position <- ref <- alt <- REF <- ALT <- beta <- se <- ES <- SE <- NA
-    eqtl_sumstats <- filter(eqtl_sumstats, !any(is.na(c(chromosome,position,ref,alt)))) %>%
-                     mutate(snpid = gap::chr_pos_a1_a2(chromosome, position, ref, alt))
-    gwas_sumstats <- filter(gwas_sumstats, !any(is.na(c(chromosome,position,REF,ALT)))) %>%
-                     mutate(snpid = gap::chr_pos_a1_a2(chromosome, position, REF, ALT)) %>%
-                     select(-chromosome,-position)
-    harmonise_data <- left_join(eqtl_sumstats,gwas_sumstats,by='snpid') %>%
-                      mutate(flag=if_else(ref==REF,1,-1)) %>%
-                      filter(!is.na(beta)&!is.na(se)&!is.na(ES)&!is.na(SE))
+    eqtl_sumstats <- dplyr::filter(eqtl_sumstats, !any(is.na(c(chromosome,position,ref,alt)))) %>%
+                     dplyr::mutate(snpid = gap::chr_pos_a1_a2(chromosome, position, ref, alt))
+    gwas_sumstats <- dplyr::filter(gwas_sumstats, !any(is.na(c(chromosome,position,REF,ALT)))) %>%
+                     dplyr::mutate(snpid = gap::chr_pos_a1_a2(chromosome, position, REF, ALT)) %>%
+                     dplyr::select(-chromosome,-position)
+    harmonise_data <- dplyr::left_join(eqtl_sumstats,gwas_sumstats,by='snpid') %>%
+                      dplyr::mutate(flag=if_else(ref==REF,1,-1)) %>%
+                      dplyr::filter(!is.na(beta)&!is.na(se)&!is.na(ES)&!is.na(SE))
     eqtl_dataset <- with(harmonise_data, list(beta = flag*beta, varbeta = se^2, N = an/2, MAF = maf, snp = snpid, type = "quant"))
     gwas_dataset <- with(harmonise_data, list(beta = ES, varbeta = SE^2, MAF = MAF, N = SS, snp = snpid, type = "quant"))
   } else {
@@ -475,6 +475,12 @@ run_coloc <- function(eqtl_sumstats, gwas_sumstats, harmonise=TRUE)
                          snp = gwas_sumstats$id,
                          MAF = gwas_sumstats$MAF,
                          N = gwas_sumstats$SS)
+  }
+  for (p in "coloc") {
+    if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
+       if (!requireNamespace(p, quietly = TRUE))
+           warning(paste("This function needs package `", p, "' to be fully functional; please install", sep=""))
+    }
   }
   coloc_res <- coloc::coloc.abf(dataset1 = eqtl_dataset, dataset2 = gwas_dataset, p1 = 1e-4, p2 = 1e-4, p12 = 1e-5)
   res_formatted <- dplyr::as_tibble(t(as.data.frame(coloc_res$summary)))
@@ -605,7 +611,6 @@ format_data.args <- function(dat=NULL, type = "exposure", snps = NULL, header = 
 #' @seealso
 #'  \code{\link[ieugwasr]{check_access_token}}
 #' @rdname extract_outcome_data.args
-#' @importFrom ieugwasr check_access_token
 #' @keywords internal
 
 extract_outcome_data.args <- function(snps=NULL, outcomes=NULL, proxies=TRUE, rsq=0.8, align_alleles=1,
@@ -663,12 +668,16 @@ swap <- function(x,y)
 #' @seealso
 #'  \code{\link[ggplot2]{ggplot}},\code{\link[ggplot2]{geom_label}},\code{\link[ggplot2]{aes}},\code{\link[ggplot2]{labs}},\code{\link[ggplot2]{theme}},\code{\link[ggplot2]{margin}}
 #' @rdname blank_plot
-#' @importFrom ggplot2 ggplot geom_text aes labs theme element_blank
 #' @keywords internal
 
 blank_plot <- function(message)
 {
-   requireNamespace("ggplot2", quietly=TRUE)
+   for (p in "ggplot2") {
+       if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
+          if (!requireNamespace(p, quietly = TRUE))
+             warning(paste("This function needs package `", p, "' to be fully functional; please install", sep=""))
+       }
+   }
    a <- b <- NA
    ggplot2::ggplot(data.frame(a=0,b=0,n=message)) +
    ggplot2::geom_text(ggplot2::aes(x=a,y=b,label=n)) +
@@ -688,16 +697,16 @@ blank_plot <- function(message)
 #'  \code{\link[ggplot2]{ggplot}},\code{\link[ggplot2]{aes}},\code{\link[ggplot2]{geom_crossbar}},\code{\link[ggplot2]{geom_errorbarh}},\code{\link[ggplot2]{geom_point}},\code{\link[ggplot2]{ggtheme}},\code{\link[ggplot2]{geom_abline}},\code{\link[ggplot2]{scale_manual}},\code{\link[ggplot2]{labs}},\code{\link[ggplot2]{theme}},\code{\link[ggplot2]{guide_legend}}
 #'  \code{\link[cowplot]{theme_cowplot}}
 #' @export
-#' @importFrom plyr dlply
-#' @importFrom TwoSampleMR mr_egger_regression mr_egger_regression_bootstrap
-#' @importFrom ggplot2 ggplot aes geom_errorbar geom_errorbarh geom_point theme_bw geom_abline scale_colour_manual labs theme guides guide_legend geom_vline
-#' @importFrom cowplot theme_cowplot
 #' @keywords internal
 
 mr_scatter_plot2 <- function (mr_results, dat, alpha=0.05)
 {
-   requireNamespace("ggplot2", quietly = TRUE)
-   requireNamespace("plyr", quietly = TRUE)
+   for (p in c("ggplot2","plyr")) {
+     if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
+        if (!requireNamespace(p, quietly = TRUE))
+            warning(paste("This function needs package `", p, "' to be fully functional; please install", sep=""))
+     }
+   }
    c <- qnorm(alpha/2, lower.tail = FALSE)
    a <- b <- id.exposure <- id.outcome <- method <- mr_keep <- se.exposure <- se.outcome <- NA
    mrres <- plyr::dlply(dat, c("id.exposure", "id.outcome"),
@@ -748,18 +757,20 @@ mr_scatter_plot2 <- function (mr_results, dat, alpha=0.05)
 #'  \code{\link[plyr]{dlply}},\code{\link[plyr]{mutate}}
 #'  \code{\link[ggplot2]{ggplot}},\code{\link[ggplot2]{aes}},\code{\link[ggplot2]{ggtheme}},\code{\link[ggplot2]{geom_abline}},\code{\link[ggplot2]{geom_errorbarh}},\code{\link[ggplot2]{geom_point}},\code{\link[ggplot2]{scale_manual}},\code{\link[ggplot2]{theme}},\code{\link[ggplot2]{margin}},\code{\link[ggplot2]{labs}}
 #' @export
-#' @importFrom plyr dlply
-#' @importFrom ggplot2 ggplot aes theme_bw geom_vline geom_errorbarh geom_point geom_hline scale_colour_manual scale_size_manual theme element_text element_line element_blank labs
 #' @keywords internal
 
 mr_forest_plot2 <- function (singlesnp_results, exponentiate = FALSE, alpha = 0.05)
 {
-  requireNamespace("ggplot2", quietly = TRUE)
-  requireNamespace("plyr", quietly = TRUE)
-  c <- qnorm(alpha/2, lower.tail = FALSE)
-  b <- id.exposure <- id.outcome <- method <- mr_keep <- se <- se.exposure <- se.outcome <- NA
-  res <- plyr::dlply(singlesnp_results, c("id.exposure", "id.outcome"),
-      function(d) {
+   for (p in c("ggplot2","plyr")) {
+     if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
+        if (!requireNamespace(p, quietly = TRUE))
+            warning(paste("This function needs package `", p, "' to be fully functional; please install", sep=""))
+     }
+   }
+   c <- qnorm(alpha/2, lower.tail = FALSE)
+   b <- id.exposure <- id.outcome <- method <- mr_keep <- se <- se.exposure <- se.outcome <- NA
+   res <- plyr::dlply(singlesnp_results, c("id.exposure", "id.outcome"),
+          function(d) {
           d <- plyr::mutate(d)
           if (with(d, sum(!grepl("All", SNP))) < 2) return(blank_plot("Insufficient number of SNPs"))
           d <- within(d, {levels(SNP)[levels(SNP) == "All - Inverse variance weighted"] <- "All - IVW"})
@@ -798,8 +809,8 @@ mr_forest_plot2 <- function (singlesnp_results, exponentiate = FALSE, alpha = 0.
                          axis.ticks.y = ggplot2::element_line(size = 0), axis.title.x = ggplot2::element_text(size = 8),
                          panel.grid=ggplot2::element_blank()) +
           ggplot2::labs(y = "", x = paste0("MR effect size for\n'", with(d, exposure)[1], "' on '", with(d, outcome)[1], "'"))
-      })
-  res
+          })
+   res
 }
 
 #' @title MR funnel plot
@@ -811,15 +822,16 @@ mr_forest_plot2 <- function (singlesnp_results, exponentiate = FALSE, alpha = 0.
 #'  \code{\link[ggplot2]{ggplot}},\code{\link[ggplot2]{aes}},\code{\link[ggplot2]{geom_point}},\code{\link[ggplot2]{ggtheme}},\code{\link[ggplot2]{geom_abline}},\code{\link[ggplot2]{scale_manual}},\code{\link[ggplot2]{labs}},\code{\link[ggplot2]{theme}}
 #'  \code{\link[cowplot]{theme_cowplot}}
 #' @export
-#' @importFrom plyr dlply
-#' @importFrom ggplot2 ggplot aes geom_point theme_bw geom_vline scale_colour_manual labs theme
-#' @importFrom cowplot theme_cowplot
 #' @keywords internal
 
 mr_funnel_plot2 <- function (singlesnp_results)
 {
-  requireNamespace("ggplot2", quietly = TRUE)
-  requireNamespace("plyr", quietly = TRUE)
+  for (p in c("ggplot2","plyr")) {
+      if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
+         if (!requireNamespace(p, quietly = TRUE))
+            warning(paste("This function needs package `", p, "' to be fully functional; please install", sep=""))
+      }
+  }
   SNP <- b <- se <- NA
   res <- plyr::dlply(singlesnp_results, c("id.exposure", "id.outcome"),
       function(d) {
@@ -850,14 +862,16 @@ mr_funnel_plot2 <- function (singlesnp_results)
 #'  \code{\link[plyr]{dlply}},\code{\link[plyr]{mutate}}
 #'  \code{\link[ggplot2]{ggplot}},\code{\link[ggplot2]{aes}},\code{\link[ggplot2]{ggtheme}},\code{\link[ggplot2]{geom_abline}},\code{\link[ggplot2]{geom_errorbarh}},\code{\link[ggplot2]{geom_point}},\code{\link[ggplot2]{scale_manual}},\code{\link[ggplot2]{theme}},\code{\link[ggplot2]{margin}},\code{\link[ggplot2]{labs}}
 #' @export
-#' @importFrom plyr dlply
-#' @importFrom ggplot2 ggplot aes theme_bw geom_vline geom_errorbarh geom_point geom_hline scale_colour_manual scale_size_manual theme element_text element_line element_blank labs
 #' @keywords internal
 
 mr_leaveoneout_plot2 <- function (leaveoneout_results, alpha = 0.05)
 {
-  requireNamespace("ggplot2", quietly = TRUE)
-  requireNamespace("plyr", quietly = TRUE)
+  for (p in c("ggplot2","plyr")) {
+      if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
+         if (!requireNamespace(p, quietly = TRUE))
+            warning(paste("This function needs package `", p, "' to be fully functional; please install", sep=""))
+     }
+  }
   c <- qnorm(alpha/2, lower.tail = FALSE)
   a <- b <- id.exposure <- id.outcome <- method <- mr_keep <- se <- se.exposure <- se.outcome <- NA
   res <- plyr::dlply(leaveoneout_results, c("id.exposure", "id.outcome"), function(d) {
@@ -937,51 +951,57 @@ mr_leaveoneout_plot2 <- function (leaveoneout_results, alpha = 0.05)
 
 pqtlMR <- function(ivs, ids, mr_plot=FALSE, prefix="pQTL-combined-", reverse=FALSE)
 {
-  outcome_data <- extract_outcome_data(snps=with(ivs,SNP),outcomes=ids)
-  harmonise <- harmonise_data(ivs,outcome_data)
-  id.exposure <- NA
-  id.outcome <- NA
-  effect_allele.exposure <- NA
-  effect_allele.outcome <- NA
-  other_allele.exposure <- NA
-  other_allele.outcome <- NA
-  eaf.exposure <- NA
-  eaf.outcome <- NA
-  samplesize.exposure <- NA
-  beta.exposure <- NA
-  beta.outcome <- NA
-  se.exposure <- NA
-  se.outcome <- NA
-  pval.exposure <- NA
-  pval.outcome <- NA
-  swap_unique_var_a <- NA
-  if (reverse) harmonise <- subset(within(harmonise,
-  {
-    swap(id.exposure,id.outcome)
-    swap(effect_allele.exposure,effect_allele.outcome)
-    swap(other_allele.exposure,other_allele.outcome)
-    swap(eaf.exposure,eaf.outcome)
-    if(exists("samplesize.exposure") & exists("samplesize.outcome")) swap(samplesize.exposure,samplesize.outcome)
-    if(!exists("samplesize.exposure") & exists("samplesize.outcome")) samplesize.outcome <- NA
-    swap(beta.exposure,beta.outcome)
-    swap(se.exposure,se.outcome)
-    swap(pval.exposure,pval.outcome)
-  }),select=-swap_unique_var_a)
-  result <- single <- NULL
-# main MR analysis
-  try(result <- TwoSampleMR::mr(harmonise,method_list=c("mr_wald_ratio", "mr_ivw")))
-# single SNP MR using Wald ratio
-  try(single <- TwoSampleMR::mr_singlesnp(harmonise))
-  invisible(lapply(c("harmonise","result","single"), function(x) if (exists(x))
-            write.table(format(get(x),digits=3),file=paste0(prefix,x,".txt"),
-                        quote=FALSE,row.names=FALSE,sep="\t")))
-  if (mr_plot)
-  {
-    scatter <- TwoSampleMR::mr_scatter_plot(result, harmonise)
-    forest <- TwoSampleMR::mr_forest_plot(single)
-    funnel <- TwoSampleMR::mr_funnel_plot(single)
-    invisible(sapply(c(scatter,forest,funnel), function(x) print(x)))
-  }
+   for (p in c("TwoSampleMR")) {
+     if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
+        if (!requireNamespace(p, quietly = TRUE))
+            warning(paste("This function needs package `", p, "' to be fully functional; please install", sep=""))
+     }
+   }
+   outcome_data <- TwoSampleMR::extract_outcome_data(snps=with(ivs,SNP),outcomes=ids)
+   harmonise <- TwoSampleMR::harmonise_data(ivs,outcome_data)
+   id.exposure <- NA
+   id.outcome <- NA
+   effect_allele.exposure <- NA
+   effect_allele.outcome <- NA
+   other_allele.exposure <- NA
+   other_allele.outcome <- NA
+   eaf.exposure <- NA
+   eaf.outcome <- NA
+   samplesize.exposure <- NA
+   beta.exposure <- NA
+   beta.outcome <- NA
+   se.exposure <- NA
+   se.outcome <- NA
+   pval.exposure <- NA
+   pval.outcome <- NA
+   swap_unique_var_a <- NA
+   if (reverse) harmonise <- subset(within(harmonise,
+   {
+      swap(id.exposure,id.outcome)
+      swap(effect_allele.exposure,effect_allele.outcome)
+      swap(other_allele.exposure,other_allele.outcome)
+      swap(eaf.exposure,eaf.outcome)
+      if(exists("samplesize.exposure") & exists("samplesize.outcome")) swap(samplesize.exposure,samplesize.outcome)
+      if(!exists("samplesize.exposure") & exists("samplesize.outcome")) samplesize.outcome <- NA
+      swap(beta.exposure,beta.outcome)
+      swap(se.exposure,se.outcome)
+      swap(pval.exposure,pval.outcome)
+    }),select=-swap_unique_var_a)
+   result <- single <- NULL
+#  main MR analysis
+   try(result <- TwoSampleMR::mr(harmonise,method_list=c("mr_wald_ratio", "mr_ivw")))
+#  single SNP MR using Wald ratio
+   try(single <- TwoSampleMR::mr_singlesnp(harmonise))
+   invisible(lapply(c("harmonise","result","single"), function(x) if (exists(x))
+             write.table(format(get(x),digits=3),file=paste0(prefix,x,".txt"),
+                         quote=FALSE,row.names=FALSE,sep="\t")))
+   if (mr_plot)
+   {
+      scatter <- TwoSampleMR::mr_scatter_plot(result, harmonise)
+      forest <- TwoSampleMR::mr_forest_plot(single)
+      funnel <- TwoSampleMR::mr_funnel_plot(single)
+      invisible(sapply(c(scatter,forest,funnel), function(x) print(x)))
+   }
 }
 
 #' Basic TwoSampleMR analysis
@@ -1016,15 +1036,15 @@ pqtlMR <- function(ivs, ids, mr_plot=FALSE, prefix="pQTL-combined-", reverse=FAL
 #' f <- paste0(prot,"-",type,".mrx")
 #' d <- read.table(file.path(find.package("pQTLtools",lib.loc=.libPaths()),"tests",f),
 #'                 header=TRUE)
-#' exposure <- format_data(within(d,{P=10^logP}), phenotype_col="prot", snp_col="rsid",
-#'                         chr_col="Chromosome", pos_col="Posistion",
-#'                         effect_allele_col="Allele1", other_allele_col="Allele2",
-#'                         eaf_col="Freq1", beta_col="Effect", se_col="StdErr",
-#'                         pval_col="P", log_pval=FALSE,
-#'                         samplesize_col="N")
-#' clump <- clump_data(exposure)
-#' outcome <- extract_outcome_data(snps=exposure$SNP,outcomes=outcomes)
-#' harmonise <- harmonise_data(clump,outcome)
+#' exposure <- TwoSampleMR::format_data(within(d,{P=10^logP}), phenotype_col="prot", snp_col="rsid",
+#'                                      chr_col="Chromosome", pos_col="Posistion",
+#'                                      effect_allele_col="Allele1", other_allele_col="Allele2",
+#'                                      eaf_col="Freq1", beta_col="Effect", se_col="StdErr",
+#'                                      pval_col="P", log_pval=FALSE,
+#'                                      samplesize_col="N")
+#' clump <- TwoSampleMR::clump_data(exposure)
+#' outcome <- TwoSampleMR::extract_outcome_data(snps=exposure$SNP,outcomes=outcomes)
+#' harmonise <- TwoSampleMR::harmonise_data(clump,outcome)
 #' prefix <- paste(outcomes,prot,type,sep="-")
 #' run_TwoSampleMR(harmonise, mr_plot="pQTLtools", prefix=prefix)
 #' caption <- "Table. MMP.10 variants and FEV1"
@@ -1047,6 +1067,12 @@ pqtlMR <- function(ivs, ids, mr_plot=FALSE, prefix="pQTL-combined-", reverse=FAL
 
 run_TwoSampleMR <- function(TwoSampleMRinput, mr_plot="None", prefix="")
 {
+  for (p in "TwoSampleMR") {
+    if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
+       if (!requireNamespace(p, quietly = TRUE))
+           warning(paste("This function needs package `", p, "' to be fully functional; please install", sep=""))
+    }
+  }
   harmonise <- TwoSampleMRinput
   result <- heterogeneity <- pleiotropy <- single <- loo <- NULL
   result <- TwoSampleMR::mr(harmonise)
@@ -1175,7 +1201,12 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
     stop("'flagged' argument must be 'IN' or 'OUT")
   }
 
-  requireNamespace("stringr")
+  for (p in "stringr") {
+    if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
+       if (!requireNamespace(p, quietly = TRUE))
+           warning(paste("This function needs package `", p, "' to be fully functional; please install", sep=""))
+    }
+  }
 
   # best to cut flagged samples first at eset stage:
   # risk of messing up if cutting from matrix, and then dont edit pData
@@ -1226,21 +1257,6 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
   eset
   #eof
 }
-
-#' @importFrom phenoscanner phenoscanner
-#' @importFrom GenomicRanges GRanges width tile
-#' @importFrom IRanges IRanges
-#' @importFrom reticulate source_python
-#' @importFrom seqminer tabix.read.table
-#' @importFrom dplyr as_tibble filter select distinct mutate group_by ungroup
-#' @importFrom coloc coloc.abf
-#' @importFrom VariantAnnotation VcfFile vcfFields ScanVcfParam readVcf
-#' @importFrom gwasvcf vcf_to_granges
-#' @importFrom ieugwasr check_access_token
-#' @importFrom ggplot2 ggplot geom_text aes labs theme element_blank geom_errorbar geom_errorbarh geom_point theme_bw geom_abline scale_colour_manual guides guide_legend geom_vline geom_hline scale_size_manual element_text element_line
-#' @importFrom TwoSampleMR mr_egger_regression mr_egger_regression_bootstrap mr mr_singlesnp mr_scatter_plot mr_forest_plot mr_funnel_plot mr_heterogeneity mr_pleiotropy_test mr_leaveoneout mr_leaveoneout_plot
-#' @importFrom cowplot theme_cowplot
-#' @importFrom Biobase annotatedDataFrameFrom MIAME ExpressionSet exprs fData
 
 #' @title biomaRt
 #' @description Curation of biomaRt

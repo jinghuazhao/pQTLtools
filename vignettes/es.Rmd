@@ -23,7 +23,15 @@ knitr::opts_chunk$set(
   dev = "png")
 ```
 
-We illustrate Bioconductor/Biobase's ExpressionSet with its example, see also the reference section.
+```{r, message=FALSE, warning=FALSE}
+pkgs <- c("Biobase", "arrayQualityMetrics", "knitr", "pQTLtools")
+for (p in pkgs) if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
+    if (!requireNamespace(p)) warning(paste0("This vignette needs package `", p, "'; please install"))
+}
+invisible(suppressMessages(lapply(pkgs, require, character.only = TRUE)))
+```
+
+We illustrate Bioconductor/Biobase's ExpressionSet with its example and finish with a real example. See also the reference section.
 
 ```{r, results='hide'}
 dataDirectory <- system.file("extdata", package="Biobase")
@@ -37,8 +45,6 @@ metadata <- data.frame(labelDescription=
                          "Case/control status",
                          "Tumor progress on XYZ scale"),
                        row.names=c("gender", "type", "score"))
-suppressMessages(library(Biobase))
-suppressMessages(library(pQTLtools))
 phenoData <- new("AnnotatedDataFrame", data=pData, varMetadata=metadata)
 experimentData <- new("MIAME",
   name="Pierre Fermat",
@@ -88,12 +94,11 @@ invisible(sapply(f,function(x) {
 ```
 where the expression set is indexed using feature name(s).
 
-## Outliers
+## Outlier detections
 
 This illustrates one mechanism,
 
 ```r
-suppressMessages(library(arrayQualityMetrics))
 list_outliers <- function(es, method="upperquartile") outliers(exprs(es),method=method)
 for (method in c("KS","sum","upperquartile"))
 {
@@ -120,7 +125,7 @@ fData(exampleSet)
 fData(exampleSet)$lod.max <- apply(exprs(exampleSet),1,quantile,runif(nrow(exampleSet)))
 lod <- get.prop.below.LLOD(exampleSet)
 x <- dplyr::arrange(fData(lod),desc(pc.belowLOD.new))
-knitr::kable(head(lod))
+kable(head(lod))
 plot(x[,2], main="Random quantile cut off", ylab="<lod%")
 ```
 
@@ -128,23 +133,22 @@ The quantity has been shown to have a big impact on protein abundance and theref
 
 ```{r lod, fig.height=7}
 rm(list=ls())
-HOME <- Sys.getenv("HOME")
-dir <- paste0(HOME,"/rds/post_qc_data/interval/phenotype/olink_proteomics/post-qc/")
-rds <- readRDS(paste0(dir,"eset.inf1.flag.out.outlier.in.rds"))
-x <- get.prop.below.LLOD(rds)
+dir <- "~/rds/post_qc_data/interval/phenotype/olink_proteomics/post-qc/"
+eset <- readRDS(paste0(dir,"eset.inf1.flag.out.outlier.in.rds"))
+x <- get.prop.below.LLOD(eset)
 annot <- fData(x)
-annot$MissDataProp <- as.numeric( gsub("\\%$", "", annot$MissDataProp) )
+annot$MissDataProp <- as.numeric(gsub("\\%$", "", annot$MissDataProp))
 plot(annot$MissDataProp, annot$pc.belowLOD.new, xlab="% <LLOD in Original",
      ylab="% <LLOD in post QC dataset", pch=19)
-# get the proteins with no pQTL
 INF <- Sys.getenv("INF")
-np <- read.table(paste(INF, "work", "INF1.merge.nosig", sep="/"), head=F,
-                 col.names = c("prot", "uniprot.id"))
+np <- read.table(paste(INF, "work", "INF1.merge.nosig", sep="/"), header=FALSE,
+                 col.names = c("prot", "uniprot"))
+kable(np, caption="Proteins with no pQTL")
 annot$pQTL <- rep(NA, nrow(annot))
 no.pQTL.ind <- which(annot$uniprot.id %in% np$uniprot)
 annot$pQTL[no.pQTL.ind] <- "red"
 annot$pQTL[-no.pQTL.ind] <- "blue"
-annot <- annot[order(annot$pc.belowLOD.new, decreasing = T),]
+annot <- annot[order(annot$pc.belowLOD.new, decreasing = TRUE),]
 annot <- annot[-grep("^BDNF$", annot$ID),]
 par(mar=c(5,4,1,1))
 plot(annot$pc.belowLOD.new, col=annot$pQTL, las=1,
@@ -153,7 +157,7 @@ plot(annot$pc.belowLOD.new, col=annot$pQTL, las=1,
 axis(side=1, at = seq(from=0, to=nrow(annot), by=20))
 legend("topright", legend= c("no pQTL", "pQTL"), col= c("red","blue"), pch = 19)
 options(width=120)
-knitr::kable(annot,row.names=FALSE)
+kable(annot,caption="Summary statistics",row.names=FALSE)
 ```
 
 ## maEndtoEnd

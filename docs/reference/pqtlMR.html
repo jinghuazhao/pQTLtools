@@ -24,7 +24,6 @@ used to perform MR analysis against a list of outcomes from MR-Base."><meta prop
   <a class="nav-link" href="../index.html">
     <span class="fa fa-home"></span>
      
-    
   </a>
 </li>
 <li class="nav-item dropdown">
@@ -49,10 +48,43 @@ used to perform MR analysis against a list of outcomes from MR-Base."><meta prop
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
       <ul class="navbar-nav"><li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/jinghuazhao/pQTLtools">
+  <a class="external-link nav-link" href="https://www.bioconductor.org">
+    <span class="fas fa fas fa-fast-backward"></span>
+     
+  </a>
+</li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-sites">Sites</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-sites">
+    <a class="external-link dropdown-item" href="https://www.bioconductor.org/">Bioconductor</a>
+    <a class="external-link dropdown-item" href="https://cran.r-project.org/">CRAN</a>
+    <a class="external-link dropdown-item" href="https://cytoscape.org/">Cytoscape</a>
+    <a class="external-link dropdown-item" href="https://www.ensembl.org/">Ensembl</a>
+    <a class="external-link dropdown-item" href="https://www.ebi.ac.uk/eqtl/">eQTL catalog</a>
+    <a class="external-link dropdown-item" href="https://www.ebi.ac.uk/gwas/">GWAS catalog</a>
+    <a class="external-link dropdown-item" href="https://www.myendnoteweb.com/">MyEndNoteWeb</a>
+    <a class="external-link dropdown-item" href="https://pubmed.ncbi.nlm.nih.gov/">PubMed</a>
+    <a class="external-link dropdown-item" href="https://string-db.org/">STRING</a>
+    <a class="external-link dropdown-item" href="https://www.proteinatlas.org/">The Human Protein Atlas</a>
+    <a class="external-link dropdown-item" href="https://www.uniprot.org/">UniProt</a>
+  </div>
+</li>
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://www.uniprot.org/">
+    <span class="fas fa fas fa-fast-forward"></span>
+     
+  </a>
+</li>
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://jinghuazhao.github.io/R/">
     <span class="fab fa fab fa-r-project"></span>
      
-    
+  </a>
+</li>
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/jinghuazhao/pQTLtools/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
   </a>
 </li>
       </ul></div>
@@ -81,18 +113,29 @@ used to perform MR analysis against a list of outcomes from MR-Base.</p>
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>ivs</dt>
 <dd><p>Instrumental variables from format_data().</p></dd>
+
+
 <dt>ids</dt>
 <dd><p>A list of MR-Base IDs.</p></dd>
+
+
 <dt>mr_plot</dt>
 <dd><p>to produce plots.</p></dd>
+
+
 <dt>prefix</dt>
 <dd><p>a prefix for output files.</p></dd>
+
+
 <dt>reverse</dt>
 <dd><p>if TRUE, perform reverse MR.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>No value is returned but several files.</p>
+    
+
+<p>No value is returned but several files.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -122,14 +165,14 @@ used to perform MR analysis against a list of outcomes from MR-Base.</p>
 <span class="r-in"><span class="fu">pqtlMR</span><span class="op">(</span><span class="va">ivs</span>, <span class="va">ids</span>, mr_plot<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> API: public: http://gwas-api.mrcieu.ac.uk/</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting data for 2 SNP(s) from 2 GWAS(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising ABO (bg2EPY) and FEV1 || id:ebi-a-GCST007432 (ebi-a-GCST007432)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising LIFR (yC6KvW) and FEV1 || id:ebi-a-GCST007432 (ebi-a-GCST007432)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising ABO (bg2EPY) and Coronary heart disease || id:ieu-a-7 (ieu-a-7)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising LIFR (yC6KvW) and Coronary heart disease || id:ieu-a-7 (ieu-a-7)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'bg2EPY' on 'ebi-a-GCST007432'</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'bg2EPY' on 'ieu-a-7'</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'yC6KvW' on 'ebi-a-GCST007432'</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'yC6KvW' on 'ieu-a-7'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising ABO (N41bgR) and FEV1 || id:ebi-a-GCST007432 (ebi-a-GCST007432)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising LIFR (q99peP) and FEV1 || id:ebi-a-GCST007432 (ebi-a-GCST007432)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising ABO (N41bgR) and Coronary heart disease || id:ieu-a-7 (ieu-a-7)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising LIFR (q99peP) and Coronary heart disease || id:ieu-a-7 (ieu-a-7)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'N41bgR' on 'ebi-a-GCST007432'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'N41bgR' on 'ieu-a-7'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'q99peP' on 'ebi-a-GCST007432'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'q99peP' on 'ieu-a-7'</span>
 <span class="r-in"><span class="co"># A bidirectional analysis</span></span>
 <span class="r-in"><span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/find.package.html" class="external-link">find.package</a></span><span class="op">(</span><span class="st">"pQTLtools"</span>,lib.loc<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">.libPaths</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,<span class="st">"tests"</span>,<span class="st">"ms.ins"</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">ivs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/TwoSampleMR/man/format_data.html" class="external-link">format_data</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span><span class="va">f</span>, header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>, samplesize_col<span class="op">=</span><span class="st">"N"</span><span class="op">)</span></span>
@@ -139,15 +182,15 @@ used to perform MR analysis against a list of outcomes from MR-Base.</p>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting data for 2 SNP(s) from 1 GWAS(s)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Finding proxies for 1 SNPs in outcome ieu-b-18</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting data for 1 SNP(s) from 1 GWAS(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising TNFB (KkdPaw) and multiple sclerosis || id:ieu-b-18 (ieu-b-18)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'KkdPaw' on 'ieu-b-18'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising TNFB (TplxBY) and multiple sclerosis || id:ieu-b-18 (ieu-b-18)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'TplxBY' on 'ieu-b-18'</span>
 <span class="r-in"><span class="co"># reverse MR</span></span>
 <span class="r-in"><span class="fu">pqtlMR</span><span class="op">(</span><span class="va">ivs</span>, <span class="va">ids</span>, ,prefix<span class="op">=</span><span class="st">"MS_rev-"</span>,reverse<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting data for 2 SNP(s) from 1 GWAS(s)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Finding proxies for 1 SNPs in outcome ieu-b-18</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting data for 1 SNP(s) from 1 GWAS(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising TNFB (KkdPaw) and multiple sclerosis || id:ieu-b-18 (ieu-b-18)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'ieu-b-18' on 'KkdPaw'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising TNFB (TplxBY) and multiple sclerosis || id:ieu-b-18 (ieu-b-18)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'ieu-b-18' on 'TplxBY'</span>
 <span class="r-in"></span>
 </code></pre></div>
     </div>
@@ -156,7 +199,7 @@ used to perform MR analysis against a list of outcomes from MR-Base.</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Crafted by <a href="https://jinghuazhao.github.io/" class="external-link"><img src="https://jinghuazhao.github.io/en/consortium/bees.svg" width="36"></a>. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Crafted by <a href="https://jinghuazhao.github.io/" class="external-link"><img src="https://jinghuazhao.github.io/en/consortium/bees.svg" width="36"></a>. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
 <div class="pkgdown-footer-right">

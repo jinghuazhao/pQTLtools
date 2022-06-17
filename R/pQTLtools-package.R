@@ -42,6 +42,11 @@
 #'   \item{gene}{Gene name}
 #'   \item{UniProt}{UniProt ID}
 #' }
+#'
+#' @import dplyr ggplot2
+#' @importFrom stats na.omit qnorm
+#' @importFrom utils write.table
+#'
 #' @examples
 #' \dontrun{
 #' # datasets

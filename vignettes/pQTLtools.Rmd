@@ -26,56 +26,71 @@ knitr::opts_chunk$set(
   dev = "png")
 ```
 
+```{r, message=FALSE, warning=FALSE}
+pkgs <- c("GenomicRanges", "TwoSampleMR", "biomaRt", "coloc", "dplyr", "gap", "ggplot2",
+          "httr", "karyoploteR", "knitr", "pQTLtools", "rGREAT", "readr", "regioneR", "seqminer")
+for (p in pkgs) if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
+    if (!requireNamespace(p)) warning(paste0("This vignette needs package `", p, "'; please install"))
+}
+invisible(suppressMessages(lapply(pkgs, require, character.only=TRUE)))
+```
+
 ## cis/trans classification
 ```{r cistrans, fig.cap="cis/trans classification", fig.height=7, fig.width=7}
 options(width=200)
-require(gap)
-INF <- Sys.getenv("INF")
-f <- file.path(INF,"work","INF1.merge")
-clumped <- read.delim(f,as.is=TRUE)
-hits <- merge(clumped[c("CHR","POS","MarkerName","prot","log10p")],
+f <- file.path("~","pQTLtools","tests","INF1.merge")
+merged <- read.delim(f,as.is=TRUE)
+hits <- merge(merged[c("CHR","POS","MarkerName","prot","log10p")],
               inf1[c("prot","uniprot")],by="prot")
 names(hits) <- c("prot","Chr","bp","SNP","log10p","uniprot")
 cistrans <- cis.vs.trans.classification(hits,inf1,"uniprot")
 cis.vs.trans <- with(cistrans,data)
-knitr::kable(with(cistrans,table),caption="Table 1. cis/trans classification")
+kable(with(cistrans,table),caption="Table 1. cis/trans classification")
 with(cistrans,total)
 circos.cis.vs.trans.plot(hits=f,inf1,"uniprot")
 ```
 
+A more recent implementation is the `qtlClassifier` function. For this example we have,
+
+```{r qtlClassifier, fig.cap="cis/trans classification", fig.height=7, fig.width=7}
+options(width=200)
+geneSNP <- merge(merged[c("prot","MarkerName")],inf1[c("prot","gene")],by="prot")[c("gene","MarkerName","prot")]
+SNPPos <- merged[c("MarkerName","CHR","POS")]
+genePos <- inf1[c("gene","chr","start","end")]
+cvt <- qtlClassifier(geneSNP,SNPPos,genePos,1e6)
+kable(head(cvt))
+cistrans.check <- merge(cvt[c("gene","MarkerName","Type")],cis.vs.trans[c("p.gene","SNP","cis.trans")],
+                        by.x=c("gene","MarkerName"),by.y=c("p.gene","SNP"))
+with(cistrans.check,table(Type,cis.trans))
+```
+
 This is used to generate 2d-pQTL plot
-```{r pqtl2dplot, fig.cap="2d pQTL plot", fig.height=8}
-INF <- Sys.getenv("INF")
-d <- read.csv(file.path(INF,"work","INF1.merge.cis.vs.trans"),as.is=TRUE)
-t2d <- pqtl2dplot(d)
+```{r qtl2dplot, fig.cap="2d pQTL plot", fig.height=8}
+t2d <- qtl2dplot(cis.vs.trans,xlab="pQTL position",ylab="Gene position")
 ```
 whose result can be also viewed in a 2-d plotly style,
-```{r pqtl2dplotly, fig.cap="2d pQTL plotly", fig.height=8, fig.width=8, plotly=TRUE}
-fig2d <- pqtl2dplotly(d)
+```{r qtl2dplotly, fig.cap="2d pQTL plotly", fig.height=8, fig.width=8, plotly=TRUE}
+fig2d <- qtl2dplotly(cis.vs.trans,xlab="pQTL position",ylab="Gene position")
 fig2d
 # We can save the figure for a browser independently
 htmlwidgets::saveWidget(fig2d,file="fig2d.html")
 ```
 and 3-d counterpart
-```{r pqtl3dplotly, fig.cap="3d pQTL plotly", fig.height=8, fig.width=8, plotly=TRUE}
-fig3d <- pqtl3dplotly(d,zmax=300)
+```{r qtl3dplotly, fig.cap="3d pQTL plotly", fig.height=8, fig.width=8, plotly=TRUE}
+fig3d <- qtl3dplotly(cis.vs.trans,zmax=300,qtl.prefix="pQTL:",xlab="pQTL position",ylab="Gene position")
 fig3d
 # We can save the figure for a browser independently
 htmlwidgets::saveWidget(fig3d,file="fig3d.html")
 ```
 and ideogram (biomaRt is not always on so we include the plot below)
 ```r
-INF <- Sys.getenv("INF")
-f <- file.path(INF,"work","INF1.merge")
+f <- file.path("~","pQTLtools","tests","INF1.merge")
 INF1_merge <- read.delim(f)[c("Chrom","Start","End","prot","MarkerName")]
-cvt <- read.csv(file.path(INF,"work","/INF1.merge.cis.vs.trans"),as.is=TRUE)
-INF1_merge_cvt <- merge(INF1_merge,cvt,by.x=c("prot","MarkerName"),by.y=c("prot","SNP"))
+INF1_merge_cvt <- merge(INF1_merge,cis.vs.trans,by.x=c("prot","MarkerName"),by.y=c("prot","SNP"))
 ord <- with(INF1_merge_cvt,order(Chr,bp))
 INF1_merge_cvt <- INF1_merge_cvt[ord,]
 
-library(httr)
 set_config(config(ssl_verifypeer = 0L))
-library(biomaRt)
 mart <- useMart(biomart = "ensembl", dataset = "hsapiens_gene_ensembl")
 attrs <- c("hgnc_symbol", "chromosome_name", "start_position", "end_position", "band")
 hgnc <- vector("character",180)
@@ -91,7 +106,6 @@ INF1_merge_cvt <- within(INF1_merge_cvt,{
   hgnc[cis] <- p.gene[cis]
 })
 
-library(regioneR)
 with(INF1_merge_cvt, {
   png("karyoplot.png",res= 300, units="in", width=12, height=20)
   sentinels <- toGRanges(Chr,bp-1,bp,labels=hgnc)
@@ -99,7 +113,6 @@ with(INF1_merge_cvt, {
   loci <- toGRanges(Chr,Start,End)
   colors <- c("red","blue")
   seqlevelsStyle(sentinels) <- "UCSC"
-  library(karyoploteR)
   kp <- plotKaryotype(genome="hg19",chromosomes=levels(seqnames(sentinels)))
   kpAddBaseNumbers(kp)
   kpPlotRegions(kp,data=loci,r0=0.05,r1=0.15,border="black")
@@ -116,7 +129,7 @@ with(INF1_merge_cvt, {
 })
 ```
 ```{r karyoplot, echo=FALSE, fig.cap="Karyoplot", fig.height=12, fig.width=8}
-knitr::include_graphics('karyoplot.png',dpi=300)
+include_graphics('karyoplot.png',dpi=300)
 ```
 
 ## Genomic regions enrichment analysis
@@ -126,7 +139,6 @@ It is now considerably easier with Genomic Regions Enrichment of Annotations Too
 ```{r GREAT, fig.cap="GREAT plots", fig.height=6, fig.width=8, results='hide', warning=FALSE}
 post <- function(regions)
 {
-  library(rGREAT)
   job <- submitGreatJob(get(regions), species="hg19", version="3.0.0")
   et <- getEnrichmentTables(job,download_by = 'tsv')
   tb <- do.call('rbind',et)
@@ -134,13 +146,14 @@ post <- function(regions)
   invisible(list(job=job,tb=tb))
 }
 
-library(dplyr)
 M <- 1e+6
-INF1_merge <- read.delim(file.path(INF,"work","INF1.merge")) %>%
-              mutate(chr=Chrom, start=POS-M, end=POS+M) %>%
-              mutate(start=if_else(start<0,0,start)) %>%
-              select(prot,MarkerName,chr,start,end)
-cistrans <- INF1_merge %>% select(chr,start,end) %>% arrange(chr,start,end) %>% distinct()
+INF1_merge <- read.delim(file.path("~","pQTLtools","tests","INF1.merge")) %>%
+              dplyr::mutate(chr=Chrom, start=POS-M, end=POS+M) %>%
+              dplyr::mutate(start=if_else(start<0,0,start)) %>%
+              dplyr::select(prot,MarkerName,chr,start,end)
+cistrans <- dplyr::select(INF1_merge, chr,start,end) %>%
+            dplyr::arrange(chr,start,end) %>%
+            dplyr::distinct()
 # All regions
 cistrans.post <- post("cistrans")
 job <- with(cistrans.post,job)
@@ -155,9 +168,9 @@ plotRegionGeneAssociationGraphs(job, ontology="GO Biological Process",
 plotRegionGeneAssociationGraphs(job, ontology="GO Cellular Component",
                                 termID="GO:0005615", type=c(1,3))
 # Specific regions
-IL12B <- filter(INF1_merge,prot=="IL.12B") %>% select(chr,start,end)
-KITLG <- filter(INF1_merge,prot=="SCF") %>% select(chr,start,end)
-TNFSF10 <- filter(INF1_merge,prot=="TRAIL") %>% select(chr,start,end)
+IL12B <- dplyr::filter(INF1_merge,prot=="IL.12B") %>% select(chr,start,end)
+KITLG <- dplyr::filter(INF1_merge,prot=="SCF") %>% select(chr,start,end)
+TNFSF10 <- dplyr::filter(INF1_merge,prot=="TRAIL") %>% select(chr,start,end)
 tb_all <- data.frame()
 for (r in c("IL12B","KITLG","TNFSF10"))
 {
@@ -170,12 +183,9 @@ write.table(tb_all,file="IL12B-KITLG-TNFSF10.tsv",quote=FALSE,row.names=FALSE,se
 The top terms at Binomial p=1e-5 could be extracted as follows,
 ```{r, echo=FALSE}
 options(width=100)
-great3 <- read.delim("IL12B-KITLG-TNFSF10.tsv") %>%
-          mutate(flag=if_else(BinomP<=1e-5,"x","")) %>% arrange(desc(flag))
-knitr::kable(subset(great3,flag=="x"),caption="Table 2. GREAT results (IL12B-KITLG-TNFSF10)")
-great <- read.delim("cistrans.tsv") %>%
-         mutate(flag=if_else(BinomBonfP<=1e-8,"x","")) %>% arrange(desc(flag))
-knitr::kable(subset(great,flag=="x"),caption="Table 2. GREAT results (All regions)")
+great3 <- read.delim("IL12B-KITLG-TNFSF10.tsv") %>% filter(BinomP<=1e-5) %>% mutate(ID=gsub(":",": ",ID))
+great <- read.delim("cistrans.tsv") %>% filter(BinomBonfP<=1e-8) %>% mutate(ID=gsub(":",": ",ID))
+kable(great3,caption="Table 2. GREAT IL12B-KITLG-TNFSF10 results")
 unlink("IL12B-KITLG-TNFSF10.tsv")
 unlink("IL12B.tsv")
 unlink("KITLG.tsv")
@@ -183,36 +193,31 @@ unlink("TNFSF10.tsv")
 unlink("cistrans.tsv")
 ```
 
-## eQTL Catalogue for colocalization analysis
+## eQTL Catalog for colocalisation analysis
 
 See example associated with `import_eQTLCatalogue`. A related function is `import_OpenGWAS` used to fetch data from OpenGWAS. The cis-pQTLs and 1e+6 
 flanking regions were considered and data are actually fetched from files stored locally. For illustration, only the first sentinel was used.
 
 ```{r, results='hide', warning=FALSE}
-library(pQTLtools)
+INF <- Sys.getenv("INF")
+HPC_WORK <- Sys.getenv("HPC_WORK")
 f <- file.path(system.file(package="pQTLtools"),"eQTL-Catalogue","hg19ToHg38.over.chain")
 chain <- rtracklayer::import.chain(f)
-pkgs <- c("dplyr", "ggplot2", "readr", "coloc", "GenomicRanges","seqminer")
-invisible(lapply(pkgs, require, character.only = TRUE))
-HPC_WORK <- Sys.getenv("HPC_WORK")
 gwasvcf::set_bcftools(file.path(HPC_WORK,"bin","bcftools"))
 f <- file.path(system.file(package="pQTLtools"),"eQTL-Catalogue","tabix_ftp_paths_gtex.tsv")
 tabix_paths <- read.delim(f, sep = "\t", header = TRUE, stringsAsFactors = FALSE) %>%
                dplyr::as_tibble()
-HOME <- Sys.getenv("HOME")
 f <- file.path(system.file(package="pQTLtools"),"eQTL-Catalogue",
                "tabix_ftp_paths_gtex.tsv")
 imported_tabix_paths <- within(read.delim(f, stringsAsFactors = FALSE) %>%
                         dplyr::as_tibble(),
       {ftp_path <- gsub("ftp://ftp.ebi.ac.uk/pub/databases/spot/eQTL/csv/GTEx_V8/ge",
-                        paste0(HOME,"/rds/public_databases/GTEx/csv"),ftp_path)})
-INF <- Sys.getenv("INF")
+                        paste0("~","/rds/public_databases/GTEx/csv"),ftp_path)})
 M <- 1e6
-sentinels <- subset(read.csv(file.path(INF,"work","INF1.merge.cis.vs.trans")),cis)
+sentinels <- subset(cis.vs.trans,cis)
 
 liftRegion <- function(x,chain,flanking=1e6)
 {
-  require(GenomicRanges)
   gr <- with(x,GenomicRanges::GRanges(seqnames=chr,IRanges::IRanges(start,end))+flanking)
   seqlevelsStyle(gr) <- "UCSC"
   gr38 <- rtracklayer::liftOver(gr, chain)
@@ -285,46 +290,45 @@ saveRDS(coloc_df_imported,file=f)
 ```
 
 ```{r coloc, fig.cap="Association plot", fig.height=7, fig.width=8, echo=FALSE}
-ggplot(gwas_stats_hg38, aes(x = position, y = LP)) +
-theme_bw() +
-geom_point() +
-ggtitle(with(sentinel,paste0(prot,"-",SNP," association plot")))
+ggplot2::ggplot(gwas_stats_hg38, aes(x = position, y = LP)) +
+ggplot2::theme_bw() +
+ggplot2::geom_point() +
+ggplot2::ggtitle(with(sentinel,paste0(prot,"-",SNP," association plot")))
 if (nrow(coloc_df_imported)>0)
 {
-  dplyr::arrange(coloc_df_imported, -PP.H4.abf)
-  ggplot(coloc_df_imported, aes(x = PP.H4.abf)) +
-  ggplot2::theme_bw() +
-  geom_histogram() +
-  ggtitle(with(sentinel,paste0(prot,"-",SNP," PP4 histogram"))) +
-  xlab("PP4") + ylab("Frequency")
+   dplyr::arrange(coloc_df_imported, -PP.H4.abf)
+   ggplot(coloc_df_imported, aes(x = PP.H4.abf)) +
+   ggplot2::theme_bw() +
+   geom_histogram() +
+   ggtitle(with(sentinel,paste0(prot,"-",SNP," PP4 histogram"))) +
+   xlab("PP4") + ylab("Frequency")
 }
 rds <- readRDS(f)
-ktitle <- with(sentinel,paste0("Table 4. Colocalisation results for ",prot,"-",SNP))
-knitr::kable(rds, caption=ktitle)
+ktitle <- with(sentinel,paste0("Table 3. Colocalisation results for ",prot,"-",SNP))
+kable(rds, caption=ktitle)
 unlink(f)
 ```
 
 The function `sumstats()` obtained meta-analysis summary statistics (in build 37 and therefore lifted over to build 38) to be used in colocalisation 
-analysis.  The output are saved in the `.RDS` files.
+analysis.  The output are saved in the `.RDS` files. Note that `ftp_path` changes from eQTL Catalog to local files.
 
-## pQTL-based Mendelian Randomization (MR)
+## pQTL-based Mendelian Randomisation (MR)
 
 The function `pqtlMR` is derived from @zheng20. It has an attractive feature that multiple pQTLs
 can be used together for conducting MR with a list of outcomes from MR-Base. For generic applications
 the `run_TwoSampleMR()` function can be used.
 
 ```{r, warning=FALSE}
-library(TwoSampleMR)
 f <- file.path(system.file(package="pQTLtools"),"tests","Ins.csv")
 ivs <- format_data(read.csv(f))
-caption2 <- "Table 3. ABO/LIFR variants and CHD/FEV1"
-knitr::kable(ivs, caption=paste(caption2,"(instruments)"))
+caption4 <- "Table 4. ABO/LIFR variants and CHD/FEV1"
+kable(ivs, caption=paste(caption4,"(instruments)"))
 ids <- c("ieu-a-7","ebi-a-GCST007432")
 pqtlMR(ivs, ids)
 result <- read.delim("pQTL-combined-result.txt",header=TRUE)
-knitr::kable(result,caption=paste(caption2, "(result)"))
+kable(result,caption=paste(caption4, "(result)"))
 single <- read.delim("pQTL-combined-single.txt",header=TRUE)
-knitr::kable(subset(single,!grepl("All",SNP)), caption=paste(caption2, "(single)"))
+kable(subset(single,!grepl("All",SNP)), caption=paste(caption4, "(single)"))
 invisible(sapply(c("harmonise","result","single"),
                  function(x) unlink(paste0("pQTL-combined-",x,".txt"))))
 ```
@@ -334,7 +338,6 @@ invisible(sapply(c("harmonise","result","single"),
 The function has similiarity to @dt18. The documentation example is quoted here,
 
 ```{r run_TwoSampleMR, fig.cap="Two-sample MR", fig.height=7, fig.width=7, results='hide', warning=FALSE}
-library(TwoSampleMR)
 outcomes <- "ebi-a-GCST007432"
 prot <- "MMP.10"
 type <- "cis"
@@ -357,12 +360,12 @@ run_TwoSampleMR(harmonise, mr_plot="pQTLtools", prefix=prefix)
 The output is contained in individual `.txt` files, together with the scatter, forest, funnel and leave-one-out plots.
 
 ```{r, echo=FALSE}
-caption4 <- "Table 5. MMP.10 variants and FEV1"
-knitr::kable(read.delim(paste0(prefix,"-result.txt"),header=TRUE),caption=paste(caption4, "(result)"))
-knitr::kable(read.delim(paste0(prefix,"-heterogeneity.txt"),header=TRUE),caption=paste(caption4,"(heterogeneity)"))
-knitr::kable(read.delim(paste0(prefix,"-pleiotropy.txt"),header=TRUE),caption=paste(caption4,"(pleiotropy)"))
-knitr::kable(read.delim(paste0(prefix,"-single.txt"),header=TRUE),caption=paste(caption4,"(single)"))
-knitr::kable(read.delim(paste0(prefix,"-loo.txt"),header=TRUE),caption=paste(caption4,"(loo)"))
+caption5 <- "Table 5. MMP.10 variants and FEV1"
+kable(read.delim(paste0(prefix,"-result.txt"),header=TRUE),caption=paste(caption5, "(result)"))
+kable(read.delim(paste0(prefix,"-heterogeneity.txt"),header=TRUE),caption=paste(caption5,"(heterogeneity)"))
+kable(read.delim(paste0(prefix,"-pleiotropy.txt"),header=TRUE),caption=paste(caption5,"(pleiotropy)"))
+kable(read.delim(paste0(prefix,"-single.txt"),header=TRUE),caption=paste(caption5,"(single)"))
+kable(read.delim(paste0(prefix,"-loo.txt"),header=TRUE),caption=paste(caption5,"(loo)"))
 for (x in c("result","heterogeneity","pleiotropy","single","loo")) unlink(paste0(prefix,"-",x,".txt"))
 ```
 
@@ -371,25 +374,24 @@ for (x in c("result","heterogeneity","pleiotropy","single","loo")) unlink(paste0
 This is illustrated with IL-12B.
 
 ```{r mr, fig.cap="MR with cis, trans and cis+trans variants of IL-12B", fig.height=9}
-library(dplyr)
-efo <- read.delim(file.path(INF,"rsid","efo.txt")) %>%
-       mutate(x=1:n()) %>%
-       select(MRBASEID,trait,x)
+efo <- read.delim(file.path("~","pQTLtools","tests","efo.txt")) %>%
+       dplyr::mutate(x=1:n()) %>%
+       dplyr::select(MRBASEID,trait,x)
 d3 <- read.delim(file.path(INF,"mr","efo-result.txt")) %>%
-      filter(exposure=="IL.12B") %>%
-      mutate(MRBASEID=unlist(lapply(strsplit(outcome,"id:"),"[",2)),y=b) %>%
-      select(-outcome,-method) %>%
+      dplyr::filter(exposure=="IL.12B") %>%
+      dplyr::mutate(MRBASEID=unlist(lapply(strsplit(outcome,"id:"),"[",2)),y=b) %>%
+      dplyr::select(-outcome,-method) %>%
       left_join(efo) %>%
-      arrange(cistrans)
-knitr::kable(head(d3[c("MRBASEID","trait","cistrans","nsnp","b","se","pval")],29),caption="Table 6. MR with IL-12B variants")
-p <- ggplot(d3,aes(y = trait, x = y))+
-theme_bw()+
-geom_point()+
-facet_wrap(~cistrans,ncol=3,scales="free_x")+
-geom_segment(aes(x = b-1.96*se, xend = b+1.96*se, yend = trait))+
-geom_vline(lty=2, aes(xintercept=0), colour = 'red')+
-xlab("Effect size")+
-ylab("")
+      dplyr::arrange(cistrans)
+kable(head(d3[c("MRBASEID","trait","cistrans","nsnp","b","se","pval")],29),caption="Table 6. MR with IL-12B variants")
+p <- ggplot2::ggplot(d3,aes(y = trait, x = y))+
+     ggplot2::theme_bw()+
+     ggplot2::geom_point()+
+     ggplot2::facet_wrap(~cistrans,ncol=3,scales="free_x")+
+     ggplot2::geom_segment(aes(x = b-1.96*se, xend = b+1.96*se, yend = trait))+
+     ggplot2::geom_vline(lty=2, aes(xintercept=0), colour = 'red')+
+     ggplot2::xlab("Effect size")+
+     ggplot2::ylab("")
 p
 ```
 

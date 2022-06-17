@@ -22,7 +22,6 @@
   <a class="nav-link" href="../index.html">
     <span class="fa fa-home"></span>
      
-    
   </a>
 </li>
 <li class="nav-item dropdown">
@@ -47,10 +46,43 @@
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
       <ul class="navbar-nav"><li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/jinghuazhao/pQTLtools">
+  <a class="external-link nav-link" href="https://www.bioconductor.org">
+    <span class="fas fa fas fa-fast-backward"></span>
+     
+  </a>
+</li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-sites">Sites</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-sites">
+    <a class="external-link dropdown-item" href="https://www.bioconductor.org/">Bioconductor</a>
+    <a class="external-link dropdown-item" href="https://cran.r-project.org/">CRAN</a>
+    <a class="external-link dropdown-item" href="https://cytoscape.org/">Cytoscape</a>
+    <a class="external-link dropdown-item" href="https://www.ensembl.org/">Ensembl</a>
+    <a class="external-link dropdown-item" href="https://www.ebi.ac.uk/eqtl/">eQTL catalog</a>
+    <a class="external-link dropdown-item" href="https://www.ebi.ac.uk/gwas/">GWAS catalog</a>
+    <a class="external-link dropdown-item" href="https://www.myendnoteweb.com/">MyEndNoteWeb</a>
+    <a class="external-link dropdown-item" href="https://pubmed.ncbi.nlm.nih.gov/">PubMed</a>
+    <a class="external-link dropdown-item" href="https://string-db.org/">STRING</a>
+    <a class="external-link dropdown-item" href="https://www.proteinatlas.org/">The Human Protein Atlas</a>
+    <a class="external-link dropdown-item" href="https://www.uniprot.org/">UniProt</a>
+  </div>
+</li>
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://www.uniprot.org/">
+    <span class="fas fa fas fa-fast-forward"></span>
+     
+  </a>
+</li>
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://jinghuazhao.github.io/R/">
     <span class="fab fa fab fa-r-project"></span>
      
-    
+  </a>
+</li>
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/jinghuazhao/pQTLtools/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
   </a>
 </li>
       </ul></div>
@@ -72,10 +104,6 @@
 <li>Add inst/snakemake placeholder</li>
 <li>Add inst/STRING/change_STRING_colors.py</li>
 <li>Add inst/Olink</li>
-<li>Suggest htmlwidgets, plotly</li>
-<li>Suggest cowplot, gap.datasets, httr, plyr, rmarkdown, Biobase, rGREAT, stringr</li>
-<li>Suggest circlize, openxlsx, knitr and add HTML vignette (biomaRt, karyoploteR, regioneR) with cis/trans-classification/ideogram/mhtplot2d examples</li>
-<li>Suggest GenomicRanges &amp; IRanges to handle &gt;1MB region in regionqueries with wait= option</li>
 <li>Add pQTLtools.Rmd, bioconductor.Rmd, es.Rmd and SCALLOP-INF.Rmd articles</li>
 <li>Add LICENSE.md and README.md</li>
 <li>Add listed publications on pQTLs by Sun et al. (2018) and Suhre et al. (2020)</li>
@@ -87,8 +115,13 @@
 <li>Add genequries, regionqueries, snpqueries</li>
 <li>Add uniprot2ids() based on UniProt</li>
 <li>Add biomaRt.rda, hg19.rda, hg19Tables.rda, inf1.rda, st4.rda, st6.rda, st18.rda, but drop hgTables. Q8NF90 and Q8WWJ7 in inf1.rda were not listed at the UCSC, and replaced with P12034 and P30203 as on UniProt Tidy up various options of SomaLogic lookup (panels, box, ST4, ST6)</li>
-<li>Import ggplot2</li>
-<li>Replace ChangeLog with NEWS.md and document with pkgdown. Invoke Roxygen2 for documentation</li>
+<li>Suggest htmlwidgets, plotly</li>
+<li>Suggest cowplot, gap.datasets, httr, plyr, rmarkdown, Biobase, stringr</li>
+<li>Suggest circlize, openxlsx, knitr and add HTML vignette (biomaRt, regioneR) with cis/trans-classification/ideogram/mhtplot2d examples</li>
+<li>Suggest GenomicRanges &amp; IRanges to handle &gt;1MB region in regionqueries with wait= option</li>
+<li>Replace ChangeLog with NEWS.md and generate vignette/articles with pkgdown.</li>
+<li>Import dplyr, ggplot2</li>
+<li>Invoke Roxygen2 for documentation</li>
 <li>Import from lmm as template, use save(,compress=‘xz’)</li>
 <li>First release</li>
 </ul></div>
@@ -96,7 +129,7 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Crafted by <a href="https://jinghuazhao.github.io/" class="external-link"><img src="https://jinghuazhao.github.io/en/consortium/bees.svg" width="36"></a>. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Crafted by <a href="https://jinghuazhao.github.io/" class="external-link"><img src="https://jinghuazhao.github.io/en/consortium/bees.svg" width="36"></a>. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
 <div class="pkgdown-footer-right">

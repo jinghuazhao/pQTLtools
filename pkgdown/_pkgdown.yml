@@ -2,8 +2,8 @@ home:
   title: Protein Quantitative Trait Locus tools
   description: A protein Quantitative Trait Locus toolkit.
   links:
-  - text: See other R packages
-    href: https://jinghuazhao.github.io/R/
+  - text: R/gap at CRAN
+    href: https://cloud.r-project.org/package=gap
   sidebar:
     structure: [links, support, license, community, authors, dev]
     components:
@@ -30,31 +30,67 @@ template:
     bootswatch: litera
 
 navbar:
-  left:
-    - text: ""
-      icon: fa-home
-      href: index.html
-    - text: Articles
+  structure:
+    left: [home, articles, reference, changelog]
+    right: [bioconductor, sites, uniprot, cran, github]
+  components:
+    home:
+        icon: fa-home
+        href: index.html
+    articles:
+        text: Articles
+        menu:
+        - text: "Vignettes:"
+        - text: An overview of pQTLtools
+          href: articles/pQTLtools.html
+        - text: ---------
+        - text: "Articles:"
+        - text: Bioconductor
+          href: articles/bioconductor.html
+        - text: ExpressionSet
+          href: articles/es.html
+        - text: SCALLOP-INF scripts
+          href: articles/SCALLOP-INF.html
+    reference:
+          text: Reference   
+          href: reference/index.html
+    changelog:
+          text: Changelog
+          href: news/index.html
+    bioconductor:
+      icon: fas fa-fast-backward
+      href: https://www.bioconductor.org
+    uniprot:
+      icon: fas fa-fast-forward
+      href: https://www.uniprot.org/
+    sites:
+      text: Sites
       menu:
-      - text: "Vignettes:"
-      - text: An overview of pQTLtools
-        href: articles/pQTLtools.html
-      - text: ---------
-      - text: "Articles:"
       - text: Bioconductor
-        href: articles/bioconductor.html
-      - text: ExpressionSet
-        href: articles/es.html
-      - text: SCALLOP-INF scripts
-        href: articles/SCALLOP-INF.html
-    - text: Reference
-      href: reference/index.html
-    - text: Changelog
-      href: news/index.html
-  right:
-    - text: ""
-      icon: "fab fa-r-project"
-      href: https://github.com/jinghuazhao/pQTLtools
+        href: https://www.bioconductor.org/
+      - text: CRAN
+        href: https://cran.r-project.org/
+      - text: Cytoscape
+        href: https://cytoscape.org/
+      - text: Ensembl
+        href: https://www.ensembl.org/
+      - text: eQTL catalog
+        href: https://www.ebi.ac.uk/eqtl/
+      - text: GWAS catalog
+        href: https://www.ebi.ac.uk/gwas/
+      - text: MyEndNoteWeb
+        href: https://www.myendnoteweb.com/
+      - text: PubMed
+        href: https://pubmed.ncbi.nlm.nih.gov/
+      - text: STRING
+        href: https://string-db.org/
+      - text: The Human Protein Atlas
+        href: https://www.proteinatlas.org/
+      - text: UniProt
+        href: https://www.uniprot.org/
+    cran:
+        icon: fab fa-r-project
+        href: https://jinghuazhao.github.io/R/
 
 reference:
   - title: A summary

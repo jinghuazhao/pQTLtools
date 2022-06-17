@@ -36,15 +36,15 @@ type <- "cis"
 f <- paste0(prot,"-",type,".mrx")
 d <- read.table(file.path(find.package("pQTLtools",lib.loc=.libPaths()),"tests",f),
                 header=TRUE)
-exposure <- format_data(within(d,{P=10^logP}), phenotype_col="prot", snp_col="rsid",
-                        chr_col="Chromosome", pos_col="Posistion",
-                        effect_allele_col="Allele1", other_allele_col="Allele2",
-                        eaf_col="Freq1", beta_col="Effect", se_col="StdErr",
-                        pval_col="P", log_pval=FALSE,
-                        samplesize_col="N")
-clump <- clump_data(exposure)
-outcome <- extract_outcome_data(snps=exposure$SNP,outcomes=outcomes)
-harmonise <- harmonise_data(clump,outcome)
+exposure <- TwoSampleMR::format_data(within(d,{P=10^logP}), phenotype_col="prot", snp_col="rsid",
+                                     chr_col="Chromosome", pos_col="Posistion",
+                                     effect_allele_col="Allele1", other_allele_col="Allele2",
+                                     eaf_col="Freq1", beta_col="Effect", se_col="StdErr",
+                                     pval_col="P", log_pval=FALSE,
+                                     samplesize_col="N")
+clump <- TwoSampleMR::clump_data(exposure)
+outcome <- TwoSampleMR::extract_outcome_data(snps=exposure$SNP,outcomes=outcomes)
+harmonise <- TwoSampleMR::harmonise_data(clump,outcome)
 prefix <- paste(outcomes,prot,type,sep="-")
 run_TwoSampleMR(harmonise, mr_plot="pQTLtools", prefix=prefix)
 caption <- "Table. MMP.10 variants and FEV1"

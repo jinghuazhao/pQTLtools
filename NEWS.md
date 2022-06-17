@@ -6,11 +6,6 @@
 * Add inst/snakemake placeholder
 * Add inst/STRING/change_STRING_colors.py
 * Add inst/Olink
-* Suggest htmlwidgets, plotly
-* Suggest cowplot, gap.datasets, httr, plyr, rmarkdown, Biobase, rGREAT, stringr
-* Suggest circlize, openxlsx, knitr and add HTML vignette (biomaRt, karyoploteR, regioneR)
-  with cis/trans-classification/ideogram/mhtplot2d examples
-* Suggest GenomicRanges & IRanges to handle >1MB region in regionqueries with wait= option
 * Add pQTLtools.Rmd, bioconductor.Rmd, es.Rmd and SCALLOP-INF.Rmd articles
 * Add LICENSE.md and README.md
 * Add listed publications on pQTLs by Sun et al. (2018) and Suhre et al. (2020)
@@ -24,8 +19,13 @@
 * Add biomaRt.rda, hg19.rda, hg19Tables.rda, inf1.rda, st4.rda, st6.rda, st18.rda, but drop hgTables.
   Q8NF90 and Q8WWJ7 in inf1.rda were not listed at the UCSC, and replaced with P12034 and P30203 as on UniProt
   Tidy up various options of SomaLogic lookup (panels, box, ST4, ST6)
-* Import ggplot2
-* Replace ChangeLog with NEWS.md and document with pkgdown.
-  Invoke Roxygen2 for documentation
+* Suggest htmlwidgets, plotly
+* Suggest cowplot, gap.datasets, httr, plyr, rmarkdown, Biobase, stringr
+* Suggest circlize, openxlsx, knitr and add HTML vignette (biomaRt, regioneR)
+  with cis/trans-classification/ideogram/mhtplot2d examples
+* Suggest GenomicRanges & IRanges to handle >1MB region in regionqueries with wait= option
+* Replace ChangeLog with NEWS.md and generate vignette/articles with pkgdown.
+* Import dplyr, ggplot2
+* Invoke Roxygen2 for documentation
 * Import from lmm as template, use save(,compress='xz')
 * First release
