@@ -45,7 +45,7 @@ A web-driven documentation is now available.
 
 [https://jinghuazhao.github.io/pQTLtools/](https://jinghuazhao.github.io/pQTLtools/)
 
-## A summary of datasets and functions[^gap]
+## A summary of datasets and functions
 
 Objects             |    Description
 --------------------|-----------------------------------------
@@ -81,7 +81,7 @@ uniprot2ids          |   UniProt ID to others
 
 ---
 
-[^gap]: Closely related function in R/gap
+## Closely related function in R/gap
 
 Objects             |    Description
 --------------------|-----------------------------------------
