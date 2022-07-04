@@ -73,6 +73,8 @@ snpqueries           |   phenoscanner snpqueries in batches
 **UniProt API**      |
 uniprot2ids          |   UniProt ID to others
 
+---
+
 [^gap]: Closely related function in R/gap
 
 Objects             |    Description
