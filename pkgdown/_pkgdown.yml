@@ -105,6 +105,7 @@ reference:
     - import_OpenGWAS
     - import_eQTLCatalogue
     - make_ExpressionSet
+    - novelty_check
     - pqtlMR
     - regionqueries
     - run_coloc
