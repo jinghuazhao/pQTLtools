@@ -1612,4 +1612,4 @@ novelty_check <- function(known_loci,query_loci,flanking=1e6,pop="EUR")
   invisible(mutate(b,r2=r2))
 }
 
-# https://www.biorxiv.org/content/biorxiv/early/2022/06/18/2022.06.17.496443/DC2/embed/media-2.xlsx?download=true
+# wget https://www.biorxiv.org/content/biorxiv/early/2022/06/18/2022.06.17.496443/DC2/embed/media-2.xlsx -O sun22.xlsx
