@@ -22,6 +22,7 @@ BugReports: https://github.com/jinghuazhao/pQTLtools/issues
 Depends:
     R (>= 3.5.0)
 Imports: dplyr, ggplot2
+LinkingTo: IRanges
 Suggests:
     Biobase,
     GenomicRanges,
@@ -37,6 +38,7 @@ Suggests:
     gwasvcf,
     htmlwidgets,
     httr,
+    ieugwasr,
     knitr,
     openxlsx,
     phenoscanner,
