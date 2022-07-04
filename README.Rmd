@@ -45,7 +45,7 @@ A web-driven documentation is now available.
 
 [https://jinghuazhao.github.io/pQTLtools/](https://jinghuazhao.github.io/pQTLtools/)
 
-## A summary of datasets and functions
+## A summary of datasets and functions[^gap]
 
 Objects             |    Description
 --------------------|-----------------------------------------
@@ -78,3 +78,26 @@ regionqueries        |   phenoscanner regionqueries in batches
 snpqueries           |   phenoscanner snpqueries in batches
 **UniProt API**      |
 uniprot2ids          |   UniProt ID to others
+
+[^gap]: Closely related function in R/gap
+
+Objects             |    Description
+--------------------|-----------------------------------------
+METAL_forestplot    |    Forest plots from metal analysis
+cis.vs.trans.classification | a cis/trans classifier
+circos.cis.vs.trans.plot | circos plot of cis/trans classification
+circos.mhtplot      |    circos Manhattan plot with gene annotation
+circos.mhtplot2     |    Another circos Manhattan plot
+cs                  |    Credibel set
+get_b_se            |    Get b and se from AF, n, and z
+get_pve_se          |    Get pve and its standard error from n, z
+get_sdy             |    Get sd(y) from AF, n, b, se
+gsmr                |    Mendelian randomization analysis
+invnormal           |    Inverse normal transformation
+log10p              |    log10(p) for a standard normal deviate
+log10pvalue         |    log10(p) for a P value including its scientific format
+logp                |    log(p) for a normal deviate
+qtlClassifier       |    A QTL cis/trans classifier
+qtl2dplot           |    2D QTL plot
+qtl2dplotly         |    2D QTL plotly
+qtl3dplotly         |    3D QTL plotly
