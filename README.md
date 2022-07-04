@@ -5,7 +5,7 @@
 
 This seeds collection of data and utilties for pQTL analysis. At this
 early stage, the repository collects information on a number of protein
-panels, linking function for cis/trans classification, 2D manhattan
+panels, linking functions for cis/trans classification, 2D manhattan
 plots, 3D-plotly plots, forest plots among others availale from R/gap;
 query results on genes, regions, and SNPs via PhenoScanner, adding
 functionality to check for replication across platforms and aspects of
@@ -70,7 +70,7 @@ A web-driven documentation is now available.
 
 ------------------------------------------------------------------------
 
-## Closely related function in R/gap
+## Closely related functions in R/gap
 
 | Objects                     | Description                                            |
 |-----------------------------|--------------------------------------------------------|
@@ -79,7 +79,7 @@ A web-driven documentation is now available.
 | circos.cis.vs.trans.plot    | circos plot of cis/trans classification                |
 | circos.mhtplot              | circos Manhattan plot with gene annotation             |
 | circos.mhtplot2             | Another circos Manhattan plot                          |
-| cs                          | Credibel set                                           |
+| cs                          | Credible set                                           |
 | get\_b\_se                  | Get b and se from AF, n, and z                         |
 | get\_pve\_se                | Get pve and its standard error from n, z               |
 | get\_sdy                    | Get sd(y) from AF, n, b, se                            |
