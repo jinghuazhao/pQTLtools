@@ -1536,7 +1536,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #' Locus novelty check
 #'
 #' This function checks novelty of a list of loci such as pQTLs against a published list.
-#' Both known_loci and list_loci have these variables: chr, pos, uniprot, rsid, prot.
+#' Both known_loci and query_loci have these variables: chr, pos, uniprot, rsid, prot.
 #'
 #' @param known_loci A data.frame of published loci.
 #' @param query_loci A data.frame of loci whose novelties are unclear.
@@ -1554,8 +1554,6 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #'           mutate(prot_rsid=paste0(uniprot,"-",rsid),pos=Position)
 #'  # UKB_PPP list
 #'  require(openxlsx)
-#'  # https://www.biorxiv.org/content/biorxiv/
-#'  # early/2022/06/18/2022.06.17.496443/DC2/embed/media-2.xlsx?download=true
 #'  url <- "~/rds/results/public/proteomics/UKB-PPP/sun22.xlsx"
 #'  ST10 <- read.xlsx(url,"ST10",startRow=3) %>%
 #'          mutate(uniprot=Target.UniProt,rsid=rsID,prot=Assay.Target) %>%
@@ -1572,7 +1570,6 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #'             chr=lapply(chrpos,"[[",1),
 #'             pos=lapply(chrpos,"[[",2),
 #'             chrpos=paste(chr,pos,sep=":"))
-#'
 #'  suppressMessages(require(GenomicRanges))
 #'  b <- novelty_check(UKB_PPP,METAL)
 #'  replication <- filter(b,r2>=0.8)
@@ -1582,27 +1579,6 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #'  prot_rsid <- with(novel_data,paste0(prot,"-",rsid))
 #'  prot_rsid_repl <- with(replication,paste0(query.prot,"-",query.rsid))
 #'  left <- setdiff(prot_rsid,prot_rsid_repl)
-#'  # Housekeeping but somewhat not as practical with single pair
-#'  #  r <- sapply(1:nrow(b),function(x) with(b[x,], ifelse(known.rsid==query.rsid,
-#'          1,ieugwasr::ld_matrix(variants=c(known.rsid,query.rsid),pop="EUR"))))
-#'  suppressMessages(require(LDlinkR))
-#'  # or less tolerant as variants need to be on the same chromosome
-#'  token <- Sys.getenv("LDLINK_TOKEN")
-#'  # r2 <- LDlinkR::LDmatrix(variant_list,pop="CEU",token=token)
-#'  # r2 <- sapply(1:nrow(b),function(x) with(b[x,], ifelse(known.rsid==query.rsid,
-#'          1,LDlinkR::LDpair(known.rsid,query.rsid,pop="CEU",token=token)$r2)))
-#'  # Gene expression
-#'  LDexpress(snps = c("rs345", "rs456"),
-#'                      pop = c("YRI", "CEU"),
-#'                      tissue = c("ADI_SUB", "ADI_VIS_OME"),
-#'                      r2d = "r2",
-#'                      r2d_threshold = "0.1",
-#'                      p_threshold = "0.1",
-#'                      win_size = "500000",
-#'                      genome_build = "grch37",
-#'                      token = token)
-#'
-#' # Trait GWAS
 #' }
 
 novelty_check <- function(known_loci,query_loci,flanking=1e6,pop="EUR")
@@ -1635,3 +1611,5 @@ novelty_check <- function(known_loci,query_loci,flanking=1e6,pop="EUR")
   r2 <-  sapply(1:nrow(b),function(x) with(b[x,],ifelse(known.rsid==query.rsid,1,l[known.rsid,query.rsid]^2)))
   invisible(mutate(b,r2=r2))
 }
+
+# https://www.biorxiv.org/content/biorxiv/early/2022/06/18/2022.06.17.496443/DC2/embed/media-2.xlsx?download=true
