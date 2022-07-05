@@ -1542,6 +1542,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #' @param query_loci A data.frame of loci whose novelties are unclear.
 #' @param flanking A flanking distance.
 #' @param pop The reference population as for ieugwasr::ld_matrix().
+#' @param verbose A flag to show nonexistent variants.
 #'
 #' @return A data.frame containing nonnovel loci.
 #' @export
@@ -1581,7 +1582,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #'  left <- setdiff(prot_rsid,prot_rsid_repl)
 #' }
 
-novelty_check <- function(known_loci,query_loci,flanking=1e6,pop="EUR")
+novelty_check <- function(known_loci,query_loci,flanking=1e6,pop="EUR",verbose=TRUE)
 {
   rsid <- seqnames <- start <- strand <- width <- NA
   query <- with(known_loci,GenomicRanges::GRanges(seqnames=as.integer(chr),IRanges::IRanges(start=as.integer(pos),width=1),
@@ -1601,15 +1602,23 @@ novelty_check <- function(known_loci,query_loci,flanking=1e6,pop="EUR")
          select(-strand,-width)
   b <- bind_cols(data.frame(ov1),data.frame(ov2))
   names(b) <- c(paste("known",names(ov1),sep="."),paste("query",names(ov2),sep="."))
-  variant_list <- c(b[["known.rsid"]],b[["query.rsid"]])
+  variant_list <- unique(c(b[["known.rsid"]],b[["query.rsid"]]))
   r <- ieugwasr::ld_matrix(variant_list,pop=pop,with_alleles=FALSE)
-# excluded <- setdiff(variant_list,colnames(r))
+  failure <- setdiff(variant_list,colnames(r))
+  if (verbose) {
+     cat("\nLD information cannot be retrieved for", length(failure), "variants:\n")
+     cat(failure,sep="\n")
+  }
   known.keep <- intersect(b[["known.rsid"]],colnames(r))
   query.keep <- intersect(b[["query.rsid"]],colnames(r))
-  l <- matrix(NA,length(b[["known.rsid"]]),length(b[["query.rsid"]]),dimnames=list(b[["known.rsid"]], b[["query.rsid"]]))
-  l[known.keep,query.keep] <- r[known.keep,query.keep]
-  r2 <-  sapply(1:nrow(b),function(x) with(b[x,],ifelse(known.rsid==query.rsid,1,l[known.rsid,query.rsid]^2)))
+  ll <- table(b$known.rsid,b$query.rsid)
+  ll[known.keep,query.keep] <- r[known.keep,query.keep]
+  r2 <- sapply(1:nrow(b), function(x) with(b[x, ], ifelse(known.rsid == query.rsid, 1, ll[known.rsid, query.rsid]^2)))
   invisible(mutate(b,r2=r2))
 }
+
+# l <- matrix(NA,length(b[["known.rsid"]]),length(b[["query.rsid"]]),dimnames=list(b[["known.rsid"]], b[["query.rsid"]]))
+# l[known.keep,query.keep] <- r[known.keep,query.keep]
+# r2 <-  sapply(1:nrow(b),function(x) with(b[x,],ifelse(known.rsid==query.rsid,1,l[known.rsid,query.rsid]^2)))
 
 # wget https://www.biorxiv.org/content/biorxiv/early/2022/06/18/2022.06.17.496443/DC2/embed/media-2.xlsx -O sun22.xlsx
