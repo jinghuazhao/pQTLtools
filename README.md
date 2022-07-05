@@ -57,6 +57,7 @@ A web-driven documentation is now available.
 | import\_eQTLCatalogue      | Import eQTL Catalogue                      |
 | import\_OpenGWAS           | Import OpenGWAS                            |
 | make\_ExpressionSet        | A call to ExpressionSet class              |
+| novelty\_check             | Locus novelty check                        |
 | run\_coloc                 | Colocalisation analysis                    |
 | **MR analysis**            |                                            |
 | pqtlMR                     | Bidirectional pQTL-MR analysis             |
