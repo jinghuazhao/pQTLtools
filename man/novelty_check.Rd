@@ -4,7 +4,13 @@
 \alias{novelty_check}
 \title{Locus novelty check}
 \usage{
-novelty_check(known_loci, query_loci, flanking = 1e+06, pop = "EUR")
+novelty_check(
+  known_loci,
+  query_loci,
+  flanking = 1e+06,
+  pop = "EUR",
+  verbose = TRUE
+)
 }
 \arguments{
 \item{known_loci}{A data.frame of published loci.}
@@ -14,6 +20,8 @@ novelty_check(known_loci, query_loci, flanking = 1e+06, pop = "EUR")
 \item{flanking}{A flanking distance.}
 
 \item{pop}{The reference population as for ieugwasr::ld_matrix().}
+
+\item{verbose}{A flag to show nonexistent variants.}
 }
 \value{
 A data.frame containing nonnovel loci.
