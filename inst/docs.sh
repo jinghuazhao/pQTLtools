@@ -2,11 +2,10 @@
 
 function build()
 {
-  Rscript -e "devtools::build_readme()"
-  Rscript -e "
-    libs <- c('gwasvcf','rtracklayer','VariantAnnotation')
+  Rscript -e 'devtools::build_readme();devtools::document()'
+  Rscript -e '
+    libs <- c("gwasvcf","rtracklayer","VariantAnnotation")
     invisible(suppressMessages(lapply(libs, require, character.only = TRUE)))
-    devtools::document()
     library(pkgdown)
     clean_site()
     init_site()
@@ -16,13 +15,8 @@ function build()
     build_reference()
     build_search()
     build_site()
-  "
-}
-
-function rmd()
-{
-  Rscript -e "knitr::knit('README.Rmd')"
-  pandoc README.md --citeproc --mathjax -s --self-contained -o index.html
+  '
+# pandoc README.md --citeproc --mathjax -s --self-contained -o index.html
 }
 
 build
