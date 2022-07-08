@@ -1551,7 +1551,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #'  options(width=2000)
 #'  suppressMessages(require(dplyr))
 #'  # SCALLOP-INF list
-#'  METAL <- read.delim("~/INF/work/INF1.METAL") %>%
+#'  METAL <- read.delim("~/pQTLtools/tests/INF1.METAL") %>%
 #'           mutate(prot_rsid=paste0(uniprot,"-",rsid),pos=Position)
 #'  # UKB_PPP list
 #'  require(openxlsx)
