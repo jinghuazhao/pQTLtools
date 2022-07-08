@@ -3,7 +3,7 @@
 module load gcc/6
 module load texlive
 
-Rscript -e 'setwd("pQTLtools");devtools::document()'
+Rscript -e 'setwd("~/pQTLtools");devtools::document()'
 
 R CMD build --resave-data --compact-vignettes=both pQTLtools
 R CMD INSTALL pQTLtools_0.1.tar.gz
