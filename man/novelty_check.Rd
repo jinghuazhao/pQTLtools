@@ -60,7 +60,7 @@ Both known_loci and query_loci have these variables: chr, pos, uniprot, rsid, pr
  replication <- filter(b,r2>=0.8)
  # Mutual uses of pQTLtools/SCALLOP-INF
  write.table(replication,file="~/INF/work/UKB-PPP.txt",row.names=FALSE,quote=FALSE,sep="\t")
- load("~/INF/work/novel_data.rda")
+ load("~/pQTLtools/tests/novel_data.rda")
  prot_rsid <- with(novel_data,paste0(prot,"-",rsid))
  prot_rsid_repl <- with(replication,paste0(query.prot,"-",query.rsid))
  left <- setdiff(prot_rsid,prot_rsid_repl)
