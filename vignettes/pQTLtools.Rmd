@@ -284,14 +284,14 @@ ensRegion37 <- with(subset(inf1,prot==sentinel[["prot"]]),paste0(chr,":",start,"
 region38 <- with(liftRegion(isnpid,chain),region)
 ensGene <- subset(inf1,prot==sentinel[["prot"]])[["ensembl_gene_id"]]
 ensRegion38 <- with(liftRegion(subset(inf1,prot==sentinel[["prot"]]),chain),region)
-f <- file.path("~","pQTLtools","tests",with(sentinel,paste0(prot,"-",SNP,".rda")))
+f <- file.path("~","pQTLtools","tests",with(sentinel,paste0(prot,"-",gsub(":","_",SNP),".rda")))
 gwas_stats_hg38 <- sumstats(sentinel[["prot"]],chr,region37)
 coloc_df_imported <- coloc(gwas_stats_hg38,ensGene,region38)
 save(gwas_stats_hg38,sentinel,coloc_df_imported,file=f)
 ```
 
 ```{r coloc, fig.cap="Association plot", fig.height=7, fig.width=8, echo=FALSE}
-load(file.path("~","pQTLtools","tests","OPG-chr8:120081031_C_T.rda"))
+load(file.path("~","pQTLtools","tests","OPG-chr8_120081031_C_T.rda"))
 ggplot2::ggplot(gwas_stats_hg38, aes(x = position, y = LP)) +
 ggplot2::theme_bw() +
 ggplot2::geom_point() +
