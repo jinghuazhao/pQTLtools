@@ -496,7 +496,7 @@ run_coloc <- function(eqtl_sumstats, gwas_sumstats, harmonise=TRUE)
 #' @param verbose Extra information
 #'
 #' @details
-#' This function is derived from SCALLOP/INF work.
+#' This function is derived from SCALLOP/INF work. For now, only those with VCF format is implemented though this could easily be extended.
 #'
 #' @return
 #' A summary statistic object
