@@ -89,6 +89,7 @@ A web-driven documentation is now available.
 | log10p                      | log10(p) for a standard normal deviate                 |
 | log10pvalue                 | log10(p) for a P value including its scientific format |
 | logp                        | log(p) for a normal deviate                            |
+| mhtplot.trunc               | Truncated Manhattan plot                               |
 | qtlClassifier               | A QTL cis/trans classifier                             |
 | qtl2dplot                   | 2D QTL plot                                            |
 | qtl2dplotly                 | 2D QTL plotly                                          |
