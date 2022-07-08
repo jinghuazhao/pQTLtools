@@ -1612,6 +1612,7 @@ novelty_check <- function(known_loci,query_loci,flanking=1e6,pop="EUR",verbose=T
   known.keep <- intersect(b[["known.rsid"]],colnames(r))
   query.keep <- intersect(b[["query.rsid"]],colnames(r))
   ll <- table(b$known.rsid,b$query.rsid)
+  ll[,] <- NA
   ll[known.keep,query.keep] <- r[known.keep,query.keep]
   r2 <- sapply(1:nrow(b), function(x) with(b[x, ], ifelse(known.rsid == query.rsid, 1, ll[known.rsid, query.rsid]^2)))
   invisible(mutate(b,r2=r2))
