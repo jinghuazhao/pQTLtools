@@ -103,7 +103,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">import_OpenGWAS</span><span class="op">(</span><span class="va">opengwas_id</span>, <span class="va">region</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">import_OpenGWAS</span><span class="op">(</span><span class="va">opengwas_id</span>, <span class="va">region</span>, verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -128,7 +128,7 @@
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>This function is derived from SCALLOP/INF work.</p>
+    <p>This function is derived from SCALLOP/INF work. For now, only those with VCF format is implemented though this could easily be extended.</p>
     </div>
     <div class="section level2">
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
@@ -141,23 +141,23 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>width<span class="op">=</span><span class="fl">200</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">gwasvcf</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gwasvcf/man/set_bcftools.html" class="external-link">set_bcftools</a></span><span class="op">(</span>path<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">HPC_WORK</span>,<span class="st">"bin"</span>,<span class="st">"bcftools"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># MPV ARHGEF3 region</span></span>
-<span class="r-in"><span class="va">opengwas_id</span> <span class="op">&lt;-</span> <span class="st">"ebi-a-GCST004599"</span></span>
-<span class="r-in"><span class="va">region</span> <span class="op">&lt;-</span> <span class="st">"3:56649749-57049749"</span></span>
-<span class="r-in"><span class="va">mpv_ARHGEF3</span> <span class="op">&lt;-</span> <span class="fu">import_OpenGWAS</span><span class="op">(</span><span class="va">opengwas_id</span>,<span class="va">region</span><span class="op">)</span></span>
-<span class="r-in"><span class="co"># all immune-related</span></span>
-<span class="r-in"><span class="va">INF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"INF"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">HPC_WORK</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"HPC_WORK"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">opengwas_ids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/scan.html" class="external-link">scan</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">INF</span>,<span class="st">"OpenGWAS"</span>,<span class="st">"ieu.list"</span><span class="op">)</span>,what<span class="op">=</span><span class="st">""</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">unavail</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ieu-b-18"</span>,<span class="st">"finn-a-M13_SLE"</span>,<span class="st">"finn-a-D3_SARCOIDOSIS"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">opengwas_ids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">opengwas_ids</span>,<span class="op">!</span><span class="va">opengwas_ids</span> <span class="op"><a href="https://rdrr.io/pkg/BiocGenerics/man/match.html" class="external-link">%in%</a></span> <span class="va">unavail</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">region</span> <span class="op">&lt;-</span> <span class="st">"1:100-2000000"</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jinghuazhao/pQTLtools" class="external-link">pQTLtools</a></span><span class="op">)</span></span>
-<span class="r-in"><span class="va">summary_list</span> <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span><span class="va">opengwas_ids</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>, <span class="op">~</span><span class="fu">import_OpenGWAS</span><span class="op">(</span><span class="va">.</span>, <span class="va">region</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>width<span class="op">=</span><span class="fl">200</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">gwasvcf</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gwasvcf/man/set_bcftools.html" class="external-link">set_bcftools</a></span><span class="op">(</span>path<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">HPC_WORK</span>,<span class="st">"bin"</span>,<span class="st">"bcftools"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># MPV ARHGEF3 region</span></span></span>
+<span class="r-in"><span><span class="va">opengwas_id</span> <span class="op">&lt;-</span> <span class="st">"ebi-a-GCST004599"</span></span></span>
+<span class="r-in"><span><span class="va">region</span> <span class="op">&lt;-</span> <span class="st">"3:56649749-57049749"</span></span></span>
+<span class="r-in"><span><span class="va">mpv_ARHGEF3</span> <span class="op">&lt;-</span> <span class="fu">import_OpenGWAS</span><span class="op">(</span><span class="va">opengwas_id</span>,<span class="va">region</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># all immune-related</span></span></span>
+<span class="r-in"><span><span class="va">INF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"INF"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">HPC_WORK</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"HPC_WORK"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">opengwas_ids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/scan.html" class="external-link">scan</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">INF</span>,<span class="st">"OpenGWAS"</span>,<span class="st">"ieu.list"</span><span class="op">)</span>,what<span class="op">=</span><span class="st">""</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">unavail</span> <span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ieu-b-18"</span>,<span class="st">"finn-a-M13_SLE"</span>,<span class="st">"finn-a-D3_SARCOIDOSIS"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">opengwas_ids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">opengwas_ids</span>,<span class="op">!</span><span class="va">opengwas_ids</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">unavail</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">region</span> <span class="op">&lt;-</span> <span class="st">"1:100-2000000"</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jinghuazhao/pQTLtools" class="external-link">pQTLtools</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">summary_list</span> <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span><span class="va">opengwas_ids</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>, <span class="op">~</span><span class="fu">import_OpenGWAS</span><span class="op">(</span><span class="va">.</span>, <span class="va">region</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -165,7 +165,7 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Crafted by <a href="https://jinghuazhao.github.io/" class="external-link"><img src="https://jinghuazhao.github.io/en/consortium/bees.svg" width="36"></a>. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
+  <p></p><p>Crafted by <a href="https://jinghuazhao.github.io/" class="external-link"><img src="https://jinghuazhao.github.io/en/consortium/bees.svg" width="36"></a>. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
 <div class="pkgdown-footer-right">
