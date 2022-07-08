@@ -197,7 +197,7 @@ unlink("cistrans.tsv")
 ## eQTL Catalog for colocalisation analysis
 
 See example associated with `import_eQTLCatalogue`. A related function is `import_OpenGWAS` used to fetch data from OpenGWAS. The cis-pQTLs and 1e+6 
-flanking regions were considered and data are actually fetched from files stored locally. For illustration, only the first sentinel was used.
+flanking regions were considered and data are actually fetched from files stored locally. Only the first sentinel was used, and the code is not executed.
 
 ```r
 INF <- Sys.getenv("INF")
@@ -290,7 +290,9 @@ coloc_df_imported <- coloc(gwas_stats_hg38,ensGene,region38)
 save(gwas_stats_hg38,sentinel,coloc_df_imported,file=f)
 ```
 
-```{r coloc, fig.cap="Association plot", fig.height=7, fig.width=8, echo=FALSE}
+We load the data obtained from the code above,
+
+```{r coloc, fig.cap="Association plot", fig.height=7, fig.width=8}
 load(file.path("~","pQTLtools","tests","OPG-chr8_120081031_C_T.rda"))
 ggplot2::ggplot(gwas_stats_hg38, aes(x = position, y = LP)) +
 ggplot2::theme_bw() +
