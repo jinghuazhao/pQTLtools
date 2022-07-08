@@ -131,7 +131,7 @@ plot(x[,2], main="Random quantile cut off", ylab="<lod%")
 
 The quantity has been shown to have a big impact on protein abundance and therefore pQTL detection as is shown with a real example.
 
-```{r lod, fig.height=7}
+```r
 rm(list=ls())
 dir <- "~/rds/post_qc_data/interval/phenotype/olink_proteomics/post-qc/"
 eset <- readRDS(paste0(dir,"eset.inf1.flag.out.outlier.in.rds"))
@@ -150,7 +150,12 @@ annot$pQTL[no.pQTL.ind] <- "red"
 annot$pQTL[-no.pQTL.ind] <- "blue"
 annot <- annot[order(annot$pc.belowLOD.new, decreasing = TRUE),]
 annot <- annot[-grep("^BDNF$", annot$ID),]
+saveRDS(annot,file=file.path("~","pQTLtools","tests","annot.RDS"))
+```
+
+```{r lod, fig.height=7}
 par(mar=c(5,4,1,1))
+annot <- readRDS(file.path("~","pQTLtools","tests","annot.RDS"))
 plot(annot$pc.belowLOD.new, col=annot$pQTL, las=1,
      ylab = "% samples with very low abundance per protein", xaxt= 'n',
      xlab = "ordered proteins", cex=0.8, pch=19)

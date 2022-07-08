@@ -199,7 +199,7 @@ unlink("cistrans.tsv")
 See example associated with `import_eQTLCatalogue`. A related function is `import_OpenGWAS` used to fetch data from OpenGWAS. The cis-pQTLs and 1e+6 
 flanking regions were considered and data are actually fetched from files stored locally. For illustration, only the first sentinel was used.
 
-```{r, results='hide', warning=FALSE}
+```r
 INF <- Sys.getenv("INF")
 HPC_WORK <- Sys.getenv("HPC_WORK")
 f <- file.path(system.file(package="pQTLtools"),"eQTL-Catalogue","hg19ToHg38.over.chain")
@@ -284,13 +284,14 @@ ensRegion37 <- with(subset(inf1,prot==sentinel[["prot"]]),paste0(chr,":",start,"
 region38 <- with(liftRegion(isnpid,chain),region)
 ensGene <- subset(inf1,prot==sentinel[["prot"]])[["ensembl_gene_id"]]
 ensRegion38 <- with(liftRegion(subset(inf1,prot==sentinel[["prot"]]),chain),region)
-f <- with(sentinel,paste0(prot,"-",SNP,".RDS"))
+f <- file.path("~","pQTLtools","tests",with(sentinel,paste0(prot,"-",SNP,".rda")))
 gwas_stats_hg38 <- sumstats(sentinel[["prot"]],chr,region37)
 coloc_df_imported <- coloc(gwas_stats_hg38,ensGene,region38)
-saveRDS(coloc_df_imported,file=f)
+save(gwas_stats_hg38,sentinel,coloc_df_imported,file=f)
 ```
 
 ```{r coloc, fig.cap="Association plot", fig.height=7, fig.width=8, echo=FALSE}
+load(file.path("~","pQTLtools","tests","OPG-chr8:120081031_C_T.rda"))
 ggplot2::ggplot(gwas_stats_hg38, aes(x = position, y = LP)) +
 ggplot2::theme_bw() +
 ggplot2::geom_point() +
@@ -304,10 +305,8 @@ if (nrow(coloc_df_imported)>0)
    ggtitle(with(sentinel,paste0(prot,"-",SNP," PP4 histogram"))) +
    xlab("PP4") + ylab("Frequency")
 }
-rds <- readRDS(f)
 ktitle <- with(sentinel,paste0("Table 3. Colocalisation results for ",prot,"-",SNP))
-kable(rds, caption=ktitle)
-unlink(f)
+kable(coloc_df_imported, caption=ktitle)
 ```
 
 The function `sumstats()` obtained meta-analysis summary statistics (in build 37 and therefore lifted over to build 38) to be used in colocalisation 
@@ -378,7 +377,7 @@ This is illustrated with IL-12B.
 efo <- read.delim(file.path("~","pQTLtools","tests","efo.txt")) %>%
        dplyr::mutate(x=1:n()) %>%
        dplyr::select(MRBASEID,trait,x)
-d3 <- read.delim(file.path(INF,"mr","efo-result.txt")) %>%
+d3 <- read.delim(file.path("~","pQTLtools","tests","efo-result.txt")) %>%
       dplyr::filter(exposure=="IL.12B") %>%
       dplyr::mutate(MRBASEID=unlist(lapply(strsplit(outcome,"id:"),"[",2)),y=b) %>%
       dplyr::select(-outcome,-method) %>%
