@@ -13,7 +13,7 @@ protein-related analysis such as pQTL-Mendelian Randomization via
 TwoSampleMR, linkage through UniProt IDs to other resources.
 
 Note that some steps have been omitted to avoid uses of external data
-and some files in `~/pQTLtools/tests` associated with onging projects
+and some files in `~/pQTLtools/tests` associated with ongoing projects
 have not been made public but it is easily done when ready.
 
 ## Installation
