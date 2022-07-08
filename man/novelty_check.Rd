@@ -35,7 +35,7 @@ Both known_loci and query_loci have these variables: chr, pos, uniprot, rsid, pr
  options(width=2000)
  suppressMessages(require(dplyr))
  # SCALLOP-INF list
- METAL <- read.delim("~/INF/work/INF1.METAL") \%>\%
+ METAL <- read.delim("~/pQTLtools/tests/INF1.METAL") \%>\%
           mutate(prot_rsid=paste0(uniprot,"-",rsid),pos=Position)
  # UKB_PPP list
  require(openxlsx)
