@@ -20,7 +20,7 @@ A summary statistic object
 A function which imports OpenGWAS.
 }
 \details{
-This function is derived from SCALLOP/INF work.
+This function is derived from SCALLOP/INF work. For now, only those with VCF format is implemented though this could easily be extended.
 }
 \note{
 Adapted function.
