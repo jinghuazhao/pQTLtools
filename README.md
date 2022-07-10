@@ -10,11 +10,13 @@ plots, 3D-plotly plots, forest plots among others availale from R/gap;
 query results on genes, regions, and SNPs via PhenoScanner, adding
 functionality to check for replication across platforms and aspects of
 protein-related analysis such as pQTL-Mendelian Randomization via
-TwoSampleMR, linkage through UniProt IDs to other resources.
+TwoSampleMR, linkage through UniProt IDs to other resources. A lot of
+functions are with
+[R/gap](https://github.com/jinghuazhao/R/tree/master/gap).
 
-Note that some steps have been omitted to avoid uses of external data
-and some files in `~/pQTLtools/tests` associated with ongoing projects
-have not been made public but it is easily done when ready.
+Note that some steps involving uses of data from ongoing project have
+been simplified to use files in `~/pQTLtools/tests`which can be made
+public when appropriate.
 
 ## Installation
 
