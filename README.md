@@ -14,9 +14,9 @@ TwoSampleMR, linkage through UniProt IDs to other resources. A lot of
 functions are with
 [R/gap](https://github.com/jinghuazhao/R/tree/master/gap).
 
-Note that some steps involving uses of data from ongoing project have
-been simplified to use files in `~/pQTLtools/tests`which can be made
-public when appropriate.
+Note that some steps involving data from ongoing project have been
+simplified to use files in `~/pQTLtools/tests`which can be made public
+when appropriate.
 
 ## Installation
 
