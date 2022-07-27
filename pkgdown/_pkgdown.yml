@@ -4,6 +4,8 @@ home:
   links:
   - text: R/gap at CRAN
     href: https://cloud.r-project.org/package=gap
+  - text: rdrr.io documentation
+    href: https://rdrr.io/github/jinghuazhao/pQTLtools/
   sidebar:
     structure: [links, support, license, community, authors, dev]
     components:
