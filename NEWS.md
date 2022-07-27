@@ -1,4 +1,4 @@
-# pQTLtools 0.1
+# pQTLtools 0.1.1
 
 * ...
 * Add inst/UniProt|PPI/README.md
