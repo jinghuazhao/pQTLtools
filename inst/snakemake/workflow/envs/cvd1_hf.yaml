@@ -1,0 +1,10 @@
+# conda environments needed for the workflow should be stored here.
+name: cvd1_hf
+channels:
+ - conda-forge
+ - r
+dependencies:
+ - r-base=4.1.1
+ - r-metafor=3.0.2
+ - r-tidyverse=1.3.1
+ - r-data.table=1.14.2

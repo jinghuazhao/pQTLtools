@@ -1,0 +1,30 @@
+# Package versioned on CRAN (https://cran.r-project.org/src/contrib/Archive/MendelianRandomization/)
+MR_package_ver: 0.6.0
+
+target_protein_MR:
+  - Beta-NGF
+  - CASP-8
+  - CCL20
+  - CCL3
+  - CCL4
+  - CD40
+  - CSF-1
+  - CX3CL1
+  - CXCL1
+  - CXCL6
+  - EN-RAGE
+  - FGF-23
+  - HGF
+  - IL-18
+  - IL-6
+  - IL-8
+  - MCP-1
+  - MMP-1
+  - MMP-10
+  - OPG
+  - SCF
+  - SIRT2
+  - TNFSF14
+  - TRAIL
+  - TRANCE
+  - VEGF-A

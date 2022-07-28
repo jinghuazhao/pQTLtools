@@ -1,0 +1,8 @@
+Building DAG of jobs...
+MissingInputException in line 23 of /home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile:
+Missing input files for rule MR_analysis:
+    output: results/MR/RAGE.csv
+    wildcards: protein=RAGE
+    affected files:
+        resources/cis200kb_ldrho/RAGE.ld
+        resources/cis200kb_ldrho/RAGE.snplist

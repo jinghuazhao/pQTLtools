@@ -1,0 +1,41 @@
+# The main entry point of your workflow.
+# After configuring, running snakemake -n in a clone of this repository should successfully execute a dry-run of the workflow.
+
+
+report: "report/workflow.rst"
+
+# Allow users to fix the underlying OS via singularity.
+configfile: "config.yaml"
+
+rule all:
+    input: ["results/res_Observational.csv", "results/res_MR_aggregate.csv"]
+
+rule obs_analysis:
+    input:
+        "resources/data_Observational.csv"
+    output:
+        "results/res_Observational.csv"
+    conda:
+        "envs/cvd1_hf.yaml"
+    script:
+        "scripts/Obs_analysis.R"
+
+rule MR_analysis:
+    input:
+        data_MR="resources/data_MR.csv",
+        ldrho="resources/cis200kb_ldrho/{protein}.ld",
+        snplist="resources/cis200kb_ldrho/{protein}.snplist"
+    conda:
+        "envs/cvd1_hf.yaml"
+    output:
+        "results/MR/{protein}.csv"
+    script:
+        "scripts/MR_analysis.R"
+
+rule aggregate_MR:
+    input:
+        expand("results/MR/{protein}.csv", protein = config["target_protein_MR"])
+    output:
+        "results/res_MR_aggregate.csv"
+    shell:
+        "awk 'NR == FNR {{print; next}} FNR > 1 {{print}}' {input} > {output}"

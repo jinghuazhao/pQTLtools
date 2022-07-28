@@ -1,0 +1,50 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 32
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job             count    min threads    max threads
+------------  -------  -------------  -------------
+aggregate_MR        1              1              1
+all                 1              1              1
+obs_analysis        1              1              1
+total               3              1              1
+
+Select jobs to execute...
+
+[Thu Jul 28 22:26:45 2022]
+rule obs_analysis:
+    input: resources/data_Observational.csv
+    output: results/res_Observational.csv
+    jobid: 1
+    reason: Missing output files: results/res_Observational.csv
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Thu Jul 28 22:26:45 2022]
+rule aggregate_MR:
+    input: results/MR/Beta-NGF.csv, results/MR/CASP-8.csv, results/MR/CCL20.csv, results/MR/CCL3.csv, results/MR/CCL4.csv, results/MR/CD40.csv, results/MR/CSF-1.csv, results/MR/CX3CL1.csv, results/MR/CXCL1.csv, results/MR/CXCL6.csv, results/MR/EN-RAGE.csv, results/MR/FGF-23.csv, results/MR/HGF.csv, results/MR/IL-18.csv, results/MR/IL-6.csv, results/MR/IL-8.csv, results/MR/MCP-1.csv, results/MR/MMP-1.csv, results/MR/MMP-10.csv, results/MR/OPG.csv, results/MR/SCF.csv, results/MR/SIRT2.csv, results/MR/TNFSF14.csv, results/MR/TRAIL.csv, results/MR/TRANCE.csv, results/MR/VEGF-A.csv
+    output: results/res_MR_aggregate.csv
+    jobid: 2
+    reason: Missing output files: results/res_MR_aggregate.csv
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Thu Jul 28 22:26:45 2022]
+Finished job 2.
+1 of 3 steps (33%) done
+[Thu Jul 28 22:26:50 2022]
+Finished job 1.
+2 of 3 steps (67%) done
+Select jobs to execute...
+
+[Thu Jul 28 22:26:50 2022]
+localrule all:
+    input: results/res_Observational.csv, results/res_MR_aggregate.csv
+    jobid: 0
+    reason: Input files updated by another job: results/res_Observational.csv, results/res_MR_aggregate.csv
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Thu Jul 28 22:26:50 2022]
+Finished job 0.
+3 of 3 steps (100%) done
+Complete log: .snakemake/log/2022-07-28T222644.088514.snakemake.log

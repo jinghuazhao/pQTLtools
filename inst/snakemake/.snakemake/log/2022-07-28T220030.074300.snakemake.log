@@ -1,0 +1,38 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 32
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job             count    min threads    max threads
+------------  -------  -------------  -------------
+all                 1              1              1
+obs_analysis        1              1              1
+total               2              1              1
+
+Select jobs to execute...
+
+[Thu Jul 28 22:01:07 2022]
+rule obs_analysis:
+    input: resources/data_Observational.csv
+    output: results/res_Observational.csv
+    jobid: 1
+    reason: Code has changed since last execution
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Thu Jul 28 22:01:31 2022]
+Finished job 1.
+1 of 2 steps (50%) done
+Select jobs to execute...
+
+[Thu Jul 28 22:01:31 2022]
+localrule all:
+    input: results/res_Observational.csv, results/res_MR_aggregate.csv
+    jobid: 0
+    reason: Input files updated by another job: results/res_Observational.csv
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Thu Jul 28 22:01:31 2022]
+Finished job 0.
+2 of 2 steps (100%) done
+Complete log: .snakemake/log/2022-07-28T220030.074300.snakemake.log
