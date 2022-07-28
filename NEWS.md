@@ -3,7 +3,7 @@
 * ...
 * Add inst/UniProt|PPI/README.md
 * Add inst/Bioconductor/
-* Add inst/snakemake placeholder
+* Add inst/snakemake with cvd1/inf1-hf example
 * Add inst/STRING/change_STRING_colors.py
 * Add inst/Olink
 * Add pQTLtools.Rmd, bioconductor.Rmd, es.Rmd and SCALLOP-INF.Rmd articles
