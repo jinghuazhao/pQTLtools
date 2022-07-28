@@ -13,3 +13,4 @@ snakemake -c all
 
 giving `results`/`res_Observational.csv` (observational results) and `res_MR_aggregate.csv` (MR results)
 
+See [work/README.Rmd](work/README.Rmd) for steps to set up the workflow.
