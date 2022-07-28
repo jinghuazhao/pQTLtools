@@ -12,3 +12,4 @@ snakemake -c all
 ```
 
 giving `results`/`res_Observational.csv` (observational results) and `res_MR_aggregate.csv` (MR results)
+
