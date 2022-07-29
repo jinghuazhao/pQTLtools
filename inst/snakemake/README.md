@@ -55,262 +55,262 @@ snakemake -c all
 ## total              29              1              1
 ## 
 ## 
-## [Fri Jul 29 11:17:37 2022]
+## [Fri Jul 29 11:24:19 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/CCL20.ld, input/cis200kb_ldrho/CCL20.snplist
 ##     output: output/MR/CCL20.csv
 ##     jobid: 5
-##     reason: Missing output files: output/MR/CCL20.csv
+##     reason: Missing output files: output/MR/CCL20.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=CCL20
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:37 2022]
+## [Fri Jul 29 11:24:19 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/MCP-1.ld, input/cis200kb_ldrho/MCP-1.snplist
 ##     output: output/MR/MCP-1.csv
 ##     jobid: 19
-##     reason: Missing output files: output/MR/MCP-1.csv
+##     reason: Missing output files: output/MR/MCP-1.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=MCP-1
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:37 2022]
+## [Fri Jul 29 11:24:19 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/TRAIL.ld, input/cis200kb_ldrho/TRAIL.snplist
 ##     output: output/MR/TRAIL.csv
 ##     jobid: 26
-##     reason: Missing output files: output/MR/TRAIL.csv
+##     reason: Missing output files: output/MR/TRAIL.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=TRAIL
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:37 2022]
+## [Fri Jul 29 11:24:19 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/CXCL6.ld, input/cis200kb_ldrho/CXCL6.snplist
 ##     output: output/MR/CXCL6.csv
 ##     jobid: 12
-##     reason: Missing output files: output/MR/CXCL6.csv
+##     reason: Missing output files: output/MR/CXCL6.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=CXCL6
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:37 2022]
-## rule MR_analysis:
-##     input: input/data_MR.csv, input/cis200kb_ldrho/CSF-1.ld, input/cis200kb_ldrho/CSF-1.snplist
-##     output: output/MR/CSF-1.csv
-##     jobid: 9
-##     reason: Missing output files: output/MR/CSF-1.csv
-##     wildcards: protein=CSF-1
-##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
-## 
-## [Fri Jul 29 11:17:37 2022]
-## rule MR_analysis:
-##     input: input/data_MR.csv, input/cis200kb_ldrho/SCF.ld, input/cis200kb_ldrho/SCF.snplist
-##     output: output/MR/SCF.csv
-##     jobid: 23
-##     reason: Missing output files: output/MR/SCF.csv
-##     wildcards: protein=SCF
-##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
-## 
-## [Fri Jul 29 11:17:37 2022]
-## rule MR_analysis:
-##     input: input/data_MR.csv, input/cis200kb_ldrho/IL-18.ld, input/cis200kb_ldrho/IL-18.snplist
-##     output: output/MR/IL-18.csv
-##     jobid: 16
-##     reason: Missing output files: output/MR/IL-18.csv
-##     wildcards: protein=IL-18
-##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
-## 
-## [Fri Jul 29 11:17:37 2022]
+## [Fri Jul 29 11:24:19 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/CD40.ld, input/cis200kb_ldrho/CD40.snplist
 ##     output: output/MR/CD40.csv
 ##     jobid: 8
-##     reason: Missing output files: output/MR/CD40.csv
+##     reason: Missing output files: output/MR/CD40.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=CD40
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:37 2022]
+## [Fri Jul 29 11:24:19 2022]
+## rule MR_analysis:
+##     input: input/data_MR.csv, input/cis200kb_ldrho/CSF-1.ld, input/cis200kb_ldrho/CSF-1.snplist
+##     output: output/MR/CSF-1.csv
+##     jobid: 9
+##     reason: Missing output files: output/MR/CSF-1.csv; Software environment definition has changed since last execution
+##     wildcards: protein=CSF-1
+##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
+## 
+## [Fri Jul 29 11:24:19 2022]
+## rule MR_analysis:
+##     input: input/data_MR.csv, input/cis200kb_ldrho/SCF.ld, input/cis200kb_ldrho/SCF.snplist
+##     output: output/MR/SCF.csv
+##     jobid: 23
+##     reason: Missing output files: output/MR/SCF.csv; Software environment definition has changed since last execution
+##     wildcards: protein=SCF
+##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
+## 
+## [Fri Jul 29 11:24:19 2022]
+## rule MR_analysis:
+##     input: input/data_MR.csv, input/cis200kb_ldrho/IL-18.ld, input/cis200kb_ldrho/IL-18.snplist
+##     output: output/MR/IL-18.csv
+##     jobid: 16
+##     reason: Missing output files: output/MR/IL-18.csv; Software environment definition has changed since last execution
+##     wildcards: protein=IL-18
+##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
+## 
+## [Fri Jul 29 11:24:19 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/CCL3.ld, input/cis200kb_ldrho/CCL3.snplist
 ##     output: output/MR/CCL3.csv
 ##     jobid: 6
-##     reason: Missing output files: output/MR/CCL3.csv
+##     reason: Missing output files: output/MR/CCL3.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=CCL3
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:37 2022]
+## [Fri Jul 29 11:24:19 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/MMP-1.ld, input/cis200kb_ldrho/MMP-1.snplist
 ##     output: output/MR/MMP-1.csv
 ##     jobid: 20
-##     reason: Missing output files: output/MR/MMP-1.csv
+##     reason: Missing output files: output/MR/MMP-1.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=MMP-1
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:37 2022]
+## [Fri Jul 29 11:24:19 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/TRANCE.ld, input/cis200kb_ldrho/TRANCE.snplist
 ##     output: output/MR/TRANCE.csv
 ##     jobid: 27
-##     reason: Missing output files: output/MR/TRANCE.csv
+##     reason: Missing output files: output/MR/TRANCE.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=TRANCE
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:37 2022]
+## [Fri Jul 29 11:24:19 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/EN-RAGE.ld, input/cis200kb_ldrho/EN-RAGE.snplist
 ##     output: output/MR/EN-RAGE.csv
 ##     jobid: 13
-##     reason: Missing output files: output/MR/EN-RAGE.csv
+##     reason: Missing output files: output/MR/EN-RAGE.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=EN-RAGE
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:37 2022]
+## [Fri Jul 29 11:24:19 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/CX3CL1.ld, input/cis200kb_ldrho/CX3CL1.snplist
 ##     output: output/MR/CX3CL1.csv
 ##     jobid: 10
-##     reason: Missing output files: output/MR/CX3CL1.csv
+##     reason: Missing output files: output/MR/CX3CL1.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=CX3CL1
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:37 2022]
+## [Fri Jul 29 11:24:19 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/SIRT2.ld, input/cis200kb_ldrho/SIRT2.snplist
 ##     output: output/MR/SIRT2.csv
 ##     jobid: 24
-##     reason: Missing output files: output/MR/SIRT2.csv
+##     reason: Missing output files: output/MR/SIRT2.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=SIRT2
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:37 2022]
+## [Fri Jul 29 11:24:19 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/IL-6.ld, input/cis200kb_ldrho/IL-6.snplist
 ##     output: output/MR/IL-6.csv
 ##     jobid: 17
-##     reason: Missing output files: output/MR/IL-6.csv
+##     reason: Missing output files: output/MR/IL-6.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=IL-6
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:37 2022]
+## [Fri Jul 29 11:24:19 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/Beta-NGF.ld, input/cis200kb_ldrho/Beta-NGF.snplist
 ##     output: output/MR/Beta-NGF.csv
 ##     jobid: 3
-##     reason: Missing output files: output/MR/Beta-NGF.csv
+##     reason: Missing output files: output/MR/Beta-NGF.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=Beta-NGF
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:37 2022]
+## [Fri Jul 29 11:24:19 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/CCL4.ld, input/cis200kb_ldrho/CCL4.snplist
 ##     output: output/MR/CCL4.csv
 ##     jobid: 7
-##     reason: Missing output files: output/MR/CCL4.csv
+##     reason: Missing output files: output/MR/CCL4.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=CCL4
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:37 2022]
+## [Fri Jul 29 11:24:19 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/MMP-10.ld, input/cis200kb_ldrho/MMP-10.snplist
 ##     output: output/MR/MMP-10.csv
 ##     jobid: 21
-##     reason: Missing output files: output/MR/MMP-10.csv
+##     reason: Missing output files: output/MR/MMP-10.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=MMP-10
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:37 2022]
+## [Fri Jul 29 11:24:19 2022]
 ## rule obs_analysis:
 ##     input: input/data_Observational.csv
 ##     output: output/Observational.csv
 ##     jobid: 1
-##     reason: Missing output files: output/Observational.csv
+##     reason: Missing output files: output/Observational.csv; Software environment definition has changed since last execution
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:37 2022]
+## [Fri Jul 29 11:24:19 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/FGF-23.ld, input/cis200kb_ldrho/FGF-23.snplist
 ##     output: output/MR/FGF-23.csv
 ##     jobid: 14
-##     reason: Missing output files: output/MR/FGF-23.csv
+##     reason: Missing output files: output/MR/FGF-23.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=FGF-23
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:37 2022]
+## [Fri Jul 29 11:24:19 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/VEGF-A.ld, input/cis200kb_ldrho/VEGF-A.snplist
 ##     output: output/MR/VEGF-A.csv
 ##     jobid: 28
-##     reason: Missing output files: output/MR/VEGF-A.csv
+##     reason: Missing output files: output/MR/VEGF-A.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=VEGF-A
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:37 2022]
+## [Fri Jul 29 11:24:19 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/CXCL1.ld, input/cis200kb_ldrho/CXCL1.snplist
 ##     output: output/MR/CXCL1.csv
 ##     jobid: 11
-##     reason: Missing output files: output/MR/CXCL1.csv
+##     reason: Missing output files: output/MR/CXCL1.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=CXCL1
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:37 2022]
+## [Fri Jul 29 11:24:19 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/TNFSF14.ld, input/cis200kb_ldrho/TNFSF14.snplist
 ##     output: output/MR/TNFSF14.csv
 ##     jobid: 25
-##     reason: Missing output files: output/MR/TNFSF14.csv
+##     reason: Missing output files: output/MR/TNFSF14.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=TNFSF14
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:37 2022]
+## [Fri Jul 29 11:24:19 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/CASP-8.ld, input/cis200kb_ldrho/CASP-8.snplist
 ##     output: output/MR/CASP-8.csv
 ##     jobid: 4
-##     reason: Missing output files: output/MR/CASP-8.csv
+##     reason: Missing output files: output/MR/CASP-8.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=CASP-8
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:37 2022]
+## [Fri Jul 29 11:24:19 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/IL-8.ld, input/cis200kb_ldrho/IL-8.snplist
 ##     output: output/MR/IL-8.csv
 ##     jobid: 18
-##     reason: Missing output files: output/MR/IL-8.csv
+##     reason: Missing output files: output/MR/IL-8.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=IL-8
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:37 2022]
+## [Fri Jul 29 11:24:19 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/OPG.ld, input/cis200kb_ldrho/OPG.snplist
 ##     output: output/MR/OPG.csv
 ##     jobid: 22
-##     reason: Missing output files: output/MR/OPG.csv
+##     reason: Missing output files: output/MR/OPG.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=OPG
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:37 2022]
+## [Fri Jul 29 11:24:19 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/HGF.ld, input/cis200kb_ldrho/HGF.snplist
 ##     output: output/MR/HGF.csv
 ##     jobid: 15
-##     reason: Missing output files: output/MR/HGF.csv
+##     reason: Missing output files: output/MR/HGF.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=HGF
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:37 2022]
+## [Fri Jul 29 11:24:19 2022]
 ## rule aggregate_MR:
 ##     input: output/MR/Beta-NGF.csv, output/MR/CASP-8.csv, output/MR/CCL20.csv, output/MR/CCL3.csv, output/MR/CCL4.csv, output/MR/CD40.csv, output/MR/CSF-1.csv, output/MR/CX3CL1.csv, output/MR/CXCL1.csv, output/MR/CXCL6.csv, output/MR/EN-RAGE.csv, output/MR/FGF-23.csv, output/MR/HGF.csv, output/MR/IL-18.csv, output/MR/IL-6.csv, output/MR/IL-8.csv, output/MR/MCP-1.csv, output/MR/MMP-1.csv, output/MR/MMP-10.csv, output/MR/OPG.csv, output/MR/SCF.csv, output/MR/SIRT2.csv, output/MR/TNFSF14.csv, output/MR/TRAIL.csv, output/MR/TRANCE.csv, output/MR/VEGF-A.csv
 ##     output: output/MR_aggregate.csv
 ##     jobid: 2
-##     reason: Missing output files: output/MR_aggregate.csv; Input files updated by another job: output/MR/FGF-23.csv, output/MR/TRANCE.csv, output/MR/TNFSF14.csv, output/MR/CXCL1.csv, output/MR/OPG.csv, output/MR/CXCL6.csv, output/MR/IL-6.csv, output/MR/IL-8.csv, output/MR/CD40.csv, output/MR/EN-RAGE.csv, output/MR/MCP-1.csv, output/MR/MMP-1.csv, output/MR/CCL3.csv, output/MR/Beta-NGF.csv, output/MR/CCL4.csv, output/MR/TRAIL.csv, output/MR/MMP-10.csv, output/MR/VEGF-A.csv, output/MR/HGF.csv, output/MR/SIRT2.csv, output/MR/CSF-1.csv, output/MR/SCF.csv, output/MR/CCL20.csv, output/MR/CASP-8.csv, output/MR/IL-18.csv, output/MR/CX3CL1.csv
+##     reason: Missing output files: output/MR_aggregate.csv; Input files updated by another job: output/MR/CXCL1.csv, output/MR/OPG.csv, output/MR/CCL3.csv, output/MR/CSF-1.csv, output/MR/CCL20.csv, output/MR/VEGF-A.csv, output/MR/Beta-NGF.csv, output/MR/SCF.csv, output/MR/CD40.csv, output/MR/TNFSF14.csv, output/MR/MMP-10.csv, output/MR/MCP-1.csv, output/MR/TRAIL.csv, output/MR/IL-6.csv, output/MR/MMP-1.csv, output/MR/CCL4.csv, output/MR/IL-18.csv, output/MR/HGF.csv, output/MR/CXCL6.csv, output/MR/EN-RAGE.csv, output/MR/SIRT2.csv, output/MR/FGF-23.csv, output/MR/CX3CL1.csv, output/MR/IL-8.csv, output/MR/CASP-8.csv, output/MR/TRANCE.csv
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
 ## 
-## [Fri Jul 29 11:17:37 2022]
+## [Fri Jul 29 11:24:19 2022]
 ## localrule all:
 ##     input: output/Observational.csv, output/MR_aggregate.csv
 ##     jobid: 0
-##     reason: Input files updated by another job: output/MR_aggregate.csv, output/Observational.csv
+##     reason: Input files updated by another job: output/Observational.csv, output/MR_aggregate.csv
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
 ## Job stats:
@@ -321,6 +321,11 @@ snakemake -c all
 ## all                 1              1              1
 ## obs_analysis        1              1              1
 ## total              29              1              1
+## 
+## Some jobs were triggered by provenance information, see 'reason' section in the rule displays above.
+## If you prefer that only modification time is used to determine whether a job shall be executed, use the command line option '--rerun-triggers mtime' (also see --help).
+## If you are sure that a change for a certain output file (say, <outfile>) won't change the result (e.g. because you just changed the formatting of a script or environment definition), you can also wipe its metadata to skip such a trigger via 'snakemake --cleanup-metadata <outfile>'. 
+## Rules with provenance triggered jobs: MR_analysis,obs_analysis
 ## 
 ## 
 ## This was a dry-run (flag -n). The order of jobs does not reflect the order of execution.
@@ -340,245 +345,246 @@ snakemake -c all
 ## 
 ## Select jobs to execute...
 ## 
-## [Fri Jul 29 11:17:42 2022]
+## [Fri Jul 29 11:24:20 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/CCL20.ld, input/cis200kb_ldrho/CCL20.snplist
 ##     output: output/MR/CCL20.csv
 ##     jobid: 5
-##     reason: Missing output files: output/MR/CCL20.csv
+##     reason: Missing output files: output/MR/CCL20.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=CCL20
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:42 2022]
+## [Fri Jul 29 11:24:20 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/MCP-1.ld, input/cis200kb_ldrho/MCP-1.snplist
 ##     output: output/MR/MCP-1.csv
 ##     jobid: 19
-##     reason: Missing output files: output/MR/MCP-1.csv
+##     reason: Missing output files: output/MR/MCP-1.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=MCP-1
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:42 2022]
+## [Fri Jul 29 11:24:20 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/TRAIL.ld, input/cis200kb_ldrho/TRAIL.snplist
 ##     output: output/MR/TRAIL.csv
 ##     jobid: 26
-##     reason: Missing output files: output/MR/TRAIL.csv
+##     reason: Missing output files: output/MR/TRAIL.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=TRAIL
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:42 2022]
+## [Fri Jul 29 11:24:20 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/CXCL6.ld, input/cis200kb_ldrho/CXCL6.snplist
 ##     output: output/MR/CXCL6.csv
 ##     jobid: 12
-##     reason: Missing output files: output/MR/CXCL6.csv
+##     reason: Missing output files: output/MR/CXCL6.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=CXCL6
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:42 2022]
+## [Fri Jul 29 11:24:20 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/CCL3.ld, input/cis200kb_ldrho/CCL3.snplist
 ##     output: output/MR/CCL3.csv
 ##     jobid: 6
-##     reason: Missing output files: output/MR/CCL3.csv
+##     reason: Missing output files: output/MR/CCL3.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=CCL3
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:42 2022]
+## [Fri Jul 29 11:24:20 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/MMP-1.ld, input/cis200kb_ldrho/MMP-1.snplist
 ##     output: output/MR/MMP-1.csv
 ##     jobid: 20
-##     reason: Missing output files: output/MR/MMP-1.csv
+##     reason: Missing output files: output/MR/MMP-1.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=MMP-1
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:42 2022]
+## [Fri Jul 29 11:24:20 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/TRANCE.ld, input/cis200kb_ldrho/TRANCE.snplist
 ##     output: output/MR/TRANCE.csv
 ##     jobid: 27
-##     reason: Missing output files: output/MR/TRANCE.csv
+##     reason: Missing output files: output/MR/TRANCE.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=TRANCE
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:42 2022]
+## [Fri Jul 29 11:24:20 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/EN-RAGE.ld, input/cis200kb_ldrho/EN-RAGE.snplist
 ##     output: output/MR/EN-RAGE.csv
 ##     jobid: 13
-##     reason: Missing output files: output/MR/EN-RAGE.csv
+##     reason: Missing output files: output/MR/EN-RAGE.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=EN-RAGE
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:42 2022]
+## [Fri Jul 29 11:24:20 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/CCL4.ld, input/cis200kb_ldrho/CCL4.snplist
 ##     output: output/MR/CCL4.csv
 ##     jobid: 7
-##     reason: Missing output files: output/MR/CCL4.csv
+##     reason: Missing output files: output/MR/CCL4.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=CCL4
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:42 2022]
+## [Fri Jul 29 11:24:20 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/MMP-10.ld, input/cis200kb_ldrho/MMP-10.snplist
 ##     output: output/MR/MMP-10.csv
 ##     jobid: 21
-##     reason: Missing output files: output/MR/MMP-10.csv
+##     reason: Missing output files: output/MR/MMP-10.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=MMP-10
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:42 2022]
+## [Fri Jul 29 11:24:20 2022]
 ## rule obs_analysis:
 ##     input: input/data_Observational.csv
 ##     output: output/Observational.csv
 ##     jobid: 1
-##     reason: Missing output files: output/Observational.csv
+##     reason: Missing output files: output/Observational.csv; Software environment definition has changed since last execution
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:42 2022]
+## [Fri Jul 29 11:24:20 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/FGF-23.ld, input/cis200kb_ldrho/FGF-23.snplist
 ##     output: output/MR/FGF-23.csv
 ##     jobid: 14
-##     reason: Missing output files: output/MR/FGF-23.csv
+##     reason: Missing output files: output/MR/FGF-23.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=FGF-23
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:42 2022]
+## [Fri Jul 29 11:24:20 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/VEGF-A.ld, input/cis200kb_ldrho/VEGF-A.snplist
 ##     output: output/MR/VEGF-A.csv
 ##     jobid: 28
-##     reason: Missing output files: output/MR/VEGF-A.csv
+##     reason: Missing output files: output/MR/VEGF-A.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=VEGF-A
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:42 2022]
+## [Fri Jul 29 11:24:20 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/OPG.ld, input/cis200kb_ldrho/OPG.snplist
 ##     output: output/MR/OPG.csv
 ##     jobid: 22
-##     reason: Missing output files: output/MR/OPG.csv
+##     reason: Missing output files: output/MR/OPG.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=OPG
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:42 2022]
+## [Fri Jul 29 11:24:20 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/CD40.ld, input/cis200kb_ldrho/CD40.snplist
 ##     output: output/MR/CD40.csv
 ##     jobid: 8
-##     reason: Missing output files: output/MR/CD40.csv
+##     reason: Missing output files: output/MR/CD40.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=CD40
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:42 2022]
+## [Fri Jul 29 11:24:20 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/HGF.ld, input/cis200kb_ldrho/HGF.snplist
 ##     output: output/MR/HGF.csv
 ##     jobid: 15
-##     reason: Missing output files: output/MR/HGF.csv
+##     reason: Missing output files: output/MR/HGF.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=HGF
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:42 2022]
+## [Fri Jul 29 11:24:20 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/CSF-1.ld, input/cis200kb_ldrho/CSF-1.snplist
 ##     output: output/MR/CSF-1.csv
 ##     jobid: 9
-##     reason: Missing output files: output/MR/CSF-1.csv
+##     reason: Missing output files: output/MR/CSF-1.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=CSF-1
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:42 2022]
+## [Fri Jul 29 11:24:20 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/SCF.ld, input/cis200kb_ldrho/SCF.snplist
 ##     output: output/MR/SCF.csv
 ##     jobid: 23
-##     reason: Missing output files: output/MR/SCF.csv
+##     reason: Missing output files: output/MR/SCF.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=SCF
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:42 2022]
+## [Fri Jul 29 11:24:20 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/IL-18.ld, input/cis200kb_ldrho/IL-18.snplist
 ##     output: output/MR/IL-18.csv
 ##     jobid: 16
-##     reason: Missing output files: output/MR/IL-18.csv
+##     reason: Missing output files: output/MR/IL-18.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=IL-18
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:42 2022]
+## [Fri Jul 29 11:24:20 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/CX3CL1.ld, input/cis200kb_ldrho/CX3CL1.snplist
 ##     output: output/MR/CX3CL1.csv
 ##     jobid: 10
-##     reason: Missing output files: output/MR/CX3CL1.csv
+##     reason: Missing output files: output/MR/CX3CL1.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=CX3CL1
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:42 2022]
+## [Fri Jul 29 11:24:20 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/SIRT2.ld, input/cis200kb_ldrho/SIRT2.snplist
 ##     output: output/MR/SIRT2.csv
 ##     jobid: 24
-##     reason: Missing output files: output/MR/SIRT2.csv
+##     reason: Missing output files: output/MR/SIRT2.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=SIRT2
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:42 2022]
+## [Fri Jul 29 11:24:20 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/IL-6.ld, input/cis200kb_ldrho/IL-6.snplist
 ##     output: output/MR/IL-6.csv
 ##     jobid: 17
-##     reason: Missing output files: output/MR/IL-6.csv
+##     reason: Missing output files: output/MR/IL-6.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=IL-6
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:42 2022]
+## [Fri Jul 29 11:24:20 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/Beta-NGF.ld, input/cis200kb_ldrho/Beta-NGF.snplist
 ##     output: output/MR/Beta-NGF.csv
 ##     jobid: 3
-##     reason: Missing output files: output/MR/Beta-NGF.csv
+##     reason: Missing output files: output/MR/Beta-NGF.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=Beta-NGF
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:42 2022]
+## [Fri Jul 29 11:24:21 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/CXCL1.ld, input/cis200kb_ldrho/CXCL1.snplist
 ##     output: output/MR/CXCL1.csv
 ##     jobid: 11
-##     reason: Missing output files: output/MR/CXCL1.csv
+##     reason: Missing output files: output/MR/CXCL1.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=CXCL1
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:42 2022]
+## [Fri Jul 29 11:24:21 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/TNFSF14.ld, input/cis200kb_ldrho/TNFSF14.snplist
 ##     output: output/MR/TNFSF14.csv
 ##     jobid: 25
-##     reason: Missing output files: output/MR/TNFSF14.csv
+##     reason: Missing output files: output/MR/TNFSF14.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=TNFSF14
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:42 2022]
+## [Fri Jul 29 11:24:21 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/CASP-8.ld, input/cis200kb_ldrho/CASP-8.snplist
 ##     output: output/MR/CASP-8.csv
 ##     jobid: 4
-##     reason: Missing output files: output/MR/CASP-8.csv
+##     reason: Missing output files: output/MR/CASP-8.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=CASP-8
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:17:42 2022]
+## 
+## [Fri Jul 29 11:24:21 2022]
 ## rule MR_analysis:
 ##     input: input/data_MR.csv, input/cis200kb_ldrho/IL-8.ld, input/cis200kb_ldrho/IL-8.snplist
 ##     output: output/MR/IL-8.csv
 ##     jobid: 18
-##     reason: Missing output files: output/MR/IL-8.csv
+##     reason: Missing output files: output/MR/IL-8.csv; Software environment definition has changed since last execution
 ##     wildcards: protein=IL-8
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
@@ -606,75 +612,8 @@ snakemake -c all
 ## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
 ## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
 ## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
-## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
-## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
-## ✔ readr   2.1.2     ✔ forcats 0.5.1
-## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
-## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
-## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
-## ✔ readr   2.1.2     ✔ forcats 0.5.1
-## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
-## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
-## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
-## ✔ readr   2.1.2     ✔ forcats 0.5.1
-## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
-## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
-## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
-## ✔ readr   2.1.2     ✔ forcats 0.5.1
-## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
-## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
-## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
-## ✔ readr   2.1.2     ✔ forcats 0.5.1
-## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
-## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
-## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
-## ✔ readr   2.1.2     ✔ forcats 0.5.1
-## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
-## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
-## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
-## ✔ readr   2.1.2     ✔ forcats 0.5.1
-## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
-## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
-## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
-## ✔ readr   2.1.2     ✔ forcats 0.5.1
-## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
-## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
-## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
-## ✔ readr   2.1.2     ✔ forcats 0.5.1
-## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
-## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
-## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
-## ✔ readr   2.1.2     ✔ forcats 0.5.1
-## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
-## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
-## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
-## ✔ readr   2.1.2     ✔ forcats 0.5.1
-## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
-## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
-## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
-## ✔ readr   2.1.2     ✔ forcats 0.5.1
-## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
-## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
-## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
-## ✔ readr   2.1.2     ✔ forcats 0.5.1
 ## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
-## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
-## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
-## ✔ readr   2.1.2     ✔ forcats 0.5.1
-## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
-## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
-## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
-## ✔ readr   2.1.2     ✔ forcats 0.5.1
-## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
-## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
-## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
-## ✔ readr   2.1.2     ✔ forcats 0.5.1
-## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
-## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
-## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
-## ✔ readr   2.1.2     ✔ forcats 0.5.1
+## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
 ## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
 ## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
 ## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
@@ -704,7 +643,6 @@ snakemake -c all
 ## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
 ## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
 ## ✔ readr   2.1.2     ✔ forcats 0.5.1
-## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
 ## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
 ## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
 ## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
@@ -717,62 +655,74 @@ snakemake -c all
 ## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
 ## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
 ## ✔ readr   2.1.2     ✔ forcats 0.5.1
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::between()   masks data.table::between()
-## ✖ dplyr::filter()    masks stats::filter()
-## ✖ dplyr::first()     masks data.table::first()
-## ✖ dplyr::lag()       masks stats::lag()
-## ✖ dplyr::last()      masks data.table::last()
-## ✖ purrr::transpose() masks data.table::transpose()
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::between()   masks data.table::between()
-## ✖ dplyr::filter()    masks stats::filter()
-## ✖ dplyr::first()     masks data.table::first()
-## ✖ dplyr::lag()       masks stats::lag()
-## ✖ dplyr::last()      masks data.table::last()
-## ✖ purrr::transpose() masks data.table::transpose()
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::between()   masks data.table::between()
-## ✖ dplyr::filter()    masks stats::filter()
-## ✖ dplyr::first()     masks data.table::first()
-## ✖ dplyr::lag()       masks stats::lag()
-## ✖ dplyr::last()      masks data.table::last()
-## ✖ purrr::transpose() masks data.table::transpose()
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::between()   masks data.table::between()
-## ✖ dplyr::filter()    masks stats::filter()
-## ✖ dplyr::first()     masks data.table::first()
-## ✖ dplyr::lag()       masks stats::lag()
-## ✖ dplyr::last()      masks data.table::last()
-## ✖ purrr::transpose() masks data.table::transpose()
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::between()   masks data.table::between()
-## ✖ dplyr::filter()    masks stats::filter()
-## ✖ dplyr::first()     masks data.table::first()
-## ✖ dplyr::lag()       masks stats::lag()
-## ✖ dplyr::last()      masks data.table::last()
-## ✖ purrr::transpose() masks data.table::transpose()
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::between()   masks data.table::between()
-## ✖ dplyr::filter()    masks stats::filter()
-## ✖ dplyr::first()     masks data.table::first()
-## ✖ dplyr::lag()       masks stats::lag()
-## ✖ dplyr::last()      masks data.table::last()
-## ✖ purrr::transpose() masks data.table::transpose()
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::between()   masks data.table::between()
-## ✖ dplyr::filter()    masks stats::filter()
-## ✖ dplyr::first()     masks data.table::first()
-## ✖ dplyr::lag()       masks stats::lag()
-## ✖ dplyr::last()      masks data.table::last()
-## ✖ purrr::transpose() masks data.table::transpose()
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::between()   masks data.table::between()
-## ✖ dplyr::filter()    masks stats::filter()
-## ✖ dplyr::first()     masks data.table::first()
-## ✖ dplyr::lag()       masks stats::lag()
-## ✖ dplyr::last()      masks data.table::last()
-## ✖ purrr::transpose() masks data.table::transpose()
+## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
+## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
+## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
+## ✔ readr   2.1.2     ✔ forcats 0.5.1
+## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
+## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
+## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
+## ✔ readr   2.1.2     ✔ forcats 0.5.1
+## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
+## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
+## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
+## ✔ readr   2.1.2     ✔ forcats 0.5.1
+## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
+## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
+## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
+## ✔ readr   2.1.2     ✔ forcats 0.5.1
+## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
+## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
+## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
+## ✔ readr   2.1.2     ✔ forcats 0.5.1
+## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
+## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
+## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
+## ✔ readr   2.1.2     ✔ forcats 0.5.1
+## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
+## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
+## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
+## ✔ readr   2.1.2     ✔ forcats 0.5.1
+## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
+## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
+## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
+## ✔ readr   2.1.2     ✔ forcats 0.5.1
+## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
+## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
+## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
+## ✔ readr   2.1.2     ✔ forcats 0.5.1
+## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
+## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
+## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
+## ✔ readr   2.1.2     ✔ forcats 0.5.1
+## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
+## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
+## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
+## ✔ readr   2.1.2     ✔ forcats 0.5.1
+## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
+## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
+## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
+## ✔ readr   2.1.2     ✔ forcats 0.5.1
+## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
+## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
+## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
+## ✔ readr   2.1.2     ✔ forcats 0.5.1
+## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
+## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
+## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
+## ✔ readr   2.1.2     ✔ forcats 0.5.1
+## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
+## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
+## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
+## ✔ readr   2.1.2     ✔ forcats 0.5.1
+## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
+## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
+## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
+## ✔ readr   2.1.2     ✔ forcats 0.5.1
+## ✔ ggplot2 3.3.6     ✔ purrr   0.3.4
+## ✔ tibble  3.1.8     ✔ dplyr   1.0.9
+## ✔ tidyr   1.2.0     ✔ stringr 1.4.0
+## ✔ readr   2.1.2     ✔ forcats 0.5.1
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
@@ -783,119 +733,175 @@ snakemake -c all
 ## ✖ dplyr::lag()       masks stats::lag()
 ## ✖ dplyr::last()      masks data.table::last()
 ## ✖ purrr::transpose() masks data.table::transpose()
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::between()   masks data.table::between()
-## ✖ dplyr::filter()    masks stats::filter()
-## ✖ dplyr::first()     masks data.table::first()
-## ✖ dplyr::lag()       masks stats::lag()
-## ✖ dplyr::last()      masks data.table::last()
-## ✖ purrr::transpose() masks data.table::transpose()
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::between()   masks data.table::between()
-## ✖ dplyr::filter()    masks stats::filter()
-## ✖ dplyr::first()     masks data.table::first()
-## ✖ dplyr::lag()       masks stats::lag()
-## ✖ dplyr::last()      masks data.table::last()
-## ✖ purrr::transpose() masks data.table::transpose()
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::between()   masks data.table::between()
-## ✖ dplyr::filter()    masks stats::filter()
-## ✖ dplyr::first()     masks data.table::first()
-## ✖ dplyr::lag()       masks stats::lag()
-## ✖ dplyr::last()      masks data.table::last()
-## ✖ purrr::transpose() masks data.table::transpose()
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::between()   masks data.table::between()
-## ✖ dplyr::filter()    masks stats::filter()
-## ✖ dplyr::first()     masks data.table::first()
-## ✖ dplyr::lag()       masks stats::lag()
-## ✖ dplyr::last()      masks data.table::last()
-## ✖ purrr::transpose() masks data.table::transpose()
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::between()   masks data.table::between()
-## ✖ dplyr::filter()    masks stats::filter()
-## ✖ dplyr::first()     masks data.table::first()
-## ✖ dplyr::lag()       masks stats::lag()
-## ✖ dplyr::last()      masks data.table::last()
-## ✖ purrr::transpose() masks data.table::transpose()
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::between()   masks data.table::between()
-## ✖ dplyr::filter()    masks stats::filter()
-## ✖ dplyr::first()     masks data.table::first()
-## ✖ dplyr::lag()       masks stats::lag()
-## ✖ dplyr::last()      masks data.table::last()
-## ✖ purrr::transpose() masks data.table::transpose()
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::between()   masks data.table::between()
-## ✖ dplyr::filter()    masks stats::filter()
-## ✖ dplyr::first()     masks data.table::first()
-## ✖ dplyr::lag()       masks stats::lag()
-## ✖ dplyr::last()      masks data.table::last()
-## ✖ purrr::transpose() masks data.table::transpose()
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::between()   masks data.table::between()
-## ✖ dplyr::filter()    masks stats::filter()
-## ✖ dplyr::first()     masks data.table::first()
-## ✖ dplyr::lag()       masks stats::lag()
-## ✖ dplyr::last()      masks data.table::last()
-## ✖ purrr::transpose() masks data.table::transpose()
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::between()   masks data.table::between()
-## ✖ dplyr::filter()    masks stats::filter()
-## ✖ dplyr::first()     masks data.table::first()
-## ✖ dplyr::lag()       masks stats::lag()
-## ✖ dplyr::last()      masks data.table::last()
-## ✖ purrr::transpose() masks data.table::transpose()
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::between()   masks data.table::between()
-## ✖ dplyr::filter()    masks stats::filter()
-## ✖ dplyr::first()     masks data.table::first()
-## ✖ dplyr::lag()       masks stats::lag()
-## ✖ dplyr::last()      masks data.table::last()
-## ✖ purrr::transpose() masks data.table::transpose()
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::between()   masks data.table::between()
-## ✖ dplyr::filter()    masks stats::filter()
-## ✖ dplyr::first()     masks data.table::first()
-## ✖ dplyr::lag()       masks stats::lag()
-## ✖ dplyr::last()      masks data.table::last()
-## ✖ purrr::transpose() masks data.table::transpose()
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::between()   masks data.table::between()
-## ✖ dplyr::filter()    masks stats::filter()
-## ✖ dplyr::first()     masks data.table::first()
-## ✖ dplyr::lag()       masks stats::lag()
-## ✖ dplyr::last()      masks data.table::last()
-## ✖ purrr::transpose() masks data.table::transpose()
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::between()   masks data.table::between()
-## ✖ dplyr::filter()    masks stats::filter()
-## ✖ dplyr::first()     masks data.table::first()
-## ✖ dplyr::lag()       masks stats::lag()
-## ✖ dplyr::last()      masks data.table::last()
-## ✖ purrr::transpose() masks data.table::transpose()
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::between()   masks data.table::between()
-## ✖ dplyr::filter()    masks stats::filter()
-## ✖ dplyr::first()     masks data.table::first()
-## ✖ dplyr::lag()       masks stats::lag()
-## ✖ dplyr::last()      masks data.table::last()
-## ✖ purrr::transpose() masks data.table::transpose()
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::between()   masks data.table::between()
-## ✖ dplyr::filter()    masks stats::filter()
-## ✖ dplyr::first()     masks data.table::first()
-## ✖ dplyr::lag()       masks stats::lag()
-## ✖ dplyr::last()      masks data.table::last()
-## ✖ purrr::transpose() masks data.table::transpose()
-## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## ✖ dplyr::between()   masks data.table::between()
-## ✖ dplyr::filter()    masks stats::filter()
-## ✖ dplyr::first()     masks data.table::first()
-## ✖ dplyr::lag()       masks stats::lag()
-## ✖ dplyr::last()      masks data.table::last()
-## ✖ purrr::transpose() masks data.table::transpose()
 ## Loading required package: Matrix
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::between()   masks data.table::between()
+## ✖ dplyr::filter()    masks stats::filter()
+## ✖ dplyr::first()     masks data.table::first()
+## ✖ dplyr::lag()       masks stats::lag()
+## ✖ dplyr::last()      masks data.table::last()
+## ✖ purrr::transpose() masks data.table::transpose()
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::between()   masks data.table::between()
+## ✖ dplyr::filter()    masks stats::filter()
+## ✖ dplyr::first()     masks data.table::first()
+## ✖ dplyr::lag()       masks stats::lag()
+## ✖ dplyr::last()      masks data.table::last()
+## ✖ purrr::transpose() masks data.table::transpose()
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::between()   masks data.table::between()
+## ✖ dplyr::filter()    masks stats::filter()
+## ✖ dplyr::first()     masks data.table::first()
+## ✖ dplyr::lag()       masks stats::lag()
+## ✖ dplyr::last()      masks data.table::last()
+## ✖ purrr::transpose() masks data.table::transpose()
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::between()   masks data.table::between()
+## ✖ dplyr::filter()    masks stats::filter()
+## ✖ dplyr::first()     masks data.table::first()
+## ✖ dplyr::lag()       masks stats::lag()
+## ✖ dplyr::last()      masks data.table::last()
+## ✖ purrr::transpose() masks data.table::transpose()
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::between()   masks data.table::between()
+## ✖ dplyr::filter()    masks stats::filter()
+## ✖ dplyr::first()     masks data.table::first()
+## ✖ dplyr::lag()       masks stats::lag()
+## ✖ dplyr::last()      masks data.table::last()
+## ✖ purrr::transpose() masks data.table::transpose()
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::between()   masks data.table::between()
+## ✖ dplyr::filter()    masks stats::filter()
+## ✖ dplyr::first()     masks data.table::first()
+## ✖ dplyr::lag()       masks stats::lag()
+## ✖ dplyr::last()      masks data.table::last()
+## ✖ purrr::transpose() masks data.table::transpose()
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::between()   masks data.table::between()
+## ✖ dplyr::filter()    masks stats::filter()
+## ✖ dplyr::first()     masks data.table::first()
+## ✖ dplyr::lag()       masks stats::lag()
+## ✖ dplyr::last()      masks data.table::last()
+## ✖ purrr::transpose() masks data.table::transpose()
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::between()   masks data.table::between()
+## ✖ dplyr::filter()    masks stats::filter()
+## ✖ dplyr::first()     masks data.table::first()
+## ✖ dplyr::lag()       masks stats::lag()
+## ✖ dplyr::last()      masks data.table::last()
+## ✖ purrr::transpose() masks data.table::transpose()
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::between()   masks data.table::between()
+## ✖ dplyr::filter()    masks stats::filter()
+## ✖ dplyr::first()     masks data.table::first()
+## ✖ dplyr::lag()       masks stats::lag()
+## ✖ dplyr::last()      masks data.table::last()
+## ✖ purrr::transpose() masks data.table::transpose()
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::between()   masks data.table::between()
+## ✖ dplyr::filter()    masks stats::filter()
+## ✖ dplyr::first()     masks data.table::first()
+## ✖ dplyr::lag()       masks stats::lag()
+## ✖ dplyr::last()      masks data.table::last()
+## ✖ purrr::transpose() masks data.table::transpose()
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::between()   masks data.table::between()
+## ✖ dplyr::filter()    masks stats::filter()
+## ✖ dplyr::first()     masks data.table::first()
+## ✖ dplyr::lag()       masks stats::lag()
+## ✖ dplyr::last()      masks data.table::last()
+## ✖ purrr::transpose() masks data.table::transpose()
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::between()   masks data.table::between()
+## ✖ dplyr::filter()    masks stats::filter()
+## ✖ dplyr::first()     masks data.table::first()
+## ✖ dplyr::lag()       masks stats::lag()
+## ✖ dplyr::last()      masks data.table::last()
+## ✖ purrr::transpose() masks data.table::transpose()
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::between()   masks data.table::between()
+## ✖ dplyr::filter()    masks stats::filter()
+## ✖ dplyr::first()     masks data.table::first()
+## ✖ dplyr::lag()       masks stats::lag()
+## ✖ dplyr::last()      masks data.table::last()
+## ✖ purrr::transpose() masks data.table::transpose()
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::between()   masks data.table::between()
+## ✖ dplyr::filter()    masks stats::filter()
+## ✖ dplyr::first()     masks data.table::first()
+## ✖ dplyr::lag()       masks stats::lag()
+## ✖ dplyr::last()      masks data.table::last()
+## ✖ purrr::transpose() masks data.table::transpose()
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::between()   masks data.table::between()
+## ✖ dplyr::filter()    masks stats::filter()
+## ✖ dplyr::first()     masks data.table::first()
+## ✖ dplyr::lag()       masks stats::lag()
+## ✖ dplyr::last()      masks data.table::last()
+## ✖ purrr::transpose() masks data.table::transpose()
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::between()   masks data.table::between()
+## ✖ dplyr::filter()    masks stats::filter()
+## ✖ dplyr::first()     masks data.table::first()
+## ✖ dplyr::lag()       masks stats::lag()
+## ✖ dplyr::last()      masks data.table::last()
+## ✖ purrr::transpose() masks data.table::transpose()
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::between()   masks data.table::between()
+## ✖ dplyr::filter()    masks stats::filter()
+## ✖ dplyr::first()     masks data.table::first()
+## ✖ dplyr::lag()       masks stats::lag()
+## ✖ dplyr::last()      masks data.table::last()
+## ✖ purrr::transpose() masks data.table::transpose()
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::between()   masks data.table::between()
+## ✖ dplyr::filter()    masks stats::filter()
+## ✖ dplyr::first()     masks data.table::first()
+## ✖ dplyr::lag()       masks stats::lag()
+## ✖ dplyr::last()      masks data.table::last()
+## ✖ purrr::transpose() masks data.table::transpose()
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::between()   masks data.table::between()
+## ✖ dplyr::filter()    masks stats::filter()
+## ✖ dplyr::first()     masks data.table::first()
+## ✖ dplyr::lag()       masks stats::lag()
+## ✖ dplyr::last()      masks data.table::last()
+## ✖ purrr::transpose() masks data.table::transpose()
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::between()   masks data.table::between()
+## ✖ dplyr::filter()    masks stats::filter()
+## ✖ dplyr::first()     masks data.table::first()
+## ✖ dplyr::lag()       masks stats::lag()
+## ✖ dplyr::last()      masks data.table::last()
+## ✖ purrr::transpose() masks data.table::transpose()
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::between()   masks data.table::between()
+## ✖ dplyr::filter()    masks stats::filter()
+## ✖ dplyr::first()     masks data.table::first()
+## ✖ dplyr::lag()       masks stats::lag()
+## ✖ dplyr::last()      masks data.table::last()
+## ✖ purrr::transpose() masks data.table::transpose()
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::between()   masks data.table::between()
+## ✖ dplyr::filter()    masks stats::filter()
+## ✖ dplyr::first()     masks data.table::first()
+## ✖ dplyr::lag()       masks stats::lag()
+## ✖ dplyr::last()      masks data.table::last()
+## ✖ purrr::transpose() masks data.table::transpose()
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::between()   masks data.table::between()
+## ✖ dplyr::filter()    masks stats::filter()
+## ✖ dplyr::first()     masks data.table::first()
+## ✖ dplyr::lag()       masks stats::lag()
+## ✖ dplyr::last()      masks data.table::last()
+## ✖ purrr::transpose() masks data.table::transpose()
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::between()   masks data.table::between()
+## ✖ dplyr::filter()    masks stats::filter()
+## ✖ dplyr::first()     masks data.table::first()
+## ✖ dplyr::lag()       masks stats::lag()
+## ✖ dplyr::last()      masks data.table::last()
+## ✖ purrr::transpose() masks data.table::transpose()
 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ## ✖ dplyr::between()   masks data.table::between()
 ## ✖ dplyr::filter()    masks stats::filter()
@@ -935,24 +941,30 @@ snakemake -c all
 ## ℹ The warning occurred in group 27: Protein = "SIRT2". 
 ## 4: `cols` is now required when using unnest().
 ## Please use `cols = c(meta)` 
-## [Fri Jul 29 11:17:58 2022]
+## [Fri Jul 29 11:24:26 2022]
 ## Finished job 1.
 ## 1 of 29 steps (3%) done
-## Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.[Fri Jul 29 11:18:01 2022]
+## Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.[Fri Jul 29 11:24:27 2022]
 ## Finished job 23.
 ## 2 of 29 steps (7%) done
-## Method requires data on >2 variants.Method requires data on >2 variants.[Fri Jul 29 11:18:01 2022]
+## Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.Method requires data on >2 variants.[Fri Jul 29 11:24:27 2022]
 ## Finished job 18.
 ## 3 of 29 steps (10%) done
-## [Fri Jul 29 11:18:01 2022]
+## [Fri Jul 29 11:24:27 2022]
 ## Finished job 4.
 ## 4 of 29 steps (14%) done
-## Method requires data on >2 variants.[Fri Jul 29 11:18:01 2022]
+## [Fri Jul 29 11:24:27 2022]
 ## Finished job 16.
 ## 5 of 29 steps (17%) done
-## [Fri Jul 29 11:18:01 2022]
+## [Fri Jul 29 11:24:28 2022]
 ## Finished job 11.
 ## 6 of 29 steps (21%) done
+## [Fri Jul 29 11:24:28 2022]
+## Finished job 17.
+## 7 of 29 steps (24%) done
+## [Fri Jul 29 11:24:28 2022]
+## Finished job 7.
+## 8 of 29 steps (28%) done
 ## Warning messages:
 ## 1: Problem while computing `MR = map(data, run_MR_all, ldrho)`.
 ## ℹ NaNs produced
@@ -974,12 +986,15 @@ snakemake -c all
 ## ℹ NaNs produced
 ## ℹ The warning occurred in group 30: r2_thresh = 0.6, P_thresh = 1, Protein =
 ##   "EN-RAGE". 
-## [Fri Jul 29 11:18:02 2022]
-## Finished job 17.
-## 7 of 29 steps (24%) done
-## [Fri Jul 29 11:18:02 2022]
-## Finished job 7.
-## 8 of 29 steps (28%) done
+## Warning messages:
+## 1: Problem while computing `MR = map(data, run_MR_all, ldrho)`.
+## ℹ NaNs produced
+## ℹ The warning occurred in group 30: r2_thresh = 0.6, P_thresh = 1, Protein =
+##   "CCL3". 
+## 2: Problem while computing `MR = map(data, run_MR_all, ldrho)`.
+## ℹ NaNs produced
+## ℹ The warning occurred in group 30: r2_thresh = 0.6, P_thresh = 1, Protein =
+##   "CCL3". 
 ## Warning messages:
 ## 1: Problem while computing `MR = map(data, run_MR_all, ldrho)`.
 ## ℹ NaNs produced
@@ -989,44 +1004,22 @@ snakemake -c all
 ## ℹ NaNs produced
 ## ℹ The warning occurred in group 23: r2_thresh = 0.4, P_thresh = 0.01, Protein =
 ##   "TRANCE". 
-## [Fri Jul 29 11:18:02 2022]
+## [Fri Jul 29 11:24:28 2022]
 ## Finished job 13.
 ## 9 of 29 steps (31%) done
-## Warning messages:
-## 1: Problem while computing `MR = map(data, run_MR_all, ldrho)`.
-## ℹ NaNs produced
-## ℹ The warning occurred in group 30: r2_thresh = 0.6, P_thresh = 1, Protein =
-##   "CCL3". 
-## 2: Problem while computing `MR = map(data, run_MR_all, ldrho)`.
-## ℹ NaNs produced
-## ℹ The warning occurred in group 30: r2_thresh = 0.6, P_thresh = 1, Protein =
-##   "CCL3". 
-## [Fri Jul 29 11:18:02 2022]
+## [Fri Jul 29 11:24:28 2022]
 ## Finished job 12.
 ## 10 of 29 steps (34%) done
-## [Fri Jul 29 11:18:02 2022]
+## [Fri Jul 29 11:24:28 2022]
 ## Finished job 27.
 ## 11 of 29 steps (38%) done
-## [Fri Jul 29 11:18:02 2022]
+## [Fri Jul 29 11:24:28 2022]
 ## Finished job 6.
 ## 12 of 29 steps (41%) done
 ## Warning messages:
 ## 1: Problem while computing `MR = map(data, run_MR_all, ldrho)`.
 ## ℹ NaNs produced
 ## ℹ The warning occurred in group 30: r2_thresh = 0.6, P_thresh = 1, Protein =
-##   "MCP-1". 
-## 2: Problem while computing `MR = map(data, run_MR_all, ldrho)`.
-## ℹ NaNs produced
-## ℹ The warning occurred in group 30: r2_thresh = 0.6, P_thresh = 1, Protein =
-##   "MCP-1". 
-## 3: Problem while computing `MR = map(data, run_MR_all, ldrho)`.
-## ℹ NaNs produced
-## ℹ The warning occurred in group 30: r2_thresh = 0.6, P_thresh = 1, Protein =
-##   "MCP-1". 
-## Warning messages:
-## 1: Problem while computing `MR = map(data, run_MR_all, ldrho)`.
-## ℹ NaNs produced
-## ℹ The warning occurred in group 30: r2_thresh = 0.6, P_thresh = 1, Protein =
 ##   "OPG". 
 ## 2: Problem while computing `MR = map(data, run_MR_all, ldrho)`.
 ## ℹ NaNs produced
@@ -1040,56 +1033,69 @@ snakemake -c all
 ## ℹ NaNs produced
 ## ℹ The warning occurred in group 30: r2_thresh = 0.6, P_thresh = 1, Protein =
 ##   "OPG". 
-## Method requires data on >2 variants.Warning message:
+## Warning messages:
+## 1: Problem while computing `MR = map(data, run_MR_all, ldrho)`.
+## ℹ NaNs produced
+## ℹ The warning occurred in group 30: r2_thresh = 0.6, P_thresh = 1, Protein =
+##   "MCP-1". 
+## 2: Problem while computing `MR = map(data, run_MR_all, ldrho)`.
+## ℹ NaNs produced
+## ℹ The warning occurred in group 30: r2_thresh = 0.6, P_thresh = 1, Protein =
+##   "MCP-1". 
+## 3: Problem while computing `MR = map(data, run_MR_all, ldrho)`.
+## ℹ NaNs produced
+## ℹ The warning occurred in group 30: r2_thresh = 0.6, P_thresh = 1, Protein =
+##   "MCP-1". 
+## Method requires data on >2 variants.Warning messages:
+## 1: Problem while computing `MR = map(data, run_MR_all, ldrho)`.
+## ℹ NaNs produced
+## ℹ The warning occurred in group 25: r2_thresh = 0.6, P_thresh = 1, Protein =
+##   "SIRT2". 
+## 2: Problem while computing `MR = map(data, run_MR_all, ldrho)`.
+## ℹ NaNs produced
+## ℹ The warning occurred in group 25: r2_thresh = 0.6, P_thresh = 1, Protein =
+##   "SIRT2". 
+## 3: Problem while computing `MR = map(data, run_MR_all, ldrho)`.
+## ℹ NaNs produced
+## ℹ The warning occurred in group 25: r2_thresh = 0.6, P_thresh = 1, Protein =
+##   "SIRT2". 
+## 4: Problem while computing `MR = map(data, run_MR_all, ldrho)`.
+## ℹ NaNs produced
+## ℹ The warning occurred in group 25: r2_thresh = 0.6, P_thresh = 1, Protein =
+##   "SIRT2". 
+## [Fri Jul 29 11:24:28 2022]
+## Finished job 22.
+## 13 of 29 steps (45%) done
+## [Fri Jul 29 11:24:28 2022]
+## Finished job 19.
+## 14 of 29 steps (48%) done
+## Warning message:
 ## Problem while computing `MR = map(data, run_MR_all, ldrho)`.
 ## ℹ NaNs produced
 ## ℹ The warning occurred in group 30: r2_thresh = 0.6, P_thresh = 1, Protein =
 ##   "HGF". 
-## [Fri Jul 29 11:18:02 2022]
-## Finished job 19.
-## 13 of 29 steps (45%) done
-## [Fri Jul 29 11:18:02 2022]
-## Finished job 22.
-## 14 of 29 steps (48%) done
-## [Fri Jul 29 11:18:02 2022]
-## Finished job 15.
-## 15 of 29 steps (52%) done
-## Warning messages:
-## 1: Problem while computing `MR = map(data, run_MR_all, ldrho)`.
-## ℹ NaNs produced
-## ℹ The warning occurred in group 25: r2_thresh = 0.6, P_thresh = 1, Protein =
-##   "SIRT2". 
-## 2: Problem while computing `MR = map(data, run_MR_all, ldrho)`.
-## ℹ NaNs produced
-## ℹ The warning occurred in group 25: r2_thresh = 0.6, P_thresh = 1, Protein =
-##   "SIRT2". 
-## 3: Problem while computing `MR = map(data, run_MR_all, ldrho)`.
-## ℹ NaNs produced
-## ℹ The warning occurred in group 25: r2_thresh = 0.6, P_thresh = 1, Protein =
-##   "SIRT2". 
-## 4: Problem while computing `MR = map(data, run_MR_all, ldrho)`.
-## ℹ NaNs produced
-## ℹ The warning occurred in group 25: r2_thresh = 0.6, P_thresh = 1, Protein =
-##   "SIRT2". 
-## [Fri Jul 29 11:18:02 2022]
+## [Fri Jul 29 11:24:28 2022]
 ## Finished job 24.
+## 15 of 29 steps (52%) done
+## [Fri Jul 29 11:24:28 2022]
+## Finished job 15.
 ## 16 of 29 steps (55%) done
 ## Warning message:
 ## Problem while computing `MR = map(data, run_MR_all, ldrho)`.
 ## ℹ NaNs produced
 ## ℹ The warning occurred in group 25: r2_thresh = 0.6, P_thresh = 5e-08, Protein
 ##   = "CX3CL1". 
-## [Fri Jul 29 11:18:03 2022]
+## [Fri Jul 29 11:24:29 2022]
 ## Finished job 10.
 ## 17 of 29 steps (59%) done
-## [Fri Jul 29 11:18:03 2022]
+## [Fri Jul 29 11:24:29 2022]
 ## Finished job 9.
 ## 18 of 29 steps (62%) done
-## [Fri Jul 29 11:18:03 2022]
-## Finished job 3.
+## [Fri Jul 29 11:24:29 2022]
+## Finished job 8.
 ## 19 of 29 steps (66%) done
-## [Fri Jul 29 11:18:03 2022]
-## Finished job 28.
+## [Fri Jul 29 11:24:29 2022]
+## Finished job 3.
 ## 20 of 29 steps (69%) done
 ## Warning messages:
 ## 1: Problem while computing `MR = map(data, run_MR_all, ldrho)`.
@@ -1100,11 +1106,11 @@ snakemake -c all
 ## ℹ NaNs produced
 ## ℹ The warning occurred in group 30: r2_thresh = 0.6, P_thresh = 1, Protein =
 ##   "FGF-23". 
-## [Fri Jul 29 11:18:03 2022]
-## Finished job 14.
+## [Fri Jul 29 11:24:30 2022]
+## Finished job 28.
 ## 21 of 29 steps (72%) done
-## [Fri Jul 29 11:18:03 2022]
-## Finished job 8.
+## [Fri Jul 29 11:24:30 2022]
+## Finished job 14.
 ## 22 of 29 steps (76%) done
 ## Warning messages:
 ## 1: Problem while computing `MR = map(data, run_MR_all, ldrho)`.
@@ -1115,7 +1121,7 @@ snakemake -c all
 ## ℹ NaNs produced
 ## ℹ The warning occurred in group 30: r2_thresh = 0.6, P_thresh = 1, Protein =
 ##   "CCL20". 
-## [Fri Jul 29 11:18:04 2022]
+## [Fri Jul 29 11:24:30 2022]
 ## Finished job 5.
 ## 23 of 29 steps (79%) done
 ## Warning messages:
@@ -1131,49 +1137,49 @@ snakemake -c all
 ## ℹ NaNs produced
 ## ℹ The warning occurred in group 30: r2_thresh = 0.6, P_thresh = 1, Protein =
 ##   "TRAIL". 
-## [Fri Jul 29 11:18:05 2022]
-## Finished job 20.
-## 24 of 29 steps (83%) done
-## [Fri Jul 29 11:18:05 2022]
+## [Fri Jul 29 11:24:31 2022]
 ## Finished job 26.
+## 24 of 29 steps (83%) done
+## [Fri Jul 29 11:24:31 2022]
+## Finished job 20.
 ## 25 of 29 steps (86%) done
 ## Warning message:
 ## Problem while computing `MR = map(data, run_MR_all, ldrho)`.
 ## ℹ NaNs produced
 ## ℹ The warning occurred in group 24: r2_thresh = 0.4, P_thresh = 1, Protein =
 ##   "MMP-10". 
-## [Fri Jul 29 11:18:05 2022]
+## [Fri Jul 29 11:24:31 2022]
 ## Finished job 21.
 ## 26 of 29 steps (90%) done
-## [Fri Jul 29 11:18:06 2022]
+## [Fri Jul 29 11:24:33 2022]
 ## Finished job 25.
 ## 27 of 29 steps (93%) done
 ## Select jobs to execute...
 ## 
-## [Fri Jul 29 11:18:06 2022]
+## [Fri Jul 29 11:24:33 2022]
 ## rule aggregate_MR:
 ##     input: output/MR/Beta-NGF.csv, output/MR/CASP-8.csv, output/MR/CCL20.csv, output/MR/CCL3.csv, output/MR/CCL4.csv, output/MR/CD40.csv, output/MR/CSF-1.csv, output/MR/CX3CL1.csv, output/MR/CXCL1.csv, output/MR/CXCL6.csv, output/MR/EN-RAGE.csv, output/MR/FGF-23.csv, output/MR/HGF.csv, output/MR/IL-18.csv, output/MR/IL-6.csv, output/MR/IL-8.csv, output/MR/MCP-1.csv, output/MR/MMP-1.csv, output/MR/MMP-10.csv, output/MR/OPG.csv, output/MR/SCF.csv, output/MR/SIRT2.csv, output/MR/TNFSF14.csv, output/MR/TRAIL.csv, output/MR/TRANCE.csv, output/MR/VEGF-A.csv
 ##     output: output/MR_aggregate.csv
 ##     jobid: 2
-##     reason: Missing output files: output/MR_aggregate.csv; Input files updated by another job: output/MR/TRANCE.csv, output/MR/CCL3.csv, output/MR/VEGF-A.csv, output/MR/IL-18.csv, output/MR/TRAIL.csv, output/MR/SCF.csv, output/MR/Beta-NGF.csv, output/MR/CASP-8.csv, output/MR/CX3CL1.csv, output/MR/IL-8.csv, output/MR/CCL20.csv, output/MR/CCL4.csv, output/MR/HGF.csv, output/MR/IL-6.csv, output/MR/CXCL6.csv, output/MR/CSF-1.csv, output/MR/FGF-23.csv, output/MR/EN-RAGE.csv, output/MR/SIRT2.csv, output/MR/MMP-10.csv, output/MR/OPG.csv, output/MR/MMP-1.csv, output/MR/CD40.csv, output/MR/TNFSF14.csv, output/MR/MCP-1.csv, output/MR/CXCL1.csv
+##     reason: Missing output files: output/MR_aggregate.csv; Input files updated by another job: output/MR/IL-6.csv, output/MR/CX3CL1.csv, output/MR/CSF-1.csv, output/MR/TNFSF14.csv, output/MR/TRAIL.csv, output/MR/MMP-1.csv, output/MR/CCL4.csv, output/MR/OPG.csv, output/MR/CCL20.csv, output/MR/IL-18.csv, output/MR/IL-8.csv, output/MR/MCP-1.csv, output/MR/TRANCE.csv, output/MR/EN-RAGE.csv, output/MR/MMP-10.csv, output/MR/HGF.csv, output/MR/SIRT2.csv, output/MR/CXCL1.csv, output/MR/CD40.csv, output/MR/FGF-23.csv, output/MR/CCL3.csv, output/MR/CXCL6.csv, output/MR/Beta-NGF.csv, output/MR/SCF.csv, output/MR/VEGF-A.csv, output/MR/CASP-8.csv
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:18:06 2022]
+## [Fri Jul 29 11:24:33 2022]
 ## Finished job 2.
 ## 28 of 29 steps (97%) done
 ## Select jobs to execute...
 ## 
-## [Fri Jul 29 11:18:06 2022]
+## [Fri Jul 29 11:24:33 2022]
 ## localrule all:
 ##     input: output/Observational.csv, output/MR_aggregate.csv
 ##     jobid: 0
 ##     reason: Input files updated by another job: output/Observational.csv, output/MR_aggregate.csv
 ##     resources: tmpdir=/rds/user/jhz22/hpc-work/work
 ## 
-## [Fri Jul 29 11:18:06 2022]
+## [Fri Jul 29 11:24:33 2022]
 ## Finished job 0.
 ## 29 of 29 steps (100%) done
-## Complete log: .snakemake/log/2022-07-29T111739.211383.snakemake.log
+## Complete log: .snakemake/log/2022-07-29T112419.950394.snakemake.log
 ```
 
 which gives `output`/`Observational.csv` (observational results) and `MR_aggregate.csv` (MR results).
