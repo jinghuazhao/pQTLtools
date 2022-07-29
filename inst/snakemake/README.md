@@ -1,6 +1,6 @@
 # CVD1/INF1 protein-HF analysis
 
-The following script furnishes run on CSD3 (without the --use-conda option for `snakemake` as all R packages are indeed locally available).
+A total of 27 proteins were identified from the Olink/cvd1 panel overlapped with inf1. The following script furnishes run on CSD3 (without the --use-conda option for `snakemake` as all R packages are indeed locally available).
 
 ```bash
 module load miniconda3/4.5.1
