@@ -1,29 +1,18 @@
 # CVD1/INF1 protein-HF analysis
 
-A total of 27 proteins were identified from the Olink/cvd1 panel overlapped with inf1. The following script furnishes run on CSD3 (no --use-conda option for `snakemake` as all R packages are locally available).
+Included here is data on a total of 26 in the 27 overlapping proteins from the Olink cvd1 & inf1 panels.
 
-## setup
+Steps to set up the environment are outlined in [work/README.Rmd](work/README.Rmd). Note `config.yaml` uses `MendelianRandomization` v0.6.0 and a bug in `workflow/scripts/MR_functions.R` is fixed.
+The directory `input/` can potentially be built from rules defined in the workflow.
 
-```{bash setup}
+```{bash all-in-one}
 module load miniconda3/4.5.1
 export mypath=${HOME}/COVID-19/miniconda37
 conda activate ${mypath}
-```
-
-## dry-run
-
-```{bash dry-run}
+# A dry run to show details of the workflow.
 snakemake -n
-```
-
-## run
-
-```{bash run}
+# Analysis (no --use-conda option for `snakemake` as all R packages are locally available)
 snakemake -c all
 ```
 
-which gives `results`/`Observational.csv` (observational results) and `MR_aggregate.csv` (MR results).
-
-## Additional information
-
-See [work/README.Rmd](work/README.Rmd) for steps to set up the environment, and `config.yaml` is modified to use `MendelianRandomization` v0.6.0 with a bug in `workflow/scripts/MR_functions.R` being fixed.
+which gives `output`/`Observational.csv` (observational results) and `MR_aggregate.csv` (MR results).

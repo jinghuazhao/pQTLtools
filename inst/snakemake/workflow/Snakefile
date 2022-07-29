@@ -4,13 +4,13 @@ report: "report/workflow.rst"
 configfile: "config.yaml"
 
 rule all:
-    input: ["results/Observational.csv", "results/MR_aggregate.csv"]
+    input: ["output/Observational.csv", "output/MR_aggregate.csv"]
 
 rule obs_analysis:
     input:
-        "resources/data_Observational.csv"
+        "input/data_Observational.csv"
     output:
-        "results/Observational.csv"
+        "output/Observational.csv"
     conda:
         "envs/cvd1_hf.yaml"
     script:
@@ -18,20 +18,20 @@ rule obs_analysis:
 
 rule MR_analysis:
     input:
-        data_MR="resources/data_MR.csv",
-        ldrho="resources/cis200kb_ldrho/{protein}.ld",
-        snplist="resources/cis200kb_ldrho/{protein}.snplist"
+        data_MR="input/data_MR.csv",
+        ldrho="input/cis200kb_ldrho/{protein}.ld",
+        snplist="input/cis200kb_ldrho/{protein}.snplist"
     conda:
         "envs/cvd1_hf.yaml"
     output:
-        "results/MR/{protein}.csv"
+        "output/MR/{protein}.csv"
     script:
         "scripts/MR_analysis.R"
 
 rule aggregate_MR:
     input:
-        expand("results/MR/{protein}.csv", protein = config["target_protein_MR"])
+        expand("output/MR/{protein}.csv", protein = config["target_protein_MR"])
     output:
-        "results/MR_aggregate.csv"
+        "output/MR_aggregate.csv"
     shell:
         "awk 'NR == FNR {{print; next}} FNR > 1 {{print}}' {input} > {output}"
