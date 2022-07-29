@@ -1,6 +1,6 @@
 # CVD1/INF1 protein-HF analysis
 
-Included here is data on a total of 27 overlapping proteins from the Olink cvd1 & inf1 panels.
+Included here is data on the 26 overlapping proteins (no information on IL-4) from the Olink cvd1 & inf1 panels.
 
 Steps to set up the environment are outlined in [notes/README.md](notes/README.md). Note `config.yaml` uses `MendelianRandomization` v0.6.0 and a bug in `workflow/scripts/MR_functions.R` is fixed.
 The directory `input/` can potentially be built from rules defined in the workflow.
