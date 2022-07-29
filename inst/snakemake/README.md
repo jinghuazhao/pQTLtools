@@ -9,6 +9,6 @@ conda activate ${mypath}
 snakemake -c all
 ```
 
-giving `results`/`res_Observational.csv` (observational results) and `res_MR_aggregate.csv` (MR results)
+giving `results`/`Observational.csv` (observational results) and `MR_aggregate.csv` (MR results)
 
 See [work/README.Rmd](work/README.Rmd) for steps to set up the environment, and `config.yaml` is modified to use `MendelianRandomization` v0.6.0 with a bug in `workflow/scripts/MR_functions.R` being fixed.

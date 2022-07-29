@@ -49,4 +49,4 @@ do
   git commit -m "${f}"
 done
 
-git push -f
+git push

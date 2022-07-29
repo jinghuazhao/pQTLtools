@@ -54,3 +54,5 @@ Edwards D. Plant Bioinformatics-Methods and Protocols, 3e. https://link.springer
 snakemake, [homepage](https://snakemake.github.io/), [documentation](https://snakemake.readthedocs.io/en/stable/), [GitHub](https://github.com/snakemake/snakemake).
 
 snakemake, [https://cambridge-ceu.github.io/csd3/applications/snakemake.html](https://cambridge-ceu.github.io/csd3/applications/snakemake.html).
+
+[snakemake-with-R](https://github.com/fritzbayer/snakemake-with-R).
