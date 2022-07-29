@@ -15,4 +15,4 @@ snakemake -n
 snakemake -c all
 ```
 
-which gives `output`/`Obs.csv` (observational results) and `MR_all.csv` (MR results).
+which gives `output`/`MR.csv` (MR results) and `Obs.csv` (observational results).

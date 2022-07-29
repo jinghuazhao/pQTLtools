@@ -4,11 +4,11 @@ report: "report/workflow.rst"
 configfile: "config.yaml"
 
 rule all:
-    input: ["output/Obs.csv", "output/MR_all.csv"]
+    input: ["output/Obs.csv", "output/MR.csv"]
 
 rule obs_analysis:
     input:
-        "input/data_Obs.csv"
+        "input/Obs.csv"
     output:
         "output/Obs.csv"
     conda:
@@ -18,9 +18,9 @@ rule obs_analysis:
 
 rule MR_analysis:
     input:
-        data_MR="input/data_MR.csv",
-        ldrho="input/cis200kb_ldrho/{protein}.ld",
-        snplist="input/cis200kb_ldrho/{protein}.snplist"
+        data_MR="input/MR.csv",
+        ldrho="input/ld/{protein}.ld",
+        snplist="input/ld/{protein}.snplist"
     conda:
         "envs/cvd1-inf1-hf.yaml"
     output:
@@ -32,6 +32,6 @@ rule aggregate_MR:
     input:
         expand("output/MR/{protein}.csv", protein = config["target_protein_MR"])
     output:
-        "output/MR_all.csv"
+        "output/MR.csv"
     shell:
         "awk 'NR == FNR {{print; next}} FNR > 1' {input} > {output}"
