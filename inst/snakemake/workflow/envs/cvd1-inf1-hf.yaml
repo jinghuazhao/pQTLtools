@@ -1,5 +1,5 @@
 # conda environments needed for the workflow should be stored here.
-name: cvd1_inf1_hf
+name: cvd1-inf1-hf
 channels:
  - conda-forge
  - r
