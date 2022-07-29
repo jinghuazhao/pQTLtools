@@ -12,7 +12,7 @@ rule obs_analysis:
     output:
         "output/Observational.csv"
     conda:
-        "envs/cvd1_inf1_hf.yaml"
+        "envs/cvd1-inf1-hf.yaml"
     script:
         "scripts/Obs_analysis.R"
 
@@ -22,7 +22,7 @@ rule MR_analysis:
         ldrho="input/cis200kb_ldrho/{protein}.ld",
         snplist="input/cis200kb_ldrho/{protein}.snplist"
     conda:
-        "envs/cvd1_inf1_hf.yaml"
+        "envs/cvd1-inf1-hf.yaml"
     output:
         "output/MR/{protein}.csv"
     script:
