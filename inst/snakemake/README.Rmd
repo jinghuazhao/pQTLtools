@@ -2,7 +2,7 @@
 
 Included here is data on a total of 26 in the 27 overlapping proteins from the Olink cvd1 & inf1 panels.
 
-Steps to set up the environment are outlined in [work/README.Rmd](work/README.Rmd). Note `config.yaml` uses `MendelianRandomization` v0.6.0 and a bug in `workflow/scripts/MR_functions.R` is fixed.
+Steps to set up the environment are outlined in [work/README.md](work/README.md). Note `config.yaml` uses `MendelianRandomization` v0.6.0 and a bug in `workflow/scripts/MR_functions.R` is fixed.
 The directory `input/` can potentially be built from rules defined in the workflow.
 
 ```{bash all-in-one}
