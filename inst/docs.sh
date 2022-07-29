@@ -45,7 +45,7 @@ for f in .github .gitignore .Rbuildignore .Rinstignore .travis.yml \
          NAMESPACE NEWS.md pkgdown/ R/ README.* vignettes/
 do
   echo adding ${f}
-  git add -f ${f}
+  git add ${f}
   git commit -m "${f}"
 done
 
