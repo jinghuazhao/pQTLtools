@@ -34,9 +34,9 @@ snakemake --dag | \
 dot -Tpdf > dag.pdf
 snakemake --rulegraph | \
 dot -Tpdf > rulegraph.pdf
-Snakemake -j4
-Snakemake --j4 --use-conda
-Snakemake --profile slurm
+snakemake -j4
+snakemake --j4 --use-conda
+snakemake --profile slurm
 ```
 
 # slurm

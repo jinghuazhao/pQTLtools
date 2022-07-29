@@ -1,4 +1,4 @@
-# Package versioned on CRAN (https://cran.r-project.org/src/contrib/Archive/MendelianRandomization/)
+# Package versioned at CRAN (https://cran.r-project.org/package=MendelianRandomization)
 MR_package_ver: 0.6.0
 
 target_protein_MR:
