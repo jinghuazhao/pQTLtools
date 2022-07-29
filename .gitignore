@@ -2,4 +2,4 @@
 docs
 tests
 inst/snakemake/.snakemake
-inst/snakemake/results
+inst/snakemake/output
