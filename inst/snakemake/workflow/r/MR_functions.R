@@ -61,7 +61,7 @@ single.ins.MR <- function (df_mr, harmonise=F){
 # MR IVW using MendelianRandomization package
 # (more flexible as additional parameters are allowed, e.g. random-effect model)
 # MR IVW w/ correlation using MendelianRandomization package
-MR_IVW <- function (df_mr, ldrho=matrix(), harmonise=F,  ...) {
+MR_IVW <- function (df_mr, ld=matrix(), harmonise=F,  ...) {
   res <- tryCatch({
     if (harmonise) df_mr[, beta.y := ifelse(A1.x==A1.y, beta.y, -beta.y)]
 
@@ -70,7 +70,7 @@ MR_IVW <- function (df_mr, ldrho=matrix(), harmonise=F,  ...) {
                          bxse = df_mr[,se.x],
                          by = df_mr[,beta.y],
                          byse = df_mr[,se.y],
-                         corr = ldrho,
+                         corr = ld,
                          snps = df_mr[,SNP])
     MR.output <- mr_ivw(MR.input, correl = TRUE, ...)
 
@@ -88,7 +88,7 @@ MR_IVW <- function (df_mr, ldrho=matrix(), harmonise=F,  ...) {
 
 
 # MR Egger
-MR_Egger <- function (df_mr, ldrho=matrix(), harmonise=F, ...) {
+MR_Egger <- function (df_mr, ld=matrix(), harmonise=F, ...) {
   res <- tryCatch({
     if (harmonise) df_mr[, beta.y := ifelse(A1.x==A1.y, beta.y, -beta.y)]
 
@@ -96,7 +96,7 @@ MR_Egger <- function (df_mr, ldrho=matrix(), harmonise=F, ...) {
                          bxse = df_mr[,se.x],
                          by = df_mr[,beta.y],
                          byse = df_mr[,se.y],
-                         corr = ldrho,
+                         corr = ld,
                          snps = df_mr[,SNP])
 
     MR.output <- mr_egger(MR.input, correl = TRUE, ...)
@@ -119,12 +119,12 @@ MR_Egger <- function (df_mr, ldrho=matrix(), harmonise=F, ...) {
 
 # MR IVW-PCA method
 # var_exp = expected variance in the risk factor explained by principal components
-MR_PCA <- function(df_mr, ldrho, harmonise=F, var_exp=0.99){
+MR_PCA <- function(df_mr, ld, harmonise=F, var_exp=0.99){
   res <- tryCatch({
     if (harmonise) df_mr[, beta.y := ifelse(A1.x==A1.y, beta.y, -beta.y)]
 
     attach(df_mr)
-    Phi = (beta.x / se.y) %o% (beta.x / se.y) * ldrho
+    Phi = (beta.x / se.y) %o% (beta.x / se.y) * ld
     # summary(prcomp(Phi, scale=FALSE))
 
     K = which(cumsum(prcomp(Phi, scale=FALSE)$sdev^2 /
@@ -136,7 +136,7 @@ MR_PCA <- function(df_mr, ldrho, harmonise=F, var_exp=0.99){
     betaXG0 = as.numeric(beta.x%*%prcomp(Phi, scale=FALSE)$rotation[,1:K])
     betaYG0 = as.numeric(beta.y%*%prcomp(Phi, scale=FALSE)$rotation[,1:K])
 
-    Omega = se.y %o% se.y * ldrho
+    Omega = se.y %o% se.y * ld
 
     pcOmega = t(prcomp(Phi, scale=FALSE)$rotation[,1:K])%*%Omega%*%prcomp(Phi, scale=FALSE)$rotation[,1:K]
 
@@ -166,7 +166,7 @@ MR_PCA <- function(df_mr, ldrho, harmonise=F, var_exp=0.99){
 }
 
 # Wrapper to run all MR based on n_instrument
-run_MR_all <- function(df_mr, ldrho){
+run_MR_all <- function(df_mr, ld){
   setDT(df_mr)
   if (nrow(df_mr) == 0) {
     res <- blank_df()
@@ -177,25 +177,25 @@ run_MR_all <- function(df_mr, ldrho){
 
     insSNPs <- df_mr$SNP
 
-    ldrho_ins <- ldrho[insSNPs, insSNPs]
+    ld_ins <- ld[insSNPs, insSNPs]
 
     # Exclude SNP if LDcorr results in NaN
-    NaN_ins <- which(is.nan(ldrho_ins), T) %>% rownames
+    NaN_ins <- which(is.nan(ld_ins), T) %>% rownames
     if (!is.null(NaN_ins)){
-      ins <- rownames(ldrho_ins) %>% .[which(!. %in% NaN_ins)]
-      ldrho_ins <- ldrho_ins[ins, ins]
+      ins <- rownames(ld_ins) %>% .[which(!. %in% NaN_ins)]
+      ld_ins <- ld_ins[ins, ins]
 
       df_mr <- df_mr[SNP %in% ins]
     }
 
-    res_IVW <- MR_IVW(df_mr, ldrho=ldrho_ins, harmonise = F)
+    res_IVW <- MR_IVW(df_mr, ld=ld_ins, harmonise = F)
     res_IVW[, Method := "IVW"]
-    res_Egger <- MR_Egger(df_mr, ldrho=ldrho_ins, harmonise = F)
+    res_Egger <- MR_Egger(df_mr, ld=ld_ins, harmonise = F)
 
-    res_PCA_0.99 <- MR_PCA(df_mr, ldrho_ins, harmonise = F, var_exp=0.99) %>%
+    res_PCA_0.99 <- MR_PCA(df_mr, ld_ins, harmonise = F, var_exp=0.99) %>%
       .[, `:=`(Method = "PCA_0.99")]
 
-    res_PCA_0.90 <- MR_PCA(df_mr, ldrho_ins, harmonise = F, var_exp=0.90) %>%
+    res_PCA_0.90 <- MR_PCA(df_mr, ld_ins, harmonise = F, var_exp=0.90) %>%
       .[, `:=`(Method = "PCA_0.90")]
 
     res <- rbind(res_IVW, res_PCA_0.90, res_PCA_0.99, res_Egger)

@@ -19,7 +19,7 @@ rule obs_analysis:
 rule MR_analysis:
     input:
         data_MR="input/MR.csv",
-        ldrho="input/ld/{protein}.ld",
+        ld="input/ld/{protein}.ld",
         snplist="input/ld/{protein}.snplist"
     conda:
         "envs/cvd1-inf1-hf.yaml"
