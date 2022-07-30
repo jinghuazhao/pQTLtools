@@ -17,7 +17,7 @@ snakemake -c all
 
 which gives `output`/`MR.csv` (MR results) and `Obs.csv` (observational results).
 
-Some related operations are also possible.
+Some related operations are also ready.
 
 ```bash
 snakemake --dag | \
