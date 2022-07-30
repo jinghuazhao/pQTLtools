@@ -14,7 +14,7 @@ rule obs_analysis:
     conda:
         "envs/cvd1-inf1-hf.yaml"
     script:
-        "scripts/Obs_analysis.R"
+        "r/Obs_analysis.R"
 
 rule MR_analysis:
     input:
@@ -26,7 +26,7 @@ rule MR_analysis:
     output:
         "output/MR/{protein}.csv"
     script:
-        "scripts/MR_analysis.R"
+        "r/MR_analysis.R"
 
 rule aggregate_MR:
     input:

@@ -2,7 +2,7 @@
 
 Included here is data on the 26 overlapping proteins (no information on IL-4) from the Olink cvd1 & inf1 panels.
 
-Steps to set up the environment are outlined in [notes/README.md](notes/README.md), while `MendelianRandomization` v0.6.0 is used together with a bug fix in `workflow/scripts/MR_functions.R`.
+Steps to set up the environment are outlined in [notes](notes/README.md), while `MendelianRandomization` v0.6.0 is used together with a bug fix in `workflow/scripts/MR_functions.R`.
 The directory `input/` can potentially be built from rules defined in the workflow.
 
 

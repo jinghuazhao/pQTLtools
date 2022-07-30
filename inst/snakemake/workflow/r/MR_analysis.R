@@ -1,7 +1,7 @@
 # MR analysis
 
 # load libraries and helper functions
-source("workflow/scripts/MR_functions.R")
+source("workflow/r/MR_functions.R")
 
 # read & reformat data
 data_MR <- fread(snakemake@input[["data_MR"]])
