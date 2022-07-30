@@ -30,10 +30,6 @@ conda install -c bioconda fastqc
 # Calls for snakemake
 
 ```bash
-snakemake --dag | \
-dot -Tpdf > dag.pdf
-snakemake --rulegraph | \
-dot -Tpdf > rulegraph.pdf
 snakemake -j4
 snakemake --j4 --use-conda
 snakemake --profile slurm

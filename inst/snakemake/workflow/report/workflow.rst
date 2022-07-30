@@ -1,1 +1,3 @@
-Put a description of your workflow here. See [here](https://snakemake.readthedocs.io/en/stable/snakefiles/reporting.html) for details.
+A skeleton of workflow.
+
+See [documentation](https://snakemake.readthedocs.io/en/stable/snakefiles/reporting.html).

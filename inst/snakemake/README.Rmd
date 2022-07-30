@@ -9,10 +9,22 @@ The directory `input/` can potentially be built from rules defined in the workfl
 module load miniconda3/4.5.1
 export mypath=${HOME}/COVID-19/miniconda37
 conda activate ${mypath}
-# A dry run to show details of the workflow.
+# A dry run of the workflow.
 snakemake -n
 # Analysis (no --use-conda option since all R packages are more up-to-date locally)
 snakemake -c all
 ```
 
 which gives `output`/`MR.csv` (MR results) and `Obs.csv` (observational results).
+
+Some related operations are also possible.
+
+```bash
+snakemake --dag | \
+dot -Tpdf > dag.pdf
+snakemake --rulegraph | \
+dot -Tpdf > rulegraph.pdf
+report --report report.html
+```
+
+This MarkDown document is obtained via `Rscript -e 'knitr::knit("README.Rmd")'`.
