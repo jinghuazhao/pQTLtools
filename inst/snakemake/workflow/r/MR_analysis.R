@@ -15,7 +15,6 @@ ld <- fread(snakemake@input[["ld"]],
             col.names = snplist)  %>%
   as.matrix(rownames.value = snplist)
 
-
 # run MR
 protein <- snakemake@wildcards[["protein"]]
 
@@ -28,4 +27,3 @@ df_res <- data_MR[Protein == protein] %>%
   unnest(cols = MR)
 
 fwrite(df_res, snakemake@output[[1]])
-
