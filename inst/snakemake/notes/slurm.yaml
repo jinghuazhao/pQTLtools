@@ -1,4 +1,3 @@
-
 jobs: 50
 cluster: 'sbatch -A 'HPC-account-name'
 --cpus-per-task {resources.cpus}
@@ -8,7 +7,7 @@ cluster: 'sbatch -A 'HPC-account-name'
 --mem {resources.mem}
 --cluster {resources.cluster}
 -o 'slurm_logs/%j.{rule}_{wildcards}.out'
--e 'slurm_logs/%j.{rule}_{wildcards}.err' '
+-e 'slurm_logs/%j.{rule}_{wildcards}.err'
 use-conda: true
 keep-going: true
 rerun-incomplete: true

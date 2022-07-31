@@ -22,7 +22,6 @@ if (!require("MendelianRandomization")){
   install_MR()
 }
 
-
 # Blank results
 error_df <- function(df_mr){
   n_ins <- nrow(df_mr)
@@ -55,7 +54,6 @@ single.ins.MR <- function (df_mr, harmonise=F){
                     LCI = df_mr[,lci.mr],
                     UCI = df_mr[,uci.mr],
                     P_value = df_mr[,P.mr])
-  return(res)
 }
 
 # MR IVW using MendelianRandomization package
@@ -83,9 +81,7 @@ MR_IVW <- function (df_mr, ld=matrix(), harmonise=F,  ...) {
   },
   error = function(e) error_df(df_mr)
   )
-  return(res)
 }
-
 
 # MR Egger
 MR_Egger <- function (df_mr, ld=matrix(), harmonise=F, ...) {
@@ -115,7 +111,6 @@ MR_Egger <- function (df_mr, ld=matrix(), harmonise=F, ...) {
   res[, Method := c("MR_Egger", "EggerInt")]
   return(res)
 }
-
 
 # MR IVW-PCA method
 # var_exp = expected variance in the risk factor explained by principal components
@@ -161,8 +156,6 @@ MR_PCA <- function(df_mr, ld, harmonise=F, var_exp=0.99){
   },
   error = function(e) error_df(df_mr)
   )
-
-  return (res)
 }
 
 # Wrapper to run all MR based on n_instrument

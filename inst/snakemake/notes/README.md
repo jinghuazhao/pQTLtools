@@ -30,7 +30,6 @@ conda install -c bioconda fastqc
 # Calls for snakemake
 
 ```bash
-snakemake -j4
 snakemake --j4 --use-conda
 snakemake --profile slurm
 ```

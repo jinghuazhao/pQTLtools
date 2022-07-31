@@ -1,6 +1,5 @@
 report: "report/workflow.rst"
 
-# Allow users to fix the underlying OS via singularity.
 configfile: "config.yaml"
 
 rule all:
@@ -12,7 +11,7 @@ rule obs_analysis:
     output:
         "output/Obs.csv"
     conda:
-        "envs/cvd1-inf1-hf.yaml"
+        "envs/conda.yaml"
     script:
         "r/Obs_analysis.R"
 
@@ -22,7 +21,7 @@ rule MR_analysis:
         ld="input/ld/{protein}.ld",
         snplist="input/ld/{protein}.snplist"
     conda:
-        "envs/cvd1-inf1-hf.yaml"
+        "envs/conda.yaml"
     output:
         "output/MR/{protein}.csv"
     script:

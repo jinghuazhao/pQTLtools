@@ -28,8 +28,6 @@ run_meta <- function(df, y_col = beta, se_col = se, method = "FE", ...,
   } else {
     rep(NaN, length(report)) %>% as.list %>% set_names(report) %>% as_tibble
   }
-  
-  df.res
 }
 
 # group dataset per protein

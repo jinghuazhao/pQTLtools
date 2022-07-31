@@ -1,63 +1,63 @@
 IDS, = glob_wildcards('input_data/{id}_R1.fq')
 rule all:
-input:
-expand['depth/{id}.per-base.bed', id={IDS}]
+    input:
+        expand['depth/{id}.per-base.bed', id={IDS}]
 rule bowtie2_alignment:
-input:
-R1='input_data/{id}_R1.fq'
-R2='input_data/{id}_R2.fq'
-output:
-sam='bowtie2_output/{id}.sam'
-stats=' bowtie2_output/{id}.stats'
-conda: 'path/to/bowtie2-conda-config.yaml'
-resources: time = '02:00:00'
-shell:
-'''bowtie2 -X 1000 -x reference-genome -1 {input.R1} -2 {input.R2} -S {output.sam} --end-to-end --sensitive --threads 20 2> {output.stats}'''
+    input:
+        R1='input_data/{id}_R1.fq'
+        R2='input_data/{id}_R2.fq'
+    output:
+        sam='bowtie2_output/{id}.sam'
+        stats=' bowtie2_output/{id}.stats'
+    conda: 'path/to/bowtie2-conda-config.yaml'
+    resources: time = '02:00:00'
+    shell:
+       '''bowtie2 -X 1000 -x reference-genome -1 {input.R1} -2 {input.R2} -S {output.sam} --end-to-end --sensitive --threads 20 2> {output.stats}'''
 rule sam2bam:
-input:
-sam='aligned/{id}.sam'
-output:
-bam='aligned/{id}.bam',
-benchmark:
-'benchmarks/{id}.sam2bam.benchmark.txt'
-log:
-'logs/{id}.sam2bam.log',
-conda:
-'path/to/samtools-conda-config.yaml'
-resources:
-cpus=20,
-time='00:30:00'
-shell:
-'''samtools view -bS -@ 20 {input.sam} > {output.bam}'''
+    input:
+        sam='aligned/{id}.sam'
+    output:
+        bam='aligned/{id}.bam',
+    benchmark:
+        'benchmarks/{id}.sam2bam.benchmark.txt'
+    log:
+        'logs/{id}.sam2bam.log',
+    conda:
+        'path/to/samtools-conda-config.yaml'
+    resources:
+        cpus=20,
+        time='00:30:00'
+    shell:
+        '''samtools view -bS -@ 20 {input.sam} > {output.bam}'''
 rule sort_bam:
-input:
-bam='aligned/{id}.bam',
-output:
-sorted_bam='aligned/{id}.sorted.bam',
-conda:
-'path/to/samtools-conda-config.yaml'
-log:
-'logs/{id}.sort_bam.log',
-benchmark:
-'benchmarks/{id}.sort_bam.benchmark'
-resources:
-cpus=20,
-time='00:30:00'
-shell:
-'''samtools sort -@ 20 {input.bam} -o {output.sorted_bam} 2> {log}'''
+    input:
+        bam='aligned/{id}.bam',
+    output:
+        sorted_bam='aligned/{id}.sorted.bam',
+    conda:
+        'path/to/samtools-conda-config.yaml'
+    log:
+        'logs/{id}.sort_bam.log',
+    benchmark:
+        'benchmarks/{id}.sort_bam.benchmark'
+    resources:
+        cpus=20,
+        time='00:30:00'
+    shell:
+        '''samtools sort -@ 20 {input.bam} -o {output.sorted_bam} 2> {log}'''
 rule samtools_depth:
-input:
-bam='aligned/{id}.sorted.bam',
-output:
-base='depth/{id}.per-base.bed',
-conda:
-'path/to/samtools-conda-config.yaml'
-log:
-'logs/{id}.samtools-depth.log',
-benchmark:
-'benchmarks/{id}.samtools-depth.benchmark'
-resources:
-cpus=1,
-time='01:00:00'
-shell:
-'''samtools depth -a {input.bam} > {output.base} 2> {log}'''
+    input:
+        bam='aligned/{id}.sorted.bam',
+    output:
+        base='depth/{id}.per-base.bed',
+    conda:
+        'path/to/samtools-conda-config.yaml'
+    log:
+        'logs/{id}.samtools-depth.log',
+    benchmark:
+        'benchmarks/{id}.samtools-depth.benchmark'
+    resources:
+        cpus=1,
+        time='01:00:00'
+    shell:
+        '''samtools depth -a {input.bam} > {output.base} 2> {log}'''
