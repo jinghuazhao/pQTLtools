@@ -52,7 +52,7 @@ Edwards D. Plant Bioinformatics-Methods and Protocols, 3e. https://link.springer
 
 csd3, [https://cambridge-ceu.github.io/csd3/applications/snakemake.html](https://cambridge-ceu.github.io/csd3/applications/snakemake.html).
 
-[snakemake-with-R](https://github.com/fritzbayer/snakemake-with-R).
+snakemake-with-R, [https://github.com/fritzbayer/snakemake-with-R](https://github.com/fritzbayer/snakemake-with-R).
 
 
 [^perm]: Instructions from Miniconda:
