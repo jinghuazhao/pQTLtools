@@ -6,13 +6,12 @@
 This seeds collection of data and utilties for pQTL analysis. At this
 early stage, the repository collects information on a number of protein
 panels, linking functions for cis/trans classification, 2D manhattan
-plots, 3D-plotly plots, forest plots among others availale from R/gap;
-query results on genes, regions, and SNPs via PhenoScanner, adding
+plots, 3D-plotly plots, forest plots among others availale from
+[R/gap](https://github.com/jinghuazhao/R/tree/master/gap)[1]; query
+results on genes, regions, and SNPs via PhenoScanner, adding
 functionality to check for replication across platforms and aspects of
 protein-related analysis such as pQTL-Mendelian Randomization via
-TwoSampleMR, linkage through UniProt IDs to other resources. A lot of
-functions are with
-[R/gap](https://github.com/jinghuazhao/R/tree/master/gap). Recently,
+TwoSampleMR, linkage through UniProt IDs to other resources.
 Bioconductor analyses and snakemake workflow are also showcased.
 
 Note that some steps involving data from ongoing project have been
@@ -49,7 +48,7 @@ This is listed in [INDEX](INDEX) and can be seen from R with
 library(help=pQTLtools)
 ```
 
-## Closely related functions in R/gap
+[1] \#\# Closely related functions in R/gap
 
 | Objects                     | Description                                            |
 |-----------------------------|--------------------------------------------------------|
