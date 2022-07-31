@@ -1,6 +1,6 @@
 # Mendelian randomization analysis
 
-It is possible `input/` can be built from rules defined in the workflow and currently it contains data on the 26 overlapping proteins (no information on IL-4) from the Olink cvd1 & inf1 panels and heart failures.
+Currently `input/` contains data on the 26 overlapping proteins (no information on IL-4) from the Olink cvd1 & inf1 panels and heart failures.
 
 Steps to set up the environment are outlined in [notes](notes/README.md), while `MendelianRandomization` v0.6.0 is used together with a bug fix in `workflow/r/MR_functions.R`.
 
