@@ -1,4 +1,4 @@
-# CVD1/INF1 protein-HF analysis
+# Protein-HF analysis
 
 It is possible `input/` can be built from rules defined in the workflow and currently it contains data on the 26 overlapping proteins (no information on IL-4) from the Olink cvd1 & inf1 panels.
 
