@@ -41,7 +41,7 @@ if [ -f vignettes/fig3d.html ]; then
 fi
 
 for f in .github .gitignore .Rbuildignore .Rinstignore .travis.yml \
-         data/ DESCRIPTION docs/ INDEX inst/ LICENSE LICENSE.md man/ \
+         data/ DESCRIPTION INDEX docs/ inst/ LICENSE LICENSE.md man/ \
          NAMESPACE NEWS.md pkgdown/ R/ README.* vignettes/
 do
   echo adding ${f}
