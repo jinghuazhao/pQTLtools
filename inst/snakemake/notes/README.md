@@ -29,6 +29,8 @@ conda activate miniconda
 conda install -c bioconda fastqc
 ```
 
+or to do this permenantly[^perm].
+
 # snakemake
 
 ```bash
@@ -51,3 +53,16 @@ Edwards D. Plant Bioinformatics-Methods and Protocols, 3e. https://link.springer
 csd3, [https://cambridge-ceu.github.io/csd3/applications/snakemake.html](https://cambridge-ceu.github.io/csd3/applications/snakemake.html).
 
 [snakemake-with-R](https://github.com/fritzbayer/snakemake-with-R).
+
+
+[^perm]: Instructions from Miniconda:
+    ```bash
+    # all users
+    # sudo ln -s /usr/local/Cluster-Apps/miniconda3/4.5.1/etc/profile.d/conda.sh /etc/profile.d/conda.sh
+    # current user
+    echo ". /usr/local/Cluster-Apps/miniconda3/4.5.1/etc/profile.d/conda.sh" >> ~/.bashrc
+    # conda's base (root) environment on PATH
+    conda activate
+    # the base environment on PATH permanently
+    echo "conda activate" >> ~/.bashrc
+    ```

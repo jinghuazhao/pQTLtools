@@ -15,8 +15,6 @@ snakemake -n
 snakemake -c all
 ```
 
-or to do this permenantly[^perm].
-
 The document is knitted with `Rscript -e 'knitr::knit("README.Rmd")'` which also gives `output`/`MR.csv` (MR results) and `Obs.csv` (meta-analysis results based on observational studies).
 
 Some related operations are also ready.
@@ -28,15 +26,3 @@ snakemake --rulegraph | \
 dot -Tpdf > rulegraph.pdf
 report --report report.html
 ```
-
-[^perm]: Instructions from Miniconda:
-    ```bash
-    # all users
-    # sudo ln -s /usr/local/Cluster-Apps/miniconda3/4.5.1/etc/profile.d/conda.sh /etc/profile.d/conda.sh
-    # current user
-    echo ". /usr/local/Cluster-Apps/miniconda3/4.5.1/etc/profile.d/conda.sh" >> ~/.bashrc
-    # conda's base (root) environment on PATH
-    conda activate
-    # the base environment on PATH permanently
-    echo "conda activate" >> ~/.bashrc
-    ```
