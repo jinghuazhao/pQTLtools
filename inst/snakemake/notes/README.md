@@ -1,5 +1,7 @@
 # snakemake
 
+[homepage](https://snakemake.github.io/), [documentation](https://snakemake.readthedocs.io/en/stable/), [GitHub](https://github.com/snakemake/snakemake)
+
 ## Anaconda3
 
 ```bash
@@ -42,12 +44,10 @@ cp slurm.yaml $HOME/.config/Snakemake/slurm
 touch $HOME/.config/Snakemake/slurm/slurm.yaml
 ```
 
-## Reference
+## References
 
 Edwards D. Plant Bioinformatics-Methods and Protocols, 3e. https://link.springer.com/book/10.1007/978-1-0716-2067-0. [Chapter 11](https://link.springer.com/protocol/10.1007/978-1-0716-2067-0_11); [Chapter 9](https://link.springer.com/protocol/10.1007/978-1-0716-2067-0_9).
 
-snakemake, [homepage](https://snakemake.github.io/), [documentation](https://snakemake.readthedocs.io/en/stable/), [GitHub](https://github.com/snakemake/snakemake).
-
-snakemake, [https://cambridge-ceu.github.io/csd3/applications/snakemake.html](https://cambridge-ceu.github.io/csd3/applications/snakemake.html).
+csd3, [https://cambridge-ceu.github.io/csd3/applications/snakemake.html](https://cambridge-ceu.github.io/csd3/applications/snakemake.html).
 
 [snakemake-with-R](https://github.com/fritzbayer/snakemake-with-R).
