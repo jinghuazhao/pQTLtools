@@ -291,7 +291,7 @@ txdb <- TxDb.Hsapiens.UCSC.hg38.knownGene
 
 Web: [https://support.bioconductor.org/](https://support.bioconductor.org/)
 
-## A list of Bioconductor/CRAN packages
+## Bioconductor/CRAN packages
 
 Package | Description
 --------|------------
