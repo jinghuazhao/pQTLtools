@@ -38,7 +38,7 @@ snakemake --j4 --use-conda
 snakemake --profile slurm
 ```
 
-The first line calls for conda and the second links fot slurm[^slurm]
+The first line calls for conda and the second links to slurm[^slurm]
 
 ## References
 
