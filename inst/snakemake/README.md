@@ -15,7 +15,7 @@ snakemake -n
 snakemake -c all
 ```
 
-The document is knitted with `Rscript -e 'knitr::knit("README.Rmd")'` which also gives `output`/`MR.csv` (MR results) and `Obs.csv` (meta-analysis results based on observational studies).
+As above `miniconda` needs to be activated, then the document is knitted with `Rscript -e 'knitr::knit("README.Rmd")'` which also gives `output`/`MR.csv` (MR results) and `Obs.csv` (meta-analysis results based on observational studies).
 
 Some related operations are also ready.
 
