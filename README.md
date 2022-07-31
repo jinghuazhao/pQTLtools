@@ -42,13 +42,13 @@ A web-driven documentation is now available.
 
 ## A summary of datasets and functions
 
-This is listed in [INDEX](INDEX) and can be seen from R with
+This can be seen from R with
 
 ``` r
 library(help=pQTLtools)
 ```
 
-[1] \#\# Closely related functions in R/gap
+[1] **Closely related functions in R/gap**
 
 | Objects                     | Description                                            |
 |-----------------------------|--------------------------------------------------------|
