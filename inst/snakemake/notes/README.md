@@ -29,7 +29,7 @@ conda activate miniconda
 conda install -c bioconda fastqc
 ```
 
-# Calls for snakemake
+# snakemake
 
 ```bash
 snakemake --j4 --use-conda
