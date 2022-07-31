@@ -1,21 +1,20 @@
 # CVD1/INF1 protein-HF analysis
 
-Included here is data on the 26 overlapping proteins (no information on IL-4) from the Olink cvd1 & inf1 panels.
+It is possible `input/` can be built from rules defined in the workflow and currently it contains data on the 26 overlapping proteins (no information on IL-4) from the Olink cvd1 & inf1 panels.
 
-Steps to set up the environment are outlined in [notes](notes/README.md), while `MendelianRandomization` v0.6.0 is used together with a bug fix in `workflow/scripts/MR_functions.R`.
-The directory `input/` can potentially be built from rules defined in the workflow.
+Steps to set up the environment are outlined in [notes](notes/README.md), while `MendelianRandomization` v0.6.0 is used together with a bug fix in `workflow/r/MR_functions.R`.
 
 ```{bash all-in-one, message=FALSE, results="hide", warning=FALSE}
 module load miniconda3/4.5.1
 export mypath=${HOME}/COVID-19/miniconda37
 conda activate ${mypath}
-# A dry run of the workflow.
+# a dry run.
 snakemake -n
-# Analysis (no --use-conda option since all R packages are more up-to-date locally)
+# run (no --use-conda option as local packages are more up-to-date)
 snakemake -c all
 ```
 
-which gives `output`/`MR.csv` (MR results) and `Obs.csv` (observational results).
+which gives `output`/`MR.csv` (MR results) and `Obs.csv` (meta-analysis results based on observational studies).
 
 Some related operations are also ready.
 
@@ -27,6 +26,4 @@ dot -Tpdf > rulegraph.pdf
 report --report report.html
 ```
 
-This MarkDown document is obtained via `Rscript -e 'knitr::knit("README.Rmd")'`.
-
-![Supplemetary table 1](tables1.png)
+The markdown document (.md) is obtained via `Rscript -e 'knitr::knit("README.Rmd")'`.
