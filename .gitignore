@@ -1,5 +1,4 @@
 .git
-docs
 tests
 inst/snakemake/.snakemake
 inst/snakemake/output
