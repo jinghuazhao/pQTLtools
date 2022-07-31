@@ -12,7 +12,8 @@ functionality to check for replication across platforms and aspects of
 protein-related analysis such as pQTL-Mendelian Randomization via
 TwoSampleMR, linkage through UniProt IDs to other resources. A lot of
 functions are with
-[R/gap](https://github.com/jinghuazhao/R/tree/master/gap).
+[R/gap](https://github.com/jinghuazhao/R/tree/master/gap). Recently,
+Bioconductor analyses and snakemake workflow are also showcased.
 
 Note that some steps involving data from ongoing project have been
 simplified to use files in `~/pQTLtools/tests`which can be made public
