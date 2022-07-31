@@ -1,8 +1,8 @@
-# Allow for singularity.
-# Check for version at CRAN (https://cran.r-project.org/package=MendelianRandomization)
+# compatibility with singularity.
+# in line with CRAN (https://cran.r-project.org/package=MendelianRandomization)
 MR_package_ver: 0.6.0
 
-target_protein_MR:
+target_protein:
   - Beta-NGF
   - CASP-8
   - CCL20
