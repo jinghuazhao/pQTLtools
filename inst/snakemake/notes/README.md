@@ -1,6 +1,6 @@
 # snakemake
 
-[homepage](https://snakemake.github.io/), [documentation](https://snakemake.readthedocs.io/en/stable/), [GitHub](https://github.com/snakemake/snakemake)
+[GitHub](https://github.com/snakemake/snakemake) ([documentation](https://snakemake.github.io/), [stable](https://snakemake.readthedocs.io/en/stable/))
 
 ## Anaconda3
 
