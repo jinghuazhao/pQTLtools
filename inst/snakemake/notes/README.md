@@ -38,13 +38,7 @@ snakemake --j4 --use-conda
 snakemake --profile slurm
 ```
 
-# slurm
-
-```bash
-mkdir $HOME/.config/Snakemake/slurm
-cp slurm.yaml $HOME/.config/Snakemake/slurm
-touch $HOME/.config/Snakemake/slurm/slurm.yaml
-```
+The first line calls for conda and the second links fot slurm[^slurm]
 
 ## References
 
@@ -65,4 +59,11 @@ snakemake-with-R, [https://github.com/fritzbayer/snakemake-with-R](https://githu
     conda activate
     # the base environment on PATH permanently
     echo "conda activate" >> ~/.bashrc
+    ```
+[^slurm]: slurm
+
+    ```bash
+    mkdir $HOME/.config/Snakemake/slurm
+    cp slurm.yaml $HOME/.config/Snakemake/slurm
+    touch $HOME/.config/Snakemake/slurm/slurm.yaml
     ```
