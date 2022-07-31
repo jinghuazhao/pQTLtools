@@ -1,5 +1,5 @@
 # conda environments needed for the workflow should be stored here.
-name: conda-hf
+name: conda
 channels:
  - conda-forge
  - r
