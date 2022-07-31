@@ -42,40 +42,11 @@ A web-driven documentation is now available.
 
 ## A summary of datasets and functions
 
-| Objects                    | Description                                |
-|----------------------------|--------------------------------------------|
-| **Datasets**               |                                            |
-| biomaRt                    | Curated data from biomaRt                  |
-| caprion                    | Caprion panel                              |
-| hg19                       | Curated data from Bioconductor             |
-| hg19Tables                 | Curated data from UCSC genome browser      |
-| inf1                       | Olink/INF panel                            |
-| Olink\_NGS                 | Olink/NGS panels                           |
-| Olink\_qPCR                | Olink/qPCR panels                          |
-| SomaLogic160410            | SomaLogic panel                            |
-| SomaScanV4.1               | SomaScan v4.1 panel                        |
-| st4                        | ST4 of the INTERVAL SomaLogic paper        |
-| st6                        | ST6 of the INTERVAL SomaLogic paper        |
-| st18                       | ST18 of the INTERVAL SomaLogic paper       |
-| swath\_ms                  | SWATH-MS panel                             |
-| **eQTL/GWAS**              |                                            |
-| get.prop.below.LLOD        | Limit of detection analysis                |
-| import\_eQTLCatalogue      | Import eQTL Catalogue                      |
-| import\_OpenGWAS           | Import OpenGWAS                            |
-| make\_ExpressionSet        | A call to ExpressionSet class              |
-| novelty\_check             | Locus novelty check                        |
-| run\_coloc                 | Colocalisation analysis                    |
-| **MR analysis**            |                                            |
-| pqtlMR                     | Bidirectional pQTL-MR analysis             |
-| run\_TwoSampleMR           | A generic wrapper for TwoSampleMR analysis |
-| **PhenoScanner Utilities** |                                            |
-| genequeries                | phenoscanner genequeries in batches        |
-| regionqueries              | phenoscanner regionqueries in batches      |
-| snpqueries                 | phenoscanner snpqueries in batches         |
-| **UniProt API**            |                                            |
-| uniprot2ids                | UniProt ID to others                       |
+This is listed in [INDEX](INDEX) and can be seen from R with
 
-------------------------------------------------------------------------
+``` r
+library(help=pQTLtools)
+```
 
 ## Closely related functions in R/gap
 
