@@ -4,7 +4,7 @@ suppressMessages(library(MendelianRandomization))
 
 MR_package_ver <- snakemake@config[["MR_package_ver"]]
 
-install_MR <- function(ver)
+install_MR <- function()
 # Install MR package
 {
   if (MR_package_ver == "latest") install.packages("MendelianRandomization")
