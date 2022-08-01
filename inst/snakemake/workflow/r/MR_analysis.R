@@ -9,10 +9,9 @@ ld <- fread(snakemake@input[["ld"]], col.names = snplist) %>%
 protein <- snakemake@wildcards[["protein"]]
 
 df_res <- data_MR[Protein == protein] %>% 
-  group_by(r2_thresh, P_thresh, Protein) %>% 
-  nest() %>% 
-  mutate(MR = map(data, run_MR_all, ld)) %>%
-  select(-data) %>% 
-  unnest(cols = MR)
-
+          group_by(r2_thresh, P_thresh, Protein) %>% 
+          nest() %>% 
+          mutate(MR = map(data, run_MR_all, ld)) %>%
+          select(-data) %>% 
+          unnest(cols = MR)
 fwrite(df_res, snakemake@output[[1]])
