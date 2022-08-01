@@ -12,7 +12,7 @@ run_meta <- function(df, y_col = beta, se_col = se, method = "FE", ...,
   # return NULL if error (e.g. Division by zero)
   meta_res <- tryCatch(rma(yi = betas, sei = ses, method = method), error = function(e) NULL)
   df.res <- if (!is.null(meta_res)){
-    map(report, ~`[[`(meta_res,.) %>% as.numeric) %>% 
+    map(report, ~`[[`(meta_res,.) %>% as.numeric()) %>%
     set_names(report) %>%
     as_tibble()
   } else rep(NaN, length(report)) %>% as.list %>% set_names(report) %>% as_tibble()
