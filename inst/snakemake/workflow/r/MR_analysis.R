@@ -11,7 +11,7 @@ df_res <- fread(snakemake@input[["data_MR"]]) %>%
           filter(Protein == protein) %>%
           group_by(r2_thresh, P_thresh, Protein) %>% 
           nest() %>% 
-          mutate(MR = map(data, run_MR_all, ld)) %>%
+          mutate(MR = map(data, run_MR, ld)) %>%
           select(-data) %>% 
           unnest(cols = MR)
 fwrite(df_res, snakemake@output[[1]])

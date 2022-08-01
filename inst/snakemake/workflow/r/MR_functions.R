@@ -115,7 +115,7 @@ MR_PCA <- function(df_mr, ld, harmonise=FALSE, var_exp=0.99)
   }, error = function(e) error_df(df_mr))
 }
 
-run_MR_all <- function(df_mr, ld)
+run_MR <- function(df_mr, ld)
 {
   setDT(df_mr)
   if (nrow(df_mr) == 0) res <- blank_df()
@@ -125,7 +125,7 @@ run_MR_all <- function(df_mr, ld)
   } else {
     insSNPs <- df_mr$SNP
     ld_ins <- ld[insSNPs, insSNPs]
-    NaN_ins <- which(is.nan(ld_ins), T) %>% rownames
+    NaN_ins <- which(is.nan(ld_ins), TRUE) %>% rownames()
     if (!is.null(NaN_ins)){
       ins <- rownames(ld_ins) %>% .[which(!. %in% NaN_ins)]
       ld_ins <- ld_ins[ins, ins]
