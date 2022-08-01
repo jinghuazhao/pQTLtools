@@ -20,7 +20,7 @@ linking functions for cis/trans classification, 2D Manhattan plots,
 3D-plotly plots, forest plots among others availale from
 [R/gap](https://github.com/jinghuazhao/R/tree/master/gap)[^gap];
 2. query on genes, regions, and SNPs via PhenoScanner, adding
-functionality to check for replication across platforms; 4. downstream
+functionality to check for replication across platforms; 3. downstream
 analysis such as colocalization, pQTL-Mendelian Randomization via
 TwoSampleMR, linkage through UniProt IDs to other resources; 4. showcase
 of Bioconductor packages and snakemake workflow.
