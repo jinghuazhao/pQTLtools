@@ -5,7 +5,6 @@ suppressMessages(library(MendelianRandomization))
 MR_package_ver <- snakemake@config[["MR_package_ver"]]
 
 install_MR <- function()
-# Install MR package
 {
   if (MR_package_ver == "latest") install.packages("MendelianRandomization")
   else {
@@ -17,21 +16,18 @@ install_MR <- function()
 if (!require("MendelianRandomization") | packageVersion("MendelianRandomization") != MR_package_ver) install_MR()
 
 error_df <- function(df_mr)
-# Error results
   data.table(N_ins = nrow(df_mr),
              beta = NaN, SE = NaN,
              LCI = NaN, UCI = NaN,
              P_value = NaN)
 
 blank_df <- function()
-# Blank results
   data.table(N_ins = 0,
              beta = NA, SE = NA,
              LCI = NA, UCI = NA,
              P_value = NA, Method = NA)
 
 single.ins.MR <- function (df_mr, harmonise=FALSE)
-# Single instrument MR (ratio method)
 {
   if (nrow(df_mr) != 1) stop ("N instrument is not 1")
   if (harmonise) df_mr[, beta.y := ifelse(A1.x==A1.y, beta.y, -beta.y)]
@@ -50,7 +46,6 @@ single.ins.MR <- function (df_mr, harmonise=FALSE)
 }
 
 MR_IVW <- function (df_mr, ld=matrix(), harmonise=FALSE,  ...)
-# MR IVW w/ correlation using MendelianRandomization package
 {
   res <- tryCatch({
     if (harmonise) df_mr[, beta.y := ifelse(A1.x==A1.y, beta.y, -beta.y)]
@@ -71,7 +66,6 @@ MR_IVW <- function (df_mr, ld=matrix(), harmonise=FALSE,  ...)
 }
 
 MR_Egger <- function (df_mr, ld=matrix(), harmonise=FALSE, ...)
-# MR Egger
 {
   res <- tryCatch({
     if (harmonise) df_mr[, beta.y := ifelse(A1.x==A1.y, beta.y, -beta.y)]
@@ -95,7 +89,6 @@ MR_Egger <- function (df_mr, ld=matrix(), harmonise=FALSE, ...)
 }
 
 MR_PCA <- function(df_mr, ld, harmonise=FALSE, var_exp=0.99)
-# MR IVW-PCA method, var_exp = expected variance% explained by principal components
 {
   res <- tryCatch({
     if (harmonise) df_mr[, beta.y := ifelse(A1.x==A1.y, beta.y, -beta.y)]
@@ -123,7 +116,6 @@ MR_PCA <- function(df_mr, ld, harmonise=FALSE, var_exp=0.99)
 }
 
 run_MR_all <- function(df_mr, ld)
-# Wrapper to run all MR based on n_instrument
 {
   setDT(df_mr)
   if (nrow(df_mr) == 0) res <- blank_df()
