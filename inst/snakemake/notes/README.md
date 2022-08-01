@@ -38,7 +38,7 @@ snakemake --j4 --use-conda
 snakemake --profile slurm
 ```
 
-The first line calls for conda and the second links to slurm[^slurm]
+The first line calls for conda and the second links to slurm[^slurm].
 
 ## References
 
@@ -66,4 +66,30 @@ snakemake-with-R, [https://github.com/fritzbayer/snakemake-with-R](https://githu
     mkdir $HOME/.config/Snakemake/slurm
     cp slurm.yaml $HOME/.config/Snakemake/slurm
     touch $HOME/.config/Snakemake/slurm/slurm.yaml
+    ```
+
+    Additional information is available from here, [https://ucdavis-bioinformatics-training.github.io/2020-Genome_Assembly_Workshop/snakemake/snakemake_intro](https://ucdavis-bioinformatics-training.github.io/2020-Genome_Assembly_Workshop/snakemake/snakemake_intro). In particular, the parameters are specified through .json
+
+    ```json
+    {
+         "__default__" :
+        {
+            "time" : "0:20:00",
+            "nodes": 1,
+            "ntasks": 1,
+            "cpus" : 1,
+            "mem": 2000,
+            "output": "snakemake%A.out",
+            "error": "snakemake%A.err",
+            "reservation": "genome_workshop",
+            "partition": "production",
+            "account": "genome_workshop"
+        }
+    }
+    ```
+
+    and our call becomes
+
+    ```bash
+    snakemake -j 99 --cluster-config cluster.json --cluster "sbatch -t {cluster.time} --output {cluster.output} --error {cluster.error} --nodes {cluster.nodes} --ntasks {cluster.ntasks} --cpus-per-task {cluster.cpus} --mem {cluster.mem} --partition {cluster.partition} --account {cluster.account} --reservation {cluster.reservation}" --use-conda --latency-wait 50
     ```

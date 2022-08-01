@@ -24,5 +24,5 @@ snakemake --dag | \
 dot -Tpdf > dag.pdf
 snakemake --rulegraph | \
 dot -Tpdf > rulegraph.pdf
-report --report report.html
+snakemake --report report.html
 ```
