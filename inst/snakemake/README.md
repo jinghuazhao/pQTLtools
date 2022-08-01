@@ -8,14 +8,14 @@ Steps to set up the environment are outlined in [notes](notes/README.md), while 
 ```bash
 module load miniconda3/4.5.1
 export mypath=${HOME}/COVID-19/miniconda37
-conda activate ${mypath}
-# a dry run.
-snakemake -n
+source activate ${mypath}
+# a dry run (-n).
+snakemake --dry-run
 # run (no --use-conda option as local packages are more up-to-date)
 snakemake -c all
 ```
 
-As above `miniconda` needs to be activated, then the document is knitted with `Rscript -e 'knitr::knit("README.Rmd")'` which also gives `output`/`MR.csv` (MR results) and `Obs.csv` (meta-analysis results based on observational studies).
+The document is knitted with `Rscript -e 'knitr::knit("README.Rmd")'` which also gives `output`/`MR.csv` (MR results) and `Obs.csv` (meta-analysis results based on observational studies).
 
 Some related operations are also ready.
 

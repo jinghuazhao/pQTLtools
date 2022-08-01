@@ -2,6 +2,8 @@
 
 [GitHub](https://github.com/snakemake/snakemake) ([documentation](https://snakemake.github.io/), [stable](https://snakemake.readthedocs.io/en/stable/))
 
+Note that in the following `source` instead of `conda` is used to activate.
+
 ## Anaconda3
 
 ```bash
@@ -11,7 +13,7 @@ bash Anaconda3-2020.07-Linux-x86_64.sh
 conda create -n anaconda
 conda remove -n anaconda snakemake
 conda install -c bioconda snakemake
-conda activate snakemake
+source activate snakemake
 conda update -n anaconda snakemake
 ```
 
@@ -25,7 +27,7 @@ bash Miniconda3-latest-Linux-x86_64.sh
 conda config --add channels bioconda
 conda config --add channels conda-forge
 conda create -y --name miniconda python=3.7
-conda activate miniconda
+source activate miniconda
 conda install -c bioconda fastqc
 ```
 
@@ -68,7 +70,7 @@ snakemake-with-R, [https://github.com/fritzbayer/snakemake-with-R](https://githu
     touch $HOME/.config/Snakemake/slurm/slurm.yaml
     ```
 
-    Additional information is available from here, [https://ucdavis-bioinformatics-training.github.io/2020-Genome_Assembly_Workshop/snakemake/snakemake_intro](https://ucdavis-bioinformatics-training.github.io/2020-Genome_Assembly_Workshop/snakemake/snakemake_intro). In particular, the parameters are specified through .json
+    Additional information is available from here, [https://ucdavis-bioinformatics-training.github.io/2020-Genome_Assembly_Workshop/snakemake/snakemake_intro](https://ucdavis-bioinformatics-training.github.io/2020-Genome_Assembly_Workshop/snakemake/snakemake_intro). In particular, the parameters are specified through `cluster.json`
 
     ```json
     {
