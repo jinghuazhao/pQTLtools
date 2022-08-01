@@ -26,5 +26,4 @@ df_meta <- df_obs %>%
   mutate(RR = exp(beta),
          RR_LCI =  exp(beta - qnorm(0.975)*se),
          RR_UCI = exp(beta + qnorm(0.975)*se))
-
 write_csv(df_meta, snakemake@output[[1]])
