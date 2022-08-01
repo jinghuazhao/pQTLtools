@@ -1,5 +1,3 @@
-# MR analysis
-
 source("workflow/r/MR_functions.R")
 
 data_MR <- fread(snakemake@input[["data_MR"]])

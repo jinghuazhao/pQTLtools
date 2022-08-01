@@ -1,5 +1,3 @@
-# R scripts to run observational analysis
-
 suppressMessages(library(tidyverse))
 suppressMessages(library(metafor))
 
