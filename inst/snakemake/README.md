@@ -11,8 +11,8 @@ export mypath=${HOME}/COVID-19/miniconda37
 source activate ${mypath}
 # a dry run (-n).
 snakemake --dry-run
-# run (no --use-conda option as local packages are more up-to-date)
-snakemake -c all
+# run (-c all on all available cores without --use-conda option as local packages are more up-to-date)
+snakemake --cores all
 ```
 
 The document is knitted with `Rscript -e 'knitr::knit("README.Rmd")'` which also gives `output`/`MR.csv` (MR results) and `Obs.csv` (meta-analysis results based on observational studies).
