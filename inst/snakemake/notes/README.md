@@ -6,6 +6,8 @@ Note that in the following `source` instead of `conda` is used to activate.
 
 ## Anaconda3
 
+[https://www.anaconda.com/](https://www.anaconda.com/)
+
 ```bash
 wget https://repo.anaconda.com/archive/Anaconda3-2020.07-Linux-x86_64.sh
 bash Anaconda3-2020.07-Linux-x86_64.sh
@@ -20,6 +22,8 @@ conda update -n anaconda snakemake
 The remove option is useful when resolving compatibility issues.
 
 ## Miniconda3
+
+[https://docs.conda.io/en/latest/miniconda.html](https://docs.conda.io/en/latest/miniconda.html)
 
 ```bash
 wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
