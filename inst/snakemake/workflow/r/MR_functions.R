@@ -1,8 +1,8 @@
 # Helper function to run MR
 
-library(data.table)
-library(tidyverse)
-library(MendelianRandomization)
+suppressMessages(library(data.table))
+suppressMessages(library(tidyverse))
+suppressMessages(library(MendelianRandomization))
 
 # Install MR package
 MR_package_ver <- snakemake@config[["MR_package_ver"]]
