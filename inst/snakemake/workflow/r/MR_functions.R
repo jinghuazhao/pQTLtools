@@ -94,11 +94,12 @@ MR_PCA <- function(df_mr, ld, harmonise=FALSE, var_exp=0.99)
     if (harmonise) df_mr[, beta.y := ifelse(A1.x==A1.y, beta.y, -beta.y)]
     attach(df_mr)
     Phi <- (beta.x / se.y) %o% (beta.x / se.y) * ld
-    K = which(cumsum(prcomp(Phi, scale=FALSE)$sdev^2 / sum((prcomp(Phi, scale=FALSE)$sdev^2))) > var_exp)[1]
-    betaXG0 <- as.numeric(beta.x%*%prcomp(Phi, scale=FALSE)$rotation[,1:K])
-    betaYG0 <- as.numeric(beta.y%*%prcomp(Phi, scale=FALSE)$rotation[,1:K])
+    PCA <- prcomp(Phi, scale=FALSE)
+    K = which(cumsum(PCA$sdev^2 / sum((PCA$sdev^2))) > var_exp)[1]
+    betaXG0 <- as.numeric(beta.x%*%PCA$rotation[,1:K])
+    betaYG0 <- as.numeric(beta.y%*%PCA$rotation[,1:K])
     Omega <- se.y %o% se.y * ld
-    pcOmega <- t(prcomp(Phi, scale=FALSE)$rotation[,1:K])%*%Omega%*%prcomp(Phi, scale=FALSE)$rotation[,1:K]
+    pcOmega <- t(PCA$rotation[,1:K])%*%Omega%*%PCA$rotation[,1:K]
     beta_IVWcorrel.pc <- solve(t(betaXG0)%*%solve(pcOmega)%*%betaXG0)*t(betaXG0)%*%solve(pcOmega)%*%betaYG0
     beta_IVWcorrel.pc <- as.numeric(beta_IVWcorrel.pc)
     se_IVWcorrel.fixed.pc <- sqrt(solve(t(betaXG0)%*%solve(pcOmega)%*%betaXG0)) %>% as.numeric()
