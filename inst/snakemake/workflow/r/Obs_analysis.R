@@ -9,7 +9,6 @@ run_meta <- function(df, y_col = beta, se_col = se, method = "FE", ...,
   se_col <- enquo(se_col)
   betas <- pull(df, !!y_col)
   ses <- pull(df, !!se_col)
-  # return NULL if error (e.g. Division by zero)
   meta_res <- tryCatch(rma(yi = betas, sei = ses, method = method), error = function(e) NULL)
   df.res <- if (!is.null(meta_res)){
     map(report, ~`[[`(meta_res,.) %>% as.numeric()) %>%
