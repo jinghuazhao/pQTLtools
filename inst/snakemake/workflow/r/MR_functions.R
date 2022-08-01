@@ -100,9 +100,10 @@ MR_PCA <- function(df_mr, ld, harmonise=FALSE, var_exp=0.99)
     betaYG0 <- as.numeric(beta.y%*%PCA$rotation[,1:K])
     Omega <- se.y %o% se.y * ld
     pcOmega <- t(PCA$rotation[,1:K])%*%Omega%*%PCA$rotation[,1:K]
-    beta_IVWcorrel.pc <- solve(t(betaXG0)%*%solve(pcOmega)%*%betaXG0)*t(betaXG0)%*%solve(pcOmega)%*%betaYG0
+    ipcOmega <- solve(pcOmega)
+    beta_IVWcorrel.pc <- solve(t(betaXG0)%*%ipcOmega%*%betaXG0)*t(betaXG0)%*%ipcOmega%*%betaYG0
     beta_IVWcorrel.pc <- as.numeric(beta_IVWcorrel.pc)
-    se_IVWcorrel.fixed.pc <- sqrt(solve(t(betaXG0)%*%solve(pcOmega)%*%betaXG0)) %>% as.numeric()
+    se_IVWcorrel.fixed.pc <- sqrt(solve(t(betaXG0)%*%ipcOmega%*%betaXG0)) %>% as.numeric()
     Z_score <- beta_IVWcorrel.pc / se_IVWcorrel.fixed.pc
     P_value <- 2*pnorm(-abs(Z_score))
     LCI <- beta_IVWcorrel.pc - qnorm(0.975)*se_IVWcorrel.fixed.pc
