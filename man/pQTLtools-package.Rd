@@ -27,6 +27,7 @@ get.prop.below.LLOD  \tab   Limit of detection analysis\cr
 import_eQTLCatalogue \tab   Import eQTL Catalogue\cr
 import_OpenGWAS      \tab   Import OpenGWAS\cr
 make_ExpressionSet   \tab   A call to ExpressionSet class\cr
+novelty_check        \tab   Locus novelty check\cr
 run_coloc            \tab   Colocalisation analysis\cr
 \strong{MR analysis} \tab   \cr
 pqtlMR               \tab   Bidirectional pQTL-MR analysis\cr
