@@ -194,7 +194,7 @@ unlink("TNFSF10.tsv")
 unlink("cistrans.tsv")
 ```
 
-## eQTL Catalog for colocalisation analysis
+## eQTL Catalog for colocalization analysis
 
 See example associated with `import_eQTLCatalogue`. A related function is `import_OpenGWAS` used to fetch data from OpenGWAS. The cis-pQTLs and 1e+6 
 flanking regions were considered and data are actually fetched from files stored locally. Only the first sentinel was used, and the code is not executed.
@@ -307,11 +307,11 @@ if (nrow(coloc_df_imported)>0)
    ggtitle(with(sentinel,paste0(prot,"-",SNP," PP4 histogram"))) +
    xlab("PP4") + ylab("Frequency")
 }
-ktitle <- with(sentinel,paste0("Table 3. Colocalisation results for ",prot,"-",SNP))
+ktitle <- with(sentinel,paste0("Table 3. Colocalization results for ",prot,"-",SNP))
 kable(coloc_df_imported, caption=ktitle)
 ```
 
-The function `sumstats()` obtained meta-analysis summary statistics (in build 37 and therefore lifted over to build 38) to be used in colocalisation 
+The function `sumstats()` obtained meta-analysis summary statistics (in build 37 and therefore lifted over to build 38) to be used in colocalization 
 analysis.  The output are saved in the `.RDS` files. Note that `ftp_path` changes from eQTL Catalog to local files.
 
 ## pQTL-based Mendelian Randomisation (MR)
