@@ -1,14 +1,11 @@
 source("workflow/r/MR_functions.R")
 
-data_MR <- fread(snakemake@input[["data_MR"]])
-setnames(data_MR, c("rsID", "beta_Prot", "se_Prot", "beta_HF", "se_HF"),
-                  c("SNP", "beta.x", "se.x", "beta.y", "se.y"))
-
+data_MR <- fread(snakemake@input[["data_MR"]]) %>%
+           setnames(c("rsID", "beta_Prot", "se_Prot", "beta_HF", "se_HF"),
+                    c("SNP",  "beta.x",     "se.x",   "beta.y",  "se.y"))
 snplist <- read_lines(snakemake@input[["snplist"]])
-
 ld <- fread(snakemake@input[["ld"]], col.names = snplist) %>%
       as.matrix(rownames.value = snplist)
-
 protein <- snakemake@wildcards[["protein"]]
 
 df_res <- data_MR[Protein == protein] %>% 
