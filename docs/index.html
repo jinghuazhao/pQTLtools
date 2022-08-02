@@ -123,7 +123,7 @@
 <div class="section level2">
 <h2 id="a-protein-quantitative-trait-locus-toolkit">A protein Quantitative Trait Locus toolkit<a class="anchor" aria-label="anchor" href="#a-protein-quantitative-trait-locus-toolkit"></a>
 </h2>
-<p>It seeds collection of data and utilties for pQTL analysis. At this early stage, the repository contains 1. a number of protein panels, linking functions for cis/trans classification, 2D Manhattan plots, 3D-plotly plots, forest plots among others availale from <a href="https://github.com/jinghuazhao/R/tree/master/gap" class="external-link">R/gap</a>[1]; 2. query on genes, regions, and SNPs via PhenoScanner, adding functionality to check for replication across platforms; 3. downstream analysis such as colocalization, pQTL-Mendelian Randomization via TwoSampleMR, linkage through UniProt IDs to other resources; 4. showcase of Bioconductor packages and snakemake workflow.</p>
+<p>It seeds collection of data and utilties for pQTL analysis. At this early stage, the repository contains 1. a number of protein panels, linking functions for cis/trans classification, 2D Manhattan plots, 3D-plotly plots, forest plots among others availale from <a href="https://github.com/jinghuazhao/R/tree/master/gap" class="external-link">R/gap</a>; 2. query on genes, regions, and SNPs via PhenoScanner, adding functionality to check for replication across platforms; 3. downstream analysis such as colocalization, pQTL-Mendelian Randomization via TwoSampleMR, linkage through UniProt IDs to other resources; 4. showcase of Bioconductor packages and snakemake workflow.</p>
 <p>Aspects involving data from ongoing project have been simplified to use files in <code>~/pQTLtools/tests</code>which can be made public when appropriate.</p>
 </div>
 <div class="section level2">
@@ -152,95 +152,6 @@
 <p>This can be seen from R with</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span>help<span class="op">=</span><span class="va">pQTLtools</span><span class="op">)</span></span></code></pre></div>
-<p>[1] <strong>Closely related functions in R/gap</strong></p>
-<table class="table">
-<thead><tr class="header">
-<th>Objects</th>
-<th>Description</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td>METAL_forestplot</td>
-<td>Forest plots from metal analysis</td>
-</tr>
-<tr class="even">
-<td>cis.vs.trans.classification</td>
-<td>a cis/trans classifier</td>
-</tr>
-<tr class="odd">
-<td>circos.cis.vs.trans.plot</td>
-<td>circos plot of cis/trans classification</td>
-</tr>
-<tr class="even">
-<td>circos.mhtplot</td>
-<td>circos Manhattan plot with gene annotation</td>
-</tr>
-<tr class="odd">
-<td>circos.mhtplot2</td>
-<td>Another circos Manhattan plot</td>
-</tr>
-<tr class="even">
-<td>cs</td>
-<td>Credible set</td>
-</tr>
-<tr class="odd">
-<td>get_b_se</td>
-<td>Get b and se from AF, n, and z</td>
-</tr>
-<tr class="even">
-<td>get_pve_se</td>
-<td>Get pve and its standard error from n, z</td>
-</tr>
-<tr class="odd">
-<td>get_sdy</td>
-<td>Get sd(y) from AF, n, b, se</td>
-</tr>
-<tr class="even">
-<td>gsmr</td>
-<td>Mendelian randomization analysis</td>
-</tr>
-<tr class="odd">
-<td>invnormal</td>
-<td>Inverse normal transformation</td>
-</tr>
-<tr class="even">
-<td>log10p</td>
-<td>log10(p) for a standard normal deviate</td>
-</tr>
-<tr class="odd">
-<td>log10pvalue</td>
-<td>log10(p) for a P value including its scientific format</td>
-</tr>
-<tr class="even">
-<td>logp</td>
-<td>log(p) for a normal deviate</td>
-</tr>
-<tr class="odd">
-<td>mhtplot.trunc</td>
-<td>Truncated Manhattan plot</td>
-</tr>
-<tr class="even">
-<td>miamiplot2</td>
-<td>Miami plot</td>
-</tr>
-<tr class="odd">
-<td>qtlClassifier</td>
-<td>A QTL cis/trans classifier</td>
-</tr>
-<tr class="even">
-<td>qtl2dplot</td>
-<td>2D QTL plot</td>
-</tr>
-<tr class="odd">
-<td>qtl2dplotly</td>
-<td>2D QTL plotly</td>
-</tr>
-<tr class="even">
-<td>qtl3dplotly</td>
-<td>3D QTL plotly</td>
-</tr>
-</tbody>
-</table>
 </div>
 
   </main><aside class="col-md-3"><div class="links">
