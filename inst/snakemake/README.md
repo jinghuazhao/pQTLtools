@@ -8,11 +8,10 @@ Currently `input/` contains data on the 26 overlapping proteins (no information 
 
 The document is knitted with `Rscript -e 'knitr::knit("README.Rmd")'` running code chunks below to give `output`/`MR_HF.csv` (MR results) and `Obs_HF.csv` (meta-analysis results based on observational studies).
 
-
 ```bash
 module load miniconda3/4.5.1
-export csd3path=/rds/project/jmmh2/rds-jmmh2-projects/olink_proteomics/scallop/miniconda37
-source activate ${csd3path}
+export csd3path=/rds/project/jmmh2/rds-jmmh2-projects/olink_proteomics/scallop
+source activate ${csd3path}/miniconda37
 # a dry run (-n).
 snakemake --dry-run
 # run (-c all on all available cores without --use-conda option as local packages are more up-to-date)
