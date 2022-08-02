@@ -4,9 +4,9 @@
 [![Circulation](https://www.ahajournals.org/pb-assets/images/logos/circ-logo-1526571039097.svg)](https://www.ahajournals.org/doi/10.1161/CIRCULATIONAHA.121.056663)
 
 Steps to set up the environment are outlined in [notes](notes/README.md), while `MendelianRandomization` v0.6.0 is used together with a bug fix in `workflow/r/MR_functions.R`. The workflow has been heavily edited for simplicity and efficiency.
-Currently `input/` contains data on the 26 overlapping proteins (no information on IL-4) from the Olink cvd1 & inf1 panels and heart failures.
+Currently `input/` contains data on the 26 overlapping proteins (no information on IL-4) from the Olink cvd1 & inf1 panels and heart failures (potentially additional traits can be added on assuming data are formatted accordingly).
 
-The document is knitted with `Rscript -e 'knitr::knit("README.Rmd")'` running code chunks below to give `output`/`MR.csv` (MR results) and `Obs.csv` (meta-analysis results based on observational studies).
+The document is knitted with `Rscript -e 'knitr::knit("README.Rmd")'` running code chunks below to give `output`/`MR_HF.csv` (MR results) and `Obs_HF.csv` (meta-analysis results based on observational studies).
 
 
 ```bash
@@ -18,7 +18,7 @@ snakemake --dry-run
 # run (-c all on all available cores without --use-conda option as local packages are more up-to-date)
 snakemake --cores all
 # contrast with original output for OPG
-# grep OPG output/MR.csv | diff - <(grep OPG ${csd3path}/cvd1-hf/results/res_MR_aggregate.csv)
+# grep OPG output/MR_HF.csv | diff - <(grep OPG ${csd3path}/cvd1-hf/results/res_MR_aggregate.csv)
 ```
 
 Some ancillary work is also ready.

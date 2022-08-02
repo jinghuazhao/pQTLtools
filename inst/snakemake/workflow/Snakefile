@@ -3,13 +3,15 @@ report: "report/workflow.rst"
 configfile: "config.yaml"
 
 rule all:
-    input: ["output/Obs.csv", "output/MR.csv"]
+    input:
+        expand("output/Obs_{trait}.csv", trait = config["trait"]),
+        expand("output/MR_{trait}.csv", trait = config["trait"])
 
 rule obs_analysis:
     input:
         "input/Obs.csv"
     output:
-        "output/Obs.csv"
+        "output/Obs_{trait}.csv"
     conda:
         "envs/conda.yaml"
     script:
@@ -31,6 +33,6 @@ rule aggregate_MR:
     input:
         expand("output/MR/{protein}_{trait}.csv", protein = config["target_protein"], trait = config["trait"])
     output:
-        "output/MR.csv"
+        "output/MR_{trait}.csv"
     shell:
         "awk 'NR == FNR {{print; next}} FNR > 1' {input} > {output}"
