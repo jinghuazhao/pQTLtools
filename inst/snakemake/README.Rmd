@@ -10,8 +10,8 @@ The document is knitted with `Rscript -e 'knitr::knit("README.Rmd")'` running co
 
 ```{bash snakemake, message=FALSE, results="hide", warning=FALSE}
 module load miniconda3/4.5.1
-export mypath=${HOME}/COVID-19/miniconda37
-source activate ${mypath}
+export csd3path=/rds/project/jmmh2/rds-jmmh2-projects/olink_proteomics/scallop/miniconda37
+source activate ${csd3path}
 # a dry run (-n).
 snakemake --dry-run
 # run (-c all on all available cores without --use-conda option as local packages are more up-to-date)
