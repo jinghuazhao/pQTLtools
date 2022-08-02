@@ -35,4 +35,4 @@ rule aggregate_MR:
     output:
         "output/MR_{trait}.csv"
     shell:
-        "awk 'NR == FNR {{print; next}} FNR > 1' {input} > {output}"
+        "awk 'NR == FNR {{print; next}} FNR > 1' $(echo {input} | tr ' ' '\n' | grep _{wildcards.trait}.csv | tr '\n' ' ') > {output}"
