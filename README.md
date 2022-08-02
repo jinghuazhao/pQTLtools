@@ -46,3 +46,10 @@ This can be seen from R with
 ``` r
 library(help=pQTLtools)
 ```
+
+or
+
+``` r
+library(pQTLtools)
+?pQTLtools
+```
