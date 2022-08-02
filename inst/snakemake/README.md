@@ -24,9 +24,7 @@ snakemake --cores all
 Some ancillary work is also ready.
 
 ```bash
-snakemake --dag | \
-dot -Tpdf > dag.pdf
-snakemake --rulegraph | \
-dot -Tpdf > rulegraph.pdf
+snakemake --dag | dot -Tpdf > dag.pdf
+snakemake --rulegraph | dot -Tpdf > rulegraph.pdf
 snakemake --report report.html
 ```
