@@ -2,7 +2,7 @@ source("workflow/r/MR_functions.R")
 
 protein <- snakemake@wildcards[["protein"]]
 trait <- snakemake@wildcards[["trait"]]
-cat(protein,trait,"\n")
+
 snplist <- read_lines(snakemake@input[["snplist"]])
 ld <- fread(snakemake@input[["ld"]], col.names = snplist) %>%
       as.matrix(rownames.value = snplist)
