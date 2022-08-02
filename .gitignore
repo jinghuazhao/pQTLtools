@@ -2,4 +2,3 @@
 .git
 tests
 inst/snakemake/.snakemake
-inst/snakemake/output
