@@ -25,7 +25,7 @@
   with cis/trans-classification/ideogram/mhtplot2d examples
 * Suggest GenomicRanges & IRanges to handle >1MB region in regionqueries with wait= option
 * Replace ChangeLog with NEWS.md and generate vignette/articles with pkgdown.
-* Import dplyr, ggplot2
+* Import dplyr, gap, ggplot2
 * Invoke Roxygen2 for documentation
 * Import from lmm as template, use save(,compress='xz')
 * First release
