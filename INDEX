@@ -38,7 +38,7 @@ snpqueries              phenoscanner snpqueries in batches
 
 uniprot2ids             UniProt ID to others
 
-*functions in R/gap*
+*Functions in R/gap*
 
 METAL_forestplot        Forest plots from metal analysis
 cis.vs.trans.classification  a cis/trans classifier
