@@ -1,22 +1,22 @@
 #' A summary of datasets and functions
 #'
 #' \tabular{ll}{
-#' Objects             \tab    Description\cr
-#' \strong{Datasets}   \tab    \cr
-#' biomaRt             \tab    Curated data from biomaRt\cr
-#' caprion             \tab    Caprion panel\cr
-#' hg19                \tab    Curated data from Bioconductor\cr
-#' hg19Tables          \tab    Curated data from UCSC genome browser\cr
-#' inf1                \tab    Olink/INF panel\cr
-#' Olink_NGS           \tab    Olink/NGS panels\cr
-#' Olink_qPCR          \tab    Olink/qPCR panels\cr
-#' SomaLogic160410     \tab    SomaLogic panel\cr
-#' SomaScanV4.1        \tab    SomaScan v4.1 panel\cr
-#' st4                 \tab    ST4 of the INTERVAL SomaLogic paper\cr
-#' st6                 \tab    ST6 of the INTERVAL SomaLogic paper\cr
-#' st18                \tab    ST18 of the INTERVAL SomaLogic paper\cr
-#' swath_ms            \tab    SWATH-MS panel\cr
-#' \strong{eQTL/GWAS}  \tab    \cr
+#' Objects              \tab   Description\cr
+#' \strong{Datasets}    \cr
+#' biomaRt              \tab   Curated data from biomaRt\cr
+#' caprion              \tab   Caprion panel\cr
+#' hg19                 \tab   Curated data from Bioconductor\cr
+#' hg19Tables           \tab   Curated data from UCSC genome browser\cr
+#' inf1                 \tab   Olink/INF panel\cr
+#' Olink_NGS            \tab   Olink/NGS panels\cr
+#' Olink_qPCR           \tab   Olink/qPCR panels\cr
+#' SomaLogic160410      \tab   SomaLogic panel\cr
+#' SomaScanV4.1         \tab   SomaScan v4.1 panel\cr
+#' st4                  \tab   ST4 of the INTERVAL SomaLogic paper\cr
+#' st6                  \tab   ST6 of the INTERVAL SomaLogic paper\cr
+#' st18                 \tab   ST18 of the INTERVAL SomaLogic paper\cr
+#' swath_ms             \tab   SWATH-MS panel\cr
+#' \strong{eQTL/GWAS}   \cr
 #' get.prop.below.LLOD  \tab   Limit of detection analysis\cr
 #' import_eQTLCatalogue \tab   Import eQTL Catalogue\cr
 #' import_OpenGWAS      \tab   Import OpenGWAS\cr
@@ -26,12 +26,33 @@
 #' \strong{MR analysis} \tab   \cr
 #' pqtlMR               \tab   Bidirectional pQTL-MR analysis\cr
 #' run_TwoSampleMR      \tab   A generic wrapper for TwoSampleMR analysis\cr
-#' \strong{PhenoScanner Utilities} \tab \cr
+#' \strong{PhenoScanner Utilities} \cr
 #' genequeries          \tab   phenoscanner genequeries in batches\cr
 #' regionqueries        \tab   phenoscanner regionqueries in batches\cr
 #' snpqueries           \tab   phenoscanner snpqueries in batches\cr
 #' \strong{UniProt API} \tab   \cr
 #' uniprot2ids          \tab   UniProt ID to others\cr
+#' \strong{Functions in R/gap} \cr
+#' METAL_forestplot     \tab   Forest plots from metal analysis\cr
+#' cis.vs.trans.classification \tab a cis/trans classifier\cr
+#' circos.cis.vs.trans.plot \tab circos plot of cis/trans classification\cr
+#' circos.mhtplot      \tab    circos Manhattan plot with gene annotation\cr
+#' circos.mhtplot2     \tab    Another circos Manhattan plot\cr
+#' cs                  \tab    Credible set\cr
+#' get_b_se            \tab    Get b and se from AF, n, and z\cr
+#' get_pve_se          \tab    Get pve and its standard error from n, z\cr
+#' get_sdy             \tab    Get sd(y) from AF, n, b, se\cr
+#' gsmr                \tab    Mendelian randomization analysis\cr
+#' invnormal           \tab    Inverse normal transformation\cr
+#' log10p              \tab    log10(p) for a standard normal deviate\cr
+#' log10pvalue         \tab    log10(p) for a P value including its scientific format\cr
+#' logp                \tab    log(p) for a normal deviate\cr
+#' mhtplot.trunc       \tab    Truncated Manhattan plot\cr
+#' miamiplot2          \tab    Miami plot\cr
+#' qtlClassifier       \tab    A QTL cis/trans classifier\cr
+#' qtl2dplot           \tab    2D QTL plot\cr
+#' qtl2dplotly         \tab    2D QTL plotly\cr
+#' qtl3dplotly         \tab    3D QTL plotly
 #' }
 #'
 #' Some generic description for the datasets are as follows.
