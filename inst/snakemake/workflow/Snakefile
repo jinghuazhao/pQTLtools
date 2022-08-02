@@ -9,7 +9,7 @@ rule all:
 
 rule obs_analysis:
     input:
-        "input/Obs.csv"
+        "input/Obs_{trait}.csv"
     output:
         "output/Obs_{trait}.csv"
     conda:

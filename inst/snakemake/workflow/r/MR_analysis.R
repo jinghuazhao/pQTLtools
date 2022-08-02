@@ -2,13 +2,13 @@ source("workflow/r/MR_functions.R")
 
 protein <- snakemake@wildcards[["protein"]]
 trait <- snakemake@wildcards[["trait"]]
+cat(protein,trait,"\n")
 snplist <- read_lines(snakemake@input[["snplist"]])
 ld <- fread(snakemake@input[["ld"]], col.names = snplist) %>%
       as.matrix(rownames.value = snplist)
 
 df_res <- fread(snakemake@input[["data_MR"]]) %>%
-          setnames(c("rsID", "beta_Prot", "se_Prot", paste0("beta_",trait), paste0("se_",trait)),
-                   c("SNP",  "beta.x",    "se.x",    "beta.y",  "se.y")) %>%
+          rename("SNP"="rsID", "beta.x"="beta_Prot", "se.x"="se_Prot", "beta.y"=paste0("beta_",trait),"se.y"= paste0("se_",trait)) %>%
           filter(Protein == protein) %>%
           group_by(r2_thresh, P_thresh, Protein) %>% 
           nest() %>% 
