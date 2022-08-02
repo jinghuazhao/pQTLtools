@@ -16,6 +16,8 @@ source activate ${csd3path}
 snakemake --dry-run
 # run (-c all on all available cores without --use-conda option as local packages are more up-to-date)
 snakemake --cores all
+# contrast with original output for OPG
+# grep OPG output/MR.csv | diff - <(grep OPG ~/COVID-19/cvd1-hf/results/res_MR_aggregate.csv)
 ```
 
 Some ancillary work is also ready.

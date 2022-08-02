@@ -8,6 +8,7 @@ Currently `input/` contains data on the 26 overlapping proteins (no information 
 
 The document is knitted with `Rscript -e 'knitr::knit("README.Rmd")'` running code chunks below to give `output`/`MR.csv` (MR results) and `Obs.csv` (meta-analysis results based on observational studies).
 
+
 ```bash
 module load miniconda3/4.5.1
 export csd3path=/rds/project/jmmh2/rds-jmmh2-projects/olink_proteomics/scallop/miniconda37
@@ -16,6 +17,8 @@ source activate ${csd3path}
 snakemake --dry-run
 # run (-c all on all available cores without --use-conda option as local packages are more up-to-date)
 snakemake --cores all
+# contrast with original output for OPG
+# grep OPG output/MR.csv | diff - <(grep OPG ~/COVID-19/cvd1-hf/results/res_MR_aggregate.csv)
 ```
 
 Some ancillary work is also ready.
