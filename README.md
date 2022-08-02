@@ -7,9 +7,9 @@ It seeds collection of data and utilties for pQTL analysis. At this
 early stage, the repository contains 1. a number of protein panels,
 linking functions for cis/trans classification, 2D Manhattan plots,
 3D-plotly plots, forest plots among others availale from
-[R/gap](https://github.com/jinghuazhao/R/tree/master/gap)[1]; 2. query
-on genes, regions, and SNPs via PhenoScanner, adding functionality to
-check for replication across platforms; 3. downstream analysis such as
+[R/gap](https://github.com/jinghuazhao/R/tree/master/gap); 2. query on
+genes, regions, and SNPs via PhenoScanner, adding functionality to check
+for replication across platforms; 3. downstream analysis such as
 colocalization, pQTL-Mendelian Randomization via TwoSampleMR, linkage
 through UniProt IDs to other resources; 4. showcase of Bioconductor
 packages and snakemake workflow.
@@ -46,28 +46,3 @@ This can be seen from R with
 ``` r
 library(help=pQTLtools)
 ```
-
-[1] **Closely related functions in R/gap**
-
-| Objects                     | Description                                            |
-|-----------------------------|--------------------------------------------------------|
-| METAL\_forestplot           | Forest plots from metal analysis                       |
-| cis.vs.trans.classification | a cis/trans classifier                                 |
-| circos.cis.vs.trans.plot    | circos plot of cis/trans classification                |
-| circos.mhtplot              | circos Manhattan plot with gene annotation             |
-| circos.mhtplot2             | Another circos Manhattan plot                          |
-| cs                          | Credible set                                           |
-| get\_b\_se                  | Get b and se from AF, n, and z                         |
-| get\_pve\_se                | Get pve and its standard error from n, z               |
-| get\_sdy                    | Get sd(y) from AF, n, b, se                            |
-| gsmr                        | Mendelian randomization analysis                       |
-| invnormal                   | Inverse normal transformation                          |
-| log10p                      | log10(p) for a standard normal deviate                 |
-| log10pvalue                 | log10(p) for a P value including its scientific format |
-| logp                        | log(p) for a normal deviate                            |
-| mhtplot.trunc               | Truncated Manhattan plot                               |
-| miamiplot2                  | Miami plot                                             |
-| qtlClassifier               | A QTL cis/trans classifier                             |
-| qtl2dplot                   | 2D QTL plot                                            |
-| qtl2dplotly                 | 2D QTL plotly                                          |
-| qtl3dplotly                 | 3D QTL plotly                                          |
