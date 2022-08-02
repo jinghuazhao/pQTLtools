@@ -23,13 +23,13 @@ rule MR_analysis:
     conda:
         "envs/conda.yaml"
     output:
-        "output/MR/{protein}.csv"
+        "output/MR/{protein}_{trait}.csv"
     script:
         "r/MR_analysis.R"
 
 rule aggregate_MR:
     input:
-        expand("output/MR/{protein}.csv", protein = config["target_protein"])
+        expand("output/MR/{protein}_{trait}.csv", protein = config["target_protein"], trait = config["trait"])
     output:
         "output/MR.csv"
     shell:

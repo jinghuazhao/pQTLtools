@@ -1,0 +1,3 @@
+WorkflowError in line 3 of /home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile:
+Workflow defines configfile config.yaml but it is not present or accessible.
+  File "/home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile", line 3, in <module>

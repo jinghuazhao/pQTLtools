@@ -27,3 +27,5 @@ target_protein:
   - TRAIL
   - TRANCE
   - VEGF-A
+trait:
+  - HF
