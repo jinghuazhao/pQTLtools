@@ -20,7 +20,7 @@ snakemake --cores
 # grep OPG output/MR_HF.csv | diff - <(grep OPG ${csd3path}/cvd1-hf/results/res_MR_aggregate.csv)
 ```
 
-Some ancillary work is also ready.
+Some ancillary work is also in place.
 
 ```{bash graph}
 snakemake --dag | dot -Tpdf > dag.pdf
