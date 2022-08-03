@@ -2,3 +2,4 @@
 .git
 tests
 inst/snakemake/.snakemake
+inst/snakemake/workflow/.snakemake
