@@ -1,10 +1,10 @@
 source("workflow/r/MR_functions.R")
 
 protein <- snakemake@wildcards[["protein"]]
-trait <- snakemake@wildcards[["trait"]]
 snplist <- read_lines(snakemake@input[["snplist"]])
 ld <- fread(snakemake@input[["ld"]], col.names = snplist) %>%
       as.matrix(rownames.value = snplist)
+trait <- snakemake@wildcards[["trait"]]
 
 df_res <- fread(snakemake@input[["data_MR"]]) %>%
           rename("SNP"="rsID", "beta.x"="beta_Prot", "se.x"="se_Prot", "beta.y"=paste0("beta_",trait),"se.y"= paste0("se_",trait)) %>%
