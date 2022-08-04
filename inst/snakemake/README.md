@@ -13,23 +13,13 @@ The document is knitted with `Rscript -e 'knitr::knit("README.Rmd")'` running co
 module load miniconda3/4.5.1
 export csd3path=/rds/project/jmmh2/rds-jmmh2-projects/olink_proteomics/scallop
 source activate ${csd3path}/miniconda37
-# a dry run (-n).
+# 1. a dry run (-n).
 snakemake --dry-run
-# run (-c on [all] available cores without --use-conda option as local packages are more up-to-date)
+# 2. run (-c on [all] available cores without --use-conda option as local packages are more up-to-date)
 snakemake --cores
-# contrast with original output for OPG
+# 3. contrast with original output for OPG
 # grep OPG output/MR_HF.csv | diff - <(grep OPG ${csd3path}/cvd1-hf/results/res_MR_aggregate.csv)
-```
-
-Some ancillary work is also in place.
-
-
-```bash
+# 4. Some ancillary work in place.
 snakemake --dag | dot -Tpdf > dag.pdf
 snakemake --rulegraph | dot -Tpdf > rulegraph.pdf
-```
-
-```
-## bash: snakemake: command not found
-## bash: line 1: snakemake: command not found
 ```

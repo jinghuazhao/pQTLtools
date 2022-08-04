@@ -8,21 +8,17 @@ Currently `input/` contains data on CD40, OPG and heart failures -- to imitate a
 
 The document is knitted with `Rscript -e 'knitr::knit("README.Rmd")'` running code chunks below to give `output`/`MR_HF.csv` (MR results) and `Obs_HF.csv` (meta-analysis results based on observational studies) and similarly for HF2.
 
-```{bash snakemake, message=FALSE, results="hide", warning=FALSE}
+```{bash snakemake, message=FALSE, results="hide", warning=FALSE, fig.show='hide'}
 module load miniconda3/4.5.1
 export csd3path=/rds/project/jmmh2/rds-jmmh2-projects/olink_proteomics/scallop
 source activate ${csd3path}/miniconda37
-# a dry run (-n).
+# 1. a dry run (-n).
 snakemake --dry-run
-# run (-c on [all] available cores without --use-conda option as local packages are more up-to-date)
+# 2. run (-c on [all] available cores without --use-conda option as local packages are more up-to-date)
 snakemake --cores
-# contrast with original output for OPG
+# 3. contrast with original output for OPG
 # grep OPG output/MR_HF.csv | diff - <(grep OPG ${csd3path}/cvd1-hf/results/res_MR_aggregate.csv)
-```
-
-Some ancillary work is also in place.
-
-```{bash graph}
+# 4. Some ancillary work in place.
 snakemake --dag | dot -Tpdf > dag.pdf
 snakemake --rulegraph | dot -Tpdf > rulegraph.pdf
 ```
