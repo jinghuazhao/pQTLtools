@@ -20,6 +20,10 @@ snakemake --cores
 # 3. contrast with original output for OPG
 # grep OPG output/MR_HF.csv | diff - <(grep OPG ${csd3path}/cvd1-hf/results/res_MR_aggregate.csv)
 # 4. Some ancillary work in place.
-snakemake --dag | dot -Tpdf > dag.pdf
-snakemake --rulegraph | dot -Tpdf > rulegraph.pdf
+snakemake --dag | dot -Tsvg > output/dag.svg
+snakemake --rulegraph | dot -Tsvg > output/rulegraph.svg
 ```
+
+![dag](output/dag.svg)
+
+![rulegraph](output/rulegraph.svg)
