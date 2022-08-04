@@ -8,6 +8,7 @@ Currently `input/` contains data on CD40, OPG and heart failures -- to imitate a
 
 The document is knitted with `Rscript -e 'knitr::knit("README.Rmd")'` running code chunks below to give `output`/`MR_HF.csv` (MR results) and `Obs_HF.csv` (meta-analysis results based on observational studies) and similarly for HF2.
 
+
 ```bash
 module load miniconda3/4.5.1
 export csd3path=/rds/project/jmmh2/rds-jmmh2-projects/olink_proteomics/scallop
@@ -22,7 +23,13 @@ snakemake --cores
 
 Some ancillary work is also in place.
 
+
 ```bash
 snakemake --dag | dot -Tpdf > dag.pdf
 snakemake --rulegraph | dot -Tpdf > rulegraph.pdf
+```
+
+```
+## bash: snakemake: command not found
+## bash: line 1: snakemake: command not found
 ```
