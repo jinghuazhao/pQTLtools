@@ -11,7 +11,7 @@ home:
     components:
       support:
         title: Support
-        html: "<img src='https://jinghuazhao.github.io/pQTLtools/reference/figures/ceu.png' width=5"
+        html: "<img src='https://jinghuazhao.github.io/pQTLtools/reference/figures/ceu.png' width=5>"
         text: "[CEU](https://www.phpc.cam.ac.uk/ceu/)"
 
 authors:
