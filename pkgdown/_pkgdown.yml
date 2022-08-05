@@ -11,7 +11,7 @@ home:
     components:
       support:
         title: Support
-        text: "[<img src='https://jinghuazhao.github.io/pQTLtools/reference/figures/ceu.svg' width='160'>](https://www.phpc.cam.ac.uk/ceu/)"
+        text: "[<img src='https://jinghuazhao.github.io/pQTLtools/reference/figures/ceu.svg' width='120'>](https://www.phpc.cam.ac.uk/ceu/)"
 
 authors:
   Jing Hua Zhao:
