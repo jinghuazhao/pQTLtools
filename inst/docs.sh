@@ -35,8 +35,10 @@ if [ -f vignettes/fig3d.html ]; then
 fi
 
 du -h --exclude .git --exclude docs --exclude inst/snakemake/.snakemake
+git add -f docs
+git commit -m "docs"
 for f in .github .gitignore .Rbuildignore .Rinstignore .travis.yml \
-         data/ DESCRIPTION INDEX docs/ inst/ LICENSE LICENSE.md man/ \
+         data/ DESCRIPTION INDEX inst/ LICENSE LICENSE.md man/ \
          NAMESPACE NEWS.md pkgdown/ R/ README.* vignettes/
 do
   echo adding ${f}
