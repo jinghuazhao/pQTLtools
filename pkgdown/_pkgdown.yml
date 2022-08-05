@@ -22,7 +22,7 @@ authors:
     text: "Crafted by"
   sidebar:
     roles: [aut, ctb]
-    before: "Proudly brought to you by:"
+    before: ""
     after: "Welcome!"
 
 url: https://jinghuazhao.github.io/pQTLtools/
