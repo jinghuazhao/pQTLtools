@@ -1,0 +1,13 @@
+pandoc: '2.13'
+pkgdown: 2.0.6
+pkgdown_sha: ~
+articles:
+  SCALLOP-INF: SCALLOP-INF.html
+  bioconductor: bioconductor.html
+  es: es.html
+  pQTLtools: pQTLtools.html
+last_built: 2022-08-01T16:39Z
+urls:
+  reference: https://jinghuazhao.github.io/pQTLtools/reference
+  article: https://jinghuazhao.github.io/pQTLtools/articles
+
