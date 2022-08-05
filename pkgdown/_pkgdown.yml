@@ -11,7 +11,7 @@ home:
     components:
       support:
         title: Support
-        text: "[![](https://jinghuazhao.github.io/pQTLtools/reference/figures/ceu.svg)CEU](https://www.phpc.cam.ac.uk/ceu/)"
+        text: "[![](https://jinghuazhao.github.io/pQTLtools/reference/figures/ceu.svg)Cardiovascular Epidemiology Unit](https://www.phpc.cam.ac.uk/ceu/)"
 
 authors:
   Jing Hua Zhao:
