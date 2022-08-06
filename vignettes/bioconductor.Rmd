@@ -101,6 +101,8 @@ res <- results(dds2)
 knitr::kable(head(as.data.frame(res)))
 ```
 
+See the package in action from a snakemake workflow @johannes_koster_2021_5245549.
+
 ## Gene co-expression and network analysis
 
 A simple network is furnished with the `GeneNet` documentation example,
