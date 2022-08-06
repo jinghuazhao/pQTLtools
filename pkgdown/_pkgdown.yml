@@ -84,6 +84,8 @@ navbar:
         href: https://www.myendnoteweb.com/
       - text: PubMed
         href: https://pubmed.ncbi.nlm.nih.gov/
+      - text: snakemake-workflow-catalogue
+        href: https://github.com/snakemake-workflows/
       - text: STRING
         href: https://string-db.org/
       - text: The Human Protein Atlas
