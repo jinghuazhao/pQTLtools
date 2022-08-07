@@ -6,7 +6,7 @@
 Steps to set up the environment are outlined in [notes](notes/README.md), while `MendelianRandomization` v0.6.0 is used together with a bug fix in `workflow/r/MR_functions.R`. The workflow has been heavily edited for simplicity, efficiency and generality.
 Currently `input/` contains data on CD40, OPG and heart failures -- to imitate additional trait, HF statistics are duplicated as HF2.
 
-The document is knitted with `Rscript -e 'knitr::knit("README.Rmd")'` running code chunks below to give `output`/`MR_HF.csv` (MR results) and `Obs_HF.csv` (meta-analysis results based on observational studies) and similarly for HF2.
+The document is knitted from `Rscript -e 'knitr::knit("README.Rmd")'` running code chunks below to give `output`/`MR_HF.csv` (MR results) and `Obs_HF.csv` (meta-analysis results based on observational studies) and similarly for HF2.
 
 
 ```bash
