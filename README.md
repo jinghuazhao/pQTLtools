@@ -1,6 +1,8 @@
 
 <img src="man/figures/logo.svg" align="right" alt="" width="120" />
 
+[![R-CMD-check](https://github.com/jinghuazhao/pQTLtools/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jinghuazhao/pQTLtools/actions/workflows/R-CMD-check.yaml)
+
 ## A protein Quantitative Trait Locus toolkit
 
 It seeds collection of data and utilties for pQTL analysis. At this
