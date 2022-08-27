@@ -24,6 +24,7 @@ authors:
     roles: [aut, ctb]
     before: ""
     after: "Welcome!"
+    html: "[![R-CMD-check](https://github.com/jinghuazhao/pQTLtools/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jinghuazhao/pQTLtools/actions/workflows/R-CMD-check.yaml)"
 
 url: https://jinghuazhao.github.io/pQTLtools/
 template:
