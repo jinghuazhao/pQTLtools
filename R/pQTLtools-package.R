@@ -61,6 +61,7 @@
 #' logp                \tab    log(p) for a normal deviate\cr
 #' mhtplot.trunc       \tab    Truncated Manhattan plot\cr
 #' miamiplot2          \tab    Miami plot\cr
+#' mr_forestplot       \tab    Mendelian Randomization forest plot\cr
 #' qtlClassifier       \tab    A QTL cis/trans classifier\cr
 #' qtl2dplot           \tab    2D QTL plot\cr
 #' qtl2dplotly         \tab    2D QTL plotly\cr
