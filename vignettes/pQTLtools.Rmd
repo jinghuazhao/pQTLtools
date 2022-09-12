@@ -423,11 +423,11 @@ tnfb <- as.data.frame(scan(file=textConnection(tnfb),what=list("",0,0))) %>%
 kable(tnfb,caption="Table 7. GSMR results for TNFB and immune-mediated traits")
 ```
 
-```{r mr_forestplot, fig.cap="Forest plots based on MR results on TNFB", fig.align="left", fig.height=8, fig.width=12, result="hide"}
+```{r mr_forestplot, fig.cap="Forest plots based on MR results on TNFB", fig.align="left", fig.height=8, fig.width=12, results="hide"}
 
 mr_forestplot(tnfb,colgap.forest.left="0.05cm", fontsize=14,
               leftcols=c("studlab"), leftlabs=c("Outcome"),
-              plotwidth="3inch", sm="OR", sortvar=tnfb[["Effect"]],
+              plotwidth="5inch", sm="OR", sortvar=tnfb[["Effect"]],
               rightcols=c("effect","ci","pval"), rightlabs=c("OR","95%CI","GSMR P"),
               digits=3, digits.pval=2, scientific.pval=TRUE,
               common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE,
