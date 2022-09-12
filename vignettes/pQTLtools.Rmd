@@ -418,8 +418,8 @@ tnfb <- '
 '
 
 tnfb <- as.data.frame(scan(file=textConnection(tnfb),what=list("",0,0))) %>%
-        setNames(c("outcome","Effect","StdErr")) %>%
-        mutate(outcome=gsub("\\b(^[a-z])","\\U\\1",outcome,perl=TRUE))
+        setNames(c("Outcome","Effect","StdErr")) %>%
+        mutate(Outcome=gsub("\\b(^[a-z])","\\U\\1",Outcome,perl=TRUE))
 kable(tnfb,caption="Table 7. GSMR results for TNFB and immune-mediated traits")
 ```
 
