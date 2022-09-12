@@ -420,11 +420,11 @@ tnfb <- '
 tnfb <- as.data.frame(scan(file=textConnection(tnfb),what=list("",0,0))) %>%
         setNames(c("outcome","Effect","StdErr")) %>%
         mutate(outcome=gsub("\\b(^[a-z])","\\U\\1",outcome,perl=TRUE))
+kable(tnfb,caption="Table 7. GSMR results for TNFB and immune-mediated traits")
 ```
 
-```{r mr_forestplot, fig.cap="Forest plots based on MR results on TNFB", fig.align="left", fig.height=8, fig.width=12}
+```{r mr_forestplot, fig.cap="Forest plots based on MR results on TNFB", fig.align="left", fig.height=8, fig.width=12, result="hide"}
 
-kable(tnfb,caption="Table 7. GSMR results for TNFB and immune-mediated traits")
 mr_forestplot(tnfb,colgap.forest.left="0.05cm", fontsize=14,
               leftcols=c("studlab"), leftlabs=c("Outcome"),
               plotwidth="3inch", sm="OR", sortvar=tnfb[["Effect"]],
