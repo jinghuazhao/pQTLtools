@@ -4,23 +4,30 @@
 \alias{import_OpenGWAS}
 \title{Import OpenGWAS}
 \usage{
-import_OpenGWAS(opengwas_id, region, verbose = TRUE)
+import_OpenGWAS(
+  opengwas_id,
+  region,
+  method = c("gwasvcf", "TwoSampleMR"),
+  verbose = TRUE
+)
 }
 \arguments{
 \item{opengwas_id}{An OpenGWAS id.}
 
 \item{region}{chr:start-end.}
 
-\item{verbose}{Extra information}
+\item{method}{Method to extract GWAS data.}
+
+\item{verbose}{Extra information.}
 }
 \value{
-A summary statistic object
+A summary statistic object. With method="TwoSampleMR" the result is in TwoSampleMR outcome format.
 }
 \description{
 A function which imports OpenGWAS.
 }
 \details{
-This function is derived from SCALLOP/INF work. For now, only those with VCF format is implemented though this could easily be extended.
+This function is derived from SCALLOP/INF work. If a VCF file is known to exist, method="gwasvcf" can be specified, otherwise use "TwoSampleMR".
 }
 \note{
 Adapted function.
