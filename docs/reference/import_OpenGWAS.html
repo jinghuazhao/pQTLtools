@@ -109,7 +109,8 @@
 <span>  <span class="va">opengwas_id</span>,</span>
 <span>  <span class="va">region</span>,</span>
 <span>  method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"gwasvcf"</span>, <span class="st">"TwoSampleMR"</span><span class="op">)</span>,</span>
-<span>  verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  verbose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -130,6 +131,10 @@
 <dt>verbose</dt>
 <dd><p>Extra information.</p></dd>
 
+
+<dt>...</dt>
+<dd><p>Parameters to pass to TwoSampleMR outcome extraction.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -139,7 +144,7 @@
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>This function is derived from SCALLOP/INF work. If a VCF file is known to exist, method="gwasvcf" can be specified, otherwise use "TwoSampleMR".</p>
+    <p>This function is derived from SCALLOP/INF work. If a VCF file is known to exist, method="gwasvcf" can be specified to extract a chunk of data, otherwise use "TwoSampleMR" which has some controls over variant selection.</p>
     </div>
     <div class="section level2">
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
@@ -148,6 +153,10 @@
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
     <p>Lyon M, Andrews SJ, Elsworth B, Gaunt TR, Hemani G, Marcora E. The variant call format provides efficient and robust storage of GWAS summary statistics. bioRxiv 2020.05.29.115824; doi: https://doi.org/10.1101/2020.05.29.115824</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p><code><a href="https://rdrr.io/pkg/TwoSampleMR/man/extract_outcome_data.html" class="external-link">extract_outcome_data</a></code></p></div>
     </div>
 
     <div class="section level2">
