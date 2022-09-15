@@ -498,7 +498,7 @@ run_coloc <- function(eqtl_sumstats, gwas_sumstats, harmonise=TRUE)
 #' @param ... Parameters to pass to TwoSampleMR outcome extraction.
 #'
 #' @details
-#' This function is derived from SCALLOP/INF work. By default, method="TwoSampleMR" should work in all cases which also has some controls over variant filtering. If a VCF file is known to exist, one can specific method="gwasvcf" to extract a chunk of data.
+#' This function is derived from SCALLOP/INF work. By default, method="TwoSampleMR" should work in all cases which also has some controls over variant filtering. If a VCF file is known to exist, one can specify method="gwasvcf" to extract a chunk of data.
 #'
 #' @export
 #' @return
@@ -511,20 +511,8 @@ run_coloc <- function(eqtl_sumstats, gwas_sumstats, harmonise=TRUE)
 #' @examples
 #' \dontrun{
 #' options(width=200)
-#' gwasvcf::set_bcftools(path=file.path(HPC_WORK,"bin","bcftools"))
-#' # MPV ARHGEF3 region
-#' opengwas_id <- "ebi-a-GCST004599"
-#' region <- "3:56649749-57049749"
-#' mpv_ARHGEF3 <- import_OpenGWAS(opengwas_id,region)
-#' # all immune-related
-#' INF <- Sys.getenv("INF")
-#' HPC_WORK <- Sys.getenv("HPC_WORK")
-#' opengwas_ids <- scan(file.path(INF,"OpenGWAS","ieu.list"),what="")
-#' unavail <-c("ieu-b-18","finn-a-M13_SLE","finn-a-D3_SARCOIDOSIS")
-#' opengwas_ids <- subset(opengwas_ids,!opengwas_ids %in% unavail)
-#' region <- "1:100-2000000"
 #' library(pQTLtools)
-#' summary_list = purrr::map(opengwas_ids[1:2], ~import_OpenGWAS(., region))
+#' # method="TwoSampleMR"
 #' # GSMR data preparation for Crohn's disease in the LTA region
 #' opengwas_id <- "ebi-a-GCST004132"
 #' region <- "6:30539831-32542101"
@@ -543,6 +531,20 @@ run_coloc <- function(eqtl_sumstats, gwas_sumstats, harmonise=TRUE)
 #'       data.frame()
 #' od[is.na(od$N),"N"] <- n
 #' write.table(od,quote=FALSE,row.names=FALSE)
+#' # method="gwasvcf"
+#' gwasvcf::set_bcftools(path=file.path(HPC_WORK,"bin","bcftools"))
+#' # MPV ARHGEF3 region
+#' opengwas_id <- "ebi-a-GCST004599"
+#' region <- "3:56649749-57049749"
+#' mpv_ARHGEF3 <- import_OpenGWAS(opengwas_id,region,method="gwasvcf")
+#' # all immune-related
+#' INF <- Sys.getenv("INF")
+#' HPC_WORK <- Sys.getenv("HPC_WORK")
+#' opengwas_ids <- scan(file.path(INF,"OpenGWAS","ieu.list"),what="")
+#' unavail <- c("ieu-b-18","finn-a-M13_SLE","finn-a-D3_SARCOIDOSIS")
+#' opengwas_ids <- subset(opengwas_ids,!opengwas_ids %in% unavail)
+#' region <- "1:100-2000000"
+#' summary_list = purrr::map(opengwas_ids[1:2], ~import_OpenGWAS(., region, method="gwasvcf"))
 #' }
 #' @note
 #' Adapted function.
