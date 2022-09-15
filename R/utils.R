@@ -500,6 +500,7 @@ run_coloc <- function(eqtl_sumstats, gwas_sumstats, harmonise=TRUE)
 #' @details
 #' This function is derived from SCALLOP/INF work. If a VCF file is known to exist, method="gwasvcf" can be specified to extract a chunk of data, otherwise use "TwoSampleMR" which has some controls over variant selection.
 #'
+#' @export
 #' @return
 #' A summary statistic object. With method="TwoSampleMR" the result is in TwoSampleMR outcome format.
 #'
