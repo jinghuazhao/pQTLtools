@@ -498,7 +498,7 @@ run_coloc <- function(eqtl_sumstats, gwas_sumstats, harmonise=TRUE)
 #' @param ... Parameters to pass to TwoSampleMR outcome extraction.
 #'
 #' @details
-#' This function is derived from SCALLOP/INF work. If a VCF file is known to exist, method="gwasvcf" can be specified to extract a chunk of data, otherwise use "TwoSampleMR" which has some controls over variant selection.
+#' This function is derived from SCALLOP/INF work. By default, method="TwoSampleMR" should work in all cases which also has some controls over variant filtering. If a VCF file is known to exist, one can specific method="gwasvcf" to extract a chunk of data.
 #'
 #' @export
 #' @return
@@ -530,7 +530,7 @@ run_coloc <- function(eqtl_sumstats, gwas_sumstats, harmonise=TRUE)
 #' region <- "6:30539831-32542101"
 #' n <- 2/(1/12194 + 1/28072)
 #' require(dplyr)
-#' od <- import_OpenGWAS(opengwas_id,region,method="TwoSampleMR") %>%
+#' od <- import_OpenGWAS(opengwas_id,region) %>%
 #'       dplyr::distinct() %>%
 #'       dplyr::mutate(snpid=gap::chr_pos_a1_a2(chr,pos,effect_allele.outcome,other_allele.outcome),
 #'                     effect_allele.outcome=toupper(effect_allele.outcome),
@@ -548,9 +548,9 @@ run_coloc <- function(eqtl_sumstats, gwas_sumstats, harmonise=TRUE)
 #' Adapted function.
 #' @keywords utilities
 
-import_OpenGWAS <- function(opengwas_id, region, method="gwasvcf", verbose = TRUE, ...)
+import_OpenGWAS <- function(opengwas_id, region, method="TwoSampleMR", verbose = TRUE, ...)
 {
-  if (method=="gwasvcf")
+  if (method=="TwoSampleMR") TwoSampleMR::extract_outcome_data(region,opengwas_id,...) else
   {
     opengwas_root <- "https://gwas.mrcieu.ac.uk/files"
     file_path <- paste(opengwas_root,opengwas_id,paste0(opengwas_id,".vcf.gz"),sep="/")
@@ -571,7 +571,7 @@ import_OpenGWAS <- function(opengwas_id, region, method="gwasvcf", verbose = TRU
     param <- VariantAnnotation::ScanVcfParam(which=rngs)
     vcf <- VariantAnnotation::readVcf(file_path, "hg19", param)
     gwasvcf::vcf_to_granges(vcf)
-  } else TwoSampleMR::extract_outcome_data(region,opengwas_id,...)
+  }
 }
 
 #' @title FUNCTION_TITLE
