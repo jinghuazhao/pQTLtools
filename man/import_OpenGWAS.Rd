@@ -4,13 +4,7 @@
 \alias{import_OpenGWAS}
 \title{Import OpenGWAS}
 \usage{
-import_OpenGWAS(
-  opengwas_id,
-  region,
-  method = c("gwasvcf", "TwoSampleMR"),
-  verbose = TRUE,
-  ...
-)
+import_OpenGWAS(opengwas_id, region, method = "gwasvcf", verbose = TRUE, ...)
 }
 \arguments{
 \item{opengwas_id}{An OpenGWAS id.}
