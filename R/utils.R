@@ -526,11 +526,11 @@ run_coloc <- function(eqtl_sumstats, gwas_sumstats, harmonise=TRUE)
 #' library(pQTLtools)
 #' summary_list = purrr::map(opengwas_ids[1:2], ~import_OpenGWAS(., region))
 #' # GSMR data preparation for Crohn's disease in the LTA region
-#' region <- "6:30539831-32542101"
 #' opengwas_id <- "ebi-a-GCST004132"
+#' region <- "6:30539831-32542101"
 #' n <- 2/(1/12194 + 1/28072)
 #' require(dplyr)
-#' od <- import_OpenGWAS(opengwas_id,region) %>%
+#' od <- import_OpenGWAS(opengwas_id,region,method="TwoSampleMR") %>%
 #'       dplyr::distinct() %>%
 #'       dplyr::mutate(snpid=gap::chr_pos_a1_a2(chr,pos,effect_allele.outcome,other_allele.outcome),
 #'                     effect_allele.outcome=toupper(effect_allele.outcome),
