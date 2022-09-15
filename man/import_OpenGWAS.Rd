@@ -4,7 +4,13 @@
 \alias{import_OpenGWAS}
 \title{Import OpenGWAS}
 \usage{
-import_OpenGWAS(opengwas_id, region, method = "gwasvcf", verbose = TRUE, ...)
+import_OpenGWAS(
+  opengwas_id,
+  region,
+  method = "TwoSampleMR",
+  verbose = TRUE,
+  ...
+)
 }
 \arguments{
 \item{opengwas_id}{An OpenGWAS id.}
@@ -24,7 +30,7 @@ A summary statistic object. With method="TwoSampleMR" the result is in TwoSample
 A function which imports OpenGWAS.
 }
 \details{
-This function is derived from SCALLOP/INF work. If a VCF file is known to exist, method="gwasvcf" can be specified to extract a chunk of data, otherwise use "TwoSampleMR" which has some controls over variant selection.
+This function is derived from SCALLOP/INF work. By default, method="TwoSampleMR" should work in all cases which also has some controls over variant filtering. If a VCF file is known to exist, one can specific method="gwasvcf" to extract a chunk of data.
 }
 \note{
 Adapted function.
@@ -51,7 +57,7 @@ opengwas_id <- "ebi-a-GCST004132"
 region <- "6:30539831-32542101"
 n <- 2/(1/12194 + 1/28072)
 require(dplyr)
-od <- import_OpenGWAS(opengwas_id,region,method="TwoSampleMR") \%>\%
+od <- import_OpenGWAS(opengwas_id,region) \%>\%
       dplyr::distinct() \%>\%
       dplyr::mutate(snpid=gap::chr_pos_a1_a2(chr,pos,effect_allele.outcome,other_allele.outcome),
                     effect_allele.outcome=toupper(effect_allele.outcome),
