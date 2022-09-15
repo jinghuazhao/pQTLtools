@@ -548,7 +548,7 @@ run_coloc <- function(eqtl_sumstats, gwas_sumstats, harmonise=TRUE)
 #' Adapted function.
 #' @keywords utilities
 
-import_OpenGWAS <- function(opengwas_id, region, method=c("gwasvcf","TwoSampleMR"), verbose = TRUE, ...)
+import_OpenGWAS <- function(opengwas_id, region, method="gwasvcf", verbose = TRUE, ...)
 {
   if (method=="gwasvcf")
   {
