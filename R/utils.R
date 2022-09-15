@@ -495,9 +495,10 @@ run_coloc <- function(eqtl_sumstats, gwas_sumstats, harmonise=TRUE)
 #' @param region chr:start-end.
 #' @param method Method to extract GWAS data.
 #' @param verbose Extra information.
+#' @param ... Parameters to pass to TwoSampleMR outcome extraction.
 #'
 #' @details
-#' This function is derived from SCALLOP/INF work. If a VCF file is known to exist, method="gwasvcf" can be specified, otherwise use "TwoSampleMR".
+#' This function is derived from SCALLOP/INF work. If a VCF file is known to exist, method="gwasvcf" can be specified to extract a chunk of data, otherwise use "TwoSampleMR" which has some controls over variant selection.
 #'
 #' @return
 #' A summary statistic object. With method="TwoSampleMR" the result is in TwoSampleMR outcome format.
@@ -505,6 +506,7 @@ run_coloc <- function(eqtl_sumstats, gwas_sumstats, harmonise=TRUE)
 #' @references
 #' Lyon M, Andrews SJ, Elsworth B, Gaunt TR, Hemani G, Marcora E. The variant call format provides efficient and robust storage of GWAS summary statistics. bioRxiv 2020.05.29.115824; doi: https://doi.org/10.1101/2020.05.29.115824
 #'
+#' @seealso \code{\link[TwoSampleMR]{extract_outcome_data}}
 #' @examples
 #' \dontrun{
 #' options(width=200)
@@ -527,7 +529,7 @@ run_coloc <- function(eqtl_sumstats, gwas_sumstats, harmonise=TRUE)
 #' Adapted function.
 #' @keywords utilities
 
-import_OpenGWAS <- function(opengwas_id, region, method=c("gwasvcf","TwoSampleMR"), verbose = TRUE)
+import_OpenGWAS <- function(opengwas_id, region, method=c("gwasvcf","TwoSampleMR"), verbose = TRUE, ...)
 {
   if (method=="gwasvcf")
   {
@@ -550,7 +552,7 @@ import_OpenGWAS <- function(opengwas_id, region, method=c("gwasvcf","TwoSampleMR
     param <- VariantAnnotation::ScanVcfParam(which=rngs)
     vcf <- VariantAnnotation::readVcf(file_path, "hg19", param)
     gwasvcf::vcf_to_granges(vcf)
-  } else TwoSampleMR::extract_outcome_data(region,opengwas_id)
+  } else TwoSampleMR::extract_outcome_data(region,opengwas_id,...)
 }
 
 #' @title FUNCTION_TITLE
