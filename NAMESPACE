@@ -2,6 +2,7 @@
 
 export(genequeries)
 export(get.prop.below.LLOD)
+export(import_OpenGWAS)
 export(import_eQTLCatalogue)
 export(make_ExpressionSet)
 export(mr_forest_plot2)
