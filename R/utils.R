@@ -558,8 +558,8 @@ import_OpenGWAS <- function(opengwas_id, region, method="TwoSampleMR", verbose =
   # pending on its exclusive/web use later
   # fetch_table = seqminer::tabix.read.table(tabixFile = file_path, tabixRange = region, stringsAsFactors = FALSE)
   # only possible locally but its GRanges conversion is helpful
-  # gwas_stats <- query_gwas(basename(file_path),chrompos = region)
-  # gwas_sumstats <- vcf_to_granges(gwas_stats)
+  # gwas_stats <- gwasvcf::query_gwas(basename(file_path),chrompos = region)
+  # gwas_sumstats <- gwasvcf::vcf_to_granges(gwas_stats)
   # One that does work at the moment
     VariantAnnotation::VcfFile(file_path)
     VariantAnnotation::vcfFields(file_path)
