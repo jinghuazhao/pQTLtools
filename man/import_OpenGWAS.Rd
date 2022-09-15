@@ -52,6 +52,24 @@ opengwas_ids <- subset(opengwas_ids,!opengwas_ids \%in\% unavail)
 region <- "1:100-2000000"
 library(pQTLtools)
 summary_list = purrr::map(opengwas_ids[1:2], ~import_OpenGWAS(., region))
+# GSMR data preparation for Crohn's disease in the LTA region
+region <- "6:30539831-32542101"
+opengwas_id <- "ebi-a-GCST004132"
+n <- 2/(1/12194 + 1/28072)
+require(dplyr)
+od <- import_OpenGWAS(region,opengwas_id) \%>\%
+      dplyr::distinct() \%>\%
+      dplyr::mutate(snpid=gap::chr_pos_a1_a2(chr,pos,effect_allele.outcome,other_allele.outcome),
+                    effect_allele.outcome=toupper(effect_allele.outcome),
+                    other_allele.outcome=toupper(other_allele.outcome)) \%>\%
+      dplyr::select(snpid,effect_allele.outcome,other_allele.outcome,eaf.outcome,
+                    beta.outcome,se.outcome,pval.outcome,samplesize.outcome) \%>\%
+      setNames(c("SNP","A1","A2","freq","b","se","p","N")) \%>\%
+      dplyr::group_by(SNP) \%>\%
+      dplyr::slice(which.min(p)) \%>\%
+      data.frame()
+od[is.na(od$N),"N"] <- n
+write.table(od,quote=FALSE,row.names=FALSE)
 }
 }
 \references{
