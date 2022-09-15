@@ -550,7 +550,7 @@ run_coloc <- function(eqtl_sumstats, gwas_sumstats, harmonise=TRUE)
 
 import_OpenGWAS <- function(opengwas_id, region, method="TwoSampleMR", verbose = TRUE, ...)
 {
-  if (method=="TwoSampleMR") TwoSampleMR::extract_outcome_data(region,opengwas_id,...) else
+  if (method=="TwoSampleMR") TwoSampleMR::extract_outcome_data(region,opengwas_id,...) else if (method=="gwasvcf")
   {
     opengwas_root <- "https://gwas.mrcieu.ac.uk/files"
     file_path <- paste(opengwas_root,opengwas_id,paste0(opengwas_id,".vcf.gz"),sep="/")
