@@ -11,7 +11,7 @@ The document is knitted from `Rscript -e 'knitr::knit("README.Rmd")'` running co
 ```{bash snakemake, message=FALSE, results="hide", warning=FALSE}
 module load miniconda3/4.5.1
 export csd3path=/rds/project/jmmh2/rds-jmmh2-projects/olink_proteomics/scallop
-source activate ${csd3path}/miniconda37
+source ${csd3path}/miniconda37/bin/activate
 # 1. a dry run (-n).
 snakemake --dry-run
 # 2. run (-c on [all] available cores without --use-conda option as local packages are more up-to-date)
