@@ -61,7 +61,7 @@ navbar:
           href: news/index.html
     bioconductor:
       icon: fas fa-fast-backward
-      href: https://www.bioconductor.org
+      href: https://alphafold.ebi.ac.uk/
     uniprot:
       icon: fas fa-fast-forward
       href: https://www.uniprot.org/
