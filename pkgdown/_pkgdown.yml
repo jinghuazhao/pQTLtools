@@ -68,6 +68,8 @@ navbar:
     sites:
       text: Sites
       menu:
+      - text: AlphaFold
+        href: https://alphafold.ebi.ac.uk/
       - text: Bioconductor
         href: https://www.bioconductor.org/
       - text: CRAN
