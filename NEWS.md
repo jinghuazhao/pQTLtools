@@ -9,7 +9,7 @@
 * Add pQTLtools.Rmd, bioconductor.Rmd, es.Rmd and SCALLOP-INF.Rmd articles
 * Add LICENSE.md and README.md
 * Add listed publications on pQTLs by Sun et al. (2018) and Suhre et al. (2020)
-* Add run_TwoSampleMR(), make_ExpressionSet, novelty_check
+* Add run_TwoSampleMR(), make_ExpressionSet(), novelty_check(), qtl_lookup()
 * Add pqtlMR() based on TwoSampleMR
 * Add run_coloc() based on coloc
 * Add import_OpenGWAS and therefore suggests gwasvcf, ieugwasr, rtracklayer, VariantAnnotation
