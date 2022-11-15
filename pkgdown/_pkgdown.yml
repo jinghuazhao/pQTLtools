@@ -117,6 +117,7 @@ reference:
     - make_ExpressionSet
     - novelty_check
     - pqtlMR
+    - qtl_lookup
     - regionqueries
     - run_coloc
     - run_TwoSampleMR
