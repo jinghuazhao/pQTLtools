@@ -32,8 +32,13 @@ qtl_lookup(
 
 \item{xlsx}{a non-null specification indicates name of an output Excel workbook.}
 }
+\value{
+A data.frame containing the looked up loci.
+}
 \description{
-This function takes MR results (involving pQTL/QTL) to look up QTLs in trait GWASs given a P value cutoff.
+This function takes MR results (involving pQTL/QTL) to look up QTLs in trait GWASs given a P value cutoff. 
+The rationale is that a pQTL may not necessarily be in strong LD with QTL but some other independent signal
+in the same region.
 }
 \examples{
 \dontrun{
