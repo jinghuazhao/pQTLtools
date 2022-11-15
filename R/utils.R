@@ -1653,7 +1653,9 @@ novelty_check <- function(known_loci,query_loci,flanking=1e6,pop="EUR",verbose=T
 
 #' QTL lookup
 #'
-#' This function takes MR results (involving pQTL/QTL) to look up QTLs in trait GWASs given a P value cutoff.
+#' This function takes MR results (involving pQTL/QTL) to look up QTLs in trait GWASs given a P value cutoff. 
+#' The rationale is that a pQTL may not necessarily be in strong LD with QTL but some other independent signal
+#' in the same region.
 #'
 #' @param dat MR results (`protein`, `id`, `pqtl`,`p`, `qtl`, `p_qtl`) whose `proxy`, `p_proxy` and `rsq` variables will be updated.
 #' @param panel reference panel.
@@ -1664,6 +1666,8 @@ novelty_check <- function(known_loci,query_loci,flanking=1e6,pop="EUR",verbose=T
 #' @param r2 when specified, the LD(r^2) is output.
 #' @param xlsx a non-null specification indicates name of an output Excel workbook.
 #' 
+#' @return A data.frame containing the looked up loci.
+#' @export
 #' @examples
 #' \dontrun{
 #' options(width=200)
