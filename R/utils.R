@@ -1650,3 +1650,97 @@ novelty_check <- function(known_loci,query_loci,flanking=1e6,pop="EUR",verbose=T
 # r2 <-  sapply(1:nrow(b),function(x) with(b[x,],ifelse(known.rsid==query.rsid,1,l[known.rsid,query.rsid]^2)))
 
 # wget https://www.biorxiv.org/content/biorxiv/early/2022/06/18/2022.06.17.496443/DC2/embed/media-2.xlsx -O sun22.xlsx
+
+#' QTL lookup
+#'
+#' This function takes MR results (involving pQTL/QTL) to look up QTLs in trait GWASs given a P value cutoff.
+#'
+#' @param dat MR results (`protein`, `id`, `pqtl`,`p`, `qtl`, `p_qtl`) whose `proxy`, `p_proxy` and `rsq` variables will be updated.
+#' @param panel reference panel.
+#' @param pthreshold cutoff of QTL association from trait GWASs.
+#' @param pop pupulation.
+#' @param plink_bin PLINK executable file whose binary files are indicated in `bfile` variable of `dat`.
+#' @param r when specified, the LD(r) is output.
+#' @param r2 when specified, the LD(r^2) is output.
+#' @param xlsx a non-null specification indicates name of an output Excel workbook.
+#' 
+#' @examples
+#' \dontrun{
+#' options(width=200)
+#' INF <- Sys.getenv("INF")
+#' suppressMessages(library(dplyr))
+#' d <- file.path(INF,"mr","gsmr","trait")
+#' gsmr_efo <- read.delim(file.path(INF,"mr","gsmr","gsmr-efo.txt")) %>%
+#'             filter(fdr<=0.05) %>%
+#'             mutate(prot=gsub("-",".",protein)) %>%
+#'             mutate(file_gwas=paste(prot,id,"rsid.txt",sep="-"),
+#'                    bfile=file.path(INF,"INTERVAL","per_chr",paste0("interval.imputed.olink.chr_",chr)),
+#'                    proxy=NA,p_proxy=NA,rsq=NA)
+#' proxies <- qtl_lookup(gsmr_efo,plink_bin="/rds/user/jhz22/hpc-work/bin/plink",xlsx=file.path(INF,"mr","gsmr","r2_INTERVAL.xlsx")) %>%
+#'            select(protein,id,Disease,pqtl,p,qtl,p_qtl,proxy,p_proxy,rsq)
+#' write.table(proxies,file=file.path(INF,"mr","gsmr","r2_INTERVAL.tsv"),row.names=FALSE,quote=FALSE,sep="\t")
+#' }
+
+qtl_lookup <- function(dat,panel="1000Genomes",pthreshold=1e-3,pop="EUR",plink_bin=NULL,r=NULL,r2=NULL,xlsx=NULL)
+{
+  for(i in 1:nrow(dat))
+  {
+     z <- dplyr::slice(dat,i)
+     pqtl <- z[["pqtl"]]
+     cat(z[["file_gwas"]],"\n")
+     gwas <- read.table(file.path(d,basename(z[["file_gwas"]])),header=TRUE) %>%
+             dplyr::arrange(p)
+     h <-  dplyr::filter(gwas,p<=pthreshold)
+     panel_snps <- c(pqtl,dplyr::pull(h,SNP))
+     if (panel=="1000Genomes")
+     {
+        if (length(panel_snps)>500) stop("too many SNPs -- put a more stringent ptreshold")
+        xx <- ieugwasr::ld_matrix(panel_snps,pop="EUR")
+     } else
+     xx <- ieugwasr::ld_matrix(panel_snps,with_alleles=TRUE,pop=pop,bfile=z[["bfile"]],plink_bin=plink_bin)
+     cn <- colnames(xx)
+     inside <- pqtl==gsub("_[A-Z]*","",cn)
+     nn <- c(cn[inside],cn[!inside])
+     r_mat <- xx[nn,nn]
+     if(!is.null(r)) write(r_mat,file_r2=paste(prot,id,Disease,pqtl,"r.txt",sep="-"))
+     r2_mat <- r_mat^2
+     if(!is.null(r2)) write(r2_mat,file_r2=paste(prot,id,Disease,pqtl,"r2.txt",sep="-"))
+     colnames(r2_mat) <- gsub("_[A-Z]*","",colnames(r2_mat))
+     rownames(r2_mat) <- gsub("_[A-Z]*","",rownames(r2_mat))
+     snps <- intersect(pull(h,SNP),colnames(r2_mat))
+     while(length(snps)>1)
+     {
+       proxy <- snps[1]
+       snps <- setdiff(snps,proxy)
+       r2_i <- r2_mat[z[["pqtl"]],proxy]
+       p_proxy <- filter(gwas,SNP==proxy) %>%
+                  pull(p)
+       cat(i,z[["protein"]],z[["id"]],z[["Disease"]],z[["pqtl"]],z[["qtl"]],proxy,r2_i,z[["p_qtl"]],"\n",sep="\t")
+       if(!is.null(r2_i)&!is.na(r2_i)) if(r2_i>0.8) break
+     }
+     dat[i,"proxy"] <- proxy
+     dat[i,"p_proxy"] <- p_proxy
+     dat[i,"rsq"] <- r2_i
+  }
+  if (!is.null(xlsx))
+  {
+    wb <- openxlsx::createWorkbook(xlsx)
+    hs <- openxlsx::createStyle(textDecoration="BOLD", fontColour="#FFFFFF", fontSize=12, fontName="Arial Narrow", fgFill="#4F80BD")
+    proxies <- dplyr::select(dat,protein,id,Disease,pqtl,p,qtl,p_qtl,proxy,p_proxy,rsq)
+    for (sheet in "proxies")
+    {
+      openxlsx::addWorksheet(wb,sheet,zoom=150)
+      openxlsx::writeData(wb,sheet,sheet,xy=c(1,1),headerStyle=createStyle(textDecoration="BOLD",
+                          fontColour="#FFFFFF", fontSize=14, fontName="Arial Narrow", fgFill="#4F80BD"))
+      body <- get(sheet)
+      openxlsx::writeDataTable(wb, sheet, body, xy=c(1,2), headerStyle=hs, firstColumn=TRUE, tableStyle="TableStyleMedium2")
+      openxlsx::freezePane(wb, sheet, firstActiveCol=3, firstActiveRow=3)
+      width_vec <- apply(body, 2, function(x) max(nchar(as.character(x))+2, na.rm=TRUE))
+    # width_vec_header <- nchar(colnames(body))+2
+      openxlsx::setColWidths(wb, sheet, cols = 1:ncol(body), widths = width_vec)
+      openxlsx::writeData(wb, sheet, tail(body,1), xy=c(1, nrow(body)+2), colNames=FALSE, borders="rows", borderStyle="thick")
+    }
+    openxlsx::saveWorkbook(wb, file=xlsx, overwrite=TRUE)
+  }
+  dat
+}
