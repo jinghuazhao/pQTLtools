@@ -1684,7 +1684,7 @@ novelty_check <- function(known_loci,query_loci,flanking=1e6,pop="EUR",verbose=T
 #'                    proxy=NA,p_proxy=NA,rsq=NA)
 #' proxies <- qtl_lookup(gsmr_efo,plink_bin="/rds/user/jhz22/hpc-work/bin/plink",
 #'                       xlsx=file.path(INF,"mr","gsmr","r2_INTERVAL.xlsx")) %>%
-#'            select(protein,id,Disease,pqtl,p,qtl,p_qtl,proxy,p_proxy,rsq)
+#'            select(protein,id,Disease,fdr,pqtl,p,qtl,p_qtl,proxy,p_proxy,rsq)
 #' write.table(proxies,file=file.path(INF,"mr","gsmr","r2_INTERVAL.tsv"),
 #'             row.names=FALSE,quote=FALSE,sep="\t")
 #' }
@@ -1738,7 +1738,7 @@ qtl_lookup <- function(d,dat,panel="1000Genomes",pthreshold=1e-3,pop="EUR",
   {
     wb <- openxlsx::createWorkbook(xlsx)
     hs <- openxlsx::createStyle(textDecoration="BOLD", fontColour="#FFFFFF", fontSize=12, fontName="Arial Narrow", fgFill="#4F80BD")
-    proxies <- dplyr::select(dat,protein,id,Disease,pqtl,p,qtl,p_qtl,proxy,p_proxy,rsq)
+    proxies <- dplyr::select(dat,protein,id,Disease,fdr,pqtl,p,qtl,p_qtl,proxy,p_proxy,rsq)
     for (sheet in "proxies")
     {
       openxlsx::addWorksheet(wb,sheet,zoom=150)
