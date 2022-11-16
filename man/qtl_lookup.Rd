@@ -49,9 +49,9 @@ options(width=200)
 INF <- Sys.getenv("INF")
 suppressMessages(library(dplyr))
 d <- file.path(INF,"mr","gsmr","trait")
+inf1 <- select(gap.datasets::inf1,prot,target.short)
 gsmr_efo <- read.delim(file.path(INF,"mr","gsmr","gsmr-efo.txt")) \%>\%
-            filter(fdr<=0.05) \%>\%
-            mutate(prot=gsub("-",".",protein)) \%>\%
+            left_join(inf1,by=c('protein'='target.short')) \%>\%
             mutate(file_gwas=paste(prot,id,"rsid.txt",sep="-"),
                    bfile=file.path(INF,"INTERVAL","per_chr",
                                    paste0("interval.imputed.olink.chr_",chr)),
