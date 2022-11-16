@@ -5,6 +5,7 @@
 \title{QTL lookup}
 \usage{
 qtl_lookup(
+  d,
   dat,
   panel = "1000Genomes",
   pthreshold = 0.001,
@@ -16,6 +17,8 @@ qtl_lookup(
 )
 }
 \arguments{
+\item{d}{directory where `dat` (below) is held.}
+
 \item{dat}{MR results (`protein`, `id`, `pqtl`,`p`, `qtl`, `p_qtl`) whose `proxy`, `p_proxy` and `rsq` variables will be updated.}
 
 \item{panel}{reference panel.}
@@ -50,10 +53,13 @@ gsmr_efo <- read.delim(file.path(INF,"mr","gsmr","gsmr-efo.txt")) \%>\%
             filter(fdr<=0.05) \%>\%
             mutate(prot=gsub("-",".",protein)) \%>\%
             mutate(file_gwas=paste(prot,id,"rsid.txt",sep="-"),
-                   bfile=file.path(INF,"INTERVAL","per_chr",paste0("interval.imputed.olink.chr_",chr)),
+                   bfile=file.path(INF,"INTERVAL","per_chr",
+                                   paste0("interval.imputed.olink.chr_",chr)),
                    proxy=NA,p_proxy=NA,rsq=NA)
-proxies <- qtl_lookup(gsmr_efo,plink_bin="/rds/user/jhz22/hpc-work/bin/plink",xlsx=file.path(INF,"mr","gsmr","r2_INTERVAL.xlsx")) \%>\%
+proxies <- qtl_lookup(gsmr_efo,plink_bin="/rds/user/jhz22/hpc-work/bin/plink",
+                      xlsx=file.path(INF,"mr","gsmr","r2_INTERVAL.xlsx")) \%>\%
            select(protein,id,Disease,pqtl,p,qtl,p_qtl,proxy,p_proxy,rsq)
-write.table(proxies,file=file.path(INF,"mr","gsmr","r2_INTERVAL.tsv"),row.names=FALSE,quote=FALSE,sep="\t")
+write.table(proxies,file=file.path(INF,"mr","gsmr","r2_INTERVAL.tsv"),
+            row.names=FALSE,quote=FALSE,sep="\t")
 }
 }
