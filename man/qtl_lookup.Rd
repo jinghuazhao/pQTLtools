@@ -58,7 +58,7 @@ gsmr_efo <- read.delim(file.path(INF,"mr","gsmr","gsmr-efo.txt")) \%>\%
                    proxy=NA,p_proxy=NA,rsq=NA)
 proxies <- qtl_lookup(gsmr_efo,plink_bin="/rds/user/jhz22/hpc-work/bin/plink",
                       xlsx=file.path(INF,"mr","gsmr","r2_INTERVAL.xlsx")) \%>\%
-           select(protein,id,Disease,pqtl,p,qtl,p_qtl,proxy,p_proxy,rsq)
+           select(protein,id,Disease,fdr,pqtl,p,qtl,p_qtl,proxy,p_proxy,rsq)
 write.table(proxies,file=file.path(INF,"mr","gsmr","r2_INTERVAL.tsv"),
             row.names=FALSE,quote=FALSE,sep="\t")
 }
