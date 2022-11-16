@@ -1677,7 +1677,8 @@ novelty_check <- function(known_loci,query_loci,flanking=1e6,pop="EUR",verbose=T
 #' d <- file.path(INF,"mr","gsmr","trait")
 #' gsmr_efo <- read.delim(file.path(INF,"mr","gsmr","gsmr-efo.txt")) %>%
 #'             filter(fdr<=0.05) %>%
-#'             mutate(prot=gsub("-",".",protein)) %>%
+#'             left_join(select(gap.datasets::inf1,prot,target.short),
+#'                       by=c('protein'='target.short')) %>%
 #'             mutate(file_gwas=paste(prot,id,"rsid.txt",sep="-"),
 #'                    bfile=file.path(INF,"INTERVAL","per_chr",
 #'                                    paste0("interval.imputed.olink.chr_",chr)),
@@ -1711,19 +1712,21 @@ qtl_lookup <- function(d,dat,panel="1000Genomes",pthreshold=1e-3,pop="EUR",
      cn <- colnames(xx)
      inside <- pqtl==gsub("_[A-Z]*","",cn)
      nn <- c(cn[inside],cn[!inside])
-     r_mat <- xx[nn,nn]
+     if (length(r)==1) r_mat <- xx else r_mat <- xx[nn,nn]
      if(!is.null(r)) write.table(r_mat,file_r2=paste(prot,id,Disease,pqtl,"r.txt",sep="-"))
      r2_mat <- r_mat^2
      if(!is.null(r2)) write.table(r2_mat,file_r2=paste(prot,id,Disease,pqtl,"r2.txt",sep="-"))
      colnames(r2_mat) <- gsub("_[A-Z]*","",colnames(r2_mat))
      rownames(r2_mat) <- gsub("_[A-Z]*","",rownames(r2_mat))
      snps <- intersect(pull(h,SNP),colnames(r2_mat))
-     while(length(snps)>1)
+     if (length(snps)<1) next else if (length(snps)==1) dat[i,c("proxy","p_proxy","rsq")] <- c(z[c("qtl","p_qtl")],1)
+     else while(length(snps)>1)
      {
        proxy <- snps[1]
        snps <- setdiff(snps,proxy)
        r2_i <- r2_mat[z[["pqtl"]],proxy]
        p_proxy <- filter(gwas,SNP==proxy) %>%
+                  slice(which.min(p)) %>%
                   pull(p)
        cat(i,z[["protein"]],z[["id"]],z[["Disease"]],z[["pqtl"]],z[["qtl"]],proxy,r2_i,z[["p_qtl"]],"\n",sep="\t")
        if(!is.null(r2_i)&!is.na(r2_i)) if(r2_i>0.8) break
