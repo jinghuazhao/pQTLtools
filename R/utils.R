@@ -1657,6 +1657,7 @@ novelty_check <- function(known_loci,query_loci,flanking=1e6,pop="EUR",verbose=T
 #' The rationale is that a pQTL may not necessarily be in strong LD with QTL but some other independent signal
 #' in the same region.
 #'
+#' @param d directory where `dat` (below) is held.
 #' @param dat MR results (`protein`, `id`, `pqtl`,`p`, `qtl`, `p_qtl`) whose `proxy`, `p_proxy` and `rsq` variables will be updated.
 #' @param panel reference panel.
 #' @param pthreshold cutoff of QTL association from trait GWASs.
@@ -1678,15 +1679,20 @@ novelty_check <- function(known_loci,query_loci,flanking=1e6,pop="EUR",verbose=T
 #'             filter(fdr<=0.05) %>%
 #'             mutate(prot=gsub("-",".",protein)) %>%
 #'             mutate(file_gwas=paste(prot,id,"rsid.txt",sep="-"),
-#'                    bfile=file.path(INF,"INTERVAL","per_chr",paste0("interval.imputed.olink.chr_",chr)),
+#'                    bfile=file.path(INF,"INTERVAL","per_chr",
+                                      paste0("interval.imputed.olink.chr_",chr)),
 #'                    proxy=NA,p_proxy=NA,rsq=NA)
-#' proxies <- qtl_lookup(gsmr_efo,plink_bin="/rds/user/jhz22/hpc-work/bin/plink",xlsx=file.path(INF,"mr","gsmr","r2_INTERVAL.xlsx")) %>%
+#' proxies <- qtl_lookup(gsmr_efo,plink_bin="/rds/user/jhz22/hpc-work/bin/plink",
+#'                       xlsx=file.path(INF,"mr","gsmr","r2_INTERVAL.xlsx")) %>%
 #'            select(protein,id,Disease,pqtl,p,qtl,p_qtl,proxy,p_proxy,rsq)
-#' write.table(proxies,file=file.path(INF,"mr","gsmr","r2_INTERVAL.tsv"),row.names=FALSE,quote=FALSE,sep="\t")
+#' write.table(proxies,file=file.path(INF,"mr","gsmr","r2_INTERVAL.tsv"),
+#'             row.names=FALSE,quote=FALSE,sep="\t")
 #' }
 
-qtl_lookup <- function(dat,panel="1000Genomes",pthreshold=1e-3,pop="EUR",plink_bin=NULL,r=NULL,r2=NULL,xlsx=NULL)
+qtl_lookup <- function(d,dat,panel="1000Genomes",pthreshold=1e-3,pop="EUR",
+                       plink_bin=NULL,r=NULL,r2=NULL,xlsx=NULL)
 {
+  protein <- p <- SNP <- prot <- Disease <- protein <- qtl <- p_qtl <- rsq <- NULL
   for(i in 1:nrow(dat))
   {
      z <- dplyr::slice(dat,i)
@@ -1706,9 +1712,9 @@ qtl_lookup <- function(dat,panel="1000Genomes",pthreshold=1e-3,pop="EUR",plink_b
      inside <- pqtl==gsub("_[A-Z]*","",cn)
      nn <- c(cn[inside],cn[!inside])
      r_mat <- xx[nn,nn]
-     if(!is.null(r)) write(r_mat,file_r2=paste(prot,id,Disease,pqtl,"r.txt",sep="-"))
+     if(!is.null(r)) write.table(r_mat,file_r2=paste(prot,id,Disease,pqtl,"r.txt",sep="-"))
      r2_mat <- r_mat^2
-     if(!is.null(r2)) write(r2_mat,file_r2=paste(prot,id,Disease,pqtl,"r2.txt",sep="-"))
+     if(!is.null(r2)) write.table(r2_mat,file_r2=paste(prot,id,Disease,pqtl,"r2.txt",sep="-"))
      colnames(r2_mat) <- gsub("_[A-Z]*","",colnames(r2_mat))
      rownames(r2_mat) <- gsub("_[A-Z]*","",rownames(r2_mat))
      snps <- intersect(pull(h,SNP),colnames(r2_mat))
@@ -1734,7 +1740,7 @@ qtl_lookup <- function(dat,panel="1000Genomes",pthreshold=1e-3,pop="EUR",plink_b
     for (sheet in "proxies")
     {
       openxlsx::addWorksheet(wb,sheet,zoom=150)
-      openxlsx::writeData(wb,sheet,sheet,xy=c(1,1),headerStyle=createStyle(textDecoration="BOLD",
+      openxlsx::writeData(wb,sheet,sheet,xy=c(1,1),headerStyle=openxlsx::createStyle(textDecoration="BOLD",
                           fontColour="#FFFFFF", fontSize=14, fontName="Arial Narrow", fgFill="#4F80BD"))
       body <- get(sheet)
       openxlsx::writeDataTable(wb, sheet, body, xy=c(1,2), headerStyle=hs, firstColumn=TRUE, tableStyle="TableStyleMedium2")

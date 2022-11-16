@@ -81,6 +81,7 @@
 #' @import dplyr ggplot2
 #' @importFrom stats na.omit qnorm
 #' @importFrom utils write.table
+#' @importFrom utils read.table tail
 #'
 #' @examples
 #' \dontrun{
