@@ -45,8 +45,8 @@ A data.frame containing the looked up loci.
 This function takes MR results (involving pQTL/QTL) to look up QTLs in trait GWASs given a P value and
 linkage disequilibrium (LD) cutoffs.
 The rationale is that a pQTL may not necessarily be in strong LD with QTL but some other independent signal
-in the same region. The interest then lands on association signals above a given P value (p_threshold) and
-LD (r2_threshold) thresholds.
+in the same region. The interest then lands on association signals below a given P value (p_threshold) and above
+a given LD (r2_threshold) thresholds.
 }
 \examples{
 \dontrun{
