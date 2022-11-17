@@ -1,1 +1,2 @@
 inst/doc/*R
+inst/snakemake/.snakemake
