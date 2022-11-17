@@ -1653,10 +1653,11 @@ novelty_check <- function(known_loci,query_loci,flanking=1e6,pop="EUR",verbose=T
 
 #' QTL lookup
 #'
-#' This function takes MR results (involving pQTL/QTL) to look up QTLs in trait GWASs given a P value cutoff. 
+#' This function takes MR results (involving pQTL/QTL) to look up QTLs in trait GWASs given a P value and
+#' linkage disequilibrium (LD) cutoffs.
 #' The rationale is that a pQTL may not necessarily be in strong LD with QTL but some other independent signal
-#' in the same region. The interest lands on association signals above a given P value (p_threshold) and
-#' linkage disequilibrium (LD) (r2_threshold) thresholds.
+#' in the same region. The interest then lands on association signals above a given P value (p_threshold) and
+#' LD (r2_threshold) thresholds.
 #'
 #' @param d directory where `dat` (below) is held.
 #' @param dat MR results (`protein`, `id`, `pqtl`,`p`, `qtl`, `p_qtl`) whose `proxy`, `p_proxy` and `rsq` variables will be updated.
