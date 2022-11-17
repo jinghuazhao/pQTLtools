@@ -26,6 +26,7 @@ run_coloc               Colocalisation analysis
 * MR analysis *
 
 pqtlMR                  Basic pQTL-MR analysis
+qtl_lookup              QTL lookup
 run_TwoSampleMR         Basic TwoSampleMR analysis
 
 * PhenoScanner Utilities *
