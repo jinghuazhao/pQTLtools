@@ -1655,13 +1655,15 @@ novelty_check <- function(known_loci,query_loci,flanking=1e6,pop="EUR",verbose=T
 #'
 #' This function takes MR results (involving pQTL/QTL) to look up QTLs in trait GWASs given a P value cutoff. 
 #' The rationale is that a pQTL may not necessarily be in strong LD with QTL but some other independent signal
-#' in the same region.
+#' in the same region. The interest lands on association signals above a given P value (p_threshold) and
+#' linkage disequilibrium (LD) (r2_threshold) thresholds.
 #'
 #' @param d directory where `dat` (below) is held.
 #' @param dat MR results (`protein`, `id`, `pqtl`,`p`, `qtl`, `p_qtl`) whose `proxy`, `p_proxy` and `rsq` variables will be updated.
 #' @param panel reference panel.
-#' @param pthreshold cutoff of QTL association from trait GWASs.
-#' @param pop pupulation.
+#' @param p_threshold cutoff of QTL association from trait GWASs.
+#' @param r2_threshold cutoff of r^2.
+#' @param pop reference population from 1000Genomes for LD calculation.
 #' @param plink_bin PLINK executable file whose binary files are indicated in `bfile` variable of `dat`.
 #' @param r when specified, the LD(r) is output.
 #' @param r2 when specified, the LD(r^2) is output.
@@ -1689,7 +1691,7 @@ novelty_check <- function(known_loci,query_loci,flanking=1e6,pop="EUR",verbose=T
 #'             row.names=FALSE,quote=FALSE,sep="\t")
 #' }
 
-qtl_lookup <- function(d,dat,panel="1000Genomes",pthreshold=1e-3,pop="EUR",
+qtl_lookup <- function(d,dat,panel="1000Genomes",p_threshold=1e-3,r2_threshold=0.8,pop="EUR",
                        plink_bin=NULL,r=NULL,r2=NULL,xlsx=NULL)
 {
   protein <- p <- SNP <- prot <- Disease <- protein <- qtl <- p_qtl <- rsq <- NULL
@@ -1700,7 +1702,7 @@ qtl_lookup <- function(d,dat,panel="1000Genomes",pthreshold=1e-3,pop="EUR",
      cat(z[["file_gwas"]],"\n")
      gwas <- read.table(file.path(d,basename(z[["file_gwas"]])),header=TRUE) %>%
              dplyr::arrange(p)
-     h <-  dplyr::filter(gwas,p<=pthreshold)
+     h <-  dplyr::filter(gwas,p<=p_threshold)
      panel_snps <- c(pqtl,dplyr::pull(h,SNP))
      if (panel=="1000Genomes")
      {
@@ -1728,7 +1730,7 @@ qtl_lookup <- function(d,dat,panel="1000Genomes",pthreshold=1e-3,pop="EUR",
                   slice(which.min(p)) %>%
                   pull(p)
        cat(i,z[["protein"]],z[["id"]],z[["Disease"]],z[["pqtl"]],z[["qtl"]],proxy,r2_i,z[["p_qtl"]],"\n",sep="\t")
-       if(!is.null(r2_i)&!is.na(r2_i)) if(r2_i>0.8) break
+       if(!is.null(r2_i)&!is.na(r2_i)) if(r2_i>r2_threshold) break
      }
      dat[i,"proxy"] <- proxy
      dat[i,"p_proxy"] <- p_proxy
