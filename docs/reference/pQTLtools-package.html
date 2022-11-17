@@ -28,6 +28,7 @@ run_colocColocalisation analysis
 MR analysis
 
 pqtlMRBidirectional pQTL-MR analysis
+qtl_lookupQTL lookup
 run_TwoSampleMRA generic wrapper for TwoSampleMR analysis
 PhenoScanner Utilities
 
@@ -91,6 +92,7 @@ run_colocColocalisation analysis
 MR analysis
 
 pqtlMRBidirectional pQTL-MR analysis
+qtl_lookupQTL lookup
 run_TwoSampleMRA generic wrapper for TwoSampleMR analysis
 PhenoScanner Utilities
 
@@ -172,7 +174,7 @@ qtl3dplotly3D QTL plotly
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
       <ul class="navbar-nav"><li class="nav-item">
-  <a class="external-link nav-link" href="https://www.bioconductor.org">
+  <a class="external-link nav-link" href="https://alphafold.ebi.ac.uk/">
     <span class="fas fa fas fa-fast-backward"></span>
      
   </a>
@@ -180,14 +182,17 @@ qtl3dplotly3D QTL plotly
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-sites">Sites</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-sites">
+    <a class="external-link dropdown-item" href="https://alphafold.ebi.ac.uk/">AlphaFold</a>
     <a class="external-link dropdown-item" href="https://www.bioconductor.org/">Bioconductor</a>
     <a class="external-link dropdown-item" href="https://cran.r-project.org/">CRAN</a>
     <a class="external-link dropdown-item" href="https://cytoscape.org/">Cytoscape</a>
     <a class="external-link dropdown-item" href="https://www.ensembl.org/">Ensembl</a>
     <a class="external-link dropdown-item" href="https://www.ebi.ac.uk/eqtl/">eQTL catalog</a>
     <a class="external-link dropdown-item" href="https://www.ebi.ac.uk/gwas/">GWAS catalog</a>
+    <a class="external-link dropdown-item" href="https://www.mrbase.org/">MRBase</a>
     <a class="external-link dropdown-item" href="https://www.myendnoteweb.com/">MyEndNoteWeb</a>
     <a class="external-link dropdown-item" href="https://pubmed.ncbi.nlm.nih.gov/">PubMed</a>
+    <a class="external-link dropdown-item" href="https://sciwheel.com/">Sciwheel</a>
     <a class="external-link dropdown-item" href="https://github.com/snakemake-workflows/">snakemake-workflows</a>
     <a class="external-link dropdown-item" href="https://string-db.org/">STRING</a>
     <a class="external-link dropdown-item" href="https://www.proteinatlas.org/">The Human Protein Atlas</a>
@@ -226,7 +231,7 @@ qtl3dplotly3D QTL plotly
 
     <div class="ref-description section level2">
     
-<table class="table table"><tr><td>Objects</td><td>Description</td></tr><tr><td></td><td><strong>Datasets</strong></td></tr><tr><td></td><td></td></tr><tr><td>biomaRt</td><td>Curated data from biomaRt</td></tr><tr><td>caprion</td><td>Caprion panel</td></tr><tr><td>hg19</td><td>Curated data from Bioconductor</td></tr><tr><td>hg19Tables</td><td>Curated data from UCSC genome browser</td></tr><tr><td>inf1</td><td>Olink/INF panel</td></tr><tr><td>Olink_NGS</td><td>Olink/NGS panels</td></tr><tr><td>Olink_qPCR</td><td>Olink/qPCR panels</td></tr><tr><td>SomaLogic160410</td><td>SomaLogic panel</td></tr><tr><td>SomaScanV4.1</td><td>SomaScan v4.1 panel</td></tr><tr><td>st4</td><td>ST4 of the INTERVAL SomaLogic paper</td></tr><tr><td>st6</td><td>ST6 of the INTERVAL SomaLogic paper</td></tr><tr><td>st18</td><td>ST18 of the INTERVAL SomaLogic paper</td></tr><tr><td>swath_ms</td><td>SWATH-MS panel</td></tr><tr><td></td><td><strong>eQTL/GWAS</strong></td></tr><tr><td></td><td></td></tr><tr><td>get.prop.below.LLOD</td><td>Limit of detection analysis</td></tr><tr><td>import_eQTLCatalogue</td><td>Import eQTL Catalogue</td></tr><tr><td>import_OpenGWAS</td><td>Import OpenGWAS</td></tr><tr><td>make_ExpressionSet</td><td>A call to ExpressionSet class</td></tr><tr><td>novelty_check</td><td>Locus novelty check</td></tr><tr><td>run_coloc</td><td>Colocalisation analysis</td></tr><tr><td></td><td><strong>MR analysis</strong></td></tr><tr><td></td><td></td></tr><tr><td>pqtlMR</td><td>Bidirectional pQTL-MR analysis</td></tr><tr><td>run_TwoSampleMR</td><td>A generic wrapper for TwoSampleMR analysis</td></tr><tr><td></td><td><strong>PhenoScanner Utilities</strong></td></tr><tr><td></td><td></td></tr><tr><td>genequeries</td><td>phenoscanner genequeries in batches</td></tr><tr><td>regionqueries</td><td>phenoscanner regionqueries in batches</td></tr><tr><td>snpqueries</td><td>phenoscanner snpqueries in batches</td></tr><tr><td></td><td><strong>UniProt API</strong></td></tr><tr><td></td><td></td></tr><tr><td>uniprot2ids</td><td>UniProt ID to others</td></tr><tr><td></td><td><strong>Functions in R/gap</strong></td></tr><tr><td></td><td></td></tr><tr><td>METAL_forestplot</td><td>Forest plots from metal analysis</td></tr><tr><td>cis.vs.trans.classification</td><td>a cis/trans classifier</td></tr><tr><td>circos.cis.vs.trans.plot</td><td>circos plot of cis/trans classification</td></tr><tr><td>circos.mhtplot</td><td>circos Manhattan plot with gene annotation</td></tr><tr><td>circos.mhtplot2</td><td>Another circos Manhattan plot</td></tr><tr><td>cs</td><td>Credible set</td></tr><tr><td>get_b_se</td><td>Get b and se from AF, n, and z</td></tr><tr><td>get_pve_se</td><td>Get pve and its standard error from n, z</td></tr><tr><td>get_sdy</td><td>Get sd(y) from AF, n, b, se</td></tr><tr><td>gsmr</td><td>Mendelian randomization analysis</td></tr><tr><td>invnormal</td><td>Inverse normal transformation</td></tr><tr><td>log10p</td><td>log10(p) for a standard normal deviate</td></tr><tr><td>log10pvalue</td><td>log10(p) for a P value including its scientific format</td></tr><tr><td>logp</td><td>log(p) for a normal deviate</td></tr><tr><td>mhtplot.trunc</td><td>Truncated Manhattan plot</td></tr><tr><td>miamiplot2</td><td>Miami plot</td></tr><tr><td>mr_forestplot</td><td>Mendelian Randomization forest plot</td></tr><tr><td>qtlClassifier</td><td>A QTL cis/trans classifier</td></tr><tr><td>qtl2dplot</td><td>2D QTL plot</td></tr><tr><td>qtl2dplotly</td><td>2D QTL plotly</td></tr><tr><td>qtl3dplotly</td><td>3D QTL plotly</td></tr></table></div>
+<table class="table table"><tr><td>Objects</td><td>Description</td></tr><tr><td></td><td><strong>Datasets</strong></td></tr><tr><td></td><td></td></tr><tr><td>biomaRt</td><td>Curated data from biomaRt</td></tr><tr><td>caprion</td><td>Caprion panel</td></tr><tr><td>hg19</td><td>Curated data from Bioconductor</td></tr><tr><td>hg19Tables</td><td>Curated data from UCSC genome browser</td></tr><tr><td>inf1</td><td>Olink/INF panel</td></tr><tr><td>Olink_NGS</td><td>Olink/NGS panels</td></tr><tr><td>Olink_qPCR</td><td>Olink/qPCR panels</td></tr><tr><td>SomaLogic160410</td><td>SomaLogic panel</td></tr><tr><td>SomaScanV4.1</td><td>SomaScan v4.1 panel</td></tr><tr><td>st4</td><td>ST4 of the INTERVAL SomaLogic paper</td></tr><tr><td>st6</td><td>ST6 of the INTERVAL SomaLogic paper</td></tr><tr><td>st18</td><td>ST18 of the INTERVAL SomaLogic paper</td></tr><tr><td>swath_ms</td><td>SWATH-MS panel</td></tr><tr><td></td><td><strong>eQTL/GWAS</strong></td></tr><tr><td></td><td></td></tr><tr><td>get.prop.below.LLOD</td><td>Limit of detection analysis</td></tr><tr><td>import_eQTLCatalogue</td><td>Import eQTL Catalogue</td></tr><tr><td>import_OpenGWAS</td><td>Import OpenGWAS</td></tr><tr><td>make_ExpressionSet</td><td>A call to ExpressionSet class</td></tr><tr><td>novelty_check</td><td>Locus novelty check</td></tr><tr><td>run_coloc</td><td>Colocalisation analysis</td></tr><tr><td></td><td><strong>MR analysis</strong></td></tr><tr><td></td><td></td></tr><tr><td>pqtlMR</td><td>Bidirectional pQTL-MR analysis</td></tr><tr><td>qtl_lookup</td><td>QTL lookup</td></tr><tr><td>run_TwoSampleMR</td><td>A generic wrapper for TwoSampleMR analysis</td></tr><tr><td></td><td><strong>PhenoScanner Utilities</strong></td></tr><tr><td></td><td></td></tr><tr><td>genequeries</td><td>phenoscanner genequeries in batches</td></tr><tr><td>regionqueries</td><td>phenoscanner regionqueries in batches</td></tr><tr><td>snpqueries</td><td>phenoscanner snpqueries in batches</td></tr><tr><td></td><td><strong>UniProt API</strong></td></tr><tr><td></td><td></td></tr><tr><td>uniprot2ids</td><td>UniProt ID to others</td></tr><tr><td></td><td><strong>Functions in R/gap</strong></td></tr><tr><td></td><td></td></tr><tr><td>METAL_forestplot</td><td>Forest plots from metal analysis</td></tr><tr><td>cis.vs.trans.classification</td><td>a cis/trans classifier</td></tr><tr><td>circos.cis.vs.trans.plot</td><td>circos plot of cis/trans classification</td></tr><tr><td>circos.mhtplot</td><td>circos Manhattan plot with gene annotation</td></tr><tr><td>circos.mhtplot2</td><td>Another circos Manhattan plot</td></tr><tr><td>cs</td><td>Credible set</td></tr><tr><td>get_b_se</td><td>Get b and se from AF, n, and z</td></tr><tr><td>get_pve_se</td><td>Get pve and its standard error from n, z</td></tr><tr><td>get_sdy</td><td>Get sd(y) from AF, n, b, se</td></tr><tr><td>gsmr</td><td>Mendelian randomization analysis</td></tr><tr><td>invnormal</td><td>Inverse normal transformation</td></tr><tr><td>log10p</td><td>log10(p) for a standard normal deviate</td></tr><tr><td>log10pvalue</td><td>log10(p) for a P value including its scientific format</td></tr><tr><td>logp</td><td>log(p) for a normal deviate</td></tr><tr><td>mhtplot.trunc</td><td>Truncated Manhattan plot</td></tr><tr><td>miamiplot2</td><td>Miami plot</td></tr><tr><td>mr_forestplot</td><td>Mendelian Randomization forest plot</td></tr><tr><td>qtlClassifier</td><td>A QTL cis/trans classifier</td></tr><tr><td>qtl2dplot</td><td>2D QTL plot</td></tr><tr><td>qtl2dplotly</td><td>2D QTL plotly</td></tr><tr><td>qtl3dplotly</td><td>3D QTL plotly</td></tr></table></div>
 
 
     <div class="section level2">
