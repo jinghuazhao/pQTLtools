@@ -8,7 +8,8 @@ qtl_lookup(
   d,
   dat,
   panel = "1000Genomes",
-  pthreshold = 0.001,
+  p_threshold = 0.001,
+  r2_threshold = 0.8,
   pop = "EUR",
   plink_bin = NULL,
   r = NULL,
@@ -23,9 +24,11 @@ qtl_lookup(
 
 \item{panel}{reference panel.}
 
-\item{pthreshold}{cutoff of QTL association from trait GWASs.}
+\item{p_threshold}{cutoff of QTL association from trait GWASs.}
 
-\item{pop}{pupulation.}
+\item{r2_threshold}{cutoff of r^2.}
+
+\item{pop}{reference population from 1000Genomes for LD calculation.}
 
 \item{plink_bin}{PLINK executable file whose binary files are indicated in `bfile` variable of `dat`.}
 
@@ -41,7 +44,8 @@ A data.frame containing the looked up loci.
 \description{
 This function takes MR results (involving pQTL/QTL) to look up QTLs in trait GWASs given a P value cutoff. 
 The rationale is that a pQTL may not necessarily be in strong LD with QTL but some other independent signal
-in the same region.
+in the same region. The interest lands on association signals above a given P value (p_threshold) and
+linkage disequilibrium (LD) (r2_threshold) thresholds.
 }
 \examples{
 \dontrun{
