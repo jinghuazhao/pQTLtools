@@ -1695,7 +1695,7 @@ novelty_check <- function(known_loci,query_loci,flanking=1e6,pop="EUR",verbose=T
 qtl_lookup <- function(d,dat,panel="1000Genomes",p_threshold=1e-3,r2_threshold=0.8,pop="EUR",
                        plink_bin=NULL,r=NULL,r2=NULL,xlsx=NULL)
 {
-  protein <- p <- SNP <- prot <- Disease <- protein <- qtl <- p_qtl <- rsq <- NULL
+  protein <- p <- SNP <- prot <- Disease <- protein <- fdr <- qtl <- p_qtl <- rsq <- NULL
   for(i in 1:nrow(dat))
   {
      z <- dplyr::slice(dat,i)
@@ -1715,9 +1715,9 @@ qtl_lookup <- function(d,dat,panel="1000Genomes",p_threshold=1e-3,r2_threshold=0
      inside <- pqtl==gsub("_[A-Z]*","",cn)
      nn <- c(cn[inside],cn[!inside])
      if (length(r)==1) r_mat <- xx else r_mat <- xx[nn,nn]
-     if(!is.null(r)) write.table(r_mat,file_r2=paste(prot,id,Disease,pqtl,"r.txt",sep="-"))
+     if(!is.null(r)) write.table(r_mat,file=paste(prot,id,Disease,pqtl,"r.txt",sep="-"))
      r2_mat <- r_mat^2
-     if(!is.null(r2)) write.table(r2_mat,file_r2=paste(prot,id,Disease,pqtl,"r2.txt",sep="-"))
+     if(!is.null(r2)) write.table(r2_mat,file=paste(prot,id,Disease,pqtl,"r2.txt",sep="-"))
      colnames(r2_mat) <- gsub("_[A-Z]*","",colnames(r2_mat))
      rownames(r2_mat) <- gsub("_[A-Z]*","",rownames(r2_mat))
      snps <- intersect(pull(h,SNP),colnames(r2_mat))
