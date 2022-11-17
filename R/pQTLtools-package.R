@@ -31,6 +31,7 @@
 #' \strong{MR analysis} \tab   \cr
 #' \cr
 #' pqtlMR               \tab   Bidirectional pQTL-MR analysis\cr
+#' qtl_lookup           \tab   QTL lookup\cr
 #' run_TwoSampleMR      \tab   A generic wrapper for TwoSampleMR analysis\cr
 #' \cr
 #' \strong{PhenoScanner Utilities} \tab \cr
