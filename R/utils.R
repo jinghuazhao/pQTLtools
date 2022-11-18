@@ -1721,21 +1721,38 @@ qtl_lookup <- function(d,dat,panel="1000Genomes",p_threshold=1e-3,r2_threshold=0
      colnames(r2_mat) <- gsub("_[A-Z]*","",colnames(r2_mat))
      rownames(r2_mat) <- gsub("_[A-Z]*","",rownames(r2_mat))
      snps <- intersect(pull(h,SNP),colnames(r2_mat))
+     success <- 1
      if (length(snps)<1) next else if (length(snps)==1) dat[i,c("proxy","p_proxy","rsq")] <- c(z[c("qtl","p_qtl")],1)
      else while(length(snps)>1)
      {
+       success <- -1
        proxy <- snps[1]
        snps <- setdiff(snps,proxy)
        r2_i <- r2_mat[z[["pqtl"]],proxy]
        p_proxy <- filter(gwas,SNP==proxy) %>%
                   slice(which.min(p)) %>%
                   pull(p)
-       cat(i,z[["protein"]],z[["id"]],z[["Disease"]],z[["pqtl"]],z[["qtl"]],proxy,r2_i,z[["p_qtl"]],"\n",sep="\t")
-       if(!is.null(r2_i)&!is.na(r2_i)) if(r2_i>r2_threshold) break
+       cat("Same locus",i,z[["protein"]],z[["id"]],z[["Disease"]],z[["pqtl"]],z[["qtl"]],proxy,r2_i,z[["p_qtl"]],"\n",sep="\t")
+       if(!is.null(r2_i)&!is.na(r2_i)) if(r2_i>r2_threshold) {success <-1; break}
      }
-     dat[i,"proxy"] <- proxy
-     dat[i,"p_proxy"] <- p_proxy
-     dat[i,"rsq"] <- r2_i
+     if (success==-1)  while(length(snps)>1)
+     {
+       success <- -1
+       proxy <- snps[1]
+       snps <- setdiff(snps,proxy)
+       r2_i <- r2_mat[z[["pqtl"]],proxy]
+       p_proxy <- filter(gwas,SNP==proxy) %>%
+                  slice(which.min(p)) %>%
+                  pull(p)
+       cat("Independent locus",i,z[["protein"]],z[["id"]],z[["Disease"]],z[["pqtl"]],z[["qtl"]],proxy,r2_i,z[["p_qtl"]],"\n",sep="\t")
+       if(!is.null(r2_i)&!is.na(r2_i)) if(r2_i<r2_threshold) {success <-1; break}
+     }
+     if (success==1)
+     {
+       dat[i,"proxy"] <- proxy
+       dat[i,"p_proxy"] <- p_proxy
+       dat[i,"rsq"] <- r2_i
+     }
   }
   if (!is.null(xlsx))
   {
