@@ -84,12 +84,8 @@ navbar:
         href: https://www.ebi.ac.uk/gwas/
       - text: MRBase
         href: https://www.mrbase.org/
-      - text: MyEndNoteWeb
-        href: https://www.myendnoteweb.com/
       - text: PubMed
         href: https://pubmed.ncbi.nlm.nih.gov/
-      - text: Sciwheel
-        href: https://sciwheel.com/
       - text: snakemake-workflows
         href: https://github.com/snakemake-workflows/
       - text: STRING
