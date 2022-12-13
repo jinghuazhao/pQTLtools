@@ -1,0 +1,8 @@
+# in line with CRAN (https://cran.r-project.org/package=MendelianRandomization)
+MR_package_ver: 0.6.0
+target_protein:
+  - CD40
+  - OPG
+trait:
+  - HF
+  - HF2

@@ -1,0 +1,38 @@
+report: "report/workflow.rst"
+
+configfile: "config.yaml"
+
+rule all:
+    input:
+        expand("output/Obs_{trait}.csv", trait = config["trait"]),
+        expand("output/MR_{trait}.csv", trait = config["trait"])
+
+rule obs_analysis:
+    input:
+        "input/Obs_{trait}.csv"
+    output:
+        "output/Obs_{trait}.csv"
+    conda:
+        "envs/conda.yaml"
+    script:
+        "r/Obs_analysis.R"
+
+rule MR_analysis:
+    input:
+        data_MR="input/MR.csv",
+        ld="input/ld/{protein}.ld",
+        snplist="input/ld/{protein}.snplist"
+    conda:
+        "envs/conda.yaml"
+    output:
+        "output/MR/{protein}_{trait}.csv"
+    script:
+        "r/MR_analysis.R"
+
+rule aggregate_MR:
+    input:
+        expand("output/MR/{protein}_{trait}.csv", protein = config["target_protein"], trait = config["trait"])
+    output:
+        "output/MR_{trait}.csv"
+    shell:
+        "awk 'NR == FNR {{print; next}} FNR > 1' $(echo {input} | tr ' ' '\n' | grep _{wildcards.trait}.csv | tr '\n' ' ') > {output}"
