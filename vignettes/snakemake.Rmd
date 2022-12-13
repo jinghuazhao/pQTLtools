@@ -51,7 +51,9 @@ snakemake --dag | dot -Tsvg > output/dag.svg
 
 ![Figure 2. Directed Acyclic Graph (DAG)](output/dag.svg)
 
-## Reference
+## References
+
+[https://github.com/snakemake-workflows/](https://github.com/snakemake-workflows/)
 
 [![Circulation](https://www.ahajournals.org/pb-assets/images/logos/circ-logo-1526571039097.svg)](https://www.ahajournals.org/doi/10.1161/CIRCULATIONAHA.121.056663)
 [![DOI](https://zenodo.org/badge/429122036.svg)](https://zenodo.org/badge/latestdoi/429122036)
