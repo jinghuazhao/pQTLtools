@@ -47,11 +47,11 @@ navbar:
           href: articles/pQTLtools.html
         - text: ---------
         - text: "Articles:"
-        - text: Bioconductor
+        - text: Bioconductor notes
           href: articles/bioconductor.html
-        - text: ExpressionSet
+        - text: ExpressionSet usage
           href: articles/es.html
-        - text: snakemake
+        - text: A snakemake showcase
           href: articles/snakemake.html
         - text: SCALLOP-INF scripts
           href: articles/SCALLOP-INF.html
