@@ -5,8 +5,7 @@
 * Add inst/Olink.
 * Add inst/STRING/change_STRING_colors.py.
 * Add inst/UniProt|PPI/README.md.
-* Add inst/snakemake with adaptaion of cvd1/inf1-hf example.
-* Add pQTLtools.Rmd, bioconductor.Rmd, es.Rmd and SCALLOP-INF.Rmd articles.
+* Add pQTLtools.Rmd, bioconductor.Rmd, es.Rmd, snakemake.Rmd and SCALLOP-INF.Rmd articles.
 * Add LICENSE.md and README.md.
 * Add listed publications on pQTLs by Sun et al. (2018) and Suhre et al. (2020).
 * Add run_TwoSampleMR(), make_ExpressionSet(), novelty_check(), qtl_lookup().
