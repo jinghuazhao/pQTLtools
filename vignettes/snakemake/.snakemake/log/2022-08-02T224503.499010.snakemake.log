@@ -1,0 +1,6 @@
+Building DAG of jobs...
+MissingInputException in line 5 of /home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile:
+Missing input files for rule all:
+    affected files:
+        output/MR_HF.csv
+        output/MR_HF2.csv

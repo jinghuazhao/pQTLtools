@@ -1,0 +1,420 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job             count    min threads    max threads
+------------  -------  -------------  -------------
+MR_analysis        26              1              1
+aggregate_MR        1              1              1
+all                 1              1              1
+obs_analysis        1              1              1
+total              29              1              1
+
+Select jobs to execute...
+
+[Tue Aug  2 12:02:16 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/MMP-1.ld, input/ld/MMP-1.snplist
+    output: output/MR/MMP-1_HF.csv
+    jobid: 20
+    reason: Missing output files: output/MR/MMP-1_HF.csv
+    wildcards: protein=MMP-1, trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 12:02:24 2022]
+Finished job 20.
+1 of 29 steps (3%) done
+Select jobs to execute...
+
+[Tue Aug  2 12:02:24 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/EN-RAGE.ld, input/ld/EN-RAGE.snplist
+    output: output/MR/EN-RAGE_HF.csv
+    jobid: 13
+    reason: Missing output files: output/MR/EN-RAGE_HF.csv
+    wildcards: protein=EN-RAGE, trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 12:02:31 2022]
+Finished job 13.
+2 of 29 steps (7%) done
+Select jobs to execute...
+
+[Tue Aug  2 12:02:31 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/TRANCE.ld, input/ld/TRANCE.snplist
+    output: output/MR/TRANCE_HF.csv
+    jobid: 27
+    reason: Missing output files: output/MR/TRANCE_HF.csv
+    wildcards: protein=TRANCE, trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 12:02:45 2022]
+Finished job 27.
+3 of 29 steps (10%) done
+Select jobs to execute...
+
+[Tue Aug  2 12:02:45 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/CCL4.ld, input/ld/CCL4.snplist
+    output: output/MR/CCL4_HF.csv
+    jobid: 7
+    reason: Missing output files: output/MR/CCL4_HF.csv
+    wildcards: protein=CCL4, trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 12:03:20 2022]
+Finished job 7.
+4 of 29 steps (14%) done
+Select jobs to execute...
+
+[Tue Aug  2 12:03:27 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/MMP-10.ld, input/ld/MMP-10.snplist
+    output: output/MR/MMP-10_HF.csv
+    jobid: 21
+    reason: Missing output files: output/MR/MMP-10_HF.csv
+    wildcards: protein=MMP-10, trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 12:03:35 2022]
+Finished job 21.
+5 of 29 steps (17%) done
+Select jobs to execute...
+
+[Tue Aug  2 12:03:36 2022]
+rule obs_analysis:
+    input: input/Obs.csv
+    output: output/Obs_HF.csv
+    jobid: 1
+    reason: Missing output files: output/Obs_HF.csv
+    wildcards: trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 12:03:40 2022]
+Finished job 1.
+6 of 29 steps (21%) done
+Select jobs to execute...
+
+[Tue Aug  2 12:03:40 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/VEGF-A.ld, input/ld/VEGF-A.snplist
+    output: output/MR/VEGF-A_HF.csv
+    jobid: 28
+    reason: Missing output files: output/MR/VEGF-A_HF.csv
+    wildcards: protein=VEGF-A, trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 12:03:47 2022]
+Finished job 28.
+7 of 29 steps (24%) done
+Select jobs to execute...
+
+[Tue Aug  2 12:03:47 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/FGF-23.ld, input/ld/FGF-23.snplist
+    output: output/MR/FGF-23_HF.csv
+    jobid: 14
+    reason: Missing output files: output/MR/FGF-23_HF.csv
+    wildcards: protein=FGF-23, trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 12:03:54 2022]
+Finished job 14.
+8 of 29 steps (28%) done
+Select jobs to execute...
+
+[Tue Aug  2 12:03:54 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/OPG.ld, input/ld/OPG.snplist
+    output: output/MR/OPG_HF.csv
+    jobid: 22
+    reason: Missing output files: output/MR/OPG_HF.csv
+    wildcards: protein=OPG, trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 12:04:00 2022]
+Finished job 22.
+9 of 29 steps (31%) done
+Select jobs to execute...
+
+[Tue Aug  2 12:04:01 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/SCF.ld, input/ld/SCF.snplist
+    output: output/MR/SCF_HF.csv
+    jobid: 23
+    reason: Missing output files: output/MR/SCF_HF.csv
+    wildcards: protein=SCF, trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 12:04:06 2022]
+Finished job 23.
+10 of 29 steps (34%) done
+Select jobs to execute...
+
+[Tue Aug  2 12:04:06 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/CD40.ld, input/ld/CD40.snplist
+    output: output/MR/CD40_HF.csv
+    jobid: 8
+    reason: Missing output files: output/MR/CD40_HF.csv
+    wildcards: protein=CD40, trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 12:04:13 2022]
+Finished job 8.
+11 of 29 steps (38%) done
+Select jobs to execute...
+
+[Tue Aug  2 12:04:13 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/HGF.ld, input/ld/HGF.snplist
+    output: output/MR/HGF_HF.csv
+    jobid: 15
+    reason: Missing output files: output/MR/HGF_HF.csv
+    wildcards: protein=HGF, trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 12:04:19 2022]
+Finished job 15.
+12 of 29 steps (41%) done
+Select jobs to execute...
+
+[Tue Aug  2 12:04:19 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/CASP-8.ld, input/ld/CASP-8.snplist
+    output: output/MR/CASP-8_HF.csv
+    jobid: 4
+    reason: Missing output files: output/MR/CASP-8_HF.csv
+    wildcards: protein=CASP-8, trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 12:04:25 2022]
+Finished job 4.
+13 of 29 steps (45%) done
+Select jobs to execute...
+
+[Tue Aug  2 12:04:25 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/TNFSF14.ld, input/ld/TNFSF14.snplist
+    output: output/MR/TNFSF14_HF.csv
+    jobid: 25
+    reason: Missing output files: output/MR/TNFSF14_HF.csv
+    wildcards: protein=TNFSF14, trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 12:04:32 2022]
+Finished job 25.
+14 of 29 steps (48%) done
+Select jobs to execute...
+Failed to solve scheduling problem with ILP solver in time (10s). Falling back to greedy solver.
+
+[Tue Aug  2 12:04:53 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/TRAIL.ld, input/ld/TRAIL.snplist
+    output: output/MR/TRAIL_HF.csv
+    jobid: 26
+    reason: Missing output files: output/MR/TRAIL_HF.csv
+    wildcards: protein=TRAIL, trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 12:05:02 2022]
+Finished job 26.
+15 of 29 steps (52%) done
+Select jobs to execute...
+
+[Tue Aug  2 12:05:02 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/IL-18.ld, input/ld/IL-18.snplist
+    output: output/MR/IL-18_HF.csv
+    jobid: 16
+    reason: Missing output files: output/MR/IL-18_HF.csv
+    wildcards: protein=IL-18, trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 12:05:08 2022]
+Finished job 16.
+16 of 29 steps (55%) done
+Select jobs to execute...
+
+[Tue Aug  2 12:05:08 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/CXCL1.ld, input/ld/CXCL1.snplist
+    output: output/MR/CXCL1_HF.csv
+    jobid: 11
+    reason: Missing output files: output/MR/CXCL1_HF.csv
+    wildcards: protein=CXCL1, trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 12:05:14 2022]
+Finished job 11.
+17 of 29 steps (59%) done
+Select jobs to execute...
+
+[Tue Aug  2 12:05:14 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/IL-8.ld, input/ld/IL-8.snplist
+    output: output/MR/IL-8_HF.csv
+    jobid: 18
+    reason: Missing output files: output/MR/IL-8_HF.csv
+    wildcards: protein=IL-8, trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 12:05:20 2022]
+Finished job 18.
+18 of 29 steps (62%) done
+Select jobs to execute...
+
+[Tue Aug  2 12:05:20 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/CSF-1.ld, input/ld/CSF-1.snplist
+    output: output/MR/CSF-1_HF.csv
+    jobid: 9
+    reason: Missing output files: output/MR/CSF-1_HF.csv
+    wildcards: protein=CSF-1, trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 12:05:26 2022]
+Finished job 9.
+19 of 29 steps (66%) done
+Select jobs to execute...
+
+[Tue Aug  2 12:05:27 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/MCP-1.ld, input/ld/MCP-1.snplist
+    output: output/MR/MCP-1_HF.csv
+    jobid: 19
+    reason: Missing output files: output/MR/MCP-1_HF.csv
+    wildcards: protein=MCP-1, trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 12:05:33 2022]
+Finished job 19.
+20 of 29 steps (69%) done
+Select jobs to execute...
+
+[Tue Aug  2 12:05:33 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/CCL20.ld, input/ld/CCL20.snplist
+    output: output/MR/CCL20_HF.csv
+    jobid: 5
+    reason: Missing output files: output/MR/CCL20_HF.csv
+    wildcards: protein=CCL20, trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 12:05:40 2022]
+Finished job 5.
+21 of 29 steps (72%) done
+Select jobs to execute...
+
+[Tue Aug  2 12:05:40 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/CXCL6.ld, input/ld/CXCL6.snplist
+    output: output/MR/CXCL6_HF.csv
+    jobid: 12
+    reason: Missing output files: output/MR/CXCL6_HF.csv
+    wildcards: protein=CXCL6, trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 12:05:46 2022]
+Finished job 12.
+22 of 29 steps (76%) done
+Select jobs to execute...
+
+[Tue Aug  2 12:05:46 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/Beta-NGF.ld, input/ld/Beta-NGF.snplist
+    output: output/MR/Beta-NGF_HF.csv
+    jobid: 3
+    reason: Missing output files: output/MR/Beta-NGF_HF.csv
+    wildcards: protein=Beta-NGF, trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 12:05:52 2022]
+Finished job 3.
+23 of 29 steps (79%) done
+Select jobs to execute...
+
+[Tue Aug  2 12:05:52 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/CX3CL1.ld, input/ld/CX3CL1.snplist
+    output: output/MR/CX3CL1_HF.csv
+    jobid: 10
+    reason: Missing output files: output/MR/CX3CL1_HF.csv
+    wildcards: protein=CX3CL1, trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 12:05:59 2022]
+Finished job 10.
+24 of 29 steps (83%) done
+Select jobs to execute...
+
+[Tue Aug  2 12:05:59 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/SIRT2.ld, input/ld/SIRT2.snplist
+    output: output/MR/SIRT2_HF.csv
+    jobid: 24
+    reason: Missing output files: output/MR/SIRT2_HF.csv
+    wildcards: protein=SIRT2, trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 12:06:06 2022]
+Finished job 24.
+25 of 29 steps (86%) done
+Select jobs to execute...
+
+[Tue Aug  2 12:06:06 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/CCL3.ld, input/ld/CCL3.snplist
+    output: output/MR/CCL3_HF.csv
+    jobid: 6
+    reason: Missing output files: output/MR/CCL3_HF.csv
+    wildcards: protein=CCL3, trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 12:06:12 2022]
+Finished job 6.
+26 of 29 steps (90%) done
+Select jobs to execute...
+
+[Tue Aug  2 12:06:12 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/IL-6.ld, input/ld/IL-6.snplist
+    output: output/MR/IL-6_HF.csv
+    jobid: 17
+    reason: Missing output files: output/MR/IL-6_HF.csv
+    wildcards: protein=IL-6, trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 12:06:18 2022]
+Finished job 17.
+27 of 29 steps (93%) done
+Select jobs to execute...
+
+[Tue Aug  2 12:06:18 2022]
+rule aggregate_MR:
+    input: output/MR/Beta-NGF_HF.csv, output/MR/CASP-8_HF.csv, output/MR/CCL20_HF.csv, output/MR/CCL3_HF.csv, output/MR/CCL4_HF.csv, output/MR/CD40_HF.csv, output/MR/CSF-1_HF.csv, output/MR/CX3CL1_HF.csv, output/MR/CXCL1_HF.csv, output/MR/CXCL6_HF.csv, output/MR/EN-RAGE_HF.csv, output/MR/FGF-23_HF.csv, output/MR/HGF_HF.csv, output/MR/IL-18_HF.csv, output/MR/IL-6_HF.csv, output/MR/IL-8_HF.csv, output/MR/MCP-1_HF.csv, output/MR/MMP-1_HF.csv, output/MR/MMP-10_HF.csv, output/MR/OPG_HF.csv, output/MR/SCF_HF.csv, output/MR/SIRT2_HF.csv, output/MR/TNFSF14_HF.csv, output/MR/TRAIL_HF.csv, output/MR/TRANCE_HF.csv, output/MR/VEGF-A_HF.csv
+    output: output/MR_HF.csv
+    jobid: 2
+    reason: Missing output files: output/MR_HF.csv; Input files updated by another job: output/MR/MCP-1_HF.csv, output/MR/VEGF-A_HF.csv, output/MR/SIRT2_HF.csv, output/MR/CSF-1_HF.csv, output/MR/CASP-8_HF.csv, output/MR/CCL20_HF.csv, output/MR/Beta-NGF_HF.csv, output/MR/EN-RAGE_HF.csv, output/MR/TNFSF14_HF.csv, output/MR/IL-8_HF.csv, output/MR/CD40_HF.csv, output/MR/MMP-1_HF.csv, output/MR/OPG_HF.csv, output/MR/FGF-23_HF.csv, output/MR/CXCL1_HF.csv, output/MR/MMP-10_HF.csv, output/MR/CCL4_HF.csv, output/MR/IL-18_HF.csv, output/MR/CX3CL1_HF.csv, output/MR/TRANCE_HF.csv, output/MR/SCF_HF.csv, output/MR/TRAIL_HF.csv, output/MR/IL-6_HF.csv, output/MR/CCL3_HF.csv, output/MR/HGF_HF.csv, output/MR/CXCL6_HF.csv
+    wildcards: trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 12:06:18 2022]
+Finished job 2.
+28 of 29 steps (97%) done
+Select jobs to execute...
+
+[Tue Aug  2 12:06:18 2022]
+localrule all:
+    input: output/Obs_HF.csv, output/MR_HF.csv
+    jobid: 0
+    reason: Input files updated by another job: output/MR_HF.csv, output/Obs_HF.csv
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 12:06:18 2022]
+Finished job 0.
+29 of 29 steps (100%) done
+Complete log: .snakemake/log/2022-08-02T120215.585789.snakemake.log

@@ -1,0 +1,39 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job             count    min threads    max threads
+------------  -------  -------------  -------------
+MR_analysis        26              1              1
+aggregate_MR        2              1              1
+all                 1              1              1
+obs_analysis        1              1              1
+total              30              1              1
+
+Select jobs to execute...
+
+[Tue Aug  2 12:12:46 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/TRAIL.ld, input/ld/TRAIL.snplist
+    output: output/MR/TRAIL_CVD.csv
+    jobid: 51
+    reason: Missing output files: output/MR/TRAIL_CVD.csv
+    wildcards: protein=TRAIL, trait=CVD
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 12:12:53 2022]
+Error in rule MR_analysis:
+    jobid: 51
+    output: output/MR/TRAIL_CVD.csv
+    conda-env: /home/jhz22/pQTLtools/inst/snakemake/.snakemake/conda/216ddc832f9e9140d7a238726ac86172
+
+RuleException:
+CalledProcessError in line 30 of /home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile:
+Command 'set -euo pipefail;  Rscript --vanilla /home/jhz22/pQTLtools/inst/snakemake/.snakemake/scripts/tmpofjhdct_.MR_analysis.R' returned non-zero exit status 1.
+  File "/home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile", line 30, in __rule_MR_analysis
+  File "/home/jhz22/COVID-19/miniconda37/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2022-08-02T121245.674247.snakemake.log

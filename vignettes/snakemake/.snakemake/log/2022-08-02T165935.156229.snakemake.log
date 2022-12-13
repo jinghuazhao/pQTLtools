@@ -1,0 +1,107 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 32
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job             count    min threads    max threads
+------------  -------  -------------  -------------
+MR_analysis         4              1              1
+aggregate_MR        2              1              1
+all                 1              1              1
+obs_analysis        2              1              1
+total               9              1              1
+
+Select jobs to execute...
+
+[Tue Aug  2 16:59:35 2022]
+rule obs_analysis:
+    input: input/Obs.csv
+    output: output/Obs_HF2.csv
+    jobid: 2
+    reason: Missing output files: output/Obs_HF2.csv
+    wildcards: trait=HF2
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 16:59:36 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/CD40.ld, input/ld/CD40.snplist
+    output: output/MR/CD40_HF.csv
+    jobid: 4
+    reason: Missing output files: output/MR/CD40_HF.csv
+    wildcards: protein=CD40, trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 16:59:36 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/OPG.ld, input/ld/OPG.snplist
+    output: output/MR/OPG_HF.csv
+    jobid: 6
+    reason: Missing output files: output/MR/OPG_HF.csv
+    wildcards: protein=OPG, trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 16:59:36 2022]
+rule obs_analysis:
+    input: input/Obs.csv
+    output: output/Obs_HF.csv
+    jobid: 1
+    reason: Missing output files: output/Obs_HF.csv
+    wildcards: trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 16:59:36 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/CD40.ld, input/ld/CD40.snplist
+    output: output/MR/CD40_HF2.csv
+    jobid: 5
+    reason: Missing output files: output/MR/CD40_HF2.csv
+    wildcards: protein=CD40, trait=HF2
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 16:59:36 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/OPG.ld, input/ld/OPG.snplist
+    output: output/MR/OPG_HF2.csv
+    jobid: 7
+    reason: Missing output files: output/MR/OPG_HF2.csv
+    wildcards: protein=OPG, trait=HF2
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 16:59:40 2022]
+Finished job 1.
+1 of 9 steps (11%) done
+[Tue Aug  2 16:59:40 2022]
+Finished job 2.
+2 of 9 steps (22%) done
+[Tue Aug  2 16:59:41 2022]
+Error in rule MR_analysis:
+    jobid: 5
+    output: output/MR/CD40_HF2.csv
+    conda-env: /home/jhz22/pQTLtools/inst/snakemake/.snakemake/conda/216ddc832f9e9140d7a238726ac86172
+
+RuleException:
+CalledProcessError in line 30 of /home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile:
+Command 'set -euo pipefail;  Rscript --vanilla /home/jhz22/pQTLtools/inst/snakemake/.snakemake/scripts/tmpl08tjiaj.MR_analysis.R' returned non-zero exit status 1.
+  File "/home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile", line 30, in __rule_MR_analysis
+  File "/home/jhz22/COVID-19/miniconda37/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+[Tue Aug  2 16:59:41 2022]
+Error in rule MR_analysis:
+    jobid: 7
+    output: output/MR/OPG_HF2.csv
+    conda-env: /home/jhz22/pQTLtools/inst/snakemake/.snakemake/conda/216ddc832f9e9140d7a238726ac86172
+
+RuleException:
+CalledProcessError in line 30 of /home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile:
+Command 'set -euo pipefail;  Rscript --vanilla /home/jhz22/pQTLtools/inst/snakemake/.snakemake/scripts/tmpri1ywqp4.MR_analysis.R' returned non-zero exit status 1.
+  File "/home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile", line 30, in __rule_MR_analysis
+  File "/home/jhz22/COVID-19/miniconda37/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+[Tue Aug  2 16:59:42 2022]
+Finished job 4.
+3 of 9 steps (33%) done
+[Tue Aug  2 16:59:42 2022]
+Finished job 6.
+4 of 9 steps (44%) done
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2022-08-02T165935.156229.snakemake.log

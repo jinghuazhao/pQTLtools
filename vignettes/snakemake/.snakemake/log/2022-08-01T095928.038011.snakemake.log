@@ -1,0 +1,6 @@
+Building DAG of jobs...
+Creating report...
+Loading script code for rule obs_analysis
+Loading script code for rule MR_analysis
+Downloading resources and rendering HTML.
+Report created: report.html.

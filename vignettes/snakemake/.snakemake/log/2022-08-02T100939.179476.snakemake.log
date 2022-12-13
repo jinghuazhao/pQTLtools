@@ -1,0 +1,4 @@
+Building DAG of jobs...
+WildcardError in line 5 of /home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile:
+Wildcards in input files cannot be determined from output files:
+'trait'

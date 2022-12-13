@@ -1,0 +1,38 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job             count    min threads    max threads
+------------  -------  -------------  -------------
+MR_analysis        26              1              1
+aggregate_MR        1              1              1
+all                 1              1              1
+obs_analysis        1              1              1
+total              29              1              1
+
+Select jobs to execute...
+
+[Tue Aug  2 12:16:53 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/MMP-1.ld, input/ld/MMP-1.snplist
+    output: output/MR/MMP-1_HF.csv
+    jobid: 20
+    reason: Missing output files: output/MR/MMP-1_HF.csv
+    wildcards: protein=MMP-1, trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+Terminating processes on user request, this might take some time.
+[Tue Aug  2 12:17:11 2022]
+Error in rule MR_analysis:
+    jobid: 20
+    output: output/MR/MMP-1_HF.csv
+    conda-env: /home/jhz22/pQTLtools/inst/snakemake/.snakemake/conda/216ddc832f9e9140d7a238726ac86172
+
+RuleException:
+CalledProcessError in line 30 of /home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile:
+Command 'set -euo pipefail;  Rscript --vanilla /home/jhz22/pQTLtools/inst/snakemake/.snakemake/scripts/tmpyg1igkoj.MR_analysis.R' returned non-zero exit status 1.
+  File "/home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile", line 30, in __rule_MR_analysis
+  File "/home/jhz22/COVID-19/miniconda37/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+Complete log: .snakemake/log/2022-08-02T121653.058252.snakemake.log

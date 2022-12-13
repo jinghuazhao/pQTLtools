@@ -1,0 +1,122 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job             count    min threads    max threads
+------------  -------  -------------  -------------
+MR_analysis         4              1              1
+aggregate_MR        2              1              1
+all                 1              1              1
+obs_analysis        2              1              1
+total               9              1              1
+
+Select jobs to execute...
+
+[Tue Aug  2 22:48:48 2022]
+rule obs_analysis:
+    input: input/Obs_HF.csv
+    output: output/Obs.HF.csv
+    jobid: 1
+    reason: Missing output files: output/Obs.HF.csv
+    wildcards: trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 22:48:52 2022]
+Finished job 1.
+1 of 9 steps (11%) done
+Select jobs to execute...
+
+[Tue Aug  2 22:48:53 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/OPG.ld, input/ld/OPG.snplist
+    output: output/MR/OPG.HF.csv
+    jobid: 6
+    reason: Missing output files: output/MR/OPG.HF.csv
+    wildcards: protein=OPG, trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 22:48:59 2022]
+Finished job 6.
+2 of 9 steps (22%) done
+Select jobs to execute...
+
+[Tue Aug  2 22:48:59 2022]
+rule obs_analysis:
+    input: input/Obs_HF2.csv
+    output: output/Obs.HF2.csv
+    jobid: 2
+    reason: Missing output files: output/Obs.HF2.csv
+    wildcards: trait=HF2
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 22:49:03 2022]
+Finished job 2.
+3 of 9 steps (33%) done
+Select jobs to execute...
+
+[Tue Aug  2 22:49:03 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/CD40.ld, input/ld/CD40.snplist
+    output: output/MR/CD40.HF.csv
+    jobid: 4
+    reason: Missing output files: output/MR/CD40.HF.csv
+    wildcards: protein=CD40, trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 22:49:10 2022]
+Finished job 4.
+4 of 9 steps (44%) done
+Select jobs to execute...
+
+[Tue Aug  2 22:49:10 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/CD40.ld, input/ld/CD40.snplist
+    output: output/MR/CD40.HF2.csv
+    jobid: 5
+    reason: Missing output files: output/MR/CD40.HF2.csv
+    wildcards: protein=CD40, trait=HF2
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 22:49:16 2022]
+Finished job 5.
+5 of 9 steps (56%) done
+Select jobs to execute...
+
+[Tue Aug  2 22:49:16 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/OPG.ld, input/ld/OPG.snplist
+    output: output/MR/OPG.HF2.csv
+    jobid: 7
+    reason: Missing output files: output/MR/OPG.HF2.csv
+    wildcards: protein=OPG, trait=HF2
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 22:49:22 2022]
+Finished job 7.
+6 of 9 steps (67%) done
+Select jobs to execute...
+
+[Tue Aug  2 22:49:22 2022]
+rule aggregate_MR:
+    input: output/MR/CD40.HF.csv, output/MR/CD40.HF2.csv, output/MR/OPG.HF.csv, output/MR/OPG.HF2.csv
+    output: output/MR.HF.csv
+    jobid: 3
+    reason: Missing output files: output/MR.HF.csv; Input files updated by another job: output/MR/OPG.HF2.csv, output/MR/CD40.HF.csv, output/MR/CD40.HF2.csv, output/MR/OPG.HF.csv
+    wildcards: trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 22:49:23 2022]
+Error in rule aggregate_MR:
+    jobid: 3
+    output: output/MR.HF.csv
+    shell:
+        awk 'NR == FNR {print; next} FNR > 1' --trait HF output/MR/CD40.HF.csv output/MR/CD40.HF2.csv output/MR/OPG.HF.csv output/MR/OPG.HF2.csv > output/MR.HF.csv
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Removing output files of failed job aggregate_MR since they might be corrupted:
+output/MR.HF.csv
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2022-08-02T224847.766768.snakemake.log

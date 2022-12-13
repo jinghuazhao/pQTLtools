@@ -1,0 +1,2 @@
+SyntaxError in line 6 of /home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile:
+EOF in multi-line statement (Snakefile, line 6)

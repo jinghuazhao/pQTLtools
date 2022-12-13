@@ -1,0 +1,554 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 32
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job             count    min threads    max threads
+------------  -------  -------------  -------------
+MR_analysis        26              1              1
+aggregate_MR        1              1              1
+all                 1              1              1
+obs_analysis        1              1              1
+total              29              1              1
+
+Select jobs to execute...
+
+[Tue Aug  2 10:04:58 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/CCL20.ld, input/ld/CCL20.snplist
+    output: output/MR/CCL20.csv
+    jobid: 5
+    reason: Missing output files: output/MR/CCL20.csv
+    wildcards: protein=CCL20
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 10:04:58 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/MCP-1.ld, input/ld/MCP-1.snplist
+    output: output/MR/MCP-1.csv
+    jobid: 19
+    reason: Missing output files: output/MR/MCP-1.csv
+    wildcards: protein=MCP-1
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 10:04:58 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/TRAIL.ld, input/ld/TRAIL.snplist
+    output: output/MR/TRAIL.csv
+    jobid: 26
+    reason: Missing output files: output/MR/TRAIL.csv
+    wildcards: protein=TRAIL
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 10:04:58 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/CXCL6.ld, input/ld/CXCL6.snplist
+    output: output/MR/CXCL6.csv
+    jobid: 12
+    reason: Missing output files: output/MR/CXCL6.csv
+    wildcards: protein=CXCL6
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 10:04:58 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/CCL3.ld, input/ld/CCL3.snplist
+    output: output/MR/CCL3.csv
+    jobid: 6
+    reason: Missing output files: output/MR/CCL3.csv
+    wildcards: protein=CCL3
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 10:04:58 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/MMP-1.ld, input/ld/MMP-1.snplist
+    output: output/MR/MMP-1.csv
+    jobid: 20
+    reason: Missing output files: output/MR/MMP-1.csv
+    wildcards: protein=MMP-1
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 10:04:58 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/EN-RAGE.ld, input/ld/EN-RAGE.snplist
+    output: output/MR/EN-RAGE.csv
+    jobid: 13
+    reason: Missing output files: output/MR/EN-RAGE.csv
+    wildcards: protein=EN-RAGE
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 10:04:58 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/TRANCE.ld, input/ld/TRANCE.snplist
+    output: output/MR/TRANCE.csv
+    jobid: 27
+    reason: Missing output files: output/MR/TRANCE.csv
+    wildcards: protein=TRANCE
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 10:04:58 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/CCL4.ld, input/ld/CCL4.snplist
+    output: output/MR/CCL4.csv
+    jobid: 7
+    reason: Missing output files: output/MR/CCL4.csv
+    wildcards: protein=CCL4
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 10:04:58 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/MMP-10.ld, input/ld/MMP-10.snplist
+    output: output/MR/MMP-10.csv
+    jobid: 21
+    reason: Missing output files: output/MR/MMP-10.csv
+    wildcards: protein=MMP-10
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 10:04:58 2022]
+rule obs_analysis:
+    input: input/Obs.csv
+    output: output/Obs.csv
+    jobid: 1
+    reason: Missing output files: output/Obs.csv
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 10:04:58 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/FGF-23.ld, input/ld/FGF-23.snplist
+    output: output/MR/FGF-23.csv
+    jobid: 14
+    reason: Missing output files: output/MR/FGF-23.csv
+    wildcards: protein=FGF-23
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 10:04:58 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/VEGF-A.ld, input/ld/VEGF-A.snplist
+    output: output/MR/VEGF-A.csv
+    jobid: 28
+    reason: Missing output files: output/MR/VEGF-A.csv
+    wildcards: protein=VEGF-A
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 10:04:58 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/OPG.ld, input/ld/OPG.snplist
+    output: output/MR/OPG.csv
+    jobid: 22
+    reason: Missing output files: output/MR/OPG.csv
+    wildcards: protein=OPG
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 10:04:58 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/CD40.ld, input/ld/CD40.snplist
+    output: output/MR/CD40.csv
+    jobid: 8
+    reason: Missing output files: output/MR/CD40.csv
+    wildcards: protein=CD40
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 10:04:58 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/HGF.ld, input/ld/HGF.snplist
+    output: output/MR/HGF.csv
+    jobid: 15
+    reason: Missing output files: output/MR/HGF.csv
+    wildcards: protein=HGF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 10:04:58 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/CSF-1.ld, input/ld/CSF-1.snplist
+    output: output/MR/CSF-1.csv
+    jobid: 9
+    reason: Missing output files: output/MR/CSF-1.csv
+    wildcards: protein=CSF-1
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 10:04:58 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/SCF.ld, input/ld/SCF.snplist
+    output: output/MR/SCF.csv
+    jobid: 23
+    reason: Missing output files: output/MR/SCF.csv
+    wildcards: protein=SCF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 10:04:58 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/IL-18.ld, input/ld/IL-18.snplist
+    output: output/MR/IL-18.csv
+    jobid: 16
+    reason: Missing output files: output/MR/IL-18.csv
+    wildcards: protein=IL-18
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 10:04:58 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/CX3CL1.ld, input/ld/CX3CL1.snplist
+    output: output/MR/CX3CL1.csv
+    jobid: 10
+    reason: Missing output files: output/MR/CX3CL1.csv
+    wildcards: protein=CX3CL1
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 10:04:58 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/SIRT2.ld, input/ld/SIRT2.snplist
+    output: output/MR/SIRT2.csv
+    jobid: 24
+    reason: Missing output files: output/MR/SIRT2.csv
+    wildcards: protein=SIRT2
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 10:04:58 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/IL-6.ld, input/ld/IL-6.snplist
+    output: output/MR/IL-6.csv
+    jobid: 17
+    reason: Missing output files: output/MR/IL-6.csv
+    wildcards: protein=IL-6
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 10:04:58 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/Beta-NGF.ld, input/ld/Beta-NGF.snplist
+    output: output/MR/Beta-NGF.csv
+    jobid: 3
+    reason: Missing output files: output/MR/Beta-NGF.csv
+    wildcards: protein=Beta-NGF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+
+[Tue Aug  2 10:04:58 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/CXCL1.ld, input/ld/CXCL1.snplist
+    output: output/MR/CXCL1.csv
+    jobid: 11
+    reason: Missing output files: output/MR/CXCL1.csv
+    wildcards: protein=CXCL1
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+
+[Tue Aug  2 10:04:58 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/TNFSF14.ld, input/ld/TNFSF14.snplist
+    output: output/MR/TNFSF14.csv
+    jobid: 25
+    reason: Missing output files: output/MR/TNFSF14.csv
+    wildcards: protein=TNFSF14
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+
+[Tue Aug  2 10:04:58 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/CASP-8.ld, input/ld/CASP-8.snplist
+    output: output/MR/CASP-8.csv
+    jobid: 4
+    reason: Missing output files: output/MR/CASP-8.csv
+    wildcards: protein=CASP-8
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+
+[Tue Aug  2 10:04:58 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/IL-8.ld, input/ld/IL-8.snplist
+    output: output/MR/IL-8.csv
+    jobid: 18
+    reason: Missing output files: output/MR/IL-8.csv
+    wildcards: protein=IL-8
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 10:05:03 2022]
+Finished job 1.
+1 of 29 steps (3%) done
+[Tue Aug  2 10:05:04 2022]
+Error in rule MR_analysis:
+    jobid: 16
+    output: output/MR/IL-18.csv
+    conda-env: /home/jhz22/pQTLtools/inst/snakemake/.snakemake/conda/216ddc832f9e9140d7a238726ac86172
+
+[Tue Aug  2 10:05:04 2022]
+Error in rule MR_analysis:
+    jobid: 23
+    output: output/MR/SCF.csv
+    conda-env: /home/jhz22/pQTLtools/inst/snakemake/.snakemake/conda/216ddc832f9e9140d7a238726ac86172
+
+[Tue Aug  2 10:05:04 2022]
+Error in rule MR_analysis:
+    jobid: 3
+    output: output/MR/Beta-NGF.csv
+    conda-env: /home/jhz22/pQTLtools/inst/snakemake/.snakemake/conda/216ddc832f9e9140d7a238726ac86172
+
+[Tue Aug  2 10:05:04 2022]
+Error in rule MR_analysis:
+    jobid: 13
+    output: output/MR/EN-RAGE.csv
+    conda-env: /home/jhz22/pQTLtools/inst/snakemake/.snakemake/conda/216ddc832f9e9140d7a238726ac86172
+
+[Tue Aug  2 10:05:04 2022]
+Error in rule MR_analysis:
+    jobid: 24
+    output: output/MR/SIRT2.csv
+    conda-env: /home/jhz22/pQTLtools/inst/snakemake/.snakemake/conda/216ddc832f9e9140d7a238726ac86172
+
+[Tue Aug  2 10:05:04 2022]
+Error in rule MR_analysis:
+    jobid: 4
+    output: output/MR/CASP-8.csv
+    conda-env: /home/jhz22/pQTLtools/inst/snakemake/.snakemake/conda/216ddc832f9e9140d7a238726ac86172
+
+[Tue Aug  2 10:05:04 2022]
+Error in rule MR_analysis:
+    jobid: 12
+    output: output/MR/CXCL6.csv
+    conda-env: /home/jhz22/pQTLtools/inst/snakemake/.snakemake/conda/216ddc832f9e9140d7a238726ac86172
+
+[Tue Aug  2 10:05:04 2022]
+Error in rule MR_analysis:
+    jobid: 8
+    output: output/MR/CD40.csv
+    conda-env: /home/jhz22/pQTLtools/inst/snakemake/.snakemake/conda/216ddc832f9e9140d7a238726ac86172
+
+[Tue Aug  2 10:05:04 2022]
+[Tue Aug  2 10:05:04 2022]
+Error in rule MR_analysis:
+    jobid: 14
+    output: output/MR/FGF-23.csv
+    conda-env: /home/jhz22/pQTLtools/inst/snakemake/.snakemake/conda/216ddc832f9e9140d7a238726ac86172
+
+Error in rule MR_analysis:
+    jobid: 21
+    output: output/MR/MMP-10.csv
+    conda-env: /home/jhz22/pQTLtools/inst/snakemake/.snakemake/conda/216ddc832f9e9140d7a238726ac86172
+
+[Tue Aug  2 10:05:04 2022]
+Error in rule MR_analysis:
+    jobid: 9
+    output: output/MR/CSF-1.csv
+    conda-env: /home/jhz22/pQTLtools/inst/snakemake/.snakemake/conda/216ddc832f9e9140d7a238726ac86172
+
+[Tue Aug  2 10:05:04 2022]
+[Tue Aug  2 10:05:04 2022]
+Error in rule MR_analysis:
+    jobid: 10
+    output: output/MR/CX3CL1.csv
+    conda-env: /home/jhz22/pQTLtools/inst/snakemake/.snakemake/conda/216ddc832f9e9140d7a238726ac86172
+
+Error in rule MR_analysis:
+    jobid: 5
+    output: output/MR/CCL20.csv
+    conda-env: /home/jhz22/pQTLtools/inst/snakemake/.snakemake/conda/216ddc832f9e9140d7a238726ac86172
+
+[Tue Aug  2 10:05:04 2022]
+Error in rule MR_analysis:
+    jobid: 26
+    output: output/MR/TRAIL.csv
+    conda-env: /home/jhz22/pQTLtools/inst/snakemake/.snakemake/conda/216ddc832f9e9140d7a238726ac86172
+
+[Tue Aug  2 10:05:04 2022]
+Error in rule MR_analysis:
+    jobid: 28
+    output: output/MR/VEGF-A.csv
+    conda-env: /home/jhz22/pQTLtools/inst/snakemake/.snakemake/conda/216ddc832f9e9140d7a238726ac86172
+
+[Tue Aug  2 10:05:04 2022]
+Error in rule MR_analysis:
+    jobid: 18
+    output: output/MR/IL-8.csv
+    conda-env: /home/jhz22/pQTLtools/inst/snakemake/.snakemake/conda/216ddc832f9e9140d7a238726ac86172
+
+[Tue Aug  2 10:05:04 2022]
+Error in rule MR_analysis:
+    jobid: 22
+    output: output/MR/OPG.csv
+    conda-env: /home/jhz22/pQTLtools/inst/snakemake/.snakemake/conda/216ddc832f9e9140d7a238726ac86172
+
+RuleException:
+CalledProcessError in line 28 of /home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile:
+Command 'set -euo pipefail;  Rscript --vanilla /home/jhz22/pQTLtools/inst/snakemake/.snakemake/scripts/tmpkez5pjdu.MR_analysis.R' returned non-zero exit status 1.
+  File "/home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile", line 28, in __rule_MR_analysis
+  File "/home/jhz22/COVID-19/miniconda37/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+RuleException:
+CalledProcessError in line 28 of /home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile:
+Command 'set -euo pipefail;  Rscript --vanilla /home/jhz22/pQTLtools/inst/snakemake/.snakemake/scripts/tmpb5bl3lj9.MR_analysis.R' returned non-zero exit status 1.
+  File "/home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile", line 28, in __rule_MR_analysis
+  File "/home/jhz22/COVID-19/miniconda37/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+RuleException:
+CalledProcessError in line 28 of /home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile:
+Command 'set -euo pipefail;  Rscript --vanilla /home/jhz22/pQTLtools/inst/snakemake/.snakemake/scripts/tmpm4dsubuk.MR_analysis.R' returned non-zero exit status 1.
+  File "/home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile", line 28, in __rule_MR_analysis
+  File "/home/jhz22/COVID-19/miniconda37/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+RuleException:
+CalledProcessError in line 28 of /home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile:
+Command 'set -euo pipefail;  Rscript --vanilla /home/jhz22/pQTLtools/inst/snakemake/.snakemake/scripts/tmpmnqfpwcr.MR_analysis.R' returned non-zero exit status 1.
+  File "/home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile", line 28, in __rule_MR_analysis
+  File "/home/jhz22/COVID-19/miniconda37/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+RuleException:
+CalledProcessError in line 28 of /home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile:
+Command 'set -euo pipefail;  Rscript --vanilla /home/jhz22/pQTLtools/inst/snakemake/.snakemake/scripts/tmp_gmwy0op.MR_analysis.R' returned non-zero exit status 1.
+  File "/home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile", line 28, in __rule_MR_analysis
+  File "/home/jhz22/COVID-19/miniconda37/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+RuleException:
+CalledProcessError in line 28 of /home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile:
+Command 'set -euo pipefail;  Rscript --vanilla /home/jhz22/pQTLtools/inst/snakemake/.snakemake/scripts/tmp9lxijukz.MR_analysis.R' returned non-zero exit status 1.
+  File "/home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile", line 28, in __rule_MR_analysis
+  File "/home/jhz22/COVID-19/miniconda37/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+RuleException:
+CalledProcessError in line 28 of /home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile:
+Command 'set -euo pipefail;  Rscript --vanilla /home/jhz22/pQTLtools/inst/snakemake/.snakemake/scripts/tmp5ci7kpjd.MR_analysis.R' returned non-zero exit status 1.
+  File "/home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile", line 28, in __rule_MR_analysis
+  File "/home/jhz22/COVID-19/miniconda37/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+RuleException:
+CalledProcessError in line 28 of /home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile:
+Command 'set -euo pipefail;  Rscript --vanilla /home/jhz22/pQTLtools/inst/snakemake/.snakemake/scripts/tmpqgk3q331.MR_analysis.R' returned non-zero exit status 1.
+  File "/home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile", line 28, in __rule_MR_analysis
+  File "/home/jhz22/COVID-19/miniconda37/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+RuleException:
+CalledProcessError in line 28 of /home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile:
+Command 'set -euo pipefail;  Rscript --vanilla /home/jhz22/pQTLtools/inst/snakemake/.snakemake/scripts/tmp0biy9uib.MR_analysis.R' returned non-zero exit status 1.
+  File "/home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile", line 28, in __rule_MR_analysis
+  File "/home/jhz22/COVID-19/miniconda37/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+RuleException:
+CalledProcessError in line 28 of /home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile:
+Command 'set -euo pipefail;  Rscript --vanilla /home/jhz22/pQTLtools/inst/snakemake/.snakemake/scripts/tmpf7fydl4e.MR_analysis.R' returned non-zero exit status 1.
+  File "/home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile", line 28, in __rule_MR_analysis
+  File "/home/jhz22/COVID-19/miniconda37/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+RuleException:
+CalledProcessError in line 28 of /home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile:
+Command 'set -euo pipefail;  Rscript --vanilla /home/jhz22/pQTLtools/inst/snakemake/.snakemake/scripts/tmpum_rilxh.MR_analysis.R' returned non-zero exit status 1.
+  File "/home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile", line 28, in __rule_MR_analysis
+  File "/home/jhz22/COVID-19/miniconda37/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+RuleException:
+CalledProcessError in line 28 of /home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile:
+Command 'set -euo pipefail;  Rscript --vanilla /home/jhz22/pQTLtools/inst/snakemake/.snakemake/scripts/tmpt8wmrl7h.MR_analysis.R' returned non-zero exit status 1.
+  File "/home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile", line 28, in __rule_MR_analysis
+  File "/home/jhz22/COVID-19/miniconda37/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+RuleException:
+CalledProcessError in line 28 of /home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile:
+Command 'set -euo pipefail;  Rscript --vanilla /home/jhz22/pQTLtools/inst/snakemake/.snakemake/scripts/tmpia6hjyeg.MR_analysis.R' returned non-zero exit status 1.
+  File "/home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile", line 28, in __rule_MR_analysis
+  File "/home/jhz22/COVID-19/miniconda37/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+RuleException:
+CalledProcessError in line 28 of /home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile:
+Command 'set -euo pipefail;  Rscript --vanilla /home/jhz22/pQTLtools/inst/snakemake/.snakemake/scripts/tmpvvo97l2z.MR_analysis.R' returned non-zero exit status 1.
+  File "/home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile", line 28, in __rule_MR_analysis
+  File "/home/jhz22/COVID-19/miniconda37/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+RuleException:
+CalledProcessError in line 28 of /home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile:
+Command 'set -euo pipefail;  Rscript --vanilla /home/jhz22/pQTLtools/inst/snakemake/.snakemake/scripts/tmpvcio5ym1.MR_analysis.R' returned non-zero exit status 1.
+  File "/home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile", line 28, in __rule_MR_analysis
+  File "/home/jhz22/COVID-19/miniconda37/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+RuleException:
+CalledProcessError in line 28 of /home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile:
+Command 'set -euo pipefail;  Rscript --vanilla /home/jhz22/pQTLtools/inst/snakemake/.snakemake/scripts/tmprabq_fjd.MR_analysis.R' returned non-zero exit status 1.
+  File "/home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile", line 28, in __rule_MR_analysis
+  File "/home/jhz22/COVID-19/miniconda37/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+RuleException:
+CalledProcessError in line 28 of /home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile:
+Command 'set -euo pipefail;  Rscript --vanilla /home/jhz22/pQTLtools/inst/snakemake/.snakemake/scripts/tmpfs1t7ur0.MR_analysis.R' returned non-zero exit status 1.
+  File "/home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile", line 28, in __rule_MR_analysis
+  File "/home/jhz22/COVID-19/miniconda37/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+[Tue Aug  2 10:05:05 2022]
+Error in rule MR_analysis:
+    jobid: 6
+    output: output/MR/CCL3.csv
+    conda-env: /home/jhz22/pQTLtools/inst/snakemake/.snakemake/conda/216ddc832f9e9140d7a238726ac86172
+
+RuleException:
+CalledProcessError in line 28 of /home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile:
+Command 'set -euo pipefail;  Rscript --vanilla /home/jhz22/pQTLtools/inst/snakemake/.snakemake/scripts/tmp9vpqthym.MR_analysis.R' returned non-zero exit status 1.
+  File "/home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile", line 28, in __rule_MR_analysis
+  File "/home/jhz22/COVID-19/miniconda37/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+[Tue Aug  2 10:05:05 2022]
+Error in rule MR_analysis:
+    jobid: 7
+    output: output/MR/CCL4.csv
+    conda-env: /home/jhz22/pQTLtools/inst/snakemake/.snakemake/conda/216ddc832f9e9140d7a238726ac86172
+
+RuleException:
+CalledProcessError in line 28 of /home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile:
+Command 'set -euo pipefail;  Rscript --vanilla /home/jhz22/pQTLtools/inst/snakemake/.snakemake/scripts/tmpm1r1crzg.MR_analysis.R' returned non-zero exit status 1.
+  File "/home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile", line 28, in __rule_MR_analysis
+  File "/home/jhz22/COVID-19/miniconda37/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+[Tue Aug  2 10:05:05 2022]
+Error in rule MR_analysis:
+    jobid: 19
+    output: output/MR/MCP-1.csv
+    conda-env: /home/jhz22/pQTLtools/inst/snakemake/.snakemake/conda/216ddc832f9e9140d7a238726ac86172
+
+RuleException:
+CalledProcessError in line 28 of /home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile:
+Command 'set -euo pipefail;  Rscript --vanilla /home/jhz22/pQTLtools/inst/snakemake/.snakemake/scripts/tmplgieauma.MR_analysis.R' returned non-zero exit status 1.
+  File "/home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile", line 28, in __rule_MR_analysis
+  File "/home/jhz22/COVID-19/miniconda37/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+[Tue Aug  2 10:05:05 2022]
+Error in rule MR_analysis:
+    jobid: 17
+    output: output/MR/IL-6.csv
+    conda-env: /home/jhz22/pQTLtools/inst/snakemake/.snakemake/conda/216ddc832f9e9140d7a238726ac86172
+
+RuleException:
+CalledProcessError in line 28 of /home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile:
+Command 'set -euo pipefail;  Rscript --vanilla /home/jhz22/pQTLtools/inst/snakemake/.snakemake/scripts/tmpixwggca_.MR_analysis.R' returned non-zero exit status 1.
+  File "/home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile", line 28, in __rule_MR_analysis
+  File "/home/jhz22/COVID-19/miniconda37/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+[Tue Aug  2 10:05:05 2022]
+Error in rule MR_analysis:
+    jobid: 25
+    output: output/MR/TNFSF14.csv
+    conda-env: /home/jhz22/pQTLtools/inst/snakemake/.snakemake/conda/216ddc832f9e9140d7a238726ac86172
+
+[Tue Aug  2 10:05:05 2022]
+Error in rule MR_analysis:
+    jobid: 27
+    output: output/MR/TRANCE.csv
+    conda-env: /home/jhz22/pQTLtools/inst/snakemake/.snakemake/conda/216ddc832f9e9140d7a238726ac86172
+
+RuleException:
+CalledProcessError in line 28 of /home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile:
+Command 'set -euo pipefail;  Rscript --vanilla /home/jhz22/pQTLtools/inst/snakemake/.snakemake/scripts/tmpujyx2t43.MR_analysis.R' returned non-zero exit status 1.
+  File "/home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile", line 28, in __rule_MR_analysis
+  File "/home/jhz22/COVID-19/miniconda37/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+RuleException:
+CalledProcessError in line 28 of /home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile:
+Command 'set -euo pipefail;  Rscript --vanilla /home/jhz22/pQTLtools/inst/snakemake/.snakemake/scripts/tmpz_enzj0z.MR_analysis.R' returned non-zero exit status 1.
+  File "/home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile", line 28, in __rule_MR_analysis
+  File "/home/jhz22/COVID-19/miniconda37/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+[Tue Aug  2 10:05:06 2022]
+Error in rule MR_analysis:
+    jobid: 11
+    output: output/MR/CXCL1.csv
+    conda-env: /home/jhz22/pQTLtools/inst/snakemake/.snakemake/conda/216ddc832f9e9140d7a238726ac86172
+
+RuleException:
+CalledProcessError in line 28 of /home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile:
+Command 'set -euo pipefail;  Rscript --vanilla /home/jhz22/pQTLtools/inst/snakemake/.snakemake/scripts/tmpwaal9gnz.MR_analysis.R' returned non-zero exit status 1.
+  File "/home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile", line 28, in __rule_MR_analysis
+  File "/home/jhz22/COVID-19/miniconda37/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+[Tue Aug  2 10:05:06 2022]
+Error in rule MR_analysis:
+    jobid: 20
+    output: output/MR/MMP-1.csv
+    conda-env: /home/jhz22/pQTLtools/inst/snakemake/.snakemake/conda/216ddc832f9e9140d7a238726ac86172
+
+RuleException:
+CalledProcessError in line 28 of /home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile:
+Command 'set -euo pipefail;  Rscript --vanilla /home/jhz22/pQTLtools/inst/snakemake/.snakemake/scripts/tmpfok9ao8r.MR_analysis.R' returned non-zero exit status 1.
+  File "/home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile", line 28, in __rule_MR_analysis
+  File "/home/jhz22/COVID-19/miniconda37/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+[Tue Aug  2 10:05:06 2022]
+Error in rule MR_analysis:
+    jobid: 15
+    output: output/MR/HGF.csv
+    conda-env: /home/jhz22/pQTLtools/inst/snakemake/.snakemake/conda/216ddc832f9e9140d7a238726ac86172
+
+RuleException:
+CalledProcessError in line 28 of /home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile:
+Command 'set -euo pipefail;  Rscript --vanilla /home/jhz22/pQTLtools/inst/snakemake/.snakemake/scripts/tmpqsostqmh.MR_analysis.R' returned non-zero exit status 1.
+  File "/home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile", line 28, in __rule_MR_analysis
+  File "/home/jhz22/COVID-19/miniconda37/lib/python3.7/concurrent/futures/thread.py", line 57, in run
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2022-08-02T100457.303516.snakemake.log

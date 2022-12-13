@@ -1,0 +1,17 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 32
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job             count    min threads    max threads
+------------  -------  -------------  -------------
+MR_analysis        26              1              1
+aggregate_MR        1              1              1
+all                 1              1              1
+obs_analysis        1              1              1
+total              29              1              1
+
+Select jobs to execute...
+Terminating processes on user request, this might take some time.
+Complete log: .snakemake/log/2022-07-29T115327.238553.snakemake.log

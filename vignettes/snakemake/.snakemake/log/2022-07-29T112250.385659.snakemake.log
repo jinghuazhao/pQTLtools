@@ -1,0 +1,4 @@
+Building DAG of jobs...
+WorkflowError:
+Failed to open source file /home/jhz22/pQTLtools/inst/snakemake/workflow/envs/cvd1_hf.yaml
+FileNotFoundError: [Errno 2] No such file or directory: '/home/jhz22/pQTLtools/inst/snakemake/workflow/envs/cvd1_hf.yaml'

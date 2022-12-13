@@ -1,0 +1,82 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job             count    min threads    max threads
+------------  -------  -------------  -------------
+MR_analysis         4              1              1
+aggregate_MR        2              1              1
+all                 1              1              1
+total               7              1              1
+
+Select jobs to execute...
+
+[Tue Aug  2 22:15:35 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/CD40.ld, input/ld/CD40.snplist
+    output: output/MR/CD40_HF.csv
+    jobid: 4
+    reason: Code has changed since last execution
+    wildcards: protein=CD40, trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 22:16:05 2022]
+Finished job 4.
+1 of 7 steps (14%) done
+Select jobs to execute...
+
+[Tue Aug  2 22:16:05 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/OPG.ld, input/ld/OPG.snplist
+    output: output/MR/OPG_HF2.csv
+    jobid: 7
+    reason: Code has changed since last execution
+    wildcards: protein=OPG, trait=HF2
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 22:16:12 2022]
+Finished job 7.
+2 of 7 steps (29%) done
+Select jobs to execute...
+
+[Tue Aug  2 22:16:12 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/CD40.ld, input/ld/CD40.snplist
+    output: output/MR/CD40_HF2.csv
+    jobid: 5
+    reason: Code has changed since last execution
+    wildcards: protein=CD40, trait=HF2
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 22:16:18 2022]
+Finished job 5.
+3 of 7 steps (43%) done
+Select jobs to execute...
+
+[Tue Aug  2 22:16:18 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/OPG.ld, input/ld/OPG.snplist
+    output: output/MR/OPG_HF.csv
+    jobid: 6
+    reason: Code has changed since last execution
+    wildcards: protein=OPG, trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 22:16:24 2022]
+Finished job 6.
+4 of 7 steps (57%) done
+Select jobs to execute...
+
+[Tue Aug  2 22:16:25 2022]
+rule aggregate_MR:
+    input: output/MR/CD40_HF.csv, output/MR/CD40_HF2.csv, output/MR/OPG_HF.csv, output/MR/OPG_HF2.csv
+    output: output/MR_HF.csv
+    jobid: 3
+    reason: Input files updated by another job: output/MR/CD40_HF2.csv, output/MR/OPG_HF2.csv, output/MR/CD40_HF.csv, output/MR/OPG_HF.csv
+    wildcards: trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+RuleException in line 32 of /home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile:
+NameError: The name 'trait' is unknown in this context. Did you mean 'wildcards.trait'?

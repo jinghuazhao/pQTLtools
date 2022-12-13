@@ -1,0 +1,25 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 32
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job             count    min threads    max threads
+------------  -------  -------------  -------------
+obs_analysis        1              1              1
+total               1              1              1
+
+Select jobs to execute...
+
+[Tue Aug  2 10:28:17 2022]
+rule obs_analysis:
+    input: input/Obs.csv
+    output: output/Obs.csv
+    jobid: 0
+    reason: Missing output files: output/Obs.csv
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 10:28:24 2022]
+Finished job 0.
+1 of 1 steps (100%) done
+Complete log: .snakemake/log/2022-08-02T102815.372798.snakemake.log

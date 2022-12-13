@@ -1,0 +1,365 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 32
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job             count    min threads    max threads
+------------  -------  -------------  -------------
+MR_analysis        26              1              1
+aggregate_MR        1              1              1
+all                 1              1              1
+obs_analysis        1              1              1
+total              29              1              1
+
+Select jobs to execute...
+
+[Mon Aug  1 22:33:13 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/CCL20.ld, input/ld/CCL20.snplist
+    output: output/MR/CCL20.csv
+    jobid: 5
+    reason: Missing output files: output/MR/CCL20.csv
+    wildcards: protein=CCL20
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Mon Aug  1 22:33:13 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/MCP-1.ld, input/ld/MCP-1.snplist
+    output: output/MR/MCP-1.csv
+    jobid: 19
+    reason: Missing output files: output/MR/MCP-1.csv
+    wildcards: protein=MCP-1
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Mon Aug  1 22:33:13 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/TRAIL.ld, input/ld/TRAIL.snplist
+    output: output/MR/TRAIL.csv
+    jobid: 26
+    reason: Missing output files: output/MR/TRAIL.csv
+    wildcards: protein=TRAIL
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Mon Aug  1 22:33:13 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/CXCL6.ld, input/ld/CXCL6.snplist
+    output: output/MR/CXCL6.csv
+    jobid: 12
+    reason: Missing output files: output/MR/CXCL6.csv
+    wildcards: protein=CXCL6
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Mon Aug  1 22:33:13 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/CCL3.ld, input/ld/CCL3.snplist
+    output: output/MR/CCL3.csv
+    jobid: 6
+    reason: Missing output files: output/MR/CCL3.csv
+    wildcards: protein=CCL3
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Mon Aug  1 22:33:13 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/MMP-1.ld, input/ld/MMP-1.snplist
+    output: output/MR/MMP-1.csv
+    jobid: 20
+    reason: Missing output files: output/MR/MMP-1.csv
+    wildcards: protein=MMP-1
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Mon Aug  1 22:33:13 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/TRANCE.ld, input/ld/TRANCE.snplist
+    output: output/MR/TRANCE.csv
+    jobid: 27
+    reason: Missing output files: output/MR/TRANCE.csv
+    wildcards: protein=TRANCE
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Mon Aug  1 22:33:13 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/EN-RAGE.ld, input/ld/EN-RAGE.snplist
+    output: output/MR/EN-RAGE.csv
+    jobid: 13
+    reason: Missing output files: output/MR/EN-RAGE.csv
+    wildcards: protein=EN-RAGE
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Mon Aug  1 22:33:13 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/CCL4.ld, input/ld/CCL4.snplist
+    output: output/MR/CCL4.csv
+    jobid: 7
+    reason: Missing output files: output/MR/CCL4.csv
+    wildcards: protein=CCL4
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Mon Aug  1 22:33:13 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/MMP-10.ld, input/ld/MMP-10.snplist
+    output: output/MR/MMP-10.csv
+    jobid: 21
+    reason: Missing output files: output/MR/MMP-10.csv
+    wildcards: protein=MMP-10
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Mon Aug  1 22:33:13 2022]
+rule obs_analysis:
+    input: input/Obs.csv
+    output: output/Obs.csv
+    jobid: 1
+    reason: Missing output files: output/Obs.csv
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Mon Aug  1 22:33:13 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/FGF-23.ld, input/ld/FGF-23.snplist
+    output: output/MR/FGF-23.csv
+    jobid: 14
+    reason: Missing output files: output/MR/FGF-23.csv
+    wildcards: protein=FGF-23
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Mon Aug  1 22:33:13 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/VEGF-A.ld, input/ld/VEGF-A.snplist
+    output: output/MR/VEGF-A.csv
+    jobid: 28
+    reason: Missing output files: output/MR/VEGF-A.csv
+    wildcards: protein=VEGF-A
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Mon Aug  1 22:33:13 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/OPG.ld, input/ld/OPG.snplist
+    output: output/MR/OPG.csv
+    jobid: 22
+    reason: Missing output files: output/MR/OPG.csv
+    wildcards: protein=OPG
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Mon Aug  1 22:33:13 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/CD40.ld, input/ld/CD40.snplist
+    output: output/MR/CD40.csv
+    jobid: 8
+    reason: Missing output files: output/MR/CD40.csv
+    wildcards: protein=CD40
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Mon Aug  1 22:33:13 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/HGF.ld, input/ld/HGF.snplist
+    output: output/MR/HGF.csv
+    jobid: 15
+    reason: Missing output files: output/MR/HGF.csv
+    wildcards: protein=HGF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Mon Aug  1 22:33:13 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/CSF-1.ld, input/ld/CSF-1.snplist
+    output: output/MR/CSF-1.csv
+    jobid: 9
+    reason: Missing output files: output/MR/CSF-1.csv
+    wildcards: protein=CSF-1
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Mon Aug  1 22:33:13 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/SCF.ld, input/ld/SCF.snplist
+    output: output/MR/SCF.csv
+    jobid: 23
+    reason: Missing output files: output/MR/SCF.csv
+    wildcards: protein=SCF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Mon Aug  1 22:33:13 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/IL-18.ld, input/ld/IL-18.snplist
+    output: output/MR/IL-18.csv
+    jobid: 16
+    reason: Missing output files: output/MR/IL-18.csv
+    wildcards: protein=IL-18
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Mon Aug  1 22:33:13 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/CX3CL1.ld, input/ld/CX3CL1.snplist
+    output: output/MR/CX3CL1.csv
+    jobid: 10
+    reason: Missing output files: output/MR/CX3CL1.csv
+    wildcards: protein=CX3CL1
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Mon Aug  1 22:33:13 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/SIRT2.ld, input/ld/SIRT2.snplist
+    output: output/MR/SIRT2.csv
+    jobid: 24
+    reason: Missing output files: output/MR/SIRT2.csv
+    wildcards: protein=SIRT2
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Mon Aug  1 22:33:13 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/IL-6.ld, input/ld/IL-6.snplist
+    output: output/MR/IL-6.csv
+    jobid: 17
+    reason: Missing output files: output/MR/IL-6.csv
+    wildcards: protein=IL-6
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Mon Aug  1 22:33:13 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/Beta-NGF.ld, input/ld/Beta-NGF.snplist
+    output: output/MR/Beta-NGF.csv
+    jobid: 3
+    reason: Missing output files: output/MR/Beta-NGF.csv
+    wildcards: protein=Beta-NGF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Mon Aug  1 22:33:13 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/CXCL1.ld, input/ld/CXCL1.snplist
+    output: output/MR/CXCL1.csv
+    jobid: 11
+    reason: Missing output files: output/MR/CXCL1.csv
+    wildcards: protein=CXCL1
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Mon Aug  1 22:33:13 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/TNFSF14.ld, input/ld/TNFSF14.snplist
+    output: output/MR/TNFSF14.csv
+    jobid: 25
+    reason: Missing output files: output/MR/TNFSF14.csv
+    wildcards: protein=TNFSF14
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Mon Aug  1 22:33:13 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/CASP-8.ld, input/ld/CASP-8.snplist
+    output: output/MR/CASP-8.csv
+    jobid: 4
+    reason: Missing output files: output/MR/CASP-8.csv
+    wildcards: protein=CASP-8
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Mon Aug  1 22:33:13 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/IL-8.ld, input/ld/IL-8.snplist
+    output: output/MR/IL-8.csv
+    jobid: 18
+    reason: Missing output files: output/MR/IL-8.csv
+    wildcards: protein=IL-8
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Mon Aug  1 22:33:18 2022]
+Finished job 1.
+1 of 29 steps (3%) done
+[Mon Aug  1 22:33:19 2022]
+Finished job 23.
+2 of 29 steps (7%) done
+[Mon Aug  1 22:33:19 2022]
+Finished job 17.
+3 of 29 steps (10%) done
+[Mon Aug  1 22:33:20 2022]
+Finished job 22.
+4 of 29 steps (14%) done
+[Mon Aug  1 22:33:20 2022]
+Finished job 18.
+5 of 29 steps (17%) done
+[Mon Aug  1 22:33:20 2022]
+Finished job 4.
+6 of 29 steps (21%) done
+[Mon Aug  1 22:33:20 2022]
+Finished job 12.
+7 of 29 steps (24%) done
+[Mon Aug  1 22:33:20 2022]
+Finished job 7.
+8 of 29 steps (28%) done
+[Mon Aug  1 22:33:20 2022]
+Finished job 16.
+9 of 29 steps (31%) done
+[Mon Aug  1 22:33:20 2022]
+Finished job 27.
+10 of 29 steps (34%) done
+[Mon Aug  1 22:33:20 2022]
+Finished job 6.
+11 of 29 steps (38%) done
+[Mon Aug  1 22:33:20 2022]
+Finished job 24.
+12 of 29 steps (41%) done
+[Mon Aug  1 22:33:20 2022]
+Finished job 11.
+13 of 29 steps (45%) done
+[Mon Aug  1 22:33:20 2022]
+Finished job 15.
+14 of 29 steps (48%) done
+[Mon Aug  1 22:33:20 2022]
+Finished job 19.
+15 of 29 steps (52%) done
+[Mon Aug  1 22:33:20 2022]
+Finished job 13.
+16 of 29 steps (55%) done
+[Mon Aug  1 22:33:20 2022]
+Finished job 8.
+17 of 29 steps (59%) done
+[Mon Aug  1 22:33:20 2022]
+Finished job 3.
+18 of 29 steps (62%) done
+[Mon Aug  1 22:33:20 2022]
+Finished job 14.
+19 of 29 steps (66%) done
+[Mon Aug  1 22:33:20 2022]
+Finished job 10.
+20 of 29 steps (69%) done
+[Mon Aug  1 22:33:20 2022]
+Finished job 9.
+21 of 29 steps (72%) done
+[Mon Aug  1 22:33:20 2022]
+Finished job 28.
+22 of 29 steps (76%) done
+[Mon Aug  1 22:33:20 2022]
+Finished job 5.
+23 of 29 steps (79%) done
+[Mon Aug  1 22:33:20 2022]
+Finished job 26.
+24 of 29 steps (83%) done
+[Mon Aug  1 22:33:20 2022]
+Finished job 20.
+25 of 29 steps (86%) done
+[Mon Aug  1 22:33:21 2022]
+Finished job 21.
+26 of 29 steps (90%) done
+[Mon Aug  1 22:33:22 2022]
+Finished job 25.
+27 of 29 steps (93%) done
+Select jobs to execute...
+
+[Mon Aug  1 22:33:22 2022]
+rule aggregate_MR:
+    input: output/MR/Beta-NGF.csv, output/MR/CASP-8.csv, output/MR/CCL20.csv, output/MR/CCL3.csv, output/MR/CCL4.csv, output/MR/CD40.csv, output/MR/CSF-1.csv, output/MR/CX3CL1.csv, output/MR/CXCL1.csv, output/MR/CXCL6.csv, output/MR/EN-RAGE.csv, output/MR/FGF-23.csv, output/MR/HGF.csv, output/MR/IL-18.csv, output/MR/IL-6.csv, output/MR/IL-8.csv, output/MR/MCP-1.csv, output/MR/MMP-1.csv, output/MR/MMP-10.csv, output/MR/OPG.csv, output/MR/SCF.csv, output/MR/SIRT2.csv, output/MR/TNFSF14.csv, output/MR/TRAIL.csv, output/MR/TRANCE.csv, output/MR/VEGF-A.csv
+    output: output/MR.csv
+    jobid: 2
+    reason: Missing output files: output/MR.csv; Input files updated by another job: output/MR/IL-6.csv, output/MR/MCP-1.csv, output/MR/TRAIL.csv, output/MR/SCF.csv, output/MR/TNFSF14.csv, output/MR/Beta-NGF.csv, output/MR/MMP-10.csv, output/MR/MMP-1.csv, output/MR/CXCL6.csv, output/MR/IL-8.csv, output/MR/SIRT2.csv, output/MR/IL-18.csv, output/MR/CCL3.csv, output/MR/OPG.csv, output/MR/TRANCE.csv, output/MR/VEGF-A.csv, output/MR/CCL20.csv, output/MR/CD40.csv, output/MR/EN-RAGE.csv, output/MR/CSF-1.csv, output/MR/HGF.csv, output/MR/FGF-23.csv, output/MR/CX3CL1.csv, output/MR/CASP-8.csv, output/MR/CCL4.csv, output/MR/CXCL1.csv
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Mon Aug  1 22:33:22 2022]
+Finished job 2.
+28 of 29 steps (97%) done
+Select jobs to execute...
+
+[Mon Aug  1 22:33:22 2022]
+localrule all:
+    input: output/Obs.csv, output/MR.csv
+    jobid: 0
+    reason: Input files updated by another job: output/Obs.csv, output/MR.csv
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Mon Aug  1 22:33:22 2022]
+Finished job 0.
+29 of 29 steps (100%) done
+Complete log: .snakemake/log/2022-08-01T223312.881761.snakemake.log

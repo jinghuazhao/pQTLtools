@@ -1,0 +1,39 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 32
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job             count    min threads    max threads
+------------  -------  -------------  -------------
+aggregate_MR        1              1              1
+all                 1              1              1
+total               2              1              1
+
+Select jobs to execute...
+
+[Tue Aug  2 10:56:26 2022]
+rule aggregate_MR:
+    input: output/MR/Beta-NGF_HF.csv, output/MR/Beta-NGF_HF.csv, output/MR/CASP-8_HF.csv, output/MR/CASP-8_HF.csv, output/MR/CCL20_HF.csv, output/MR/CCL20_HF.csv, output/MR/CCL3_HF.csv, output/MR/CCL3_HF.csv, output/MR/CCL4_HF.csv, output/MR/CCL4_HF.csv, output/MR/CD40_HF.csv, output/MR/CD40_HF.csv, output/MR/CSF-1_HF.csv, output/MR/CSF-1_HF.csv, output/MR/CX3CL1_HF.csv, output/MR/CX3CL1_HF.csv, output/MR/CXCL1_HF.csv, output/MR/CXCL1_HF.csv, output/MR/CXCL6_HF.csv, output/MR/CXCL6_HF.csv, output/MR/EN-RAGE_HF.csv, output/MR/EN-RAGE_HF.csv, output/MR/FGF-23_HF.csv, output/MR/FGF-23_HF.csv, output/MR/HGF_HF.csv, output/MR/HGF_HF.csv, output/MR/IL-18_HF.csv, output/MR/IL-18_HF.csv, output/MR/IL-6_HF.csv, output/MR/IL-6_HF.csv, output/MR/IL-8_HF.csv, output/MR/IL-8_HF.csv, output/MR/MCP-1_HF.csv, output/MR/MCP-1_HF.csv, output/MR/MMP-1_HF.csv, output/MR/MMP-1_HF.csv, output/MR/MMP-10_HF.csv, output/MR/MMP-10_HF.csv, output/MR/OPG_HF.csv, output/MR/OPG_HF.csv, output/MR/SCF_HF.csv, output/MR/SCF_HF.csv, output/MR/SIRT2_HF.csv, output/MR/SIRT2_HF.csv, output/MR/TNFSF14_HF.csv, output/MR/TNFSF14_HF.csv, output/MR/TRAIL_HF.csv, output/MR/TRAIL_HF.csv, output/MR/TRANCE_HF.csv, output/MR/TRANCE_HF.csv, output/MR/VEGF-A_HF.csv, output/MR/VEGF-A_HF.csv
+    output: output/MR_HF.csv
+    jobid: 2
+    reason: Set of input files has changed since last execution
+    wildcards: trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 10:56:26 2022]
+Finished job 2.
+1 of 2 steps (50%) done
+Select jobs to execute...
+
+[Tue Aug  2 10:56:26 2022]
+localrule all:
+    input: output/Obs_HF.csv, output/Obs_HF.csv, output/MR_HF.csv, output/MR_HF.csv
+    jobid: 0
+    reason: Input files updated by another job: output/MR_HF.csv
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 10:56:26 2022]
+Finished job 0.
+2 of 2 steps (100%) done
+Complete log: .snakemake/log/2022-08-02T105625.755815.snakemake.log

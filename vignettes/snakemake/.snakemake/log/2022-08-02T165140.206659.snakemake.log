@@ -1,0 +1,92 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 32
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job             count    min threads    max threads
+------------  -------  -------------  -------------
+MR_analysis         2              1              1
+aggregate_MR        2              1              1
+all                 1              1              1
+obs_analysis        1              1              1
+total               6              1              1
+
+Select jobs to execute...
+
+[Tue Aug  2 16:51:41 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/CD40.ld, input/ld/CD40.snplist
+    output: output/MR/CD40_HF2.csv
+    jobid: 5
+    reason: Missing output files: output/MR/CD40_HF2.csv
+    wildcards: protein=CD40, trait=HF2
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 16:51:41 2022]
+rule obs_analysis:
+    input: input/Obs.csv
+    output: output/Obs_HF2.csv
+    jobid: 2
+    reason: Missing output files: output/Obs_HF2.csv
+    wildcards: trait=HF2
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 16:51:41 2022]
+rule MR_analysis:
+    input: input/MR.csv, input/ld/OPG.ld, input/ld/OPG.snplist
+    output: output/MR/OPG_HF2.csv
+    jobid: 7
+    reason: Missing output files: output/MR/OPG_HF2.csv
+    wildcards: protein=OPG, trait=HF2
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 16:51:45 2022]
+Finished job 2.
+1 of 6 steps (17%) done
+[Tue Aug  2 16:51:47 2022]
+Finished job 5.
+2 of 6 steps (33%) done
+[Tue Aug  2 16:51:47 2022]
+Finished job 7.
+3 of 6 steps (50%) done
+Select jobs to execute...
+
+[Tue Aug  2 16:51:47 2022]
+rule aggregate_MR:
+    input: output/MR/CD40_HF.csv, output/MR/CD40_HF2.csv, output/MR/OPG_HF.csv, output/MR/OPG_HF2.csv
+    output: output/MR_HF2.csv
+    jobid: 8
+    reason: Missing output files: output/MR_HF2.csv; Input files updated by another job: output/MR/CD40_HF2.csv, output/MR/OPG_HF2.csv
+    wildcards: trait=HF2
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+
+[Tue Aug  2 16:51:47 2022]
+rule aggregate_MR:
+    input: output/MR/CD40_HF.csv, output/MR/CD40_HF2.csv, output/MR/OPG_HF.csv, output/MR/OPG_HF2.csv
+    output: output/MR_HF.csv
+    jobid: 3
+    reason: Input files updated by another job: output/MR/CD40_HF2.csv, output/MR/OPG_HF2.csv
+    wildcards: trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 16:51:47 2022]
+Finished job 8.
+4 of 6 steps (67%) done
+[Tue Aug  2 16:51:47 2022]
+Finished job 3.
+5 of 6 steps (83%) done
+Select jobs to execute...
+
+[Tue Aug  2 16:51:47 2022]
+localrule all:
+    input: output/Obs_HF.csv, output/Obs_HF2.csv, output/MR_HF.csv, output/MR_HF2.csv
+    jobid: 0
+    reason: Input files updated by another job: output/Obs_HF2.csv, output/MR_HF2.csv, output/MR_HF.csv
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+[Tue Aug  2 16:51:47 2022]
+Finished job 0.
+6 of 6 steps (100%) done
+Complete log: .snakemake/log/2022-08-02T165140.206659.snakemake.log

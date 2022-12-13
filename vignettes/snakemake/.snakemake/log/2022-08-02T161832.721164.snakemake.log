@@ -1,0 +1,3 @@
+WildcardError in line 28 of /home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile:
+No values given for wildcard 'protein'.
+  File "/home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile", line 28, in <module>

@@ -1,0 +1,25 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job             count    min threads    max threads
+------------  -------  -------------  -------------
+aggregate_MR        2              1              1
+all                 1              1              1
+total               3              1              1
+
+Select jobs to execute...
+
+[Tue Aug  2 23:02:27 2022]
+rule aggregate_MR:
+    input: output/MR/CD40_HF.csv, output/MR/CD40_HF2.csv, output/MR/OPG_HF.csv, output/MR/OPG_HF2.csv
+    output: output/MR_HF.csv
+    jobid: 3
+    reason: Missing output files: output/MR_HF.csv
+    wildcards: trait=HF
+    resources: tmpdir=/rds/user/jhz22/hpc-work/work
+
+RuleException in line 32 of /home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile:
+IndexError: list index out of range
