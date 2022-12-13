@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="pQTLtools">
-<title>snakemake • pQTLtools</title>
+<title>A snakemake showcase • pQTLtools</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -17,7 +17,7 @@
 <link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="snakemake">
+<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="A snakemake showcase">
 <meta property="og:description" content="pQTLtools">
 <meta property="og:image" content="https://jinghuazhao.github.io/pQTLtools/logo.svg">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -55,9 +55,9 @@
     <a class="dropdown-item" href="../articles/pQTLtools.html">An overview of pQTLtools</a>
     <div class="dropdown-divider"></div>
     <h6 class="dropdown-header" data-toc-skip>Articles:</h6>
-    <a class="dropdown-item" href="../articles/bioconductor.html">Bioconductor</a>
-    <a class="dropdown-item" href="../articles/es.html">ExpressionSet</a>
-    <a class="dropdown-item" href="../articles/snakemake.html">snakemake</a>
+    <a class="dropdown-item" href="../articles/bioconductor.html">Bioconductor notes</a>
+    <a class="dropdown-item" href="../articles/es.html">ExpressionSet usage</a>
+    <a class="dropdown-item" href="../articles/snakemake.html">A snakemake showcase</a>
     <a class="dropdown-item" href="../articles/SCALLOP-INF.html">SCALLOP-INF scripts</a>
   </div>
 </li>
@@ -127,7 +127,7 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="../logo.svg" class="logo" alt=""><h1>snakemake</h1>
+      <img src="../logo.svg" class="logo" alt=""><h1>A snakemake showcase</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/jinghuazhao/pQTLtools/blob/HEAD/vignettes/snakemake.Rmd" class="external-link"><code>vignettes/snakemake.Rmd</code></a></small>
@@ -140,9 +140,12 @@
 <h2 id="mendelian-randomization-analysis">Mendelian randomization analysis<a class="anchor" aria-label="anchor" href="#mendelian-randomization-analysis"></a>
 </h2>
 <p><a href="https://www.ahajournals.org/doi/10.1161/CIRCULATIONAHA.121.056663" class="external-link"><img src="https://www.ahajournals.org/pb-assets/images/logos/circ-logo-1526571039097.svg" alt="Circulation"></a> <a href="https://zenodo.org/badge/latestdoi/429122036" class="external-link"><img src="https://zenodo.org/badge/429122036.svg" alt="DOI"></a></p>
-<p>Steps to set up the environment are outlined in below, while
-<code>MendelianRandomization</code> v0.6.0 is used together with a bug
-fix in <code>workflow/r/MR_functions.R</code>. The workflow has been
+<p>The required files are available from the <code>snakemake</code>
+directory upon installation or <code>inst/snakemake</code> directory in
+the source package.</p>
+<p>Steps to set up the environment are outlined in <a href="https://github.com/jinghuazhao/pQTLtools/blob/HEAD/vignettes/INSTALL.md" class="external-link">INSTALL.md</a>,
+while <code>MendelianRandomization</code> v0.6.0 is used together with a
+bug fix in <code>workflow/r/MR_functions.R</code>. The workflow has been
 heavily edited for simplicity, efficiency and generality. Currently
 <code>input/</code> contains data on CD40, OPG and heart failures – to
 imitate additional trait, HF statistics are duplicated as HF2.</p>
@@ -167,96 +170,17 @@ observational studies) and similarly for HF2.</p>
 <h3 id="dependency-graph-of-rules">Dependency graph of rules<a class="anchor" aria-label="anchor" href="#dependency-graph-of-rules"></a>
 </h3>
 <div class="figure">
-<img src="../inst/snakemake/output/rulegraph.svg" alt=""><p class="caption">Figure 1. Rule graph</p>
+<img src="output/rulegraph.svg" alt=""><p class="caption">Figure 1. Rule graph</p>
 </div>
 </div>
 <div class="section level3">
 <h3 id="directed-acyclic-graph-dag">Directed Acyclic Graph (DAG)<a class="anchor" aria-label="anchor" href="#directed-acyclic-graph-dag"></a>
 </h3>
 <div class="figure">
-<img src="../inst/snakemake/output/dag.svg" alt=""><p class="caption">Figure 2. DAG</p>
+<img src="output/dag.svg" alt=""><p class="caption">Figure 2. DAG</p>
 </div>
 </div>
 </div>
-<div class="section level2">
-<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
-</h2>
-<p><a href="https://github.com/snakemake/snakemake" class="external-link">GitHub</a> (<a href="https://snakemake.github.io/" class="external-link">documentation</a>, <a href="https://snakemake.readthedocs.io/en/stable/" class="external-link">stable</a>)</p>
-<p>Note that in the following <code>source</code> instead of
-<code>conda</code> is used to activate.</p>
-<div class="section level3">
-<h3 id="anaconda3">Anaconda3<a class="anchor" aria-label="anchor" href="#anaconda3"></a>
-</h3>
-<p><a href="https://www.anaconda.com/" class="external-link">https://www.anaconda.com/</a></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://repo.anaconda.com/archive/Anaconda3-2020.07-Linux-x86_64.sh</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> Anaconda3-2020.07-Linux-x86_64.sh</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># snakemake</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-n</span> anaconda</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> remove <span class="at">-n</span> anaconda snakemake</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> bioconda snakemake</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> activate snakemake</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> update <span class="at">-n</span> anaconda snakemake</span></code></pre></div>
-<p>The remove option is useful when resolving compatibility issues.</p>
-</div>
-<div class="section level3">
-<h3 id="miniconda3">Miniconda3<a class="anchor" aria-label="anchor" href="#miniconda3"></a>
-</h3>
-<p><a href="https://docs.conda.io/en/latest/miniconda.html" class="external-link">https://docs.conda.io/en/latest/miniconda.html</a></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> Miniconda3-latest-Linux-x86_64.sh</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> config <span class="at">--add</span> channels bioconda</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> config <span class="at">--add</span> channels conda-forge</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-y</span> <span class="at">--name</span> miniconda python=3.7</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> activate miniconda</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> bioconda fastqc</span></code></pre></div>
-<p>or to do this permenantly<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content="&lt;p&gt;Instructions from Miniconda:&lt;/p&gt;
-&lt;div class=&quot;sourceCode&quot; id=&quot;cb4&quot;&gt;&lt;pre class=&quot;sourceCode bash&quot;&gt;&lt;code class=&quot;sourceCode bash&quot;&gt;&lt;span id=&quot;cb4-1&quot;&gt;&lt;a href=&quot;#cb4-1&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;&lt;span class=&quot;co&quot;&gt;# all users&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&quot;cb4-2&quot;&gt;&lt;a href=&quot;#cb4-2&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;&lt;span class=&quot;co&quot;&gt;# sudo ln -s /usr/local/Cluster-Apps/miniconda3/4.5.1/etc/profile.d/conda.sh /etc/profile.d/conda.sh&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&quot;cb4-3&quot;&gt;&lt;a href=&quot;#cb4-3&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;&lt;span class=&quot;co&quot;&gt;# current user&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&quot;cb4-4&quot;&gt;&lt;a href=&quot;#cb4-4&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;&lt;span class=&quot;bu&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;st&quot;&gt;&quot;. /usr/local/Cluster-Apps/miniconda3/4.5.1/etc/profile.d/conda.sh&quot;&lt;/span&gt; &lt;span class=&quot;op&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; ~/.bashrc&lt;/span&gt;
-&lt;span id=&quot;cb4-5&quot;&gt;&lt;a href=&quot;#cb4-5&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;&lt;span class=&quot;co&quot;&gt;# conda's base (root) environment on PATH&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&quot;cb4-6&quot;&gt;&lt;a href=&quot;#cb4-6&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;&lt;span class=&quot;ex&quot;&gt;conda&lt;/span&gt; activate&lt;/span&gt;
-&lt;span id=&quot;cb4-7&quot;&gt;&lt;a href=&quot;#cb4-7&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;&lt;span class=&quot;co&quot;&gt;# the base environment on PATH permanently&lt;/span&gt;&lt;/span&gt;
-&lt;span id=&quot;cb4-8&quot;&gt;&lt;a href=&quot;#cb4-8&quot; aria-hidden=&quot;true&quot; tabindex=&quot;-1&quot;&gt;&lt;/a&gt;&lt;span class=&quot;bu&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;st&quot;&gt;&quot;conda activate&quot;&lt;/span&gt; &lt;span class=&quot;op&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; ~/.bashrc&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;"><sup>1</sup></a>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">snakemake</span> <span class="at">--j4</span> <span class="at">--use-conda</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">snakemake</span> <span class="at">--profile</span> slurm</span></code></pre></div>
-<p>The first line calls for conda and the second links to slurm<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;slurm&lt;/p&gt;
-&lt;div class="sourceCode" id="cb6"&gt;&lt;pre class="sourceCode bash"&gt;&lt;code class="sourceCode bash"&gt;&lt;span id="cb6-1"&gt;&lt;a href="#cb6-1" aria-hidden="true" tabindex="-1"&gt;&lt;/a&gt;&lt;span class="fu"&gt;mkdir&lt;/span&gt; &lt;span class="va"&gt;$HOME&lt;/span&gt;/.config/Snakemake/slurm&lt;/span&gt;
-&lt;span id="cb6-2"&gt;&lt;a href="#cb6-2" aria-hidden="true" tabindex="-1"&gt;&lt;/a&gt;&lt;span class="fu"&gt;cp&lt;/span&gt; slurm.yaml &lt;span class="va"&gt;$HOME&lt;/span&gt;/.config/Snakemake/slurm&lt;/span&gt;
-&lt;span id="cb6-3"&gt;&lt;a href="#cb6-3" aria-hidden="true" tabindex="-1"&gt;&lt;/a&gt;&lt;span class="fu"&gt;touch&lt;/span&gt; &lt;span class="va"&gt;$HOME&lt;/span&gt;/.config/Snakemake/slurm/slurm.yaml&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Additional information is available from here, &lt;a href="https://ucdavis-bioinformatics-training.github.io/2020-Genome_Assembly_Workshop/snakemake/snakemake_intro" class="external-link"&gt;https://ucdavis-bioinformatics-training.github.io/2020-Genome_Assembly_Workshop/snakemake/snakemake_intro&lt;/a&gt;.
-In particular, the parameters are specified through
-&lt;code&gt;cluster.json&lt;/code&gt;&lt;/p&gt;
-&lt;div class="sourceCode" id="cb7"&gt;&lt;pre class="sourceCode json"&gt;&lt;code class="sourceCode json"&gt;&lt;span id="cb7-1"&gt;&lt;a href="#cb7-1" aria-hidden="true" tabindex="-1"&gt;&lt;/a&gt;&lt;span class="fu"&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id="cb7-2"&gt;&lt;a href="#cb7-2" aria-hidden="true" tabindex="-1"&gt;&lt;/a&gt;     &lt;span class="dt"&gt;"__default__"&lt;/span&gt; &lt;span class="fu"&gt;:&lt;/span&gt;&lt;/span&gt;
-&lt;span id="cb7-3"&gt;&lt;a href="#cb7-3" aria-hidden="true" tabindex="-1"&gt;&lt;/a&gt;    &lt;span class="fu"&gt;{&lt;/span&gt;&lt;/span&gt;
-&lt;span id="cb7-4"&gt;&lt;a href="#cb7-4" aria-hidden="true" tabindex="-1"&gt;&lt;/a&gt;        &lt;span class="dt"&gt;"time"&lt;/span&gt; &lt;span class="fu"&gt;:&lt;/span&gt; &lt;span class="st"&gt;"0:20:00"&lt;/span&gt;&lt;span class="fu"&gt;,&lt;/span&gt;&lt;/span&gt;
-&lt;span id="cb7-5"&gt;&lt;a href="#cb7-5" aria-hidden="true" tabindex="-1"&gt;&lt;/a&gt;        &lt;span class="dt"&gt;"nodes"&lt;/span&gt;&lt;span class="fu"&gt;:&lt;/span&gt; &lt;span class="dv"&gt;1&lt;/span&gt;&lt;span class="fu"&gt;,&lt;/span&gt;&lt;/span&gt;
-&lt;span id="cb7-6"&gt;&lt;a href="#cb7-6" aria-hidden="true" tabindex="-1"&gt;&lt;/a&gt;        &lt;span class="dt"&gt;"ntasks"&lt;/span&gt;&lt;span class="fu"&gt;:&lt;/span&gt; &lt;span class="dv"&gt;1&lt;/span&gt;&lt;span class="fu"&gt;,&lt;/span&gt;&lt;/span&gt;
-&lt;span id="cb7-7"&gt;&lt;a href="#cb7-7" aria-hidden="true" tabindex="-1"&gt;&lt;/a&gt;        &lt;span class="dt"&gt;"cpus"&lt;/span&gt; &lt;span class="fu"&gt;:&lt;/span&gt; &lt;span class="dv"&gt;1&lt;/span&gt;&lt;span class="fu"&gt;,&lt;/span&gt;&lt;/span&gt;
-&lt;span id="cb7-8"&gt;&lt;a href="#cb7-8" aria-hidden="true" tabindex="-1"&gt;&lt;/a&gt;        &lt;span class="dt"&gt;"mem"&lt;/span&gt;&lt;span class="fu"&gt;:&lt;/span&gt; &lt;span class="dv"&gt;2000&lt;/span&gt;&lt;span class="fu"&gt;,&lt;/span&gt;&lt;/span&gt;
-&lt;span id="cb7-9"&gt;&lt;a href="#cb7-9" aria-hidden="true" tabindex="-1"&gt;&lt;/a&gt;        &lt;span class="dt"&gt;"output"&lt;/span&gt;&lt;span class="fu"&gt;:&lt;/span&gt; &lt;span class="st"&gt;"snakemake%A.out"&lt;/span&gt;&lt;span class="fu"&gt;,&lt;/span&gt;&lt;/span&gt;
-&lt;span id="cb7-10"&gt;&lt;a href="#cb7-10" aria-hidden="true" tabindex="-1"&gt;&lt;/a&gt;        &lt;span class="dt"&gt;"error"&lt;/span&gt;&lt;span class="fu"&gt;:&lt;/span&gt; &lt;span class="st"&gt;"snakemake%A.err"&lt;/span&gt;&lt;span class="fu"&gt;,&lt;/span&gt;&lt;/span&gt;
-&lt;span id="cb7-11"&gt;&lt;a href="#cb7-11" aria-hidden="true" tabindex="-1"&gt;&lt;/a&gt;        &lt;span class="dt"&gt;"reservation"&lt;/span&gt;&lt;span class="fu"&gt;:&lt;/span&gt; &lt;span class="st"&gt;"genome_workshop"&lt;/span&gt;&lt;span class="fu"&gt;,&lt;/span&gt;&lt;/span&gt;
-&lt;span id="cb7-12"&gt;&lt;a href="#cb7-12" aria-hidden="true" tabindex="-1"&gt;&lt;/a&gt;        &lt;span class="dt"&gt;"partition"&lt;/span&gt;&lt;span class="fu"&gt;:&lt;/span&gt; &lt;span class="st"&gt;"production"&lt;/span&gt;&lt;span class="fu"&gt;,&lt;/span&gt;&lt;/span&gt;
-&lt;span id="cb7-13"&gt;&lt;a href="#cb7-13" aria-hidden="true" tabindex="-1"&gt;&lt;/a&gt;        &lt;span class="dt"&gt;"account"&lt;/span&gt;&lt;span class="fu"&gt;:&lt;/span&gt; &lt;span class="st"&gt;"genome_workshop"&lt;/span&gt;&lt;/span&gt;
-&lt;span id="cb7-14"&gt;&lt;a href="#cb7-14" aria-hidden="true" tabindex="-1"&gt;&lt;/a&gt;    &lt;span class="fu"&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span id="cb7-15"&gt;&lt;a href="#cb7-15" aria-hidden="true" tabindex="-1"&gt;&lt;/a&gt;&lt;span class="fu"&gt;}&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;and our call becomes&lt;/p&gt;
-&lt;div class="sourceCode" id="cb8"&gt;&lt;pre class="sourceCode bash"&gt;&lt;code class="sourceCode bash"&gt;&lt;span id="cb8-1"&gt;&lt;a href="#cb8-1" aria-hidden="true" tabindex="-1"&gt;&lt;/a&gt;&lt;span class="ex"&gt;snakemake&lt;/span&gt; &lt;span class="at"&gt;-j&lt;/span&gt; 99 &lt;span class="at"&gt;--cluster-config&lt;/span&gt; cluster.json &lt;span class="at"&gt;--cluster&lt;/span&gt; &lt;span class="st"&gt;"sbatch -t {cluster.time} --output {cluster.output} --error {cluster.error} --nodes {cluster.nodes} --ntasks {cluster.ntasks} --cpus-per-task {cluster.cpus} --mem {cluster.mem} --partition {cluster.partition} --account {cluster.account} --reservation {cluster.reservation}"&lt;/span&gt; &lt;span class="at"&gt;--use-conda&lt;/span&gt; &lt;span class="at"&gt;--latency-wait&lt;/span&gt; 50&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;'><sup>2</sup></a>.</p>
-</div>
-</div>
-<div class="section level2">
-<h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
-</h2>
-<p>Edwards D (2022). Plant Bioinformatics-Methods and Protocols, 3e. <a href="https://link.springer.com/book/10.1007/978-1-0716-2067-0" class="external-link uri">https://link.springer.com/book/10.1007/978-1-0716-2067-0</a>.
-<a href="https://link.springer.com/protocol/10.1007/978-1-0716-2067-0_11" class="external-link">Chapter
-11</a>; <a href="https://link.springer.com/protocol/10.1007/978-1-0716-2067-0_9" class="external-link">Chapter
-9</a>.</p>
-<p>csd3, <a href="https://cambridge-ceu.github.io/csd3/applications/snakemake.html" class="external-link">https://cambridge-ceu.github.io/csd3/applications/snakemake.html</a>.</p>
-<p>snakemake-with-R, <a href="https://github.com/fritzbayer/snakemake-with-R" class="external-link">https://github.com/fritzbayer/snakemake-with-R</a>.</p>
-</div>
-
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
 </div>
