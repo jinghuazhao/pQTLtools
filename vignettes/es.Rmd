@@ -1,5 +1,5 @@
 ---
-title: "ExpressionSet"
+title: "ExpressionSet usage"
 output:
   rmarkdown::html_vignette:
     toc: true
@@ -7,7 +7,7 @@ output:
     check_title: false
 bibliography: refs.bib
 vignette: >
-  %\VignetteIndexEntry{ExpressionSet}
+  %\VignetteIndexEntry{ExpressionSet usage}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
