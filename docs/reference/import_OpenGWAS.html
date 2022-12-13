@@ -33,6 +33,7 @@
     <h6 class="dropdown-header" data-toc-skip>Articles:</h6>
     <a class="dropdown-item" href="../articles/bioconductor.html">Bioconductor</a>
     <a class="dropdown-item" href="../articles/es.html">ExpressionSet</a>
+    <a class="dropdown-item" href="../articles/snakemake.html"></a>
     <a class="dropdown-item" href="../articles/SCALLOP-INF.html">SCALLOP-INF scripts</a>
   </div>
 </li>
@@ -46,7 +47,7 @@
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
       <ul class="navbar-nav"><li class="nav-item">
-  <a class="external-link nav-link" href="https://www.bioconductor.org">
+  <a class="external-link nav-link" href="https://alphafold.ebi.ac.uk/">
     <span class="fas fa fas fa-fast-backward"></span>
      
   </a>
@@ -54,6 +55,7 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-sites">Sites</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-sites">
+    <a class="external-link dropdown-item" href="https://alphafold.ebi.ac.uk/">AlphaFold</a>
     <a class="external-link dropdown-item" href="https://www.bioconductor.org/">Bioconductor</a>
     <a class="external-link dropdown-item" href="https://cran.r-project.org/">CRAN</a>
     <a class="external-link dropdown-item" href="https://cytoscape.org/">Cytoscape</a>
@@ -61,7 +63,6 @@
     <a class="external-link dropdown-item" href="https://www.ebi.ac.uk/eqtl/">eQTL catalog</a>
     <a class="external-link dropdown-item" href="https://www.ebi.ac.uk/gwas/">GWAS catalog</a>
     <a class="external-link dropdown-item" href="https://www.mrbase.org/">MRBase</a>
-    <a class="external-link dropdown-item" href="https://www.myendnoteweb.com/">MyEndNoteWeb</a>
     <a class="external-link dropdown-item" href="https://pubmed.ncbi.nlm.nih.gov/">PubMed</a>
     <a class="external-link dropdown-item" href="https://github.com/snakemake-workflows/">snakemake-workflows</a>
     <a class="external-link dropdown-item" href="https://string-db.org/">STRING</a>
@@ -179,7 +180,7 @@
 <span class="r-in"><span>                    <span class="va">beta.outcome</span>,<span class="va">se.outcome</span>,<span class="va">pval.outcome</span>,<span class="va">samplesize.outcome</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/r/stats/setNames.html" class="external-link">setNames</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SNP"</span>,<span class="st">"A1"</span>,<span class="st">"A2"</span>,<span class="st">"freq"</span>,<span class="st">"b"</span>,<span class="st">"se"</span>,<span class="st">"p"</span>,<span class="st">"N"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>      <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">SNP</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>      <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/which.min.html" class="external-link">which.min</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>      <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/which.min.html" class="external-link">which.min</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">od</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">od</span><span class="op">$</span><span class="va">N</span><span class="op">)</span>,<span class="st">"N"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">n</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.table</a></span><span class="op">(</span><span class="va">od</span>,quote<span class="op">=</span><span class="cn">FALSE</span>,row.names<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
@@ -194,7 +195,7 @@
 <span class="r-in"><span><span class="va">HPC_WORK</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"HPC_WORK"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">opengwas_ids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/scan.html" class="external-link">scan</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">INF</span>,<span class="st">"OpenGWAS"</span>,<span class="st">"ieu.list"</span><span class="op">)</span>,what<span class="op">=</span><span class="st">""</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">unavail</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ieu-b-18"</span>,<span class="st">"finn-a-M13_SLE"</span>,<span class="st">"finn-a-D3_SARCOIDOSIS"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">opengwas_ids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">opengwas_ids</span>,<span class="op">!</span><span class="va">opengwas_ids</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">unavail</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">opengwas_ids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">opengwas_ids</span>,<span class="op">!</span><span class="va">opengwas_ids</span> <span class="op"><a href="https://rdrr.io/pkg/BiocGenerics/man/match.html" class="external-link">%in%</a></span> <span class="va">unavail</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">region</span> <span class="op">&lt;-</span> <span class="st">"1:100-2000000"</span></span></span>
 <span class="r-in"><span><span class="va">summary_list</span> <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span><span class="va">opengwas_ids</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>, <span class="op">~</span><span class="fu">import_OpenGWAS</span><span class="op">(</span><span class="va">.</span>, <span class="va">region</span>, method<span class="op">=</span><span class="st">"gwasvcf"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>

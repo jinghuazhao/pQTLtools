@@ -57,6 +57,7 @@
     <h6 class="dropdown-header" data-toc-skip>Articles:</h6>
     <a class="dropdown-item" href="../articles/bioconductor.html">Bioconductor</a>
     <a class="dropdown-item" href="../articles/es.html">ExpressionSet</a>
+    <a class="dropdown-item" href="../articles/snakemake.html"></a>
     <a class="dropdown-item" href="../articles/SCALLOP-INF.html">SCALLOP-INF scripts</a>
   </div>
 </li>
@@ -73,7 +74,7 @@
 
       <ul class="navbar-nav">
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://www.bioconductor.org">
+  <a class="external-link nav-link" href="https://alphafold.ebi.ac.uk/">
     <span class="fas fa fas fa-fast-backward"></span>
      
   </a>
@@ -81,15 +82,16 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-sites">Sites</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-sites">
+    <a class="external-link dropdown-item" href="https://alphafold.ebi.ac.uk/">AlphaFold</a>
     <a class="external-link dropdown-item" href="https://www.bioconductor.org/">Bioconductor</a>
     <a class="external-link dropdown-item" href="https://cran.r-project.org/">CRAN</a>
     <a class="external-link dropdown-item" href="https://cytoscape.org/">Cytoscape</a>
     <a class="external-link dropdown-item" href="https://www.ensembl.org/">Ensembl</a>
     <a class="external-link dropdown-item" href="https://www.ebi.ac.uk/eqtl/">eQTL catalog</a>
     <a class="external-link dropdown-item" href="https://www.ebi.ac.uk/gwas/">GWAS catalog</a>
-    <a class="external-link dropdown-item" href="https://www.myendnoteweb.com/">MyEndNoteWeb</a>
+    <a class="external-link dropdown-item" href="https://www.mrbase.org/">MRBase</a>
     <a class="external-link dropdown-item" href="https://pubmed.ncbi.nlm.nih.gov/">PubMed</a>
-    <a class="external-link dropdown-item" href="https://github.com/snakemake-workflows/">snakemake-workflow-catalogue</a>
+    <a class="external-link dropdown-item" href="https://github.com/snakemake-workflows/">snakemake-workflows</a>
     <a class="external-link dropdown-item" href="https://string-db.org/">STRING</a>
     <a class="external-link dropdown-item" href="https://www.proteinatlas.org/">The Human Protein Atlas</a>
     <a class="external-link dropdown-item" href="https://www.uniprot.org/">UniProt</a>
@@ -137,11 +139,16 @@
 <div class="section level2">
 <h2 id="colocalization">Colocalization<a class="anchor" aria-label="anchor" href="#colocalization"></a>
 </h2>
-<p>This is the actual script for cis-pQTL colocalization analysis on GTEx v8, as reported in <span class="citation">Kerimov et al. (2021)</span>, for SCALLOP-INF.</p>
+<p>This is the actual script for cis-pQTL colocalization analysis on
+GTEx v8, as reported in <span class="citation">Kerimov et al.
+(2021)</span>, for SCALLOP-INF.</p>
 <div class="section level3">
 <h3 id="data">Data<a class="anchor" aria-label="anchor" href="#data"></a>
 </h3>
-<p>The data were GWAS summary statistics in GRCh37 and VCF format, converted by <code>gwasvcf</code>. The GTEx association statistics were in GRCh38 and downloaded from the eQTL Catalogue and stored locally. Data on microarray and RNA-Seq remain on the eQTL Catalogue website.</p>
+<p>The data were GWAS summary statistics in GRCh37 and VCF format,
+converted by <code>gwasvcf</code>. The GTEx association statistics were
+in GRCh38 and downloaded from the eQTL Catalogue and stored locally.
+Data on microarray and RNA-Seq remain on the eQTL Catalogue website.</p>
 </div>
 <div class="section level3">
 <h3 id="the-driver-program">The driver program<a class="anchor" aria-label="anchor" href="#the-driver-program"></a>
@@ -343,7 +350,10 @@
 <span><span class="co"># Faster with parallel Bash runs.</span></span>
 <span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html" class="external-link">as.integer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"r"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu">single_run</span><span class="op">(</span><span class="va">r</span><span class="op">)</span></span></code></pre></div>
-<p>where options for protein GWAS, microarray, RNA-Seq are available with respect to variant-flanking or gene regions. When no results are generated, there would have problem with <code>dplyr::arrange(df_gtex, -PP.H4.abf);p &lt;- ggplot(df_gtex, aes(x = PP.H4.abf)) + geom_histogram()</code>.</p>
+<p>where options for protein GWAS, microarray, RNA-Seq are available
+with respect to variant-flanking or gene regions. When no results are
+generated, there would have problem with
+<code>dplyr::arrange(df_gtex, -PP.H4.abf);p &lt;- ggplot(df_gtex, aes(x = PP.H4.abf)) + geom_histogram()</code>.</p>
 </div>
 <div class="section level3">
 <h3 id="collection-of-results">Collection of results<a class="anchor" aria-label="anchor" href="#collection-of-results"></a>
@@ -420,7 +430,11 @@
 </h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-kerimov21" class="csl-entry">
-Kerimov, Nurlan, James D. Hayhurst, Kateryna Peikova, Jonathan R. Manning, Peter Walter, Liis Kolberg, Marija Samovi─ìa, et al. 2021. <span>“A Compendium of Uniformly Processed Human Gene Expression and Splicing Quantitative Trait Loci.”</span> Journal Article. <em>Nature Genetics</em> 53 (9): 1290–99. <a href="https://doi.org/10.1038/s41588-021-00924-w" class="external-link">https://doi.org/10.1038/s41588-021-00924-w</a>.
+Kerimov, Nurlan, James D. Hayhurst, Kateryna Peikova, Jonathan R.
+Manning, Peter Walter, Liis Kolberg, Marija Samovi─ìa, et al. 2021.
+<span>“A Compendium of Uniformly Processed Human Gene Expression and
+Splicing Quantitative Trait Loci.”</span> Journal Article. <em>Nature
+Genetics</em> 53 (9): 1290–99. <a href="https://doi.org/10.1038/s41588-021-00924-w" class="external-link">https://doi.org/10.1038/s41588-021-00924-w</a>.
 </div>
 </div>
 </div>

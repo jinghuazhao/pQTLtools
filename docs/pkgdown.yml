@@ -1,4 +1,4 @@
-pandoc: '2.13'
+pandoc: '2.18'
 pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
@@ -6,7 +6,8 @@ articles:
   bioconductor: bioconductor.html
   es: es.html
   pQTLtools: pQTLtools.html
-last_built: 2022-08-23T15:14Z
+  snakemake: snakemake.html
+last_built: 2022-12-13T15:22Z
 urls:
   reference: https://jinghuazhao.github.io/pQTLtools/reference
   article: https://jinghuazhao.github.io/pQTLtools/articles
