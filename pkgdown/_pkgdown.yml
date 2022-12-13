@@ -51,6 +51,8 @@ navbar:
           href: articles/bioconductor.html
         - text: ExpressionSet
           href: articles/es.html
+        - test: snakemake
+          href: articles/snakemake.html
         - text: SCALLOP-INF scripts
           href: articles/SCALLOP-INF.html
     reference:
