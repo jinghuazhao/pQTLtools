@@ -48,13 +48,13 @@ snakemake --rulegraph | dot -Tsvg > output/rulegraph.svg
 snakemake --dag | dot -Tsvg > output/dag.svg
 ```
 
-## Dependency graph of rules
+### Dependency graph of rules
 
-![rulegraph](output/rulegraph.svg)
+![Figure 1. Rule graph](output/rulegraph.svg)
 
-## Directed Acyclic Graph (DAG)
+### Directed Acyclic Graph (DAG)
 
-![dag](output/dag.svg)
+![Figure 2. DAG](output/dag.svg)
 
 ## Installation
 
@@ -62,7 +62,7 @@ snakemake --dag | dot -Tsvg > output/dag.svg
 
 Note that in the following `source` instead of `conda` is used to activate.
 
-## Anaconda3
+### Anaconda3
 
 [https://www.anaconda.com/](https://www.anaconda.com/)
 
@@ -79,7 +79,7 @@ conda update -n anaconda snakemake
 
 The remove option is useful when resolving compatibility issues.
 
-## Miniconda3
+### Miniconda3
 
 [https://docs.conda.io/en/latest/miniconda.html](https://docs.conda.io/en/latest/miniconda.html)
 
@@ -94,8 +94,6 @@ conda install -c bioconda fastqc
 ```
 
 or to do this permenantly[^perm].
-
-# snakemake
 
 ```bash
 snakemake --j4 --use-conda
@@ -112,8 +110,8 @@ csd3, [https://cambridge-ceu.github.io/csd3/applications/snakemake.html](https:/
 
 snakemake-with-R, [https://github.com/fritzbayer/snakemake-with-R](https://github.com/fritzbayer/snakemake-with-R).
 
-
 [^perm]: Instructions from Miniconda:
+
     ```bash
     # all users
     # sudo ln -s /usr/local/Cluster-Apps/miniconda3/4.5.1/etc/profile.d/conda.sh /etc/profile.d/conda.sh
@@ -124,6 +122,7 @@ snakemake-with-R, [https://github.com/fritzbayer/snakemake-with-R](https://githu
     # the base environment on PATH permanently
     echo "conda activate" >> ~/.bashrc
     ```
+
 [^slurm]: slurm
 
     ```bash
