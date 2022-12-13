@@ -1,8 +1,0 @@
-Building DAG of jobs...
-MissingInputException in line 20 of /home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile:
-Missing input files for rule MR_analysis:
-    output: output/MR/Beta-NGF_HF2.csv
-    wildcards: protein=Beta-NGF, trait=HF2
-    affected files:
-        input/ld/Beta-NGF.ld
-        input/ld/Beta-NGF.snplist

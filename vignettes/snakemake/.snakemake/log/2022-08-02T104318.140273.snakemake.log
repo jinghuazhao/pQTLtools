@@ -1,2 +1,0 @@
-SyntaxError in line 6 of /home/jhz22/pQTLtools/inst/snakemake/workflow/Snakefile:
-Unexpected keyword expand in rule definition (Snakefile, line 6)
