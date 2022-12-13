@@ -165,6 +165,10 @@ options(width=120)
 kable(annot,caption="Summary statistics",row.names=FALSE)
 ```
 
+## Combination of proteins and peptides
+
+This turned to be very useful when accessing protein-peptide together in the Caprion project.
+
 ## maEndtoEnd
 
 Web: [https://bioconductor.org/packages/release/workflows/html/maEndToEnd.html](https://bioconductor.org/packages/release/workflows/html/maEndToEnd.html).

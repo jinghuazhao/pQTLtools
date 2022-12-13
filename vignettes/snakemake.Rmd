@@ -25,9 +25,6 @@ knitr::opts_chunk$set(
 
 ## Mendelian randomization analysis
 
-[![Circulation](https://www.ahajournals.org/pb-assets/images/logos/circ-logo-1526571039097.svg)](https://www.ahajournals.org/doi/10.1161/CIRCULATIONAHA.121.056663)
-[![DOI](https://zenodo.org/badge/429122036.svg)](https://zenodo.org/badge/latestdoi/429122036)
-
 The required files are available from the `snakemake` directory upon installation or `inst/snakemake` directory in the source package.
 
 Steps to set up the environment are outlined in [INSTALL.md](https://github.com/jinghuazhao/pQTLtools/blob/HEAD/vignettes/INSTALL.md), while `MendelianRandomization` v0.6.0 is used together with a bug fix in `workflow/r/MR_functions.R`. The workflow has been heavily edited for simplicity, efficiency and generality.
@@ -53,3 +50,8 @@ snakemake --dag | dot -Tsvg > output/dag.svg
 ![Figure 1. Dependency graph of rules](output/rulegraph.svg)
 
 ![Figure 2. Directed Acyclic Graph (DAG)](output/dag.svg)
+
+## Reference
+
+[![Circulation](https://www.ahajournals.org/pb-assets/images/logos/circ-logo-1526571039097.svg)](https://www.ahajournals.org/doi/10.1161/CIRCULATIONAHA.121.056663)
+[![DOI](https://zenodo.org/badge/429122036.svg)](https://zenodo.org/badge/latestdoi/429122036)
