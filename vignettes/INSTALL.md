@@ -1,4 +1,4 @@
-## Installation
+## snakemake installation
 
 [GitHub](https://github.com/snakemake/snakemake) ([documentation](https://snakemake.github.io/), [stable](https://snakemake.readthedocs.io/en/stable/))
 
