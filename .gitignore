@@ -5,3 +5,4 @@ tests
 inst/snakemake/.snakemake
 inst/snakemake/workflow/.snakemake
 vignettes/.snakemake
+vignettes/output
