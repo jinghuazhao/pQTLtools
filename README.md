@@ -19,7 +19,7 @@ UniProt IDs to other resources; 4. Bioconductor notes and a showcase of
 snakemake workflow.
 
 Aspects involving data from ongoing project have been simplified to use
-files in `~/pQTLtools/tests`which can be made public when appropriate.
+files in `pQTLtools/tests`which can be made public when appropriate.
 
 ## Installation
 
