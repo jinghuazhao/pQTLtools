@@ -6,13 +6,16 @@
 # See https://github.com/r-lib/actions/tree/master/examples#readme for
 # additional example workflows available for the R community.
 
-name: R-cmd-check
+name: R-CMD-check
 
 on:
   push:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+  workflow_dispatch:
+  schedule:
+    - cron: '00 7 * * SUN' # run at 7:00am UTC on Sundays
 
 permissions:
   contents: read
