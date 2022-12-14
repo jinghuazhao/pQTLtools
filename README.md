@@ -1,8 +1,8 @@
 
 <img src="man/figures/logo.svg" align="right" alt="" width="120" />
 
-[![pages-build-deployment](https://github.com/jinghuazhao/pQTLtools/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/jinghuazhao/pQTLtools/actions/workflows/pages/pages-build-deployment)
 [![R-cmd-check](https://github.com/jinghuazhao/pQTLtools/actions/workflows/r.yml/badge.svg)](https://github.com/jinghuazhao/pQTLtools/actions/workflows/r.yml)
+[![pages-build-deployment](https://github.com/jinghuazhao/pQTLtools/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/jinghuazhao/pQTLtools/actions/workflows/pages/pages-build-deployment)
 
 ## A protein Quantitative Trait Locus toolkit
 
