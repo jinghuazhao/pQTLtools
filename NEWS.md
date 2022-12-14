@@ -12,7 +12,7 @@
 * Add run_TwoSampleMR(), make_ExpressionSet(), novelty_check(), qtl_lookup().
 * Add pqtlMR() based on TwoSampleMR.
 * Add run_coloc() based on coloc.
-* Add import_OpenGWAS and therefore suggests gwasvcf, ieugwasr, rtracklayer, VariantAnnotation.
+* Add import_OpenGWAS and therefore suggests rtracklayer, VariantAnnotation and remotes gwasvcf, ieugwasr.
 * Add import_eQTLCatalogue from eQTL-Catalogue-resources suggesting seqminer.
 * Add genequries, regionqueries, snpqueries.
 * Add uniprot2ids() based on UniProt.
