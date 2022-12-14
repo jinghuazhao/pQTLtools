@@ -32,7 +32,7 @@ Currently `input/` contains data on CD40, OPG and heart failures -- to imitate a
 
 The code chunks below gives `output`/`MR_HF.csv` (MR results) and `Obs_HF.csv` (meta-analysis results based on observational studies) and similarly for HF2.
 
-```{bash snakemake, message=FALSE, results="hide", warning=FALSE}
+```bash
 module load miniconda3/4.5.1
 export csd3path=/rds/project/jmmh2/rds-jmmh2-projects/olink_proteomics/scallop
 source ${csd3path}/miniconda37/bin/activate

@@ -8,7 +8,7 @@ output:
     section_numbering: true
 bibliography: bioc.bib
 link-citations: yes
-csl: nature-genetics.csl
+# csl: nature-genetics.csl
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{Bioconductor Applications}
