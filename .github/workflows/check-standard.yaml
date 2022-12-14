@@ -3,6 +3,9 @@ on:
     branches: [main, master, v2-branch]
   pull_request:
     branches: [main, master, v2-branch]
+  workflow_dispatch:
+  schedule:
+    - cron: '00 7 * * SUN' # run at 7:00am UTC on Sundays
 
 name: R-CMD-check
 
@@ -18,9 +21,9 @@ jobs:
         config:
           - {os: macos-latest,   r: 'release'}
           - {os: windows-latest, r: 'release'}
-          - {os: ubuntu-latest,   r: 'devel', http-user-agent: 'release'}
-          - {os: ubuntu-latest,   r: 'release'}
-          - {os: ubuntu-latest,   r: 'oldrel-1'}
+          - {os: ubuntu-latest,  r: 'devel', http-user-agent: 'release'}
+          - {os: ubuntu-latest,  r: 'release'}
+          - {os: ubuntu-latest,  r: 'oldrel-1'}
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}

@@ -5,7 +5,7 @@ on:
     branches: [main, master]
   workflow_dispatch:
   schedule:
-    - cron: '00 7 * * SUN' # run at 7:00am UTC on Sundays
+    - cron: '00 8 * * SUN' # run at 8:00am UTC on Sundays
 
 name: R-CMD-check
 
