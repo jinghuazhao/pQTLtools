@@ -55,7 +55,8 @@ Suggests:
 Remotes:
     mrcieu/gwasvcf,
     mrcieu/ieugwasr,
-    mrcieu/MRInstruments
+    mrcieu/TwoSampleMR,
+    phenoscanner/phenoscanner
 VignetteBuilder: knitr
 LazyData: Yes
 LazyLoad: Yes
