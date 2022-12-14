@@ -9,12 +9,14 @@ It seeds collection of data and utilities for pQTL analysis. At this
 early stage, the repository contains 1. a number of protein panels,
 linking functions for cis/trans classification, 2d Manhattan plots,
 2d/3d-plotly plots, forest plots among others available from
-[R/gap](https://github.com/jinghuazhao/R/tree/master/gap);
-2. query on genes, regions, and SNPs via PhenoScanner, adding
+[R/gap](https://github.com/jinghuazhao/R/tree/master/gap); 2. query on
+genes, regions, and SNPs via
+[PhenoScanner](http://www.phenoscanner.medschl.cam.ac.uk/), adding
 functionality to check for replication across platforms; 3. downstream
 analysis such as colocalization, pQTL-Mendelian Randomization via
-TwoSampleMR, linkage through UniProt IDs to other resources;
-4. Bioconductor notes and a showcase of snakemake workflow.
+[TwoSampleMR](https://github.com/MRCIEU/TwoSampleMR), linkage through
+UniProt IDs to other resources; 4. Bioconductor notes and a showcase of
+snakemake workflow.
 
 Aspects involving data from ongoing project have been simplified to use
 files in `~/pQTLtools/tests`which can be made public when appropriate.
