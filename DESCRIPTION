@@ -35,10 +35,8 @@ Suggests:
     coloc,
     cowplot,
     gap.datasets,
-    gwasvcf,
     htmlwidgets,
     httr,
-    ieugwasr,
     knitr,
     openxlsx,
     phenoscanner,
@@ -52,6 +50,10 @@ Suggests:
     seqminer,
     stringr,
     tourr
+Remotes:
+    mrcieu/gwasvcf,
+    mrcieu/ieugwasr,
+    mrcieu/MRInstruments
 VignetteBuilder: knitr
 LazyData: Yes
 LazyLoad: Yes
