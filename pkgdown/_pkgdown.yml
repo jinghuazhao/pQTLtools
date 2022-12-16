@@ -84,6 +84,8 @@ navbar:
         href: https://www.ebi.ac.uk/eqtl/
       - text: GWAS catalog
         href: https://www.ebi.ac.uk/gwas/
+      - text: metascape
+        href: https://metascape.org/
       - text: MRBase
         href: https://www.mrbase.org/
       - text: PubMed
