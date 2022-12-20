@@ -1,6 +1,7 @@
 # pQTLtools 0.2
 
 * ...
+* Add GitHub action
 * Add inst/Bioconductor/.
 * Add inst/Olink.
 * Add inst/STRING/change_STRING_colors.py.
