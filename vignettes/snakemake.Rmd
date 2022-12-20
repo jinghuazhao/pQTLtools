@@ -105,9 +105,10 @@ source activate miniconda
 conda install -c bioconda fastqc
 ```
 
-### An example using SLURM
+### A SLURM example
 
-Here is `workflow/config.yaml`,
+The Caprion project, [https://jinghuazhao.github.io/Caprion/](https://jinghuazhao.github.io/Caprion/),
+experiments with a `workflow/config.yaml` as follows,
 
 ```yaml
 cluster:
