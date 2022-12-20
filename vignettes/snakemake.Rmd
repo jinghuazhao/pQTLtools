@@ -47,9 +47,9 @@ snakemake --rulegraph | dot -Tsvg > output/rulegraph.svg
 snakemake --dag | dot -Tsvg > output/dag.svg
 ```
 
-![Figure 1. Dependency graph of rules](output/rulegraph.svg)
+![Figure 1. Dependency graph of rules](rulegraph.svg)
 
-![Figure 2. Directed Acyclic Graph (DAG)](output/dag.svg)
+![Figure 2. Directed Acyclic Graph (DAG)](dag.svg)
 
 ## References
 
