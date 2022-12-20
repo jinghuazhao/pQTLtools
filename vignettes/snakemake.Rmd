@@ -97,7 +97,7 @@ source activate miniconda
 conda install -c bioconda fastqc
 ```
 
-### An example
+### Using SLURM
 
 Here is `workflow/config.yaml`,
 
