@@ -10,14 +10,16 @@ Authors@R: c(
   )
 Description: It seeds collection of data and utilities for pQTL analysis. At this
     early stage, the repository contains 1. a number of protein panels,
-    linking functions for cis/trans classification, 2D Manhattan plots,
-    3D-plotly plots, forest plots among others available from
-    [R/gap](https://github.com/jinghuazhao/R/tree/master/gap); 2. query on
-    genes, regions, and SNPs via PhenoScanner, adding functionality to check
-    for replication across platforms; 3. downstream analysis such as
-    colocalization, pQTL-Mendelian Randomization via TwoSampleMR, linkage
-    through UniProt IDs to other resources; 4. showcase of Bioconductor
-    packages and snakemake workflow.
+    linking functions for cis/trans classification, 2d Manhattan plots,
+    2d/3d-plotly plots, forest plots among others available from
+    R/gap, <https://github.com/jinghuazhao/R/tree/master/gap>;
+    2. query on genes, regions, and SNPs via PhenoScanner,
+    <http://www.phenoscanner.medschl.cam.ac.uk/>, adding functionality
+    to check for replication across platforms; 3. downstream analysis
+    such as colocalization, pQTL-Mendelian Randomization via TwoSampleMR,
+    <https://github.com/MRCIEU/TwoSampleMR>, linkage through UniProt IDs
+    to other resources; 4. Bioconductor notes and a showcase of snakemake
+    workflow.
 License: MIT + file LICENSE
 URL: https://github.com/jinghuazhao/pQTLtools
 BugReports: https://github.com/jinghuazhao/pQTLtools/issues
@@ -88,4 +90,4 @@ LazyLoad: Yes
 LazyDataCompression: xz
 NeedsCompilation: no
 Encoding: UTF-8
-RoxygenNote: 7.2.2
+RoxygenNote: 7.2.3
