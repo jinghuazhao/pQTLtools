@@ -97,7 +97,61 @@ source activate miniconda
 conda install -c bioconda fastqc
 ```
 
-or to do this permenantly.
+### An example
+
+Here is `workflow/config.yaml`,
+
+```yaml
+cluster:
+  mkdir -p logs/{rule} &&
+  sbatch
+    --account={resources.account}
+    --partition={resources.partition}
+    --qos={resources.qos}
+    --cpus-per-task={threads}
+    --mem={resources.mem_mb}
+    --time={resources.runtime}
+    --job-name={rule}-{wildcards}
+    --error=logs/{rule}/{wildcards}-prune.err
+    --output=logs/{rule}/{wildcards}-prune.out
+default-resources:
+  - account=CARDIO-SL0-CPU
+  - partition=cardio
+  - qos=cardio
+  - mem_mb=10000
+  - runtime='12:00:00'
+  - threads=1
+restart-times: 3
+max-jobs-per-second: 10
+max-status-checks-per-second: 1
+local-cores: 1
+latency-wait: 60
+jobs: 1
+keep-going: True
+rerun-incomplete: True
+printshellcmds: True
+scheduler: greedy
+use-conda: True
+```
+
+whose driver routine is as follows,
+
+```bash
+#
+module load miniconda3/4.5.1
+export csd3path=/rds/project/jmmh2/rds-jmmh2-projects/olink_proteomics/scallop/miniconda37
+source ${csd3path}/bin/activate
+#
+snakemake -s workflow/rules/cojo.smk -j1
+snakemake -s workflow/rules/report.smk -j1
+snakemake -s workflow/rules/cojo.smk -c --profile workflow
+```
+
+and use `--unlock` when necessary.
+
+### Other options
+
+Configuration can be done permenantly.
 
 ```bash
 # all users
