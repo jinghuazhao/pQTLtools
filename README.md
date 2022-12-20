@@ -2,6 +2,7 @@
 <img src="man/figures/logo.svg" align="right" alt="" width="120" />
 
 <!-- badges: start -->
+
 [![pages-build-deployment](https://github.com/jinghuazhao/pQTLtools/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/jinghuazhao/pQTLtools/actions/workflows/pages/pages-build-deployment)
 [![R-CMD-check](https://github.com/jinghuazhao/pQTLtools/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jinghuazhao/pQTLtools/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
