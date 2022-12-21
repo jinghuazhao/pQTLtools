@@ -39,7 +39,7 @@ GitHub.
 
 ## June 2022 update
 
-It passes CRAN checks with no warning.
+It passes [CRAN](https://cran.r-project.org/) checks with no warning.
 
 ## February 2021 update
 
