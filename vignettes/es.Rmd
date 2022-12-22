@@ -154,13 +154,20 @@ saveRDS(annot,file=file.path("~","pQTLtools","tests","annot.RDS"))
 ```
 
 ```{r lod, fig.height=7}
-par(mar=c(5,4,1,1))
 annot <- readRDS(file.path("~","pQTLtools","tests","annot.RDS"))
-plot(annot$pc.belowLOD.new, col=annot$pQTL, las=1,
-     ylab = "% samples with very low abundance per protein", xaxt= 'n',
-     xlab = "ordered proteins", cex=0.8, pch=19)
-axis(side=1, at = seq(from=0, to=nrow(annot), by=20))
-legend("topright", legend= c("no pQTL", "pQTL"), col= c("red","blue"), pch = 19)
+annot <- within(annot,{prot=gsub("^[0-9]*_","",olink.id)})
+par(mar=c(5,4,1,1))
+attach(annot)
+plot(100-pc.belowLOD.new,cex=2,pch=19,col=pQTL,axes=FALSE, xlab="", ylab="", cex.lab=2)
+xy <- xy.coords(100-pc.belowLOD.new)
+xtick <- seq(1, nrow(annot))
+axis(1, at=xtick, labels = FALSE, lwd.tick=0.1, lwd=0)
+axis(2, cex.axis=1.5)
+text(x=xtick, par("usr")[3],labels = prot, srt = 75, pos = 1, xpd = TRUE, cex=0.8)
+mtext("1 - % samples with very low abundance per protein",side=2,line=2.5,cex=1.5)
+mtext("Ordered proteins",side=1,line=2.5,cex=1.5,font=2)
+legend(x=75,y=20,c("without PQTL","with pQTL"),box.lwd=0,cex=2,col=c("red","blue"),pch=19)
+detach(annot)
 options(width=120)
 kable(annot,caption="Summary statistics",row.names=FALSE)
 ```
