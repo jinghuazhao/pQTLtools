@@ -6,7 +6,7 @@
 * 06/2022. It passes [CRAN](https://cran.r-project.org/) checks with no warning.
 * 02/2021. A web-driven documentation is now available, [https://jinghuazhao.github.io/pQTLtools/](https://jinghuazhao.github.io/pQTLtools/)
 
-### accumulated changes
+### Accumulated changes
 
 * First release.
 * Depends R (>=3.5.0), pQTLdata
