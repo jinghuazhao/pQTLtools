@@ -9,9 +9,9 @@ Authors@R: c(
     person("Jimmy", "Peters", role = "aut")
   )
 Description: It seeds collection of data and utilities for pQTL analysis. At this
-    early stage, the repository contains 1. a number of protein panels,
-    linking functions for cis/trans classification, 2d Manhattan plots,
-    2d/3d-plotly plots, forest plots among others available from
+    early stage, the repository contains 1. Articles linking functions
+    for cis/trans classification, 2d Manhattan plots, 2d/3d-plotly plots,
+    forest plots among others available from
     gap, <https://github.com/jinghuazhao/R/tree/master/gap>;
     2. query on genes, regions, and SNPs via PhenoScanner,
     <http://www.phenoscanner.medschl.cam.ac.uk/>, adding functionality
@@ -24,7 +24,7 @@ License: MIT + file LICENSE
 URL: https://github.com/jinghuazhao/pQTLtools
 BugReports: https://github.com/jinghuazhao/pQTLtools/issues
 Depends:
-    R (>= 3.5.0)
+    R (>= 3.5.0), pQTLdata
 Imports: dplyr, gap, ggplot2
 Suggests:
     Biobase,
