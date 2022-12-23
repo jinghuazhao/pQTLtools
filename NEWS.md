@@ -1,4 +1,4 @@
-# Updates
+# pQTLtools 0.2
 
 ## 12/2022
 
@@ -14,9 +14,20 @@ A web-driven documentation is now available.
 
 [https://jinghuazhao.github.io/pQTLtools/](https://jinghuazhao.github.io/pQTLtools/)
 
-# pQTLtools 0.2
+## Accumulated changes
 
 * First release.
+* Depends R (>=3.5.0), pQTLdata
+* Import dplyr, gap, ggplot2
+* importFrom utils read.table tail.
+* Import from lmm as template, use save(,compress='xz').
+* Suggest htmlwidgets, plotly.
+* Suggest cowplot, gap.datasets, httr, plyr, rmarkdown, Biobase, stringr.
+* Suggest circlize, openxlsx, knitr and add HTML vignette (biomaRt, regioneR).
+  with cis/trans-classification/ideogram/mhtplot2d examples.
+* Suggest GenomicRanges & IRanges to handle >1MB region in regionqueries with wait=option.
+* Replace ChangeLog with NEWS.md and generate vignette/articles with pkgdown.
+* Invoke Roxygen2 for documentation.
 * Add GitHub action
 * Add inst/Bioconductor/.
 * Add inst/STRING/change_STRING_colors.py.
@@ -32,13 +43,3 @@ A web-driven documentation is now available.
 * Add import_eQTLCatalogue from eQTL-Catalogue-resources suggesting seqminer.
 * Add genequries, regionqueries, snpqueries.
 * Add uniprot2ids() based on UniProt.
-* Suggest htmlwidgets, plotly.
-* Suggest cowplot, gap.datasets, httr, plyr, rmarkdown, Biobase, stringr.
-* Suggest circlize, openxlsx, knitr and add HTML vignette (biomaRt, regioneR).
-  with cis/trans-classification/ideogram/mhtplot2d examples.
-* Suggest GenomicRanges & IRanges to handle >1MB region in regionqueries with wait=option.
-* Replace ChangeLog with NEWS.md and generate vignette/articles with pkgdown.
-* Invoke Roxygen2 for documentation.
-* Import dplyr, gap, ggplot2
-* importFrom utils read.table tail.
-* Import from lmm as template, use save(,compress='xz').
