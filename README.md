@@ -39,7 +39,8 @@ GitHub.
 
 ## December 2022 update
 
-A new package pQTLdata is created to hold panel and meta data.
+A new package [pQTLdata](https://github.com/jinghuazhao/pQTLdata) is
+created to hold panel and meta data.
 
 ## June 2022 update
 
