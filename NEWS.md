@@ -1,6 +1,22 @@
+# Updates
+
+## 12/2022
+
+A new package [pQTLdata](https://github.com/jinghuazhao/pQTLdata) is created to hold panel and meta data.
+
+## 06/2022
+
+It passes [CRAN](https://cran.r-project.org/) checks with no warning.
+
+## 02/2021
+
+A web-driven documentation is now available.
+
+[https://jinghuazhao.github.io/pQTLtools/](https://jinghuazhao.github.io/pQTLtools/)
+
 # pQTLtools 0.2
 
-* ...
+* First release.
 * Add GitHub action
 * Add inst/Bioconductor/.
 * Add inst/STRING/change_STRING_colors.py.
@@ -22,8 +38,7 @@
   with cis/trans-classification/ideogram/mhtplot2d examples.
 * Suggest GenomicRanges & IRanges to handle >1MB region in regionqueries with wait=option.
 * Replace ChangeLog with NEWS.md and generate vignette/articles with pkgdown.
+* Invoke Roxygen2 for documentation.
 * Import dplyr, gap, ggplot2
 * importFrom utils read.table tail.
-* Invoke Roxygen2 for documentation.
 * Import from lmm as template, use save(,compress='xz').
-* First release.
