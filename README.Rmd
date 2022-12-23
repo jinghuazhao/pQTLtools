@@ -44,21 +44,7 @@ remotes::install_github("jinghuazhao/pQTLtools")
 
 Dependencies are detailed in the DECRIPTION file of the package at GitHub.
 
-## December 2022 update
-
-A new package [pQTLdata](https://github.com/jinghuazhao/pQTLdata) is created to hold panel and meta data.
-
-## June 2022 update
-
-It passes [CRAN](https://cran.r-project.org/) checks with no warning.
-
-## February 2021 update 
-
-A web-driven documentation is now available.
-
-[https://jinghuazhao.github.io/pQTLtools/](https://jinghuazhao.github.io/pQTLtools/)
-
-## A summary of datasets and functions
+## A summary of functions
 
 This can be seen from R with
 
