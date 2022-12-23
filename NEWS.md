@@ -1,20 +1,12 @@
-# pQTLtools 0.2
+## pQTLtools 0.2
 
-## 12/2022
+### Landmarks
 
-A new package [pQTLdata](https://github.com/jinghuazhao/pQTLdata) is created to hold panel and meta data.
+* 12/2022. A new package [pQTLdata](https://github.com/jinghuazhao/pQTLdata) is created to hold panel and meta data.
+* 06/2022. It passes [CRAN](https://cran.r-project.org/) checks with no warning.
+* 02/2021. A web-driven documentation is now available, [https://jinghuazhao.github.io/pQTLtools/](https://jinghuazhao.github.io/pQTLtools/)
 
-## 06/2022
-
-It passes [CRAN](https://cran.r-project.org/) checks with no warning.
-
-## 02/2021
-
-A web-driven documentation is now available.
-
-[https://jinghuazhao.github.io/pQTLtools/](https://jinghuazhao.github.io/pQTLtools/)
-
-## Accumulated changes
+### accumulated changes
 
 * First release.
 * Depends R (>=3.5.0), pQTLdata
