@@ -3,7 +3,6 @@
 * ...
 * Add GitHub action
 * Add inst/Bioconductor/.
-* Add inst/Olink.
 * Add inst/STRING/change_STRING_colors.py.
 * Add inst/UniProt|PPI/README.md.
 * Add inst/snakemake
@@ -17,9 +16,6 @@
 * Add import_eQTLCatalogue from eQTL-Catalogue-resources suggesting seqminer.
 * Add genequries, regionqueries, snpqueries.
 * Add uniprot2ids() based on UniProt.
-* Add biomaRt.rda, hg19.rda, hg19Tables.rda, inf1.rda, st4.rda, st6.rda, st18.rda, but drop hgTables.
-  Q8NF90 and Q8WWJ7 in inf1.rda were not listed at the UCSC, and replaced with P12034 and P30203 as on UniProt.
-  Tidy up various options of SomaLogic lookup (panels, box, ST4, ST6).
 * Suggest htmlwidgets, plotly.
 * Suggest cowplot, gap.datasets, httr, plyr, rmarkdown, Biobase, stringr.
 * Suggest circlize, openxlsx, knitr and add HTML vignette (biomaRt, regioneR).
