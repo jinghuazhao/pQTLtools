@@ -80,6 +80,7 @@ Suggests:
     recount3,
     sva
 Remotes:
+    jinghuazhao/pQTLdata,
     mrcieu/gwasvcf,
     mrcieu/ieugwasr,
     mrcieu/TwoSampleMR,
