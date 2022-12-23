@@ -121,21 +121,6 @@ reference:
     - run_TwoSampleMR
     - snpqueries
     - uniprot2ids
-  - title: Datasets
-    contents:
-    - Olink_NGS
-    - Olink_qPCR
-    - SomaLogic160410
-    - SomaScanV4.1
-    - biomaRt
-    - caprion
-    - hg19
-    - hg19Tables
-    - inf1
-    - st18
-    - st4
-    - st6
-    - swath_ms
 
 footer:
   structure:
