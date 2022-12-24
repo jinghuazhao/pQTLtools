@@ -1,6 +1,6 @@
 ## pQTLtools 0.2
 
-### Landmarks by yyyy.mm
+### Landmarks by date
 
 * ***2022.12***. A new package [pQTLdata](https://github.com/jinghuazhao/pQTLdata) is created to hold panel and meta data.
 * ***2022.06***. It passes [CRAN](https://cran.r-project.org/) checks with no warning.
