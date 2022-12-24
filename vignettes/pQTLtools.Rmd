@@ -106,7 +106,7 @@ save(hgnc,file="~/pQTLtools/tests/hgnc.rda",compress="xz")
 
 We now proceed with
 
-```{r}
+```{r karyoplot, fig.cap="Karyoplot of cis/trans pQTLs", fig.height=7, fig.width=7}
 load("~/pQTLtools/tests/hgnc.rda")
 INF1_merge_cvt <- within(INF1_merge_cvt,{
   hgnc <- hgnc
