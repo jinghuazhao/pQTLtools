@@ -49,9 +49,14 @@ cis.vs.trans <- with(cistrans,data)
 kable(with(cistrans,table),caption="Table 1. cis/trans classification")
 with(cistrans,total)
 circos.cis.vs.trans.plot(hits=f,inf1,"uniprot")
+f <- file.path("~","pQTLtools","tests","INF1.merge")
+INF1_merge <- read.delim(f)[c("Chrom","Start","End","prot","MarkerName")]
+INF1_merge_cvt <- merge(INF1_merge,cis.vs.trans,by.x=c("prot","MarkerName"),by.y=c("prot","SNP"))
+ord <- with(INF1_merge_cvt,order(Chr,bp))
+INF1_merge_cvt <- INF1_merge_cvt[ord,]
 ```
 
-A more recent implementation is the `qtlClassifier` function. For this example we have,
+The `INF1_merge_cvt` object is obtained for later use. A more recent implementation is the `qtlClassifier` function. For this example we have,
 
 ```{r qtlClassifier, fig.cap="cis/trans classification", fig.height=7, fig.width=7}
 options(width=200)
@@ -83,14 +88,8 @@ fig3d
 # We can save the figure for a browser independently
 htmlwidgets::saveWidget(fig3d,file="fig3d.html")
 ```
-and ideogram (biomaRt is not always on so we include the plot below)
+and ideogram (biomaRt is not always on so we keep a copy of hgnc)
 ```r
-f <- file.path("~","pQTLtools","tests","INF1.merge")
-INF1_merge <- read.delim(f)[c("Chrom","Start","End","prot","MarkerName")]
-INF1_merge_cvt <- merge(INF1_merge,cis.vs.trans,by.x=c("prot","MarkerName"),by.y=c("prot","SNP"))
-ord <- with(INF1_merge_cvt,order(Chr,bp))
-INF1_merge_cvt <- INF1_merge_cvt[ord,]
-
 set_config(config(ssl_verifypeer = 0L))
 mart <- useMart(biomart = "ensembl", dataset = "hsapiens_gene_ensembl")
 attrs <- c("hgnc_symbol", "chromosome_name", "start_position", "end_position", "band")
@@ -102,13 +101,19 @@ for(i in 1:180)
   hgnc[i] <- paste(g[["hgnc_symbol"]],collapse=";")
   cat(i,g[["hgnc_symbol"]],hgnc[i],"\n")
 }
+save(hgnc,file="~/pQTLtools/tests/hgnc.rda",compress="xz")
+```
+
+We now proceed with
+
+```{r}
+load("~/pQTLtools/tests/hgnc.rda")
 INF1_merge_cvt <- within(INF1_merge_cvt,{
   hgnc <- hgnc
   hgnc[cis] <- p.gene[cis]
 })
 
 with(INF1_merge_cvt, {
-  png("karyoplot.png",res= 300, units="in", width=12, height=20)
   sentinels <- toGRanges(Chr,bp-1,bp,labels=hgnc)
   cis.regions <- toGRanges(Chr,cis.start,cis.end)
   loci <- toGRanges(Chr,Start,End)
@@ -116,7 +121,7 @@ with(INF1_merge_cvt, {
   seqlevelsStyle(sentinels) <- "UCSC"
   kp <- plotKaryotype(genome="hg19",chromosomes=levels(seqnames(sentinels)))
   kpAddBaseNumbers(kp)
-  kpPlotRegions(kp,data=loci,r0=0.05,r1=0.15,border="black")
+  kpPlotRegions(kp, data=loci,r0=0.05,r1=0.15,border="black")
   kpPlotMarkers(kp, data=sentinels, labels=hgnc, text.orientation="vertical",
                 cex=0.5, y=0.3*seq_along(hgnc)/length(hgnc), srt=30,
                 ignore.chromosome.ends=TRUE,
@@ -126,11 +131,7 @@ with(INF1_merge_cvt, {
          legend=c("cis", "trans"), text.col=colors, cex=0.8, horiz=FALSE)
 # panel <- toGRanges(p.chr,p.start,p.end,labels=p.gene)
 # kpPlotLinks(kp, data=loci, data2=panel, col=colors[2-cis])
-# dev.off()
 })
-```
-```{r karyoplot, echo=FALSE, fig.cap="Karyoplot", fig.height=12, fig.width=8}
-include_graphics('karyoplot.png',dpi=300)
 ```
 
 ## Genomic regions enrichment analysis
