@@ -44,7 +44,7 @@ if (!requireNamespace("remotes", quietly = TRUE)) install.packages("remotes")
 remotes::install_github("jinghuazhao/pQTLdata")
 ```
 
-2. Download GitHub repository
+2. Install from GitHub repository
 
 ```bash
 git clone https://github.com/jinghuazhao/pQTLdata
