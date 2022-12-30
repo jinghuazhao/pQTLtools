@@ -153,7 +153,7 @@ annot <- annot[-grep("^BDNF$", annot$ID),]
 saveRDS(annot,file=file.path("~","pQTLtools","tests","annot.RDS"))
 ```
 
-```{r lod, fig.height=7}
+```{r lod, fig.height=10}
 annot <- readRDS(file.path("~","pQTLtools","tests","annot.RDS"))
 annot <- within(annot,{prot=gsub("^[0-9]*_","",olink.id)})
 par(mar=c(5,4,1,1))
