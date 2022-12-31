@@ -74,6 +74,8 @@ navbar:
         href: https://alphafold.ebi.ac.uk/
       - text: Bioconductor
         href: https://www.bioconductor.org/
+      - text: BioRender
+        href: https://biorender.com/
       - text: CRAN
         href: https://cran.r-project.org/
       - text: Cytoscape
