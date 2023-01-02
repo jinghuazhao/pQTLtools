@@ -61,7 +61,7 @@ navbar:
     changelog:
           text: Changelog
           href: news/index.html
-    bioconductor:
+    alphafold:
       icon: fas fa-fast-backward
       href: https://alphafold.ebi.ac.uk/
     uniprot:
@@ -73,7 +73,7 @@ navbar:
       - text: AlphaFold
         href: https://alphafold.ebi.ac.uk/
       - text: Bioconductor
-        href: https://www.bioconductor.org/
+        href: https://github.com/Bioconductor
       - text: BioRender
         href: https://biorender.com/
       - text: CRAN
