@@ -64,9 +64,6 @@ navbar:
     alphafold:
       icon: fas fa-fast-backward
       href: https://alphafold.ebi.ac.uk/
-    uniprot:
-      icon: fas fa-fast-forward
-      href: https://www.uniprot.org/
     sites:
       text: Sites
       menu:
@@ -98,6 +95,9 @@ navbar:
         href: https://www.proteinatlas.org/
       - text: UniProt
         href: https://www.uniprot.org/
+    uniprot:
+      icon: fas fa-fast-forward
+      href: https://www.uniprot.org/
     cran:
         icon: fab fa-r-project
         href: https://jinghuazhao.github.io/R/
