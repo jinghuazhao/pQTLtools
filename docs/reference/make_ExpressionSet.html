@@ -46,17 +46,12 @@
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
-      <ul class="navbar-nav"><li class="nav-item">
-  <a class="external-link nav-link" href="https://alphafold.ebi.ac.uk/">
-    <span class="fas fa fas fa-fast-backward"></span>
-     
-  </a>
-</li>
-<li class="nav-item dropdown">
+      <ul class="navbar-nav"><li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-sites">Sites</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-sites">
     <a class="external-link dropdown-item" href="https://alphafold.ebi.ac.uk/">AlphaFold</a>
-    <a class="external-link dropdown-item" href="https://www.bioconductor.org/">Bioconductor</a>
+    <a class="external-link dropdown-item" href="https://github.com/Bioconductor">Bioconductor</a>
+    <a class="external-link dropdown-item" href="https://biorender.com/">BioRender</a>
     <a class="external-link dropdown-item" href="https://cran.r-project.org/">CRAN</a>
     <a class="external-link dropdown-item" href="https://cytoscape.org/">Cytoscape</a>
     <a class="external-link dropdown-item" href="https://www.ensembl.org/">Ensembl</a>
@@ -178,8 +173,8 @@
 <span class="r-in"><span>                       row.names<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"gender"</span>, <span class="st">"type"</span>, <span class="st">"score"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://bioconductor.org/packages/Biobase" class="external-link">Biobase</a></span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jinghuazhao/pQTLtools" class="external-link">pQTLtools</a></span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">phenoData</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/methods/new.html" class="external-link">new</a></span><span class="op">(</span><span class="st">"AnnotatedDataFrame"</span>, data<span class="op">=</span><span class="va">pData</span>, varMetadata<span class="op">=</span><span class="va">metadata</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">experimentData</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/methods/new.html" class="external-link">new</a></span><span class="op">(</span><span class="st">"MIAME"</span>,</span></span>
+<span class="r-in"><span><span class="va">phenoData</span> <span class="op">&lt;-</span> <span class="fu">new</span><span class="op">(</span><span class="st">"AnnotatedDataFrame"</span>, data<span class="op">=</span><span class="va">pData</span>, varMetadata<span class="op">=</span><span class="va">metadata</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">experimentData</span> <span class="op">&lt;-</span> <span class="fu">new</span><span class="op">(</span><span class="st">"MIAME"</span>,</span></span>
 <span class="r-in"><span>  name<span class="op">=</span><span class="st">"Pierre Fermat"</span>,</span></span>
 <span class="r-in"><span>  lab<span class="op">=</span><span class="st">"Francis Galton Lab"</span>,</span></span>
 <span class="r-in"><span>  contact<span class="op">=</span><span class="st">"pfermat@lab.not.exist"</span>,</span></span>
