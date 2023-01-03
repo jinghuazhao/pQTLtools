@@ -34,7 +34,7 @@ template:
 navbar:
   structure:
     left: [home, articles, reference, changelog]
-    right: [bioconductor, sites, uniprot, cran, github]
+    right: [alphafold, sites, uniprot, cran, github]
   components:
     home:
         icon: fa-home
