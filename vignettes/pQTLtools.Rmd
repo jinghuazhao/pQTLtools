@@ -377,11 +377,8 @@ for (x in c("result","heterogeneity","pleiotropy","single","loo")) unlink(paste0
 This is illustrated with IL-12B.
 
 ```{r mr, fig.cap="MR with cis, trans and cis+trans variants of IL-12B", fig.height=9}
-efo <- read.delim(file.path("~","pQTLtools","tests","efo.txt")) %>%
-       dplyr::mutate(x=1:n()) %>%
-       dplyr::select(MRBASEID,trait,x)
-d3 <- read.delim(file.path("~","pQTLtools","tests","efo-result.txt")) %>%
-      dplyr::filter(exposure=="IL.12B") %>%
+efo <- read.delim(file.path("~","pQTLtools","tests","efo.txt"))
+d3 <- read.delim(file.path("~","pQTLtools","tests","IL.12B.txt")) %>%
       dplyr::mutate(MRBASEID=unlist(lapply(strsplit(outcome,"id:"),"[",2)),y=b) %>%
       dplyr::select(-outcome,-method) %>%
       left_join(efo) %>%
