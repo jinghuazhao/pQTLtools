@@ -24,7 +24,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{r, message=FALSE, warning=FALSE}
-pkgs <- c("Biobase", "arrayQualityMetrics", "knitr", "pQTLtools")
+pkgs <- c("Biobase", "arrayQualityMetrics", "dplyr", "knitr", "pQTLtools")
 for (p in pkgs) if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
     if (!requireNamespace(p)) warning(paste0("This vignette needs package `", p, "'; please install"))
 }
@@ -153,19 +153,21 @@ annot <- annot[-grep("^BDNF$", annot$ID),]
 saveRDS(annot,file=file.path("~","pQTLtools","tests","annot.RDS"))
 ```
 
-```{r lod, fig.height=10}
-annot <- readRDS(file.path("~","pQTLtools","tests","annot.RDS"))
-annot <- within(annot,{prot=gsub("^[0-9]*_","",olink.id)})
-par(mar=c(5,4,1,1))
+```{r lod, fig.height=13}
+annot <- readRDS(file.path("~","pQTLtools","tests","annot.RDS")) %>%
+         mutate(prot=gsub("^[0-9]*_","",olink.id),pprot=paste0(strrep(" ",14-nchar(prot)),prot),order=1:n()) %>%
+         arrange(desc(order))
+xtick <- seq(1, nrow(annot))
 attach(annot)
-ytick <- seq(1, nrow(annot))
-plot(100-pc.belowLOD.new,ytick,cex=0.8,pch=19,col=pQTL,axes=FALSE, xlab="", ylab="", cex.lab=0.8)
-axis(1, cex.axis=0.6)
-axis(2, at=ytick, labels = FALSE, lwd.tick=0.1, lwd=0)
-text(y=ytick, par("usr")[3],labels = prot, srt = 25, pos = 1, xpd = TRUE, cex=0.4)
-mtext("100-% samples with very low abundance per protein",side=1,line=2.5,cex=1.2)
-mtext("Ordered protein",side=2,line=2.5,cex=0.9,font=2)
-legend(x=75,y=15,c("without pQTL","with pQTL"),box.lwd=0,cex=1.2,col=c("red","blue"),pch=19)
+par(mar=c(10,5,1,1))
+plot(100-pc.belowLOD.new,cex=2,pch=19,col=pQTL,xaxt="n",xlab="",ylab="",cex.axis=1.2)
+calibrate::textxy(66,16,offset=0,pos=2,labs="IL-17C",cex=1.5,font=2,srt=0)
+arrows(67,16,71,16,lwd=2)
+axis(1, at=xtick, labels=prot, lwd.tick=0.5, lwd=0, las=2, hadj=1, cex.axis=1.2)
+mtext("% samples above LLOD",side=2,line=2.5,cex=1.5)
+mtext("Ordered",side=1,line=1,cex=1.5,adj=0,font=1,at=-5)
+mtext("protein:",side=1,line=2,cex=1.5,adj=0,font=1,at=-5)
+legend(x=1,y=25,c("without pQTL","with pQTL"),box.lwd=0,cex=2,col=c("red","blue"),pch=19)
 detach(annot)
 options(width=120)
 kable(annot,caption="Summary statistics",row.names=FALSE)
