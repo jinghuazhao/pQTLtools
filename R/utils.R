@@ -73,6 +73,7 @@ genequeries <- function(genelist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.8,bu
 #' @details
 #' Batches are generated and queries are combined into one.
 #'
+#' @export
 #' @return The returned value is a list containing tiles, regions and results.
 #'
 #' @references
