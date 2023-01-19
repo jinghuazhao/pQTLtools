@@ -155,7 +155,8 @@ saveRDS(annot,file=file.path("~","pQTLtools","tests","annot.RDS"))
 
 ```{r lod, fig.height=8, fig.width=15}
 annot <- readRDS(file.path("~","pQTLtools","tests","annot.RDS")) %>%
-         mutate(prot=gsub("^[0-9]*_","",olink.id),pprot=paste0(strrep(" ",14-nchar(prot)),prot),order=1:n()) %>%
+         left_join(pQTLdata::inf1[c("prot","target.short","alt_name")],by=c("ID"="prot")) %>%
+         mutate(prot=if_else(is.na(alt_name),target.short,alt_name),order=1:n()) %>%
          arrange(desc(order))
 xtick <- seq(1, nrow(annot))
 attach(annot)
