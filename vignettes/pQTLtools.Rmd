@@ -179,16 +179,14 @@ for (r in c("IL12B","KITLG","TNFSF10"))
   r.post <- post(r)
   tb_all <- rbind(tb_all,data.frame(gene=r,with(r.post,tb)))
 }
-write.table(tb_all,file="IL12B-KITLG-TNFSF10.tsv",quote=FALSE,row.names=FALSE,sep="\t")
 ```
 
 The top terms at Binomial p=1e-5 could be extracted as follows,
 ```{r, echo=FALSE}
 options(width=100)
-great3 <- read.delim("IL12B-KITLG-TNFSF10.tsv") %>% filter(BinomP<=1e-5) %>% mutate(ID=gsub(":",": ",ID))
-great <- read.delim("cistrans.tsv") %>% filter(BinomBonfP<=1e-8) %>% mutate(ID=gsub(":",": ",ID))
+great3 <- filter(tb_all,BinomP<=1e-5) %>% mutate(ID=gsub(":",": ",ID))
 kable(great3,caption="Table 2. GREAT IL12B-KITLG-TNFSF10 results")
-unlink("IL12B-KITLG-TNFSF10.tsv")
+great <- read.delim("cistrans.tsv") %>% filter(BinomBonfP<=1e-8) %>% mutate(ID=gsub(":",": ",ID))
 unlink("IL12B.tsv")
 unlink("KITLG.tsv")
 unlink("TNFSF10.tsv")
