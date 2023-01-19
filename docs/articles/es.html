@@ -611,7 +611,8 @@ and therefore pQTL detection as is shown with a real example.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">saveRDS</a></span><span class="op">(</span><span class="va">annot</span>,file<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="st">"~"</span>,<span class="st">"pQTLtools"</span>,<span class="st">"tests"</span>,<span class="st">"annot.RDS"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">annot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="st">"~"</span>,<span class="st">"pQTLtools"</span>,<span class="st">"tests"</span>,<span class="st">"annot.RDS"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>         <span class="fu">mutate</span><span class="op">(</span>prot<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">"^[0-9]*_"</span>,<span class="st">""</span>,<span class="va">olink.id</span><span class="op">)</span>,pprot<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/strrep.html" class="external-link">strrep</a></span><span class="op">(</span><span class="st">" "</span>,<span class="fl">14</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/nchar.html" class="external-link">nchar</a></span><span class="op">(</span><span class="va">prot</span><span class="op">)</span><span class="op">)</span>,<span class="va">prot</span><span class="op">)</span>,order<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>         <span class="fu">left_join</span><span class="op">(</span><span class="fu">pQTLdata</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/pQTLdata/man/inf1.html" class="external-link">inf1</a></span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"prot"</span>,<span class="st">"target.short"</span>,<span class="st">"alt_name"</span><span class="op">)</span><span class="op">]</span>,by<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ID"</span><span class="op">=</span><span class="st">"prot"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>         <span class="fu">mutate</span><span class="op">(</span>prot<span class="op">=</span><span class="fu">if_else</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">alt_name</span><span class="op">)</span>,<span class="va">target.short</span>,<span class="va">alt_name</span><span class="op">)</span>,order<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fu">n</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>         <span class="fu">arrange</span><span class="op">(</span><span class="fu">desc</span><span class="op">(</span><span class="va">order</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">xtick</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">annot</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/attach.html" class="external-link">attach</a></span><span class="op">(</span><span class="va">annot</span><span class="op">)</span></span>
@@ -631,16 +632,17 @@ and therefore pQTL detection as is shown with a real example.</p>
 <table class="table">
 <caption>Summary statistics</caption>
 <colgroup>
-<col width="11%">
+<col width="10%">
 <col width="5%">
-<col width="14%">
-<col width="8%">
+<col width="13%">
+<col width="7%">
+<col width="5%">
+<col width="9%">
+<col width="11%">
+<col width="3%">
+<col width="10%">
 <col width="6%">
 <col width="10%">
-<col width="12%">
-<col width="3%">
-<col width="11%">
-<col width="11%">
 <col width="4%">
 </colgroup>
 <thead><tr class="header">
@@ -652,8 +654,9 @@ and therefore pQTL detection as is shown with a real example.</p>
 <th align="right">MissDataProp</th>
 <th align="right">pc.belowLOD.new</th>
 <th align="left">pQTL</th>
+<th align="left">target.short</th>
+<th align="left">alt_name</th>
 <th align="left">prot</th>
-<th align="left">pprot</th>
 <th align="right">order</th>
 </tr></thead>
 <tbody>
@@ -667,6 +670,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">CSF-1</td>
+<td align="left">NA</td>
 <td align="left">CSF-1</td>
 <td align="right">91</td>
 </tr>
@@ -680,6 +684,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">TNFB</td>
+<td align="left">NA</td>
 <td align="left">TNFB</td>
 <td align="right">90</td>
 </tr>
@@ -693,6 +698,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">ADA</td>
+<td align="left">NA</td>
 <td align="left">ADA</td>
 <td align="right">89</td>
 </tr>
@@ -706,6 +712,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">red</td>
 <td align="left">STAMPB</td>
+<td align="left">NA</td>
 <td align="left">STAMPB</td>
 <td align="right">88</td>
 </tr>
@@ -719,6 +726,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">CCL20</td>
+<td align="left">NA</td>
 <td align="left">CCL20</td>
 <td align="right">87</td>
 </tr>
@@ -732,6 +740,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">TWEAK</td>
+<td align="left">NA</td>
 <td align="left">TWEAK</td>
 <td align="right">86</td>
 </tr>
@@ -745,6 +754,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">TNFRSF9</td>
+<td align="left">NA</td>
 <td align="left">TNFRSF9</td>
 <td align="right">85</td>
 </tr>
@@ -758,6 +768,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">CX3CL1</td>
+<td align="left">NA</td>
 <td align="left">CX3CL1</td>
 <td align="right">84</td>
 </tr>
@@ -771,6 +782,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">CCL25</td>
+<td align="left">NA</td>
 <td align="left">CCL25</td>
 <td align="right">83</td>
 </tr>
@@ -784,6 +796,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">CASP-8</td>
+<td align="left">NA</td>
 <td align="left">CASP-8</td>
 <td align="right">82</td>
 </tr>
@@ -797,7 +810,8 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">MCP-2</td>
-<td align="left">MCP-2</td>
+<td align="left">CCL8</td>
+<td align="left">CCL8</td>
 <td align="right">81</td>
 </tr>
 <tr class="even">
@@ -810,6 +824,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">FGF-19</td>
+<td align="left">NA</td>
 <td align="left">FGF-19</td>
 <td align="right">80</td>
 </tr>
@@ -823,6 +838,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">CD40</td>
+<td align="left">NA</td>
 <td align="left">CD40</td>
 <td align="right">79</td>
 </tr>
@@ -836,6 +852,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">DNER</td>
+<td align="left">NA</td>
 <td align="left">DNER</td>
 <td align="right">78</td>
 </tr>
@@ -848,8 +865,9 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.10</td>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
-<td align="left">4E-BP1</td>
-<td align="left">4E-BP1</td>
+<td align="left">4EBP1</td>
+<td align="left">NA</td>
+<td align="left">4EBP1</td>
 <td align="right">77</td>
 </tr>
 <tr class="even">
@@ -862,6 +880,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">CXCL10</td>
+<td align="left">NA</td>
 <td align="left">CXCL10</td>
 <td align="right">76</td>
 </tr>
@@ -876,6 +895,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="left">blue</td>
 <td align="left">CXCL6</td>
 <td align="left">CXCL6</td>
+<td align="left">CXCL6</td>
 <td align="right">75</td>
 </tr>
 <tr class="even">
@@ -887,8 +907,9 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.02</td>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
-<td align="left">Flt3L</td>
-<td align="left">Flt3L</td>
+<td align="left">FIt3L</td>
+<td align="left">NA</td>
+<td align="left">FIt3L</td>
 <td align="right">74</td>
 </tr>
 <tr class="odd">
@@ -901,6 +922,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">CD5</td>
+<td align="left">NA</td>
 <td align="left">CD5</td>
 <td align="right">73</td>
 </tr>
@@ -914,6 +936,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">CCL23</td>
+<td align="left">NA</td>
 <td align="left">CCL23</td>
 <td align="right">72</td>
 </tr>
@@ -927,6 +950,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">MMP-10</td>
+<td align="left">NA</td>
 <td align="left">MMP-10</td>
 <td align="right">71</td>
 </tr>
@@ -940,6 +964,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">IL-12B</td>
+<td align="left">NA</td>
 <td align="left">IL-12B</td>
 <td align="right">70</td>
 </tr>
@@ -953,6 +978,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">HGF</td>
+<td align="left">NA</td>
 <td align="left">HGF</td>
 <td align="right">69</td>
 </tr>
@@ -966,6 +992,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">TRANCE</td>
+<td align="left">NA</td>
 <td align="left">TRANCE</td>
 <td align="right">68</td>
 </tr>
@@ -979,6 +1006,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">CXCL5</td>
+<td align="left">NA</td>
 <td align="left">CXCL5</td>
 <td align="right">67</td>
 </tr>
@@ -992,6 +1020,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">PD-L1</td>
+<td align="left">NA</td>
 <td align="left">PD-L1</td>
 <td align="right">66</td>
 </tr>
@@ -1005,6 +1034,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">IL-18R1</td>
+<td align="left">NA</td>
 <td align="left">IL-18R1</td>
 <td align="right">65</td>
 </tr>
@@ -1017,8 +1047,9 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.02</td>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
-<td align="left">IL-10RB</td>
-<td align="left">IL-10RB</td>
+<td align="left">IL10RB</td>
+<td align="left">NA</td>
+<td align="left">IL10RB</td>
 <td align="right">64</td>
 </tr>
 <tr class="odd">
@@ -1031,6 +1062,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">CCL19</td>
+<td align="left">NA</td>
 <td align="left">CCL19</td>
 <td align="right">63</td>
 </tr>
@@ -1044,6 +1076,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">FGF-21</td>
+<td align="left">NA</td>
 <td align="left">FGF-21</td>
 <td align="right">62</td>
 </tr>
@@ -1057,6 +1090,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">LIF-R</td>
+<td align="left">NA</td>
 <td align="left">LIF-R</td>
 <td align="right">61</td>
 </tr>
@@ -1070,6 +1104,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">FGF-23</td>
+<td align="left">NA</td>
 <td align="left">FGF-23</td>
 <td align="right">60</td>
 </tr>
@@ -1083,6 +1118,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">TNFSF14</td>
+<td align="left">NA</td>
 <td align="left">TNFSF14</td>
 <td align="right">59</td>
 </tr>
@@ -1097,6 +1133,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="left">blue</td>
 <td align="left">CCL11</td>
 <td align="left">CCL11</td>
+<td align="left">CCL11</td>
 <td align="right">58</td>
 </tr>
 <tr class="odd">
@@ -1109,7 +1146,8 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">MCP-4</td>
-<td align="left">MCP-4</td>
+<td align="left">CCL13</td>
+<td align="left">CCL13</td>
 <td align="right">57</td>
 </tr>
 <tr class="even">
@@ -1122,6 +1160,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">TGF-alpha</td>
+<td align="left">NA</td>
 <td align="left">TGF-alpha</td>
 <td align="right">56</td>
 </tr>
@@ -1135,6 +1174,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">IL-18</td>
+<td align="left">NA</td>
 <td align="left">IL-18</td>
 <td align="right">55</td>
 </tr>
@@ -1148,6 +1188,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">SCF</td>
+<td align="left">NA</td>
 <td align="left">SCF</td>
 <td align="right">54</td>
 </tr>
@@ -1161,6 +1202,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">CD6</td>
+<td align="left">NA</td>
 <td align="left">CD6</td>
 <td align="right">53</td>
 </tr>
@@ -1174,6 +1216,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">CCL4</td>
+<td align="left">NA</td>
 <td align="left">CCL4</td>
 <td align="right">52</td>
 </tr>
@@ -1187,6 +1230,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">CXCL1</td>
+<td align="left">NA</td>
 <td align="left">CXCL1</td>
 <td align="right">51</td>
 </tr>
@@ -1200,6 +1244,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">OSM</td>
+<td align="left">NA</td>
 <td align="left">OSM</td>
 <td align="right">50</td>
 </tr>
@@ -1213,6 +1258,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">CST5</td>
+<td align="left">NA</td>
 <td align="left">CST5</td>
 <td align="right">49</td>
 </tr>
@@ -1226,6 +1272,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">CXCL9</td>
+<td align="left">NA</td>
 <td align="left">CXCL9</td>
 <td align="right">48</td>
 </tr>
@@ -1239,6 +1286,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">TRAIL</td>
+<td align="left">NA</td>
 <td align="left">TRAIL</td>
 <td align="right">47</td>
 </tr>
@@ -1252,6 +1300,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">CXCL11</td>
+<td align="left">NA</td>
 <td align="left">CXCL11</td>
 <td align="right">46</td>
 </tr>
@@ -1265,7 +1314,8 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">MCP-1</td>
-<td align="left">MCP-1</td>
+<td align="left">CCL2</td>
+<td align="left">CCL2</td>
 <td align="right">45</td>
 </tr>
 <tr class="even">
@@ -1278,6 +1328,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">uPA</td>
+<td align="left">NA</td>
 <td align="left">uPA</td>
 <td align="right">44</td>
 </tr>
@@ -1291,6 +1342,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">LAP TGF-beta-1</td>
+<td align="left">NA</td>
 <td align="left">LAP TGF-beta-1</td>
 <td align="right">43</td>
 </tr>
@@ -1304,6 +1356,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">OPG</td>
+<td align="left">NA</td>
 <td align="left">OPG</td>
 <td align="right">42</td>
 </tr>
@@ -1317,6 +1370,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">CD244</td>
+<td align="left">NA</td>
 <td align="left">CD244</td>
 <td align="right">41</td>
 </tr>
@@ -1330,6 +1384,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
 <td align="left">CDCP1</td>
+<td align="left">NA</td>
 <td align="left">CDCP1</td>
 <td align="right">40</td>
 </tr>
@@ -1342,8 +1397,9 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.02</td>
 <td align="right">0.0000000</td>
 <td align="left">blue</td>
-<td align="left">VEGF-A</td>
-<td align="left">VEGF-A</td>
+<td align="left">VEGF_A</td>
+<td align="left">NA</td>
+<td align="left">VEGF_A</td>
 <td align="right">39</td>
 </tr>
 <tr class="even">
@@ -1356,6 +1412,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0203998</td>
 <td align="left">blue</td>
 <td align="left">MIP-1 alpha</td>
+<td align="left">NA</td>
 <td align="left">MIP-1 alpha</td>
 <td align="right">38</td>
 </tr>
@@ -1369,6 +1426,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0407997</td>
 <td align="left">blue</td>
 <td align="left">MMP-1</td>
+<td align="left">NA</td>
 <td align="left">MMP-1</td>
 <td align="right">37</td>
 </tr>
@@ -1382,6 +1440,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.0815993</td>
 <td align="left">blue</td>
 <td align="left">SIRT2</td>
+<td align="left">NA</td>
 <td align="left">SIRT2</td>
 <td align="right">36</td>
 </tr>
@@ -1395,6 +1454,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.2447980</td>
 <td align="left">blue</td>
 <td align="left">IL-8</td>
+<td align="left">NA</td>
 <td align="left">IL-8</td>
 <td align="right">35</td>
 </tr>
@@ -1408,6 +1468,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">0.7547940</td>
 <td align="left">blue</td>
 <td align="left">IL-7</td>
+<td align="left">NA</td>
 <td align="left">IL-7</td>
 <td align="right">34</td>
 </tr>
@@ -1421,6 +1482,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">1.5299878</td>
 <td align="left">blue</td>
 <td align="left">SLAMF1</td>
+<td align="left">NA</td>
 <td align="left">SLAMF1</td>
 <td align="right">33</td>
 </tr>
@@ -1434,6 +1496,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">3.5291718</td>
 <td align="left">blue</td>
 <td align="left">EN-RAGE</td>
+<td align="left">NA</td>
 <td align="left">EN-RAGE</td>
 <td align="right">32</td>
 </tr>
@@ -1447,6 +1510,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">4.2227662</td>
 <td align="left">blue</td>
 <td align="left">Beta-NGF</td>
+<td align="left">NA</td>
 <td align="left">Beta-NGF</td>
 <td align="right">31</td>
 </tr>
@@ -1460,6 +1524,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">5.2835577</td>
 <td align="left">red</td>
 <td align="left">CCL28</td>
+<td align="left">NA</td>
 <td align="left">CCL28</td>
 <td align="right">30</td>
 </tr>
@@ -1473,6 +1538,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">7.0583435</td>
 <td align="left">blue</td>
 <td align="left">IL-10</td>
+<td align="left">NA</td>
 <td align="left">IL-10</td>
 <td align="right">29</td>
 </tr>
@@ -1486,6 +1552,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">10.8731130</td>
 <td align="left">red</td>
 <td align="left">AXIN1</td>
+<td align="left">NA</td>
 <td align="left">AXIN1</td>
 <td align="right">28</td>
 </tr>
@@ -1499,6 +1566,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">13.2394941</td>
 <td align="left">blue</td>
 <td align="left">NT-3</td>
+<td align="left">NA</td>
 <td align="left">NT-3</td>
 <td align="right">27</td>
 </tr>
@@ -1512,6 +1580,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">30.3957568</td>
 <td align="left">blue</td>
 <td align="left">FGF-5</td>
+<td align="left">NA</td>
 <td align="left">FGF-5</td>
 <td align="right">26</td>
 </tr>
@@ -1525,6 +1594,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">31.2525500</td>
 <td align="left">blue</td>
 <td align="left">ST1A1</td>
+<td align="left">NA</td>
 <td align="left">ST1A1</td>
 <td align="right">25</td>
 </tr>
@@ -1537,8 +1607,9 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">43.26</td>
 <td align="right">42.4520604</td>
 <td align="left">blue</td>
-<td align="left">GDNF</td>
-<td align="left">GDNF</td>
+<td align="left">hGDNF</td>
+<td align="left">NA</td>
+<td align="left">hGDNF</td>
 <td align="right">24</td>
 </tr>
 <tr class="odd">
@@ -1551,6 +1622,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">53.9779682</td>
 <td align="left">red</td>
 <td align="left">IL-10RA</td>
+<td align="left">NA</td>
 <td align="left">IL-10RA</td>
 <td align="right">23</td>
 </tr>
@@ -1564,6 +1636,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">68.6250510</td>
 <td align="left">blue</td>
 <td align="left">IL-6</td>
+<td align="left">NA</td>
 <td align="left">IL-6</td>
 <td align="right">22</td>
 </tr>
@@ -1577,6 +1650,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">77.8457772</td>
 <td align="left">red</td>
 <td align="left">IL-5</td>
+<td align="left">NA</td>
 <td align="left">IL-5</td>
 <td align="right">21</td>
 </tr>
@@ -1590,7 +1664,8 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">79.0697674</td>
 <td align="left">blue</td>
 <td align="left">MCP-3</td>
-<td align="left">MCP-3</td>
+<td align="left">CCL7</td>
+<td align="left">CCL7</td>
 <td align="right">20</td>
 </tr>
 <tr class="odd">
@@ -1603,6 +1678,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">83.3741330</td>
 <td align="left">blue</td>
 <td align="left">IL-17C</td>
+<td align="left">NA</td>
 <td align="left">IL-17C</td>
 <td align="right">19</td>
 </tr>
@@ -1616,6 +1692,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">84.7001224</td>
 <td align="left">red</td>
 <td align="left">IL-17A</td>
+<td align="left">NA</td>
 <td align="left">IL-17A</td>
 <td align="right">18</td>
 </tr>
@@ -1629,6 +1706,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">94.4104447</td>
 <td align="left">red</td>
 <td align="left">IL-4</td>
+<td align="left">NA</td>
 <td align="left">IL-4</td>
 <td align="right">17</td>
 </tr>
@@ -1642,6 +1720,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">94.8184415</td>
 <td align="left">red</td>
 <td align="left">LIF</td>
+<td align="left">NA</td>
 <td align="left">LIF</td>
 <td align="right">16</td>
 </tr>
@@ -1655,6 +1734,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">95.1244390</td>
 <td align="left">red</td>
 <td align="left">TNF</td>
+<td align="left">NA</td>
 <td align="left">TNF</td>
 <td align="right">15</td>
 </tr>
@@ -1668,6 +1748,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">95.7772338</td>
 <td align="left">red</td>
 <td align="left">IL-20RA</td>
+<td align="left">NA</td>
 <td align="left">IL-20RA</td>
 <td align="right">14</td>
 </tr>
@@ -1681,6 +1762,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">95.9404325</td>
 <td align="left">red</td>
 <td align="left">ARTN</td>
+<td align="left">NA</td>
 <td align="left">ARTN</td>
 <td align="right">13</td>
 </tr>
@@ -1694,6 +1776,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">96.1648307</td>
 <td align="left">blue</td>
 <td align="left">IL-15RA</td>
+<td align="left">NA</td>
 <td align="left">IL-15RA</td>
 <td align="right">12</td>
 </tr>
@@ -1707,6 +1790,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">96.5524276</td>
 <td align="left">red</td>
 <td align="left">IL-13</td>
+<td align="left">NA</td>
 <td align="left">IL-13</td>
 <td align="right">11</td>
 </tr>
@@ -1720,6 +1804,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">96.7156263</td>
 <td align="left">red</td>
 <td align="left">IL-20</td>
+<td align="left">NA</td>
 <td align="left">IL-20</td>
 <td align="right">10</td>
 </tr>
@@ -1733,6 +1818,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">97.0828233</td>
 <td align="left">red</td>
 <td align="left">IL-24</td>
+<td align="left">NA</td>
 <td align="left">IL-24</td>
 <td align="right">9</td>
 </tr>
@@ -1746,6 +1832,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">97.1032232</td>
 <td align="left">red</td>
 <td align="left">IL-2RB</td>
+<td align="left">NA</td>
 <td align="left">IL-2RB</td>
 <td align="right">8</td>
 </tr>
@@ -1759,6 +1846,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">97.1236230</td>
 <td align="left">red</td>
 <td align="left">NRTN</td>
+<td align="left">NA</td>
 <td align="left">NRTN</td>
 <td align="right">7</td>
 </tr>
@@ -1772,6 +1860,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">98.5516116</td>
 <td align="left">red</td>
 <td align="left">IL-33</td>
+<td align="left">NA</td>
 <td align="left">IL-33</td>
 <td align="right">6</td>
 </tr>
@@ -1785,6 +1874,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">99.4900041</td>
 <td align="left">red</td>
 <td align="left">TSLP</td>
+<td align="left">NA</td>
 <td align="left">TSLP</td>
 <td align="right">5</td>
 </tr>
@@ -1798,6 +1888,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">99.5308038</td>
 <td align="left">red</td>
 <td align="left">IFN-gamma</td>
+<td align="left">NA</td>
 <td align="left">IFN-gamma</td>
 <td align="right">4</td>
 </tr>
@@ -1810,8 +1901,9 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">99.61</td>
 <td align="right">99.6124031</td>
 <td align="left">red</td>
-<td align="left">IL-22 RA1</td>
-<td align="left">IL-22 RA1</td>
+<td align="left">IL-22RA1</td>
+<td align="left">NA</td>
+<td align="left">IL-22RA1</td>
 <td align="right">3</td>
 </tr>
 <tr class="even">
@@ -1824,6 +1916,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">99.8776010</td>
 <td align="left">red</td>
 <td align="left">IL-2</td>
+<td align="left">NA</td>
 <td align="left">IL-2</td>
 <td align="right">2</td>
 </tr>
@@ -1837,6 +1930,7 @@ and therefore pQTL detection as is shown with a real example.</p>
 <td align="right">99.8776010</td>
 <td align="left">blue</td>
 <td align="left">IL-1 alpha</td>
+<td align="left">NA</td>
 <td align="left">IL-1 alpha</td>
 <td align="right">1</td>
 </tr>
