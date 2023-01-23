@@ -75,13 +75,13 @@ This is used to generate 2d-pQTL plot
 t2d <- qtl2dplot(cis.vs.trans,xlab="pQTL position",ylab="Gene position")
 ```
 whose result can be also viewed in a 2-d plotly style,
-```{r qtl2dplotly, fig.cap="2d pQTL plotly", fig.height=8, fig.width=8, plotly=TRUE}
+```{r qtl2dplotly, fig.cap="2d pQTL plotly", fig.height=8, fig.width=8}
 fig2d <- qtl2dplotly(cis.vs.trans,xlab="pQTL position",ylab="Gene position")
 fig2d
 # htmlwidgets::saveWidget(fig2d,file="fig2d.html")
 ```
 and 3-d counterpart
-```{r qtl3dplotly, fig.cap="3d pQTL plotly", fig.height=8, fig.width=8, plotly=TRUE}
+```{r qtl3dplotly, fig.cap="3d pQTL plotly", fig.height=8, fig.width=8}
 fig3d <- qtl3dplotly(cis.vs.trans,zmax=300,qtl.prefix="pQTL:",xlab="pQTL position",ylab="Gene position")
 fig3d
 # htmlwidgets::saveWidget(fig3d,file="fig3d.html")
@@ -332,7 +332,7 @@ invisible(sapply(c("harmonise","result","single"),
                  function(x) unlink(paste0("pQTL-combined-",x,".txt"))))
 ```
 
-# run_TwoSampleMR
+## run_TwoSampleMR
 
 The function has similiarity to @dt18. The documentation example is quoted here,
 
@@ -368,7 +368,7 @@ kable(read.delim(paste0(prefix,"-loo.txt"),header=TRUE),caption=paste(caption5,"
 for (x in c("result","heterogeneity","pleiotropy","single","loo")) unlink(paste0(prefix,"-",x,".txt"))
 ```
 
-# MR using cis, trans and cis+trans (pan) instruments
+## MR using cis, trans and cis+trans (pan) instruments
 
 This is illustrated with IL-12B.
 
@@ -391,7 +391,7 @@ p <- ggplot2::ggplot(d3,aes(y = trait, x = y))+
 p
 ```
 
-# GSMR forest plots
+## GSMR forest plots
 
 This is based on GSMR results of TNFB and a range of immune-mediated traits,
 
