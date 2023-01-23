@@ -124,8 +124,6 @@
 </nav><div class="container template-article">
 
 
-
-
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.svg" class="logo" alt=""><h1>SCALLOP-INF scripts</h1>
@@ -137,17 +135,15 @@
 
     
     
-<p>This article provides details of pQTL/disease overlap and
-colocalization analysis.</p>
-<div class="section level2">
-<h2 id="pqtldisease-overlap">pQTL/disease overlap<a class="anchor" aria-label="anchor" href="#pqtldisease-overlap"></a>
+<p>This article provides details of pQTL/disease overlap and colocalization analysis.</p>
+<div class="section level2" number="0.1">
+<h2 id="pqtldisease-overlap">
+<span class="header-section-number">0.1</span> pQTL/disease overlap<a class="anchor" aria-label="anchor" href="#pqtldisease-overlap"></a>
 </h2>
-<p>The ontology of traits/disease is available through Experimental
-Factor Ontology (EFO)<span class="citation"><sup>1</sup></span>, which
-can be used to build lists of diseases and immune-mediated traits and
-filter search results from PhenoScanner<span class="citation"><sup>2</sup></span>.</p>
-<div class="section level3">
-<h3 id="lists-of-diseases">Lists of diseases<a class="anchor" aria-label="anchor" href="#lists-of-diseases"></a>
+<p>The ontology of traits/disease is available through Experimental Factor Ontology (EFO)<span class="citation"><sup>1</sup></span>, which can be used to build lists of diseases and immune-mediated traits and filter search results from PhenoScanner<span class="citation"><sup>2</sup></span>.</p>
+<div class="section level3" number="0.1.1">
+<h3 id="lists-of-diseases">
+<span class="header-section-number">0.1.1</span> Lists of diseases<a class="anchor" aria-label="anchor" href="#lists-of-diseases"></a>
 </h3>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">INF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"INF"</span><span class="op">)</span></span>
@@ -195,8 +191,9 @@ filter search results from PhenoScanner<span class="citation"><sup>2</sup></span
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ontologyPlot</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/ontologyPlot/man/onto_plot.html" class="external-link">onto_plot</a></span><span class="op">(</span><span class="va">efo</span>,<span class="va">efo_0000540</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level3">
-<h3 id="lookup-and-visualization">Lookup and visualization<a class="anchor" aria-label="anchor" href="#lookup-and-visualization"></a>
+<div class="section level3" number="0.1.2">
+<h3 id="lookup-and-visualization">
+<span class="header-section-number">0.1.2</span> Lookup and visualization<a class="anchor" aria-label="anchor" href="#lookup-and-visualization"></a>
 </h3>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>width<span class="op">=</span><span class="fl">200</span><span class="op">)</span></span>
@@ -318,28 +315,27 @@ filter search results from PhenoScanner<span class="citation"><sup>2</sup></span
 <span><span class="va">rxc</span> <span class="op">&lt;-</span> <span class="fu">gwas</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu">SF</span><span class="op">(</span><span class="va">rxc</span>,f<span class="op">=</span><span class="st">"SF-pQTL-GWAS.png"</span>,ch<span class="op">=</span><span class="fl">8</span>,cw<span class="op">=</span><span class="fl">8</span>,h<span class="op">=</span><span class="fl">11</span>,w<span class="op">=</span><span class="fl">8.6</span>,ylab<span class="op">=</span><span class="st">"GWAS traits and diseases"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: left">
+<span style="display:block;" id="fig:gwas"></span>
 <img src="SF-pQTL-GWAS.png" alt="pQTL-disease overlap" width="1290" style="display:block; margin: auto"><p class="caption">
-pQTL-disease overlap
+Figure 1: pQTL-disease overlap
 </p>
 </div>
 </div>
 </div>
-<div class="section level2">
-<h2 id="colocalization">Colocalization<a class="anchor" aria-label="anchor" href="#colocalization"></a>
+<div class="section level2" number="0.2">
+<h2 id="colocalization">
+<span class="header-section-number">0.2</span> Colocalization<a class="anchor" aria-label="anchor" href="#colocalization"></a>
 </h2>
-<p>This is the actual script for cis-pQTL colocalization analysis on
-GTEx v8, as reported in<span class="citation"><sup>3</sup></span>, for
-SCALLOP-INF.</p>
-<div class="section level3">
-<h3 id="data">Data<a class="anchor" aria-label="anchor" href="#data"></a>
+<p>This is the actual script for cis-pQTL colocalization analysis on GTEx v8, as reported in<span class="citation"><sup>3</sup></span>, for SCALLOP-INF.</p>
+<div class="section level3" number="0.2.1">
+<h3 id="data">
+<span class="header-section-number">0.2.1</span> Data<a class="anchor" aria-label="anchor" href="#data"></a>
 </h3>
-<p>The data were GWAS summary statistics in GRCh37 and VCF format,
-converted by <code>gwasvcf</code>. The GTEx association statistics were
-in GRCh38 and downloaded from the eQTL Catalogue and stored locally.
-Data on microarray and RNA-Seq remain on the eQTL Catalogue website.</p>
+<p>The data were GWAS summary statistics in GRCh37 and VCF format, converted by <code>gwasvcf</code>. The GTEx association statistics were in GRCh38 and downloaded from the eQTL Catalogue and stored locally. Data on microarray and RNA-Seq remain on the eQTL Catalogue website.</p>
 </div>
-<div class="section level3">
-<h3 id="the-driver-program">The driver program<a class="anchor" aria-label="anchor" href="#the-driver-program"></a>
+<div class="section level3" number="0.2.2">
+<h3 id="the-driver-program">
+<span class="header-section-number">0.2.2</span> The driver program<a class="anchor" aria-label="anchor" href="#the-driver-program"></a>
 </h3>
 <p>It is in Bash.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/bash</span></span>
@@ -364,8 +360,9 @@ Data on microarray and RNA-Seq remain on the eQTL Catalogue website.</p>
 <span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>   <span class="cf">fi</span></span>
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre></div>
 </div>
-<div class="section level3">
-<h3 id="coloc-r">coloc.R<a class="anchor" aria-label="anchor" href="#coloc-r"></a>
+<div class="section level3" number="0.2.3">
+<h3 id="coloc-r">
+<span class="header-section-number">0.2.3</span> coloc.R<a class="anchor" aria-label="anchor" href="#coloc-r"></a>
 </h3>
 <p>It contains minor modification to the documentation example,</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -538,13 +535,12 @@ Data on microarray and RNA-Seq remain on the eQTL Catalogue website.</p>
 <span><span class="co"># Faster with parallel Bash runs.</span></span>
 <span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html" class="external-link">as.integer</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"r"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu">single_run</span><span class="op">(</span><span class="va">r</span><span class="op">)</span></span></code></pre></div>
-<p>where options for protein GWAS, microarray, RNA-Seq are available
-with respect to variant-flanking or gene regions. When no results are
-generated, there would have problem with
-<code>dplyr::arrange(df_gtex, -PP.H4.abf);p &lt;- ggplot(df_gtex, aes(x = PP.H4.abf)) + geom_histogram()</code>.</p>
+<p>where options for protein GWAS, microarray, RNA-Seq are available with respect to variant-flanking or gene regions. When no results are generated,
+there would have problem with <code>dplyr::arrange(df_gtex, -PP.H4.abf);p &lt;- ggplot(df_gtex, aes(x = PP.H4.abf)) + geom_histogram()</code>.</p>
 </div>
-<div class="section level3">
-<h3 id="collection-of-results">Collection of results<a class="anchor" aria-label="anchor" href="#collection-of-results"></a>
+<div class="section level3" number="0.2.4">
+<h3 id="collection-of-results">
+<span class="header-section-number">0.2.4</span> Collection of results<a class="anchor" aria-label="anchor" href="#collection-of-results"></a>
 </h3>
 <p>When these are furnished we keep results as follows,</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -572,8 +568,9 @@ generated, there would have problem with
 <span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html" class="external-link">collect</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>i.e., PP3+PP4&gt;=0.9 and PP4/PP3&gt;=3.</p>
 </div>
-<div class="section level3">
-<h3 id="parallel-computing">Parallel computing<a class="anchor" aria-label="anchor" href="#parallel-computing"></a>
+<div class="section level3" number="0.2.5">
+<h3 id="parallel-computing">
+<span class="header-section-number">0.2.5</span> Parallel computing<a class="anchor" aria-label="anchor" href="#parallel-computing"></a>
 </h3>
 <p>To speed up the analysis, we resort to <a href="https://slurm.schedmd.com/documentation.html" class="external-link">SLURM</a>,</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/bash</span></span>
@@ -614,27 +611,20 @@ generated, there would have problem with
 <span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a><span class="ex">gtex</span></span></code></pre></div>
 </div>
 <div class="section level3 unnumbered">
-<h3 class="unnumbered" id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+<h3 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h3>
 <div id="refs" class="references csl-bib-body" line-spacing="2">
 <div id="ref-malone10" class="csl-entry">
 <div class="csl-left-margin">1. </div>
-<div class="csl-right-inline">Malone, J. <em>et al.</em> <a href="https://doi.org/10.1093/bioinformatics/btq099" class="external-link">Modeling sample
-variables with an experimental factor ontology</a>.
-<em>Bioinformatics</em> <strong>26</strong>, 1112–1118 (2010).</div>
+<div class="csl-right-inline">Malone, J. <em>et al.</em> <a href="https://doi.org/10.1093/bioinformatics/btq099" class="external-link">Modeling sample variables with an experimental factor ontology</a>. <em>Bioinformatics</em> <strong>26</strong>, 1112–1118 (2010).</div>
 </div>
 <div id="ref-kamat19" class="csl-entry">
 <div class="csl-left-margin">2. </div>
-<div class="csl-right-inline">Kamat, M. A. <em>et al.</em> <a href="https://doi.org/10.1093/bioinformatics/btz469" class="external-link">PhenoScanner V2: An
-expanded tool for searching human genotype-phenotype associations</a>.
-<em>Bioinformatics</em> <strong>35</strong>, 4851–4853 (2019).</div>
+<div class="csl-right-inline">Kamat, M. A. <em>et al.</em> <a href="https://doi.org/10.1093/bioinformatics/btz469" class="external-link">PhenoScanner V2: An expanded tool for searching human genotype-phenotype associations</a>. <em>Bioinformatics</em> <strong>35</strong>, 4851–4853 (2019).</div>
 </div>
 <div id="ref-kerimov21" class="csl-entry">
 <div class="csl-left-margin">3. </div>
-<div class="csl-right-inline">Kerimov, N. <em>et al.</em> <a href="https://doi.org/10.1038/s41588-021-00924-w" class="external-link">A compendium of
-uniformly processed human gene expression and splicing quantitative
-trait loci</a>. <em>Nature Genetics</em> <strong>53</strong>, 1290–1299
-(2021).</div>
+<div class="csl-right-inline">Kerimov, N. <em>et al.</em> <a href="https://doi.org/10.1038/s41588-021-00924-w" class="external-link">A compendium of uniformly processed human gene expression and splicing quantitative trait loci</a>. <em>Nature Genetics</em> <strong>53</strong>, 1290–1299 (2021).</div>
 </div>
 </div>
 </div>
