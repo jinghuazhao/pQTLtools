@@ -28,11 +28,11 @@ knitr::opts_chunk$set(
 
 This article provides details of pQTL/disease overlap and colocalization analysis.
 
-## pQTL/disease overlap
+# pQTL/disease overlap
 
 The ontology of traits/disease is available through Experimental Factor Ontology (EFO) @malone10, which can be used to build lists of diseases and immune-mediated traits and filter search results from PhenoScanner @kamat19.
 
-### Lists of diseases
+## Lists of diseases
 
 ```r
 INF <- Sys.getenv("INF")
@@ -81,7 +81,7 @@ library(ontologyPlot)
 onto_plot(efo,efo_0000540)
 ```
 
-### Lookup and visualization
+## Lookup and visualization
 
 ```r
 options(width=200)
@@ -208,15 +208,15 @@ SF(rxc,f="SF-pQTL-GWAS.png",ch=8,cw=8,h=11,w=8.6,ylab="GWAS traits and diseases"
 knitr::include_graphics("SF-pQTL-GWAS.png")
 ```
 
-## Colocalization
+# Colocalization
 
 This is the actual script for cis-pQTL colocalization analysis on GTEx v8, as reported in @kerimov21, for SCALLOP-INF. 
 
-### Data
+## Data
 
 The data were GWAS summary statistics in GRCh37 and VCF format, converted by `gwasvcf`. The GTEx association statistics were in GRCh38 and downloaded from the eQTL Catalogue and stored locally. Data on microarray and RNA-Seq remain on the eQTL Catalogue website.
 
-### The driver program
+## The driver program
 
 It is in Bash.
 
@@ -244,7 +244,7 @@ do
 done
 ```
 
-### coloc.R
+## coloc.R
 
 It contains minor modification to the documentation example,
 
@@ -454,7 +454,7 @@ collect()
 
 i.e., PP3+PP4>=0.9 and PP4/PP3>=3.
 
-### Parallel computing
+## Parallel computing
 
 To speed up the analysis, we resort to [SLURM](https://slurm.schedmd.com/documentation.html),
 
