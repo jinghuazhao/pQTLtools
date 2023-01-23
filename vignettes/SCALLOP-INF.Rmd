@@ -35,7 +35,6 @@ The ontology of traits/disease is available through Experimental Factor Ontology
 ## Lists of diseases
 
 ```r
-INF <- Sys.getenv("INF")
 library(gwascat)
 requireNamespace("graph")
 makeCurrentGwascat(genome="GRCh37")
@@ -55,6 +54,7 @@ library(ontologyIndex)
 data(go)
 # EFO
 # http://www.ebi.ac.uk/efo/efo.obo
+INF <- Sys.getenv("INF")
 file <- file.path(INF,"ebi","efo-3.26.0","efo.obo")
 get_relation_names(file)
 efo <- get_ontology(file, extract_tags="everything")
@@ -73,6 +73,7 @@ efoidname <- id(efo)
 efo_diseases <- get_descendants(efo,"EFO:0000408")
 diseases_name <- efo$name[efo_diseases]
 diseases <- data.frame(efo_diseases,diseases_name)
+write.table(diseases,file=file.path(INF,"ebi","efo-3.26.0","efo_diseases.csv"),col.names=FALSE,row.names=FALSE,sep=",")
 # immune system diseases (isd)
 efo_0000540 <- get_descendants(efo,"EFO:0000540")
 efo_0000540name <- efo$name[efo_0000540]
@@ -92,7 +93,6 @@ suppressMessages(library(pQTLtools))
 
 inf1_prot <- vector()
 for(i in 1:92) inf1_prot[inf1[i,"prot"]] <- mutate(inf1[i,],target.short=if_else(!is.na(alt_name),alt_name,target.short))[["target.short"]]
-INF <- Sys.getenv("INF")
 INF1_metal <- within(read.delim(file.path(INF,"work","INF1.METAL"),as.is=TRUE),{
                     hg19_coordinates=paste0("chr",Chromosome,":",Position)}) %>%
                     rename(INF1_rsid=rsid, Total=N) %>%
@@ -130,8 +130,6 @@ snps_results <- with(r,right_join(snps,results))
 ps <- subset(snps_results,select=-c(hg38_coordinates,ref_hg38_coordinates,pos_hg38,ref_pos_hg38,dprime))
 sarcoidosis <- with(ps,grep("sarcoidosis",trait))
 ps[sarcoidosis,"efo"] <- "Orphanet_797"
-INF1_aggr <- INF1_aggr_save
-save(INF1_aggr,r,ps,file=file.path(INF,"work","INF1.merge.GWAS"))
 metal <- subset(within(INF1_metal,{HLA <- as.numeric(Chromosome==6 & Position >= 25392021 & Position <= 33392022)}),
                 select=-c(Chromosome,Position,INF1_rsid,Direction))
 aggr <- subset(within(INF1_aggr,{HLA <- as.numeric(Chromosome==6 & Position >= 25392021 & Position <= 33392022)}),
@@ -191,10 +189,6 @@ gwas <- function()
      if(nrow(cnrn)==0) next
      rxc[rn,cn] <- as.numeric(unlist(strsplit(cnrn[["direction"]],";"))[1])
   }
-  # all beta's are NAs when unit=="-"
-  subset(mat[c("study","pmid","unit","beta","qtl_direction")],unit=="-")
-  # all studies with risk difference were UKBB
-  subset(mat[c("study","pmid","unit","beta","n_cases","n_controls","qtl_direction")],unit=="risk diff")
   write.table(mat,file=file.path(INF,"work","pQTL-disease-GWAS.csv"),row.names=FALSE,quote=FALSE,sep=",")
   write.table(combined,file=file.path(INF,"work","pQTL-disease-GWAS-combined.csv"),row.names=FALSE,quote=FALSE,sep=",")
   rxc

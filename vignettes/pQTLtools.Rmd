@@ -3,7 +3,7 @@ title: "An Overview of pQTLtools"
 output:
   bookdown::html_document2:
     toc: true
-    toc_float: true
+    toc_float: false
 fontsize: 11pt
 bibliography: refs.bib
 csl: nature-genetics.csl
