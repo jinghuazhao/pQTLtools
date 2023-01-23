@@ -1,14 +1,15 @@
 ---
 title: Bioconductor Notes
 output:
-  html_document:
-    mathjax:  default
-    fig_caption:  true
+  bookdown::html_document2:
     toc: true
-    section_numbering: true
-bibliography: bioc.bib
-link-citations: yes
+    toc_float: true
+fontsize: 11pt
+bibliography: refs.bib
 csl: nature-genetics.csl
+link-citations: yes
+pkgdown:
+  as_is: true
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{Bioconductor Applications}
@@ -38,9 +39,9 @@ for (p in pkgs) if (length(grep(paste("^package:", p, "$", sep=""), search())) =
 invisible(suppressMessages(lapply(pkgs, require, character.only = TRUE)))
 ```
 
-## Normalisation
+# Normalisation
 
-### ComBat
+## ComBat
 
 This is the documentation example, based on Bioconductor 3.14.
 
@@ -63,7 +64,7 @@ combat_edata2 = ComBat(dat=edata, batch=batch, mod=NULL, par.prior=FALSE, mean.o
 combat_edata3 = ComBat(dat=edata, batch=batch, mod=mod, par.prior=TRUE, ref.batch=3, prior.plots=TRUE)
 ```
 
-### quantro
+## quantro
 
 Again, this is adapted from the package vignette. noting that `FlowSorted.DLPFC.450k` instead of `FlowSorted` is used.
 
@@ -82,7 +83,7 @@ qtest <- quantro(object = p, groupFactor = pd$CellType)
 # quantroPlot(qtestPerm)
 ```
 
-## Differential expression
+# Differential expression
 
 ```{r DESeq2, messages=FALSE}
 ex <- makeExampleDESeqDataSet(m=4)
@@ -103,7 +104,7 @@ knitr::kable(head(as.data.frame(res)))
 
 See the package in action from a snakemake workflow @johannes_koster_2021_5245549.
 
-## Gene co-expression and network analysis
+# Gene co-expression and network analysis
 
 A simple network is furnished with the `GeneNet` documentation example,
 
@@ -222,7 +223,7 @@ plotDendroAndColors(Tree, Colors, dendroLabels=FALSE, hang=0.03, addGuide=TRUE, 
 meg <- moduleEigengenes(dat, color=1:ncol(dat), softPower=6)
 ```
 
-## Meta-data
+# Meta-data
 
 ```{r meta-data, messages=FALSE}
 hs <- available_projects()
@@ -235,7 +236,7 @@ colnames(colData(blood_rse))[1:20]
 expand_sra_attributes(blood_rse)
 ```
 
-## Pathway and enrichment analysis
+# Pathway and enrichment analysis
 
 ```{r pathway-enrichment, messages=FALSE}
 reactome <- pathways("hsapiens", "reactome")
@@ -253,7 +254,7 @@ eKEGG <- enricher(gene=VEGF, TERM2GENE = kegg_t2g,
 
 ```
 
-## Transcript databases
+# Transcript databases
 
 An overview of annotation is available @carlson2016.
 
@@ -289,7 +290,7 @@ txdb <- TxDb.Hsapiens.UCSC.hg38.knownGene
 # liverExprs <- quantifyExpressionsFromBWs(txdb = txdb,BWfiles=,experimentalDesign=)
 ```
 
-## Bionconductor forum
+# Bionconductor forum
 
 Web: [https://support.bioconductor.org/](https://support.bioconductor.org/)
 
@@ -326,4 +327,4 @@ heatmaply | Interactive Cluster Heat Maps Using `plotly` and `ggplot2`
 pheatmap | results visualisation
 plyr | Splitting, applying and combining data
 
-## References
+# References

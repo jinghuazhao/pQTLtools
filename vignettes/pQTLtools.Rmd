@@ -1,14 +1,14 @@
 ---
 title: "An Overview of pQTLtools"
 output:
-  rmarkdown::html_vignette:
-    check_title: false
-    fig_caption:  true
-    mathjax:  default
-    section_numbering: true
+  bookdown::html_document2:
     toc: true
-    toc_depth: 2
+    toc_float: true
+fontsize: 11pt
 bibliography: refs.bib
+csl: nature-genetics.csl
+pkgdown:
+  as_is: true
 vignette: >
   %\VignetteIndexEntry{An Overview of pQTLtools}
   %\VignetteEngine{knitr::rmarkdown}
@@ -35,7 +35,7 @@ for (p in pkgs) if (length(grep(paste("^package:", p, "$", sep=""), search())) =
 invisible(suppressMessages(lapply(pkgs, require, character.only=TRUE)))
 ```
 
-## cis/trans classification
+# cis/trans classification
 ```{r cistrans, fig.cap="cis/trans classification", fig.height=7, fig.width=7}
 options(width=200)
 f <- file.path("~","pQTLtools","tests","INF1.merge")
@@ -46,7 +46,7 @@ hits <- merge(merged[c("CHR","POS","MarkerName","prot","log10p")],
 names(hits) <- c("prot","Chr","bp","SNP","log10p","uniprot")
 cistrans <- cis.vs.trans.classification(hits,inf1,"uniprot")
 cis.vs.trans <- with(cistrans,data)
-kable(with(cistrans,table),caption="Table 1. cis/trans classification")
+kable(with(cistrans,table),caption="cis/trans classification")
 with(cistrans,total)
 circos.cis.vs.trans.plot(hits=f,inf1,"uniprot")
 f <- file.path("~","pQTLtools","tests","INF1.merge")
@@ -134,7 +134,7 @@ with(INF1_merge_cvt, {
 })
 ```
 
-## Genomic regions enrichment analysis
+# Genomic regions enrichment analysis
 
 It is now considerably easier with Genomic Regions Enrichment of Annotations Tool (GREAT).
 
@@ -185,7 +185,7 @@ The top terms at Binomial p=1e-5 could be extracted as follows,
 ```{r, echo=FALSE}
 options(width=100)
 great3 <- filter(tb_all,BinomP<=1e-5) %>% mutate(ID=gsub(":",": ",ID))
-kable(great3,caption="Table 2. GREAT IL12B-KITLG-TNFSF10 results")
+kable(great3,caption="GREAT IL12B-KITLG-TNFSF10 results")
 great <- read.delim("cistrans.tsv") %>% filter(BinomBonfP<=1e-8) %>% mutate(ID=gsub(":",": ",ID))
 unlink("IL12B.tsv")
 unlink("KITLG.tsv")
@@ -193,7 +193,7 @@ unlink("TNFSF10.tsv")
 unlink("cistrans.tsv")
 ```
 
-## eQTL Catalog for colocalization analysis
+# eQTL Catalog for colocalization analysis
 
 See example associated with `import_eQTLCatalogue`. A related function is `import_OpenGWAS` used to fetch data from OpenGWAS. The cis-pQTLs and 1e+6 
 flanking regions were considered and data are actually fetched from files stored locally. Only the first sentinel was used, and the code is not executed.
@@ -306,7 +306,7 @@ if (nrow(coloc_df_imported)>0)
    ggtitle(with(sentinel,paste0(prot,"-",SNP," PP4 histogram"))) +
    xlab("PP4") + ylab("Frequency")
 }
-ktitle <- with(sentinel,paste0("Table 3. Colocalization results for ",prot,"-",SNP))
+ktitle <- with(sentinel,paste0("Colocalization results for ",prot,"-",SNP))
 kable(coloc_df_imported, caption=ktitle)
 ```
 
@@ -322,7 +322,7 @@ the `run_TwoSampleMR()` function can be used.
 ```{r, warning=FALSE}
 f <- file.path(system.file(package="pQTLtools"),"tests","Ins.csv")
 ivs <- format_data(read.csv(f))
-caption4 <- "Table 4. ABO/LIFR variants and CHD/FEV1"
+caption4 <- "ABO/LIFR variants and CHD/FEV1"
 kable(ivs, caption=paste(caption4,"(instruments)"))
 ids <- c("ieu-a-7","ebi-a-GCST007432")
 pqtlMR(ivs, ids)
@@ -334,7 +334,7 @@ invisible(sapply(c("harmonise","result","single"),
                  function(x) unlink(paste0("pQTL-combined-",x,".txt"))))
 ```
 
-## run_TwoSampleMR
+# run_TwoSampleMR
 
 The function has similiarity to @dt18. The documentation example is quoted here,
 
@@ -361,7 +361,7 @@ run_TwoSampleMR(harmonise, mr_plot="pQTLtools", prefix=prefix)
 The output is contained in individual `.txt` files, together with the scatter, forest, funnel and leave-one-out plots.
 
 ```{r, echo=FALSE}
-caption5 <- "Table 5. MMP.10 variants and FEV1"
+caption5 <- "MMP.10 variants and FEV1"
 kable(read.delim(paste0(prefix,"-result.txt"),header=TRUE),caption=paste(caption5, "(result)"))
 kable(read.delim(paste0(prefix,"-heterogeneity.txt"),header=TRUE),caption=paste(caption5,"(heterogeneity)"))
 kable(read.delim(paste0(prefix,"-pleiotropy.txt"),header=TRUE),caption=paste(caption5,"(pleiotropy)"))
@@ -370,7 +370,7 @@ kable(read.delim(paste0(prefix,"-loo.txt"),header=TRUE),caption=paste(caption5,"
 for (x in c("result","heterogeneity","pleiotropy","single","loo")) unlink(paste0(prefix,"-",x,".txt"))
 ```
 
-## MR using cis, trans and cis+trans (pan) instruments
+# MR using cis, trans and cis+trans (pan) instruments
 
 This is illustrated with IL-12B.
 
@@ -381,7 +381,7 @@ d3 <- read.delim(file.path("~","pQTLtools","tests","IL.12B.txt")) %>%
       dplyr::select(-outcome,-method) %>%
       left_join(efo) %>%
       dplyr::arrange(cistrans)
-kable(head(d3[c("MRBASEID","trait","cistrans","nsnp","b","se","pval")],29),caption="Table 6. MR with IL-12B variants")
+kable(head(d3[c("MRBASEID","trait","cistrans","nsnp","b","se","pval")],29),caption="MR with IL-12B variants")
 p <- ggplot2::ggplot(d3,aes(y = trait, x = y))+
      ggplot2::theme_bw()+
      ggplot2::geom_point()+
@@ -393,7 +393,7 @@ p <- ggplot2::ggplot(d3,aes(y = trait, x = y))+
 p
 ```
 
-## GSMR forest plots
+# GSMR forest plots
 
 This is based on GSMR results of TNFB and a range of immune-mediated traits,
 
@@ -416,7 +416,7 @@ tnfb <- '
 tnfb <- as.data.frame(scan(file=textConnection(tnfb),what=list("",0,0))) %>%
         setNames(c("Outcome","Effect","StdErr")) %>%
         mutate(Outcome=gsub("\\b(^[a-z])","\\U\\1",Outcome,perl=TRUE))
-kable(tnfb,caption="Table 7. GSMR results for TNFB and immune-mediated traits")
+kable(tnfb,caption="GSMR results for TNFB and immune-mediated traits")
 ```
 
 ```{r mr_forestplot, fig.cap="Forest plots based on MR results on TNFB", fig.align="left", fig.height=8, fig.width=12, results="hide"}
@@ -434,8 +434,8 @@ mr_forestplot(tnfb,colgap.forest.left="0.05cm", fontsize=14,
 
 Those as identified by @sun18 and @suhre20 are included as EndNote libraries which is now part of pQTLdata package.
 
-## UniProt IDs
+# UniProt IDs
 
 The function `uniprot2ids` converts UniProt IDs to others.
 
-## References
+# References

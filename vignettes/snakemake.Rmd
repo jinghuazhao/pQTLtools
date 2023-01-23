@@ -1,11 +1,14 @@
 ---
 title: "A snakemake showcase"
 output:
-  rmarkdown::html_vignette:
+  bookdown::html_document2:
     toc: true
-    toc_depth: 2
-    check_title: false
+    toc_float: true
+fontsize: 11pt
 bibliography: refs.bib
+csl: nature-genetics.csl
+pkgdown:
+  as_is: true
 vignette: >
   %\VignetteIndexEntry{A snakemake showcase}
   %\VignetteEngine{knitr::rmarkdown}
@@ -23,7 +26,7 @@ knitr::opts_chunk$set(
   dev = "png")
 ```
 
-## Mendelian randomization analysis
+# Mendelian randomization analysis
 
 The required files are available from the `snakemake` subdirectory inside the installed package or `inst/snakemake` directory in the source package.
 
@@ -51,7 +54,7 @@ snakemake --dag | dot -Tsvg > output/dag.svg
 
 ![Figure 2. Directed Acyclic Graph (DAG)](dag.svg)
 
-## References
+# References
 
 An introduction, [https://ucdavis-bioinformatics-training.github.io/2020-Genome_Assembly_Workshop/snakemake/snakemake_intro](https://ucdavis-bioinformatics-training.github.io/2020-Genome_Assembly_Workshop/snakemake/snakemake_intro).
 
@@ -66,15 +69,15 @@ Edwards D (2022). Plant Bioinformatics-Methods and Protocols, 3e. https://link.s
 [![Circulation](https://www.ahajournals.org/pb-assets/images/logos/circ-logo-1526571039097.svg)](https://www.ahajournals.org/doi/10.1161/CIRCULATIONAHA.121.056663)
 [![DOI](https://zenodo.org/badge/429122036.svg)](https://zenodo.org/badge/latestdoi/429122036)
 
-## Appendix: Installation
+# Appendix: Installation
 
-### GitHub
+## GitHub
 
 [GitHub](https://github.com/snakemake/snakemake) ([documentation](https://snakemake.github.io/), [stable](https://snakemake.readthedocs.io/en/stable/))
 
 Note that in the following `source` instead of `conda` is used to activate.
 
-### Anaconda3
+## Anaconda3
 
 [https://www.anaconda.com/](https://www.anaconda.com/)
 
@@ -91,7 +94,7 @@ conda update -n anaconda snakemake
 
 The remove option is useful when resolving compatibility issues.
 
-### Miniconda3
+## Miniconda3
 
 [https://docs.conda.io/en/latest/miniconda.html](https://docs.conda.io/en/latest/miniconda.html)
 
@@ -105,7 +108,7 @@ source activate miniconda
 conda install -c bioconda fastqc
 ```
 
-### A SLURM example
+## A SLURM example
 
 The Caprion project, [https://jinghuazhao.github.io/Caprion/](https://jinghuazhao.github.io/Caprion/),
 experiments with a `workflow/config.yaml` as follows,
