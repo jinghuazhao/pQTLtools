@@ -6,6 +6,7 @@ output:
     toc_depth: 2
     check_title: false
 bibliography: refs.bib
+csl: nature-genetics.csl
 vignette: >
   %\VignetteIndexEntry{SCALLOP-INF scripts}
   %\VignetteEngine{knitr::rmarkdown}
@@ -29,7 +30,7 @@ This article provides details of pQTL/disease overlap and colocalization analysi
 
 The ontology of traits/disease is available through Experimental Factor Ontology (EFO) @malone10, which can be used to build lists of diseases and immune-mediated traits and filter search results from PhenoScanner @kamat19.
 
-### EPO for all/immune-mediated diseases
+### Lists of diseases
 
 ```r
 INF <- Sys.getenv("INF")
@@ -88,7 +89,7 @@ write.table(isd,file=file.path(INF,"ebi","efo-3.26.0","efo_0000540.csv"),col.nam
 # http://www.ebi.ac.uk/efo/releases/v3.14.0/efo.owl
 ```
 
-### PhenoScanner lookup/visualization
+### Lookup and visualization
 
 ```r
 options(width=200)
@@ -107,17 +108,19 @@ INF1_metal <- within(read.delim(file.path(INF,"work","INF1.METAL"),as.is=TRUE),{
                     mutate(target.short=if_else(!is.na(alt_name),alt_name,target.short)) %>%
                     select(-alt_name)
 INF1_aggr <- INF1_metal %>%
-  select(Chromosome,Position,target.short,gene,hg19_coordinates,MarkerName,Allele1,Allele2,Freq1,Effect,StdErr,log.P.,cis.trans,INF1_rsid) %>%
-  group_by(Chromosome,Position,MarkerName,INF1_rsid,hg19_coordinates) %>%
-  summarise(nprots=n(),
-            prots=paste(target.short,collapse=";"),
-            Allele1=paste(toupper(Allele1),collapse=";"),
-            Allele2=paste(toupper(Allele2),collapse=";"),
-            EAF=paste(Freq1,collapse=";"),
-            Effects=paste(Effect,collapse=";"),
-            SEs=paste(StdErr,collapse=";"),
-            log10P=paste(log.P.,collapse=";"),
-            cistrans=paste(cis.trans,collapse=";")) %>% data.frame()
+             select(Chromosome,Position,target.short,gene,hg19_coordinates,
+                    MarkerName,Allele1,Allele2,Freq1,Effect,StdErr,log.P.,cis.trans,INF1_rsid) %>%
+             group_by(Chromosome,Position,MarkerName,INF1_rsid,hg19_coordinates) %>%
+             summarise(nprots=n(),
+                       prots=paste(target.short,collapse=";"),
+                       Allele1=paste(toupper(Allele1),collapse=";"),
+                       Allele2=paste(toupper(Allele2),collapse=";"),
+                       EAF=paste(Freq1,collapse=";"),
+                       Effects=paste(Effect,collapse=";"),
+                       SEs=paste(StdErr,collapse=";"),
+                       log10P=paste(log.P.,collapse=";"),
+                       cistrans=paste(cis.trans,collapse=";")) %>%
+             data.frame()
 INF1_aggr_save <- INF1_aggr
 setwd(INF)
 rsid <- INF1_aggr[["INF1_rsid"]]
