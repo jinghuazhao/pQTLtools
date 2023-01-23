@@ -14,7 +14,7 @@ function build()
 # pandoc README.md --citeproc --mathjax -s --self-contained -o index.html
 }
 
-build
+# build
 
 if [ -d vignettes/bioconductor ]; then
    rm -rf docs/articles/bioconductor
