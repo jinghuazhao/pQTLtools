@@ -14,7 +14,7 @@
 * importFrom utils read.table tail.
 * Import from lmm as template, use save(,compress='xz').
 * Suggest htmlwidgets, plotly.
-* Suggest cowplot, gap.datasets, httr, plyr, rmarkdown, Biobase, stringr.
+* Suggest bookdown, cowplot, gap.datasets, httr, plyr, rmarkdown, Biobase, stringr.
 * Suggest circlize, openxlsx, knitr and add HTML vignette (biomaRt, regioneR).
   with cis/trans-classification/ideogram/mhtplot2d examples.
 * Suggest GenomicRanges & IRanges to handle >1MB region in regionqueries with wait=option.
