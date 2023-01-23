@@ -27,8 +27,8 @@ knitr::opts_chunk$set(
 ```
 
 ```{r, message=FALSE, warning=FALSE}
-pkgs <- c("GenomicRanges", "TwoSampleMR", "biomaRt", "coloc", "dplyr", "gap", "ggplot2",
-          "httr", "karyoploteR", "knitr", "pQTLtools", "rGREAT", "readr", "regioneR", "seqminer")
+pkgs <- c("GenomicRanges", "TwoSampleMR", "biomaRt", "coloc", "dplyr", "gap", "ggplot2", "httr",
+          "karyoploteR", "knitr", "plotly", "pQTLtools", "rGREAT", "readr", "regioneR", "seqminer")
 for (p in pkgs) if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
     if (!requireNamespace(p)) warning(paste0("This vignette needs package `", p, "'; please install"))
 }
