@@ -28,12 +28,6 @@ if [ -d vignettes/pQTLtools ]; then
    rm -rf docs/articles/pQTLtools
    mv vignettes/pQTLtools docs/articles/
 fi
-if [ -f vignettes/fig2d.html ]; then
-   mv vignettes/fig2d.html docs/articles/
-fi
-if [ -f vignettes/fig3d.html ]; then
-   mv vignettes/fig3d.html docs/articles/
-fi
 
 for f in .github .gitignore .Rbuildignore .Rinstignore .travis.yml \
          data/ DESCRIPTION INDEX inst/ LICENSE LICENSE.md man/ \
