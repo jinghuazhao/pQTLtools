@@ -430,7 +430,7 @@ mr_forestplot(tnfb,colgap.forest.left="0.05cm", fontsize=14,
               addrow=TRUE, backtransf=TRUE, spacing=1.6)
 ```
 
-## Literature on pQTLs
+# Literature on pQTLs
 
 Those as identified by @sun18 and @suhre20 are included as EndNote libraries which is now part of pQTLdata package.
 

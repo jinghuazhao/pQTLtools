@@ -1,11 +1,14 @@
 ---
 title: "ExpressionSet usage"
 output:
-  rmarkdown::html_vignette:
+  bookdown::html_document2:
     toc: true
-    toc_depth: 2
-    check_title: false
+    toc_float: true
+fontsize: 11pt
 bibliography: refs.bib
+csl: nature-genetics.csl
+pkgdown:
+  as_is: true
 vignette: >
   %\VignetteIndexEntry{ExpressionSet usage}
   %\VignetteEngine{knitr::rmarkdown}
@@ -60,7 +63,7 @@ data(sample.ExpressionSet)
 identical(exampleSet,sample.ExpressionSet)
 ```
 
-## data.frame
+# data.frame
 
 The great benefit is to use the object directly as a data.frame.
 
@@ -71,7 +74,7 @@ beta.x[1]
 lm(score~gender+AFFX.MurIL2_at,data=exampleSet)
 ```
 
-## Composite plots
+# Composite plots
 
 We wish to examine the distribution of each feature via histogram, scatter and boxplot.
 One could resort to `esApply` for its simplicity as before
@@ -94,7 +97,7 @@ invisible(sapply(f,function(x) {
 ```
 where the expression set is indexed using feature name(s).
 
-## Outlier detections
+# Outlier detections
 
 This illustrates one mechanism,
 
@@ -107,7 +110,7 @@ for (method in c("KS","sum","upperquartile"))
 }
 ```
 
-## Data transformation
+# Data transformation
 
 Suppose we wish use log2 for those greater than zero but set those negative values to be missing.
 
@@ -173,11 +176,11 @@ options(width=120)
 kable(annot,caption="Summary statistics",row.names=FALSE)
 ```
 
-## Combination of proteins and other variables
+# Combination of proteins and other variables
 
 This is available by design.
 
-## maEndtoEnd
+# maEndtoEnd
 
 Web: [https://bioconductor.org/packages/release/workflows/html/maEndToEnd.html](https://bioconductor.org/packages/release/workflows/html/maEndToEnd.html).
 
