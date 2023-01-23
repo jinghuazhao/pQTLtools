@@ -7,6 +7,8 @@ output:
 fontsize: 11pt
 bibliography: refs.bib
 csl: nature-genetics.csl
+pkgdown:
+  as_is: true
 vignette: >
   %\VignetteIndexEntry{SCALLOP-INF scripts}
   %\VignetteEngine{knitr::rmarkdown}
