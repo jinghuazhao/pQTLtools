@@ -423,7 +423,7 @@ single_run(r)
 where options for protein GWAS, microarray, RNA-Seq are available with respect to variant-flanking or gene regions. When no results are generated,
 there would have problem with `dplyr::arrange(df_gtex, -PP.H4.abf);p <- ggplot(df_gtex, aes(x = PP.H4.abf)) + geom_histogram()`.
 
-### Collection of results
+## Collection of results
 
 When these are furnished we keep results as follows,
 
