@@ -39,6 +39,7 @@ Suggests:
     cowplot,
     gap.datasets,
     gwasvcf,
+    htmltools,
     htmlwidgets,
     httr,
     ieugwasr,
