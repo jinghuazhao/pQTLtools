@@ -537,10 +537,11 @@ Figure 1.1: pQTL-disease overlap
 <span><span class="fu">single_run</span><span class="op">(</span><span class="va">r</span><span class="op">)</span></span></code></pre></div>
 <p>where options for protein GWAS, microarray, RNA-Seq are available with respect to variant-flanking or gene regions. When no results are generated,
 there would have problem with <code>dplyr::arrange(df_gtex, -PP.H4.abf);p &lt;- ggplot(df_gtex, aes(x = PP.H4.abf)) + geom_histogram()</code>.</p>
-<div class="section level4" number="2.3.1">
-<h4 id="collection-of-results">
-<span class="header-section-number">2.3.1</span> Collection of results<a class="anchor" aria-label="anchor" href="#collection-of-results"></a>
-</h4>
+</div>
+<div class="section level3" number="2.4">
+<h3 id="collection-of-results">
+<span class="header-section-number">2.4</span> Collection of results<a class="anchor" aria-label="anchor" href="#collection-of-results"></a>
+</h3>
 <p>When these are furnished we keep results as follows,</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">collect</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span></span>
@@ -567,10 +568,9 @@ there would have problem with <code>dplyr::arrange(df_gtex, -PP.H4.abf);p &lt;- 
 <span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html" class="external-link">collect</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>i.e., PP3+PP4&gt;=0.9 and PP4/PP3&gt;=3.</p>
 </div>
-</div>
-<div class="section level3" number="2.4">
+<div class="section level3" number="2.5">
 <h3 id="parallel-computing">
-<span class="header-section-number">2.4</span> Parallel computing<a class="anchor" aria-label="anchor" href="#parallel-computing"></a>
+<span class="header-section-number">2.5</span> Parallel computing<a class="anchor" aria-label="anchor" href="#parallel-computing"></a>
 </h3>
 <p>To speed up the analysis, we resort to <a href="https://slurm.schedmd.com/documentation.html" class="external-link">SLURM</a>,</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/bash</span></span>
