@@ -23,6 +23,192 @@ knitr::opts_chunk$set(
   dev = "png")
 ```
 
+This article provides details of pQTL/disease overlap and colocalization analysis.
+
+## pQTL/disease overlap
+
+The ontology of traits/disease is available through Experimental Factor Ontology (EFO) @malone10, which can be used to build lists of diseases and immune-mediated traits and filter search results from PhenoScanner @kamat19.
+
+### EPO for all/immune-mediated diseases
+
+```r
+INF <- Sys.getenv("INF")
+library(gwascat)
+requireNamespace("graph")
+makeCurrentGwascat(genome="GRCh37")
+data(efo.obo.g)
+efo.obo.g
+head(graph::nodes(efo.obo.g))
+graph::nodeData(efo.obo.g, "EFO:0000540")
+ue = graph::ugraph(efo.obo.g)
+neighISD = graph::adj(ue, "EFO:0000540")[[1]]
+sapply(graph::nodeData(graph::subGraph(neighISD, efo.obo.g)), "[[", "name")
+requireNamespace("RBGL")
+p = RBGL::sp.between(efo.obo.g, "EFO:0000685", "EFO:0000001")
+sapply(graph::nodeData(graph::subGraph(p[[1]]$path_detail, efo.obo.g)), "[[", "name")
+
+library(ontologyIndex)
+# GO
+data(go)
+# EFO
+file <- file.path(INF,"ebi","efo-3.26.0","efo.obo")
+get_relation_names(file)
+efo <- get_ontology(file, extract_tags="everything")
+
+id <- function(ontology)
+{
+  length(ontology)
+  length(ontology$id)
+  inf <- grep(ontology$name,pattern="immune|inflammatory")
+  data.frame(id=ontology$id[inf],name=ontology$name[inf])
+}
+
+goidname <- id(go)
+efoidname <- id(efo)
+# all diseases
+efo_diseases <- get_descendants(efo,"EFO:0000408")
+diseases_name <- efo$name[efo_diseases]
+diseases <- data.frame(efo_diseases,diseases_name)
+# immune system diseases (isd)
+efo_0000540 <- get_descendants(efo,"EFO:0000540")
+efo_0000540name <- efo$name[efo_0000540]
+isd <- data.frame(efo_0000540,efo_0000540name)
+library(ontologyPlot)
+pdf(file.path(INF,"ebi","efo-3.26.0","efo_0000540.pdf"),height=15,width=15)
+onto_plot(efo,efo_0000540)
+dev.off()
+
+write.table(diseases,file=file.path(INF,"ebi","efo-3.26.0","efo_diseases.csv"),col.names=FALSE,row.names=FALSE,sep=",")
+write.table(isd,file=file.path(INF,"ebi","efo-3.26.0","efo_0000540.csv"),col.names=FALSE,row.names=FALSE,sep=",")
+
+# https://bioconductor.org/packages/release/bioc/vignettes/gwascat/inst/doc/gwascatOnt.html
+# https://cran.r-project.org/web/packages/ontologyIndex/vignettes/intro-to-ontologyX.html
+# https://www.ebi.ac.uk/ols/ontologies/efo
+# http://www.ebi.ac.uk/efo/efo.obo
+# http://www.ebi.ac.uk/efo/releases/v3.14.0/efo.owl
+```
+
+### PhenoScanner lookup/visualization
+
+```r
+options(width=200)
+
+suppressMessages(library(dplyr))
+suppressMessages(library(gap))
+suppressMessages(library(pQTLtools))
+
+inf1_prot <- vector()
+for(i in 1:92) inf1_prot[inf1[i,"prot"]] <- mutate(inf1[i,],target.short=if_else(!is.na(alt_name),alt_name,target.short))[["target.short"]]
+INF <- Sys.getenv("INF")
+INF1_metal <- within(read.delim(file.path(INF,"work","INF1.METAL"),as.is=TRUE),{
+                    hg19_coordinates=paste0("chr",Chromosome,":",Position)}) %>%
+                    rename(INF1_rsid=rsid, Total=N) %>%
+                    left_join(pQTLdata::inf1[c("prot","gene","target.short","alt_name")]) %>%
+                    mutate(target.short=if_else(!is.na(alt_name),alt_name,target.short)) %>%
+                    select(-alt_name)
+INF1_aggr <- INF1_metal %>%
+  select(Chromosome,Position,target.short,gene,hg19_coordinates,MarkerName,Allele1,Allele2,Freq1,Effect,StdErr,log.P.,cis.trans,INF1_rsid) %>%
+  group_by(Chromosome,Position,MarkerName,INF1_rsid,hg19_coordinates) %>%
+  summarise(nprots=n(),
+            prots=paste(target.short,collapse=";"),
+            Allele1=paste(toupper(Allele1),collapse=";"),
+            Allele2=paste(toupper(Allele2),collapse=";"),
+            EAF=paste(Freq1,collapse=";"),
+            Effects=paste(Effect,collapse=";"),
+            SEs=paste(StdErr,collapse=";"),
+            log10P=paste(log.P.,collapse=";"),
+            cistrans=paste(cis.trans,collapse=";")) %>% data.frame()
+INF1_aggr_save <- INF1_aggr
+setwd(INF)
+rsid <- INF1_aggr[["INF1_rsid"]]
+catalogue <- "GWAS"
+proxies <- "EUR"
+p <- 5e-8
+r2 <- 0.8
+build <- 37
+efo_diseases <- read.table(file.path(INF,"ebi","efo-3.26.0","efo_diseases.csv"),col.names=c("efo","disease"),as.is=TRUE,sep=",") %>%
+                mutate(efo=gsub(":", "_", efo))
+
+r <- snpqueries(rsid, catalogue=catalogue, proxies=proxies, p=p, r2=r2, build=build)
+lapply(r,dim)
+snps_results <- with(r,right_join(snps,results))
+ps <- subset(snps_results,select=-c(hg38_coordinates,ref_hg38_coordinates,pos_hg38,ref_pos_hg38,dprime))
+sarcoidosis <- with(ps,grep("sarcoidosis",trait))
+ps[sarcoidosis,"efo"] <- "Orphanet_797"
+INF1_aggr <- INF1_aggr_save
+save(INF1_aggr,r,ps,file=file.path(INF,"work","INF1.merge.GWAS"))
+metal <- subset(within(INF1_metal,{HLA <- as.numeric(Chromosome==6 & Position >= 25392021 & Position <= 33392022)}),
+                select=-c(Chromosome,Position,INF1_rsid,Direction))
+aggr <- subset(within(INF1_aggr,{HLA <- as.numeric(Chromosome==6 & Position >= 25392021 & Position <= 33392022)}),
+               select=-c(Chromosome,Position,INF1_rsid))
+immune_infection <- read.delim("doc/immune.efos.txt",as.is=TRUE)
+immune_infection_efo <- with(immune_infection,gsub(":","_",id))
+long <- cbind(merge(metal,subset(ps,efo%in%immune_infection_efo),by="hg19_coordinates"),infection=0)
+short <- cbind(merge(aggr,subset(ps,efo%in%immune_infection_efo),by="hg19_coordinates"),infection=0)
+infection_efo <- with(subset(immune_infection,infection==1),gsub(":","_",id))
+long[with(long,efo)%in%infection_efo,"infection"] <- 1
+short[with(short,efo)%in%infection_efo,"infection"] <- 1
+
+SF <- function(rxc, f="SF-pQTL-GWAS.png", ch=21, cw=21, h=13, w=18, ylab="Immune-mediated outcomes")
+{
+  library(pheatmap)
+  col <- colorRampPalette(c("#4287f5","#ffffff","#e32222"))(3)
+  library(grid)
+  png(file.path(INF,f),res=300,width=w,height=h,units="in")
+  setHook("grid.newpage", function() pushViewport(viewport(x=1,y=1,width=0.9, height=0.9, name="vp", just=c("right","top"))), action="prepend")
+  colnames(rxc) <- gsub("^[0-9]*-","",colnames(rxc))
+  pheatmap(rxc, legend=FALSE, angle_col="315", border_color="black", color=col, cellheight=ch, cellwidth=cw, cluster_rows=TRUE, cluster_cols=FALSE, fontsize=16)
+  setHook("grid.newpage", NULL, "replace")
+  grid.text("pQTL (gene)", y=-0.07, gp=gpar(fontsize=15))
+  grid.text(ylab, x=-0.07, rot=90, gp=gpar(fontsize=15))
+  dev.off()
+}
+
+gwas <- function()
+{
+  short <- merge(aggr,ps,by="hg19_coordinates") %>%
+           filter(efo %in% pull(efo_diseases,efo)) %>%
+           left_join(efo_diseases)
+  v <- c("prots","hgnc","MarkerName","cistrans","Effects","Allele1","Allele2","rsid","a1","a2","efo",
+         "ref_rsid","ref_a1","ref_a2","proxy","r2",
+         "HLA","beta","se","p","disease","n_cases","n_controls","unit","ancestry","pmid","study")
+  mat <- within(short[v],
+  {
+    flag <- (HLA==1)
+    prefix <- paste0(prots,"-",rsid)
+    prefix[flag] <- paste0(prefix[flag],"*")
+    rsidProts <- paste0(prefix," (",hgnc,")")
+    efoTraits <- gsub("\\b(^[a-z])","\\U\\1",disease,perl=TRUE)
+    qtl_direction <- sign(as.numeric(beta))
+  })
+  combined <- group_by(mat,efoTraits,rsidProts,desc(n_cases)) %>%
+              summarize(direction=paste(qtl_direction,collapse=";"),
+                        betas=paste(beta,collapse=";"),
+                        units=paste(unit,collapse=";"),
+                        studies=paste(study,collapse=";"),
+                        diseases=paste(disease,collapse=";"),
+                        cases=paste(n_cases,collapse=";")
+                       ) %>%
+              data.frame()
+  rxc <- with(combined,table(efoTraits,rsidProts))
+  for(cn in colnames(rxc)) for(rn in rownames(rxc)) {
+     cnrn <- subset(combined,efoTraits==rn & rsidProts==cn)
+     if(nrow(cnrn)==0) next
+     rxc[rn,cn] <- as.numeric(unlist(strsplit(cnrn[["direction"]],";"))[1])
+  }
+  # all beta's are NAs when unit=="-"
+  subset(mat[c("study","pmid","unit","beta","qtl_direction")],unit=="-")
+  # all studies with risk difference were UKBB
+  subset(mat[c("study","pmid","unit","beta","n_cases","n_controls","qtl_direction")],unit=="risk diff")
+  write.table(mat,file=file.path(INF,"work","pQTL-disease-GWAS.csv"),row.names=FALSE,quote=FALSE,sep=",")
+  write.table(combined,file=file.path(INF,"work","pQTL-disease-GWAS-combined.csv"),row.names=FALSE,quote=FALSE,sep=",")
+  rxc
+}
+
+rxc <- gwas()
+SF(rxc,f="SF-pQTL-GWAS.png",ch=21,cw=21,h=30,w=20,ylab="GWAS traits and diseases")
+```
+
 ## Colocalization
 
 This is the actual script for cis-pQTL colocalization analysis on GTEx v8, as reported in @kerimov21, for SCALLOP-INF. 
