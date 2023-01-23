@@ -119,7 +119,7 @@ log2.na <- function(x) log2(ifelse(x>0, x, NA))
 exprs(exampleSet) <- log2.na(exprs(exampleSet))
 ```
 
-## Limit of detection (LOD)
+# Limit of detection (LOD)
 
 We generate a `lod.max` ~ U[0,1] variable to experiment
 
