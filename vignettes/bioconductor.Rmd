@@ -102,7 +102,7 @@ res <- results(dds2)
 knitr::kable(head(as.data.frame(res)))
 ```
 
-See the package in action from a snakemake workflow @johannes_koster_2021_5245549.
+See the package in action from a snakemake workflow @koster21.
 
 # Gene co-expression and network analysis
 
@@ -256,7 +256,7 @@ eKEGG <- enricher(gene=VEGF, TERM2GENE = kegg_t2g,
 
 # Transcript databases
 
-An overview of annotation is available @carlson2016.
+An overview of annotation is available @carlson16.
 
 ```{r ts-data, messages=FALSE}
 options(width=200)
