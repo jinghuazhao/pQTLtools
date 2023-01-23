@@ -33,6 +33,7 @@ Suggests:
     TwoSampleMR,
     VariantAnnotation,
     biomaRt,
+    bookdown,
     circlize,
     coloc,
     cowplot,
