@@ -75,7 +75,8 @@ with(cistrans.check,table(Type,cis.trans))
 ```
 
 This is used to generate 2d-pQTL plot
-```{r qtl2dplot, fig.cap="2d pQTL plot", fig.height=8}
+
+```{r qtl2dplot, fig.cap="2d pQTL plot", fig.height=8, fig.width=8}
 t2d <- qtl2dplot(cis.vs.trans,xlab="pQTL position",ylab="Gene position")
 ```
 
