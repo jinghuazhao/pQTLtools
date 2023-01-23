@@ -52,6 +52,7 @@ library(ontologyIndex)
 # GO
 data(go)
 # EFO
+# http://www.ebi.ac.uk/efo/efo.obo
 file <- file.path(INF,"ebi","efo-3.26.0","efo.obo")
 get_relation_names(file)
 efo <- get_ontology(file, extract_tags="everything")
@@ -75,18 +76,7 @@ efo_0000540 <- get_descendants(efo,"EFO:0000540")
 efo_0000540name <- efo$name[efo_0000540]
 isd <- data.frame(efo_0000540,efo_0000540name)
 library(ontologyPlot)
-pdf(file.path(INF,"ebi","efo-3.26.0","efo_0000540.pdf"),height=15,width=15)
 onto_plot(efo,efo_0000540)
-dev.off()
-
-write.table(diseases,file=file.path(INF,"ebi","efo-3.26.0","efo_diseases.csv"),col.names=FALSE,row.names=FALSE,sep=",")
-write.table(isd,file=file.path(INF,"ebi","efo-3.26.0","efo_0000540.csv"),col.names=FALSE,row.names=FALSE,sep=",")
-
-# https://bioconductor.org/packages/release/bioc/vignettes/gwascat/inst/doc/gwascatOnt.html
-# https://cran.r-project.org/web/packages/ontologyIndex/vignettes/intro-to-ontologyX.html
-# https://www.ebi.ac.uk/ols/ontologies/efo
-# http://www.ebi.ac.uk/efo/efo.obo
-# http://www.ebi.ac.uk/efo/releases/v3.14.0/efo.owl
 ```
 
 ### Lookup and visualization
