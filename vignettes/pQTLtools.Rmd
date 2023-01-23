@@ -1,13 +1,9 @@
 ---
 title: "An Overview of pQTLtools"
 output:
-  rmarkdown::html_vignette:
-    check_title: false
-    fig_caption:  true
-    mathjax:  default
-    section_numbering: true
+  bookdown::html_document2:
     toc: true
-    toc_depth: 2
+    toc_float: true
 fontsize: 11pt
 bibliography: refs.bib
 csl: nature-genetics.csl
@@ -40,6 +36,7 @@ invisible(suppressMessages(lapply(pkgs, require, character.only=TRUE)))
 ```
 
 # cis/trans classification
+
 ```{r cistrans, fig.cap="cis/trans classification", fig.height=7, fig.width=7}
 options(width=200)
 f <- file.path("~","pQTLtools","tests","INF1.merge")
@@ -82,7 +79,7 @@ t2d <- qtl2dplot(cis.vs.trans,xlab="pQTL position",ylab="Gene position")
 
 whose result can be also viewed in a 2-d plotly style,
 
-```{r qtl2dplotly, echo=FALSE, fig.cap="2d pQTL plotly", fig.height=8, fig.width=8, plotly=TRUE}
+```{r qtl2dplotly, fig.cap="2d pQTL plotly", fig.height=8, fig.width=8, plotly=TRUE}
 fig2d <- qtl2dplotly(cis.vs.trans,xlab="pQTL position",ylab="Gene position")
 fig2d
 # htmlwidgets::saveWidget(fig2d,file="fig2d.html")
@@ -90,12 +87,14 @@ fig2d
 
 and 3-d counterpart
 
-```{r qtl3dplotly, echo=FALSE, fig.cap="3d pQTL plotly", fig.height=8, fig.width=8, plotly=TRUE}
+```{r qtl3dplotly, fig.cap="3d pQTL plotly", fig.height=8, fig.width=8, plotly=TRUE}
 fig3d <- qtl3dplotly(cis.vs.trans,zmax=300,qtl.prefix="pQTL:",xlab="pQTL position",ylab="Gene position")
 fig3d
 # htmlwidgets::saveWidget(fig3d,file="fig3d.html")
 ```
+
 and ideogram (biomaRt is not always on so we keep a copy of hgnc)
+
 ```r
 set_config(config(ssl_verifypeer = 0L))
 mart <- useMart(biomart = "ensembl", dataset = "hsapiens_gene_ensembl")
@@ -189,6 +188,7 @@ for (r in c("IL12B","KITLG","TNFSF10"))
 ```
 
 The top terms at Binomial p=1e-5 could be extracted as follows,
+
 ```{r, echo=FALSE}
 options(width=100)
 great3 <- filter(tb_all,BinomP<=1e-5) %>% mutate(ID=gsub(":",": ",ID))
