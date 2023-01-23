@@ -212,6 +212,10 @@ rxc <- gwas()
 SF(rxc,f="SF-pQTL-GWAS.png",ch=21,cw=21,h=30,w=20,ylab="GWAS traits and diseases")
 ```
 
+```{r gwas, echo=FALSE, fig.align="left", fig.cap="pQTL-disease overlap", fig.height=8, fig.width=8}
+knitr::include_graphics("SF-pQTL-GWAS.png")
+```
+
 ## Colocalization
 
 This is the actual script for cis-pQTL colocalization analysis on GTEx v8, as reported in @kerimov21, for SCALLOP-INF. 
