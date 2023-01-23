@@ -35,24 +35,7 @@ The ontology of traits/disease is available through Experimental Factor Ontology
 ## Lists of diseases
 
 ```r
-library(gwascat)
-requireNamespace("graph")
-makeCurrentGwascat(genome="GRCh37")
-data(efo.obo.g)
-efo.obo.g
-head(graph::nodes(efo.obo.g))
-graph::nodeData(efo.obo.g, "EFO:0000540")
-ue = graph::ugraph(efo.obo.g)
-neighISD = graph::adj(ue, "EFO:0000540")[[1]]
-sapply(graph::nodeData(graph::subGraph(neighISD, efo.obo.g)), "[[", "name")
-requireNamespace("RBGL")
-p = RBGL::sp.between(efo.obo.g, "EFO:0000685", "EFO:0000001")
-sapply(graph::nodeData(graph::subGraph(p[[1]]$path_detail, efo.obo.g)), "[[", "name")
-
 library(ontologyIndex)
-# GO
-data(go)
-# EFO
 # http://www.ebi.ac.uk/efo/efo.obo
 INF <- Sys.getenv("INF")
 file <- file.path(INF,"ebi","efo-3.26.0","efo.obo")
@@ -113,7 +96,6 @@ INF1_aggr <- INF1_metal %>%
                        log10P=paste(log.P.,collapse=";"),
                        cistrans=paste(cis.trans,collapse=";")) %>%
              data.frame()
-INF1_aggr_save <- INF1_aggr
 setwd(INF)
 rsid <- INF1_aggr[["INF1_rsid"]]
 catalogue <- "GWAS"
@@ -142,7 +124,7 @@ infection_efo <- with(subset(immune_infection,infection==1),gsub(":","_",id))
 long[with(long,efo)%in%infection_efo,"infection"] <- 1
 short[with(short,efo)%in%infection_efo,"infection"] <- 1
 
-SF <- function(rxc, f="SF-pQTL-IMD-GWAS.png", ch=21, cw=21, h=13, w=18, ylab="Immune-mediated outcomes")
+SF <- function(rxc, f="SF-pQTL-GWAS.png", ch=21, cw=21, h=13, w=18, ylab="Immune-mediated outcomes")
 {
   library(pheatmap)
   col <- colorRampPalette(c("#4287f5","#ffffff","#e32222"))(3)
