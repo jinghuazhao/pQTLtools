@@ -124,21 +124,6 @@ infection_efo <- with(subset(immune_infection,infection==1),gsub(":","_",id))
 long[with(long,efo)%in%infection_efo,"infection"] <- 1
 short[with(short,efo)%in%infection_efo,"infection"] <- 1
 
-SF <- function(rxc, f="SF-pQTL-GWAS.png", ch=21, cw=21, h=13, w=18, ylab="Immune-mediated outcomes")
-{
-  library(pheatmap)
-  col <- colorRampPalette(c("#4287f5","#ffffff","#e32222"))(3)
-  library(grid)
-  png(file.path(INF,f),res=300,width=w,height=h,units="in")
-  setHook("grid.newpage", function() pushViewport(viewport(x=1,y=1,width=0.9, height=0.9, name="vp", just=c("right","top"))), action="prepend")
-  colnames(rxc) <- gsub("^[0-9]*-","",colnames(rxc))
-  pheatmap(rxc, legend=FALSE, angle_col="270", border_color="black", color=col, cellheight=ch, cellwidth=cw, cluster_rows=TRUE, cluster_cols=FALSE, fontsize=8)
-  setHook("grid.newpage", NULL, "replace")
-  grid.text("pQTL (gene)", y=0.03125, gp=gpar(fontsize=12))
-  grid.text(ylab, x=-0.0625, rot=90, gp=gpar(fontsize=12))
-  dev.off()
-}
-
 gwas <- function()
 {
   short <- merge(aggr,ps,by="hg19_coordinates") %>%
@@ -176,8 +161,23 @@ gwas <- function()
   rxc
 }
 
+SF <- function(rxc, f="SF-pQTL-GWAS.png", ch=21, cw=21, h=13, w=18, ylab="Immune-mediated outcomes")
+{
+  library(pheatmap)
+  col <- colorRampPalette(c("#4287f5","#ffffff","#e32222"))(3)
+  library(grid)
+  png(file.path(INF,f),res=300,width=w,height=h,units="in")
+  setHook("grid.newpage", function() pushViewport(viewport(x=1,y=1,width=0.9, height=0.9, name="vp", just=c("right","top"))), action="prepend")
+  colnames(rxc) <- gsub("^[0-9]*-","",colnames(rxc))
+  pheatmap(rxc, legend=FALSE, angle_col="270", border_color="black", color=col, cellheight=ch, cellwidth=cw, cluster_rows=TRUE, cluster_cols=FALSE, fontsize=8)
+  setHook("grid.newpage", NULL, "replace")
+  grid.text("pQTL (gene)", y=0.03125, gp=gpar(fontsize=12))
+  grid.text(ylab, x=-0.0625, rot=90, gp=gpar(fontsize=12))
+  dev.off()
+}
+
 rxc <- gwas()
-SF(rxc,f="SF-pQTL-GWAS.png",ch=8,cw=8,h=11,w=8.6,ylab="GWAS traits and diseases")
+SF(rxc,f="SF-pQTL-GWAS.png",ch=8,cw=8,h=11,w=8.6,ylab="GWAS diseases")
 ```
 
 ```{r gwas, echo=FALSE, fig.align="left", fig.cap="pQTL-disease overlap", fig.height=8, fig.width=8}
