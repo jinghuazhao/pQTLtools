@@ -8,7 +8,7 @@ fontsize: 11pt
 bibliography: refs.bib
 csl: nature-genetics.csl
 pkgdown:
-  as_is: true
+  as_is: false
 vignette: >
   %\VignetteIndexEntry{An Overview of pQTLtools}
   %\VignetteEngine{knitr::rmarkdown}
@@ -77,20 +77,20 @@ This is used to generate 2d-pQTL plot
 t2d <- qtl2dplot(cis.vs.trans,xlab="pQTL position",ylab="Gene position")
 ```
 
-whose result can be also viewed in a 2-d plotly style,
+whose result can be also viewed in a 2-d plotly style, [fig2d.html](fig2d.html)
 
 ```{r qtl2dplotly, fig.cap="2d pQTL plotly", fig.height=8, fig.width=8, plotly=TRUE}
 fig2d <- qtl2dplotly(cis.vs.trans,xlab="pQTL position",ylab="Gene position")
 fig2d
-# htmlwidgets::saveWidget(fig2d,file="fig2d.html")
+htmlwidgets::saveWidget(fig2d,file="fig2d.html")
 ```
 
-and 3-d counterpart
+and 3-d counterpart, [fig3d.html](fig3d.html)
 
 ```{r qtl3dplotly, fig.cap="3d pQTL plotly", fig.height=8, fig.width=8, plotly=TRUE}
 fig3d <- qtl3dplotly(cis.vs.trans,zmax=300,qtl.prefix="pQTL:",xlab="pQTL position",ylab="Gene position")
 fig3d
-# htmlwidgets::saveWidget(fig3d,file="fig3d.html")
+htmlwidgets::saveWidget(fig3d,file="fig3d.html")
 ```
 
 and ideogram (biomaRt is not always on so we keep a copy of hgnc)
