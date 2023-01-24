@@ -77,20 +77,20 @@ This is used to generate 2d-pQTL plot
 t2d <- qtl2dplot(cis.vs.trans,xlab="pQTL position",ylab="Gene position")
 ```
 
-whose result can be also viewed in a 2-d plotly style, [fig2d.html](fig2d.html)
+whose result can be also viewed in a 2-d plotly style, [fig2d.html](fig2d.html),
 
 ```{r qtl2dplotly, fig.cap="2d pQTL plotly", fig.height=8, fig.width=8, plotly=TRUE}
 fig2d <- qtl2dplotly(cis.vs.trans,xlab="pQTL position",ylab="Gene position")
-fig2d
 htmlwidgets::saveWidget(fig2d,file="fig2d.html")
+fig2d
 ```
 
-and 3-d counterpart, [fig3d.html](fig3d.html)
+and 3-d counterpart, [fig3d.html](fig3d.html),
 
 ```{r qtl3dplotly, fig.cap="3d pQTL plotly", fig.height=8, fig.width=8, plotly=TRUE}
 fig3d <- qtl3dplotly(cis.vs.trans,zmax=300,qtl.prefix="pQTL:",xlab="pQTL position",ylab="Gene position")
-fig3d
 htmlwidgets::saveWidget(fig3d,file="fig3d.html")
+fig3d
 ```
 
 and ideogram (biomaRt is not always on so we keep a copy of hgnc)
@@ -324,7 +324,7 @@ analysis.  The output are saved in the `.RDS` files. Note that `ftp_path` change
 
 ## pQTL-based MR
 
-The function `pqtlMR` is derived from @zheng20. It has an attractive feature that multiple pQTLs
+The function `pqtlMR` @zheng20 has an attractive feature that multiple pQTLs
 can be used together for conducting MR with a list of outcomes from MR-Base. For generic applications
 the `run_TwoSampleMR()` function can be used.
 
@@ -345,7 +345,7 @@ invisible(sapply(c("harmonise","result","single"),
 
 ## run_TwoSampleMR
 
-The function has similiarity to @dt18. The documentation example is quoted here,
+The documentation example is quoted here for the function @dt18,
 
 ```{r run_TwoSampleMR, fig.cap="Two-sample MR", fig.height=7, fig.width=7, results='hide', warning=FALSE}
 outcomes <- "ebi-a-GCST007432"
@@ -441,7 +441,7 @@ mr_forestplot(tnfb,colgap.forest.left="0.05cm", fontsize=14,
 
 # Literature on pQTLs
 
-Those as identified by @sun18 and @suhre20 are included as EndNote libraries which is now part of pQTLdata package.
+References @sun18 @suhre20 are included as EndNote libraries which is now part of pQTLdata package.
 
 # UniProt IDs
 
