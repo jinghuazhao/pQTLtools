@@ -14,6 +14,8 @@ function build()
 # pandoc README.md --citeproc --mathjax -s --self-contained -o index.html
 }
 
+cd ~/pQTLtools
+
 # build
 
 if [ -d vignettes/bioconductor ]; then
@@ -50,3 +52,5 @@ git add -f docs
 git commit -m "docs"
 git push
 du -h --exclude .git --exclude docs
+
+cd -
