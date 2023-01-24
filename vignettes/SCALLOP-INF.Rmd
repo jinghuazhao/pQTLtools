@@ -167,7 +167,7 @@ rxc <- gwas()
 ## Visualization
 
 ```r
-SF <- function(rxc, f="SF-pQTL-GWAS.png", ch=21, cw=21, h=13, w=18, ylab="Immune-mediated outcomes")
+SF <- function(rxc, f="SF-pQTL-GWAS.png", ch=21, cw=21, h=13, w=18)
 {
   library(pheatmap)
   col <- colorRampPalette(c("#4287f5","#ffffff","#e32222"))(3)
@@ -178,11 +178,11 @@ SF <- function(rxc, f="SF-pQTL-GWAS.png", ch=21, cw=21, h=13, w=18, ylab="Immune
   pheatmap(rxc, legend=FALSE, angle_col="270", border_color="black", color=col, cellheight=ch, cellwidth=cw, cluster_rows=TRUE, cluster_cols=FALSE, fontsize=8)
   setHook("grid.newpage", NULL, "replace")
   grid.text("Protein(s)-pQTL (gene)", y=0.03125, gp=gpar(fontsize=12))
-  grid.text(ylab, x=-0.0625, rot=90, gp=gpar(fontsize=12))
+  grid.text("GWAS diseases", x=-0.0625, rot=90, gp=gpar(fontsize=12))
   dev.off()
 }
 
-SF(rxc,f="SF-pQTL-GWAS.png",ch=8,cw=8,h=11,w=8.6,ylab="GWAS diseases")
+SF(rxc,f="SF-pQTL-GWAS.png",ch=8,cw=8,h=11,w=8.6)
 ```
 
 ```{r gwas, echo=FALSE, fig.align="left", fig.cap="pQTL-disease overlap", fig.height=8, fig.width=8}
