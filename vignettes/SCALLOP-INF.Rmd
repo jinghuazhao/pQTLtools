@@ -32,7 +32,7 @@ This article provides details of pQTL/disease overlap and colocalization analysi
 
 The ontology of traits/disease is available through Experimental Factor Ontology (EFO) @malone10, which can be used to build lists of diseases and immune-mediated traits and filter search results from PhenoScanner @kamat19.
 
-## Lists of diseases
+## Diseases
 
 ```r
 library(ontologyIndex)
@@ -65,7 +65,7 @@ library(ontologyPlot)
 onto_plot(efo,efo_0000540)
 ```
 
-## Lookup and visualization
+## Lookup
 
 ```r
 options(width=200)
@@ -161,6 +161,12 @@ gwas <- function()
   rxc
 }
 
+rxc <- gwas()
+```
+
+## Visualization
+
+```r
 SF <- function(rxc, f="SF-pQTL-GWAS.png", ch=21, cw=21, h=13, w=18, ylab="Immune-mediated outcomes")
 {
   library(pheatmap)
@@ -171,12 +177,11 @@ SF <- function(rxc, f="SF-pQTL-GWAS.png", ch=21, cw=21, h=13, w=18, ylab="Immune
   colnames(rxc) <- gsub("^[0-9]*-","",colnames(rxc))
   pheatmap(rxc, legend=FALSE, angle_col="270", border_color="black", color=col, cellheight=ch, cellwidth=cw, cluster_rows=TRUE, cluster_cols=FALSE, fontsize=8)
   setHook("grid.newpage", NULL, "replace")
-  grid.text("pQTL (gene)", y=0.03125, gp=gpar(fontsize=12))
+  grid.text("Protein(s)-pQTL (gene)", y=0.03125, gp=gpar(fontsize=12))
   grid.text(ylab, x=-0.0625, rot=90, gp=gpar(fontsize=12))
   dev.off()
 }
 
-rxc <- gwas()
 SF(rxc,f="SF-pQTL-GWAS.png",ch=8,cw=8,h=11,w=8.6,ylab="GWAS diseases")
 ```
 
