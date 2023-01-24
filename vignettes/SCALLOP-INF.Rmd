@@ -76,7 +76,7 @@ suppressMessages(library(pQTLtools))
 
 inf1_prot <- vector()
 for(i in 1:92) inf1_prot[inf1[i,"prot"]] <- mutate(inf1[i,],target.short=if_else(!is.na(alt_name),alt_name,target.short))[["target.short"]]
-INF1_metal <- within(read.delim(file.path(INF,"work","INF1.METAL"),as.is=TRUE),{
+INF1_metal <- within(read.delim(file.path("~","pQTLtools","tests","INF1.METAL"),as.is=TRUE),{
                     hg19_coordinates=paste0("chr",Chromosome,":",Position)}) %>%
                     rename(INF1_rsid=rsid, Total=N) %>%
                     left_join(pQTLdata::inf1[c("prot","gene","target.short","alt_name")]) %>%
@@ -96,13 +96,14 @@ INF1_aggr <- INF1_metal %>%
                        log10P=paste(log.P.,collapse=";"),
                        cistrans=paste(cis.trans,collapse=";")) %>%
              data.frame()
-setwd(INF)
 rsid <- INF1_aggr[["INF1_rsid"]]
 catalogue <- "GWAS"
 proxies <- "EUR"
 p <- 5e-8
 r2 <- 0.8
 build <- 37
+
+INF <- Sys.getenv("INF")
 efo_diseases <- read.table(file.path(INF,"ebi","efo-3.26.0","efo_diseases.csv"),col.names=c("efo","disease"),as.is=TRUE,sep=",") %>%
                 mutate(efo=gsub(":", "_", efo))
 
@@ -110,19 +111,9 @@ r <- snpqueries(rsid, catalogue=catalogue, proxies=proxies, p=p, r2=r2, build=bu
 lapply(r,dim)
 snps_results <- with(r,right_join(snps,results))
 ps <- subset(snps_results,select=-c(hg38_coordinates,ref_hg38_coordinates,pos_hg38,ref_pos_hg38,dprime))
-sarcoidosis <- with(ps,grep("sarcoidosis",trait))
-ps[sarcoidosis,"efo"] <- "Orphanet_797"
-metal <- subset(within(INF1_metal,{HLA <- as.numeric(Chromosome==6 & Position >= 25392021 & Position <= 33392022)}),
-                select=-c(Chromosome,Position,INF1_rsid,Direction))
 aggr <- subset(within(INF1_aggr,{HLA <- as.numeric(Chromosome==6 & Position >= 25392021 & Position <= 33392022)}),
                select=-c(Chromosome,Position,INF1_rsid))
-immune_infection <- read.delim("doc/immune.efos.txt",as.is=TRUE)
-immune_infection_efo <- with(immune_infection,gsub(":","_",id))
-long <- cbind(merge(metal,subset(ps,efo%in%immune_infection_efo),by="hg19_coordinates"),infection=0)
-short <- cbind(merge(aggr,subset(ps,efo%in%immune_infection_efo),by="hg19_coordinates"),infection=0)
-infection_efo <- with(subset(immune_infection,infection==1),gsub(":","_",id))
-long[with(long,efo)%in%infection_efo,"infection"] <- 1
-short[with(short,efo)%in%infection_efo,"infection"] <- 1
+short <- merge(aggr,ps,by="hg19_coordinates")
 
 gwas <- function()
 {
