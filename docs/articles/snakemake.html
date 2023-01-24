@@ -163,31 +163,19 @@ Currently <code>input/</code> contains data on CD40, OPG and heart failures – 
 </div>
 </div>
 <div class="section level2" number="2">
-<h2 id="references">
-<span class="header-section-number">2</span> References<a class="anchor" aria-label="anchor" href="#references"></a>
+<h2 id="installation">
+<span class="header-section-number">2</span> Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>An introduction, <a href="https://ucdavis-bioinformatics-training.github.io/2020-Genome_Assembly_Workshop/snakemake/snakemake_intro" class="external-link">https://ucdavis-bioinformatics-training.github.io/2020-Genome_Assembly_Workshop/snakemake/snakemake_intro</a>.</p>
-<p>csd3, <a href="https://cambridge-ceu.github.io/csd3/applications/snakemake.html" class="external-link">https://cambridge-ceu.github.io/csd3/applications/snakemake.html</a>.</p>
-<p>snakemake-with-R, <a href="https://github.com/fritzbayer/snakemake-with-R" class="external-link">https://github.com/fritzbayer/snakemake-with-R</a>.</p>
-<p>snakemake-workflows, <a href="https://github.com/snakemake-workflows/" class="external-link">https://github.com/snakemake-workflows/</a>.</p>
-<p>Edwards D (2022). Plant Bioinformatics-Methods and Protocols, 3e. <a href="https://link.springer.com/book/10.1007/978-1-0716-2067-0" class="external-link uri">https://link.springer.com/book/10.1007/978-1-0716-2067-0</a>. <a href="https://link.springer.com/protocol/10.1007/978-1-0716-2067-0_11" class="external-link">Chapter 11</a>; <a href="https://link.springer.com/protocol/10.1007/978-1-0716-2067-0_9" class="external-link">Chapter 9</a>.</p>
-<p><a href="https://www.ahajournals.org/doi/10.1161/CIRCULATIONAHA.121.056663" class="external-link"><img src="https://www.ahajournals.org/pb-assets/images/logos/circ-logo-1526571039097.svg" alt="Circulation"></a>
-<a href="https://zenodo.org/badge/latestdoi/429122036" class="external-link"><img src="https://zenodo.org/badge/429122036.svg" alt="DOI"></a></p>
-</div>
-<div class="section level2" number="3">
-<h2 id="appendix-installation">
-<span class="header-section-number">3</span> Appendix: Installation<a class="anchor" aria-label="anchor" href="#appendix-installation"></a>
-</h2>
-<div class="section level3" number="3.1">
+<div class="section level3" number="2.1">
 <h3 id="github">
-<span class="header-section-number">3.1</span> GitHub<a class="anchor" aria-label="anchor" href="#github"></a>
+<span class="header-section-number">2.1</span> GitHub<a class="anchor" aria-label="anchor" href="#github"></a>
 </h3>
 <p><a href="https://github.com/snakemake/snakemake" class="external-link">GitHub</a> (<a href="https://snakemake.github.io/" class="external-link">documentation</a>, <a href="https://snakemake.readthedocs.io/en/stable/" class="external-link">stable</a>)</p>
 <p>Note that in the following <code>source</code> instead of <code>conda</code> is used to activate.</p>
 </div>
-<div class="section level3" number="3.2">
+<div class="section level3" number="2.2">
 <h3 id="anaconda3">
-<span class="header-section-number">3.2</span> Anaconda3<a class="anchor" aria-label="anchor" href="#anaconda3"></a>
+<span class="header-section-number">2.2</span> Anaconda3<a class="anchor" aria-label="anchor" href="#anaconda3"></a>
 </h3>
 <p><a href="https://www.anaconda.com/" class="external-link">https://www.anaconda.com/</a></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://repo.anaconda.com/archive/Anaconda3-2020.07-Linux-x86_64.sh</span>
@@ -200,9 +188,9 @@ Currently <code>input/</code> contains data on CD40, OPG and heart failures – 
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> update <span class="at">-n</span> anaconda snakemake</span></code></pre></div>
 <p>The remove option is useful when resolving compatibility issues.</p>
 </div>
-<div class="section level3" number="3.3">
+<div class="section level3" number="2.3">
 <h3 id="miniconda3">
-<span class="header-section-number">3.3</span> Miniconda3<a class="anchor" aria-label="anchor" href="#miniconda3"></a>
+<span class="header-section-number">2.3</span> Miniconda3<a class="anchor" aria-label="anchor" href="#miniconda3"></a>
 </h3>
 <p><a href="https://docs.conda.io/en/latest/miniconda.html" class="external-link">https://docs.conda.io/en/latest/miniconda.html</a></p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh</span>
@@ -213,9 +201,9 @@ Currently <code>input/</code> contains data on CD40, OPG and heart failures – 
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> activate miniconda</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> install <span class="at">-c</span> bioconda fastqc</span></code></pre></div>
 </div>
-<div class="section level3" number="3.4">
+<div class="section level3" number="2.4">
 <h3 id="a-slurm-example">
-<span class="header-section-number">3.4</span> A SLURM example<a class="anchor" aria-label="anchor" href="#a-slurm-example"></a>
+<span class="header-section-number">2.4</span> A SLURM example<a class="anchor" aria-label="anchor" href="#a-slurm-example"></a>
 </h3>
 <p>The Caprion project, <a href="https://jinghuazhao.github.io/Caprion/" class="external-link">https://jinghuazhao.github.io/Caprion/</a>,
 experiments with a <code>workflow/config.yaml</code> as follows,</p>
@@ -277,6 +265,18 @@ experiments with a <code>workflow/config.yaml</code> as follows,</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">snakemake</span> <span class="at">--j4</span> <span class="at">--use-conda</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">snakemake</span> <span class="at">--profile</span> slurm</span></code></pre></div>
 </div>
+</div>
+<div class="section level2" number="3">
+<h2 id="references">
+<span class="header-section-number">3</span> References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h2>
+<p>An introduction, <a href="https://ucdavis-bioinformatics-training.github.io/2020-Genome_Assembly_Workshop/snakemake/snakemake_intro" class="external-link">https://ucdavis-bioinformatics-training.github.io/2020-Genome_Assembly_Workshop/snakemake/snakemake_intro</a>.</p>
+<p>csd3, <a href="https://cambridge-ceu.github.io/csd3/applications/snakemake.html" class="external-link">https://cambridge-ceu.github.io/csd3/applications/snakemake.html</a>.</p>
+<p>snakemake-with-R, <a href="https://github.com/fritzbayer/snakemake-with-R" class="external-link">https://github.com/fritzbayer/snakemake-with-R</a>.</p>
+<p>snakemake-workflows, <a href="https://github.com/snakemake-workflows/" class="external-link">https://github.com/snakemake-workflows/</a>.</p>
+<p>Edwards D (2022). Plant Bioinformatics-Methods and Protocols, 3e. <a href="https://link.springer.com/book/10.1007/978-1-0716-2067-0" class="external-link uri">https://link.springer.com/book/10.1007/978-1-0716-2067-0</a>. <a href="https://link.springer.com/protocol/10.1007/978-1-0716-2067-0_11" class="external-link">Chapter 11</a>; <a href="https://link.springer.com/protocol/10.1007/978-1-0716-2067-0_9" class="external-link">Chapter 9</a>.</p>
+<p><a href="https://www.ahajournals.org/doi/10.1161/CIRCULATIONAHA.121.056663" class="external-link"><img src="https://www.ahajournals.org/pb-assets/images/logos/circ-logo-1526571039097.svg" alt="Circulation"></a>
+<a href="https://zenodo.org/badge/latestdoi/429122036" class="external-link"><img src="https://zenodo.org/badge/429122036.svg" alt="DOI"></a></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
