@@ -54,22 +54,7 @@ snakemake --dag | dot -Tsvg > output/dag.svg
 
 ![Figure 2. Directed Acyclic Graph (DAG)](dag.svg)
 
-# References
-
-An introduction, [https://ucdavis-bioinformatics-training.github.io/2020-Genome_Assembly_Workshop/snakemake/snakemake_intro](https://ucdavis-bioinformatics-training.github.io/2020-Genome_Assembly_Workshop/snakemake/snakemake_intro).
-
-csd3, [https://cambridge-ceu.github.io/csd3/applications/snakemake.html](https://cambridge-ceu.github.io/csd3/applications/snakemake.html).
-
-snakemake-with-R, [https://github.com/fritzbayer/snakemake-with-R](https://github.com/fritzbayer/snakemake-with-R).
-
-snakemake-workflows, [https://github.com/snakemake-workflows/](https://github.com/snakemake-workflows/).
-
-Edwards D (2022). Plant Bioinformatics-Methods and Protocols, 3e. https://link.springer.com/book/10.1007/978-1-0716-2067-0. [Chapter 11](https://link.springer.com/protocol/10.1007/978-1-0716-2067-0_11); [Chapter 9](https://link.springer.com/protocol/10.1007/978-1-0716-2067-0_9).
-
-[![Circulation](https://www.ahajournals.org/pb-assets/images/logos/circ-logo-1526571039097.svg)](https://www.ahajournals.org/doi/10.1161/CIRCULATIONAHA.121.056663)
-[![DOI](https://zenodo.org/badge/429122036.svg)](https://zenodo.org/badge/latestdoi/429122036)
-
-# Appendix: Installation
+# Installation
 
 ## GitHub
 
@@ -186,3 +171,18 @@ so as to call conda and slurm, respectively.
 snakemake --j4 --use-conda
 snakemake --profile slurm
 ```
+
+# References
+
+An introduction, [https://ucdavis-bioinformatics-training.github.io/2020-Genome_Assembly_Workshop/snakemake/snakemake_intro](https://ucdavis-bioinformatics-training.github.io/2020-Genome_Assembly_Workshop/snakemake/snakemake_intro).
+
+csd3, [https://cambridge-ceu.github.io/csd3/applications/snakemake.html](https://cambridge-ceu.github.io/csd3/applications/snakemake.html).
+
+snakemake-with-R, [https://github.com/fritzbayer/snakemake-with-R](https://github.com/fritzbayer/snakemake-with-R).
+
+snakemake-workflows, [https://github.com/snakemake-workflows/](https://github.com/snakemake-workflows/).
+
+Edwards D (2022). Plant Bioinformatics-Methods and Protocols, 3e. https://link.springer.com/book/10.1007/978-1-0716-2067-0. [Chapter 11](https://link.springer.com/protocol/10.1007/978-1-0716-2067-0_11); [Chapter 9](https://link.springer.com/protocol/10.1007/978-1-0716-2067-0_9).
+
+[![Circulation](https://www.ahajournals.org/pb-assets/images/logos/circ-logo-1526571039097.svg)](https://www.ahajournals.org/doi/10.1161/CIRCULATIONAHA.121.056663)
+[![DOI](https://zenodo.org/badge/429122036.svg)](https://zenodo.org/badge/latestdoi/429122036)
