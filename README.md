@@ -29,18 +29,18 @@ files in `pQTLtools/tests`which can be made public when appropriate.
 
 The latest version of pQTLtools can be installed as usual:
 
-1.  Install from R
+### 1. Install from R
 
 ``` r
 if (!requireNamespace("remotes", quietly = TRUE)) install.packages("remotes")
-remotes::install_github("jinghuazhao/pQTLdata")
+remotes::install_github("jinghuazhao/pQTLtools")
 ```
 
-2.  Install from GitHub repository
+### 2. Install from GitHub repository
 
 ``` bash
-git clone https://github.com/jinghuazhao/pQTLdata
-R CMD INSTALL pQTLdata
+git clone https://github.com/jinghuazhao/pQTLtools
+R CMD INSTALL pQTLtools
 ```
 
 Dependencies are detailed in the DECRIPTION file of the package at
