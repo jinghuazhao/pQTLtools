@@ -142,6 +142,7 @@ gwas <- function()
                        ) %>%
               data.frame()
   rxc <- with(combined,table(efoTraits,rsidProts))
+  rxc[is.na(rxc)] <- 0
   for(cn in colnames(rxc)) for(rn in rownames(rxc)) {
      cnrn <- subset(combined,efoTraits==rn & rsidProts==cn)
      if(nrow(cnrn)==0) next
@@ -154,6 +155,8 @@ gwas <- function()
 
 rxc <- gwas()
 ```
+
+Note that cells with missing values are set to be zero.
 
 ## Visualization
 
