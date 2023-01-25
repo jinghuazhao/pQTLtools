@@ -147,7 +147,6 @@ gwas <- function()
      if(nrow(cnrn)==0) next
      rxc[rn,cn] <- as.numeric(unlist(strsplit(cnrn[["direction"]],";"))[1])
   }
-  rxc[is.na(rxc)] <- 0
   write.table(mat,file=file.path(INF,"work","pQTL-disease-GWAS.csv"),row.names=FALSE,quote=FALSE,sep=",")
   write.table(combined,file=file.path(INF,"work","pQTL-disease-GWAS-combined.csv"),row.names=FALSE,quote=FALSE,sep=",")
   rxc
@@ -155,8 +154,6 @@ gwas <- function()
 
 rxc <- gwas()
 ```
-
-Note that cells with missing values are set to be zero.
 
 ## Visualization
 
