@@ -1,8 +1,5 @@
 
-install.packages("BiocManager")
-install.packages("remotes")
-remotes::install_github("jinghuazhao/pQTLdata")
-
+# Bioconductor
 bioc <- c('BiocVersion', 'Biobase', 'GenomicRanges', 'IRanges', 'TwoSampleMR',
           'VariantAnnotation', 'biomaRt', 'coloc', 'gwasvcf', 'ieugwasr',
           'openxlsx', 'phenoscanner', 'regioneR', 'reticulate', 'rtracklayer',
@@ -11,7 +8,7 @@ bioc <- c('BiocVersion', 'Biobase', 'GenomicRanges', 'IRanges', 'TwoSampleMR',
           'FlowSorted.DLPFC.450k', 'GeneNet', 'RMariaDB', 'Rgraphviz',
           'TxDb.Hsapiens.UCSC.hg38.knownGene', 'bladderbatch', 'clusterProfiler',
           'ensembldb', 'fdrtool', 'graph', 'graphite', 'heatmaply', 'minfi',
-          'org.Hs.eg.db', 'quantro', 'recount3', 'sva'‘snpStats’)
+          'org.Hs.eg.db', 'quantro', 'recount3', 'sva', 'snpStats')
 
 bioc_dep <- c(‘formatR’, ‘gridGraphics’, ‘tweenr’, ‘polyclip’, ‘purrr’, ‘lambda.r’, ‘futile.options’, ‘fastmatch’, ‘ggfun’,
             ‘ggplotify’, ‘patchwork’, ‘ggforce’, ‘ggrepel’, ‘tidygraph’, ‘graphlayouts’, ‘tidytree’, ‘treeio’, ‘rngtools’,
@@ -28,11 +25,21 @@ bioc_dep <- c(‘formatR’, ‘gridGraphics’, ‘tweenr’, ‘polyclip’, �
             ‘preprocessCore’, ‘illuminaio’, ‘DelayedMatrixStats’, ‘mclust’, ‘GEOquery’, ‘DelayedArray’, ‘HDF5Array’,
             ‘R.utils’, ‘sessioninfo’, ‘edgeR’)
 
+install.packages("BiocManager")
 BiocManager::install(c(bioc,bioc_dep))
 
-depend <- c(‘iterators’, ‘irlba’, ‘foreach’, ‘mixsqp’, ‘brew’, ‘SPAtest’, ‘RSpectra’, ‘gsl’, ‘bitops’, ‘rex’, ‘timechange’,
-            ‘palmerpenguins’, ‘TSP’, ‘qap’, ‘gclus’, ‘ca’, ‘registry’, ‘caTools’, ‘susieR’, ‘zip’, ‘roxygen2’, ‘RcppTOML’,
-            ‘here’, ‘SKAT’, ‘TeachingDemos’, ‘ash’, ‘energy’, ‘gifski’, ‘geozoo’, ‘covr’, ‘longitudinal’, ‘blob’, ‘DBI’,
-            ‘lubridate’, ‘plogr’, ‘DBItest’, ‘dendextend’, ‘reshape2’, ‘seriation’, ‘webshot’, ‘assertthat’, ‘egg’, ‘gplots’
+#CRAN
+cran_dep <- c(‘iterators’, ‘irlba’, ‘foreach’, ‘mixsqp’, ‘brew’, ‘SPAtest’, ‘RSpectra’, ‘gsl’, ‘bitops’, ‘rex’, ‘timechange’,
+              ‘palmerpenguins’, ‘TSP’, ‘qap’, ‘gclus’, ‘ca’, ‘registry’, ‘caTools’, ‘susieR’, ‘zip’, ‘roxygen2’, ‘RcppTOML’,
+              ‘here’, ‘SKAT’, ‘TeachingDemos’, ‘ash’, ‘energy’, ‘gifski’, ‘geozoo’, ‘covr’, ‘longitudinal’, ‘blob’, ‘DBI’,
+              ‘lubridate’, ‘plogr’, ‘DBItest’, ‘dendextend’, ‘reshape2’, ‘seriation’, ‘webshot’, ‘assertthat’, ‘egg’, ‘gplots’,
+              ‘glmnet’)
 
-install.packages(c(pkgs,depend), depend=TRUE)
+install.packages(c("remotes",cran_dep), depend=TRUE)
+
+# GitHub
+remotes::install_github("jinghuazhao/pQTLdata")
+remotes::install_github("mrcieu/ieugwasr")
+remotes::install_github("mrcieu/gwasvcf")
+remotes::install_github("mrcieu/TwoSampleMR")
+remotes::install_github("phenoscanner/phenoscanner")
