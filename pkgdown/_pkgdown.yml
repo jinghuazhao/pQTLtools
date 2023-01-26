@@ -2,7 +2,7 @@ home:
   title: Protein Quantitative Trait Locus tools
   description: A protein Quantitative Trait Locus toolkit.
   links:
-  - text: R/gap at CRAN
+  - text: gap from CRAN
     href: https://cloud.r-project.org/package=gap
   - text: rdrr.io snapshots
     href: https://rdrr.io/github/jinghuazhao/pQTLtools/
