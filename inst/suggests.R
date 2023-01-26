@@ -33,7 +33,7 @@ cran_dep <- c(‘iterators’, ‘irlba’, ‘foreach’, ‘mixsqp’, ‘brew
               ‘palmerpenguins’, ‘TSP’, ‘qap’, ‘gclus’, ‘ca’, ‘registry’, ‘caTools’, ‘susieR’, ‘zip’, ‘roxygen2’, ‘RcppTOML’,
               ‘here’, ‘SKAT’, ‘TeachingDemos’, ‘ash’, ‘energy’, ‘gifski’, ‘geozoo’, ‘covr’, ‘longitudinal’, ‘blob’, ‘DBI’,
               ‘lubridate’, ‘plogr’, ‘DBItest’, ‘dendextend’, ‘reshape2’, ‘seriation’, ‘webshot’, ‘assertthat’, ‘egg’, ‘gplots’,
-              ‘glmnet’)
+              'gmp', ‘glmnet’)
 
 install.packages(c("remotes",cran_dep), depend=TRUE)
 
