@@ -108,7 +108,6 @@ reference:
       Some functions are merged into R/gap as shown here, [https://jinghuazhao.github.io/R/vignettes/gap.html](https://jinghuazhao.github.io/R/vignettes/gap.html).
     contents:
     - pQTLtools-package
-  - bibliography: refs.bib
   - title: Functions
     contents:
     - genequeries
