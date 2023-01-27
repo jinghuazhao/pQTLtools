@@ -1079,8 +1079,6 @@ pqtlMR <- function(ivs, ids, mr_plot=FALSE, prefix="pQTL-combined-", reverse=FAL
 #' for (x in c("result","heterogeneity","pleiotropy","single","loo"))
 #'     unlink(paste0(prefix,"-",x,".txt"))
 #'
-#' @note
-#' Adapted from script by Dimou NL, Tsilidis KK.
 #' @keywords utilities
 
 run_TwoSampleMR <- function(TwoSampleMRinput, mr_plot="None", prefix="")
