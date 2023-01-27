@@ -30,7 +30,7 @@ A summary statistic object.
 An adopted function which imports eQTL Catalogue.
 }
 \details{
-This function is based on the eQTL-Catalogue-resources.
+This function is based on the eQTL-Catalogue-resources, \insertCite{kerimov21;textual}{pQTLtools}.
 }
 \note{
 Adapted function.
@@ -137,6 +137,6 @@ ggplot(coloc_df, aes(x = PP.H4.abf)) + geom_histogram()
 }
 }
 \references{
-@kerimov21
+\insertAllCited{}
 }
 \keyword{utilities}

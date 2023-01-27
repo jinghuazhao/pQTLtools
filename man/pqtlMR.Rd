@@ -25,7 +25,7 @@ This function takes data intrumental variables as produced by format_data() and
 used to perform MR analysis against a list of outcomes from MR-Base.
 }
 \details{
-This function is adapted from published implementation.
+This function is adapted from \insertCite{zheng20;textual}{pQTLtools}.
 }
 \note{
 Adapted from script by Jie Zheng.
@@ -49,6 +49,6 @@ pqtlMR(ivs, ids, ,prefix="MS_rev-",reverse=TRUE)
 
 }
 \references{
-@zheng20
+\insertAllCited{}
 }
 \keyword{utilities}
