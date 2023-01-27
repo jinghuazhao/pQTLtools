@@ -25,9 +25,6 @@ As TwoSampleMR faces seemingly perplexing options, this function intends to simp
 e.g., multiple proteins and their cis/trans regions need to be examined, in which case prefix could direct the output
 to various directories.
 }
-\note{
-Adapted from script by Dimou NL, Tsilidis KK.
-}
 \examples{
 library(TwoSampleMR)
 library(pQTLtools)
