@@ -10,7 +10,7 @@
 
 * First release.
 * Depends R (>=3.5.0), pQTLdata
-* Import dplyr, gap, ggplot2
+* Import dplyr, gap, ggplot2, Rdpack (>= 0.7)
 * importFrom utils read.table tail.
 * Import from lmm as template, use save(,compress='xz').
 * Suggest htmlwidgets, plotly.
