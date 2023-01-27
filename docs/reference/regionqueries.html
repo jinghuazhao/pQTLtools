@@ -35,7 +35,7 @@ a large number of calls in batches as well as generating SNPIDs."><meta property
     <h6 class="dropdown-header" data-toc-skip>Articles:</h6>
     <a class="dropdown-item" href="../articles/bioconductor.html">Bioconductor notes</a>
     <a class="dropdown-item" href="../articles/es.html">ExpressionSet usage</a>
-    <a class="dropdown-item" href="../articles/snakemake.html">A snakemake showcase</a>
+    <a class="dropdown-item" href="../articles/snakemake.html">snakemake showcases</a>
     <a class="dropdown-item" href="../articles/SCALLOP-INF.html">SCALLOP-INF scripts</a>
   </div>
 </li>
@@ -49,6 +49,18 @@ a large number of calls in batches as well as generating SNPIDs."><meta property
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
       <ul class="navbar-nav"><li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/jinghuazhao/pQTLtools/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://jinghuazhao.github.io/R/">
+    <span class="fab fa fab fa-r-project"></span>
+     
+  </a>
+</li>
+<li class="nav-item">
   <a class="external-link nav-link" href="https://alphafold.ebi.ac.uk/">
     <span class="fas fa fas fa-fast-backward"></span>
      
@@ -76,18 +88,6 @@ a large number of calls in batches as well as generating SNPIDs."><meta property
 <li class="nav-item">
   <a class="external-link nav-link" href="https://www.uniprot.org/">
     <span class="fas fa fas fa-fast-forward"></span>
-     
-  </a>
-</li>
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://jinghuazhao.github.io/R/">
-    <span class="fab fa fab fa-r-project"></span>
-     
-  </a>
-</li>
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/jinghuazhao/pQTLtools/" aria-label="github">
-    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -166,10 +166,6 @@ a large number of calls in batches as well as generating SNPIDs.</p>
     <p>adapted from custom codings</p>
     </div>
     <div class="section level2">
-    <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
-    <p>Sun BB, et al. (2018). Genomic atlas of the human plasma proteome. <em>Nature</em> 558: 73-79.</p>
-    </div>
-    <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="https://rdrr.io/pkg/phenoscanner/man/phenoscanner.html" class="external-link">phenoscanner</a></code></p></div>
     </div>
@@ -182,12 +178,12 @@ a large number of calls in batches as well as generating SNPIDs.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># SCALLOP -- SomaLogic lookup from PhenoScanner</span></span></span>
 <span class="r-in"><span><span class="va">INF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"INF"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">INF1_merge</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Vector-merge.html" class="external-link">merge</a></span><span class="op">(</span><span class="va">inf1</span>,</span></span>
+<span class="r-in"><span><span class="va">INF1_merge</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html" class="external-link">merge</a></span><span class="op">(</span><span class="va">inf1</span>,</span></span>
 <span class="r-in"><span>                  <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.delim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">INF</span>,<span class="st">"work"</span>,<span class="st">"INF1.merge-rsid"</span><span class="op">)</span>,as.is<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>                  by<span class="op">=</span><span class="st">"prot"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">INF1_merge_uniprot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">INF1_merge</span>,<span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">uniprot</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">SomaLogic_INF1_merge</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">SomaLogic160410</span>,<span class="va">UniProt</span> <span class="op"><a href="https://rdrr.io/pkg/BiocGenerics/man/match.html" class="external-link">%in%</a></span> <span class="va">INF1_merge_uniprot</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">regions</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">INF1_merge</span>,<span class="va">uniprot</span> <span class="op"><a href="https://rdrr.io/pkg/BiocGenerics/man/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">SomaLogic_INF1_merge</span>,<span class="va">UniProt</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">INF1_merge_uniprot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">INF1_merge</span>,<span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">uniprot</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">SomaLogic_INF1_merge</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">SomaLogic160410</span>,<span class="va">UniProt</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">INF1_merge_uniprot</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">regions</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">INF1_merge</span>,<span class="va">uniprot</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">SomaLogic_INF1_merge</span>,<span class="va">UniProt</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">singletons</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">regions</span>, <span class="va">Start</span><span class="op">-</span><span class="va">End</span><span class="op">&lt;=</span><span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">flank</span> <span class="op">&lt;-</span> <span class="fl">5e+2</span></span></span>
 <span class="r-in"><span><span class="va">regions</span><span class="op">[</span><span class="va">singletons</span>,<span class="st">"Start"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">regions</span><span class="op">[</span><span class="va">singletons</span>,<span class="st">"Start"</span><span class="op">]</span> <span class="op">-</span> <span class="va">flank</span></span></span>
@@ -198,13 +194,13 @@ a large number of calls in batches as well as generating SNPIDs.</p>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/save.html" class="external-link">save</a></span><span class="op">(</span><span class="va">r</span>,file<span class="op">=</span><span class="st">"INF1_merge.rda"</span>,compress<span class="op">=</span><span class="st">'xz'</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">r2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">r</span>,</span></span>
 <span class="r-in"><span><span class="op">{</span></span></span>
-<span class="r-in"><span> <span class="va">region_ext</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">tiles</span>,<span class="va">regions</span><span class="op">)</span></span></span>
-<span class="r-in"><span> <span class="va">results_ext</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Vector-merge.html" class="external-link">merge</a></span><span class="op">(</span><span class="va">region_ext</span>,<span class="va">results</span>,by<span class="op">=</span><span class="st">"region"</span><span class="op">)</span></span></span>
-<span class="r-in"><span> <span class="va">ord</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">results_ext</span>,<span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/order.html" class="external-link">order</a></span><span class="op">(</span><span class="va">group</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span> <span class="va">region_ext</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">tiles</span>,<span class="va">regions</span><span class="op">)</span></span></span>
+<span class="r-in"><span> <span class="va">results_ext</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html" class="external-link">merge</a></span><span class="op">(</span><span class="va">region_ext</span>,<span class="va">results</span>,by<span class="op">=</span><span class="st">"region"</span><span class="op">)</span></span></span>
+<span class="r-in"><span> <span class="va">ord</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">results_ext</span>,<span class="fu"><a href="https://rdrr.io/r/base/order.html" class="external-link">order</a></span><span class="op">(</span><span class="va">group</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span> <span class="va">results_ext</span><span class="op">[</span><span class="va">ord</span>,<span class="op">]</span></span></span>
 <span class="r-in"><span><span class="op">}</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">r2</span>,<span class="va">pmid</span><span class="op">==</span><span class="st">"29875488"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">grp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/table.html" class="external-link">table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">results</span>,<span class="va">group</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">r2</span>,<span class="va">pmid</span><span class="op">==</span><span class="st">"29875488"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">grp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">results</span>,<span class="va">group</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/sink.html" class="external-link">sink</a></span><span class="op">(</span><span class="st">"INF1_merge.txt"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>width<span class="op">=</span><span class="fl">250</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="kw">for</span><span class="op">(</span><span class="va">g</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">grp</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -212,9 +208,9 @@ a large number of calls in batches as well as generating SNPIDs.</p>
 <span class="r-in"><span>  <span class="va">uniprot</span> <span class="op">&lt;-</span> <span class="va">regions</span><span class="op">[</span><span class="va">g</span>,<span class="st">"uniprot"</span><span class="op">]</span></span></span>
 <span class="r-in"><span>  <span class="va">SNP</span> <span class="op">&lt;-</span> <span class="va">regions</span><span class="op">[</span><span class="va">g</span>,<span class="st">"SNP"</span><span class="op">]</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">regions</span><span class="op">[</span><span class="va">g</span>,<span class="op">]</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">results</span>,<span class="va">group</span><span class="op">==</span><span class="va">g</span><span class="op">&amp;</span><span class="va">rsid</span><span class="op">==</span><span class="va">SNP</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">results</span>,<span class="va">group</span><span class="op">==</span><span class="va">g</span><span class="op">&amp;</span><span class="va">rsid</span><span class="op">==</span><span class="va">SNP</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">vars</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"region"</span>,<span class="st">"group"</span>,<span class="st">"rsid"</span>,<span class="st">"hg19_coordinates"</span>,<span class="st">"hgnc"</span>,<span class="st">"beta"</span>,<span class="st">"se"</span>,<span class="st">"p"</span>,<span class="st">"snpid"</span><span class="op">)</span> </span></span>
-<span class="r-in"><span>  <span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">s</span><span class="op">)</span><span class="op">&gt;</span><span class="fl">1</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">s</span><span class="op">[</span><span class="va">vars</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">s</span><span class="op">)</span><span class="op">&gt;</span><span class="fl">1</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">s</span><span class="op">[</span><span class="va">vars</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/sink.html" class="external-link">sink</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
