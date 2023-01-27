@@ -56,7 +56,7 @@ navbar:
         - text: SCALLOP-INF scripts
           href: articles/SCALLOP-INF.html
     reference:
-          text: Reference   
+          text: Reference
           href: reference/index.html
     changelog:
           text: Changelog
@@ -108,6 +108,7 @@ reference:
       Some functions are merged into R/gap as shown here, [https://jinghuazhao.github.io/R/vignettes/gap.html](https://jinghuazhao.github.io/R/vignettes/gap.html).
     contents:
     - pQTLtools-package
+  - bibliography: refs.bib
   - title: Functions
     contents:
     - genequeries
