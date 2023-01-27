@@ -324,7 +324,7 @@ analysis.  The output are saved in the `.RDS` files. Note that `ftp_path` change
 
 ## pQTL-based MR
 
-The function `pqtlMR` @zheng20 has an attractive feature that multiple pQTLs
+The function `pqtlMR` has an attractive feature that multiple pQTLs
 can be used together for conducting MR with a list of outcomes from MR-Base. For generic applications
 the `run_TwoSampleMR()` function can be used.
 
