@@ -345,7 +345,7 @@ invisible(sapply(c("harmonise","result","single"),
 
 ## run_TwoSampleMR
 
-The documentation example is quoted here for the function @dt18,
+The documentation example is quoted here,
 
 ```{r run_TwoSampleMR, fig.cap="Two-sample MR", fig.height=7, fig.width=7, results='hide', warning=FALSE}
 outcomes <- "ebi-a-GCST007432"
