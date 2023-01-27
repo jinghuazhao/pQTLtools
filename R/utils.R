@@ -17,8 +17,6 @@
 #'
 #' @export
 #' @return The returned value is a list containing genes and results.
-#' @references
-#' Sun BB, et al. (2018). Genomic atlas of the human plasma proteome. *Nature* 558: 73-79.
 #' @seealso \code{\link[phenoscanner]{phenoscanner}}
 #' @examples
 #' \dontrun{
@@ -75,9 +73,6 @@ genequeries <- function(genelist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.8,bu
 #'
 #' @export
 #' @return The returned value is a list containing tiles, regions and results.
-#'
-#' @references
-#' Sun BB, et al. (2018). Genomic atlas of the human plasma proteome. *Nature* 558: 73-79.
 #'
 #' @seealso \code{\link[phenoscanner]{phenoscanner}}
 #'
@@ -187,8 +182,6 @@ regionqueries <- function(regionlist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.
 #' @export
 #' @return
 #' The returned value is a list containing snps and results:
-#' @references
-#' Sun BB, et al. (2018). Genomic atlas of the human plasma proteome. *Nature* 558: 73-79.
 #' @seealso \code{\link[phenoscanner]{phenoscanner}}
 #'
 #' @examples
@@ -271,11 +264,10 @@ snpqueries <- function(snplist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.8,buil
 #'
 #' @details
 #' This function is based on the Python3 script from UniProt.
+#' See https://www.uniprot.org/help/api_idmapping
 #'
 #' @return A UniProt-ID mapping
 #'
-#' @references
-#' See https://www.uniprot.org/help/api_idmapping
 #' @examples
 #' \dontrun{
 #' uniprotid <- "ACC+ID"
@@ -314,9 +306,7 @@ uniprot2ids <- function(uniprotid="ACC+ID",to,query)
 #' @export
 #' @return A summary statistic object.
 #'
-#' @references
-#' Kerimov N., et al. (2020). "eQTL Catalogue: a compendium of uniformly processed human gene expression and splicing QTLs",
-#'    bioRxiv: 2020.2001.2029.924266, https://www.ebi.ac.uk/eqtl/.
+#' @references @kerimov21
 #'
 #' @examples
 #' \dontrun{
@@ -499,14 +489,13 @@ run_coloc <- function(eqtl_sumstats, gwas_sumstats, harmonise=TRUE)
 #' @param ... Parameters to pass to TwoSampleMR outcome extraction.
 #'
 #' @details
-#' This function is derived from SCALLOP/INF work. By default, method="TwoSampleMR" should work in all cases which also has some controls over variant filtering. If a VCF file is known to exist, one can specify method="gwasvcf" to extract a chunk of data.
+#' By default, method="TwoSampleMR" should work in all cases which also has some controls over variant filtering. If a VCF file is known to exist, one can specify method="gwasvcf" to extract a chunk of data.
 #'
 #' @export
 #' @return
 #' A summary statistic object. With method="TwoSampleMR" the result is in TwoSampleMR outcome format.
 #'
-#' @references
-#' Lyon M, Andrews SJ, Elsworth B, Gaunt TR, Hemani G, Marcora E. The variant call format provides efficient and robust storage of GWAS summary statistics. bioRxiv 2020.05.29.115824; doi: https://doi.org/10.1101/2020.05.29.115824
+#' @references @lyon21
 #'
 #' @seealso \code{\link[TwoSampleMR]{extract_outcome_data}}
 #' @examples
@@ -947,14 +936,13 @@ mr_leaveoneout_plot2 <- function (leaveoneout_results, alpha = 0.05)
 #' @param reverse if TRUE, perform reverse MR.
 #'
 #' @details
-#' This function is based on TwoSampleMR.
+#' This function is adapted from published implementation.
 #'
 #' @export
 #' @return
 #' No value is returned but several files.
 #'
-#' @references
-#' Zheng J, et al. (2020). Phenome-wide Mendelian randomization mapping the influence of the plasma proteome on complex diseases. *Nature Genetics* 52(10): 1122-1131.
+#' @references @zheng20
 #'
 #' @examples
 #' library(TwoSampleMR)
@@ -1050,11 +1038,7 @@ pqtlMR <- function(ivs, ids, mr_plot=FALSE, prefix="pQTL-combined-", reverse=FAL
 #' @return
 #' No value is returned but several files.
 #'
-#' @references
-#' Dimou NL, Tsilidis KK. A Primer in Mendelian Randomization Methodology with a Focus on Utilizing Published Summary Association Data. In
-#' Evangelos Evangelou (ed.), Genetic Epidemiology: Methods and Protocols, Methods in Molecular Biology, vol. 1793,
-#' https://doi.org/10.1007/978-1-4939-7868-7_13, Springer Science+Business Media, LLC, part of Springer Nature 2018
-#'
+#' @references @dt18
 #' @examples
 #' library(TwoSampleMR)
 #' library(pQTLtools)
