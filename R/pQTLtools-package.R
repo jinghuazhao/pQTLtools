@@ -53,6 +53,7 @@
 #' qtl3dplotly         \tab    3D QTL plotly
 #' }
 #'
+#' @importFrom Rdpack reprompt
 #' @import dplyr ggplot2 pQTLdata
 #' @importFrom stats na.omit qnorm
 #' @importFrom utils write.table

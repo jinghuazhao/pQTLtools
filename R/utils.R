@@ -301,12 +301,13 @@ uniprot2ids <- function(uniprotid="ACC+ID",to,query)
 #' @param verbose Extra information.
 #'
 #' @details
-#' This function is based on the eQTL-Catalogue-resources.
+#' This function is based on the eQTL-Catalogue-resources, \insertCite{kerimov21;textual}{pQTLtools}.
 #'
 #' @export
 #' @return A summary statistic object.
 #'
-#' @references @kerimov21
+#' @references
+#' \insertAllCited{}
 #'
 #' @examples
 #' \dontrun{
@@ -489,13 +490,14 @@ run_coloc <- function(eqtl_sumstats, gwas_sumstats, harmonise=TRUE)
 #' @param ... Parameters to pass to TwoSampleMR outcome extraction.
 #'
 #' @details
-#' By default, method="TwoSampleMR" should work in all cases which also has some controls over variant filtering. If a VCF file is known to exist, one can specify method="gwasvcf" to extract a chunk of data.
+#' By default, method="TwoSampleMR" should work in all cases which also has some controls over variant filtering. If a VCF file, \insertCite{lyon21;textual}{pQTLtools}, is known to exist, one can specify method="gwasvcf" to extract a chunk of data.
 #'
 #' @export
 #' @return
 #' A summary statistic object. With method="TwoSampleMR" the result is in TwoSampleMR outcome format.
 #'
-#' @references @lyon21
+#' @references
+#' \insertAllCited{}
 #'
 #' @seealso \code{\link[TwoSampleMR]{extract_outcome_data}}
 #' @examples
@@ -936,13 +938,14 @@ mr_leaveoneout_plot2 <- function (leaveoneout_results, alpha = 0.05)
 #' @param reverse if TRUE, perform reverse MR.
 #'
 #' @details
-#' This function is adapted from published implementation.
+#' This function is adapted from \insertCite{zheng20;textual}{pQTLtools}.
 #'
 #' @export
 #' @return
 #' No value is returned but several files.
 #'
-#' @references @zheng20
+#' @references
+#' \insertAllCited{}
 #'
 #' @examples
 #' library(TwoSampleMR)
@@ -1030,15 +1033,18 @@ pqtlMR <- function(ivs, ids, mr_plot=FALSE, prefix="pQTL-combined-", reverse=FAL
 #' @param prefix a prefix for output files.
 #'
 #' @details
-#' As TwoSampleMR faces seemingly perplexing options, this function intends to simplify various steps in a two-sample MR. It is
-#' particularly useful when a large numbher of MRs are necessary, e.g., multiple proteins and their cis/trans regions need to be examined,
-#' in which case prefix could direct the output to various directories.
+#' As TwoSampleMR faces seemingly perplexing options, this function intends to simplify various steps in a two-sample MR,
+#' \insertCite{dt18;textual}{pQTLtools}. It is particularly useful when a large numbher of MRs are necessary,
+#' e.g., multiple proteins and their cis/trans regions need to be examined, in which case prefix could direct the output
+#' to various directories.
 #'
 #' @export
 #' @return
 #' No value is returned but several files.
 #'
-#' @references @dt18
+#' @references
+#' \insertAllCited{}
+#;
 #' @examples
 #' library(TwoSampleMR)
 #' library(pQTLtools)
