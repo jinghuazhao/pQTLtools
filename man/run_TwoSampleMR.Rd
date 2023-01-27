@@ -63,8 +63,6 @@ for (x in c("result","heterogeneity","pleiotropy","single","loo"))
 
 }
 \references{
-Dimou NL, Tsilidis KK. A Primer in Mendelian Randomization Methodology with a Focus on Utilizing Published Summary Association Data. In
-Evangelos Evangelou (ed.), Genetic Epidemiology: Methods and Protocols, Methods in Molecular Biology, vol. 1793,
-https://doi.org/10.1007/978-1-4939-7868-7_13, Springer Science+Business Media, LLC, part of Springer Nature 2018
+@dt18
 }
 \keyword{utilities}

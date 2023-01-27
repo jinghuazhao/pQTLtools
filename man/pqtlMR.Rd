@@ -25,7 +25,7 @@ This function takes data intrumental variables as produced by format_data() and
 used to perform MR analysis against a list of outcomes from MR-Base.
 }
 \details{
-This function is based on TwoSampleMR.
+This function is adapted from published implementation.
 }
 \note{
 Adapted from script by Jie Zheng.
@@ -49,6 +49,6 @@ pqtlMR(ivs, ids, ,prefix="MS_rev-",reverse=TRUE)
 
 }
 \references{
-Zheng J, et al. (2020). Phenome-wide Mendelian randomization mapping the influence of the plasma proteome on complex diseases. \emph{Nature Genetics} 52(10): 1122-1131.
+@zheng20
 }
 \keyword{utilities}

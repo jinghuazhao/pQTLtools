@@ -30,7 +30,7 @@ A summary statistic object. With method="TwoSampleMR" the result is in TwoSample
 A function which imports OpenGWAS.
 }
 \details{
-This function is derived from SCALLOP/INF work. By default, method="TwoSampleMR" should work in all cases which also has some controls over variant filtering. If a VCF file is known to exist, one can specify method="gwasvcf" to extract a chunk of data.
+By default, method="TwoSampleMR" should work in all cases which also has some controls over variant filtering. If a VCF file is known to exist, one can specify method="gwasvcf" to extract a chunk of data.
 }
 \note{
 Adapted function.
@@ -75,7 +75,7 @@ summary_list = purrr::map(opengwas_ids[1:2], ~import_OpenGWAS(., region, method=
 }
 }
 \references{
-Lyon M, Andrews SJ, Elsworth B, Gaunt TR, Hemani G, Marcora E. The variant call format provides efficient and robust storage of GWAS summary statistics. bioRxiv 2020.05.29.115824; doi: https://doi.org/10.1101/2020.05.29.115824
+@lyon21
 }
 \seealso{
 \code{\link[TwoSampleMR]{extract_outcome_data}}

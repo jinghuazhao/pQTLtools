@@ -21,6 +21,7 @@ A function which converts UniProt IDs to others.
 }
 \details{
 This function is based on the Python3 script from UniProt.
+See https://www.uniprot.org/help/api_idmapping
 }
 \note{
 Adapted from script by UniProt
@@ -34,8 +35,5 @@ query <- paste(query,collapse=" ")
 r <- pQTLtools::uniprot2ids(uniprotid,to,query)
 cat(r,file="INF1.merge.chembl")
 }
-}
-\references{
-See https://www.uniprot.org/help/api_idmapping
 }
 \keyword{utilities}

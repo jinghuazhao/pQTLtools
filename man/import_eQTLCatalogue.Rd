@@ -137,7 +137,6 @@ ggplot(coloc_df, aes(x = PP.H4.abf)) + geom_histogram()
 }
 }
 \references{
-Kerimov N., et al. (2020). "eQTL Catalogue: a compendium of uniformly processed human gene expression and splicing QTLs",
-bioRxiv: 2020.2001.2029.924266, https://www.ebi.ac.uk/eqtl/.
+@kerimov21
 }
 \keyword{utilities}

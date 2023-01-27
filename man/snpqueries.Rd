@@ -70,9 +70,6 @@ save(Olink_overlap_list,Olink_overlap,file='Olink_overlap.rda',compress='xz')
 Olink_result <- merge(Olink_overlap_list,Olink_overlap,by.x="MarkerName",by.y="snp")
 }
 }
-\references{
-Sun BB, et al. (2018). Genomic atlas of the human plasma proteome. \emph{Nature} 558: 73-79.
-}
 \seealso{
 \code{\link[phenoscanner]{phenoscanner}}
 }

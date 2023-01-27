@@ -86,9 +86,6 @@ for(g in as.numeric(grp))
 sink()
 }
 }
-\references{
-Sun BB, et al. (2018). Genomic atlas of the human plasma proteome. \emph{Nature} 558: 73-79.
-}
 \seealso{
 \code{\link[phenoscanner]{phenoscanner}}
 }
