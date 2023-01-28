@@ -11,12 +11,12 @@ It seeds collection of data and utilities for pQTL analysis. At this
 early stage, the repository contains 1. Articles linking functions
 for cis/trans classification, 2d Manhattan plots, 2d/3d-plotly plots,
 forest plots among others available from
-gap, <https://github.com/jinghuazhao/R/tree/master/gap>;
+gap, \url{https://github.com/jinghuazhao/R/tree/master/gap};
 2. Query on genes, regions, and SNPs via PhenoScanner,
-<http://www.phenoscanner.medschl.cam.ac.uk/>, adding functionality
+\url{http://www.phenoscanner.medschl.cam.ac.uk/}, adding functionality
 to check for replication across platforms; 3. Downstream analysis
 such as colocalization, pQTL-Mendelian Randomization via TwoSampleMR,
-<https://github.com/MRCIEU/TwoSampleMR>, linkage through UniProt IDs
+\url{https://github.com/MRCIEU/TwoSampleMR}, linkage through UniProt IDs
 to other resources; 4. Bioconductor notes and a showcase of snakemake
 workflow.
 }
@@ -78,17 +78,14 @@ qtl3dplotly         \tab    3D QTL plotly
 }
 \section{Usage}{
 
-Please check the vignettes for more on the package usage:
-- An Overview of pQTLtools
-`vignette("pQTLtools")`
-- Bioconductor Notes
-`vignette("bioconductor")`
-- ExpressionSet usage
-`vignette("es")`
-- snakemake showcases
-`vignette("snakemake")`
-- SCALLOP-INF scripts
-`vignette("SCALLOP-INF")`
+Vignettes on package usage:
+\itemize{
+\item An Overview of pQTLtools. \code{vignette("pQTLtools")}.
+\item Bioconductor Notes. \code{vignette("bioconductor")}.
+\item ExpressionSet usage. \code{vignette("es")}.
+\item snakemake showcases. \code{vignette("snakemake")}.
+\item SCALLOP-INF scripts. \code{vignette("SCALLOP-INF")}.
+}
 }
 
 \seealso{
