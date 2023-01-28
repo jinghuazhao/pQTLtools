@@ -70,17 +70,13 @@
 #' }
 #'
 #' @section Usage:
-#' Please check the vignettes for more on the package usage:
-#' - An Overview of pQTLtools
-#' `vignette("pQTLtools")`
-#' - Bioconductor Notes
-#' `vignette("bioconductor")`
-#' - ExpressionSet usage
-#' `vignette("es")`
-#' - snakemake showcases
-#' `vignette("snakemake")`
-#' - SCALLOP-INF scripts
-#' `vignette("SCALLOP-INF")`
+#' Vignettes on package usage:
+#' - An Overview of pQTLtools. `vignette("pQTLtools")`.
+#' - Bioconductor Notes. `vignette("bioconductor")`.
+#' - ExpressionSet usage. `vignette("es")`.
+#' - snakemake showcases. `vignette("snakemake")`.
+#' - SCALLOP-INF scripts. `vignette("SCALLOP-INF")`.
+#' @md
 #'
 #' @docType package
 #' @name pQTLtools
