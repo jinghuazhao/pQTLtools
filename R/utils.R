@@ -1044,7 +1044,7 @@ pqtlMR <- function(ivs, ids, mr_plot=FALSE, prefix="pQTL-combined-", reverse=FAL
 #'
 #' @references
 #' \insertAllCited{}
-#;
+#'
 #' @examples
 #' library(TwoSampleMR)
 #' library(pQTLtools)
