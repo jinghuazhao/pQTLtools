@@ -104,7 +104,7 @@ used to perform MR analysis against a list of outcomes from MR-Base."><meta prop
     </div>
 
     <div class="ref-description section level2">
-    <p>This function takes data intrumental variables as produced by format_data() and
+    <p>This function takes data intrumental variables as produced by <code>format_data()</code> and
 used to perform MR analysis against a list of outcomes from MR-Base.</p>
     </div>
 
@@ -144,7 +144,8 @@ used to perform MR analysis against a list of outcomes from MR-Base.</p>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>This function is adapted from Zheng et al. (2020)
-.</p>
+ and in
+spirit similar to <code>run_TwoSampleMR</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
@@ -174,14 +175,14 @@ ISSN 1546-1718, <a href="https://doi.org/10.1038/s41588-020-0682-6" class="exter
 <span class="r-in"><span><span class="fu">pqtlMR</span><span class="op">(</span><span class="va">ivs</span>, <span class="va">ids</span>, mr_plot<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> API: public: http://gwas-api.mrcieu.ac.uk/</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting data for 2 SNP(s) from 2 GWAS(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising ABO (0BhtkB) and FEV1 || id:ebi-a-GCST007432 (ebi-a-GCST007432)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising LIFR (tuMlrN) and FEV1 || id:ebi-a-GCST007432 (ebi-a-GCST007432)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising ABO (0BhtkB) and Coronary heart disease || id:ieu-a-7 (ieu-a-7)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising LIFR (tuMlrN) and Coronary heart disease || id:ieu-a-7 (ieu-a-7)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing '0BhtkB' on 'ebi-a-GCST007432'</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing '0BhtkB' on 'ieu-a-7'</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'tuMlrN' on 'ebi-a-GCST007432'</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'tuMlrN' on 'ieu-a-7'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising ABO (k8HQpG) and FEV1 || id:ebi-a-GCST007432 (ebi-a-GCST007432)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising LIFR (GlH312) and FEV1 || id:ebi-a-GCST007432 (ebi-a-GCST007432)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising ABO (k8HQpG) and Coronary heart disease || id:ieu-a-7 (ieu-a-7)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising LIFR (GlH312) and Coronary heart disease || id:ieu-a-7 (ieu-a-7)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'GlH312' on 'ebi-a-GCST007432'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'GlH312' on 'ieu-a-7'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'k8HQpG' on 'ebi-a-GCST007432'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'k8HQpG' on 'ieu-a-7'</span>
 <span class="r-in"><span><span class="co"># A bidirectional analysis</span></span></span>
 <span class="r-in"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/find.package.html" class="external-link">find.package</a></span><span class="op">(</span><span class="st">"pQTLtools"</span>,lib.loc<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">.libPaths</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,<span class="st">"tests"</span>,<span class="st">"ms.ins"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">ivs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/TwoSampleMR/man/format_data.html" class="external-link">format_data</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span><span class="va">f</span>, header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>, samplesize_col<span class="op">=</span><span class="st">"N"</span><span class="op">)</span></span></span>
@@ -191,15 +192,15 @@ ISSN 1546-1718, <a href="https://doi.org/10.1038/s41588-020-0682-6" class="exter
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting data for 2 SNP(s) from 1 GWAS(s)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Finding proxies for 1 SNPs in outcome ieu-b-18</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting data for 1 SNP(s) from 1 GWAS(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising TNFB (exNpwJ) and multiple sclerosis || id:ieu-b-18 (ieu-b-18)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'exNpwJ' on 'ieu-b-18'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising TNFB (UXs44r) and multiple sclerosis || id:ieu-b-18 (ieu-b-18)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'UXs44r' on 'ieu-b-18'</span>
 <span class="r-in"><span><span class="co"># reverse MR</span></span></span>
 <span class="r-in"><span><span class="fu">pqtlMR</span><span class="op">(</span><span class="va">ivs</span>, <span class="va">ids</span>, ,prefix<span class="op">=</span><span class="st">"MS_rev-"</span>,reverse<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting data for 2 SNP(s) from 1 GWAS(s)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Finding proxies for 1 SNPs in outcome ieu-b-18</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting data for 1 SNP(s) from 1 GWAS(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising TNFB (exNpwJ) and multiple sclerosis || id:ieu-b-18 (ieu-b-18)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'ieu-b-18' on 'exNpwJ'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising TNFB (UXs44r) and multiple sclerosis || id:ieu-b-18 (ieu-b-18)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'ieu-b-18' on 'UXs44r'</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
