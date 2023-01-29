@@ -3,7 +3,6 @@
 #' R/phenoscanner only allows for certain number of items supplied. This simple function return
 #' a large number of calls in batches as well as generating SNPIDs.
 #'
-#' @md
 #' @param genelist a list of SNPs.
 #' @param catalogue "None","eQTL","mQTL","methQTL","pQTL","GWAS".
 #' @param proxies "None", "AFR","AMR","EAS","EUR","SAS".
@@ -59,7 +58,6 @@ genequeries <- function(genelist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.8,bu
 #' R/phenoscanner only allows for certain number of items supplied. This simple function return
 #' a large number of calls in batches as well as generating SNPIDs.
 #'
-#' @md
 #' @param regionlist a list of SNPs
 #' @param catalogue "None","eQTL","mQTL","methQTL","pQTL","GWAS".
 #' @param proxies "None", "AFR","AMR","EAS","EUR","SAS".
@@ -167,7 +165,6 @@ regionqueries <- function(regionlist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.
 #' R/phenoscanner only allows for certain number of items supplied. This simple function return
 #' a large number of calls in batches as well as generating SNPIDs.
 #'
-#' @md
 #' @param snplist a list of SNPs.
 #' @param catalogue "None","eQTL","mQTL","methQTL","pQTL","GWAS".
 #' @param proxies "None", "AFR","AMR","EAS","EUR","SAS".
@@ -293,7 +290,6 @@ uniprot2ids <- function(uniprotid="ACC+ID",to,query)
 #'
 #' An adopted function which imports eQTL Catalogue.
 #'
-#' @md
 #' @param ftp_path URL.
 #' @param region chr:start-end.
 #' @param selected_gene_id An Ensembl gene ID.
@@ -432,10 +428,10 @@ import_eQTLCatalogue <- function(ftp_path, region, selected_gene_id, column_name
 #'
 #' The function takes eQTL and GWAS summary statistics for a colocalisation analysis..
 #'
-#' @md
 #' @param eqtl_sumstats eQTL summary data.
 #' @param gwas_sumstats GWAS summary data.
 #' @param harmonise a flag to harmonise data.
+#' @md
 #' @export
 #' @return Summary from `coloc.abf`.
 
@@ -482,7 +478,6 @@ run_coloc <- function(eqtl_sumstats, gwas_sumstats, harmonise=TRUE)
 #'
 #' A function which imports OpenGWAS.
 #'
-#' @md
 #' @param opengwas_id An OpenGWAS id.
 #' @param region chr:start-end.
 #' @param method Method to extract GWAS data.
@@ -490,7 +485,7 @@ run_coloc <- function(eqtl_sumstats, gwas_sumstats, harmonise=TRUE)
 #' @param ... Parameters to pass to TwoSampleMR outcome extraction.
 #'
 #' @details
-#' By default, method="TwoSampleMR" should work in all cases which also has some controls over variant filtering. If a VCF file, \insertCite{lyon21;textual}{pQTLtools}, is known to exist, one can specify method="gwasvcf" to extract a chunk of data.
+#' By default, method="TwoSampleMR" should work in all cases with some controls over variant filtering. If a VCF file, \insertCite{lyon21;textual}{pQTLtools}, is known to exist, one can specify method="gwasvcf" to extract a chunk of data.
 #'
 #' @export
 #' @return
@@ -927,10 +922,9 @@ mr_leaveoneout_plot2 <- function (leaveoneout_results, alpha = 0.05)
 
 #' Basic pQTL-MR analysis
 #'
-#' This function takes data intrumental variables as produced by format_data() and
+#' This function takes data intrumental variables as produced by `format_data()` and
 #' used to perform MR analysis against a list of outcomes from MR-Base.
 #'
-#' @md
 #' @param ivs Instrumental variables from format_data().
 #' @param ids A list of MR-Base IDs.
 #' @param mr_plot to produce plots.
@@ -938,7 +932,9 @@ mr_leaveoneout_plot2 <- function (leaveoneout_results, alpha = 0.05)
 #' @param reverse if TRUE, perform reverse MR.
 #'
 #' @details
-#' This function is adapted from \insertCite{zheng20;textual}{pQTLtools}.
+#' This function is adapted from \insertCite{zheng20;textual}{pQTLtools} and in
+#' spirit similar to `run_TwoSampleMR`.
+#' @md
 #'
 #' @export
 #' @return
@@ -1027,14 +1023,13 @@ pqtlMR <- function(ivs, ids, mr_plot=FALSE, prefix="pQTL-combined-", reverse=FAL
 #'
 #' Given harmonised data, this function conducts a two-sample MR analysis.
 #'
-#' @md
 #' @param TwoSampleMRinput Harmonised data.
 #' @param mr_plot one of "None", "TwoSampleMR", "pQTLtools" for no, the original and the revised plots, respectively.
 #' @param prefix a prefix for output files.
 #'
 #' @details
-#' As TwoSampleMR faces seemingly perplexing options, this function intends to simplify various steps in a two-sample MR,
-#' \insertCite{dt18;textual}{pQTLtools}. It is particularly useful when a large numbher of MRs are necessary,
+#' As TwoSampleMR faces seemingly perplexing options, this function intends to simplify various steps in a two-sample MR
+#' as in \insertCite{dt18;textual}{pQTLtools}. It is particularly useful when a large numbher of MRs are necessary,
 #' e.g., multiple proteins and their cis/trans regions need to be examined, in which case prefix could direct the output
 #' to various directories.
 #'
@@ -1120,7 +1115,6 @@ run_TwoSampleMR <- function(TwoSampleMRinput, mr_plot="None", prefix="")
 #'
 #' This is really a direct call to the Bioconductor/Biobase class.
 #'
-#' @md
 #' @param assayData Expression data.
 #' @param phenoData Phenotype.
 #' @param featureData featureData.
@@ -1186,7 +1180,6 @@ Biobase::ExpressionSet(assayData,phenoData=phenoData,
 #'
 #' The function obtains lower limit of detection as in proteomic analysis.
 #'
-#' @md
 #' @param eset An ExpressionSet object.
 #' @param flagged A flag is an indicator for sample exclusion.
 #' @export
