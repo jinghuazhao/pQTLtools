@@ -25,7 +25,7 @@ URL: https://github.com/jinghuazhao/pQTLtools
 BugReports: https://github.com/jinghuazhao/pQTLtools/issues
 Depends:
     R (>= 3.5.0), pQTLdata
-Imports: dplyr, gap, ggplot2, Rdpack
+Imports: dplyr, gap, ggplot2
 Suggests:
     Biobase,
     GenomicRanges,
