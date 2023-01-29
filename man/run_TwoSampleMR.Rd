@@ -20,8 +20,8 @@ No value is returned but several files.
 Given harmonised data, this function conducts a two-sample MR analysis.
 }
 \details{
-As TwoSampleMR faces seemingly perplexing options, this function intends to simplify various steps in a two-sample MR,
-\insertCite{dt18;textual}{pQTLtools}. It is particularly useful when a large numbher of MRs are necessary,
+As TwoSampleMR faces seemingly perplexing options, this function intends to simplify various steps in a two-sample MR
+as in \insertCite{dt18;textual}{pQTLtools}. It is particularly useful when a large numbher of MRs are necessary,
 e.g., multiple proteins and their cis/trans regions need to be examined, in which case prefix could direct the output
 to various directories.
 }

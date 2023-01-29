@@ -30,7 +30,7 @@ A summary statistic object. With method="TwoSampleMR" the result is in TwoSample
 A function which imports OpenGWAS.
 }
 \details{
-By default, method="TwoSampleMR" should work in all cases which also has some controls over variant filtering. If a VCF file, \insertCite{lyon21;textual}{pQTLtools}, is known to exist, one can specify method="gwasvcf" to extract a chunk of data.
+By default, method="TwoSampleMR" should work in all cases with some controls over variant filtering. If a VCF file, \insertCite{lyon21;textual}{pQTLtools}, is known to exist, one can specify method="gwasvcf" to extract a chunk of data.
 }
 \note{
 Adapted function.

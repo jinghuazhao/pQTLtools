@@ -21,11 +21,12 @@ pqtlMR(ivs, ids, mr_plot = FALSE, prefix = "pQTL-combined-", reverse = FALSE)
 No value is returned but several files.
 }
 \description{
-This function takes data intrumental variables as produced by format_data() and
+This function takes data intrumental variables as produced by \code{format_data()} and
 used to perform MR analysis against a list of outcomes from MR-Base.
 }
 \details{
-This function is adapted from \insertCite{zheng20;textual}{pQTLtools}.
+This function is adapted from \insertCite{zheng20;textual}{pQTLtools} and in
+spirit similar to \code{run_TwoSampleMR}.
 }
 \note{
 Adapted from script by Jie Zheng.
