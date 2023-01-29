@@ -83,10 +83,10 @@
 #' @aliases pQTLtools-package
 #'
 #' @import dplyr ggplot2 pQTLdata
-#' @importFrom Rdpack reprompt
 #' @importFrom stats na.omit qnorm
 #' @importFrom utils write.table
 #' @importFrom utils read.table tail
+#' @importFrom Rdpack reprompt
 #'
 #' @author Jing Hua Zhao in collaboration with other colleagues
 #' @keywords internal
