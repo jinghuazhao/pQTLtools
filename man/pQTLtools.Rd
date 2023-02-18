@@ -62,7 +62,7 @@ cs                  \tab    Credible set\cr
 get_b_se            \tab    Get b and se from AF, n, and z\cr
 get_pve_se          \tab    Get pve and its standard error from n, z\cr
 get_sdy             \tab    Get sd(y) from AF, n, b, se\cr
-gsmr                \tab    Mendelian randomization analysis\cr
+mr                  \tab    Mendelian randomization analysis\cr
 invnormal           \tab    Inverse normal transformation\cr
 log10p              \tab    log10(p) for a standard normal deviate\cr
 log10pvalue         \tab    log10(p) for a P value including its scientific format\cr
