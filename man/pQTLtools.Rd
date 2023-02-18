@@ -54,7 +54,7 @@ uniprot2ids          \tab   UniProt ID to others\cr
 \strong{Functions in gap} \tab \cr
 \cr
 METAL_forestplot    \tab    Forest plots from metal analysis\cr
-ci2ms               \tab    Effect size and standard error from confidence interval
+ci2ms               \tab    Effect size and standard error from confidence interval\cr
 cis.vs.trans.classification \tab a cis/trans classifier\cr
 circos.cis.vs.trans.plot \tab circos plot of cis/trans classification\cr
 circos.mhtplot      \tab    circos Manhattan plot with gene annotation\cr
