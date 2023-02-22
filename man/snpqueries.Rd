@@ -6,6 +6,8 @@
 \usage{
 snpqueries(
   snplist,
+  block_size = 100,
+  waiting_time = 60 * 60,
   catalogue = "pQTL",
   proxies = "EUR",
   p = 5e-08,
@@ -16,6 +18,10 @@ snpqueries(
 }
 \arguments{
 \item{snplist}{a list of SNPs.}
+
+\item{block_size}{size of each query block.}
+
+\item{waiting_time}{time (in seconds) to wait between query blocks.}
 
 \item{catalogue}{"None","eQTL","mQTL","methQTL","pQTL","GWAS".}
 
