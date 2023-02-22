@@ -166,6 +166,8 @@ regionqueries <- function(regionlist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.
 #' a large number of calls in batches as well as generating SNPIDs.
 #'
 #' @param snplist a list of SNPs.
+#' @param block_size size of each query block.
+#' @param waiting_time time (in seconds) to wait between query blocks.
 #' @param catalogue "None","eQTL","mQTL","methQTL","pQTL","GWAS".
 #' @param proxies "None", "AFR","AMR","EAS","EUR","SAS".
 #' @param p p value threshold.
@@ -212,15 +214,16 @@ regionqueries <- function(regionlist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.
 #' adapted from custom codings
 #' @keywords utilities
 
-snpqueries <- function(snplist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.8,build=37,wait=TRUE)
+snpqueries <- function(snplist,block_size=100,waiting_time=60*60,
+                       catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.8,build=37,wait=TRUE)
 {
   a1 <- a2 <- hg19_coordinates <- hg38_coordinates <- NULL
-  batches <- split(snplist,ceiling(seq_along(snplist)/100))
+  batches <- split(snplist,ceiling(seq_along(snplist)/block_size))
   s <- r <- vector('list',length(batches))
   for(i in 1:length(batches))
   {
     cat("Block",i,"\n")
-    if (wait) if (i%%6==0) Sys.sleep(60*60)
+    if (wait) if (i%%6==0) Sys.sleep(waiting_time)
     q <- phenoscanner::phenoscanner(snpquery=batches[[i]], catalogue=catalogue,
                                     proxies=proxies, pvalue=p, r2=r2, build=build)
     s[[i]] <- with(q,snps)
