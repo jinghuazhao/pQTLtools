@@ -112,6 +112,8 @@ a large number of calls in batches as well as generating SNPIDs.</p>
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">snpqueries</span><span class="op">(</span></span>
 <span>  <span class="va">snplist</span>,</span>
+<span>  block_size <span class="op">=</span> <span class="fl">100</span>,</span>
+<span>  waiting_time <span class="op">=</span> <span class="fl">60</span> <span class="op">*</span> <span class="fl">60</span>,</span>
 <span>  catalogue <span class="op">=</span> <span class="st">"pQTL"</span>,</span>
 <span>  proxies <span class="op">=</span> <span class="st">"EUR"</span>,</span>
 <span>  p <span class="op">=</span> <span class="fl">5e-08</span>,</span>
@@ -125,6 +127,14 @@ a large number of calls in batches as well as generating SNPIDs.</p>
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>snplist</dt>
 <dd><p>a list of SNPs.</p></dd>
+
+
+<dt>block_size</dt>
+<dd><p>size of each query block.</p></dd>
+
+
+<dt>waiting_time</dt>
+<dd><p>time (in seconds) to wait between query blocks.</p></dd>
 
 
 <dt>catalogue</dt>
