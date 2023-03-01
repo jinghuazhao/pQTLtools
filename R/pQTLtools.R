@@ -18,28 +18,28 @@
 #'
 #' Objects                |   Description
 #' -----------------------|---------------------------------------------
-#' **eQTL/GWAS**          |
+#' **eQTL/GWAS**          |   &nbsp;
 #' `get.prop.below.LLOD`  |   Limit of detection analysis
 #' `import_eQTLCatalogue` |   Import eQTL Catalogue
 #' `import_OpenGWAS`      |   Import OpenGWAS
 #' `make_ExpressionSet`   |   A call to ExpressionSet class
 #' `novelty_check`        |   Locus novelty check
 #' `run_coloc`            |   Colocalisation analysis
-#'  &nbsp; |
-#'  **MR analysis**       |
+#'  &nbsp;                |   &nbsp;
+#'  **MR analysis**       |   &nbsp;
 #' `pqtlMR`               |   Bidirectional pQTL-MR analysis
 #' `qtl_lookup`           |   QTL lookup
 #' `run_TwoSampleMR`      |   A generic wrapper for TwoSampleMR analysis
-#'  &nbsp; |
-#'  **PhenoScanner Utilities** |
+#'  &nbsp;                |   &nbsp;
+#'  **PhenoScanner Utilities** | &nbsp;
 #' `genequeries`          |   phenoscanner genequeries in batches
 #' `regionqueries`        |   phenoscanner regionqueries in batches
 #' `snpqueries`           |   phenoscanner snpqueries in batches
-#'  &nbsp; |
-#' **UniProt API**        |
+#'  &nbsp;                |   &nbsp;
+#' **UniProt API**        |   &nbsp;
 #' `uniprot2ids`          |   UniProt ID to others
-#' &nbsp; |
-#' **Functions in [`gap::gap`]** |
+#' &nbsp;                 |   &nbsp;
+#' **Functions in [`gap::gap`]** |   &nbsp;
 #' [`gap::METAL_forestplot`]    |    Forest plots from metal analysis
 #' [`gap::ci2ms`]               |    Effect size and standard error from confidence interval
 #' [`gap::cis.vs.trans.classification`] | a cis/trans classifier
