@@ -42,7 +42,6 @@ Available functions are listed in the following table.\tabular{ll}{
    \code{snpqueries} \tab phenoscanner snpqueries in batches \cr
      \tab  \cr
    \strong{UniProt API} \tab  \cr
-     \tab  \cr
    \code{uniprot2ids} \tab UniProt ID to others \cr
      \tab  \cr
    \strong{Functions in \code{\link[gap:gap]{gap::gap}}} \tab  \cr
