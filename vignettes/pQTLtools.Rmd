@@ -5,7 +5,7 @@ output:
     toc: true
     toc_float: true
 fontsize: 11pt
-bibliography: refs.bib
+bibliography: '`r system.file("REFERENCES.bib", package="pQTLtools")`'
 csl: nature-genetics.csl
 pkgdown:
   as_is: false
