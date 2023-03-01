@@ -24,7 +24,6 @@ workflow.
 Available functions are listed in the following table.\tabular{ll}{
    Objects \tab Description \cr
    \strong{eQTL/GWAS} \tab  \cr
-     \tab  \cr
    \code{get.prop.below.LLOD} \tab Limit of detection analysis \cr
    \code{import_eQTLCatalogue} \tab Import eQTL Catalogue \cr
    \code{import_OpenGWAS} \tab Import OpenGWAS \cr
@@ -33,13 +32,11 @@ Available functions are listed in the following table.\tabular{ll}{
    \code{run_coloc} \tab Colocalisation analysis \cr
      \tab  \cr
    \strong{MR analysis} \tab  \cr
-     \tab  \cr
    \code{pqtlMR} \tab Bidirectional pQTL-MR analysis \cr
    \code{qtl_lookup} \tab QTL lookup \cr
    \code{run_TwoSampleMR} \tab A generic wrapper for TwoSampleMR analysis \cr
      \tab  \cr
    \strong{PhenoScanner Utilities} \tab  \cr
-     \tab  \cr
    \code{genequeries} \tab phenoscanner genequeries in batches \cr
    \code{regionqueries} \tab phenoscanner regionqueries in batches \cr
    \code{snpqueries} \tab phenoscanner snpqueries in batches \cr
@@ -49,7 +46,6 @@ Available functions are listed in the following table.\tabular{ll}{
    \code{uniprot2ids} \tab UniProt ID to others \cr
      \tab  \cr
    \strong{Functions in \code{\link[gap:gap]{gap::gap}}} \tab  \cr
-     \tab  \cr
    \code{\link[gap:METAL_forestplot]{gap::METAL_forestplot}} \tab Forest plots from metal analysis \cr
    \code{\link[gap:ci2ms]{gap::ci2ms}} \tab Effect size and standard error from confidence interval \cr
    \code{\link[gap:cis.vs.trans.classification]{gap::cis.vs.trans.classification}} \tab a cis/trans classifier \cr
