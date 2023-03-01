@@ -24,57 +24,57 @@ workflow.
 Available functions are listed in the following table.
 
 \tabular{ll}{
-Objects              \tab   Description\cr
+Objects              &   Description\cr
 \cr
 \strong{eQTL/GWAS}\cr
 \cr
-\code{get.prop.below.LLOD}  \tab   Limit of detection analysis\cr
-\code{import_eQTLCatalogue} \tab   Import eQTL Catalogue\cr
-\code{import_OpenGWAS}      \tab   Import OpenGWAS\cr
-\code{make_ExpressionSet}   \tab   A call to ExpressionSet class\cr
-\code{novelty_check}        \tab   Locus novelty check\cr
-\code{run_coloc}            \tab   Colocalisation analysis\cr
+\code{get.prop.below.LLOD}  &   Limit of detection analysis\cr
+\code{import_eQTLCatalogue} &   Import eQTL Catalogue\cr
+\code{import_OpenGWAS}      &   Import OpenGWAS\cr
+\code{make_ExpressionSet}   &   A call to ExpressionSet class\cr
+\code{novelty_check}        &   Locus novelty check\cr
+\code{run_coloc}            &   Colocalisation analysis\cr
 \cr
 \strong{MR analysis}\cr
 \cr
-\code{pqtlMR}               \tab   Bidirectional pQTL-MR analysis\cr
-\code{qtl_lookup}           \tab   QTL lookup\cr
-\code{run_TwoSampleMR}      \tab   A generic wrapper for TwoSampleMR analysis\cr
+\code{pqtlMR}               &   Bidirectional pQTL-MR analysis\cr
+\code{qtl_lookup}           &   QTL lookup\cr
+\code{run_TwoSampleMR}      &   A generic wrapper for TwoSampleMR analysis\cr
 \cr
 \strong{PhenoScanner Utilities}\cr
 \cr
-\code{genequeries}          \tab   phenoscanner genequeries in batches\cr
-\code{regionqueries}        \tab   phenoscanner regionqueries in batches\cr
-\code{snpqueries}           \tab   phenoscanner snpqueries in batches\cr
+\code{genequeries}          &   phenoscanner genequeries in batches\cr
+\code{regionqueries}        &   phenoscanner regionqueries in batches\cr
+\code{snpqueries}           &   phenoscanner snpqueries in batches\cr
 \cr
 \strong{UniProt API}   \cr
 \cr
-\code{uniprot2ids}          \tab   UniProt ID to others\cr
+\code{uniprot2ids}          &   UniProt ID to others\cr
 \cr
 \strong{Functions in gap}\cr
 \cr
-\code{\link[gap:METAL_forestplot]{gap::METAL_forestplot}}    \tab    Forest plots from metal analysis\cr
-\code{\link[gap:ci2ms]{gap::ci2ms}}               \tab    Effect size and standard error from confidence interval\cr
-\code{\link[gap:cis.vs.trans.classification]{gap::cis.vs.trans.classification}} \tab a cis/trans classifier\cr
-\code{\link[gap:circos.cis.vs.trans.plot]{gap::circos.cis.vs.trans.plot}} \tab circos plot of cis/trans classification\cr
-\code{\link[gap:circos.mhtplot]{gap::circos.mhtplot}}      \tab    circos Manhattan plot with gene annotation\cr
-\code{\link[gap:circos.mhtplot2]{gap::circos.mhtplot2}}     \tab    Another circos Manhattan plot\cr
-\code{\link[gap:cs]{gap::cs}}                  \tab    Credible set\cr
-\code{\link[gap:get_b_se]{gap::get_b_se}}            \tab    Get b and se from AF, n, and z\cr
-\code{\link[gap:get_pve_se]{gap::get_pve_se}}          \tab    Get pve and its standard error from n, z\cr
-\code{\link[gap:get_sdy]{gap::get_sdy}}             \tab    Get sd(y) from AF, n, b, se\cr
-\code{\link[gap:mr]{gap::mr}}                  \tab    Mendelian randomization analysis\cr
-\code{\link[gap:invnormal]{gap::invnormal}}           \tab    Inverse normal transformation\cr
-\code{\link[gap:log10p]{gap::log10p}}              \tab    log10(p) for a standard normal deviate\cr
-\code{\link[gap:log10pvalue]{gap::log10pvalue}}         \tab    log10(p) for a P value including its scientific format\cr
-\code{\link[gap:logp]{gap::logp}}                \tab    log(p) for a normal deviate\cr
-\code{\link[gap:mhtplot.trunc]{gap::mhtplot.trunc}}       \tab    Truncated Manhattan plot\cr
-\code{\link[gap:miamiplot2]{gap::miamiplot2}}          \tab    Miami plot\cr
-\code{\link[gap:mr_forestplot]{gap::mr_forestplot}}       \tab    Mendelian Randomization forest plot\cr
-\code{\link[gap:qtlClassifier]{gap::qtlClassifier}}       \tab    A QTL cis/trans classifier\cr
-\code{\link[gap:qtl2dplot]{gap::qtl2dplot}}           \tab    2D QTL plot\cr
-\code{\link[gap:qtl2dplotly]{gap::qtl2dplotly}}         \tab    2D QTL plotly\cr
-\code{\link[gap:qtl3dplotly]{gap::qtl3dplotly}}         \tab    3D QTL plotly
+\code{\link[gap:METAL_forestplot]{gap::METAL_forestplot}}    &    Forest plots from metal analysis\cr
+\code{\link[gap:ci2ms]{gap::ci2ms}}               &    Effect size and standard error from confidence interval\cr
+\code{\link[gap:cis.vs.trans.classification]{gap::cis.vs.trans.classification}} & a cis/trans classifier\cr
+\code{\link[gap:circos.cis.vs.trans.plot]{gap::circos.cis.vs.trans.plot}} & circos plot of cis/trans classification\cr
+\code{\link[gap:circos.mhtplot]{gap::circos.mhtplot}}      &    circos Manhattan plot with gene annotation\cr
+\code{\link[gap:circos.mhtplot2]{gap::circos.mhtplot2}}     &    Another circos Manhattan plot\cr
+\code{\link[gap:cs]{gap::cs}}                  &    Credible set\cr
+\code{\link[gap:get_b_se]{gap::get_b_se}}            &    Get b and se from AF, n, and z\cr
+\code{\link[gap:get_pve_se]{gap::get_pve_se}}          &    Get pve and its standard error from n, z\cr
+\code{\link[gap:get_sdy]{gap::get_sdy}}             &    Get sd(y) from AF, n, b, se\cr
+\code{\link[gap:mr]{gap::mr}}                  &    Mendelian randomization analysis\cr
+\code{\link[gap:invnormal]{gap::invnormal}}           &    Inverse normal transformation\cr
+\code{\link[gap:log10p]{gap::log10p}}              &    log10(p) for a standard normal deviate\cr
+\code{\link[gap:log10pvalue]{gap::log10pvalue}}         &    log10(p) for a P value including its scientific format\cr
+\code{\link[gap:logp]{gap::logp}}                &    log(p) for a normal deviate\cr
+\code{\link[gap:mhtplot.trunc]{gap::mhtplot.trunc}}       &    Truncated Manhattan plot\cr
+\code{\link[gap:miamiplot2]{gap::miamiplot2}}          &    Miami plot\cr
+\code{\link[gap:mr_forestplot]{gap::mr_forestplot}}       &    Mendelian Randomization forest plot\cr
+\code{\link[gap:qtlClassifier]{gap::qtlClassifier}}       &    A QTL cis/trans classifier\cr
+\code{\link[gap:qtl2dplot]{gap::qtl2dplot}}           &    2D QTL plot\cr
+\code{\link[gap:qtl2dplotly]{gap::qtl2dplotly}}         &    2D QTL plotly\cr
+\code{\link[gap:qtl3dplotly]{gap::qtl3dplotly}}         &    3D QTL plotly
 }
 }
 \section{Usage}{
