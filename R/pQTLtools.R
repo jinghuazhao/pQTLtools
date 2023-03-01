@@ -37,7 +37,6 @@
 #' `snpqueries`           |   phenoscanner snpqueries in batches
 #'  &nbsp; |
 #' **UniProt API**        |
-#' &nbsp; |
 #' `uniprot2ids`          |   UniProt ID to others
 #' &nbsp; |
 #' **Functions in [`gap::gap`]** |
