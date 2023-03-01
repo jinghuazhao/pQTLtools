@@ -19,55 +19,55 @@
 #' \tabular{ll}{
 #' Objects              \tab   Description\cr
 #' \cr
-#' \strong{eQTL/GWAS}   \tab   \cr
+#' \strong{eQTL/GWAS}\cr
 #' \cr
-#' get.prop.below.LLOD  \tab   Limit of detection analysis\cr
-#' import_eQTLCatalogue \tab   Import eQTL Catalogue\cr
-#' import_OpenGWAS      \tab   Import OpenGWAS\cr
-#' make_ExpressionSet   \tab   A call to ExpressionSet class\cr
-#' novelty_check        \tab   Locus novelty check\cr
-#' run_coloc            \tab   Colocalisation analysis\cr
+#' `get.prop.below.LLOD`  \tab   Limit of detection analysis\cr
+#' `import_eQTLCatalogue` \tab   Import eQTL Catalogue\cr
+#' `import_OpenGWAS`      \tab   Import OpenGWAS\cr
+#' `make_ExpressionSet`   \tab   A call to ExpressionSet class\cr
+#' `novelty_check`        \tab   Locus novelty check\cr
+#' `run_coloc`            \tab   Colocalisation analysis\cr
 #' \cr
-#' \strong{MR analysis} \tab   \cr
+#' \strong{MR analysis}\cr
 #' \cr
-#' pqtlMR               \tab   Bidirectional pQTL-MR analysis\cr
-#' qtl_lookup           \tab   QTL lookup\cr
-#' run_TwoSampleMR      \tab   A generic wrapper for TwoSampleMR analysis\cr
+#' `pqtlMR`               \tab   Bidirectional pQTL-MR analysis\cr
+#' `qtl_lookup`           \tab   QTL lookup\cr
+#' `run_TwoSampleMR`      \tab   A generic wrapper for TwoSampleMR analysis\cr
 #' \cr
-#' \strong{PhenoScanner Utilities} \tab \cr
+#' \strong{PhenoScanner Utilities}\cr
 #' \cr
-#' genequeries          \tab   phenoscanner genequeries in batches\cr
-#' regionqueries        \tab   phenoscanner regionqueries in batches\cr
-#' snpqueries           \tab   phenoscanner snpqueries in batches\cr
+#' `genequeries`          \tab   phenoscanner genequeries in batches\cr
+#' `regionqueries`        \tab   phenoscanner regionqueries in batches\cr
+#' `snpqueries`           \tab   phenoscanner snpqueries in batches\cr
 #' \cr
-#' \strong{UniProt API} \tab   \cr
+#' \strong{UniProt API}   \cr
 #' \cr
-#' uniprot2ids          \tab   UniProt ID to others\cr
+#' `uniprot2ids`          \tab   UniProt ID to others\cr
 #' \cr
-#' \strong{Functions in gap} \tab \cr
+#' \strong{Functions in gap}\cr
 #' \cr
-#' METAL_forestplot    \tab    Forest plots from metal analysis\cr
-#' ci2ms               \tab    Effect size and standard error from confidence interval\cr
-#' cis.vs.trans.classification \tab a cis/trans classifier\cr
-#' circos.cis.vs.trans.plot \tab circos plot of cis/trans classification\cr
-#' circos.mhtplot      \tab    circos Manhattan plot with gene annotation\cr
-#' circos.mhtplot2     \tab    Another circos Manhattan plot\cr
-#' cs                  \tab    Credible set\cr
-#' get_b_se            \tab    Get b and se from AF, n, and z\cr
-#' get_pve_se          \tab    Get pve and its standard error from n, z\cr
-#' get_sdy             \tab    Get sd(y) from AF, n, b, se\cr
-#' mr                  \tab    Mendelian randomization analysis\cr
-#' invnormal           \tab    Inverse normal transformation\cr
-#' log10p              \tab    log10(p) for a standard normal deviate\cr
-#' log10pvalue         \tab    log10(p) for a P value including its scientific format\cr
-#' logp                \tab    log(p) for a normal deviate\cr
-#' mhtplot.trunc       \tab    Truncated Manhattan plot\cr
-#' miamiplot2          \tab    Miami plot\cr
-#' mr_forestplot       \tab    Mendelian Randomization forest plot\cr
-#' qtlClassifier       \tab    A QTL cis/trans classifier\cr
-#' qtl2dplot           \tab    2D QTL plot\cr
-#' qtl2dplotly         \tab    2D QTL plotly\cr
-#' qtl3dplotly         \tab    3D QTL plotly
+#' [`gap::METAL_forestplot`]    \tab    Forest plots from metal analysis\cr
+#' [`gap::ci2ms`]               \tab    Effect size and standard error from confidence interval\cr
+#' [`gap::cis.vs.trans.classification`] \tab a cis/trans classifier\cr
+#' [`gap::circos.cis.vs.trans.plot`] \tab circos plot of cis/trans classification\cr
+#' [`gap::circos.mhtplot`]      \tab    circos Manhattan plot with gene annotation\cr
+#' [`gap::circos.mhtplot2`]     \tab    Another circos Manhattan plot\cr
+#' [`gap::cs`]                  \tab    Credible set\cr
+#' [`gap::get_b_se`]            \tab    Get b and se from AF, n, and z\cr
+#' [`gap::get_pve_se`]          \tab    Get pve and its standard error from n, z\cr
+#' [`gap::get_sdy`]             \tab    Get sd(y) from AF, n, b, se\cr
+#' [`gap::mr`]                  \tab    Mendelian randomization analysis\cr
+#' [`gap::invnormal`]           \tab    Inverse normal transformation\cr
+#' [`gap::log10p`]              \tab    log10(p) for a standard normal deviate\cr
+#' [`gap::log10pvalue`]         \tab    log10(p) for a P value including its scientific format\cr
+#' [`gap::logp`]                \tab    log(p) for a normal deviate\cr
+#' [`gap::mhtplot.trunc`]       \tab    Truncated Manhattan plot\cr
+#' [`gap::miamiplot2`]          \tab    Miami plot\cr
+#' [`gap::mr_forestplot`]       \tab    Mendelian Randomization forest plot\cr
+#' [`gap::qtlClassifier`]       \tab    A QTL cis/trans classifier\cr
+#' [`gap::qtl2dplot`]           \tab    2D QTL plot\cr
+#' [`gap::qtl2dplotly`]         \tab    2D QTL plotly\cr
+#' [`gap::qtl3dplotly`]         \tab    3D QTL plotly
 #' }
 #'
 #' @section Usage:
