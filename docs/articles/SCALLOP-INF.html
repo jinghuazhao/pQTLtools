@@ -140,7 +140,7 @@
 <h2 id="pqtldisease-overlap">
 <span class="header-section-number">1</span> pQTL/disease overlap<a class="anchor" aria-label="anchor" href="#pqtldisease-overlap"></a>
 </h2>
-<p>The ontology of traits/disease is available through Experimental Factor Ontology (EFO)<span class="citation"><sup>1</sup></span>, which can be used to build lists of diseases and immune-mediated traits and filter search results from PhenoScanner<span class="citation"><sup>2</sup></span>.</p>
+<p>The ontology of traits/disease is available through Experimental Factor Ontology (EFO)<span class="citation"><sup><strong>malone10?</strong></sup></span>, which can be used to build lists of diseases and immune-mediated traits and filter search results from PhenoScanner<span class="citation"><sup><strong>kamat19?</strong></sup></span>.</p>
 <div class="section level3" number="1.1">
 <h3 id="diseases">
 <span class="header-section-number">1.1</span> Diseases<a class="anchor" aria-label="anchor" href="#diseases"></a>
@@ -363,7 +363,7 @@ Figure 1.1: pQTL-disease overlap
 <span>    <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/pkg/GenomeInfoDb/man/seqlevels-wrappers.html" class="external-link">renameSeqlevels</a></span><span class="op">(</span><span class="va">chr</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html" class="external-link">as_tibble</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">transmute</a></span><span class="op">(</span>chromosome <span class="op">=</span> <span class="va">seqnames</span>,</span>
+<span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/transmute.html" class="external-link">transmute</a></span><span class="op">(</span>chromosome <span class="op">=</span> <span class="va">seqnames</span>,</span>
 <span>                     position <span class="op">=</span> <span class="va">start</span>, <span class="va">REF</span>, <span class="va">ALT</span>, <span class="va">AF</span>, <span class="va">ES</span>, <span class="va">SE</span>, <span class="va">LP</span>, <span class="va">SS</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">chromosome</span>, <span class="va">position</span>, sep <span class="op">=</span> <span class="st">":"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>MAF <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/Extremes.html" class="external-link">pmin</a></span><span class="op">(</span><span class="va">AF</span>, <span class="fl">1</span><span class="op">-</span><span class="va">AF</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -431,7 +431,7 @@ Figure 1.1: pQTL-disease overlap
 <span>    <span class="va">df_gtex</span> <span class="op">&lt;-</span> <span class="fu">gtex</span><span class="op">(</span><span class="va">gwas_stats_hg38</span>,<span class="va">ensGene</span>,<span class="va">region38</span><span class="op">)</span></span>
 <span>    <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/exists.html" class="external-link">exists</a></span><span class="op">(</span><span class="st">"df_microarray"</span><span class="op">)</span> <span class="op">&amp;</span> <span class="fu">exits</span><span class="op">(</span><span class="st">"df_rnaseq"</span><span class="op">)</span> <span class="op">&amp;</span> <span class="fu"><a href="https://rdrr.io/r/base/exists.html" class="external-link">exists</a></span><span class="op">(</span><span class="st">"df_gtex"</span><span class="op">)</span><span class="op">)</span></span>
 <span>    <span class="op">{</span></span>
-<span>      <span class="va">coloc_df</span> <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html" class="external-link">bind_rows</a></span><span class="op">(</span><span class="va">df_microarray</span>, <span class="va">df_rnaseq</span>, <span class="va">df_gtex</span><span class="op">)</span></span>
+<span>      <span class="va">coloc_df</span> <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html" class="external-link">bind_rows</a></span><span class="op">(</span><span class="va">df_microarray</span>, <span class="va">df_rnaseq</span>, <span class="va">df_gtex</span><span class="op">)</span></span>
 <span>      <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">saveRDS</a></span><span class="op">(</span><span class="va">coloc_df</span>, file<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">out</span>,<span class="st">".RDS"</span><span class="op">)</span><span class="op">)</span></span>
 <span>      <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">coloc_df</span>, <span class="op">-</span><span class="va">PP.H4.abf</span><span class="op">)</span></span>
 <span>      <span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span><span class="va">coloc_df</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">PP.H4.abf</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_histogram</span><span class="op">(</span><span class="op">)</span></span>
@@ -582,19 +582,10 @@ there would have problem with <code>dplyr::arrange(df_gtex, -PP.H4.abf);p &lt;- 
 <span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
 <span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a><span class="ex">gtex</span></span></code></pre></div>
-<div class="section level4">
-<h4 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+<div class="section level4" number="2.5.1">
+<h4 id="references">
+<span class="header-section-number">2.5.1</span> References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h4>
-<div id="refs" class="references csl-bib-body" line-spacing="2">
-<div id="ref-malone10" class="csl-entry">
-<div class="csl-left-margin">1. </div>
-<div class="csl-right-inline">Malone, J. <em>et al.</em> <a href="https://doi.org/10.1093/bioinformatics/btq099" class="external-link">Modeling sample variables with an experimental factor ontology</a>. <em>Bioinformatics</em> <strong>26</strong>, 1112–1118 (2010).</div>
-</div>
-<div id="ref-kamat19" class="csl-entry">
-<div class="csl-left-margin">2. </div>
-<div class="csl-right-inline">Kamat, M. A. <em>et al.</em> <a href="https://doi.org/10.1093/bioinformatics/btz469" class="external-link">PhenoScanner V2: An expanded tool for searching human genotype-phenotype associations</a>. <em>Bioinformatics</em> <strong>35</strong>, 4851–4853 (2019).</div>
-</div>
-</div>
 </div>
 </div>
 </div>
