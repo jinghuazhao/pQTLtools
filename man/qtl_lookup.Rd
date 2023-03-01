@@ -18,9 +18,9 @@ qtl_lookup(
 )
 }
 \arguments{
-\item{d}{directory where `dat` (below) is held.}
+\item{d}{directory where \code{dat} (below) is held.}
 
-\item{dat}{MR results (`protein`, `id`, `pqtl`,`p`, `qtl`, `p_qtl`) whose `proxy`, `p_proxy` and `rsq` variables will be updated.}
+\item{dat}{MR results (\code{protein}, \code{id}, \code{pqtl},\code{p}, \code{qtl}, \code{p_qtl}) whose \code{proxy}, \code{p_proxy} and \code{rsq} variables will be updated.}
 
 \item{panel}{reference panel.}
 
@@ -30,7 +30,7 @@ qtl_lookup(
 
 \item{pop}{reference population from 1000Genomes for LD calculation.}
 
-\item{plink_bin}{PLINK executable file whose binary files are indicated in `bfile` variable of `dat`.}
+\item{plink_bin}{PLINK executable file whose binary files are indicated in \code{bfile} variable of \code{dat}.}
 
 \item{r}{when specified, the LD(r) is output.}
 
