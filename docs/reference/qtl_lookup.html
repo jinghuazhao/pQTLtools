@@ -41,7 +41,7 @@ a given LD (r2_threshold) thresholds."><meta property="og:image" content="https:
     <h6 class="dropdown-header" data-toc-skip>Articles:</h6>
     <a class="dropdown-item" href="../articles/bioconductor.html">Bioconductor notes</a>
     <a class="dropdown-item" href="../articles/es.html">ExpressionSet usage</a>
-    <a class="dropdown-item" href="../articles/snakemake.html">A snakemake showcase</a>
+    <a class="dropdown-item" href="../articles/snakemake.html">snakemake showcases</a>
     <a class="dropdown-item" href="../articles/SCALLOP-INF.html">SCALLOP-INF scripts</a>
   </div>
 </li>
@@ -55,6 +55,18 @@ a given LD (r2_threshold) thresholds."><meta property="og:image" content="https:
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
       <ul class="navbar-nav"><li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/jinghuazhao/pQTLtools/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://jinghuazhao.github.io/R/">
+    <span class="fab fa fab fa-r-project"></span>
+     
+  </a>
+</li>
+<li class="nav-item">
   <a class="external-link nav-link" href="https://alphafold.ebi.ac.uk/">
     <span class="fas fa fas fa-fast-backward"></span>
      
@@ -82,18 +94,6 @@ a given LD (r2_threshold) thresholds."><meta property="og:image" content="https:
 <li class="nav-item">
   <a class="external-link nav-link" href="https://www.uniprot.org/">
     <span class="fas fa fas fa-fast-forward"></span>
-     
-  </a>
-</li>
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://jinghuazhao.github.io/R/">
-    <span class="fab fa fab fa-r-project"></span>
-     
-  </a>
-</li>
-<li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/jinghuazhao/pQTLtools/" aria-label="github">
-    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -136,11 +136,11 @@ a given LD (r2_threshold) thresholds.</p>
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>d</dt>
-<dd><p>directory where `dat` (below) is held.</p></dd>
+<dd><p>directory where <code>dat</code> (below) is held.</p></dd>
 
 
 <dt>dat</dt>
-<dd><p>MR results (`protein`, `id`, `pqtl`,`p`, `qtl`, `p_qtl`) whose `proxy`, `p_proxy` and `rsq` variables will be updated.</p></dd>
+<dd><p>MR results (<code>protein</code>, <code>id</code>, <code>pqtl</code>,<code>p</code>, <code>qtl</code>, <code>p_qtl</code>) whose <code>proxy</code>, <code>p_proxy</code> and <code>rsq</code> variables will be updated.</p></dd>
 
 
 <dt>panel</dt>
@@ -160,7 +160,7 @@ a given LD (r2_threshold) thresholds.</p>
 
 
 <dt>plink_bin</dt>
-<dd><p>PLINK executable file whose binary files are indicated in `bfile` variable of `dat`.</p></dd>
+<dd><p>PLINK executable file whose binary files are indicated in <code>bfile</code> variable of <code>dat</code>.</p></dd>
 
 
 <dt>r</dt>
@@ -192,7 +192,7 @@ a given LD (r2_threshold) thresholds.</p>
 <span class="r-in"><span><span class="va">inf1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu">gap.datasets</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gap.datasets/man/inf1.html" class="external-link">inf1</a></span>,<span class="va">prot</span>,<span class="va">target.short</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">gsmr_efo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.delim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">INF</span>,<span class="st">"mr"</span>,<span class="st">"gsmr"</span>,<span class="st">"gsmr-efo.txt"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>            <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">inf1</span>,by<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'protein'</span><span class="op">=</span><span class="st">'target.short'</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>            <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>file_gwas<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">prot</span>,<span class="va">id</span>,<span class="st">"rsid.txt"</span>,sep<span class="op">=</span><span class="st">"-"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>            <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>file_gwas<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">prot</span>,<span class="va">id</span>,<span class="st">"rsid.txt"</span>,sep<span class="op">=</span><span class="st">"-"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>                   bfile<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">INF</span>,<span class="st">"INTERVAL"</span>,<span class="st">"per_chr"</span>,</span></span>
 <span class="r-in"><span>                                   <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"interval.imputed.olink.chr_"</span>,<span class="va">chr</span><span class="op">)</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>                   proxy<span class="op">=</span><span class="cn">NA</span>,p_proxy<span class="op">=</span><span class="cn">NA</span>,rsq<span class="op">=</span><span class="cn">NA</span><span class="op">)</span></span></span>
