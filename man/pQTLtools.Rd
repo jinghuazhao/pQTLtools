@@ -37,12 +37,12 @@ Available functions are listed in the following table.\tabular{ll}{
    \code{\link{run_TwoSampleMR}} \tab A generic wrapper for TwoSampleMR analysis \cr
      \tab   \cr
    \strong{PhenoScanner Utilities} \tab   \cr
-   \verb{[genequeries}] \tab phenoscanner genequeries in batches \cr
-   \verb{[regionqueries}] \tab phenoscanner regionqueries in batches \cr
-   \verb{[snpqueries}] \tab phenoscanner snpqueries in batches \cr
+   \code{\link{genequeries}} \tab phenoscanner genequeries in batches \cr
+   \code{\link{regionqueries}} \tab phenoscanner regionqueries in batches \cr
+   \code{\link{snpqueries}} \tab phenoscanner snpqueries in batches \cr
      \tab   \cr
    \strong{UniProt API} \tab   \cr
-   \verb{[uniprot2ids}] \tab UniProt ID to others \cr
+   \code{\link{uniprot2ids}} \tab UniProt ID to others \cr
      \tab   \cr
    \strong{Functions in gap} \tab   \cr
    \code{\link[gap:METAL_forestplot]{gap::METAL_forestplot}} \tab Forest plots from metal analysis \cr
