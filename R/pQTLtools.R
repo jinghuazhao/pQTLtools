@@ -32,12 +32,12 @@
 #' [`run_TwoSampleMR`]      |   A generic wrapper for TwoSampleMR analysis
 #'  &nbsp;                  |   &nbsp;
 #'  **PhenoScanner Utilities** | &nbsp;
-#' `[genequeries`]          |   phenoscanner genequeries in batches
-#' `[regionqueries`]        |   phenoscanner regionqueries in batches
-#' `[snpqueries`]           |   phenoscanner snpqueries in batches
+#' [`genequeries`]          |   phenoscanner genequeries in batches
+#' [`regionqueries`]        |   phenoscanner regionqueries in batches
+#' [`snpqueries`]           |   phenoscanner snpqueries in batches
 #'  &nbsp;                  |   &nbsp;
 #' **UniProt API**          |   &nbsp;
-#' `[uniprot2ids`]          |   UniProt ID to others
+#' [`uniprot2ids`]          |   UniProt ID to others
 #' &nbsp;                   |   &nbsp;
 #' **Functions in gap**     |   &nbsp;
 #' [`gap::METAL_forestplot`]    |    Forest plots from metal analysis
