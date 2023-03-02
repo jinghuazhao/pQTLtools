@@ -135,7 +135,7 @@
 
     
     
-<p>This article provides information on installation of snakemake along with two examples. Additional information is also available<span class="citation"><sup><strong>petereit22?</strong></sup></span>.</p>
+<p>This article provides information on installation of snakemake along with two examples. Additional information is also available<span class="citation"><sup>1</sup></span>.</p>
 <div class="section level2" number="1">
 <h2 id="installation">
 <span class="header-section-number">1</span> Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -244,7 +244,7 @@ experiments with a <code>workflow/config.yaml</code> as follows,</p>
 <h2 id="a-mendelian-randomization-pipeline">
 <span class="header-section-number">3</span> A Mendelian randomization pipeline<a class="anchor" aria-label="anchor" href="#a-mendelian-randomization-pipeline"></a>
 </h2>
-<p>Adapted from published work<span class="citation"><sup><strong>henry22?</strong></sup></span>, the required files are available from the <code>snakemake</code> subdirectory inside the installed package or <code>inst/snakemake</code> directory in the source package.</p>
+<p>Adapted from published work<span class="citation"><sup>2</sup></span>, the required files are available from the <code>snakemake</code> subdirectory inside the installed package or <code>inst/snakemake</code> directory in the source package.</p>
 <p>Steps to set up the environment are outlined below, while <code>MendelianRandomization</code> v0.6.0 is used together with a bug fix in <code>workflow/r/MR_functions.R</code>. The workflow has been heavily edited for simplicity, efficiency and generality.
 Currently <code>input/</code> contains data on CD40, OPG and heart failures – to imitate additional trait, HF statistics are duplicated as HF2.</p>
 <p>The code chunks below gives <code>output</code>/<code>MR_HF.csv</code> (MR results) and <code>Obs_HF.csv</code> (meta-analysis results based on observational studies) and similarly for HF2.</p>
@@ -278,10 +278,19 @@ snakemake-workflows, <a href="https://github.com/snakemake-workflows/" class="ex
 <a href="https://www.ahajournals.org/doi/10.1161/CIRCULATIONAHA.121.056663" class="external-link"><img src="https://www.ahajournals.org/pb-assets/images/logos/circ-logo-1526571039097.svg" alt="Circulation"></a>
 <a href="https://zenodo.org/badge/latestdoi/429122036" class="external-link"><img src="https://zenodo.org/badge/429122036.svg" alt="DOI"></a>.</p>
 </div>
-<div class="section level2" number="5">
-<h2 id="references">
-<span class="header-section-number">5</span> References<a class="anchor" aria-label="anchor" href="#references"></a>
+<div class="section level2">
+<h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
+<div id="refs" class="references csl-bib-body" line-spacing="2">
+<div id="ref-petereit22" class="csl-entry">
+<div class="csl-left-margin">1. </div>
+<div class="csl-right-inline">Petereit, J. Pipeline automation via snakemake. in <em>Plant bioinformatics: Methods and protocols</em> (ed. Edwards, D.) 181–196 (Springer US, 2022). doi:<a href="https://doi.org/10.1007/978-1-0716-2067-0_9" class="external-link">10.1007/978-1-0716-2067-0_9</a>.</div>
+</div>
+<div id="ref-henry22" class="csl-entry">
+<div class="csl-left-margin">2. </div>
+<div class="csl-right-inline">Henry, A. <em>et al.</em> <a href="https://doi.org/10.1161/CIRCULATIONAHA.121.056663" class="external-link">Therapeutic targets for heart failure identified using proteomics and mendelian randomization</a>. <em>Circulation</em> <strong>145</strong>, 1205–1217 (2022).</div>
+</div>
+</div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
