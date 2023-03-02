@@ -16,30 +16,30 @@
 #' @details
 #' Available functions are listed in the following table.
 #'
-#' Objects                |   Description
-#' -----------------------|---------------------------------------------
-#' **eQTL/GWAS**          |   &nbsp;
-#' `get.prop.below.LLOD`  |   Limit of detection analysis
-#' `import_eQTLCatalogue` |   Import eQTL Catalogue
-#' `import_OpenGWAS`      |   Import OpenGWAS
-#' `make_ExpressionSet`   |   A call to ExpressionSet class
-#' `novelty_check`        |   Locus novelty check
-#' `run_coloc`            |   Colocalisation analysis
-#'  &nbsp;                |   &nbsp;
-#'  **MR analysis**       |   &nbsp;
-#' `pqtlMR`               |   Bidirectional pQTL-MR analysis
-#' `qtl_lookup`           |   QTL lookup
-#' `run_TwoSampleMR`      |   A generic wrapper for TwoSampleMR analysis
-#'  &nbsp;                |   &nbsp;
+#' Objects                  |   Description
+#' -------------------------|---------------------------------------------
+#' **eQTL/GWAS**            |   &nbsp;
+#' [`get.prop.below.LLOD`]  |   Limit of detection analysis
+#' [`import_eQTLCatalogue`] |   Import eQTL Catalogue
+#' [`import_OpenGWAS`]      |   Import OpenGWAS
+#' [`make_ExpressionSet`]   |   A call to ExpressionSet class
+#' [`novelty_check`]        |   Locus novelty check
+#' [`run_coloc`]            |   Colocalisation analysis
+#'  &nbsp;                  |   &nbsp;
+#'  **MR analysis**         |   &nbsp;
+#' [`pqtlMR`]               |   Bidirectional pQTL-MR analysis
+#' [`qtl_lookup`]           |   QTL lookup
+#' [`run_TwoSampleMR`]      |   A generic wrapper for TwoSampleMR analysis
+#'  &nbsp;                  |   &nbsp;
 #'  **PhenoScanner Utilities** | &nbsp;
-#' `genequeries`          |   phenoscanner genequeries in batches
-#' `regionqueries`        |   phenoscanner regionqueries in batches
-#' `snpqueries`           |   phenoscanner snpqueries in batches
-#'  &nbsp;                |   &nbsp;
-#' **UniProt API**        |   &nbsp;
-#' `uniprot2ids`          |   UniProt ID to others
-#' &nbsp;                 |   &nbsp;
-#' **Functions in [`gap::gap`]** |   &nbsp;
+#' `[genequeries`]          |   phenoscanner genequeries in batches
+#' `[regionqueries`]        |   phenoscanner regionqueries in batches
+#' `[snpqueries`]           |   phenoscanner snpqueries in batches
+#'  &nbsp;                  |   &nbsp;
+#' **UniProt API**          |   &nbsp;
+#' `[uniprot2ids`]          |   UniProt ID to others
+#' &nbsp;                   |   &nbsp;
+#' **Functions in gap**     |   &nbsp;
 #' [`gap::METAL_forestplot`]    |    Forest plots from metal analysis
 #' [`gap::ci2ms`]               |    Effect size and standard error from confidence interval
 #' [`gap::cis.vs.trans.classification`] | a cis/trans classifier
