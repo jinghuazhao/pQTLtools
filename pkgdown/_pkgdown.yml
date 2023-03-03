@@ -105,9 +105,9 @@ navbar:
 reference:
   - title: A summary
     desc: >
-      Some functions are merged into gap as shown here, [https://jinghuazhao.github.io/R/vignettes/gap.html](https://jinghuazhao.github.io/R/vignettes/gap.html).
+      Some functions are in gap, [https://jinghuazhao.github.io/R/vignettes/gap.html](https://jinghuazhao.github.io/R/vignettes/gap.html).
     contents:
-    - pQTLtools-package
+    - pQTLtools
   - title: Functions
     contents:
     - genequeries
