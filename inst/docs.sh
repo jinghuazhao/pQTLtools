@@ -50,6 +50,6 @@ done
 git add -f docs
 git commit -m "docs"
 git push
-du -h --exclude .git --exclude docs
+du -hs --exclude .git --exclude docs
 
 cd -
