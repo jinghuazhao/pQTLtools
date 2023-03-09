@@ -1,5 +1,4 @@
 .Rhistory
 .git
 docs
-tests
 inst/snakemake/.snakemake
