@@ -40,7 +40,7 @@ fi
 
 for f in .github .gitignore .Rbuildignore .Rinstignore .travis.yml \
          data/ DESCRIPTION INDEX inst/ LICENSE LICENSE.md man/ \
-         NAMESPACE NEWS.md pkgdown/ R/ README.* vignettes/
+         NAMESPACE NEWS.md pkgdown/ R/ README.* tests/ vignettes/
 do
   echo adding ${f}
   git add ${f}
