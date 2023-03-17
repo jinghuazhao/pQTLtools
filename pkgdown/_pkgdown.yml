@@ -82,6 +82,8 @@ navbar:
         href: https://cytoscape.org/
       - text: Ensembl
         href: https://www.ensembl.org/
+      - test: ESM Metagenomic Atlas
+        href: https://esmatlas.com/
       - text: eQTL catalog
         href: https://www.ebi.ac.uk/eqtl/
       - text: GWAS catalog
