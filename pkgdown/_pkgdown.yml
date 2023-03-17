@@ -82,7 +82,7 @@ navbar:
         href: https://cytoscape.org/
       - text: Ensembl
         href: https://www.ensembl.org/
-      - text: ESM Metagenomic Atlas
+      - text: ESMfold
         href: https://esmatlas.com/
       - text: eQTL catalog
         href: https://www.ebi.ac.uk/eqtl/
