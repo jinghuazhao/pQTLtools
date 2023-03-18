@@ -34,7 +34,7 @@ template:
 navbar:
   structure:
     left: [home, articles, reference, changelog]
-    right: [github, cran, alphafold, sites, uniprot]
+    right: [github, cran, alphafold, urls, uniprot]
   components:
     home:
         icon: fa-home
@@ -67,8 +67,8 @@ navbar:
     alphafold:
       icon: fas fa-fast-backward
       href: https://alphafold.ebi.ac.uk/
-    sites:
-      text: Sites
+    urls:
+      text: URLs
       menu:
       - text: AlphaFold
         href: https://alphafold.ebi.ac.uk/
