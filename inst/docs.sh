@@ -16,7 +16,7 @@ function build()
 
 cd ~/pQTLtools
 
-# build
+build
 
 if [ -d vignettes/bioconductor ]; then
    rm -rf docs/articles/bioconductor
