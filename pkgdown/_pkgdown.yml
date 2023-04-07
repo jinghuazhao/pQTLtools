@@ -92,6 +92,8 @@ navbar:
         href: https://metascape.org/
       - text: MRBase
         href: https://www.mrbase.org/
+      - text: ProteomicsDB
+        href: https://www.proteomicsdb.org/
       - text: PubMed
         href: https://pubmed.ncbi.nlm.nih.gov/
       - text: STRING
