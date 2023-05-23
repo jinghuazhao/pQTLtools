@@ -376,10 +376,12 @@ gwasvcf::set_bcftools(file.path(HPC_WORK,"bin","bcftools"))
 f <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","tabix_ftp_paths.tsv")
 tabix_paths <- read.delim(f, stringsAsFactors = FALSE) %>% dplyr::as_tibble()
 HOME <- Sys.getenv("HOME")
-f <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","tabix_ftp_paths_gtex.tsv")
-imported_tabix_paths <- within(read.delim(f, stringsAsFactors = FALSE) %>% dplyr::as_tibble(),
-      {ftp_path <- gsub("ftp://ftp.ebi.ac.uk/pub/databases/spot/eQTL/csv/GTEx_V8/ge",
-                        paste0(HOME,"/rds/public_databases/GTEx/csv"),ftp_path)})
+fp <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","tabix_ftp_paths_gtex.tsv")
+imported_tabix_paths <- within(read.delim(fp, stringsAsFactors = FALSE) %>% dplyr::as_tibble(),
+      {
+         f <- unlist(strsplit(ftp_path,"/csv/|/ge/"))[2]
+         ftp_path <- paste0("~/rds/public_databases/GTEx/csv"),f)
+      })
 options(width=200)
 library(dplyr)
 INF <- Sys.getenv("INF")
