@@ -379,7 +379,7 @@ HOME <- Sys.getenv("HOME")
 fp <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","tabix_ftp_paths_gtex.tsv")
 imported_tabix_paths <- within(read.delim(fp, stringsAsFactors = FALSE) %>% dplyr::as_tibble(),
       {
-         f <- unlist(strsplit(ftp_path,"/csv/|/ge/"))[2]
+         f <- lapply(strsplit(ftp_path,"/csv/|/ge/"),"[",2)
          ftp_path <- paste0("~/rds/public_databases/GTEx/csv"),f)
       })
 options(width=200)
