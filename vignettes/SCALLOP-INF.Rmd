@@ -202,7 +202,7 @@ liftRegion <- function(x,chain,flanking=1e6)
   chr <- gsub("chr","",colnames(table(seqnames(gr38))))
   start <- min(unlist(start(gr38)))
   end <- max(unlist(end(gr38)))
-  invisible(list(chr=chr,start=start,end=end,region=paste0(chr,":",start,"-",end)))
+  invisible(list(chr=chr[1],start=start,end=end,region=paste0(chr,":",start,"-",end)))
 }
 
 sumstats <- function(prot,chr,region37)
