@@ -188,34 +188,6 @@ This is the actual script for cis-pQTL colocalization analysis on GTEx v8 for SC
 
 The data were GWAS summary statistics in GRCh37 and VCF format, converted by `gwasvcf`. The GTEx association statistics were in GRCh38 and downloaded from the eQTL Catalogue and stored locally. Data on microarray and RNA-Seq remain on the eQTL Catalogue website.
 
-## The driver program
-
-It is in Bash.
-
-```bash
-#!/usr/bin/bash
-
-for r in {1..59}
-do
-   export r=${r}
-   export cvt=${INF}/work/INF1.merge.cis.vs.trans
-   read prot MarkerName < \
-                        <(awk -vFS="," '$14=="cis"' ${cvt} | \
-                          awk -vFS="," -vr=${r} 'NR==r{print $2,$5}')
-   echo ${r} - ${prot} - ${MarkerName}
-   export prot=${prot}
-   export MarkerName=${MarkerName}
-   if [ ! -f ${INF}/coloc/${prot}-${MarkerName}.pdf ] || \
-      [ ! -f ${INF}/coloc/${prot}-${MarkerName}.RDS ]; then
-     cd ${INF}/coloc
-     R --no-save < ${INF}/rsid/coloc.R 2>&1 | \
-     tee ${prot}-${MarkerName}.log
-#    ls *tbi | xargs -I {} bash -c "rm {}"
-     cd -
-   fi
-done
-```
-
 ## coloc.R
 
 It contains minor modification to the documentation example,
@@ -237,13 +209,13 @@ sumstats <- function(prot,chr,region37)
 {
   cat("GWAS sumstats\n")
   vcf <- file.path(INF,"METAL/gwas2vcf",paste0(prot,".vcf.gz"))
-  gwas_stats <- gwasvcf::query_gwas(vcf, chrompos = region37)
-  gwas_stats <- gwasvcf::vcf_to_granges(gwas_stats) %>%
+  gwas_stats <- gwasvcf::query_gwas(vcf, chrompos = region37) %>%
+                gwasvcf::vcf_to_granges() %>%
                 keepSeqlevels(chr) %>%
                 renameSeqlevels(paste0("chr",chr))
   gwas_stats_hg38 <- rtracklayer::liftOver(gwas_stats, chain) %>%
     unlist() %>%
-    renameSeqlevels(chr) %>%
+#   renameSeqlevels(chr) %>%
     dplyr::as_tibble() %>%
     dplyr::transmute(chromosome = seqnames,
                      position = start, REF, ALT, AF, ES, SE, LP, SS) %>%
@@ -252,7 +224,8 @@ sumstats <- function(prot,chr,region37)
     dplyr::group_by(id) %>%
     dplyr::mutate(row_count = n()) %>%
     dplyr::ungroup() %>%
-    dplyr::filter(row_count == 1)
+    dplyr::filter(row_count == 1) %>%
+    mutate(chromosome=gsub("chr","",chromosome))
 }
 
 microarray <- function(gwas_stats_hg38,ensGene,region38)
@@ -288,9 +261,9 @@ rnaseq <- function(gwas_stats_hg38,ensGene,region38)
 gtex <- function(gwas_stats_hg38,ensGene,region38)
 {
   cat("c. GTEx_v8 imported eQTL datasets\n")
-  rnaseq_df <- dplyr::filter(imported_tabix_paths, quant_method == "ge") %>%
-               dplyr::mutate(qtl_id = paste(study, qtl_group, sep = "_"))
-  ftp_path_list <- setNames(as.list(rnaseq_df$ftp_path), rnaseq_df$qtl_id)
+  gtex_df <- dplyr::filter(imported_tabix_paths, quant_method == "ge") %>%
+             dplyr::mutate(qtl_id = paste(study, qtl_group, sep = "_"))
+  ftp_path_list <- setNames(as.list(gtex_df$ftp_path), gtex_df$qtl_id)
   hdr <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","column_names.GTEx")
   column_names <- names(read.delim(hdr))
   safe_import <- purrr::safely(import_eQTLCatalogue)
@@ -337,16 +310,7 @@ coloc <- function(prot,chr,ensGene,chain,region37,region38,out,run_all=FALSE)
 single_run <- function(r)
 {
   sentinel <- sentinels[r,]
-  isnpid <- within(gap::inv_chr_pos_a1_a2(sentinel[["SNP"]]),
-  {
-    chr <- gsub("chr","",chr)
-    pos <- as.integer(pos)
-    start <- pos-M
-    if (start<0) start <- 0
-    end <- pos+M
-  })
-  chr <- with(isnpid,chr)
-  region37 <- with(isnpid, paste0(chr,":",start,"-",end))
+  chr <- with(sentinel,Chr)
   ensRegion37 <- with(subset(inf1,prot==sentinel[["prot"]]),
                       {
                         start <- start-M
@@ -354,12 +318,10 @@ single_run <- function(r)
                         end <- end+M
                         paste0(chr,":",start,"-",end)
                       })
-  region38 <- with(liftRegion(isnpid,chain),region)
   ensGene <- subset(inf1,prot==sentinel[["prot"]])[["ensembl_gene_id"]]
   ensRegion38 <- with(liftRegion(subset(inf1,prot==sentinel[["prot"]]),chain),region)
   f <- file.path(INF,"coloc",with(sentinel,paste0(prot,"-",SNP)))
-  cat(chr,region37,region38,ensGene,ensRegion37,ensRegion38,"\n")
-# coloc(sentinel[["prot"]],chr,ensGene,chain,region37,region38,f)
+  cat(chr,ensGene,ensRegion37,ensRegion38,"\n")
   coloc(sentinel[["prot"]],chr,ensGene,chain,ensRegion37,ensRegion38,f)
 }
 
@@ -427,6 +389,33 @@ collect()
 ```
 
 i.e., PP3+PP4>=0.9 and PP4/PP3>=3.
+
+## The driver program
+
+It is in Bash.
+
+```bash
+#!/usr/bin/bash
+
+for r in {1..59}
+do
+   export r=${r}
+   export cvt=${INF}/work/INF1.merge.cis.vs.trans
+   read prot MarkerName < \
+                        <(awk -vFS="," '$14=="cis"' ${cvt} | \
+                          awk -vFS="," -vr=${r} 'NR==r{print $2,$5}')
+   echo ${r} - ${prot} - ${MarkerName}
+   export prot=${prot}
+   export MarkerName=${MarkerName}
+   if [ ! -f ${INF}/coloc/${prot}-${MarkerName}.pdf ] || \
+      [ ! -f ${INF}/coloc/${prot}-${MarkerName}.RDS ]; then
+     cd ${INF}/coloc
+     R --no-save < ${INF}/rsid/coloc.R 2>&1 | \
+     tee ${prot}-${MarkerName}.log
+     cd -
+   fi
+done
+```
 
 ## Parallel computing
 
