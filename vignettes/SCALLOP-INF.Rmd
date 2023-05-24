@@ -279,25 +279,23 @@ gtex <- function(gwas_stats_hg38,ensGene,region38)
 coloc <- function(prot,chr,ensGene,chain,region37,region38,out,run_all=FALSE)
 {
   gwas_stats_hg38 <- sumstats(prot,chr,region37)
+  df_gtex <- gtex(gwas_stats_hg38,ensGene,region38)
+  if (exists("df_gtex"))
+  {
+    saveRDS(df_gtex,file=paste0(out,".RDS"))
+    dplyr::arrange(df_gtex, -PP.H4.abf)
+    p <- ggplot(df_gtex, aes(x = PP.H4.abf)) + geom_histogram()
+  }
   if (run_all)
   {
     df_microarray <- microarray(gwas_stats_hg38,ensGene,region38)
     df_rnaseq <- rnaseq(gwas_stats_hg38,ensGene,region38)
-    df_gtex <- gtex(gwas_stats_hg38,ensGene,region38)
     if (exists("df_microarray") & exits("df_rnaseq") & exists("df_gtex"))
     {
       coloc_df = dplyr::bind_rows(df_microarray, df_rnaseq, df_gtex)
       saveRDS(coloc_df, file=paste0(out,".RDS"))
       dplyr::arrange(coloc_df, -PP.H4.abf)
       p <- ggplot(coloc_df, aes(x = PP.H4.abf)) + geom_histogram()
-    }
-  } else {
-    df_gtex <- gtex(gwas_stats_hg38,ensGene,region38)
-    if (exists("df_gtex"))
-    {
-      saveRDS(df_gtex,file=paste0(out,".RDS"))
-      dplyr::arrange(df_gtex, -PP.H4.abf)
-      p <- ggplot(df_gtex, aes(x = PP.H4.abf)) + geom_histogram()
     }
   }
   s <- ggplot(gwas_stats_hg38, aes(x = position, y = LP)) + geom_point()
@@ -311,15 +309,16 @@ single_run <- function(r)
 {
   sentinel <- sentinels[r,]
   chr <- with(sentinel,Chr)
-  ensRegion37 <- with(subset(inf1,prot==sentinel[["prot"]]),
+  ss <- subset(inf1,prot==sentinel[["prot"]])
+  ensRegion37 <- with(ss,
                       {
                         start <- start-M
                         if (start<0) start <- 0
                         end <- end+M
                         paste0(chr,":",start,"-",end)
                       })
-  ensGene <- subset(inf1,prot==sentinel[["prot"]])[["ensembl_gene_id"]]
-  ensRegion38 <- with(liftRegion(subset(inf1,prot==sentinel[["prot"]]),chain),region)
+  ensGene <- ss[["ensembl_gene_id"]]
+  ensRegion38 <- with(liftRegion(ss,chain),region)
   f <- file.path(INF,"coloc",with(sentinel,paste0(prot,"-",SNP)))
   cat(chr,ensGene,ensRegion37,ensRegion38,"\n")
   coloc(sentinel[["prot"]],chr,ensGene,chain,ensRegion37,ensRegion38,f)
