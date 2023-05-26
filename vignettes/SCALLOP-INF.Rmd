@@ -76,7 +76,7 @@ suppressMessages(library(pQTLtools))
 
 inf1_prot <- vector()
 for(i in 1:92) inf1_prot[inf1[i,"prot"]] <- mutate(inf1[i,],target.short=if_else(!is.na(alt_name),alt_name,target.short))[["target.short"]]
-INF1_metal <- within(read.delim(file.path("~","pQTLtools","tests","INF1.METAL"),as.is=TRUE),{
+INF1_metal <- within(read.delim(file.path(find.package("pQTLtools"),"tests","INF1.METAL"),as.is=TRUE),{
                     hg19_coordinates=paste0("chr",Chromosome,":",Position)}) %>%
                     rename(INF1_rsid=rsid, Total=N) %>%
                     left_join(pQTLdata::inf1[c("prot","gene","target.short","alt_name")]) %>%

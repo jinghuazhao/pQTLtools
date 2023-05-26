@@ -42,21 +42,21 @@ options(width=200)
 f <- file.path(find.package("pQTLtools"),"tests","INF1.merge")
 merged <- read.delim(f,as.is=TRUE)
 hits <- merge(merged[c("CHR","POS","MarkerName","prot","log10p")],
-              inf1[c("prot","uniprot")],by="prot") %>%
+              pQTLdata::inf1[c("prot","uniprot")],by="prot") %>%
         mutate(log10p=-log10p)
 names(hits) <- c("prot","Chr","bp","SNP","log10p","uniprot")
-cistrans <- cis.vs.trans.classification(hits,inf1,"uniprot")
+cistrans <- cis.vs.trans.classification(hits,pQTLdata::inf1,"uniprot")
 cis.vs.trans <- with(cistrans,data)
 kable(with(cistrans,table),caption="cis/trans classification")
 with(cistrans,total)
-circos.cis.vs.trans.plot(hits=f,inf1,"uniprot")
-INF1_merge <- merged[c("Chrom","Start","End","prot","MarkerName")]
-INF1_merge_cvt <- merge(INF1_merge,cis.vs.trans,by.x=c("prot","MarkerName"),by.y=c("prot","SNP"))
-ord <- with(INF1_merge_cvt,order(Chr,bp))
-INF1_merge_cvt <- INF1_merge_cvt[ord,]
+circos.cis.vs.trans.plot(hits=f,pQTLdata::inf1,"uniprot")
+merge <- merged[c("Chrom","Start","End","prot","MarkerName")]
+merge_cvt <- merge(merge,cis.vs.trans,by.x=c("prot","MarkerName"),by.y=c("prot","SNP"))
+ord <- with(merge_cvt,order(Chr,bp))
+merge_cvt <- merge_cvt[ord,]
 ```
 
-The `INF1_merge_cvt` object is obtained for later use. A more recent implementation is the `qtlClassifier` function. For this example we have,
+The `merge_cvt` object is obtained for later use. A more recent implementation is the `qtlClassifier` function. For this example we have,
 
 ```{r qtlClassifier, fig.cap="cis/trans classification", fig.height=7, fig.width=7}
 options(width=200)
@@ -101,7 +101,7 @@ attrs <- c("hgnc_symbol", "chromosome_name", "start_position", "end_position", "
 hgnc <- vector("character",180)
 for(i in 1:180)
 {
-  v <- with(INF1_merge_cvt[i,],paste0(Chr,":",bp,":",bp))
+  v <- with(merge_cvt[i,],paste0(Chr,":",bp,":",bp))
   g <- subset(getBM(attributes = attrs, filters="chromosomal_region", values=v, mart=mart),!is.na(hgnc_symbol))
   hgnc[i] <- paste(g[["hgnc_symbol"]],collapse=";")
   cat(i,g[["hgnc_symbol"]],hgnc[i],"\n")
@@ -112,13 +112,13 @@ save(hgnc,file="hgnc.rda",compress="xz")
 We now proceed with
 
 ```{r karyoplot, fig.cap="Karyoplot of cis/trans pQTLs", fig.height=7, fig.width=7}
-load("hgnc.rda")
-INF1_merge_cvt <- within(INF1_merge_cvt,{
+load(file.path(find.package("pQTLtools"),"tests","hgnc.rda"))
+merge_cvt <- within(merge_cvt,{
   hgnc <- hgnc
   hgnc[cis] <- p.gene[cis]
 })
 
-with(INF1_merge_cvt, {
+with(merge_cvt, {
   sentinels <- toGRanges(Chr,bp-1,bp,labels=hgnc)
   cis.regions <- toGRanges(Chr,cis.start,cis.end)
   loci <- toGRanges(Chr,Start,End)
@@ -154,10 +154,11 @@ post <- function(regions)
 }
 
 M <- 1e+6
-INF1_merge <- merged %>%
-              dplyr::mutate(chr=CHR,start=if_else(POS-M<0,1,POS-M),end=POS+M) %>%
-              dplyr::select(prot,MarkerName,chr,start,end)
-cistrans <- dplyr::select(INF1_merge,chr,start,end) %>%
+merge <- merged %>%
+         dplyr::mutate(chr=Chrom, start=POS-M, end=POS+M) %>%
+         dplyr::mutate(start=if_else(start<1,1,start)) %>%
+         dplyr::select(prot,MarkerName,chr,start,end)
+cistrans <- dplyr::select(merge, chr,start,end) %>%
             dplyr::arrange(chr,start,end) %>%
             dplyr::distinct()
 # All regions
@@ -171,9 +172,9 @@ plotRegionGeneAssociationGraphs(job, ontology="GO Molecular Function")
 plotRegionGeneAssociationGraphs(job, ontology="GO Biological Process")
 plotRegionGeneAssociationGraphs(job, ontology="GO Cellular Component")
 # Specific regions
-IL12B <- dplyr::filter(INF1_merge,prot=="IL.12B") %>% dplyr::select(chr,start,end)
-KITLG <- dplyr::filter(INF1_merge,prot=="SCF") %>% dplyr::select(chr,start,end)
-TNFSF10 <- dplyr::filter(INF1_merge,prot=="TRAIL") %>% dplyr::select(chr,start,end)
+IL12B <- dplyr::filter(merge,prot=="IL.12B") %>% dplyr::select(chr,start,end)
+KITLG <- dplyr::filter(merge,prot=="SCF") %>% dplyr::select(chr,start,end)
+TNFSF10 <- dplyr::filter(merge,prot=="TRAIL") %>% dplyr::select(chr,start,end)
 tb_all <- data.frame()
 for (r in c("IL12B","KITLG","TNFSF10"))
 {
@@ -201,6 +202,23 @@ See example associated with `import_eQTLCatalogue`. A related function is `impor
 flanking regions were considered and data are actually fetched from files stored locally. Only the first sentinel was used, and the code is not executed.
 
 ```r
+INF <- Sys.getenv("INF")
+HPC_WORK <- Sys.getenv("HPC_WORK")
+f <- file.path(system.file(package="pQTLtools"),"eQTL-Catalogue","hg19ToHg38.over.chain")
+chain <- rtracklayer::import.chain(f)
+gwasvcf::set_bcftools(file.path(HPC_WORK,"bin","bcftools"))
+f <- file.path(system.file(package="pQTLtools"),"eQTL-Catalogue","tabix_ftp_paths_gtex.tsv")
+tabix_paths <- read.delim(f, sep = "\t", header = TRUE, stringsAsFactors = FALSE) %>%
+               dplyr::as_tibble()
+f <- file.path(system.file(package="pQTLtools"),"eQTL-Catalogue",
+               "tabix_ftp_paths_gtex.tsv")
+imported_tabix_paths <- within(read.delim(f, stringsAsFactors = FALSE) %>%
+                        dplyr::as_tibble(),
+      {ftp_path <- gsub("ftp://ftp.ebi.ac.uk/pub/databases/spot/eQTL/csv/GTEx_V8/ge",
+                        paste0("~","/rds/public_databases/GTEx/csv"),ftp_path)})
+M <- 1e6
+sentinels <- subset(cis.vs.trans,cis)
+
 liftRegion <- function(x,chain,flanking=1e6)
 {
   gr <- with(x,GenomicRanges::GRanges(seqnames=chr,IRanges::IRanges(start,end))+flanking)
@@ -216,9 +234,9 @@ liftRegion <- function(x,chain,flanking=1e6)
 sumstats <- function(prot,chr,region37)
 {
   cat("GWAS sumstats\n")
-  f <- file.path(INF,"METAL","gwas2vcf",paste0(prot,".vcf.gz"))
-  gwas_stats <- gwasvcf::query_gwas(f, chrompos = region37) %>%
-                gwasvcf::vcf_to_granges() %>%
+  f <- file.path(INF,"METAL/gwas2vcf",paste0(prot,".vcf.gz"))
+  gwas_stats <- gwasvcf::query_gwas(f, chrompos = region37)
+  gwas_stats <- gwasvcf::vcf_to_granges(gwas_stats) %>%
                 keepSeqlevels(chr) %>%
                 renameSeqlevels(paste0("chr",chr))
   gwas_stats_hg38 <- rtracklayer::liftOver(gwas_stats, chain) %>%
@@ -232,23 +250,15 @@ sumstats <- function(prot,chr,region37)
                      dplyr::mutate(row_count = n()) %>%
                      dplyr::ungroup() %>%
                      dplyr::filter(row_count == 1) %>%
-                     dplyr::mutate(chromosome=gsub("chr","",chromosome))
+                     dplyr::mutate(gsub("chr","",chromosome)
 }
 
 coloc <- function(gwas_stats_hg38,ensGene,region38)
 {
   cat("c. GTEx_v8 imported eQTL datasets\n")
-  fp <- file.path(system.file(package="pQTLtools"),"eQTL-Catalogue",
-                  "tabix_ftp_paths_gtex.tsv")
-  imported_tabix_paths <- within(read.delim(fp, stringsAsFactors = FALSE) %>%
-                          dplyr::as_tibble(),
-          {
-            f <- lapply(strsplit(ftp_path,"/csv/|/ge/"),"[",3);
-            ftp_path <- paste0("~/rds/public_databases/GTEx/csv/",f)
-          })
-  gtex_df <- dplyr::filter(imported_tabix_paths, quant_method == "ge") %>%
+  rnaseq_df <- dplyr::filter(imported_tabix_paths, quant_method == "ge") %>%
                dplyr::mutate(qtl_id = paste(study, qtl_group, sep = "_"))
-  ftp_path_list <- setNames(as.list(gtex_df$ftp_path), gtex_df$qtl_id)
+  ftp_path_list <- setNames(as.list(rnaseq_df$ftp_path), rnaseq_df$qtl_id)
   hdr <- file.path(system.file(package="pQTLtools"),"eQTL-Catalogue","column_names.GTEx")
   column_names <- names(read.delim(hdr))
   safe_import <- purrr::safely(import_eQTLCatalogue)
@@ -261,16 +271,10 @@ coloc <- function(gwas_stats_hg38,ensGene,region38)
   purrr::map_df(result_filtered, ~run_coloc(., gwas_stats_hg38), .id = "qtl_id")
 }
 
-INF <- Sys.getenv("INF")
-HPC_WORK <- Sys.getenv("HPC_WORK")
-f <- file.path(system.file(package="pQTLtools"),"eQTL-Catalogue","hg19ToHg38.over.chain")
-chain <- rtracklayer::import.chain(f)
-gwasvcf::set_bcftools(file.path(HPC_WORK,"bin","bcftools"))
-M <- 1e6
-sentinels <- subset(cis.vs.trans,cis)
 sentinel <- sentinels[1,]
 chr <- with(sentinel,Chr)
-ss <- subset(inf1,prot==sentinel[["prot"]])
+ss <- subset(pQTLdata::inf1,prot==sentinel[["prot"]])
+ensGene <- ss[["ensembl_gene_id"]]
 ensRegion37 <- with(ss,
                     {
                       start <- start-M
@@ -278,16 +282,14 @@ ensRegion37 <- with(ss,
                       end <- end+M
                       paste0(chr,":",start,"-",end)
                     })
-ensGene <- ss[["ensembl_gene_id"]]
 ensRegion38 <- with(liftRegion(ss,chain),region)
-cat(chr,ensGene,ensRegion37,ensRegion38,"\n")
-gwas_stats_hg38 <- sumstats(sentinel[["prot"]],chr,region37)
-f <- file.path(find.package("pQTLtools"),"tests",with(sentinel,paste0(prot,"-",gsub(":","_",SNP),".rda")))
-coloc_df_imported <- coloc(gwas_stats_hg38,ensGene,region38)
+f <- with(sentinel,paste0(prot,"-",gsub(":","_",SNP),".rda"))
+gwas_stats_hg38 <- sumstats(sentinel[["prot"]],chr,ensRegion37)
+coloc_df_imported <- coloc(gwas_stats_hg38,ensGene,ensRegion38)
 save(gwas_stats_hg38,sentinel,coloc_df_imported,file=f)
 ```
 
-We load the data obtained from above,
+We load the data obtained from the code above,
 
 ```{r coloc, fig.cap="Association plot", fig.height=7, fig.width=8}
 load(file.path(find.package("pQTLtools"),"tests","OPG-chr8_120081031_C_T.rda"))
