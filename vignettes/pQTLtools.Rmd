@@ -26,6 +26,8 @@ knitr::opts_chunk$set(
   dev = "png")
 ```
 
+The examples here are based on the SCALLOP work @scallop_inf.
+
 ```{r, message=FALSE, warning=FALSE}
 pkgs <- c("GenomicRanges", "TwoSampleMR", "biomaRt", "coloc", "dplyr", "gap", "ggplot2", "httr",
           "karyoploteR", "knitr", "plotly", "pQTLtools", "rGREAT", "readr", "regioneR", "seqminer")
@@ -60,9 +62,9 @@ The `merge_cvt` object is obtained for later use. A more recent implementation i
 
 ```{r qtlClassifier, fig.cap="cis/trans classification", fig.height=7, fig.width=7}
 options(width=200)
-geneSNP <- merge(merged[c("prot","MarkerName")],inf1[c("prot","gene")],by="prot")[c("gene","MarkerName","prot")]
+geneSNP <- merge(merged[c("prot","MarkerName")],pQTLdata::inf1[c("prot","gene")],by="prot")[c("gene","MarkerName","prot")]
 SNPPos <- merged[c("MarkerName","CHR","POS")]
-genePos <- inf1[c("gene","chr","start","end")]
+genePos <- pQTLdata::inf1[c("gene","chr","start","end")]
 cvt <- qtlClassifier(geneSNP,SNPPos,genePos,1e6)
 kable(head(cvt))
 cistrans.check <- merge(cvt[c("gene","MarkerName","Type")],cis.vs.trans[c("p.gene","SNP","cis.trans")],
@@ -202,23 +204,6 @@ See example associated with `import_eQTLCatalogue`. A related function is `impor
 flanking regions were considered and data are actually fetched from files stored locally. Only the first sentinel was used, and the code is not executed.
 
 ```r
-INF <- Sys.getenv("INF")
-HPC_WORK <- Sys.getenv("HPC_WORK")
-f <- file.path(system.file(package="pQTLtools"),"eQTL-Catalogue","hg19ToHg38.over.chain")
-chain <- rtracklayer::import.chain(f)
-gwasvcf::set_bcftools(file.path(HPC_WORK,"bin","bcftools"))
-f <- file.path(system.file(package="pQTLtools"),"eQTL-Catalogue","tabix_ftp_paths_gtex.tsv")
-tabix_paths <- read.delim(f, sep = "\t", header = TRUE, stringsAsFactors = FALSE) %>%
-               dplyr::as_tibble()
-f <- file.path(system.file(package="pQTLtools"),"eQTL-Catalogue",
-               "tabix_ftp_paths_gtex.tsv")
-imported_tabix_paths <- within(read.delim(f, stringsAsFactors = FALSE) %>%
-                        dplyr::as_tibble(),
-      {ftp_path <- gsub("ftp://ftp.ebi.ac.uk/pub/databases/spot/eQTL/csv/GTEx_V8/ge",
-                        paste0("~","/rds/public_databases/GTEx/csv"),ftp_path)})
-M <- 1e6
-sentinels <- subset(cis.vs.trans,cis)
-
 liftRegion <- function(x,chain,flanking=1e6)
 {
   gr <- with(x,GenomicRanges::GRanges(seqnames=chr,IRanges::IRanges(start,end))+flanking)
@@ -235,8 +220,8 @@ sumstats <- function(prot,chr,region37)
 {
   cat("GWAS sumstats\n")
   f <- file.path(INF,"METAL/gwas2vcf",paste0(prot,".vcf.gz"))
-  gwas_stats <- gwasvcf::query_gwas(f, chrompos = region37)
-  gwas_stats <- gwasvcf::vcf_to_granges(gwas_stats) %>%
+  gwas_stats <- gwasvcf::query_gwas(f, chrompos = region37) %>%
+                gwasvcf::vcf_to_granges() %>%
                 keepSeqlevels(chr) %>%
                 renameSeqlevels(paste0("chr",chr))
   gwas_stats_hg38 <- rtracklayer::liftOver(gwas_stats, chain) %>%
@@ -250,16 +235,16 @@ sumstats <- function(prot,chr,region37)
                      dplyr::mutate(row_count = n()) %>%
                      dplyr::ungroup() %>%
                      dplyr::filter(row_count == 1) %>%
-                     dplyr::mutate(gsub("chr","",chromosome)
+                     dplyr::mutate(gsub("chr","",chromosome))
 }
 
 coloc <- function(gwas_stats_hg38,ensGene,region38)
 {
-  cat("c. GTEx_v8 imported eQTL datasets\n")
-  rnaseq_df <- dplyr::filter(imported_tabix_paths, quant_method == "ge") %>%
-               dplyr::mutate(qtl_id = paste(study, qtl_group, sep = "_"))
-  ftp_path_list <- setNames(as.list(rnaseq_df$ftp_path), rnaseq_df$qtl_id)
-  hdr <- file.path(system.file(package="pQTLtools"),"eQTL-Catalogue","column_names.GTEx")
+  cat("GTEx_v8 imported eQTL datasets\n")
+  gtex_df <- dplyr::filter(imported_tabix_paths, quant_method == "ge") %>%
+             dplyr::mutate(qtl_id = paste(study, qtl_group, sep = "_"))
+  ftp_path_list <- setNames(as.list(gtex_df$ftp_path), gtex_df$qtl_id)
+  hdr <- file.path(find.package("pQTLtools"),"eQTL-Catalogue","column_names.GTEx")
   column_names <- names(read.delim(hdr))
   safe_import <- purrr::safely(import_eQTLCatalogue)
   summary_list <- purrr::map(ftp_path_list, ~safe_import(., region38,
@@ -271,6 +256,24 @@ coloc <- function(gwas_stats_hg38,ensGene,region38)
   purrr::map_df(result_filtered, ~run_coloc(., gwas_stats_hg38), .id = "qtl_id")
 }
 
+INF <- Sys.getenv("INF")
+HPC_WORK <- Sys.getenv("HPC_WORK")
+f <- file.path(find.package("pQTLtools"),"eQTL-Catalogue","hg19ToHg38.over.chain")
+chain <- rtracklayer::import.chain(f)
+gwasvcf::set_bcftools(file.path(HPC_WORK,"bin","bcftools"))
+fp <- file.path(system.file(package="pQTLtools"),"eQTL-Catalogue",
+                "tabix_ftp_paths_gtex.tsv")
+# eQTL Catalogue site
+imported_tabix_paths <- read.delim(fp, stringsAsFactors = FALSE) %>%
+                        dplyr::as_tibble()
+# local version
+imported_tabix_paths <- within(imported_tabix_paths,
+      {
+        f <- lapply(strsplit(ftp_path,"/csv/|/ge/"),"[",3);
+        ftp_path <- paste0("~/rds/public_databases/GTEx/csv/",f)
+      })
+M <- 1e6
+sentinels <- subset(cis.vs.trans,cis)
 sentinel <- sentinels[1,]
 chr <- with(sentinel,Chr)
 ss <- subset(pQTLdata::inf1,prot==sentinel[["prot"]])
@@ -336,7 +339,7 @@ invisible(sapply(c("harmonise","result","single"),
                  function(x) unlink(paste0("pQTL-combined-",x,".txt"))))
 ```
 
-## run_TwoSampleMR
+## TwoSampleMR
 
 The documentation example is quoted here,
 
