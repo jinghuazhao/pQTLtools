@@ -1,0 +1,88 @@
+outcome	exposure	method	nsnp	b	se	pval	cistrans
+Graves' disease || id:bbj-a-123	IL.12B	Inverse variance weighted	21	 0.0078	0.1008	0.938	cis
+Graves' disease || id:bbj-a-123	IL.12B	Inverse variance weighted	13	-0.2929	0.154	0.0572	pan
+Graves' disease || id:bbj-a-123	IL.12B	Inverse variance weighted	10	-0.628	0.224	5.11e-03	trans
+Systemic lupus erythematosus || id:ebi-a-GCST003156	IL.12B	Inverse variance weighted	39	-0.0958	0.0676	0.1566	cis
+Systemic lupus erythematosus || id:ebi-a-GCST003156	IL.12B	Inverse variance weighted	13	 0.1460	0.2065	0.4796	pan
+Systemic lupus erythematosus || id:ebi-a-GCST003156	IL.12B	Inverse variance weighted	10	 0.8387	0.368	0.0227	trans
+Juvenile idiopathic arthritis (oligoarticular or rheumatoid factor-negative polyarticular) || id:ebi-a-GCST005528	IL.12B	Wald ratio	1	-0.167	0.114	0.14	cis
+Juvenile idiopathic arthritis (oligoarticular or rheumatoid factor-negative polyarticular) || id:ebi-a-GCST005528	IL.12B	Inverse variance weighted	4	-0.0683	0.304	0.822	pan
+Juvenile idiopathic arthritis (oligoarticular or rheumatoid factor-negative polyarticular) || id:ebi-a-GCST005528	IL.12B	Inverse variance weighted	3	 0.636	0.918	0.4881	trans
+Primary biliary cirrhosis || id:ebi-a-GCST005581	IL.12B	Inverse variance weighted	2	0.00566	0.163	0.972	cis
+Primary biliary cirrhosis || id:ebi-a-GCST005581	IL.12B	Inverse variance weighted	5	 0.0148	0.1614	0.927	pan
+Primary biliary cirrhosis || id:ebi-a-GCST005581	IL.12B	Inverse variance weighted	4	 0.085	0.326	0.795	trans
+Human immunodeficiency virus [HIV] disease || id:finn-a-AB1_HIV	IL.12B	Inverse variance weighted	29	-0.1292	0.280	0.645	cis
+Human immunodeficiency virus [HIV] disease || id:finn-a-AB1_HIV	IL.12B	Inverse variance weighted	8	-0.0597	0.270	0.825	pan
+Human immunodeficiency virus [HIV] disease || id:finn-a-AB1_HIV	IL.12B	Inverse variance weighted	7	 0.00129	0.608	0.998	trans
+Sarcoidosis || id:finn-a-D3_SARCOIDOSIS	IL.12B	Inverse variance weighted	29	-0.0604	0.115	0.601	cis
+Sarcoidosis || id:finn-a-D3_SARCOIDOSIS	IL.12B	Inverse variance weighted	8	 0.0878	0.195	0.653	pan
+Sarcoidosis || id:finn-a-D3_SARCOIDOSIS	IL.12B	Inverse variance weighted	7	 0.512	0.392	0.191	trans
+Sicca syndrome [Sjogren] || id:finn-a-M13_SJOGREN	IL.12B	Inverse variance weighted	29	-0.248	0.141	0.0802	cis
+Sicca syndrome [Sjogren] || id:finn-a-M13_SJOGREN	IL.12B	Inverse variance weighted	8	-0.00954	0.245	0.969	pan
+Sicca syndrome [Sjogren] || id:finn-a-M13_SJOGREN	IL.12B	Inverse variance weighted	7	0.707	0.436	0.104	trans
+Meningitis || id:finn-a-MENINGITIS	IL.12B	Inverse variance weighted	29	-0.2172	0.191	0.257	cis
+Meningitis || id:finn-a-MENINGITIS	IL.12B	Inverse variance weighted	8	-0.233	0.205	0.254	pan
+Meningitis || id:finn-a-MENINGITIS	IL.12B	Inverse variance weighted	7	-0.500	0.446	0.2619	trans
+IgA nephropathy || id:ieu-a-1081	IL.12B	Inverse variance weighted	3	0.2096	0.177	0.237	cis
+IgA nephropathy || id:ieu-a-1081	IL.12B	Inverse variance weighted	4	0.228	0.190	0.230	pan
+IgA nephropathy || id:ieu-a-1081	IL.12B	Inverse variance weighted	2	0.451	1.01	0.656	trans
+Primary sclerosing cholangitis || id:ieu-a-1112	IL.12B	Inverse variance weighted	32	 0.05204	0.0682	0.446	cis
+Primary sclerosing cholangitis || id:ieu-a-1112	IL.12B	Inverse variance weighted	10	 0.4065	0.4544	0.371	pan
+Primary sclerosing cholangitis || id:ieu-a-1112	IL.12B	Inverse variance weighted	8	1.374	0.903	0.128	trans
+Celiac disease || id:ieu-a-276	IL.12B	Inverse variance weighted	3	-0.01729	0.1214	0.887	cis
+Celiac disease || id:ieu-a-276	IL.12B	Inverse variance weighted	4	 0.10050	0.2324	0.665	pan
+Celiac disease || id:ieu-a-276	IL.12B	Inverse variance weighted	2	1.21	0.469	0.01	trans
+Inflammatory bowel disease || id:ieu-a-31	IL.12B	Inverse variance weighted	56	0.390	0.0350	9.29e-29	cis
+Inflammatory bowel disease || id:ieu-a-31	IL.12B	Inverse variance weighted	15	0.2737	0.0666	3.94e-05	pan
+Inflammatory bowel disease || id:ieu-a-31	IL.12B	Inverse variance weighted	11	 0.0608	0.0752	0.419	trans
+multiple sclerosis || id:ieu-b-18	IL.12B	Inverse variance weighted	26	-0.0256	0.0426	0.548	cis
+multiple sclerosis || id:ieu-b-18	IL.12B	Inverse variance weighted	11	 0.01856	0.0694	0.789	pan
+multiple sclerosis || id:ieu-b-18	IL.12B	Inverse variance weighted	7	 0.130	0.1166	0.26461	trans
+sepsis || id:ieu-b-69	IL.12B	Inverse variance weighted	56	-0.0334	0.0266	0.209	cis
+sepsis || id:ieu-b-69	IL.12B	Inverse variance weighted	16	-0.0115	0.0293	0.694	pan
+sepsis || id:ieu-b-69	IL.12B	Inverse variance weighted	12	 0.000165	0.0523	0.997	trans
+Non-cancer illness code  self-reported: vitiligo || id:ukb-a-115	IL.12B	Inverse variance weighted	54	-6.24e-05	7.57e-05	0.410	cis
+Non-cancer illness code  self-reported: vitiligo || id:ukb-a-115	IL.12B	Inverse variance weighted	15	-8.77e-05	7.06e-05	0.214	pan
+Non-cancer illness code  self-reported: vitiligo || id:ukb-a-115	IL.12B	Inverse variance weighted	11	-0.000138	0.000135	0.306	trans
+Diagnoses - main ICD10: K50 Crohn's disease [regional enteritis] || id:ukb-a-552	IL.12B	Inverse variance weighted	54	0.000885	0.000214	3.63e-05	cis
+Diagnoses - main ICD10: K50 Crohn's disease [regional enteritis] || id:ukb-a-552	IL.12B	Inverse variance weighted	15	 4.06e-04	0.000331	0.219	pan
+Diagnoses - main ICD10: K50 Crohn's disease [regional enteritis] || id:ukb-a-552	IL.12B	Inverse variance weighted	11	-0.000437	0.000436	0.3161	trans
+Non-cancer illness code, self-reported: psoriasis || id:ukb-b-10537	IL.12B	Inverse variance weighted	17	-0.00357	0.000788	5.88e-06	cis
+Non-cancer illness code, self-reported: psoriasis || id:ukb-b-10537	IL.12B	Inverse variance weighted	12	-0.000417	0.003327	9.00e-01	pan
+Non-cancer illness code, self-reported: psoriasis || id:ukb-b-10537	IL.12B	Inverse variance weighted	8	 0.005919	0.006295	0.347	trans
+Non-cancer illness code, self-reported: gout || id:ukb-b-13251	IL.12B	Inverse variance weighted	20	-0.000141	0.000471	0.764	cis
+Non-cancer illness code, self-reported: gout || id:ukb-b-13251	IL.12B	Inverse variance weighted	13	 2.01e-04	0.000743	0.787	pan
+Non-cancer illness code, self-reported: gout || id:ukb-b-13251	IL.12B	Inverse variance weighted	9	8.41e-04	0.001434	0.557	trans
+Diagnoses - main ICD10: J18.9 Pneumonia, unspecified || id:ukb-b-15606	IL.12B	Inverse variance weighted	7	0.000217	0.000246	0.376	cis
+Diagnoses - main ICD10: J18.9 Pneumonia, unspecified || id:ukb-b-15606	IL.12B	Inverse variance weighted	10	8.82e-05	0.000212	0.677	pan
+Diagnoses - main ICD10: J18.9 Pneumonia, unspecified || id:ukb-b-15606	IL.12B	Inverse variance weighted	7	-0.000183	0.000402	0.649	trans
+Non-cancer illness code, self-reported: tuberculosis (tb) || id:ukb-b-15622	IL.12B	Inverse variance weighted	7	 1.34e-04	0.000312	0.668	cis
+Non-cancer illness code, self-reported: tuberculosis (tb) || id:ukb-b-15622	IL.12B	Inverse variance weighted	11	 1.76e-04	0.000250	0.4813	pan
+Non-cancer illness code, self-reported: tuberculosis (tb) || id:ukb-b-15622	IL.12B	Inverse variance weighted	8	0.000414	0.000458	0.366	trans
+Non-cancer illness code, self-reported: hayfever/allergic rhinitis || id:ukb-b-16499	IL.12B	Inverse variance weighted	40	 0.000275	0.00103	0.788	cis
+Non-cancer illness code, self-reported: hayfever/allergic rhinitis || id:ukb-b-16499	IL.12B	Inverse variance weighted	14	-1.02e-04	0.002149	0.962	pan
+Non-cancer illness code, self-reported: hayfever/allergic rhinitis || id:ukb-b-16499	IL.12B	Inverse variance weighted	10	-0.000408	0.00425	0.9234	trans
+Diagnoses - secondary ICD10: Z91.0 Personal history of allergy, other than to drugs and biological substances || id:ukb-b-16702	IL.12B	Inverse variance weighted	7	-0.000385	0.000346	0.2654	cis
+Diagnoses - secondary ICD10: Z91.0 Personal history of allergy, other than to drugs and biological substances || id:ukb-b-16702	IL.12B	Inverse variance weighted	10	-0.000440	0.000205	0.0318	pan
+Diagnoses - secondary ICD10: Z91.0 Personal history of allergy, other than to drugs and biological substances || id:ukb-b-16702	IL.12B	Inverse variance weighted	7	-4.50e-04	0.000413	0.276	trans
+Non-cancer illness code, self-reported: ankylosing spondylitis || id:ukb-b-18194	IL.12B	Inverse variance weighted	5	 0.000103	0.000275	0.710	cis
+Non-cancer illness code, self-reported: ankylosing spondylitis || id:ukb-b-18194	IL.12B	Inverse variance weighted	8	-0.000060	0.000566	0.916	pan
+Non-cancer illness code, self-reported: ankylosing spondylitis || id:ukb-b-18194	IL.12B	Inverse variance weighted	6	-4.98e-04	0.001099	0.650	trans
+Diagnoses - main ICD10: K51.9 Ulcerative colitis, unspecified || id:ukb-b-19386	IL.12B	Inverse variance weighted	7	0.000562	0.000273	0.0394	cis
+Diagnoses - main ICD10: K51.9 Ulcerative colitis, unspecified || id:ukb-b-19386	IL.12B	Inverse variance weighted	10	 0.000357	0.000321	0.2662	pan
+Diagnoses - main ICD10: K51.9 Ulcerative colitis, unspecified || id:ukb-b-19386	IL.12B	Inverse variance weighted	7	-9.68e-05	0.000552	0.861	trans
+Non-cancer illness code, self-reported: hypothyroidism/myxoedema || id:ukb-b-19732	IL.12B	Inverse variance weighted	37	-5.55e-05	0.000927	0.952	cis
+Non-cancer illness code, self-reported: hypothyroidism/myxoedema || id:ukb-b-19732	IL.12B	Inverse variance weighted	14	 0.001458	0.005951	0.806	pan
+Non-cancer illness code, self-reported: hypothyroidism/myxoedema || id:ukb-b-19732	IL.12B	Inverse variance weighted	10	 0.00429	0.01180	7.16e-01	trans
+Non-cancer illness code, self-reported: eczema/dermatitis || id:ukb-b-20141	IL.12B	Inverse variance weighted	26	-9.49e-06	0.000629	0.988	cis
+Non-cancer illness code, self-reported: eczema/dermatitis || id:ukb-b-20141	IL.12B	Inverse variance weighted	13	-8.86e-04	0.000929	0.341	pan
+Non-cancer illness code, self-reported: eczema/dermatitis || id:ukb-b-20141	IL.12B	Inverse variance weighted	9	-0.002139	0.00175	0.222	trans
+Diagnoses - main ICD10: J45.9 Asthma, unspecified || id:ukb-b-20208	IL.12B	Inverse variance weighted	7	 8.22e-05	0.000265	0.756	cis
+Diagnoses - main ICD10: J45.9 Asthma, unspecified || id:ukb-b-20208	IL.12B	Inverse variance weighted	10	0.000481	0.000398	0.226	pan
+Diagnoses - main ICD10: J45.9 Asthma, unspecified || id:ukb-b-20208	IL.12B	Inverse variance weighted	7	1.13e-03	0.000757	0.1358	trans
+Diagnoses - main ICD10: N39.0 Urinary tract infection, site not specified || id:ukb-b-8814	IL.12B	Inverse variance weighted	18	-5.11e-04	0.000473	0.279	cis
+Diagnoses - main ICD10: N39.0 Urinary tract infection, site not specified || id:ukb-b-8814	IL.12B	Inverse variance weighted	12	-0.000261	0.000364	0.474	pan
+Diagnoses - main ICD10: N39.0 Urinary tract infection, site not specified || id:ukb-b-8814	IL.12B	Inverse variance weighted	8	-5.86e-05	0.000619	0.925	trans
+Non-cancer illness code, self-reported: rheumatoid arthritis || id:ukb-b-9125	IL.12B	Inverse variance weighted	17	-0.000122	0.000622	0.845	cis
+Non-cancer illness code, self-reported: rheumatoid arthritis || id:ukb-b-9125	IL.12B	Inverse variance weighted	12	 1.40e-04	0.000608	0.818	pan
+Non-cancer illness code, self-reported: rheumatoid arthritis || id:ukb-b-9125	IL.12B	Inverse variance weighted	8	0.000569	0.001085	0.600	trans
