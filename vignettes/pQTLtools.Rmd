@@ -45,7 +45,7 @@ f <- file.path(find.package("pQTLtools"),"tests","INF1.merge")
 merged <- read.delim(f,as.is=TRUE)
 hits <- merge(merged[c("CHR","POS","MarkerName","prot","log10p")],
               pQTLdata::inf1[c("prot","uniprot")],by="prot") %>%
-        mutate(log10p=-log10p)
+        dplyr::mutate(log10p=-log10p)
 names(hits) <- c("prot","Chr","bp","SNP","log10p","uniprot")
 cistrans <- cis.vs.trans.classification(hits,pQTLdata::inf1,"uniprot")
 cis.vs.trans <- with(cistrans,data)
@@ -189,9 +189,12 @@ The top terms at Binomial p=1e-5 could be extracted as follows,
 
 ```{r, echo=FALSE}
 options(width=100)
-great3 <- filter(tb_all,BinomP<=1e-5) %>% mutate(ID=gsub(":",": ",ID))
+great3 <- filter(tb_all,BinomP<=1e-5) %>%
+          dplyr::mutate(ID=gsub(":",": ",ID))
 kable(great3,caption="GREAT IL12B-KITLG-TNFSF10 results")
-great <- read.delim("cistrans.tsv") %>% filter(BinomBonfP<=1e-8) %>% mutate(ID=gsub(":",": ",ID))
+great <- read.delim("cistrans.tsv") %>%
+         dplyr::filter(BinomBonfP<=1e-8) %>%
+         dplyr::mutate(ID=gsub(":",": ",ID))
 unlink("IL12B.tsv")
 unlink("KITLG.tsv")
 unlink("TNFSF10.tsv")
@@ -236,7 +239,7 @@ sumstats <- function(prot,chr,region37)
     dplyr::mutate(row_count = n()) %>%
     dplyr::ungroup() %>%
     dplyr::filter(row_count == 1) %>%
-    mutate(chromosome=gsub("chr","",chromosome))
+    dplyr::mutate(chromosome=gsub("chr","",chromosome))
   ggplot2::ggplot(gwas_stats_hg38, aes(x = position, y = LP)) +
   ggplot2::theme_bw() +
   ggplot2::geom_point() +
