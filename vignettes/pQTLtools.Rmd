@@ -238,7 +238,7 @@ sumstats <- function(prot,chr,region37)
                      dplyr::mutate(gsub("chr","",chromosome))
 }
 
-coloc <- function(gwas_stats_hg38,ensGene,region38)
+gtex_coloc <- function(gwas_stats_hg38,ensGene,region38)
 {
   cat("GTEx_v8 imported eQTL datasets\n")
   gtex_df <- dplyr::filter(imported_tabix_paths, quant_method == "ge") %>%
@@ -261,7 +261,7 @@ HPC_WORK <- Sys.getenv("HPC_WORK")
 f <- file.path(find.package("pQTLtools"),"eQTL-Catalogue","hg19ToHg38.over.chain")
 chain <- rtracklayer::import.chain(f)
 gwasvcf::set_bcftools(file.path(HPC_WORK,"bin","bcftools"))
-fp <- file.path(system.file(package="pQTLtools"),"eQTL-Catalogue",
+fp <- file.path(find.package("pQTLtools"),"eQTL-Catalogue",
                 "tabix_ftp_paths_gtex.tsv")
 # eQTL Catalogue site
 imported_tabix_paths <- read.delim(fp, stringsAsFactors = FALSE) %>%
@@ -269,7 +269,7 @@ imported_tabix_paths <- read.delim(fp, stringsAsFactors = FALSE) %>%
 # local version
 imported_tabix_paths <- within(imported_tabix_paths,
       {
-        f <- lapply(strsplit(ftp_path,"/csv/|/ge/"),"[",3);
+        f <- lapply(strsplit(ftp_path,"/imported/|/ge/"),"[",3);
         ftp_path <- paste0("~/rds/public_databases/GTEx/csv/",f)
       })
 M <- 1e6
@@ -288,7 +288,7 @@ ensRegion37 <- with(ss,
 ensRegion38 <- with(liftRegion(ss,chain),region)
 f <- with(sentinel,paste0(prot,"-",gsub(":","_",SNP),".rda"))
 gwas_stats_hg38 <- sumstats(sentinel[["prot"]],chr,ensRegion37)
-coloc_df_imported <- coloc(gwas_stats_hg38,ensGene,ensRegion38)
+coloc_df_imported <- gtex_coloc(gwas_stats_hg38,ensGene,ensRegion38)
 save(gwas_stats_hg38,sentinel,coloc_df_imported,file=f)
 ```
 
@@ -310,7 +310,7 @@ if (nrow(coloc_df_imported)>0)
    xlab("PP4") + ylab("Frequency")
 }
 ktitle <- with(sentinel,paste0("Colocalization results for ",prot,"-",SNP))
-kable(coloc_df_imported, caption=ktitle)
+kable(within(coloc_df_imported,{qtl_id <- gsub("GTEx_V8_","",qtl_id)}), caption=ktitle)
 ```
 
 The function `sumstats()` obtained meta-analysis summary statistics (in build 37 and therefore lifted over to build 38) to be used in colocalization 
