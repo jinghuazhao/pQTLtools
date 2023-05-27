@@ -201,9 +201,9 @@ unlink("cistrans.tsv")
 # eQTL Catalog for colocalization analysis
 
 See example associated with `import_eQTLCatalogue`. A related function is `import_OpenGWAS` used to fetch data from OpenGWAS. The cis-pQTLs and 1e+6 
-flanking regions were considered and data are actually fetched from files stored locally. Only the first sentinel was used, and the code is not executed.
+flanking regions were considered and data are actually fetched from files stored locally. Only the first sentinel was used (r=1).
 
-```{r coloc, warning=FALSE}
+```{r coloc, fig.cap="Association plot & histogram", fig.height=7, fig.width=8, message=FALSE, warning=FALSE}
 liftRegion <- function(x,chain,flanking=1e6)
 {
   require(GenomicRanges)
@@ -237,6 +237,11 @@ sumstats <- function(prot,chr,region37)
     dplyr::ungroup() %>%
     dplyr::filter(row_count == 1) %>%
     mutate(chromosome=gsub("chr","",chromosome))
+  ggplot2::ggplot(gwas_stats_hg38, aes(x = position, y = LP)) +
+  ggplot2::theme_bw() +
+  ggplot2::geom_point() +
+  ggplot2::ggtitle(with(sentinel,paste0(prot,"-",SNP," association plot")))
+  gwas_stats_hg38
 }
 
 gtex <- function(gwas_stats_hg38,ensGene,region38)
@@ -275,9 +280,8 @@ gtex_coloc <- function(prot,chr,ensGene,chain,region37,region38,out)
   s <- ggplot(gwas_stats_hg38, aes(x = position, y = LP)) + geom_point()
 }
 
-single_run <- function(r, batch="GTEx")
+single_run <- function()
 {
-  sentinel <- sentinels[r,]
   chr <- with(sentinel,Chr)
   ss <- subset(inf1,prot==sentinel[["prot"]])
   ensRegion37 <- with(ss,
@@ -299,7 +303,6 @@ HOME <- Sys.getenv("HOME")
 HPC_WORK <- Sys.getenv("HPC_WORK")
 INF <- Sys.getenv("INF")
 M <- 1e6
-
 sentinels <- subset(cis.vs.trans,cis)
 f <- file.path(find.package("pQTLtools"),"eQTL-Catalogue","hg19ToHg38.over.chain")
 chain <- rtracklayer::import.chain(f)
@@ -308,9 +311,9 @@ f <- file.path(find.package("pQTLtools"),"eQTL-Catalogue","tabix_ftp_paths.tsv")
 tabix_paths <- read.delim(f, stringsAsFactors = FALSE) %>% dplyr::as_tibble()
 
 r <- 1
-single_run(r)
-# The results are also loadable as follows.
 sentinel <- sentinels[r,]
+single_run()
+# The results are also loadable as follows.
 coloc_df <- readRDS(file.path(find.package("pQTLtools"),"tests","OPG-chr8:120081031_C_T.RDS")) %>%
             dplyr::rename(Tissue=qtl_id, H0=PP.H0.abf,H1=PP.H1.abf,
                           H2=PP.H2.abf,H3=PP.H3.abf,H4=PP.H4.abf) %>%
@@ -319,6 +322,11 @@ coloc_df <- readRDS(file.path(find.package("pQTLtools"),"tests","OPG-chr8:120081
                    arrange(-H4)
 ktitle <- with(sentinel,paste0("Colocalization results for ",prot,"-",SNP))
 kable(coloc_df,caption=ktitle)
+ggplot(coloc_df, aes(x = H4)) +
+ggplot2::theme_bw() +
+geom_histogram() +
+ggtitle(with(sentinel,paste0(prot,"-",SNP," PP4 histogram"))) +
+xlab("PP4") + ylab("Frequency")
 ```
 
 The function `sumstats()` obtained meta-analysis summary statistics (in build 37 and therefore lifted over to build 38) to be used in colocalization 
