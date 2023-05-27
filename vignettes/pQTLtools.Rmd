@@ -300,17 +300,22 @@ ggplot2::ggplot(gwas_stats_hg38, aes(x = position, y = LP)) +
 ggplot2::theme_bw() +
 ggplot2::geom_point() +
 ggplot2::ggtitle(with(sentinel,paste0(prot,"-",SNP," association plot")))
-if (nrow(coloc_df_imported)>0)
+coloc_df <- coloc_df_imported %>%
+            dplyr::rename(Tissue=qtl_id, H0=PP.H0.abf,H1=PP.H1.abf,
+                          H2=PP.H2.abf,H3=PP.H3.abf,H4=PP.H4.abf) %>%
+            mutate(Tissue=gsub("GTEx_V8_","",Tissue),
+                   H0=round(H0,2),H1=round(H1,2),H2=round(H2,2),H3=round(H3,2),H4=round(H4,2)) %>%
+                   arrange(-H4)
+if (nrow(coloc_df)>0)
 {
-   dplyr::arrange(coloc_df_imported, -PP.H4.abf)
-   ggplot(coloc_df_imported, aes(x = PP.H4.abf)) +
+   ggplot(coloc_df, aes(x = H4)) +
    ggplot2::theme_bw() +
    geom_histogram() +
    ggtitle(with(sentinel,paste0(prot,"-",SNP," PP4 histogram"))) +
    xlab("PP4") + ylab("Frequency")
 }
 ktitle <- with(sentinel,paste0("Colocalization results for ",prot,"-",SNP))
-kable(within(coloc_df_imported,{qtl_id <- gsub("GTEx_V8_","",qtl_id)}), caption=ktitle)
+kable(coloc_df,caption=ktitle)
 ```
 
 The function `sumstats()` obtained meta-analysis summary statistics (in build 37 and therefore lifted over to build 38) to be used in colocalization 
@@ -339,7 +344,7 @@ invisible(sapply(c("harmonise","result","single"),
                  function(x) unlink(paste0("pQTL-combined-",x,".txt"))))
 ```
 
-## TwoSampleMR
+## Two-sample MR
 
 The documentation example is quoted here,
 
