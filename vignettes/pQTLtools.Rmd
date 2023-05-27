@@ -203,52 +203,60 @@ unlink("cistrans.tsv")
 See example associated with `import_eQTLCatalogue`. A related function is `import_OpenGWAS` used to fetch data from OpenGWAS. The cis-pQTLs and 1e+6 
 flanking regions were considered and data are actually fetched from files stored locally. Only the first sentinel was used, and the code is not executed.
 
-```r
+```{r coloc, warning=FALSE}
 liftRegion <- function(x,chain,flanking=1e6)
 {
+  require(GenomicRanges)
   gr <- with(x,GenomicRanges::GRanges(seqnames=chr,IRanges::IRanges(start,end))+flanking)
   seqlevelsStyle(gr) <- "UCSC"
   gr38 <- rtracklayer::liftOver(gr, chain)
-  chr <- colnames(table(seqnames(gr38)))
-  chr <- gsub("chr","",chr)
+  chr <- gsub("chr","",colnames(table(seqnames(gr38))))
   start <- min(unlist(start(gr38)))
   end <- max(unlist(end(gr38)))
-  invisible(list(chr=chr,start=start,end=end,region=paste0(chr,":",start,"-",end)))
+  invisible(list(chr=chr[1],start=start,end=end,region=paste0(chr[1],":",start,"-",end)))
 }
 
 sumstats <- function(prot,chr,region37)
 {
   cat("GWAS sumstats\n")
-  f <- file.path(INF,"METAL/gwas2vcf",paste0(prot,".vcf.gz"))
-  gwas_stats <- gwasvcf::query_gwas(f, chrompos = region37) %>%
+  vcf <- file.path(INF,"METAL/gwas2vcf",paste0(prot,".vcf.gz"))
+  gwas_stats <- gwasvcf::query_gwas(vcf, chrompos = region37) %>%
                 gwasvcf::vcf_to_granges() %>%
                 keepSeqlevels(chr) %>%
                 renameSeqlevels(paste0("chr",chr))
   gwas_stats_hg38 <- rtracklayer::liftOver(gwas_stats, chain) %>%
-                     unlist() %>%
-                     dplyr::as_tibble() %>%
-                     dplyr::transmute(chromosome = seqnames,
-                                      position = start, REF, ALT, AF, ES, SE, LP, SS) %>%
-                     dplyr::mutate(id = paste(chromosome, position, sep = ":")) %>%
-                     dplyr::mutate(MAF = pmin(AF, 1-AF)) %>%
-                     dplyr::group_by(id) %>%
-                     dplyr::mutate(row_count = n()) %>%
-                     dplyr::ungroup() %>%
-                     dplyr::filter(row_count == 1) %>%
-                     dplyr::mutate(gsub("chr","",chromosome))
+    unlist() %>%
+#   renameSeqlevels(chr) %>%
+    dplyr::as_tibble() %>%
+    dplyr::transmute(chromosome = seqnames,
+                     position = start, REF, ALT, AF, ES, SE, LP, SS) %>%
+    dplyr::mutate(id = paste(chromosome, position, sep = ":")) %>%
+    dplyr::mutate(MAF = pmin(AF, 1-AF)) %>%
+    dplyr::group_by(id) %>%
+    dplyr::mutate(row_count = n()) %>%
+    dplyr::ungroup() %>%
+    dplyr::filter(row_count == 1) %>%
+    mutate(chromosome=gsub("chr","",chromosome))
 }
 
-gtex_coloc <- function(gwas_stats_hg38,ensGene,region38)
+gtex <- function(gwas_stats_hg38,ensGene,region38)
 {
-  cat("GTEx_v8 imported eQTL datasets\n")
-  gtex_df <- dplyr::filter(imported_tabix_paths, quant_method == "ge") %>%
+  cat("c. GTEx_v8 imported eQTL datasets\n")
+  fp <- file.path(find.package("pQTLtools"),"eQTL-Catalogue","tabix_ftp_paths_gtex.tsv")
+  web <- read.delim(fp, stringsAsFactors = FALSE) %>% dplyr::as_tibble()
+  local <- within(web %>% dplyr::as_tibble(),
+        {
+          f <- lapply(strsplit(ftp_path,"/imported/|/ge/"),"[",3);
+          ftp_path <- paste0("~/rds/public_databases/GTEx/csv/",f)
+        })
+  gtex_df <- dplyr::filter(local, quant_method == "ge") %>%
              dplyr::mutate(qtl_id = paste(study, qtl_group, sep = "_"))
   ftp_path_list <- setNames(as.list(gtex_df$ftp_path), gtex_df$qtl_id)
   hdr <- file.path(find.package("pQTLtools"),"eQTL-Catalogue","column_names.GTEx")
   column_names <- names(read.delim(hdr))
   safe_import <- purrr::safely(import_eQTLCatalogue)
-  summary_list <- purrr::map(ftp_path_list, ~safe_import(., region38,
-                             selected_gene_id = ensGene, column_names))
+  summary_list <- purrr::map(ftp_path_list,
+                             ~safe_import(., region38, selected_gene_id = ensGene, column_names))
   result_list <- purrr::map(summary_list, ~.$result)
   result_list <- result_list[!unlist(purrr::map(result_list, is.null))]
   result_filtered <- purrr::map(result_list[lapply(result_list,nrow)!=0],
@@ -256,70 +264,65 @@ gtex_coloc <- function(gwas_stats_hg38,ensGene,region38)
   purrr::map_df(result_filtered, ~run_coloc(., gwas_stats_hg38), .id = "qtl_id")
 }
 
-INF <- Sys.getenv("INF")
+gtex_coloc <- function(prot,chr,ensGene,chain,region37,region38,out)
+{
+  gwas_stats_hg38 <- sumstats(prot,chr,region37)
+  df_gtex <- gtex(gwas_stats_hg38,ensGene,region38)
+  if (!exists("df_gtex")) return
+  saveRDS(df_gtex,file=paste0(out,".RDS"))
+  dplyr::arrange(df_gtex, -PP.H4.abf)
+  p <- ggplot(df_gtex, aes(x = PP.H4.abf)) + geom_histogram()
+  s <- ggplot(gwas_stats_hg38, aes(x = position, y = LP)) + geom_point()
+}
+
+single_run <- function(r, batch="GTEx")
+{
+  sentinel <- sentinels[r,]
+  chr <- with(sentinel,Chr)
+  ss <- subset(inf1,prot==sentinel[["prot"]])
+  ensRegion37 <- with(ss,
+                      {
+                        start <- start-M
+                        if (start<0) start <- 0
+                        end <- end+M
+                        paste0(chr,":",start,"-",end)
+                      })
+  ensGene <- ss[["ensembl_gene_id"]]
+  ensRegion38 <- with(liftRegion(ss,chain),region)
+  cat(chr,ensGene,ensRegion37,ensRegion38,"\n")
+  f <- with(sentinel,paste0(prot,"-",SNP))
+  gtex_coloc(sentinel[["prot"]],chr,ensGene,chain,ensRegion37,ensRegion38,f)
+}
+
+options(width=200)
+HOME <- Sys.getenv("HOME")
 HPC_WORK <- Sys.getenv("HPC_WORK")
+INF <- Sys.getenv("INF")
+M <- 1e6
+
+sentinels <- subset(cis.vs.trans,cis)
 f <- file.path(find.package("pQTLtools"),"eQTL-Catalogue","hg19ToHg38.over.chain")
 chain <- rtracklayer::import.chain(f)
 gwasvcf::set_bcftools(file.path(HPC_WORK,"bin","bcftools"))
-fp <- file.path(find.package("pQTLtools"),"eQTL-Catalogue",
-                "tabix_ftp_paths_gtex.tsv")
-# eQTL Catalogue site
-imported_tabix_paths <- read.delim(fp, stringsAsFactors = FALSE) %>%
-                        dplyr::as_tibble()
-# local version
-imported_tabix_paths <- within(imported_tabix_paths,
-      {
-        f <- lapply(strsplit(ftp_path,"/imported/|/ge/"),"[",3);
-        ftp_path <- paste0("~/rds/public_databases/GTEx/csv/",f)
-      })
-M <- 1e6
-sentinels <- subset(cis.vs.trans,cis)
-sentinel <- sentinels[1,]
-chr <- with(sentinel,Chr)
-ss <- subset(pQTLdata::inf1,prot==sentinel[["prot"]])
-ensGene <- ss[["ensembl_gene_id"]]
-ensRegion37 <- with(ss,
-                    {
-                      start <- start-M
-                      if (start<0) start <- 0
-                      end <- end+M
-                      paste0(chr,":",start,"-",end)
-                    })
-ensRegion38 <- with(liftRegion(ss,chain),region)
-f <- with(sentinel,paste0(prot,"-",gsub(":","_",SNP),".rda"))
-gwas_stats_hg38 <- sumstats(sentinel[["prot"]],chr,ensRegion37)
-coloc_df_imported <- gtex_coloc(gwas_stats_hg38,ensGene,ensRegion38)
-save(gwas_stats_hg38,sentinel,coloc_df_imported,file=f)
-```
+f <- file.path(find.package("pQTLtools"),"eQTL-Catalogue","tabix_ftp_paths.tsv")
+tabix_paths <- read.delim(f, stringsAsFactors = FALSE) %>% dplyr::as_tibble()
 
-We load the data obtained from the code above,
-
-```{r coloc, fig.cap="Association plot", fig.height=7, fig.width=8}
-load(file.path(find.package("pQTLtools"),"tests","OPG-chr8_120081031_C_T.rda"))
-ggplot2::ggplot(gwas_stats_hg38, aes(x = position, y = LP)) +
-ggplot2::theme_bw() +
-ggplot2::geom_point() +
-ggplot2::ggtitle(with(sentinel,paste0(prot,"-",SNP," association plot")))
-coloc_df <- coloc_df_imported %>%
+r <- 1
+single_run(r)
+# The results are also loadable as follows.
+sentinel <- sentinels[r,]
+coloc_df <- readRDS(file.path(find.package("pQTLtools"),"tests","OPG-chr8:120081031_C_T.RDS")) %>%
             dplyr::rename(Tissue=qtl_id, H0=PP.H0.abf,H1=PP.H1.abf,
                           H2=PP.H2.abf,H3=PP.H3.abf,H4=PP.H4.abf) %>%
             mutate(Tissue=gsub("GTEx_V8_","",Tissue),
                    H0=round(H0,2),H1=round(H1,2),H2=round(H2,2),H3=round(H3,2),H4=round(H4,2)) %>%
                    arrange(-H4)
-if (nrow(coloc_df)>0)
-{
-   ggplot(coloc_df, aes(x = H4)) +
-   ggplot2::theme_bw() +
-   geom_histogram() +
-   ggtitle(with(sentinel,paste0(prot,"-",SNP," PP4 histogram"))) +
-   xlab("PP4") + ylab("Frequency")
-}
 ktitle <- with(sentinel,paste0("Colocalization results for ",prot,"-",SNP))
 kable(coloc_df,caption=ktitle)
 ```
 
 The function `sumstats()` obtained meta-analysis summary statistics (in build 37 and therefore lifted over to build 38) to be used in colocalization 
-analysis.  The output are saved in the `.RDS` files. Note that `ftp_path` changes from eQTL Catalog to local files.
+analysis. The output are saved in the `.RDS` files. Note that `ftp_path` changes from eQTL Catalog to local files.
 
 # Mendelian Randomisation (MR)
 
