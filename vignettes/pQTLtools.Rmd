@@ -191,7 +191,7 @@ The top terms at Binomial p=1e-5 could be extracted as follows,
 options(width=100)
 great3 <- filter(tb_all,BinomP<=1e-5) %>%
           dplyr::mutate(ID=gsub(":",": ",ID))
-kable(great3,caption="GREAT IL12B-KITLG-TNFSF10 results")
+kable(great3,caption="GREAT IL12B-KITLG-TNFSF10 results",digits=3)
 great <- read.delim("cistrans.tsv") %>%
          dplyr::filter(BinomBonfP<=1e-8) %>%
          dplyr::mutate(ID=gsub(":",": ",ID))
