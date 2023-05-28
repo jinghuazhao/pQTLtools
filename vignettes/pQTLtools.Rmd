@@ -229,7 +229,6 @@ sumstats <- function(prot,chr,region37)
                 renameSeqlevels(paste0("chr",chr))
   gwas_stats_hg38 <- rtracklayer::liftOver(gwas_stats, chain) %>%
     unlist() %>%
-#   renameSeqlevels(chr) %>%
     dplyr::as_tibble() %>%
     dplyr::transmute(chromosome = seqnames,
                      position = start, REF, ALT, AF, ES, SE, LP, SS) %>%
@@ -240,10 +239,11 @@ sumstats <- function(prot,chr,region37)
     dplyr::ungroup() %>%
     dplyr::filter(row_count == 1) %>%
     dplyr::mutate(chromosome=gsub("chr","",chromosome))
-  ggplot2::ggplot(gwas_stats_hg38, aes(x = position, y = LP)) +
-  ggplot2::theme_bw() +
-  ggplot2::geom_point() +
-  ggplot2::ggtitle(with(sentinel,paste0(prot,"-",SNP," association plot")))
+  s <- ggplot2::ggplot(gwas_stats_hg38, aes(x = position, y = LP)) +
+       ggplot2::theme_bw() +
+       ggplot2::geom_point() +
+       ggplot2::ggtitle(with(sentinel,paste0(prot,"-",SNP," association plot")))
+  s
   gwas_stats_hg38
 }
 
@@ -279,8 +279,12 @@ gtex_coloc <- function(prot,chr,ensGene,chain,region37,region38,out)
   if (!exists("df_gtex")) return
   saveRDS(df_gtex,file=paste0(out,".RDS"))
   dplyr::arrange(df_gtex, -PP.H4.abf)
-  p <- ggplot(df_gtex, aes(x = PP.H4.abf)) + geom_histogram()
-  s <- ggplot(gwas_stats_hg38, aes(x = position, y = LP)) + geom_point()
+  p <- ggplot2::ggplot(df_gtex, aes(x = PP.H4.abf)) +
+       ggplot2::theme_bw() +
+       geom_histogram() +
+       ggtitle(with(sentinel,paste0(prot,"-",SNP," PP4 histogram"))) +
+       xlab("PP4") + ylab("Frequency")
+  p
 }
 
 single_run <- function()
@@ -310,8 +314,6 @@ sentinels <- subset(cis.vs.trans,cis)
 f <- file.path(find.package("pQTLtools"),"eQTL-Catalogue","hg19ToHg38.over.chain")
 chain <- rtracklayer::import.chain(f)
 gwasvcf::set_bcftools(file.path(HPC_WORK,"bin","bcftools"))
-f <- file.path(find.package("pQTLtools"),"eQTL-Catalogue","tabix_ftp_paths.tsv")
-tabix_paths <- read.delim(f, stringsAsFactors = FALSE) %>% dplyr::as_tibble()
 
 r <- 1
 sentinel <- sentinels[r,]
@@ -325,11 +327,6 @@ coloc_df <- readRDS(file.path(find.package("pQTLtools"),"tests","OPG-chr8:120081
                    arrange(-H4)
 ktitle <- with(sentinel,paste0("Colocalization results for ",prot,"-",SNP))
 kable(coloc_df,caption=ktitle)
-ggplot(coloc_df, aes(x = H4)) +
-ggplot2::theme_bw() +
-geom_histogram() +
-ggtitle(with(sentinel,paste0(prot,"-",SNP," PP4 histogram"))) +
-xlab("PP4") + ylab("Frequency")
 ```
 
 The function `sumstats()` obtained meta-analysis summary statistics (in build 37 and therefore lifted over to build 38) to be used in colocalization 
@@ -347,13 +344,13 @@ the `run_TwoSampleMR()` function can be used.
 f <- file.path(system.file(package="pQTLtools"),"tests","Ins.csv")
 ivs <- format_data(read.csv(f))
 caption4 <- "ABO/LIFR variants and CHD/FEV1"
-kable(ivs, caption=paste(caption4,"(instruments)"))
+kable(ivs, caption=paste(caption4,"(instruments)"),digits=3)
 ids <- c("ieu-a-7","ebi-a-GCST007432")
 pqtlMR(ivs, ids)
 result <- read.delim("pQTL-combined-result.txt",header=TRUE)
-kable(result,caption=paste(caption4, "(result)"))
+kable(result,caption=paste(caption4, "(result)"),digits=3)
 single <- read.delim("pQTL-combined-single.txt",header=TRUE)
-kable(subset(single,!grepl("All",SNP)), caption=paste(caption4, "(single)"))
+kable(subset(single,!grepl("All",SNP)), caption=paste(caption4, "(single)"),digits=3)
 invisible(sapply(c("harmonise","result","single"),
                  function(x) unlink(paste0("pQTL-combined-",x,".txt"))))
 ```
@@ -386,11 +383,11 @@ The output is contained in individual `.txt` files, together with the scatter, f
 
 ```{r, echo=FALSE}
 caption5 <- "MMP.10 variants and FEV1"
-kable(read.delim(paste0(prefix,"-result.txt"),header=TRUE),caption=paste(caption5, "(result)"))
-kable(read.delim(paste0(prefix,"-heterogeneity.txt"),header=TRUE),caption=paste(caption5,"(heterogeneity)"))
-kable(read.delim(paste0(prefix,"-pleiotropy.txt"),header=TRUE),caption=paste(caption5,"(pleiotropy)"))
-kable(read.delim(paste0(prefix,"-single.txt"),header=TRUE),caption=paste(caption5,"(single)"))
-kable(read.delim(paste0(prefix,"-loo.txt"),header=TRUE),caption=paste(caption5,"(loo)"))
+kable(read.delim(paste0(prefix,"-result.txt"),header=TRUE),caption=paste(caption5, "(result)"),digits=3)
+kable(read.delim(paste0(prefix,"-heterogeneity.txt"),header=TRUE),caption=paste(caption5,"(heterogeneity)"),digits=3)
+kable(read.delim(paste0(prefix,"-pleiotropy.txt"),header=TRUE),caption=paste(caption5,"(pleiotropy)"),digits=3)
+kable(read.delim(paste0(prefix,"-single.txt"),header=TRUE),caption=paste(caption5,"(single)"),digits=3)
+kable(read.delim(paste0(prefix,"-loo.txt"),header=TRUE),caption=paste(caption5,"(loo)"),digits=3)
 for (x in c("result","heterogeneity","pleiotropy","single","loo")) unlink(paste0(prefix,"-",x,".txt"))
 ```
 
@@ -405,13 +402,13 @@ d3 <- read.delim(file.path(find.package("pQTLtools"),"tests","IL.12B.txt")) %>%
       dplyr::select(-outcome,-method) %>%
       left_join(efo) %>%
       dplyr::arrange(cistrans)
-kable(head(d3[c("MRBASEID","trait","cistrans","nsnp","b","se","pval")],29),caption="MR with IL-12B variants")
+kable(head(d3[c("MRBASEID","trait","cistrans","nsnp","b","se","pval")],29),caption="MR with IL-12B variants",digits=3)
 p <- ggplot2::ggplot(d3,aes(y = trait, x = y))+
      ggplot2::theme_bw()+
      ggplot2::geom_point()+
      ggplot2::facet_wrap(~cistrans,ncol=3,scales="free_x")+
-     ggplot2::geom_segment(aes(x = b-1.96*se, xend = b+1.96*se, yend = trait))+
-     ggplot2::geom_vline(lty=2, aes(xintercept=0), colour = 'red')+
+     ggplot2::geom_segment(ggplot2::aes(x = b-1.96*se, xend = b+1.96*se, yend = trait))+
+     ggplot2::geom_vline(lty=2, ggplot2::aes(xintercept=0), colour = 'red')+
      ggplot2::xlab("Effect size")+
      ggplot2::ylab("")
 p
@@ -440,7 +437,7 @@ tnfb <- '
 tnfb <- as.data.frame(scan(file=textConnection(tnfb),what=list("",0,0))) %>%
         setNames(c("Outcome","Effect","StdErr")) %>%
         mutate(Outcome=gsub("\\b(^[a-z])","\\U\\1",Outcome,perl=TRUE))
-kable(tnfb,caption="GSMR results for TNFB and immune-mediated traits")
+kable(tnfb,caption="GSMR results for TNFB and immune-mediated traits",digits=3)
 ```
 
 ```{r mr_forestplot, fig.cap="Forest plots based on MR results on TNFB", fig.align="left", fig.height=8, fig.width=12, results="hide"}
