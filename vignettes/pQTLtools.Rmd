@@ -51,6 +51,10 @@ cistrans <- cis.vs.trans.classification(hits,pQTLdata::inf1,"uniprot")
 cis.vs.trans <- with(cistrans,data)
 kable(with(cistrans,table),caption="cis/trans classification")
 with(cistrans,total)
+T <- with(cistrans,table)
+H <- T[rownames(T)!="total","total"]
+barplot(table(H),xlab="No. of pQTL regions",ylab="No. of proteins",
+        ylim=c(0,25),col="darkgrey",border="black",cex=0.8,cex.axis=2,cex.names=2,las=1)
 circos.cis.vs.trans.plot(hits=f,pQTLdata::inf1,"uniprot")
 merge <- merged[c("Chrom","Start","End","prot","MarkerName")]
 merge_cvt <- merge(merge,cis.vs.trans,by.x=c("prot","MarkerName"),by.y=c("prot","SNP"))
