@@ -63,6 +63,7 @@ Available functions are listed in the following table.\tabular{ll}{
    \code{\link[gap:mhtplot.trunc]{gap::mhtplot.trunc}} \tab Truncated Manhattan plot \cr
    \code{\link[gap:miamiplot2]{gap::miamiplot2}} \tab Miami plot \cr
    \code{\link[gap:mr_forestplot]{gap::mr_forestplot}} \tab Mendelian Randomization forest plot \cr
+   \code{\link[gap:pvalue]{gap::pvalue}} \tab P value for a normal deviate \cr
    \code{\link[gap:qtlClassifier]{gap::qtlClassifier}} \tab A QTL cis/trans classifier \cr
    \code{\link[gap:qtl2dplot]{gap::qtl2dplot}} \tab 2D QTL plot \cr
    \code{\link[gap:qtl2dplotly]{gap::qtl2dplotly}} \tab 2D QTL plotly \cr
