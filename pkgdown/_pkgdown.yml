@@ -108,8 +108,6 @@ navbar:
 
 reference:
   - title: A summary
-    desc: >
-      Some functions are in gap, https://jinghuazhao.github.io/R/vignettes/gap.html.
     contents:
     - pQTLtools
   - title: Functions
