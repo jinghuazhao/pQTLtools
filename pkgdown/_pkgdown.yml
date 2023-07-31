@@ -57,7 +57,7 @@ navbar:
           href: articles/SCALLOP-INF.html
     reference:
           text: Reference
-          href: reference/index.html
+          href: reference/pQTLtools.html
     changelog:
           text: Changelog
           href: news/index.html
