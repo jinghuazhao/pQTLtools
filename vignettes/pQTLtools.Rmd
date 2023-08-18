@@ -63,6 +63,25 @@ ord <- with(merge_cvt,order(Chr,bp))
 merge_cvt <- merge_cvt[ord,]
 ```
 
+The circos plot is somewhat too busy, so we examine the *SH2B3* hotspot,
+
+```{r sh2b3, fig.cap="SH2B3 hotspot", fig.height=7, fig.width=7}
+  HOTSPOT <- "chr12:111884608_C_T"
+  a <- data.frame(chr="chr12",start=111884607,end=111884608,gene="SH2B3")
+  b <- filter(cis.vs.trans,SNP==HOTSPOT) %>%
+       mutate(p.chr=paste0("chr",p.chr)) %>%
+       rename(chr=p.chr,start=p.start,end=p.end,gene=p.gene,cistrans=cis.trans)
+  cols <- rep(12,nrow(b))
+  cols[b[["cis"]]] <- 10
+  labels <- bind_rows(select(b,chr,start,end,gene),a)
+  circos.clear()
+  circos.par(start.degree=90, track.height=0.1, cell.padding=c(0,0,0,0))
+  circos.initializeWithIdeogram(species="hg19", track.height=0.05, ideogram.height=0.06)
+  circos.genomicLabels(labels, labels.column=4, cex=1.1, font=4, side="inside")
+  circos.genomicLink(bind_rows(a,a,a,a,a,a), b[c("chr","start","end")], col=cols,
+                     directional=1, border=10, lwd=2)
+```
+
 The `merge_cvt` object is obtained for later use. A more recent implementation is the `qtlClassifier` function. For this example we have,
 
 ```{r qtlClassifier, fig.cap="cis/trans classification", fig.height=7, fig.width=7}
@@ -144,25 +163,6 @@ with(merge_cvt, {
 # panel <- toGRanges(p.chr,p.start,p.end,labels=p.gene)
 # kpPlotLinks(kp, data=loci, data2=panel, col=colors[2-cis])
 })
-```
-
-Now we examine the *SH2B3* hotspot,
-
-```{r sh2b3, fig.cap="SH2B3 hotspot", fig.height=7, fig.width=7}
-  HOTSPOT <- "chr12:111884608_C_T"
-  a <- data.frame(chr="chr12",start=111884607,end=111884608,gene="SH2B3")
-  b <- filter(cis.vs.trans,SNP==HOTSPOT) %>%
-       mutate(p.chr=paste0("chr",p.chr)) %>%
-       rename(chr=p.chr,start=p.start,end=p.end,gene=p.gene,cistrans=cis.trans)
-  cols <- rep(12,nrow(b))
-  cols[b[["cis"]]] <- 10
-  labels <- bind_rows(select(b,chr,start,end,gene),a)
-  circos.clear()
-  circos.par(start.degree=90, track.height=0.1, cell.padding=c(0,0,0,0))
-  circos.initializeWithIdeogram(species="hg19", track.height=0.05, ideogram.height=0.06)
-  circos.genomicLabels(labels, labels.column=4, cex=1.1, font=4, side="inside")
-  circos.genomicLink(bind_rows(a,a,a,a,a,a), b[c("chr","start","end")], col=cols,
-                     directional=1, border=10, lwd=2)
 ```
 
 # Genomic regions enrichment analysis
