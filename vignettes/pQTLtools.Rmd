@@ -472,7 +472,7 @@ mr_forestplot(tnfb,colgap.forest.left="0.05cm", fontsize=14,
               rightcols=c("effect","ci","pval"), rightlabs=c("OR","95%CI","GSMR P"),
               digits=3, digits.pval=2, scientific.pval=TRUE,
               common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE,
-              addrow=TRUE, backtransf=TRUE, spacing=1.6)
+              addrow=TRUE, backtransf=TRUE, spacing=1.6, col.inside="black", col.square="black")
 ```
 
 # Literature on pQTLs
