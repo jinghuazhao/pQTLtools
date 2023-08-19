@@ -75,11 +75,11 @@ barplot(table(H),xlab="No. of pQTL regions",ylab="No. of proteins",
 circos.cis.vs.trans.plot(hits=f,pQTLdata::inf1,"uniprot")
 ```
 
-The circos plot is based on target gene (encoding proteins) and somewhat too busy.
+The circos plot is based on target genes (those encoding proteins) and somewhat too busy.
 
 ## *SH2B3*
 
-Here we focus on the ***SH2B3***.
+Here we focus on ***SH2B3***.
 
 ```{r sh2b3, fig.cap="***SH2B3*** hotspot", fig.height=7, fig.width=7}
   HOTSPOT <- "chr12:111884608_C_T"
@@ -112,9 +112,9 @@ cistrans.check <- merge(cvt[c("gene","MarkerName","Type")],cis.vs.trans[c("p.gen
 with(cistrans.check,table(Type,cis.trans))
 ```
 
-This is used to generate 2d-pQTL plot
+## pQTL-gene plot
 
-```{r qtl2dplot, fig.cap="2d pQTL plot", fig.height=8, fig.width=8}
+```{r qtl2dplot, fig.cap="pQTL-gene plot", fig.height=8, fig.width=8}
 t2d <- qtl2dplot(cis.vs.trans,xlab="pQTL position",ylab="Gene position")
 ```
 
@@ -124,7 +124,7 @@ whose result can be also viewed in a 2-d plotly style, [fig2d.html](fig2d.html),
 
 These plots are responsive.
 
-```{r qtl2dplotly, fig.cap="2d pQTL plotly", fig.height=8, fig.width=8, plotly=TRUE}
+```{r qtl2dplotly, fig.cap="2d pQTL-gene plotly", fig.height=8, fig.width=8, plotly=TRUE}
 fig2d <- qtl2dplotly(cis.vs.trans,xlab="pQTL position",ylab="Gene position")
 htmlwidgets::saveWidget(fig2d,file="fig2d.html")
 fig2d
@@ -132,7 +132,7 @@ fig2d
 
 and 3-d counterpart, [fig3d.html](fig3d.html),
 
-```{r qtl3dplotly, fig.cap="3d pQTL plotly", fig.height=8, fig.width=8, plotly=TRUE}
+```{r qtl3dplotly, fig.cap="3d pQTL-gene plotly", fig.height=8, fig.width=8, plotly=TRUE}
 fig3d <- qtl3dplotly(cis.vs.trans,zmax=300,qtl.prefix="pQTL:",xlab="pQTL position",ylab="Gene position")
 htmlwidgets::saveWidget(fig3d,file="fig3d.html")
 fig3d
