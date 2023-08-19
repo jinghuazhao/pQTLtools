@@ -40,7 +40,9 @@ invisible(suppressMessages(lapply(pkgs, require, character.only=TRUE)))
 
 # cis/trans classification
 
-```{r cistrans, fig.cap="cis/trans classification", fig.height=7, fig.width=7}
+## Data
+
+```{r ct_data}
 options(width=200)
 f <- file.path(find.package("pQTLtools"),"tests","INF1.merge")
 merged <- read.delim(f,as.is=TRUE)
@@ -54,16 +56,25 @@ kable(with(cistrans,table),caption="cis/trans classification")
 with(cistrans,total)
 T <- with(cistrans,table)
 H <- T[rownames(T)!="total","total"]
-barplot(table(H),xlab="No. of pQTL regions",ylab="No. of proteins",
-        ylim=c(0,25),col="darkgrey",border="black",cex=0.8,cex.axis=2,cex.names=2,las=1)
-circos.cis.vs.trans.plot(hits=f,pQTLdata::inf1,"uniprot")
 merge <- merged[c("Chrom","Start","End","prot","MarkerName")]
 merge_cvt <- merge(merge,cis.vs.trans,by.x=c("prot","MarkerName"),by.y=c("prot","SNP"))
 ord <- with(merge_cvt,order(Chr,bp))
 merge_cvt <- merge_cvt[ord,]
 ```
 
-The plot is based on target gene (encoding proteins) and somewhat too busy, so we examine the *SH2B3* hotspot,
+The `merge_cvt` object is obtained for later use. 
+
+## Bar chart and circos plot
+
+```{r ct_plot, fig.cap="Bar chart and circos plot", fig.height=7, fig.width=7}
+barplot(table(H),xlab="No. of pQTL regions",ylab="No. of proteins",
+        ylim=c(0,25),col="darkgrey",border="black",cex=0.8,cex.axis=2,cex.names=2,las=1)
+circos.cis.vs.trans.plot(hits=f,pQTLdata::inf1,"uniprot")
+```
+
+## *SH2B3*
+
+The plot is based on target gene (encoding proteins) and somewhat too busy, so we examine the *SH2B3*.
 
 ```{r sh2b3, fig.cap="*SH2B3* hotspot", fig.height=7, fig.width=7}
   HOTSPOT <- "chr12:111884608_C_T"
@@ -82,7 +93,7 @@ The plot is based on target gene (encoding proteins) and somewhat too busy, so w
                      directional=1, border=10, lwd=2)
 ```
 
-The `merge_cvt` object is obtained for later use. A more recent implementation is the `qtlClassifier` function. For this example we have,
+A more recent implementation is the `qtlClassifier` function. For this example we have,
 
 ```{r qtlClassifier, fig.cap="cis/trans classification", fig.height=7, fig.width=7}
 options(width=200)
@@ -95,6 +106,8 @@ cistrans.check <- merge(cvt[c("gene","MarkerName","Type")],cis.vs.trans[c("p.gen
                         by.x=c("gene","MarkerName"),by.y=c("p.gene","SNP"))
 with(cistrans.check,table(Type,cis.trans))
 ```
+
+## plotly
 
 This is used to generate 2d-pQTL plot
 
@@ -118,7 +131,9 @@ htmlwidgets::saveWidget(fig3d,file="fig3d.html")
 fig3d
 ```
 
-and ideogram (biomaRt is not always on so we keep a copy of hgnc)
+## Karyoplot
+
+As `biomaRt` is not always on, we keep a copy of hgnc.
 
 ```r
 set_config(config(ssl_verifypeer = 0L))
