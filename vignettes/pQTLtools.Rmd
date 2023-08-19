@@ -40,7 +40,7 @@ invisible(suppressMessages(lapply(pkgs, require, character.only=TRUE)))
 
 # cis/trans classification
 
-## Data
+## pQTL signals and classification table
 
 ```{r ct_data}
 options(width=200)
@@ -66,17 +66,22 @@ The `merge_cvt` object is obtained for later use.
 
 ## Bar chart and circos plot
 
-```{r ct_plot, fig.cap="Bar chart and circos plot", fig.height=7, fig.width=7}
+```{r ct_bar, fig.cap="Bar chart", fig.height=7, fig.width=7}
 barplot(table(H),xlab="No. of pQTL regions",ylab="No. of proteins",
         ylim=c(0,25),col="darkgrey",border="black",cex=0.8,cex.axis=2,cex.names=2,las=1)
+```
+
+```{r ct_circos, fig.cap="circos plot", fig.height=7, fig.width=7}
 circos.cis.vs.trans.plot(hits=f,pQTLdata::inf1,"uniprot")
 ```
 
+The circos plot is based on target gene (encoding proteins) and somewhat too busy.
+
 ## *SH2B3*
 
-The plot is based on target gene (encoding proteins) and somewhat too busy, so we examine the *SH2B3*.
+Here we focus on the ***SH2B3***.
 
-```{r sh2b3, fig.cap="*SH2B3* hotspot", fig.height=7, fig.width=7}
+```{r sh2b3, fig.cap="***SH2B3*** hotspot", fig.height=7, fig.width=7}
   HOTSPOT <- "chr12:111884608_C_T"
   a <- data.frame(chr="chr12",start=111884607,end=111884608,gene="SH2B3")
   b <- filter(cis.vs.trans,SNP==HOTSPOT) %>%
@@ -107,8 +112,6 @@ cistrans.check <- merge(cvt[c("gene","MarkerName","Type")],cis.vs.trans[c("p.gen
 with(cistrans.check,table(Type,cis.trans))
 ```
 
-## plotly
-
 This is used to generate 2d-pQTL plot
 
 ```{r qtl2dplot, fig.cap="2d pQTL plot", fig.height=8, fig.width=8}
@@ -116,6 +119,10 @@ t2d <- qtl2dplot(cis.vs.trans,xlab="pQTL position",ylab="Gene position")
 ```
 
 whose result can be also viewed in a 2-d plotly style, [fig2d.html](fig2d.html),
+
+## plotly
+
+These plots are responsive.
 
 ```{r qtl2dplotly, fig.cap="2d pQTL plotly", fig.height=8, fig.width=8, plotly=TRUE}
 fig2d <- qtl2dplotly(cis.vs.trans,xlab="pQTL position",ylab="Gene position")
