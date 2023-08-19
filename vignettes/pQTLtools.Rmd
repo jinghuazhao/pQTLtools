@@ -63,7 +63,7 @@ ord <- with(merge_cvt,order(Chr,bp))
 merge_cvt <- merge_cvt[ord,]
 ```
 
-The circos plot is somewhat too busy, so we examine the *SH2B3* hotspot,
+The plot is based on target gene (encoding proteins) and somewhat too busy, so we examine the *SH2B3* hotspot,
 
 ```{r sh2b3, fig.cap="*SH2B3* hotspot", fig.height=7, fig.width=7}
   HOTSPOT <- "chr12:111884608_C_T"
