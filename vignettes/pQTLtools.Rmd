@@ -67,7 +67,7 @@ merge_cvt <- merge_cvt[ord,]
 
 This is visualised via a circos plot, highlighting the likely causal genes for pQTLs,
 
-```{r pQTLs, fig.cap="Genomic associations", fig.height=9, fig.width=9, messages=FALSE, results="hide", warnings=FALSE}
+```{r pQTLs, fig.cap="Genomic associations", fig.height=11, fig.width=11, messages=FALSE, results="hide", warnings=FALSE}
 pQTLs <- transmute(merge_cvt,chr=paste0("chr",Chr),start=bp,end=bp,log10p)
 cis.pQTLs <- subset(merge_cvt,cis) %>%
              transmute(chr=paste0("chr",p.chr),start=p.start,end=p.end,gene=p.gene,cols="red")
