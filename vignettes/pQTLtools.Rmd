@@ -98,7 +98,7 @@ The circos plot is based on target genes (those encoding proteins) and somewhat 
 
 ## *SH2B3*
 
-Here we focus on ***SH2B3***.
+Here we focus on *SH2B3*.
 
 ```{r sh2b3, fig.cap="***SH2B3*** hotspot", fig.height=7, fig.width=7}
   HOTSPOT <- "chr12:111884608_C_T"
@@ -112,7 +112,7 @@ Here we focus on ***SH2B3***.
   circos.clear()
   circos.par(start.degree=90, track.height=0.1, cell.padding=c(0,0,0,0))
   circos.initializeWithIdeogram(species="hg19", track.height=0.05, ideogram.height=0.06)
-  circos.genomicLabels(labels, labels.column=4, cex=1.1, font=4, side="inside")
+  circos.genomicLabels(labels, labels.column=4, cex=1.1, font=3, side="inside")
   circos.genomicLink(bind_rows(a,a,a,a,a,a), b[c("chr","start","end")], col=cols,
                      directional=1, border=10, lwd=2)
 ```
