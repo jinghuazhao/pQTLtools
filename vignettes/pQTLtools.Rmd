@@ -100,7 +100,7 @@ The circos plot is based on target genes (those encoding proteins) and somewhat 
 
 Here we focus on *SH2B3*.
 
-```{r sh2b3, fig.cap="***SH2B3*** hotspot", fig.height=7, fig.width=7}
+```{r sh2b3, fig.cap="*SH2B3* hotspot", fig.height=7, fig.width=7}
   HOTSPOT <- "chr12:111884608_C_T"
   a <- data.frame(chr="chr12",start=111884607,end=111884608,gene="SH2B3")
   b <- filter(cis.vs.trans,SNP==HOTSPOT) %>%
