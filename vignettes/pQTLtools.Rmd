@@ -41,7 +41,7 @@ invisible(suppressMessages(lapply(pkgs, require, character.only=TRUE)))
 
 # Forest plots
 
-We start with a positive control using Osteoprotegerin (OPG) @kwan14,
+We start with results on osteoprotegerin (OPG) @kwan14,
 
 ```{r forest, fig.cap="Forest plots", fig.height=6, fig.width=9, results="hide", warning=FALSE}
 data(OPG,package="gap.datasets")
@@ -52,9 +52,7 @@ METAL_forestplot(OPGtbl,OPGall,OPGrsid,package="metafor",method="FE",xlab="Effec
                  showweights=TRUE)
 ```
 
-involving a cis and a trans pQTLs, respectively.
-
-As `meta` inherently includes random effects, we specifically select a fixed effects (FE) model from `metafor`.
+involving both a cis and a trans pQTLs. As `meta` inherently includes random effects, we use a fixed effects (FE) model from `metafor`.
 
 # cis/trans classification
 
