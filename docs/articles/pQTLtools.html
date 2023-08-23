@@ -880,13 +880,12 @@ Figure 2.4: <em>SH2B3</em> hotspot
 Figure 2.5: pQTL-gene plot
 </p>
 </div>
-<p>whose result can be also viewed in a 2-d plotly style, <a href="fig2d.html">fig2d.html</a>,</p>
 </div>
 <div class="section level3" number="2.6">
-<h3 id="plotly">
-<span class="header-section-number">2.6</span> plotly<a class="anchor" aria-label="anchor" href="#plotly"></a>
+<h3 id="pqtl-gene-plotly">
+<span class="header-section-number">2.6</span> pQTL-gene plotly<a class="anchor" aria-label="anchor" href="#pqtl-gene-plotly"></a>
 </h3>
-<p>These plots are responsive.</p>
+<p>The pQTL-gene plot above can be also viewed in a 2-d plotly style, <a href="fig2d.html">fig2d.html</a>,</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fig2d</span> <span class="op">&lt;-</span> <span class="fu">qtl2dplotly</span><span class="op">(</span><span class="va">cis.vs.trans</span>,xlab<span class="op">=</span><span class="st">"pQTL position"</span>,ylab<span class="op">=</span><span class="st">"Gene position"</span><span class="op">)</span></span>
 <span><span class="fu">htmlwidgets</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/htmlwidgets/man/saveWidget.html" class="external-link">saveWidget</a></span><span class="op">(</span><span class="va">fig2d</span>,file<span class="op">=</span><span class="st">"fig2d.html"</span><span class="op">)</span></span>
@@ -896,6 +895,7 @@ Figure 2.5: pQTL-gene plot
 <code class="sourceCode R"><span><span class="va">fig3d</span> <span class="op">&lt;-</span> <span class="fu">qtl3dplotly</span><span class="op">(</span><span class="va">cis.vs.trans</span>,zmax<span class="op">=</span><span class="fl">300</span>,qtl.prefix<span class="op">=</span><span class="st">"pQTL:"</span>,xlab<span class="op">=</span><span class="st">"pQTL position"</span>,ylab<span class="op">=</span><span class="st">"Gene position"</span><span class="op">)</span></span>
 <span><span class="fu">htmlwidgets</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/htmlwidgets/man/saveWidget.html" class="external-link">saveWidget</a></span><span class="op">(</span><span class="va">fig3d</span>,file<span class="op">=</span><span class="st">"fig3d.html"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">fig3d</span><span class="op">)</span></span></code></pre></div>
+<p>Both plots are responsive.</p>
 </div>
 <div class="section level3" number="2.7">
 <h3 id="karyoplot">
