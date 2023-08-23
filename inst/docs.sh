@@ -4,7 +4,7 @@ function build()
 {
   Rscript -e 'devtools::build_readme();devtools::document()'
   Rscript -e '
-    usethis::use_github_action_check_release(save_as = "R-CMD-check.yaml", ref = NULL, ignore = TRUE, open = FALSE)
+    usethis::use_github_action(check_release=TRUE, save_as = "R-CMD-check.yaml", ref = NULL, ignore = TRUE, open = FALSE)
     libs <- c("gwasvcf","rtracklayer","VariantAnnotation")
     invisible(suppressMessages(lapply(libs, require, character.only = TRUE)))
     library(pkgdown)
@@ -13,8 +13,6 @@ function build()
   '
 # pandoc README.md --citeproc --mathjax -s --self-contained -o index.html
 }
-
-cd ~/pQTLtools
 
 build
 
@@ -51,5 +49,3 @@ git add -f docs
 git commit -m "docs"
 git push
 du -hs --exclude .git --exclude docs
-
-cd -
