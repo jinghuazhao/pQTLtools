@@ -59,7 +59,7 @@ involving both a cis and a trans pQTLs. As `meta` inherently includes random eff
 
 ## pQTL signals and classification table
 
-```{r ct_data}
+```{r ctdata}
 options(width=200)
 f <- file.path(find.package("pQTLtools"),"tests","INF1.merge")
 merged <- read.delim(f,as.is=TRUE)
@@ -101,12 +101,12 @@ where the red and blue colours indicate cis/trans classifications.
 
 ## Bar chart and circos plot
 
-```{r ct_bar, fig.cap="Bar chart", fig.height=7, fig.width=7}
+```{r ctbar, fig.cap="Bar chart", fig.height=7, fig.width=7}
 barplot(table(H),xlab="No. of pQTL regions",ylab="No. of proteins",
         ylim=c(0,25),col="darkgrey",border="black",cex=0.8,cex.axis=2,cex.names=2,las=1)
 ```
 
-```{r ct_circos, fig.cap="circos plot", fig.height=7, fig.width=7}
+```{r ctcircos, fig.cap="circos plot", fig.height=7, fig.width=7}
 circos.cis.vs.trans.plot(hits=f,pQTLdata::inf1,"uniprot")
 ```
 
@@ -162,7 +162,7 @@ These plots are responsive.
 ```{r qtl2dplotly, fig.cap="2d pQTL-gene plotly", fig.height=8, fig.width=8, plotly=TRUE}
 fig2d <- qtl2dplotly(cis.vs.trans,xlab="pQTL position",ylab="Gene position")
 htmlwidgets::saveWidget(fig2d,file="fig2d.html")
-fig2d
+print(fig2d)
 ```
 
 and 3-d counterpart, [fig3d.html](fig3d.html),
@@ -170,7 +170,7 @@ and 3-d counterpart, [fig3d.html](fig3d.html),
 ```{r qtl3dplotly, fig.cap="3d pQTL-gene plotly", fig.height=8, fig.width=8, plotly=TRUE}
 fig3d <- qtl3dplotly(cis.vs.trans,zmax=300,qtl.prefix="pQTL:",xlab="pQTL position",ylab="Gene position")
 htmlwidgets::saveWidget(fig3d,file="fig3d.html")
-fig3d
+print(fig3d)
 ```
 
 ## Karyoplot
