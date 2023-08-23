@@ -153,11 +153,9 @@ with(cistrans.check,table(Type,cis.trans))
 t2d <- qtl2dplot(cis.vs.trans,xlab="pQTL position",ylab="Gene position")
 ```
 
-whose result can be also viewed in a 2-d plotly style, [fig2d.html](fig2d.html),
+## pQTL-gene plotly
 
-## plotly
-
-These plots are responsive.
+The pQTL-gene plot above can be also viewed in a 2-d plotly style, [fig2d.html](fig2d.html),
 
 ```{r qtl2dplotly, fig.cap="2d pQTL-gene plotly", fig.height=8, fig.width=8, plotly=TRUE}
 fig2d <- qtl2dplotly(cis.vs.trans,xlab="pQTL position",ylab="Gene position")
@@ -172,6 +170,8 @@ fig3d <- qtl3dplotly(cis.vs.trans,zmax=300,qtl.prefix="pQTL:",xlab="pQTL positio
 htmlwidgets::saveWidget(fig3d,file="fig3d.html")
 print(fig3d)
 ```
+
+Both plots are responsive.
 
 ## Karyoplot
 
