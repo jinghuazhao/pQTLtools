@@ -9,7 +9,7 @@ fontsize: 11pt
 bibliography: '`r system.file("REFERENCES.bib", package="pQTLtools")`'
 csl: nature-genetics.csl
 pkgdown:
-  as_is: false
+  as_is: true
 vignette: >
   %\VignetteIndexEntry{An Overview of pQTLtools}
   %\VignetteEngine{knitr::rmarkdown}
