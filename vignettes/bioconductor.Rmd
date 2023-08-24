@@ -1,5 +1,5 @@
 ---
-title: Bioconductor Notes
+title: Bioconductor notes
 output:
   bookdown::html_document2:
     toc: true
