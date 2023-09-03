@@ -9,7 +9,7 @@
 \description{
 It seeds collection of data and utilities for pQTL analysis. At this
 early stage, the repository contains 1. Articles linking functions
-for cis/trans classification, pQTL-gene plots, 2d/3d-plotly plots,
+for cis/trans classification, pQTL-gene plot, 2d/3d-plotly plots,
 forest plots among others available from
 gap, \url{https://github.com/jinghuazhao/R/tree/master/gap};
 2. Query on genes, regions, and SNPs via PhenoScanner,
