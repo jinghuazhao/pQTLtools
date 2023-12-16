@@ -51,6 +51,8 @@ navbar:
           href: articles/bioconductor.html
         - text: ExpressionSet usage
           href: articles/es.html
+        - text: LocusZoom.js
+          href: articles/LocusZoom.js.html
         - text: snakemake showcases
           href: articles/snakemake.html
         - text: SCALLOP-INF scripts
