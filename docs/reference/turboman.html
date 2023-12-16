@@ -147,14 +147,45 @@
 
 </dl></div>
     <div class="section level2">
-    <h2 id="optional">OPTIONAL<a class="anchor" aria-label="anchor" href="#optional"></a></h2>
-    <p>Custom annotation file / custom_peak_annotation_file_path
-Define the path of the custom annotation of variants...
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p>Input association data path / input_data_path</p>
+<p>Define the path of the input association data...
+The input data needs to be a file that has:</p><ol><li><p>Spaces as field separators</p></li>
+<li><p>One header line</p></li>
+<li><p>Option I (no extreme p-values present): 3 columns, being chromosome, position, pvalue - in this order,
+column names are not important
+Option II (extreme p-values present): 5 columns, being chromosome, position, pvalue, beta, se</p><ul><li><p>in this order, column names are not important</p></li>
+</ul></li>
+</ol><p>Output data root name / output_data_rootname</p>
+<p>Define the root name of the plot output file...
+Ex.: "my_man_plot" will result in an output file named "my_man_plot.png"</p>
+<p>OPTIONAL: Custom annotation file / custom_peak_annotation_file_path</p>
+<p>Define the path of the custom annotation of variants...
 The input data needs to be a file that has:</p><ol><li><p>Spaces / tabs as field separators</p></li>
 <li><p>One header line with exact column names (order not important)</p></li>
 <li><p>3 columns: chromosome, position, label (e.g., gene name)
 Column names chromosome, position, nearest_gene_name
 NB!: If no label is given, variants will be automatically annotated</p></li>
+</ol><p>Reference file path / reference_file_path</p>
+<p>Define the path to the "turboman_hg19_reference_data.rda" reference file that contains the LD block breaks and gene coordinates used to construct and annotate the Manhattan plot</p>
+<p>Significance threshold p-value / pvalue_sign</p>
+<p>Define the significance threshold...
+This will be used to...</p><ol><li><p>Highlight signal peaks that come above this significance threshold</p></li>
+<li><p>Annotate the nearest gene to the top signal in the peak</p></li>
+<li><p>Draw a horizontal reference line equal to this threshold</p></li>
+</ol><p>Changelog
+: 2017/12/04. Added Varying window size in which gene names are plotted based on the length of gene names so that gene names will not be truncated in the plot
+: 2017/12/04. Added an option allowing the user to supply a table with top SNPs to highlight, which can, for example, be selected by conditional analyses / LD pruning
+: 2017/12/04. Fixed a bug (found by Tao) that leads to erroneous binning when plotting extremely sparse data
+: 2017/12/05. Added optional log-pval calculations from beta/SE for extreme p-values that run below <code>.Machine$double.xmin</code>
+: 2017/12/05. Added an automated option for plotting already log-transformed p-values (user can supply either)
+: 2017/12/05. Increased contrast between chromosomes on the plot (Eric H)
+: 2017/12/05. Set '10' in the y-axis label (-log10 pvalue) to subscript (Eric H)</p>
+<p>To do list</p><ol><li><p>Display gene names bold / non-bold when genic / intergenic</p></li>
+<li><p>Create LD blocks for hg38</p></li>
+<li><p>Add many more sanity checks (are you giving pvalues, the file does not exist, etc.)</p></li>
+<li><p>Create a function version of the script (Eric H)</p></li>
+<li><p>...</p></li>
 </ol></div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
