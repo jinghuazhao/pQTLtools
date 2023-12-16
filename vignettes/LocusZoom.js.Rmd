@@ -5,7 +5,26 @@ output:
     self_contained: false
 ---
 
-```{r include=FALSE}
-library(knitr)
-readLines("lz.htm")
+# Plain HTML
+
+```{r, results='asis', echo=FALSE}
+library(htmltools)
+lz <- tags$iframe(src ="lz.htm", width = "100%", height = "500px")
+print(lz)
+```
+
+# Shiny
+
+```{r}
+library(shiny)
+
+ui <- fluidPage(
+  tags$iframe(src = "lz.htm", width = "100%", height = "500px")
+)
+
+server <- function(input, output) {
+  # Server logic goes here
+}
+
+shinyApp(ui, server)
 ```
