@@ -126,6 +126,7 @@ reference:
     - run_coloc
     - run_TwoSampleMR
     - snpqueries
+    - turboqq
     - uniprot2ids
 
 footer:
