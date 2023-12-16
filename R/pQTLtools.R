@@ -25,6 +25,8 @@
 #' [`make_ExpressionSet`]   |   A call to ExpressionSet class
 #' [`novelty_check`]        |   Locus novelty check
 #' [`run_coloc`]            |   Colocalisation analysis
+#' [`turboman`]             |   Manhattan plots for impatient people
+#' [`turboqq`]              |   QQ plots for impatient people
 #'  &nbsp;                  |   &nbsp;
 #'  **MR analysis**         |   &nbsp;
 #' [`pqtlMR`]               |   Bidirectional pQTL-MR analysis

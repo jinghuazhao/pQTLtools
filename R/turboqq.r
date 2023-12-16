@@ -1,4 +1,4 @@
-#' An R script to produce QQ plots for impatient people
+#' QQ plots for impatient people
 #'
 #' The method uses the kth order statistic from a sample of n i.i.d. U(0,1) statistics has a Beta(k,n+1-k) distribution.
 #'
