@@ -1,6 +1,10 @@
 #' QQ plots for impatient people
 #'
-#' The method uses the kth order statistic from a sample of n i.i.d. U(0,1) statistics has a Beta(k,n+1-k) distribution.
+#' @param input_data_path Path of the input association data.
+#' @param output_data_rootname Root name of the plot output file.
+#' @param plot_title Plot title to be displayed on top of the plot.
+#' @return No direct return value. The script generates QQ plots as output.
+#' @export
 #'
 #' @section Input association data path / input_data_path:
 #' Define path of the input association data. The input data needs to be a file that has:
@@ -9,11 +13,7 @@
 #' 3. Option I (no extreme p-values present): 3 columns, being chromosome, position, pvalue - in this order, column names are not important
 #'    Option II (extreme p-values present): 5 columns, being chromosome, position, pvalue, beta, se - in this order, column names are not important
 #'
-#' @param input_data_path Path of the input association data.
-#' @param output_data_rootname Root name of the plot output file.
-#' @param plot_title Plot title to be displayed on top of the plot.
-#' @return No direct return value. The script generates QQ plots as output.
-#' @export
+#' The method uses the kth order statistic from a sample of n i.i.d. U(0,1) statistics has a Beta(k,n+1-k) distribution.
 #'
 #' @examples
 #' \dontrun{
