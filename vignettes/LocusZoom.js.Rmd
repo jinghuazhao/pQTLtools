@@ -5,25 +5,42 @@ output:
     self_contained: false
 ---
 
-# Plain HTML
+# JavaScript
 
 ```{r, results='asis', echo=FALSE}
 library(htmltools)
-lz <- tags$iframe(src ="lz.htm", width = "100%", height = "500px")
+lz <- tags$iframe(src ="lz.htm", width = "100%", height = "800px")
 print(lz)
 ```
 
 # Shiny
 
-```{r}
+```{r, echo=FALSE}
 library(shiny)
 
 ui <- fluidPage(
-  tags$iframe(src = "lz.htm", width = "100%", height = "500px")
+  titlePanel("Protein-pQTL"),
+  sidebarLayout(
+    sidebarPanel(
+      selectInput("imageSelect", "Protein-pQTL pair:",
+                  choices = c(list("A1BG", "rs145685027", "19:58948122", "0"), list("ACE", "rs4353", "17:61570422", "1")),
+                  selected = list("A1BG", "rs145685027", "19:58948122", "0"))
+    ),
+    mainPanel(
+      imageOutput("selectedImage")
+    )
+  )
 )
 
 server <- function(input, output) {
-  # Server logic goes here
+  output$selectedImage <- renderImage({
+    image_urls <- c(
+      "https://example.com/image1.jpg",
+      "https://example.com/image2.jpg"
+    )
+    selected_image_url <- image_urls[match(input$imageSelect, c(list("A1BG", "rs145685027", "19:58948122", "0"), list("ACE", "rs4353", "17:61570422", "1")))]
+    list(src = selected_image_url, alt = "Selected Image")
+  }, deleteFile = FALSE)
 }
 
 shinyApp(ui, server)
