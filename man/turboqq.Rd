@@ -2,7 +2,7 @@
 % Please edit documentation in R/turboqq.r
 \name{turboqq}
 \alias{turboqq}
-\title{An R script to produce QQ plots for impatient people}
+\title{QQ plots for impatient people}
 \usage{
 turboqq(input_data_path, output_data_rootname, plot_title)
 }
