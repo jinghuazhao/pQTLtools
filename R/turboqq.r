@@ -3,10 +3,12 @@
 #' @param input_data_path Path of the input association data.
 #' @param output_data_rootname Root name of the plot output file.
 #' @param plot_title Plot title to be displayed on top of the plot.
-#' @return No direct return value. The script generates QQ plots as output.
 #' @export
+#' @return No direct return value. The script generates QQ plots as output.
 #'
-#' @section Input association data path / input_data_path:
+#' @details
+#' Input association data path / input_data_path:
+#'
 #' Define path of the input association data. The input data needs to be a file that has:
 #' 1. Spaces as field separators
 #' 2. One header line

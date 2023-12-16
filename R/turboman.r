@@ -6,10 +6,12 @@
 #' @param reference_file_path Path to the "turboman_hg19_reference_data.rda" reference file
 #' @param pvalue_sign Significance threshold p-value
 #' @param plot_title Plot title which will be displayed on top of the plot
-#' @return NULL
 #' @export
+#' @return NULL
 #'
-#' @section Input association data path / input_data_path
+#' @details
+#' Input association data path / input_data_path
+#'
 #' Define the path of the input association data...
 #' The input data needs to be a file that has:
 #' 1. Spaces as field separators
@@ -19,11 +21,13 @@
 #' Option II (extreme p-values present): 5 columns, being chromosome, position, pvalue, beta, se
 #'    - in this order, column names are not important
 #'
-#' @section Output data root name / output_data_rootname
+#' Output data root name / output_data_rootname
+#'
 #' Define the root name of the plot output file...
 #' Ex.: "my_man_plot" will result in an output file named "my_man_plot.png"
 #'
-#' @section OPTIONAL: Custom annotation file / custom_peak_annotation_file_path
+#' OPTIONAL: Custom annotation file / custom_peak_annotation_file_path
+#'
 #' Define the path of the custom annotation of variants...
 #' The input data needs to be a file that has:
 #' 1. Spaces / tabs as field separators
@@ -32,10 +36,12 @@
 #'    Column names chromosome, position, nearest_gene_name
 #' NB!: If no label is given, variants will be automatically annotated
 #'
-#' @section Reference file path / reference_file_path
+#' Reference file path / reference_file_path
+#'
 #' Define the path to the "turboman_hg19_reference_data.rda" reference file that contains the LD block breaks and gene coordinates used to construct and annotate the Manhattan plot
 #'
-#' @section Significance threshold p-value / pvalue_sign
+#' Significance threshold p-value / pvalue_sign
+#'
 #' Define the significance threshold...
 #' This will be used to...
 #' 1. Highlight signal peaks that come above this significance threshold
