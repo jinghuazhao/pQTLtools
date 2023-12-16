@@ -1,0 +1,11 @@
+---
+title: "LocusZoom.js"
+output:
+  html_document:
+    self_contained: false
+---
+
+```{r include=FALSE}
+library(knitr)
+readLines("lz.htm")
+```
