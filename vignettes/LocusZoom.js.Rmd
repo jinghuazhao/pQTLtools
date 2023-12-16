@@ -18,13 +18,25 @@ print(lz)
 ```{r, echo=FALSE}
 library(shiny)
 
+# Define a list of protein-pQTL pairs with named elements
+protein_pqtl_pairs <- list(
+  "A1BG" = c("A1BG", "rs145685027", "19:58948122", "0"),
+  "ACE" = c("ACE", "rs4353", "17:61570422", "1")
+)
+
+# Define a list of image URLs corresponding to each protein-pQTL pair
+image_urls <- c(
+  "https://example.com/image1.jpg",
+  "https://example.com/image2.jpg"
+)
+
 ui <- fluidPage(
   titlePanel("Protein-pQTL"),
   sidebarLayout(
     sidebarPanel(
       selectInput("imageSelect", "Protein-pQTL pair:",
-                  choices = c(list("A1BG", "rs145685027", "19:58948122", "0"), list("ACE", "rs4353", "17:61570422", "1")),
-                  selected = list("A1BG", "rs145685027", "19:58948122", "0"))
+                  choices = names(protein_pqtl_pairs),
+                  selected = names(protein_pqtl_pairs)[1])
     ),
     mainPanel(
       imageOutput("selectedImage")
@@ -34,11 +46,11 @@ ui <- fluidPage(
 
 server <- function(input, output) {
   output$selectedImage <- renderImage({
-    image_urls <- c(
-      "https://example.com/image1.jpg",
-      "https://example.com/image2.jpg"
-    )
-    selected_image_url <- image_urls[match(input$imageSelect, c(list("A1BG", "rs145685027", "19:58948122", "0"), list("ACE", "rs4353", "17:61570422", "1")))]
+    selected_pair <- protein_pqtl_pairs[[input$imageSelect]]
+    
+    # Use the first element of the vector returned by match
+    selected_image_url <- image_urls[match(selected_pair, protein_pqtl_pairs)[1]]
+    
     list(src = selected_image_url, alt = "Selected Image")
   }, deleteFile = FALSE)
 }
