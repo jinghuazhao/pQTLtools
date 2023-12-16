@@ -27,35 +27,10 @@ turboman(
 \item{plot_title}{Plot title which will be displayed on top of the plot}
 }
 \description{
-Changelog:
-2017/12/04: Added Varying window size in which gene names are plotted based on the length of gene names so that gene names will not be truncated in the plot
-2017/12/04: Added an option allowing the user to supply a table with top SNPs to highlight, which can, for example, be selected by conditional analyses / LD pruning
-2017/12/04: Fixed a bug (found by Tao) that leads to erroneous binning when plotting extremely sparse data
-2017/12/05: Added optional log-pval calculations from beta/SE for extreme p-values that run below .Machine$double.xmin
-2017/12/05: Added an automated option for plotting already log-transformed p-values (user can supply either)
-2017/12/05: Increased contrast between chromosomes on the plot (Eric H)
-2017/12/05: Set '10' in the y-axis label (-log10 pvalue) to subscript (Eric H)
+Manhattan plots for impatient people
 }
-\details{
-Input association data path / input_data_path
-Define the path of the input association data...
-The input data needs to be a file that has:
-\enumerate{
-\item Spaces as field separators
-\item One header line
-\item Option I (no extreme p-values present): 3 columns, being chromosome, position, pvalue - in this order,
-column names are not important
-Option II (extreme p-values present): 5 columns, being chromosome, position, pvalue, beta, se
-\itemize{
-\item in this order, column names are not important
-}
-}
-
-Output data root name / output_data_rootname
-Define the root name of the plot output file...
-Ex.: "my_man_plot" will result in an output file named "my_man_plot.png"
-
-OPTIONAL: Custom annotation file / custom_peak_annotation_file_path
+\section{OPTIONAL}{
+ Custom annotation file / custom_peak_annotation_file_path
 Define the path of the custom annotation of variants...
 The input data needs to be a file that has:
 \enumerate{
@@ -65,28 +40,8 @@ The input data needs to be a file that has:
 Column names chromosome, position, nearest_gene_name
 NB!: If no label is given, variants will be automatically annotated
 }
-
-Reference file path / reference_file_path
-Define the path to the "turboman_hg19_reference_data.rda" reference file that contains the LD block breaks and gene coordinates used to construct and annotate the Manhattan plot
-
-Significance threshold p-value / pvalue_sign
-Define the significance threshold...
-This will be used to...
-\enumerate{
-\item Highlight signal peaks that come above this significance threshold
-\item Annotate the nearest gene to the top signal in the peak
-\item Draw a horizontal reference line equal to this threshold
 }
 
-To do list
-\enumerate{
-\item Display gene names bold / non-bold when genic / intergenic
-\item Create LD blocks for hg38
-\item Add many more sanity checks (are you giving pvalues, the file does not exist, etc.)
-\item Create a function version of the script (Eric H)
-\item ...
-}
-}
 \examples{
 \dontrun{
 require(gap.datasets)

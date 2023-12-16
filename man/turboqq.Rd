@@ -17,7 +17,7 @@ turboqq(input_data_path, output_data_rootname, plot_title)
 No direct return value. The script generates QQ plots as output.
 }
 \description{
-The method uses the kth order statistic from a sample of n i.i.d. U(0,1) statistics has a Beta(k,n+1-k) distribution.
+QQ plots for impatient people
 }
 \section{Input association data path / input_data_path}{
 
@@ -28,6 +28,8 @@ Define path of the input association data. The input data needs to be a file tha
 \item Option I (no extreme p-values present): 3 columns, being chromosome, position, pvalue - in this order, column names are not important
 Option II (extreme p-values present): 5 columns, being chromosome, position, pvalue, beta, se - in this order, column names are not important
 }
+
+The method uses the kth order statistic from a sample of n i.i.d. U(0,1) statistics has a Beta(k,n+1-k) distribution.
 }
 
 \examples{
