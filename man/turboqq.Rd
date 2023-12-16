@@ -19,7 +19,8 @@ No direct return value. The script generates QQ plots as output.
 \description{
 QQ plots for impatient people
 }
-\section{Input association data path / input_data_path}{
+\details{
+Input association data path / input_data_path:
 
 Define path of the input association data. The input data needs to be a file that has:
 \enumerate{
@@ -31,7 +32,6 @@ Option II (extreme p-values present): 5 columns, being chromosome, position, pva
 
 The method uses the kth order statistic from a sample of n i.i.d. U(0,1) statistics has a Beta(k,n+1-k) distribution.
 }
-
 \examples{
 \dontrun{
 require(gap.datasets)
