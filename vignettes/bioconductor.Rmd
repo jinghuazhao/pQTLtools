@@ -225,7 +225,7 @@ meg <- moduleEigengenes(dat, color=1:ncol(dat), softPower=6)
 
 # Meta-data
 
-```{r meta-data, messages=FALSE}
+```r
 hs <- available_projects()
 dim(subset(hs,file_source=="gtex"))
 annotation_options("human")
