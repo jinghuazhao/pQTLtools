@@ -143,15 +143,55 @@
 <div class="section level2">
 <h2 id="javascript">JavaScript<a class="anchor" aria-label="anchor" href="#javascript"></a>
 </h2>
+<p>This calls <code>caprion_dr.js</code>.</p>
 <iframe src="lz.htm" width="100%" height="800px">
 </iframe>
 </div>
 <div class="section level2">
 <h2 id="shiny">Shiny<a class="anchor" aria-label="anchor" href="#shiny"></a>
 </h2>
-<pre><code><span><span class="co">## </span></span>
-<span><span class="co">## Listening on http://127.0.0.1:8169</span></span></code></pre>
-<p><img src="LocusZoom.js_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
+<p>This is a skeleton for possibly interactive use.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/" class="external-link">shiny</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Define a list of protein-pQTL pairs with named elements</span></span>
+<span><span class="va">protein_pqtl_pairs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>  <span class="st">"A1BG"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A1BG"</span>, <span class="st">"rs145685027"</span>, <span class="st">"19:58948122"</span>, <span class="st">"0"</span><span class="op">)</span>,</span>
+<span>  <span class="st">"ACE"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ACE"</span>, <span class="st">"rs4353"</span>, <span class="st">"17:61570422"</span>, <span class="st">"1"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Define a list of image URLs corresponding to each protein-pQTL pair</span></span>
+<span><span class="va">image_urls</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<span>  <span class="st">"https://example.com/image1.jpg"</span>,</span>
+<span>  <span class="st">"https://example.com/image2.jpg"</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/titlePanel.html" class="external-link">titlePanel</a></span><span class="op">(</span><span class="st">"Protein-pQTL"</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sidebarLayout.html" class="external-link">sidebarLayout</a></span><span class="op">(</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sidebarLayout.html" class="external-link">sidebarPanel</a></span><span class="op">(</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/selectInput.html" class="external-link">selectInput</a></span><span class="op">(</span><span class="st">"imageSelect"</span>, <span class="st">"Protein-pQTL pair:"</span>,</span>
+<span>                  choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">protein_pqtl_pairs</span><span class="op">)</span>,</span>
+<span>                  selected <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">protein_pqtl_pairs</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/sidebarLayout.html" class="external-link">mainPanel</a></span><span class="op">(</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/plotOutput.html" class="external-link">imageOutput</a></span><span class="op">(</span><span class="st">"selectedImage"</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">output</span><span class="op">$</span><span class="va">selectedImage</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/renderImage.html" class="external-link">renderImage</a></span><span class="op">(</span><span class="op">{</span></span>
+<span>    <span class="va">selected_pair</span> <span class="op">&lt;-</span> <span class="va">protein_pqtl_pairs</span><span class="op">[[</span><span class="va">input</span><span class="op">$</span><span class="va">imageSelect</span><span class="op">]</span><span class="op">]</span></span>
+<span>    </span>
+<span>    <span class="co"># Use the first element of the vector returned by match</span></span>
+<span>    <span class="va">selected_image_url</span> <span class="op">&lt;-</span> <span class="va">image_urls</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/match.html" class="external-link">match</a></span><span class="op">(</span><span class="va">selected_pair</span>, <span class="va">protein_pqtl_pairs</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
+<span>    </span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>src <span class="op">=</span> <span class="va">selected_image_url</span>, alt <span class="op">=</span> <span class="st">"Selected Image"</span><span class="op">)</span></span>
+<span>  <span class="op">}</span>, deleteFile <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
