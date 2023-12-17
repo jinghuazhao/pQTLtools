@@ -14,7 +14,7 @@
 * Depends R (>=3.5.0), pQTLdata
 * Import dplyr, gap, ggplot2, Rdpack
 * importFrom utils read.table tail.
-* Import from lmm as template, use save(,compress='xz').
+* Import from lmm as template, use save(compress='xz').
 * Suggest htmlwidgets, plotly.
 * Suggest bookdown, cowplot, gap.datasets, httr, plyr, rmarkdown, Biobase, stringr.
 * Suggest circlize, openxlsx, knitr and add HTML vignette (biomaRt, regioneR).
