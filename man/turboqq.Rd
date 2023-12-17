@@ -46,7 +46,7 @@ turboqq(input_data_path, output_data_rootname, plot_title)
 }
 \references{
 Quesenberry, C. P., & Hale, D. K. (1980). Journal of Statistical Computation and Simulation, 11(1), 41-53. Coded by
-Weale M, Price T. \href{https://sites.google.com/site/mikeweale/software/qqplots/qq_plot_v7.r}{https://sites.google.com/site/mikeweale/software/qqplots/qq_plot_v7.r}
+Weale M, Price T. \href{https://sites.google.com/site/mikeweale/software}{https://sites.google.com/site/mikeweale/software}
 }
 \author{
 Bram Prins
