@@ -1,4 +1,4 @@
-#' QQ plots for impatient people
+#' QQ plots
 #'
 #' @param input_data_path Path of the input association data.
 #' @param output_data_rootname Root name of the plot output file.
@@ -7,15 +7,15 @@
 #' @return No direct return value. The script generates QQ plots as output.
 #'
 #' @details
-#' Input association data path / input_data_path:
+#' The method uses the kth order statistic from a sample of n i.i.d. U(0,1) statistics has a Beta(k,n+1-k) distribution.
+#'
+#' **Input association data path / input_data_path:**
 #'
 #' Define path of the input association data. The input data needs to be a file that has:
 #' 1. Spaces as field separators
 #' 2. One header line
 #' 3. Option I (no extreme p-values present): 3 columns, being chromosome, position, pvalue - in this order, column names are not important
 #'    Option II (extreme p-values present): 5 columns, being chromosome, position, pvalue, beta, se - in this order, column names are not important
-#'
-#' The method uses the kth order statistic from a sample of n i.i.d. U(0,1) statistics has a Beta(k,n+1-k) distribution.
 #'
 #' @examples
 #' \dontrun{
@@ -30,7 +30,7 @@
 #'
 #' @references
 #' Quesenberry, C. P., & Hale, D. K. (1980). Journal of Statistical Computation and Simulation, 11(1), 41-53. Coded by 
-#' Weale M, Price T. \href{https://sites.google.com/site/mikeweale/software/qqplots/qq_plot_v7.r}{}
+#' Weale M, Price T. \href{https://sites.google.com/site/mikeweale/software/qqplots/qq_plot_v7.r}{https://sites.google.com/site/mikeweale/software/qqplots/qq_plot_v7.r}
 #'
 #' @author Bram Prins
 
