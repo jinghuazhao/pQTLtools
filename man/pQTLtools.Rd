@@ -30,8 +30,8 @@ Available functions are listed in the following table.\tabular{ll}{
    \code{\link{make_ExpressionSet}} \tab A call to ExpressionSet class \cr
    \code{\link{novelty_check}} \tab Locus novelty check \cr
    \code{\link{run_coloc}} \tab Colocalisation analysis \cr
-   \code{\link{turboman}} \tab Manhattan plots for impatient people \cr
-   \code{\link{turboqq}} \tab QQ plots for impatient people \cr
+   \code{\link{turboman}} \tab Manhattan plots \cr
+   \code{\link{turboqq}} \tab QQ plots \cr
      \tab   \cr
    \strong{MR analysis} \tab   \cr
    \code{\link{pqtlMR}} \tab Bidirectional pQTL-MR analysis \cr

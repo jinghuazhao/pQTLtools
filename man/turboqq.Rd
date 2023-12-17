@@ -2,7 +2,7 @@
 % Please edit documentation in R/turboqq.r
 \name{turboqq}
 \alias{turboqq}
-\title{QQ plots for impatient people}
+\title{QQ plots}
 \usage{
 turboqq(input_data_path, output_data_rootname, plot_title)
 }
@@ -17,10 +17,12 @@ turboqq(input_data_path, output_data_rootname, plot_title)
 No direct return value. The script generates QQ plots as output.
 }
 \description{
-QQ plots for impatient people
+QQ plots
 }
 \details{
-Input association data path / input_data_path:
+The method uses the kth order statistic from a sample of n i.i.d. U(0,1) statistics has a Beta(k,n+1-k) distribution.
+
+\strong{Input association data path / input_data_path:}
 
 Define path of the input association data. The input data needs to be a file that has:
 \enumerate{
@@ -29,8 +31,6 @@ Define path of the input association data. The input data needs to be a file tha
 \item Option I (no extreme p-values present): 3 columns, being chromosome, position, pvalue - in this order, column names are not important
 Option II (extreme p-values present): 5 columns, being chromosome, position, pvalue, beta, se - in this order, column names are not important
 }
-
-The method uses the kth order statistic from a sample of n i.i.d. U(0,1) statistics has a Beta(k,n+1-k) distribution.
 }
 \examples{
 \dontrun{
@@ -46,7 +46,7 @@ turboqq(input_data_path, output_data_rootname, plot_title)
 }
 \references{
 Quesenberry, C. P., & Hale, D. K. (1980). Journal of Statistical Computation and Simulation, 11(1), 41-53. Coded by
-Weale M, Price T. \href{https://sites.google.com/site/mikeweale/software/qqplots/qq_plot_v7.r}{}
+Weale M, Price T. \href{https://sites.google.com/site/mikeweale/software/qqplots/qq_plot_v7.r}{https://sites.google.com/site/mikeweale/software/qqplots/qq_plot_v7.r}
 }
 \author{
 Bram Prins

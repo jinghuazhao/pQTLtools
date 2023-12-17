@@ -2,7 +2,7 @@
 % Please edit documentation in R/turboman.r
 \name{turboman}
 \alias{turboman}
-\title{Manhattan plots for impatient people}
+\title{Manhattan plots}
 \usage{
 turboman(
   input_data_path,
@@ -27,10 +27,10 @@ turboman(
 \item{plot_title}{Plot title which will be displayed on top of the plot}
 }
 \description{
-Manhattan plots for impatient people
+Manhattan plots
 }
 \details{
-Input association data path / input_data_path
+\strong{Input association data path / input_data_path}
 
 Define the path of the input association data...
 The input data needs to be a file that has:
@@ -45,12 +45,12 @@ Option II (extreme p-values present): 5 columns, being chromosome, position, pva
 }
 }
 
-Output data root name / output_data_rootname
+\strong{Output data root name / output_data_rootname}
 
 Define the root name of the plot output file...
 Ex.: "my_man_plot" will result in an output file named "my_man_plot.png"
 
-OPTIONAL: Custom annotation file / custom_peak_annotation_file_path
+\strong{OPTIONAL: Custom annotation file / custom_peak_annotation_file_path}
 
 Define the path of the custom annotation of variants...
 The input data needs to be a file that has:
@@ -62,11 +62,11 @@ Column names chromosome, position, nearest_gene_name
 NB!: If no label is given, variants will be automatically annotated
 }
 
-Reference file path / reference_file_path
+\strong{Reference file path / reference_file_path}
 
 Define the path to the "turboman_hg19_reference_data.rda" reference file that contains the LD block breaks and gene coordinates used to construct and annotate the Manhattan plot
 
-Significance threshold p-value / pvalue_sign
+\strong{Significance threshold p-value / pvalue_sign}
 
 Define the significance threshold...
 This will be used to...
@@ -74,24 +74,6 @@ This will be used to...
 \item Highlight signal peaks that come above this significance threshold
 \item Annotate the nearest gene to the top signal in the peak
 \item Draw a horizontal reference line equal to this threshold
-}
-
-Changelog
-: 2017/12/04. Added Varying window size in which gene names are plotted based on the length of gene names so that gene names will not be truncated in the plot
-: 2017/12/04. Added an option allowing the user to supply a table with top SNPs to highlight, which can, for example, be selected by conditional analyses / LD pruning
-: 2017/12/04. Fixed a bug (found by Tao) that leads to erroneous binning when plotting extremely sparse data
-: 2017/12/05. Added optional log-pval calculations from beta/SE for extreme p-values that run below \code{.Machine$double.xmin}
-: 2017/12/05. Added an automated option for plotting already log-transformed p-values (user can supply either)
-: 2017/12/05. Increased contrast between chromosomes on the plot (Eric H)
-: 2017/12/05. Set '10' in the y-axis label (-log10 pvalue) to subscript (Eric H)
-
-To do list
-\enumerate{
-\item Display gene names bold / non-bold when genic / intergenic
-\item Create LD blocks for hg38
-\item Add many more sanity checks (are you giving pvalues, the file does not exist, etc.)
-\item Create a function version of the script (Eric H)
-\item ...
 }
 }
 \examples{
@@ -102,10 +84,10 @@ write.table(test,file="test.txt",row.names=FALSE,quote=FALSE)
 annotate <- unique(subset(mhtdata[c("chr","start","gene","p")],p<5e-8 & gene!=""))
 names(annotate) <- c("chromosome","position","nearest_gene_name","p")
 write.table(annotate[,-4],file="annotate.txt",row.names=FALSE,quote=FALSE)
-input_data_path <- test.txt
-output_data_rootname <- test_man
-custom_peak_annotation_file_path <- annotate.txt
-reference_file_path <- turboman_hg19_reference_data.rda
+input_data_path <- "test.txt"
+output_data_rootname <- "test_man"
+custom_peak_annotation_file_path <- "annotate.txt"
+reference_file_path <- "turboman_hg19_reference_data.rda"
 pvalue_sign <- 5e-8
 plot_title <- "gap.datasets example"
 turboman(input_data_path, output_data_rootname, custom_peak_annotation_file_path, reference_file_path, pvalue_sign, plot_title)
@@ -117,4 +99,24 @@ Berisa et.al, PMID 26395773
 }
 \author{
 Arthur Gilly, Chris Finan, Bram Prins
+
+\strong{Changelog}
+\itemize{
+\item 2017/12/04. Added Varying window size in which gene names are plotted based on the length of gene names so that gene names will not be truncated in the plot
+\item 2017/12/04. Added an option allowing the user to supply a table with top SNPs to highlight, which can, for example, be selected by conditional analyses / LD pruning
+\item 2017/12/04. Fixed a bug (found by Tao) that leads to erroneous binning when plotting extremely sparse data
+\item 2017/12/05. Added optional log-pval calculations from beta/SE for extreme p-values that run below \code{.Machine$double.xmin}
+\item 2017/12/05. Added an automated option for plotting already log-transformed p-values (user can supply either)
+\item 2017/12/05. Increased contrast between chromosomes on the plot (Eric H)
+\item 2017/12/05. Set '10' in the y-axis label (-log10 pvalue) to subscript (Eric H)
+}
+
+\strong{To do list}
+\enumerate{
+\item Display gene names bold / non-bold when genic / intergenic
+\item Create LD blocks for hg38
+\item Add many more sanity checks (are you giving pvalues, the file does not exist, etc.)
+\item Create a function version of the script (Eric H)
+\item ...
+}
 }
