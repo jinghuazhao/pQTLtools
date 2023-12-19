@@ -31,10 +31,8 @@ Define path of the input association data. The input data needs to be a file tha
 \item Spaces as field separators
 \item One header line
 \item Two options
-\itemize{
-\item I (no extreme p-values present): 3 columns, being chromosome, position, pvalue in order, column names are not important
-\item II (extreme p-values present): 5 columns, being chromosome, position, pvalue, beta, se in order, column names are not important
-}
+I. (no extreme p-values present): 3 columns, being chromosome, position, pvalue in order, column names are not important
+II. (extreme p-values present): 5 columns, being chromosome, position, pvalue, beta, se in order, column names are not important
 }
 }
 \examples{
