@@ -37,7 +37,7 @@ The input data needs to be a file that has:
 \enumerate{
 \item Spaces as field separators
 \item One header line
-\item Two option:
+\item Two options:
 I. (no extreme p-values present): 3 columns, being chromosome, position, pvalue in order, column names are not important.
 II. (extreme p-values present): 5 columns, being chromosome, position, pvalue, beta, se in order, column names are not important.
 }
