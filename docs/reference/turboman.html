@@ -152,9 +152,8 @@
 <p>Define the path of the input association data...
 The input data needs to be a file that has:</p><ol><li><p>Spaces as field separators</p></li>
 <li><p>One header line</p></li>
-<li><p>Option I (no extreme p-values present): 3 columns, being chromosome, position, pvalue - in this order,
-column names are not important
-Option II (extreme p-values present): 5 columns, being chromosome, position, pvalue, beta, se</p><ul><li><p>in this order, column names are not important</p></li>
+<li><p>Two option:</p><ul><li><p>I (no extreme p-values present): 3 columns, being chromosome, position, pvalue in order, column names are not important</p></li>
+<li><p>II (extreme p-values present): 5 columns, being chromosome, position, pvalue, beta, se in order, column names are not important</p></li>
 </ul></li>
 </ol><p><strong>Output data root name / output_data_rootname</strong></p>
 <p>Define the root name of the plot output file...
@@ -168,9 +167,9 @@ Column names chromosome, position, nearest_gene_name
 NB!: If no label is given, variants will be automatically annotated</p></li>
 </ol><p><strong>Reference file path / reference_file_path</strong></p>
 <p>Define the path to the "turboman_hg19_reference_data.rda" reference file that
-contains the LD block Berisa and Pickrell (2016)
- breaks and gene
-coordinates used to construct and annotate the Manhattan plot</p>
+contains the LD block breaks as in Berisa and Pickrell (2016)
+
+and gene coordinates used to construct and annotate the Manhattan plot</p>
 <p><strong>Significance threshold p-value / pvalue_sign</strong></p>
 <p>Define the significance threshold...
 This will be used to...</p><ol><li><p>Highlight signal peaks that come above this significance threshold</p></li>
@@ -182,7 +181,7 @@ This will be used to...</p><ol><li><p>Highlight signal peaks that come above thi
     <p>Berisa T, Pickrell JK (2016).
 “Approximately independent linkage disequilibrium blocks in human populations.”
 <em>Bioinformatics</em>, <b>32</b>(2), 283-285.
-ISSN 1367-4803 (Print) 1367-4803, <a href="https://doi.org/10.1093/bioinformatics/btv546" class="external-link">doi:10.1093/bioinformatics/btv546</a>
+<a href="https://doi.org/10.1093/bioinformatics/btv546" class="external-link">doi:10.1093/bioinformatics/btv546</a>
 .</p>
     </div>
     <div class="section level2">
