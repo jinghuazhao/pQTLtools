@@ -124,9 +124,7 @@ Here we focus on *SH2B3*.
        rename(chr=p.chr,start=p.start,end=p.end,gene=p.gene,cistrans=cis.trans)
   cols <- rep(12,nrow(b))
   cols[b[["cis"]]] <- 10
-  labels <- b %>%
-            select(chr,start,end,gene) %>%
-            bind_rows(a)
+  labels <- bind_rows(b[c("chr","start","end","gene")],a)
   circos.clear()
   circos.par(start.degree=90, track.height=0.1, cell.padding=c(0,0,0,0))
   circos.initializeWithIdeogram(species="hg19", track.height=0.05, ideogram.height=0.06)
