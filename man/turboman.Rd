@@ -37,11 +37,10 @@ The input data needs to be a file that has:
 \enumerate{
 \item Spaces as field separators
 \item One header line
-\item Option I (no extreme p-values present): 3 columns, being chromosome, position, pvalue - in this order,
-column names are not important
-Option II (extreme p-values present): 5 columns, being chromosome, position, pvalue, beta, se
+\item Two option:
 \itemize{
-\item in this order, column names are not important
+\item I (no extreme p-values present): 3 columns, being chromosome, position, pvalue in order, column names are not important
+\item II (extreme p-values present): 5 columns, being chromosome, position, pvalue, beta, se in order, column names are not important
 }
 }
 
@@ -65,8 +64,8 @@ NB!: If no label is given, variants will be automatically annotated
 \strong{Reference file path / reference_file_path}
 
 Define the path to the "turboman_hg19_reference_data.rda" reference file that
-contains the LD block \insertCite{berisa16;textual}{pQTLtools} breaks and gene
-coordinates used to construct and annotate the Manhattan plot
+contains the LD block breaks as in \insertCite{berisa16;textual}{pQTLtools}
+and gene coordinates used to construct and annotate the Manhattan plot
 
 \strong{Significance threshold p-value / pvalue_sign}
 
