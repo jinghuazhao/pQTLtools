@@ -38,7 +38,9 @@
 #'
 #' **Reference file path / reference_file_path**
 #'
-#' Define the path to the "turboman_hg19_reference_data.rda" reference file that contains the LD block breaks and gene coordinates used to construct and annotate the Manhattan plot
+#' Define the path to the "turboman_hg19_reference_data.rda" reference file that
+#' contains the LD block \insertCite{berisa16;textual}{pQTLtools} breaks and gene
+#' coordinates used to construct and annotate the Manhattan plot
 #'
 #' **Significance threshold p-value / pvalue_sign**
 #'
@@ -63,6 +65,14 @@
 #' pvalue_sign <- 5e-8
 #' plot_title <- "gap.datasets example"
 #' turboman(input_data_path, output_data_rootname, custom_peak_annotation_file_path, reference_file_path, pvalue_sign, plot_title)
+#'
+#' input_data_path <- "FCN3.txt.gz"
+#' output_data_rootname <- "FCN3"
+#' custom_peak_annotation_file_path <- "FCN3.txt"
+#' reference_file_path <- "turboman_hg19_reference_data.rda"
+#' pvalue_sign <- 5e-8
+#' plot_title <- "FCN3"
+#' turboman(input_data_path, output_data_rootname, custom_peak_annotation_file_path, reference_file_path, pvalue_sign, plot_title)
 #' }
 #'
 #' @author Arthur Gilly, Chris Finan, Bram Prins
@@ -84,7 +94,7 @@
 #' 5. ...
 #'
 #' @references
-#' Berisa et.al, PMID 26395773
+#' \insertAllCited{}
 
 turboman <- function(input_data_path, output_data_rootname, custom_peak_annotation_file_path, reference_file_path, pvalue_sign, plot_title) {
 ###================================================================================================================================================###
