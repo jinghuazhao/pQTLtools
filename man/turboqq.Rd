@@ -20,7 +20,9 @@ No direct return value. The script generates QQ plots as output.
 QQ plots
 }
 \details{
-The method uses the kth order statistic from a sample of n i.i.d. U(0,1) statistics has a Beta(k,n+1-k) distribution.
+The method uses the kth order statistic from a sample of n i.i.d. U(0,1) statistics has a Beta(k,n+1-k) distribution as in
+\insertCite{quesnberry80;textual}{pQTLtools} and Coded by  Weale M, Price T.
+\href{https://sites.google.com/site/mikeweale/software}{https://sites.google.com/site/mikeweale/software}
 
 \strong{Input association data path / input_data_path:}
 
@@ -45,8 +47,7 @@ turboqq(input_data_path, output_data_rootname, plot_title)
 
 }
 \references{
-Quesenberry, C. P., & Hale, D. K. (1980). Journal of Statistical Computation and Simulation, 11(1), 41-53. Coded by
-Weale M, Price T. \href{https://sites.google.com/site/mikeweale/software}{https://sites.google.com/site/mikeweale/software}
+\insertAllCited{}
 }
 \author{
 Bram Prins
