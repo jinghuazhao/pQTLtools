@@ -1,9 +1,30 @@
 ---
 title: "LocusZoom.js"
 output:
-  html_document:
-    self_contained: false
+  bookdown::html_document2:
+    toc: true
+    toc_float: true
+fontsize: 11pt
+bibliography: '`r system.file("REFERENCES.bib", package="pQTLtools")`'
+csl: nature-genetics.csl
+pkgdown:
+  as_is: true
+vignette: >
+  %\VignetteIndexEntry{snakemake showcases}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
+
+```{r setup, include=FALSE}
+set.seed(0)
+knitr::opts_chunk$set(
+  out.extra = 'style="display:block; margin: auto"',
+  fig.align = "center",
+  fig.path = "LocusZoom.js/",
+  collapse = TRUE,
+  comment = "#>",
+  dev = "png")
+```
 
 # JavaScript
 
