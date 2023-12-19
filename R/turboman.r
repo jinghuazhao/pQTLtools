@@ -14,8 +14,8 @@
 #'
 #' Define the path of the input association data...
 #' The input data needs to be a file that has:
-#' 1. Spaces as field separators
-#' 2. One header line
+#' 1. Spaces as field separators.
+#' 2. One header line.
 #' 3. Option I. (no extreme p-values present): 3 columns, being chromosome, position, pvalue in order, column names are not important.
 #'    Option II. (extreme p-values present): 5 columns, being chromosome, position, pvalue, beta, se in order, column names are not important.
 #'
@@ -28,25 +28,24 @@
 #'
 #' Define the path of the custom annotation of variants...
 #' The input data needs to be a file that has:
-#' 1. Spaces / tabs as field separators
-#' 2. One header line with exact column names (order not important)
-#' 3. 3 columns: chromosome, position, label (e.g., gene name)
-#'    Column names chromosome, position, nearest_gene_name
+#' 1. Spaces / tabs as field separators.
+#' 2. One header line with exact column names (order not important).
+#' 3. 3 columns: chromosome, position, label (e.g., gene name) / nearest_gene_name.
 #' NB!: If no label is given, variants will be automatically annotated
 #'
 #' **Reference file path / reference_file_path**
 #'
 #' Define the path to the "turboman_hg19_reference_data.rda" reference file that
 #' contains the LD block breaks as in \insertCite{berisa16;textual}{pQTLtools}
-#' and gene coordinates used to construct and annotate the Manhattan plot
+#' and gene coordinates used to construct and annotate the Manhattan plot.
 #'
 #' **Significance threshold p-value / pvalue_sign**
 #'
 #' Define the significance threshold...
 #' This will be used to...
-#' 1. Highlight signal peaks that come above this significance threshold
-#' 2. Annotate the nearest gene to the top signal in the peak
-#' 3. Draw a horizontal reference line equal to this threshold
+#' 1. Highlight signal peaks that come above this significance threshold.
+#' 2. Annotate the nearest gene to the top signal in the peak.
+#' 3. Draw a horizontal reference line equal to this threshold.
 #'
 #' @examples
 #' \dontrun{
