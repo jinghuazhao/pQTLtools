@@ -16,9 +16,8 @@
 #' The input data needs to be a file that has:
 #' 1. Spaces as field separators
 #' 2. One header line
-#' 3. Two options:
-#'     I. (no extreme p-values present): 3 columns, being chromosome, position, pvalue in order, column names are not important.
-#'     II. (extreme p-values present): 5 columns, being chromosome, position, pvalue, beta, se in order, column names are not important.
+#' 3. Option I. (no extreme p-values present): 3 columns, being chromosome, position, pvalue in order, column names are not important.
+#'    Option II. (extreme p-values present): 5 columns, being chromosome, position, pvalue, beta, se in order, column names are not important.
 #'
 #' **Output data root name / output_data_rootname**
 #'
