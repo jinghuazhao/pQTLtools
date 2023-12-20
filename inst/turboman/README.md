@@ -7,7 +7,7 @@ output:
     number_sections: true
     self_contained: true
 fontsize: 11pt
-bibliography: '`r system.file("REFERENCES.bib", package="pQTLtools")`'
+bibliography: '/rds/project/jmmh2/rds-jmmh2-public_databases/software/R/pQTLtools/REFERENCES.bib'
 csl: nature-genetics.csl
 pkgdown:
   as_is: true
@@ -21,7 +21,8 @@ vignette: >
 
 The following script has been used to generate the reference data,
 
-```{r, message=FALSE, warning=FALSE}
+
+```r
 options(width=200)
 rm(list=ls())
 
@@ -47,7 +48,27 @@ load("~/cambridge-ceu/turboman/turboman_hg19_reference_data.rda")
 refgene_gene_coordinates_hg19_eur <- refgene_gene_coordinates_h19
 save(ld_block_breaks_pickrell_hg19_eur,refgene_gene_coordinates_hg19_eur,file="turboman_hg19_reference_data.rda")
 ls()
+```
+
+```
+## [1] "ld_block_breaks_pickrell_hg19_eur" "liftover"                          "refgene_gene_coordinates_h19"      "refgene_gene_coordinates_hg19_eur"
+```
+
+```r
 head(ld_block_breaks_pickrell_hg19_eur)
+```
+
+```
+##   chr   start
+## 1   1   10583
+## 2   1 1892607
+## 3   1 3582736
+## 4   1 4380811
+## 5   1 5913893
+## 6   1 7247335
+```
+
+```r
 ld <- ld_block_breaks_pickrell_hg19_eur %>%
       dplyr::mutate(end=start,snpid=paste(chr,start,end,sep=":")) %>%
       dplyr::select(chr,start,end,snpid)
