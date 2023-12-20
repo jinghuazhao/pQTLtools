@@ -1,0 +1,67 @@
+---
+title: "Reference data for turboman"
+output:
+  bookdown::html_document2:
+    toc: true
+    toc_float: true
+    number_sections: true
+    self_contained: true
+fontsize: 11pt
+bibliography: '`r system.file("REFERENCES.bib", package="pQTLtools")`'
+csl: nature-genetics.csl
+pkgdown:
+  as_is: true
+vignette: >
+  %\VignetteIndexEntry{An Overview of pQTLtools}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Preparation
+
+The following script has been used to generate the reference data,
+
+```{r}
+options(width=200)
+rm(list=ls())
+
+liftover <- function(chr_start_end_snpid)
+{
+  HPC_WORK <- Sys.getenv("HPC_WORK")
+  f <- file.path(HPC_WORK,"bin","hg19ToHg38.over.chain")
+  chain <- rtracklayer::import.chain(f)
+  names(chain) <- gsub("chr","",names(chain))
+  require(GenomicRanges)
+  gr <- with(chr_start_end_snpid, GenomicRanges::GRanges(seqnames=chr,IRanges::IRanges(start,end),snpid=snpid))
+  seqlevelsStyle(gr) <- "NCBI"
+  gr38 <- rtracklayer::liftOver(gr, chain)
+  if (all(is.na(gr38$seqnames))) {
+    warning("Liftover failed for some SNPs.")
+  }
+  as.data.frame(gr38)
+}
+
+library(dplyr)
+load("~/cambridge-ceu/turboman/turboman_hg19_reference_data.rda")
+refgene_gene_coordinates_hg19_eur <- refgene_gene_coordinates_h19
+save(ld_block_breaks_pickrell_hg19_eur,refgene_gene_coordinates_hg19_eur,file="turboman_hg19_reference_data.rda")
+ls()
+head(ld_block_breaks_pickrell_hg19_eur)
+ld <- ld_block_breaks_pickrell_hg19_eur %>%
+      dplyr::mutate(end=start,snpid=paste(chr,start,end,sep=":")) %>%
+      dplyr::select(chr,start,end,snpid)
+ld38 <- liftover(ld)
+ld_block_breaks_pickrell_hg38_eur <- dplyr::left_join(ld, ld38, by="snpid") %>%
+                transmute(chr,start=start.y) %>%
+                filter(!is.na(start))
+refgene_gene_coordinates_hg38_eur <- read.delim("~/tests/turboman/refGene38") %>%
+                                     setNames(c("chromosome", "gene_transcription_start", "gene_transcription_stop", "gene_name")) %>%
+                                     dplyr::mutate(chromosome=gsub("chr","",chromosome),
+                                                   gene_transcription_midposition=(gene_transcription_start+gene_transcription_stop)/2)
+save(ld_block_breaks_pickrell_hg38_eur,refgene_gene_coordinates_hg38_eur,file="urboman_hg38_reference_data.rda")
+```
+
+Note that the original reference data contains LD blocks as well refGene information and changs have been made so that
+1. Only the boundaries of the LD blocks are lifted over from hg19 to hg38.
+2. RefGene data would have been updated, so are replaced using external data.
+3. For consistency, `refgene_gene_coordinates_h19` is renamed as `refgene_gene_coordinates_hg19_eur`, which is also reflected in the function.
