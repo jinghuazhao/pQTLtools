@@ -175,12 +175,12 @@ LD blocks and refGene are saved into a `.rda` file.
 
 
 ```r
-save(ld_block_breaks_pickrell_hg38_eur,refgene_gene_coordinates_hg38_eur,file="urboman_hg38_reference_data.rda")
+save(ld_block_breaks_pickrell_hg38_eur,refgene_gene_coordinates_hg38_eur,file="turboman_hg38_reference_data.rda")
 dir(pattern="*rda")
 ```
 
 ```
-## [1] "turboman_hg19_reference_data.rda" "urboman_hg38_reference_data.rda"
+## [1] "turboman_hg19_reference_data.rda" "turboman_hg38_reference_data.rda"
 ```
 
 ## Remarks
