@@ -24,7 +24,6 @@ Details of the reference data are shown as follows,
 ```{r, message=FALSE, warning=FALSE}
 options(width=200)
 rm(list=ls())
-dir(pattern="*rda")
 load("~/cambridge-ceu/turboman/turboman_hg19_reference_data.rda")
 ls()
 refgene_gene_coordinates_hg19_eur <- refgene_gene_coordinates_h19
@@ -85,6 +84,7 @@ LD blocks and refGene are saved into a `.rda` file.
 
 ```{r, message=FALSE, warning=FALSE}
 save(ld_block_breaks_pickrell_hg38_eur,refgene_gene_coordinates_hg38_eur,file="urboman_hg38_reference_data.rda")
+dir(pattern="*rda")
 ```
 
 ## Remarks
