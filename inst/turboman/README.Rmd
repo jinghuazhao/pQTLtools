@@ -24,6 +24,9 @@ The following script has been used to generate the reference data,
 ```{r, message=FALSE, warning=FALSE}
 options(width=200)
 rm(list=ls())
+dir()
+load("~/cambridge-ceu/turboman/turboman_hg19_reference_data.rda")
+ls()
 
 liftover <- function(chr_start_end_snpid)
 {
@@ -43,10 +46,8 @@ liftover <- function(chr_start_end_snpid)
 
 library(dplyr)
 library(valr)
-load("~/cambridge-ceu/turboman/turboman_hg19_reference_data.rda")
 refgene_gene_coordinates_hg19_eur <- refgene_gene_coordinates_h19
 save(ld_block_breaks_pickrell_hg19_eur,refgene_gene_coordinates_hg19_eur,file="turboman_hg19_reference_data.rda")
-ls()
 head(ld_block_breaks_pickrell_hg19_eur)
 ld <- ld_block_breaks_pickrell_hg19_eur %>%
       dplyr::mutate(end=start,snpid=paste(chr,start,end,sep=":")) %>%

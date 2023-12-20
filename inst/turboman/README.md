@@ -25,7 +25,23 @@ The following script has been used to generate the reference data,
 ```r
 options(width=200)
 rm(list=ls())
+dir()
+```
 
+```
+## [1] "README.md"                        "README.Rmd"                       "turboman_hg19_reference_data.rda" "urboman_hg38_reference_data.rda"
+```
+
+```r
+load("~/cambridge-ceu/turboman/turboman_hg19_reference_data.rda")
+ls()
+```
+
+```
+## [1] "ld_block_breaks_pickrell_hg19_eur" "refgene_gene_coordinates_h19"
+```
+
+```r
 liftover <- function(chr_start_end_snpid)
 {
   HPC_WORK <- Sys.getenv("HPC_WORK")
@@ -44,17 +60,8 @@ liftover <- function(chr_start_end_snpid)
 
 library(dplyr)
 library(valr)
-load("~/cambridge-ceu/turboman/turboman_hg19_reference_data.rda")
 refgene_gene_coordinates_hg19_eur <- refgene_gene_coordinates_h19
 save(ld_block_breaks_pickrell_hg19_eur,refgene_gene_coordinates_hg19_eur,file="turboman_hg19_reference_data.rda")
-ls()
-```
-
-```
-## [1] "ld_block_breaks_pickrell_hg19_eur" "liftover"                          "refgene_gene_coordinates_h19"      "refgene_gene_coordinates_hg19_eur"
-```
-
-```r
 head(ld_block_breaks_pickrell_hg19_eur)
 ```
 
