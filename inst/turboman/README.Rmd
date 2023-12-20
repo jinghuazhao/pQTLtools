@@ -54,7 +54,7 @@ ld38 <- liftover(ld)
 ld_block_breaks_pickrell_hg38_eur <- dplyr::left_join(ld, ld38, by="snpid") %>%
                                      dplyr::transmute(chr,start=start.y) %>%
                                      dplyr::filter(!is.na(start))
-refgene_gene_coordinates_hg38_eur <- read.delim("~/tests/turboman/refGene38") %>%
+refgene_gene_coordinates_hg38_eur <- read.delim("~/tests/turboman/refGene38.tsv") %>%
                                      setNames(c("chromosome", "gene_transcription_start", "gene_transcription_stop", "gene_name")) %>%
                                      dplyr::mutate(chromosome=gsub("chr","",chromosome),
                                                    gene_transcription_midposition=(gene_transcription_start+gene_transcription_stop)/2)
