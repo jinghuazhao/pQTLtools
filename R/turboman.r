@@ -3,7 +3,7 @@
 #' @param input_data_path Path of the input association data
 #' @param output_data_rootname Root name of the plot output file
 #' @param custom_peak_annotation_file_path Path of the custom annotation of variants
-#' @param reference_file_path Path to the "turboman_hg19_reference_data.rda" reference file
+#' @param reference_file_path Path to the "turboman_hg19_reference_data.rda" / "turboman_hg19_reference_data.rda" reference file
 #' @param pvalue_sign Significance threshold p-value
 #' @param plot_title Plot title which will be displayed on top of the plot
 #' @export
@@ -35,9 +35,11 @@
 #'
 #' **Reference file path / reference_file_path**
 #'
-#' Define the path to the "turboman_hg19_reference_data.rda" reference file that
+#' Define the path to the "turboman_hg19_reference_data.rda" / "turboman_hg38_reference_data.rda" reference file that
 #' contains the LD block breaks as in \insertCite{berisa16;textual}{pQTLtools}
-#' and gene coordinates used to construct and annotate the Manhattan plot.
+#' and gene coordinates used to construct and annotate the Manhattan plot. Both
+#' are available from the `turboman` directory of the installed package, e.g.,
+#' `file.path(find.package("pQTLtools"),"turboman","turboman_hg38_reference_data.rda")`.
 #'
 #' **Significance threshold p-value / pvalue_sign**
 #'
@@ -72,7 +74,7 @@
 #' turboman(input_data_path, output_data_rootname, custom_peak_annotation_file_path, reference_file_path, pvalue_sign, plot_title)
 #' }
 #'
-#' @author Arthur Gilly, Chris Finan, Bram Prins
+#' @author Arthur Gilly, Chris Finan, Bram Prins, see \href{https://github.com/bpprins/turboman}{https://github.com/bpprins/turboman}.
 #'
 #' **Changelog**
 #' * 2017/12/04. Added Varying window size in which gene names are plotted based on the length of gene names so that gene names will not be truncated in the plot
@@ -85,7 +87,7 @@
 #'
 #' **To do list**
 #' 1. Display gene names bold / non-bold when genic / intergenic
-#' 2. Create LD blocks for hg38
+#' 2. Create LD blocks for hg38 -- this is now done!
 #' 3. Add many more sanity checks (are you giving pvalues, the file does not exist, etc.)
 #' 4. Create a function version of the script (Eric H)
 #' 5. ...
@@ -242,7 +244,7 @@ top_snp_counter=0
 ## Define the LD block data (loaded from rda reference data file)
 ld_block_breaks<-ld_block_breaks_pickrell_hg19_eur
 ## Define the gene annotation data (loaded from rda reference data file)
-gene_coordinates<-refgene_gene_coordinates_h19
+gene_coordinates<-refgene_gene_coordinates_hg19_eur
 ## Start the loop that will go over all unique chromosomes to reduce the data
 for (chromosome_number in chromosomes) {
 ## Verbose progress tracker

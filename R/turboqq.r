@@ -33,7 +33,7 @@
 #' @references
 #' \insertAllCited{}
 #'
-#' @author Bram Prins
+#' @author Bram Prins, \href{https://github.com/bpprins/turboqq}{https://github.com/bpprins/turboqq}.
 
 turboqq <- function(input_data_path, output_data_rootname, plot_title) {
   
