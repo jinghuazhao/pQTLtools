@@ -42,6 +42,7 @@ liftover <- function(chr_start_end_snpid)
 }
 
 library(dplyr)
+library(valr)
 load("~/cambridge-ceu/turboman/turboman_hg19_reference_data.rda")
 refgene_gene_coordinates_hg19_eur <- refgene_gene_coordinates_h19
 save(ld_block_breaks_pickrell_hg19_eur,refgene_gene_coordinates_hg19_eur,file="turboman_hg19_reference_data.rda")
@@ -54,7 +55,10 @@ ld38 <- liftover(ld)
 ld_block_breaks_pickrell_hg38_eur <- dplyr::left_join(ld, ld38, by="snpid") %>%
                                      dplyr::transmute(chr,start=start.y) %>%
                                      dplyr::filter(!is.na(start))
-refgene_gene_coordinates_hg38_eur <- read.delim("~/tests/turboman/refGene38.tsv") %>%
+refGene38 <- read.delim("~/tests/turboman/refGene38.tsv") %>%
+             setNames(c("chrom","start","end","gene"))
+refgene_gene_coordinates_hg38_eur <- valr::bed_merge(dplyr::group_by(refGene38,gene)) %>%
+                                     valr::bed_sort() %>%
                                      setNames(c("chromosome", "gene_transcription_start", "gene_transcription_stop", "gene_name")) %>%
                                      dplyr::mutate(chromosome=gsub("chr","",chromosome),
                                                    gene_transcription_midposition=(gene_transcription_start+gene_transcription_stop)/2)
@@ -65,3 +69,16 @@ Note that the original reference data contains LD blocks as well refGene informa
 1. Only the boundaries of the LD blocks are lifted over from hg19 to hg38.
 2. RefGene data would have been updated, so are replaced using external data.
 3. For consistency, `refgene_gene_coordinates_h19` is renamed as `refgene_gene_coordinates_hg19_eur`, which would be reflected in the function but a fuzzy prefix `refgene_gene_coordinates_h` would accommodate the original `.rda`.
+4. The `elongated` list per gene is merged, such that
+
+chr|start|end|gene
+---|-----|---|-----------
+1|66533360|66743095|SGIP1
+1|66533592|66690375|SGIP1
+1|66533592|66743095|SGIP1
+1|66534152|66690375|SGIP1
+1|66534152|66743095|SGIP1
+1|66534152|66729362|SGIP1
+
+becomes `1|66533360|66743095|SGIP1` as composed to `1|66999251|67216822| SGIP1` (hg19).
+`.
