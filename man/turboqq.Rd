@@ -50,5 +50,5 @@ turboqq(input_data_path, output_data_rootname, plot_title)
 \insertAllCited{}
 }
 \author{
-Bram Prins
+Bram Prins, \href{https://github.com/bpprins/turboqq}{https://github.com/bpprins/turboqq}.
 }

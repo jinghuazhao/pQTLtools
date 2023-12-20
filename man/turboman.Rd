@@ -20,7 +20,7 @@ turboman(
 
 \item{custom_peak_annotation_file_path}{Path of the custom annotation of variants}
 
-\item{reference_file_path}{Path to the "turboman_hg19_reference_data.rda" reference file}
+\item{reference_file_path}{Path to the "turboman_hg19_reference_data.rda" / "turboman_hg19_reference_data.rda" reference file}
 
 \item{pvalue_sign}{Significance threshold p-value}
 
@@ -59,9 +59,11 @@ NB!: If no label is given, variants will be automatically annotated
 
 \strong{Reference file path / reference_file_path}
 
-Define the path to the "turboman_hg19_reference_data.rda" reference file that
+Define the path to the "turboman_hg19_reference_data.rda" / "turboman_hg38_reference_data.rda" reference file that
 contains the LD block breaks as in \insertCite{berisa16;textual}{pQTLtools}
-and gene coordinates used to construct and annotate the Manhattan plot.
+and gene coordinates used to construct and annotate the Manhattan plot. Both
+are available from the \code{turboman} directory of the installed package, e.g.,
+\code{file.path(find.package("pQTLtools"),"turboman","turboman_hg38_reference_data.rda")}.
 
 \strong{Significance threshold p-value / pvalue_sign}
 
@@ -103,7 +105,7 @@ turboman(input_data_path, output_data_rootname, custom_peak_annotation_file_path
 \insertAllCited{}
 }
 \author{
-Arthur Gilly, Chris Finan, Bram Prins
+Arthur Gilly, Chris Finan, Bram Prins, see \href{https://github.com/bpprins/turboman}{https://github.com/bpprins/turboman}.
 
 \strong{Changelog}
 \itemize{
@@ -119,7 +121,7 @@ Arthur Gilly, Chris Finan, Bram Prins
 \strong{To do list}
 \enumerate{
 \item Display gene names bold / non-bold when genic / intergenic
-\item Create LD blocks for hg38
+\item Create LD blocks for hg38 -- this is now done!
 \item Add many more sanity checks (are you giving pvalues, the file does not exist, etc.)
 \item Create a function version of the script (Eric H)
 \item ...
