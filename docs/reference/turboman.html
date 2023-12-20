@@ -135,7 +135,7 @@
 
 
 <dt>reference_file_path</dt>
-<dd><p>Path to the "turboman_hg19_reference_data.rda" reference file</p></dd>
+<dd><p>Path to the "turboman_hg19_reference_data.rda" / "turboman_hg19_reference_data.rda" reference file</p></dd>
 
 
 <dt>pvalue_sign</dt>
@@ -164,10 +164,12 @@ The input data needs to be a file that has:</p><ol><li><p>Spaces / tabs as field
 <li><p>3 columns: chromosome, position, label (e.g., gene name) / nearest_gene_name.
 NB!: If no label is given, variants will be automatically annotated</p></li>
 </ol><p><strong>Reference file path / reference_file_path</strong></p>
-<p>Define the path to the "turboman_hg19_reference_data.rda" reference file that
+<p>Define the path to the "turboman_hg19_reference_data.rda" / "turboman_hg38_reference_data.rda" reference file that
 contains the LD block breaks as in Berisa and Pickrell (2016)
 
-and gene coordinates used to construct and annotate the Manhattan plot.</p>
+and gene coordinates used to construct and annotate the Manhattan plot. Both
+are available from the <code>turboman</code> directory of the installed package, e.g.,
+<code>file.path(find.package("pQTLtools"),"turboman","turboman_hg38_reference_data.rda")</code>.</p>
 <p><strong>Significance threshold p-value / pvalue_sign</strong></p>
 <p>Define the significance threshold...
 This will be used to...</p><ol><li><p>Highlight signal peaks that come above this significance threshold.</p></li>
@@ -184,7 +186,7 @@ This will be used to...</p><ol><li><p>Highlight signal peaks that come above thi
     </div>
     <div class="section level2">
     <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>
-    <p>Arthur Gilly, Chris Finan, Bram Prins</p>
+    <p>Arthur Gilly, Chris Finan, Bram Prins, see <a href="https://github.com/bpprins/turboman" class="external-link">https://github.com/bpprins/turboman</a>.</p>
 <p><strong>Changelog</strong></p><ul><li><p>2017/12/04. Added Varying window size in which gene names are plotted based on the length of gene names so that gene names will not be truncated in the plot</p></li>
 <li><p>2017/12/04. Added an option allowing the user to supply a table with top SNPs to highlight, which can, for example, be selected by conditional analyses / LD pruning</p></li>
 <li><p>2017/12/04. Fixed a bug (found by Tao) that leads to erroneous binning when plotting extremely sparse data</p></li>
@@ -193,7 +195,7 @@ This will be used to...</p><ol><li><p>Highlight signal peaks that come above thi
 <li><p>2017/12/05. Increased contrast between chromosomes on the plot (Eric H)</p></li>
 <li><p>2017/12/05. Set '10' in the y-axis label (-log10 pvalue) to subscript (Eric H)</p></li>
 </ul><p><strong>To do list</strong></p><ol><li><p>Display gene names bold / non-bold when genic / intergenic</p></li>
-<li><p>Create LD blocks for hg38</p></li>
+<li><p>Create LD blocks for hg38 -- this is now done!</p></li>
 <li><p>Add many more sanity checks (are you giving pvalues, the file does not exist, etc.)</p></li>
 <li><p>Create a function version of the script (Eric H)</p></li>
 <li><p>...</p></li>
