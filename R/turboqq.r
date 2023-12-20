@@ -19,6 +19,15 @@
 #' 3. Option I. (no extreme p-values present): 3 columns, being chromosome, position, pvalue in order, column names are not important.
 #'    Option II. (extreme p-values present): 5 columns, being chromosome, position, pvalue, beta, se in order, column names are not important.
 #'
+#' **Output data rootname / output_data_rootname**
+#'
+#' Define root name of the plot output file.
+#' Ex. : "my_qq_plot" will result in an output file named "my_qq_plot.png"
+#'
+#' **Plot title / plot_title**
+#'
+#' Define plot title which will be displayed on top of the plot.
+
 #' @examples
 #' \dontrun{
 #' require(gap.datasets)
