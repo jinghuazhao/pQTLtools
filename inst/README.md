@@ -13,4 +13,5 @@ snakemake/       | snakemake showcase
 STRING/          | StringDB-related
 suggests.R       | CRAN/Bioconductor
 tests/           | SCALLOP-INF-related
+turboman/        | turboman reference data
 UniProt/         | UniProt-related
