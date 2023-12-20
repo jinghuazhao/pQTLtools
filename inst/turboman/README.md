@@ -113,6 +113,25 @@ ld38 <- liftover(ld)
 ld_block_breaks_pickrell_hg38_eur <- dplyr::left_join(ld, ld38, by="snpid") %>%
                                      dplyr::transmute(chr,start=start.y) %>%
                                      dplyr::filter(!is.na(start))
+head(ld_block_breaks_pickrell_hg38_eur)
+```
+
+```
+##   chr   start
+## 1   1   10583
+## 2   1 1961168
+## 3   1 3666172
+## 4   1 4320751
+## 5   1 5853833
+## 6   1 7187275
+```
+
+```r
+dim(ld_block_breaks_pickrell_hg38_eur)
+```
+
+```
+## [1] 1723    2
 ```
 
 ## refGene for hg38 (build 38)
@@ -126,6 +145,28 @@ refgene_gene_coordinates_hg38_eur <- valr::bed_merge(dplyr::group_by(refGene38,g
                                      setNames(c("chromosome", "gene_transcription_start", "gene_transcription_stop", "gene_name")) %>%
                                      dplyr::mutate(chromosome=gsub("chr","",chromosome),
                                                    gene_transcription_midposition=(gene_transcription_start+gene_transcription_stop)/2)
+head(refgene_gene_coordinates_hg38_eur)
+```
+
+```
+## # A tibble: 6 × 5
+## # Groups:   gene_name [6]
+##   chromosome gene_transcription_start gene_transcription_stop gene_name   gene_transcription_midposition
+##   <chr>                         <int>                   <int> <chr>                                <dbl>
+## 1 1                             11873                   14409 DDX11L1                             13141 
+## 2 1                             14361                   29370 WASH7P                              21866.
+## 3 1                             17368                   17436 MIR6859-1                           17402 
+## 4 1                             29773                   35418 MIR1302-2HG                         32596.
+## 5 1                             30365                   30503 MIR1302-2                           30434 
+## 6 1                             34610                   36081 FAM138A                             35346.
+```
+
+```r
+dim(refgene_gene_coordinates_hg38_eur)
+```
+
+```
+## [1] 48463     5
 ```
 
 ## hg38 reference data

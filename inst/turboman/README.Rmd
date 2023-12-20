@@ -64,6 +64,8 @@ ld38 <- liftover(ld)
 ld_block_breaks_pickrell_hg38_eur <- dplyr::left_join(ld, ld38, by="snpid") %>%
                                      dplyr::transmute(chr,start=start.y) %>%
                                      dplyr::filter(!is.na(start))
+head(ld_block_breaks_pickrell_hg38_eur)
+dim(ld_block_breaks_pickrell_hg38_eur)
 ```
 
 ## refGene for hg38 (build 38)
@@ -76,6 +78,8 @@ refgene_gene_coordinates_hg38_eur <- valr::bed_merge(dplyr::group_by(refGene38,g
                                      setNames(c("chromosome", "gene_transcription_start", "gene_transcription_stop", "gene_name")) %>%
                                      dplyr::mutate(chromosome=gsub("chr","",chromosome),
                                                    gene_transcription_midposition=(gene_transcription_start+gene_transcription_stop)/2)
+head(refgene_gene_coordinates_hg38_eur)
+dim(refgene_gene_coordinates_hg38_eur)
 ```
 
 ## hg38 reference data
