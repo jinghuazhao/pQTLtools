@@ -30,7 +30,7 @@
 #' The input data needs to be a file that has:
 #' 1. Spaces / tabs as field separators.
 #' 2. One header line with exact column names (order not important).
-#' 3. 3 columns: chromosome, position, label (e.g., gene name) / nearest_gene_name.
+#' 3. 4 columns: chromosome, position, label (e.g., gene name) / nearest_gene_name, cis/trans flag.
 #' NB!: If no label is given, variants will be automatically annotated
 #'
 #' **Reference file path / reference_file_path**
