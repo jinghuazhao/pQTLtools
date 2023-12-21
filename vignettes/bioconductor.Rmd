@@ -225,7 +225,7 @@ meg <- moduleEigengenes(dat, color=1:ncol(dat), softPower=6)
 
 # Meta-data
 
-``{r}
+``{r meta-data, messages=FALSE}
 hs <- recount3::available_projects()
 dim(subset(hs,file_source=="gtex"))
 recount3::annotation_options("human")
