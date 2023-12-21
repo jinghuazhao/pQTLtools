@@ -225,15 +225,15 @@ meg <- moduleEigengenes(dat, color=1:ncol(dat), softPower=6)
 
 # Meta-data
 
-```r
-hs <- available_projects()
+``r
+hs <- recount3::available_projects()
 dim(subset(hs,file_source=="gtex"))
-annotation_options("human")
-blood_rse <- create_rse(subset(hs,project=="BLOOD"))
+recount3::annotation_options("human")
+blood_rse <- recount3::create_rse(subset(hs,project=="BLOOD"))
 metadata(blood_rse)
 rowRanges(blood_rse)
 colnames(colData(blood_rse))[1:20]
-expand_sra_attributes(blood_rse)
+recount3::expand_sra_attributes(blood_rse)
 ```
 
 # Pathway and enrichment analysis
