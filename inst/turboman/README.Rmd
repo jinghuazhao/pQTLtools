@@ -93,7 +93,7 @@ dir(pattern="*rda")
 
 ## Remarks
 
-The original reference data contains LD blocks as well refGene information and changs have been made so that
+The original reference data contains LD blocks as well refGene information and changes have been made so that
 1. Only the boundaries of the LD blocks are lifted over from hg19 to hg38.
 2. RefGene data would have been updated, so are replaced using external data.
 3. For consistency, `refgene_gene_coordinates_h19` is renamed as `refgene_gene_coordinates_hg19_eur`, which would be reflected in the function but a fuzzy prefix `refgene_gene_coordinates_h` would accommodate the original `.rda`.
