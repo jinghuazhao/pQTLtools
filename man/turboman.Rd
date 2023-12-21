@@ -53,7 +53,7 @@ The input data needs to be a file that has:
 \enumerate{
 \item Spaces / tabs as field separators.
 \item One header line with exact column names (order not important).
-\item 3 columns: chromosome, position, label (e.g., gene name) / nearest_gene_name.
+\item 4 columns: chromosome, position, label (e.g., gene name) / nearest_gene_name, cis/trans flag.
 NB!: If no label is given, variants will be automatically annotated
 }
 
