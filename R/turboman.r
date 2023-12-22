@@ -11,7 +11,7 @@
 #' @details
 #' **Input association data path / input_data_path**
 #'
-#' Define the path of the input association data...
+#' Define the path of the input association data.
 #' The input data needs to be a file that has:
 #' 1. Spaces as field separators.
 #' 2. One header line.
@@ -20,7 +20,7 @@
 #'
 #'**Custom annotation file / custom_peak_annotation_file_path**
 #'
-#' Define the path of the custom annotation of variants...
+#' Define the path of the custom annotation of variants.
 #' The input data needs to be a file that has:
 #' 1. Spaces / tabs as field separators.
 #' 2. One header line with exact column names (order not important).
@@ -37,8 +37,8 @@
 #'
 #' **Significance threshold p-value / pvalue_sign**
 #'
-#' Define the significance threshold...
-#' This will be used to...
+#' Define the significance threshold.
+#' This will be used to
 #' 1. Highlight signal peaks that come above this significance threshold.
 #' 2. Annotate the nearest gene to the top signal in the peak.
 #' 3. Draw a horizontal reference line equal to this threshold.
