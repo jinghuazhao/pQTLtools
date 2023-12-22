@@ -106,24 +106,4 @@ turboman(input_data_path, output_data_rootname, custom_peak_annotation_file_path
 }
 \author{
 Arthur Gilly, Chris Finan, Bram Prins, see \href{https://github.com/bpprins/turboman}{https://github.com/bpprins/turboman}.
-
-\strong{Changelog}
-\itemize{
-\item \emph{2017/12/04} Added Varying window size in which gene names are plotted based on the length of gene names so that gene names will not be truncated in the plot
-\item \emph{2017/12/04} Added an option allowing the user to supply a table with top SNPs to highlight, which can, for example, be selected by conditional analyses / LD pruning
-\item \emph{2017/12/04} Fixed a bug (found by Tao) that leads to erroneous binning when plotting extremely sparse data
-\item \emph{2017/12/05} Added optional log-pval calculations from beta/SE for extreme p-values that run below \code{.Machine$double.xmin}
-\item \emph{2017/12/05} Added an automated option for plotting already log-transformed p-values (user can supply either)
-\item \emph{2017/12/05} Increased contrast between chromosomes on the plot (Eric H)
-\item \emph{2017/12/05} Set '10' in the y-axis label (-log10 pvalue) to subscript (Eric H)
-}
-
-\strong{To do list}
-\enumerate{
-\item Display gene names bold / non-bold when genic / intergenic -- this turns to be red/blue for cis/trans in the pQTL context.
-\item Create LD blocks for hg38 -- this is now done!
-\item Add many more sanity checks (are you giving pvalues, the file does not exist, etc.)
-\item Create a function version of the script (Eric H) -- here we are!
-\item ...
-}
 }
