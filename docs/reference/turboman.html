@@ -144,13 +144,13 @@
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p><strong>Input association data path / input_data_path</strong></p>
-<p>Define the path of the input association data...
+<p>Define the path of the input association data.
 The input data needs to be a file that has:</p><ol><li><p>Spaces as field separators.</p></li>
 <li><p>One header line.</p></li>
 <li><p>Option I. (no extreme p-values present): 3 columns, being chromosome, position, pvalue in order, column names are not important.
 Option II. (extreme p-values present): 5 columns, being chromosome, position, pvalue, beta, se in order, column names are not important.</p></li>
 </ol><p><strong>Custom annotation file / custom_peak_annotation_file_path</strong></p>
-<p>Define the path of the custom annotation of variants...
+<p>Define the path of the custom annotation of variants.
 The input data needs to be a file that has:</p><ol><li><p>Spaces / tabs as field separators.</p></li>
 <li><p>One header line with exact column names (order not important).</p></li>
 <li><p>Columns: chromosome, position, label (e.g., gene name) / nearest_gene_name, cis/trans flag (optional).
@@ -163,8 +163,8 @@ and gene coordinates used to construct and annotate the Manhattan plot. Both
 are available from the <code>turboman</code> directory of the installed package, e.g.,
 <code>file.path(find.package("pQTLtools"),"turboman","turboman_hg38_reference_data.rda")</code>.</p>
 <p><strong>Significance threshold p-value / pvalue_sign</strong></p>
-<p>Define the significance threshold...
-This will be used to...</p><ol><li><p>Highlight signal peaks that come above this significance threshold.</p></li>
+<p>Define the significance threshold.
+This will be used to</p><ol><li><p>Highlight signal peaks that come above this significance threshold.</p></li>
 <li><p>Annotate the nearest gene to the top signal in the peak.</p></li>
 <li><p>Draw a horizontal reference line equal to this threshold.</p></li>
 </ol></div>
