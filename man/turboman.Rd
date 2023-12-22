@@ -29,7 +29,7 @@ Manhattan plots
 \details{
 \strong{Input association data path / input_data_path}
 
-Define the path of the input association data...
+Define the path of the input association data.
 The input data needs to be a file that has:
 \enumerate{
 \item Spaces as field separators.
@@ -40,7 +40,7 @@ Option II. (extreme p-values present): 5 columns, being chromosome, position, pv
 
 \strong{Custom annotation file / custom_peak_annotation_file_path}
 
-Define the path of the custom annotation of variants...
+Define the path of the custom annotation of variants.
 The input data needs to be a file that has:
 \enumerate{
 \item Spaces / tabs as field separators.
@@ -59,8 +59,8 @@ are available from the \code{turboman} directory of the installed package, e.g.,
 
 \strong{Significance threshold p-value / pvalue_sign}
 
-Define the significance threshold...
-This will be used to...
+Define the significance threshold.
+This will be used to
 \enumerate{
 \item Highlight signal peaks that come above this significance threshold.
 \item Annotate the nearest gene to the top signal in the peak.
