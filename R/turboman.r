@@ -30,7 +30,7 @@
 #' The input data needs to be a file that has:
 #' 1. Spaces / tabs as field separators.
 #' 2. One header line with exact column names (order not important).
-#' 3. 4 columns: chromosome, position, label (e.g., gene name) / nearest_gene_name, cis/trans flag.
+#' 3. Columns: chromosome, position, label (e.g., gene name) / nearest_gene_name, cis/trans flag (optional).
 #' NB!: If no label is given, variants will be automatically annotated
 #'
 #' **Reference file path / reference_file_path**
@@ -438,7 +438,7 @@ if (dim(gene_plot_data)[1] > 0 ) {
     gene_y_coordinates = gene_plot_data$log_pvalue
     ## Set the nearest gene names of the top SNPs to plot
     nearest_gene_names_hits = gene_plot_data$nearest_gene_name
-    nearest_gene_names_cistrans = gene_plot_data$cistrans
+    nearest_gene_names_cistrans = ifelse(!is.null(gene_plot_data$cistrans), rep("trans",nrow(gene_plot_data)), gene_plot_data$cistrans)
 }
 ## Set the default colors of the all association datapoints, grey and light grey, alternating between odd and even chromosome numbers
 col1="gray72"
