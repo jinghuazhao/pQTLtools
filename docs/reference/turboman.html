@@ -112,7 +112,6 @@
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">turboman</span><span class="op">(</span></span>
 <span>  <span class="va">input_data_path</span>,</span>
-<span>  <span class="va">output_data_rootname</span>,</span>
 <span>  <span class="va">custom_peak_annotation_file_path</span>,</span>
 <span>  <span class="va">reference_file_path</span>,</span>
 <span>  <span class="va">pvalue_sign</span>,</span>
@@ -124,10 +123,6 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>input_data_path</dt>
 <dd><p>Path of the input association data</p></dd>
-
-
-<dt>output_data_rootname</dt>
-<dd><p>Root name of the plot output file</p></dd>
 
 
 <dt>custom_peak_annotation_file_path</dt>
@@ -154,10 +149,7 @@ The input data needs to be a file that has:</p><ol><li><p>Spaces as field separa
 <li><p>One header line.</p></li>
 <li><p>Option I. (no extreme p-values present): 3 columns, being chromosome, position, pvalue in order, column names are not important.
 Option II. (extreme p-values present): 5 columns, being chromosome, position, pvalue, beta, se in order, column names are not important.</p></li>
-</ol><p><strong>Output data root name / output_data_rootname</strong></p>
-<p>Define the root name of the plot output file...
-Ex.: "my_man_plot" will result in an output file named "my_man_plot.png"</p>
-<p><strong>OPTIONAL: Custom annotation file / custom_peak_annotation_file_path</strong></p>
+</ol><p><strong>OPTIONAL: Custom annotation file / custom_peak_annotation_file_path</strong></p>
 <p>Define the path of the custom annotation of variants...
 The input data needs to be a file that has:</p><ol><li><p>Spaces / tabs as field separators.</p></li>
 <li><p>One header line with exact column names (order not important).</p></li>
@@ -204,15 +196,16 @@ This will be used to...</p><ol><li><p>Highlight signal peaks that come above thi
 <span class="r-in"><span><span class="va">reference_file_path</span> <span class="op">&lt;-</span> <span class="st">"turboman_hg19_reference_data.rda"</span></span></span>
 <span class="r-in"><span><span class="va">pvalue_sign</span> <span class="op">&lt;-</span> <span class="fl">5e-8</span></span></span>
 <span class="r-in"><span><span class="va">plot_title</span> <span class="op">&lt;-</span> <span class="st">"gap.datasets example"</span></span></span>
-<span class="r-in"><span><span class="fu">turboman</span><span class="op">(</span><span class="va">input_data_path</span>, <span class="va">output_data_rootname</span>, <span class="va">custom_peak_annotation_file_path</span>, <span class="va">reference_file_path</span>, <span class="va">pvalue_sign</span>, <span class="va">plot_title</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">turboman</span><span class="op">(</span><span class="va">input_data_path</span>, <span class="va">custom_peak_annotation_file_path</span>, <span class="va">reference_file_path</span>, <span class="va">pvalue_sign</span>, <span class="va">plot_title</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">input_data_path</span> <span class="op">&lt;-</span> <span class="st">"FCN3.txt.gz"</span></span></span>
-<span class="r-in"><span><span class="va">output_data_rootname</span> <span class="op">&lt;-</span> <span class="st">"FCN3"</span></span></span>
 <span class="r-in"><span><span class="va">custom_peak_annotation_file_path</span> <span class="op">&lt;-</span> <span class="st">"FCN3.txt"</span></span></span>
 <span class="r-in"><span><span class="va">reference_file_path</span> <span class="op">&lt;-</span> <span class="st">"turboman_hg19_reference_data.rda"</span></span></span>
 <span class="r-in"><span><span class="va">pvalue_sign</span> <span class="op">&lt;-</span> <span class="fl">5e-8</span></span></span>
 <span class="r-in"><span><span class="va">plot_title</span> <span class="op">&lt;-</span> <span class="st">"FCN3"</span></span></span>
-<span class="r-in"><span><span class="fu">turboman</span><span class="op">(</span><span class="va">input_data_path</span>, <span class="va">output_data_rootname</span>, <span class="va">custom_peak_annotation_file_path</span>, <span class="va">reference_file_path</span>, <span class="va">pvalue_sign</span>, <span class="va">plot_title</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/grDevices/png.html" class="external-link">png</a></span><span class="op">(</span><span class="st">"FCN3.png"</span>,width<span class="op">=</span><span class="fl">3600</span>, height<span class="op">=</span><span class="fl">3600</span>, pointsize <span class="op">=</span> <span class="fl">12</span>, res<span class="op">=</span><span class="fl">450</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">turboman</span><span class="op">(</span><span class="va">input_data_path</span>, <span class="va">custom_peak_annotation_file_path</span>, <span class="va">reference_file_path</span>, <span class="va">pvalue_sign</span>, <span class="va">plot_title</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.off</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
