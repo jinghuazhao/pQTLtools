@@ -432,13 +432,14 @@ x_axis_limit <-max(x_coordinates,na.rm=TRUE)-min(x_coordinates,na.rm=TRUE)
 ## Set the final y-coordinates of the association data to plot
 y_coordinates = log_pvalues
 ## Calculate the final x-coordinates of the top SNPs with annotated genes to plot
-if (dim(gene_plot_data)[1] > 0 ) {
+if (nrow(gene_plot_data) > 0 ) {
     gene_x_coordinates = trunc(gene_plot_data$position/100) + x2[gene_plot_data$chromosome]
     ## Set the final y-coordinates of the top SNPs with annotated genes to plot
     gene_y_coordinates = gene_plot_data$log_pvalue
     ## Set the nearest gene names of the top SNPs to plot
     nearest_gene_names_hits = gene_plot_data$nearest_gene_name
-    nearest_gene_names_cistrans = ifelse(!is.null(gene_plot_data$cistrans), rep("trans",nrow(gene_plot_data)), gene_plot_data$cistrans)
+    nearest_gene_names_cistrans = rep("trans",nrow(gene_plot_data))
+    if(!is.null(gene_plot_data$cistrans)) nearest_gene_names_cistrans = gene_plot_data$cistrans
 }
 ## Set the default colors of the all association datapoints, grey and light grey, alternating between odd and even chromosome numbers
 col1="gray72"
@@ -447,7 +448,7 @@ chromosome_colour <- ifelse (chromosomes%%2==0, col1, col2)
 ## Plot the association data
 plot(x_coordinates,y_coordinates,pch=20,col=chromosome_colour,axes=F,ylab="",xlab="",bty="n",ylim=c(0,y_axis_true_limit),cex=0.8,main=plot_title)
 ## Plot the gene annotation data
-if (dim(gene_plot_data)[1] > 0 ) {
+if (nrow(gene_plot_data) > 0 ) {
     ## Create X-axis breaks at which the gene names will be plotted, chosing random number of 150 as I simply
     ## Assume maximally 150 peaks will be annotated and at 150 genes I hope no gene names will be displayed overlapping
     x_axis_break_factor<-x_axis_limit/150
