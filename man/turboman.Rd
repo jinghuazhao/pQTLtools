@@ -6,7 +6,6 @@
 \usage{
 turboman(
   input_data_path,
-  output_data_rootname,
   custom_peak_annotation_file_path,
   reference_file_path,
   pvalue_sign,
@@ -15,8 +14,6 @@ turboman(
 }
 \arguments{
 \item{input_data_path}{Path of the input association data}
-
-\item{output_data_rootname}{Root name of the plot output file}
 
 \item{custom_peak_annotation_file_path}{Path of the custom annotation of variants}
 
@@ -40,11 +37,6 @@ The input data needs to be a file that has:
 \item Option I. (no extreme p-values present): 3 columns, being chromosome, position, pvalue in order, column names are not important.
 Option II. (extreme p-values present): 5 columns, being chromosome, position, pvalue, beta, se in order, column names are not important.
 }
-
-\strong{Output data root name / output_data_rootname}
-
-Define the root name of the plot output file...
-Ex.: "my_man_plot" will result in an output file named "my_man_plot.png"
 
 \strong{OPTIONAL: Custom annotation file / custom_peak_annotation_file_path}
 
@@ -89,15 +81,16 @@ custom_peak_annotation_file_path <- "annotate.txt"
 reference_file_path <- "turboman_hg19_reference_data.rda"
 pvalue_sign <- 5e-8
 plot_title <- "gap.datasets example"
-turboman(input_data_path, output_data_rootname, custom_peak_annotation_file_path, reference_file_path, pvalue_sign, plot_title)
+turboman(input_data_path, custom_peak_annotation_file_path, reference_file_path, pvalue_sign, plot_title)
 
 input_data_path <- "FCN3.txt.gz"
-output_data_rootname <- "FCN3"
 custom_peak_annotation_file_path <- "FCN3.txt"
 reference_file_path <- "turboman_hg19_reference_data.rda"
 pvalue_sign <- 5e-8
 plot_title <- "FCN3"
-turboman(input_data_path, output_data_rootname, custom_peak_annotation_file_path, reference_file_path, pvalue_sign, plot_title)
+png("FCN3.png",width=3600, height=3600, pointsize = 12, res=450)
+turboman(input_data_path, custom_peak_annotation_file_path, reference_file_path, pvalue_sign, plot_title)
+dev.off()
 }
 
 }

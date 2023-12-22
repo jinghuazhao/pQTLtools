@@ -4,12 +4,10 @@
 \alias{turboqq}
 \title{QQ plots}
 \usage{
-turboqq(input_data_path, output_data_rootname, plot_title)
+turboqq(input_data_path, plot_title)
 }
 \arguments{
 \item{input_data_path}{Path of the input association data.}
-
-\item{output_data_rootname}{Root name of the plot output file.}
 
 \item{plot_title}{Plot title to be displayed on top of the plot.}
 }
@@ -34,11 +32,6 @@ Define path of the input association data. The input data needs to be a file tha
 Option II. (extreme p-values present): 5 columns, being chromosome, position, pvalue, beta, se in order, column names are not important.
 }
 
-\strong{Output data rootname / output_data_rootname}
-
-Define root name of the plot output file.
-Ex. : "my_qq_plot" will result in an output file named "my_qq_plot.png"
-
 \strong{Plot title / plot_title}
 
 Define plot title which will be displayed on top of the plot.
@@ -49,9 +42,11 @@ require(gap.datasets)
 test <- mhtdata[c("chr","pos","p")]
 write.table(test,file="test.txt",row.names=FALSE,quote=FALSE)
 input_data_path <- "test.txt"
-output_data_rootname <- "test_qq"
 plot_title <- "gap.datasets example"
-turboqq(input_data_path, output_data_rootname, plot_title)
+png("test_qq.png", height = plot_resolution, width = plot_resolution, pointsize = 12, res = 450)
+par(mar = c(4, 4, 3, 1))
+turboqq(input_data_path, plot_title)
+dev.off()
 }
 
 }
