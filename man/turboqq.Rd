@@ -43,7 +43,7 @@ test <- mhtdata[c("chr","pos","p")]
 write.table(test,file="test.txt",row.names=FALSE,quote=FALSE)
 input_data_path <- "test.txt"
 plot_title <- "gap.datasets example"
-png("test_qq.png", height = plot_resolution, width = plot_resolution, pointsize = 12, res = 450)
+png("test_qq.png", height = 1800, width = 1800, pointsize = 12, res = 450)
 par(mar = c(4, 4, 3, 1))
 turboqq(input_data_path, plot_title)
 dev.off()

@@ -77,14 +77,14 @@ names(annotate) <- c("chromosome","position","nearest_gene_name","p")
 write.table(annotate[,-4],file="annotate.txt",row.names=FALSE,quote=FALSE)
 input_data_path <- "test.txt"
 custom_peak_annotation_file_path <- "annotate.txt"
-reference_file_path <- "turboman_hg19_reference_data.rda"
+reference_file_path <- file.path(find.package("pQTLtools"),"turboman","turboman_hg19_reference_data.rda")
 pvalue_sign <- 5e-8
 plot_title <- "gap.datasets example"
 turboman(input_data_path, custom_peak_annotation_file_path, reference_file_path, pvalue_sign, plot_title)
 
 input_data_path <- "FCN3.txt.gz"
 custom_peak_annotation_file_path <- "FCN3.txt"
-reference_file_path <- "turboman_hg19_reference_data.rda"
+reference_file_path <- file.path(find.package("pQTLtools"),"turboman","turboman_hg19_reference_data.rda")
 pvalue_sign <- 5e-8
 plot_title <- "FCN3"
 png("FCN3.png",width=3600, height=3600, pointsize = 12, res=450)
