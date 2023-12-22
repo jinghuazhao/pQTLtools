@@ -1,7 +1,6 @@
 #' Manhattan plots
 #'
 #' @param input_data_path Path of the input association data
-#' @param output_data_rootname Root name of the plot output file
 #' @param custom_peak_annotation_file_path Path of the custom annotation of variants
 #' @param reference_file_path Path to the "turboman_hg19_reference_data.rda" / "turboman_hg19_reference_data.rda" reference file
 #' @param pvalue_sign Significance threshold p-value
@@ -18,11 +17,6 @@
 #' 2. One header line.
 #' 3. Option I. (no extreme p-values present): 3 columns, being chromosome, position, pvalue in order, column names are not important.
 #'    Option II. (extreme p-values present): 5 columns, being chromosome, position, pvalue, beta, se in order, column names are not important.
-#'
-#' **Output data root name / output_data_rootname**
-#'
-#' Define the root name of the plot output file...
-#' Ex.: "my_man_plot" will result in an output file named "my_man_plot.png"
 #'
 #' **OPTIONAL: Custom annotation file / custom_peak_annotation_file_path**
 #'
@@ -63,15 +57,16 @@
 #' reference_file_path <- "turboman_hg19_reference_data.rda"
 #' pvalue_sign <- 5e-8
 #' plot_title <- "gap.datasets example"
-#' turboman(input_data_path, output_data_rootname, custom_peak_annotation_file_path, reference_file_path, pvalue_sign, plot_title)
+#' turboman(input_data_path, custom_peak_annotation_file_path, reference_file_path, pvalue_sign, plot_title)
 #'
 #' input_data_path <- "FCN3.txt.gz"
-#' output_data_rootname <- "FCN3"
 #' custom_peak_annotation_file_path <- "FCN3.txt"
 #' reference_file_path <- "turboman_hg19_reference_data.rda"
 #' pvalue_sign <- 5e-8
 #' plot_title <- "FCN3"
-#' turboman(input_data_path, output_data_rootname, custom_peak_annotation_file_path, reference_file_path, pvalue_sign, plot_title)
+#' png("FCN3.png",width=3600, height=3600, pointsize = 12, res=450)
+#' turboman(input_data_path, custom_peak_annotation_file_path, reference_file_path, pvalue_sign, plot_title)
+#' dev.off()
 #' }
 #'
 #' @author Arthur Gilly, Chris Finan, Bram Prins, see \href{https://github.com/bpprins/turboman}{https://github.com/bpprins/turboman}.
@@ -79,7 +74,7 @@
 #' @references
 #' \insertAllCited{}
 
-turboman <- function(input_data_path, output_data_rootname, custom_peak_annotation_file_path, reference_file_path, pvalue_sign, plot_title) {
+turboman <- function(input_data_path, custom_peak_annotation_file_path, reference_file_path, pvalue_sign, plot_title) {
 ###================================================================================================================================================###
 ###	1. Defining input settings                                                                                                                 ###
 ###================================================================================================================================================###
@@ -107,7 +102,6 @@ for (arg in commandArgs(trailingOnly=TRUE))
 custom_peak_annotation_file_path_exists<-exists("custom_peak_annotation_file_path")
 ## Assign variable classes
 input_data_path <- as.character(input_data_path)
-output_data_rootname <- as.character(output_data_rootname)
 if (custom_peak_annotation_file_path_exists) {
 custom_peak_annotation_file_path <- as.character(custom_peak_annotation_file_path)
 }
@@ -380,8 +374,6 @@ if  (custom_peak_annotation_file_path_exists & !nearest_gene_names_annotated) {
 
 print_status_bar("5. Start plotting")
 ## Define image properties
-png(paste0(output_data_rootname,".png"),width=3600, height=3600, pointsize = 12, res=450)
-# pdf(paste0(output_data_rootname,".pdf"), height=5, width=8)
 ## Sorting the plotting data from the GWAS datafile and the gene annotation file
 plot_data<-plot_data[order(plot_data$chromosome,plot_data$position),]
 if (dim(gene_plot_data)[1] > 0 ) {
@@ -511,8 +503,6 @@ mtext("Chromosome",1,at=x[max_nchr]/2,cex=1,line=2)
 axis(2,las=2,pos=0,yaxp=c(0,y_axis_plot_data_limit,10))
 ## Draw the y-axis label
 mtext(expression(paste(-"log"[10], " p-value")),2,line=1)
-## Turn off plotting device
-invisible(dev.off())
 ## Calculate how much time things took
 end.time <- Sys.time()
 time.taken <- difftime(end.time, start.time, units="mins")

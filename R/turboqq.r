@@ -1,7 +1,6 @@
 #' QQ plots
 #'
 #' @param input_data_path Path of the input association data.
-#' @param output_data_rootname Root name of the plot output file.
 #' @param plot_title Plot title to be displayed on top of the plot.
 #' @export
 #' @return No direct return value. The script generates QQ plots as output.
@@ -19,24 +18,21 @@
 #' 3. Option I. (no extreme p-values present): 3 columns, being chromosome, position, pvalue in order, column names are not important.
 #'    Option II. (extreme p-values present): 5 columns, being chromosome, position, pvalue, beta, se in order, column names are not important.
 #'
-#' **Output data rootname / output_data_rootname**
-#'
-#' Define root name of the plot output file.
-#' Ex. : "my_qq_plot" will result in an output file named "my_qq_plot.png"
-#'
 #' **Plot title / plot_title**
 #'
 #' Define plot title which will be displayed on top of the plot.
-
+#'
 #' @examples
 #' \dontrun{
 #' require(gap.datasets)
 #' test <- mhtdata[c("chr","pos","p")]
 #' write.table(test,file="test.txt",row.names=FALSE,quote=FALSE)
 #' input_data_path <- "test.txt"
-#' output_data_rootname <- "test_qq"
 #' plot_title <- "gap.datasets example"
-#' turboqq(input_data_path, output_data_rootname, plot_title)
+#' png("test_qq.png", height = plot_resolution, width = plot_resolution, pointsize = 12, res = 450)
+#' par(mar = c(4, 4, 3, 1))
+#' turboqq(input_data_path, plot_title)
+#' dev.off()
 #' }
 #'
 #' @references
@@ -44,7 +40,7 @@
 #'
 #' @author Bram Prins, \href{https://github.com/bpprins/turboqq}{https://github.com/bpprins/turboqq}.
 
-turboqq <- function(input_data_path, output_data_rootname, plot_title) {
+turboqq <- function(input_data_path, plot_title) {
   
   # Verbose printing status bars
   fat_status_bar <- "============================================================================================================"
@@ -55,7 +51,6 @@ turboqq <- function(input_data_path, output_data_rootname, plot_title) {
   
   # Assign variable classes
   input_data_path <- as.character(input_data_path)
-  output_data_rootname <- as.character(output_data_rootname)
   plot_title <- as.character(plot_title)
   
   # Reading in association plot data with scan
@@ -185,10 +180,6 @@ turboqq <- function(input_data_path, output_data_rootname, plot_title) {
   # Start the actual plotting
   cat("\n", fat_status_bar, "\n 5. Start the actual plotting\n", fat_status_bar, "\n\n")
   
-  # Start device
-  png(paste0(output_data_rootname, ".png"), height = plot_resolution, width = plot_resolution, pointsize = 12, res = 450)
-  par(mar = c(4, 4, 3, 1))
-  
   # Create empty plot
   # Just plots the outside box
   plot(0, main = plot_title, xlab = "Expected p-value", ylab = "Observed p-value", type = "n", xlim = c(0, x.lim), ylim = c(0, y.lim), xaxt = 'n', yaxt = 'n')
@@ -231,7 +222,4 @@ turboqq <- function(input_data_path, output_data_rootname, plot_title) {
   
   # Plot points
   points(plot_data_reduced[, 1], plot_data_reduced[, 2], pch = 19, cex = 0.5, col = "dodgerblue4")
-  
-  # Turn off the device
-  dev.off()
 }
