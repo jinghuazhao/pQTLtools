@@ -9,7 +9,7 @@
 #' @return NULL
 #'
 #' @details
-#' **Input association data path / input_data_path**
+#' **Input association data file / input_data_path**
 #'
 #' Define the path of the input association data.
 #' The input data needs to be a file that has:
@@ -27,7 +27,7 @@
 #' 3. Columns: chromosome, position, label (e.g., gene name) / nearest_gene_name, cis/trans flag (optional).
 #' NB!: If no label is given, variants will be automatically annotated
 #'
-#' **Reference file path / reference_file_path**
+#' **Reference file / reference_file_path**
 #'
 #' Define the path to the "turboman_hg19_reference_data.rda" / "turboman_hg38_reference_data.rda" reference file that
 #' contains the LD block breaks as in \insertCite{berisa16;textual}{pQTLtools}
