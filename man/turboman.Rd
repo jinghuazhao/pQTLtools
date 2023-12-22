@@ -38,7 +38,7 @@ The input data needs to be a file that has:
 Option II. (extreme p-values present): 5 columns, being chromosome, position, pvalue, beta, se in order, column names are not important.
 }
 
-Custom annotation file / custom_peak_annotation_file_path**
+\strong{Custom annotation file / custom_peak_annotation_file_path}
 
 Define the path of the custom annotation of variants...
 The input data needs to be a file that has:
