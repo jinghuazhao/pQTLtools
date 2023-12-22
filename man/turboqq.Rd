@@ -22,7 +22,7 @@ The method uses the kth order statistic from a sample of n i.i.d. U(0,1) statist
 \insertCite{quesenberry80;textual}{pQTLtools} and Coded by  Weale M, Price T.
 \href{https://sites.google.com/site/mikeweale/software}{https://sites.google.com/site/mikeweale/software}
 
-\strong{Input association data path / input_data_path:}
+\strong{Input association data file / input_data_path:}
 
 Define path of the input association data. The input data needs to be a file that has:
 \enumerate{

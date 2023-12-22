@@ -27,7 +27,7 @@ turboman(
 Manhattan plots
 }
 \details{
-\strong{Input association data path / input_data_path}
+\strong{Input association data file / input_data_path}
 
 Define the path of the input association data.
 The input data needs to be a file that has:
@@ -49,7 +49,7 @@ The input data needs to be a file that has:
 NB!: If no label is given, variants will be automatically annotated
 }
 
-\strong{Reference file path / reference_file_path}
+\strong{Reference file / reference_file_path}
 
 Define the path to the "turboman_hg19_reference_data.rda" / "turboman_hg38_reference_data.rda" reference file that
 contains the LD block breaks as in \insertCite{berisa16;textual}{pQTLtools}
