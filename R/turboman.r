@@ -1,10 +1,11 @@
 #' Manhattan plots
 #'
-#' @param input_data_path Path of the input association data
-#' @param custom_peak_annotation_file_path Path of the custom annotation of variants
-#' @param reference_file_path Path to the "turboman_hg19_reference_data.rda" / "turboman_hg19_reference_data.rda" reference file
-#' @param pvalue_sign Significance threshold p-value
-#' @param plot_title Plot title which will be displayed on top of the plot
+#' @param input_data_path Path of the input association data.
+#' @param custom_peak_annotation_file_path Path of the custom annotation of variants.
+#' @param reference_file_path Path to the "turboman_hg19_reference_data.rda" / "turboman_hg19_reference_data.rda" reference file.
+#' @param pvalue_sign Significance threshold p-value.
+#' @param plot_title Plot title which will be displayed on top of the plot.
+#' @param vertical_resolution A fixed number of points (pixels) to be plotted vertically.
 #' @export
 #' @return NULL
 #'
@@ -43,6 +44,14 @@
 #' 2. Annotate the nearest gene to the top signal in the peak.
 #' 3. Draw a horizontal reference line equal to this threshold.
 #'
+#' **Title of the plot / plot_title**
+#'
+#' Define title on top of the plot.
+#'
+#' **Number of pixels on vertical axis / vertical_resolution**
+#'
+#' Define a fixed number of points (pixels) on vertical axis.
+#'
 #' @examples
 #' \dontrun{
 #' require(gap.datasets)
@@ -73,7 +82,7 @@
 #' @references
 #' \insertAllCited{}
 
-turboman <- function(input_data_path, custom_peak_annotation_file_path, reference_file_path, pvalue_sign, plot_title) {
+turboman <- function(input_data_path, custom_peak_annotation_file_path, reference_file_path, pvalue_sign, plot_title, vertical_resolution=1800) {
 ###================================================================================================================================================###
 ###	1. Defining input settings                                                                                                                 ###
 ###================================================================================================================================================###
@@ -190,12 +199,9 @@ log_pvalue_sign<--log10(pvalue_sign)
 
 print_status_bar("3. Preparing data for plotting, calculating variables related to plotting")
 ## Set vertical resolution
-# We will maximally allow a fixed number of points to be plotted vertically, 
-# here choosing 800 as a 'pixel' unit on a normal standard R plot.
-vertical_resolution<-1800
 ## Find the largest p-value, which we will use to make the y-axis 'resolution'
 observed_log_pvalue_maximum<-max(initial_data$log_pvalue,na.rm=TRUE)
-## Now we will scale the 800-point resolution for the p-values 
+## Now we will scale the resolution for the p-values
 log_pvalue_break_size<-observed_log_pvalue_maximum/vertical_resolution
 ## Create a vector from 0 to the vertical resolution, which we will use to bin pvalues
 scaling_vector<-seq(0,vertical_resolution,by=log_pvalue_break_size)
@@ -251,14 +257,14 @@ plot_data_per_chromosome_df<-as.data.frame(plot_data_per_chromosome_df)
 unique_x_bins<-number_of_ld_block_bins
 for (bin_number in 1:unique_x_bins){
  
-#-----------------------------------------------------------------------------------------
-# Reduce the p-value data for plotting to imagined resolution of max 800 points vertically
-#-----------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------
+# Reduce the p-value data for plotting to imagined resolution of vertical_resolution
+#-----------------------------------------------------------------------------------
     
     ## Create a temporary dataframe in which we will first assemble the plotting data per bin in a chromosome
     plot_data_per_bin_in_chromosome_df<-NULL
     plot_data_per_bin_in_chromosome_df<-as.data.frame(plot_data_per_bin_in_chromosome_df)
-    ## Now reduce (bin) the p-values (Y-axis values) to 800 bins, and multiply each bin (starting from 1 to max resolution) by the calculated pvalue_break_size
+    ## Now reduce (bin) the p-values (Y-axis values) to vertical_resolution bins, and multiply each bin (starting from 1 to max resolution) by the calculated pvalue_break_size
     plot_data_per_bin_in_chromosome_pvalues<-(unique(.bincode((initial_data_chromosome[['log_pvalue']][which(initial_data_chromosome$bin==bin_number)]), scaling_vector, right = TRUE, include.lowest = FALSE)*log_pvalue_break_size))
     ## If there are no p-values for a bin, enter one line with chromosome and position, missing pvalue, and missing highlight value
     if(length(plot_data_per_bin_in_chromosome_pvalues)==0){

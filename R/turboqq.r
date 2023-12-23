@@ -2,6 +2,7 @@
 #'
 #' @param input_data_path Path of the input association data.
 #' @param plot_title Plot title to be displayed on top of the plot.
+#' @param plot_resolution a fixed number of points (pixels) to be plotted vertically and horizontally.
 #' @export
 #' @return No direct return value. The script generates QQ plots as output.
 #'
@@ -22,6 +23,10 @@
 #'
 #' Define plot title which will be displayed on top of the plot.
 #'
+#' **Rsolution of plot / plot_resolution**
+#'
+#' Define a fixed number of points (pixels) to be plotted vertically and horizontally.
+#'
 #' @examples
 #' \dontrun{
 #' require(gap.datasets)
@@ -40,7 +45,7 @@
 #'
 #' @author Bram Prins, \href{https://github.com/bpprins/turboqq}{https://github.com/bpprins/turboqq}.
 
-turboqq <- function(input_data_path, plot_title) {
+turboqq <- function(input_data_path, plot_title, plot_resolution=1800) {
   
   # Verbose printing status bars
   fat_status_bar <- "============================================================================================================"
@@ -103,8 +108,6 @@ turboqq <- function(input_data_path, plot_title) {
     initial_data$pvalue <- NULL
   }
   
-  plot_resolution <- 1800
-  
   # For calculating concentration bands
   alpha <- 0.05
   df <- 1
@@ -128,7 +131,7 @@ turboqq <- function(input_data_path, plot_title) {
   if (!is.null(initial_data$beta) & !is.null(initial_data$se))
     lambda <- median((initial_data$beta / initial_data$se)^2, na.rm = TRUE) / qchisq(0.5, 1)
   
-  # Set vertical resolution, allowing a fixed number of points to be plotted vertically
+  # Set resolution, allowing a fixed number of points to be plotted vertically and horizontally
   vertical_resolution <- plot_resolution
   horizontal_resolution <- plot_resolution
   
