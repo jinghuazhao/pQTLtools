@@ -23,7 +23,7 @@
 #'
 #' Define plot title which will be displayed on top of the plot.
 #'
-#' **Rsolution of plot / plot_resolution**
+#' **Resolution of plot / plot_resolution**
 #'
 #' Define a fixed number of points (pixels) to be plotted vertically and horizontally.
 #'
