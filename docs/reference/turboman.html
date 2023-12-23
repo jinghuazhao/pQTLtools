@@ -115,30 +115,35 @@
 <span>  <span class="va">custom_peak_annotation_file_path</span>,</span>
 <span>  <span class="va">reference_file_path</span>,</span>
 <span>  <span class="va">pvalue_sign</span>,</span>
-<span>  <span class="va">plot_title</span></span>
+<span>  <span class="va">plot_title</span>,</span>
+<span>  vertical_resolution <span class="op">=</span> <span class="fl">1800</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>input_data_path</dt>
-<dd><p>Path of the input association data</p></dd>
+<dd><p>Path of the input association data.</p></dd>
 
 
 <dt>custom_peak_annotation_file_path</dt>
-<dd><p>Path of the custom annotation of variants</p></dd>
+<dd><p>Path of the custom annotation of variants.</p></dd>
 
 
 <dt>reference_file_path</dt>
-<dd><p>Path to the "turboman_hg19_reference_data.rda" / "turboman_hg19_reference_data.rda" reference file</p></dd>
+<dd><p>Path to the "turboman_hg19_reference_data.rda" / "turboman_hg19_reference_data.rda" reference file.</p></dd>
 
 
 <dt>pvalue_sign</dt>
-<dd><p>Significance threshold p-value</p></dd>
+<dd><p>Significance threshold p-value.</p></dd>
 
 
 <dt>plot_title</dt>
-<dd><p>Plot title which will be displayed on top of the plot</p></dd>
+<dd><p>Plot title which will be displayed on top of the plot.</p></dd>
+
+
+<dt>vertical_resolution</dt>
+<dd><p>A fixed number of points (pixels) to be plotted vertically.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -167,7 +172,11 @@ are available from the <code>turboman</code> directory of the installed package,
 This will be used to</p><ol><li><p>Highlight signal peaks that come above this significance threshold.</p></li>
 <li><p>Annotate the nearest gene to the top signal in the peak.</p></li>
 <li><p>Draw a horizontal reference line equal to this threshold.</p></li>
-</ol></div>
+</ol><p><strong>Title of the plot / plot_title</strong></p>
+<p>Define title on top of the plot.</p>
+<p><strong>Number of pixels on vertical axis / vertical_resolution</strong></p>
+<p>Define a fixed number of points (pixels) on vertical axis.</p>
+    </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
     <p>Berisa T, Pickrell JK (2016).

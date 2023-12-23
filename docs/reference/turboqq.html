@@ -110,7 +110,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">turboqq</span><span class="op">(</span><span class="va">input_data_path</span>, <span class="va">plot_title</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">turboqq</span><span class="op">(</span><span class="va">input_data_path</span>, <span class="va">plot_title</span>, plot_resolution <span class="op">=</span> <span class="fl">1800</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -121,6 +121,10 @@
 
 <dt>plot_title</dt>
 <dd><p>Plot title to be displayed on top of the plot.</p></dd>
+
+
+<dt>plot_resolution</dt>
+<dd><p>a fixed number of points (pixels) to be plotted vertically and horizontally.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -142,6 +146,8 @@ Quesenberry and Hales (1980)
 Option II. (extreme p-values present): 5 columns, being chromosome, position, pvalue, beta, se in order, column names are not important.</p></li>
 </ol><p><strong>Plot title / plot_title</strong></p>
 <p>Define plot title which will be displayed on top of the plot.</p>
+<p><strong>Rsolution of plot / plot_resolution</strong></p>
+<p>Define a fixed number of points (pixels) to be plotted vertically and horizontally.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
