@@ -94,12 +94,12 @@ pvalue_sign <- 5e-8
 plot_title <- "gap.datasets example"
 turboman(input_data_path, custom_peak_annotation_file_path, reference_file_path, pvalue_sign, plot_title)
 # Figure shown on https://github.com/jinghuazhao/tests/tree/main/turboman
+png("IL12B.png",width=3600, height=3600, pointsize = 12, res=450)
 input_data_path <- "IL.12B.txt.gz"
 custom_peak_annotation_file_path <- "IL.12B.annotate"
 reference_file_path <- file.path(find.package("pQTLtools"),"turboman","turboman_hg19_reference_data.rda")
 pvalue_sign <- 5e-8
 plot_title <- "IL12B"
-png("IL12B.png",width=3600, height=3600, pointsize = 12, res=450)
 turboman(input_data_path, custom_peak_annotation_file_path, reference_file_path, pvalue_sign, plot_title)
 dev.off()
 }
