@@ -11,7 +11,7 @@
 #' \insertCite{quesenberry80;textual}{pQTLtools} and Coded by  Weale M, Price T.
 #' \href{https://sites.google.com/site/mikeweale/software}{https://sites.google.com/site/mikeweale/software}
 #'
-#' **Input association data file / input_data_path:**
+#' **Input association data file / input_data_path**
 #'
 #' Define path of the input association data. The input data needs to be a file that has:
 #' 1. Spaces as field separators.
