@@ -38,7 +38,7 @@ Option II. (extreme p-values present): 5 columns, being chromosome, position, pv
 
 Define plot title which will be displayed on top of the plot.
 
-\strong{Rsolution of plot / plot_resolution}
+\strong{Resolution of plot / plot_resolution}
 
 Define a fixed number of points (pixels) to be plotted vertically and horizontally.
 }
