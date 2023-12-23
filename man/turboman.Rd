@@ -9,19 +9,22 @@ turboman(
   custom_peak_annotation_file_path,
   reference_file_path,
   pvalue_sign,
-  plot_title
+  plot_title,
+  vertical_resolution = 1800
 )
 }
 \arguments{
-\item{input_data_path}{Path of the input association data}
+\item{input_data_path}{Path of the input association data.}
 
-\item{custom_peak_annotation_file_path}{Path of the custom annotation of variants}
+\item{custom_peak_annotation_file_path}{Path of the custom annotation of variants.}
 
-\item{reference_file_path}{Path to the "turboman_hg19_reference_data.rda" / "turboman_hg19_reference_data.rda" reference file}
+\item{reference_file_path}{Path to the "turboman_hg19_reference_data.rda" / "turboman_hg19_reference_data.rda" reference file.}
 
-\item{pvalue_sign}{Significance threshold p-value}
+\item{pvalue_sign}{Significance threshold p-value.}
 
-\item{plot_title}{Plot title which will be displayed on top of the plot}
+\item{plot_title}{Plot title which will be displayed on top of the plot.}
+
+\item{vertical_resolution}{A fixed number of points (pixels) to be plotted vertically.}
 }
 \description{
 Manhattan plots
@@ -66,6 +69,14 @@ This will be used to
 \item Annotate the nearest gene to the top signal in the peak.
 \item Draw a horizontal reference line equal to this threshold.
 }
+
+\strong{Title of the plot / plot_title}
+
+Define title on top of the plot.
+
+\strong{Number of pixels on vertical axis / vertical_resolution}
+
+Define a fixed number of points (pixels) on vertical axis.
 }
 \examples{
 \dontrun{

@@ -4,12 +4,14 @@
 \alias{turboqq}
 \title{QQ plots}
 \usage{
-turboqq(input_data_path, plot_title)
+turboqq(input_data_path, plot_title, plot_resolution = 1800)
 }
 \arguments{
 \item{input_data_path}{Path of the input association data.}
 
 \item{plot_title}{Plot title to be displayed on top of the plot.}
+
+\item{plot_resolution}{a fixed number of points (pixels) to be plotted vertically and horizontally.}
 }
 \value{
 No direct return value. The script generates QQ plots as output.
@@ -35,6 +37,10 @@ Option II. (extreme p-values present): 5 columns, being chromosome, position, pv
 \strong{Plot title / plot_title}
 
 Define plot title which will be displayed on top of the plot.
+
+\strong{Rsolution of plot / plot_resolution}
+
+Define a fixed number of points (pixels) to be plotted vertically and horizontally.
 }
 \examples{
 \dontrun{
