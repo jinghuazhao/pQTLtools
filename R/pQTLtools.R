@@ -62,6 +62,7 @@
 #' [`gap::mr_forestplot`]       |    Mendelian Randomization forest plot
 #' [`gap::pvalue`]              |    P value for a normal deviate
 #' [`gap::qtlClassifier`]       |    A QTL cis/trans classifier
+#' [`gap::qtlFinder`]           |    Distance-based signal identification
 #' [`gap::qtl2dplot`]           |    2D QTL plot
 #' [`gap::qtl2dplotly`]         |    2D QTL plotly
 #' [`gap::qtl3dplotly`]         |    3D QTL plotly
