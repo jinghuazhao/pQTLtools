@@ -72,6 +72,7 @@
 #' - An Overview of pQTLtools. `vignette("pQTLtools")`.
 #' - Bioconductor Notes. `vignette("bioconductor")`.
 #' - ExpressionSet usage. `vignette("es")`.
+#' - LocusZoom.js. `vignette("LocusZoom.js")`.
 #' - snakemake showcases. `vignette("snakemake")`.
 #' - SCALLOP-INF scripts. `vignette("SCALLOP-INF")`.
 #' @md
