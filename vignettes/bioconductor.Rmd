@@ -39,6 +39,10 @@ for (p in pkgs) if (length(grep(paste("^package:", p, "$", sep=""), search())) =
 invisible(suppressMessages(lapply(pkgs, require, character.only = TRUE)))
 ```
 
+# liftover
+
+See `inst/turboman`in the source, <https://github.com/jinghuazhao/pQTLtools/tree/master/inst/turboman>, or `turboman/` directory in the installed package.
+
 # Normalisation
 
 ## ComBat
