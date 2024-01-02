@@ -115,6 +115,8 @@ if (custom_peak_annotation_file_path_exists) {
 custom_peak_annotation_file_path <- as.character(custom_peak_annotation_file_path)
 }
 reference_file_path <- as.character(reference_file_path)
+build37 <- grepl("hg19",reference_file_path)
+build38 <- grepl("hg38",reference_file_path)
 pvalue_sign <- as.numeric(pvalue_sign)
 plot_title <- as.character(plot_title)
 ## Load the reference data
@@ -228,6 +230,8 @@ top_snp_counter=0
 ## Define the LD block data (loaded from rda reference data file)
 ld_label <- "ld_block_breaks_pickrell_hg"
 ld_block_breaks<-get(ls()[substring(ls(),1,nchar(ld_label))==ld_label])
+if (build37) ld_block_breaks <- rbind(ld_block_breaks,data.frame(chr=c(23,23),start=c(1,gap::hg19[23])))
+if (build38) ld_block_breaks <- rbind(ld_block_breaks,data.frame(chr=c(23,23),start=c(1,gap::hg38[23])))
 ## Define the gene annotation data (loaded from rda reference data file)
 ref_label <- "refgene_gene_coordinates_h"
 gene_coordinates<-get(ls()[substring(ls(),1,nchar(ref_label))==ref_label])
