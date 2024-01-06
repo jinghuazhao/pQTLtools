@@ -93,7 +93,7 @@ pQTL_genes <- read.table(file.path(find.package("pQTLtools"),"tests","pQTL_genes
               left_join(cis.pQTLs) %>%
               mutate(cols=ifelse(is.na(cols),"blue",cols))
 par(cex=0.7)
-gap::circos.mhtplot2(pQTLs,pQTL_genes)
+gap::circos.mhtplot2(pQTLs,pQTL_genes,ticks=0:3*10,ymax=30)
 par(cex=1)
 ```
 
