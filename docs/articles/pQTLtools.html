@@ -673,25 +673,24 @@ Figure 1.4: Forest plots
 <span>              <span class="fu">mutate</span><span class="op">(</span>cols<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">cols</span><span class="op">)</span>,<span class="st">"blue"</span>,<span class="va">cols</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Joining with `by = join_by(chr, start, end, gene)`</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>cex<span class="op">=</span><span class="fl">0.7</span><span class="op">)</span></span>
-<span><span class="fu">gap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gap/man/circos.mhtplot2.html" class="external-link">circos.mhtplot2</a></span><span class="op">(</span><span class="va">pQTLs</span>,<span class="va">pQTL_genes</span><span class="op">)</span></span>
+<span><span class="fu">gap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gap/man/circos.mhtplot2.html" class="external-link">circos.mhtplot2</a></span><span class="op">(</span><span class="va">pQTLs</span>,<span class="va">pQTL_genes</span>,ticks<span class="op">=</span><span class="fl">0</span><span class="op">:</span><span class="fl">3</span><span class="op">*</span><span class="fl">10</span>,ymax<span class="op">=</span><span class="fl">30</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Warning: Some of the regions have end position values larger than the end of the chromosomes.</span></span>
-<span><span class="co">#&gt; Note: 8 points are out of plotting region in sector 'chr1', track '5'.</span></span>
-<span><span class="co">#&gt; Note: 5 points are out of plotting region in sector 'chr2', track '5'.</span></span>
-<span><span class="co">#&gt; Note: 11 points are out of plotting region in sector 'chr3', track '5'.</span></span>
-<span><span class="co">#&gt; Note: 9 points are out of plotting region in sector 'chr4', track '5'.</span></span>
+<span><span class="co">#&gt; Note: 7 points are out of plotting region in sector 'chr1', track '5'.</span></span>
+<span><span class="co">#&gt; Note: 3 points are out of plotting region in sector 'chr2', track '5'.</span></span>
+<span><span class="co">#&gt; Note: 10 points are out of plotting region in sector 'chr3', track '5'.</span></span>
+<span><span class="co">#&gt; Note: 7 points are out of plotting region in sector 'chr4', track '5'.</span></span>
 <span><span class="co">#&gt; Note: 2 points are out of plotting region in sector 'chr5', track '5'.</span></span>
 <span><span class="co">#&gt; Note: 4 points are out of plotting region in sector 'chr6', track '5'.</span></span>
-<span><span class="co">#&gt; Note: 1 point is out of plotting region in sector 'chr7', track '5'.</span></span>
-<span><span class="co">#&gt; Note: 3 points are out of plotting region in sector 'chr8', track '5'.</span></span>
-<span><span class="co">#&gt; Note: 4 points are out of plotting region in sector 'chr9', track '5'.</span></span>
-<span><span class="co">#&gt; Note: 3 points are out of plotting region in sector 'chr10', track '5'.</span></span>
-<span><span class="co">#&gt; Note: 7 points are out of plotting region in sector 'chr11', track '5'.</span></span>
-<span><span class="co">#&gt; Note: 5 points are out of plotting region in sector 'chr12', track '5'.</span></span>
-<span><span class="co">#&gt; Note: 2 points are out of plotting region in sector 'chr13', track '5'.</span></span>
-<span><span class="co">#&gt; Note: 2 points are out of plotting region in sector 'chr14', track '5'.</span></span>
-<span><span class="co">#&gt; Note: 3 points are out of plotting region in sector 'chr16', track '5'.</span></span>
-<span><span class="co">#&gt; Note: 9 points are out of plotting region in sector 'chr17', track '5'.</span></span>
-<span><span class="co">#&gt; Note: 9 points are out of plotting region in sector 'chr19', track '5'.</span></span>
+<span><span class="co">#&gt; Note: 2 points are out of plotting region in sector 'chr8', track '5'.</span></span>
+<span><span class="co">#&gt; Note: 2 points are out of plotting region in sector 'chr9', track '5'.</span></span>
+<span><span class="co">#&gt; Note: 2 points are out of plotting region in sector 'chr10', track '5'.</span></span>
+<span><span class="co">#&gt; Note: 4 points are out of plotting region in sector 'chr11', track '5'.</span></span>
+<span><span class="co">#&gt; Note: 1 point is out of plotting region in sector 'chr12', track '5'.</span></span>
+<span><span class="co">#&gt; Note: 1 point is out of plotting region in sector 'chr13', track '5'.</span></span>
+<span><span class="co">#&gt; Note: 1 point is out of plotting region in sector 'chr14', track '5'.</span></span>
+<span><span class="co">#&gt; Note: 2 points are out of plotting region in sector 'chr16', track '5'.</span></span>
+<span><span class="co">#&gt; Note: 8 points are out of plotting region in sector 'chr17', track '5'.</span></span>
+<span><span class="co">#&gt; Note: 8 points are out of plotting region in sector 'chr19', track '5'.</span></span>
 <span><span class="co">#&gt; Note: 4 points are out of plotting region in sector 'chr20', track '5'.</span></span>
 <span><span class="co">#&gt; Note: 1 point is out of plotting region in sector 'chr21', track '5'.</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
@@ -1010,13 +1009,14 @@ Figure 3.2: GREAT plots
 <span>  <span class="va">tb_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">tb_all</span>,<span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>gene<span class="op">=</span><span class="va">r</span>,<span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">r.post</span>,<span class="va">tb</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span><span class="co">#&gt; Don't make too frequent requests. The time break is 60s.</span></span>
-<span><span class="co">#&gt; Please wait for 54s for the next request.</span></span>
+<span><span class="co">#&gt; Please wait for 55s for the next request.</span></span>
 <span><span class="co">#&gt; The time break can be set by `request_interval` argument.</span></span>
 <span><span class="co">#&gt; Don't make too frequent requests. The time break is 60s.</span></span>
 <span><span class="co">#&gt; Please wait for 57s for the next request.</span></span>
 <span><span class="co">#&gt; The time break can be set by `request_interval` argument.</span></span>
+<span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Don't make too frequent requests. The time break is 60s.</span></span>
-<span><span class="co">#&gt; Please wait for 56s for the next request.</span></span>
+<span><span class="co">#&gt; Please wait for 57s for the next request.</span></span>
 <span><span class="co">#&gt; The time break can be set by `request_interval` argument.</span></span></code></pre></div>
 <p>The top terms at Binomial p=1e-5 could be extracted as follows,</p>
 <table class="table">
