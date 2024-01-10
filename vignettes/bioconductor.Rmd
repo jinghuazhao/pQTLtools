@@ -264,7 +264,7 @@ eKEGG <- enricher(gene=VEGF, TERM2GENE = kegg_t2g,
 
 Here is an example for A1BG_HUMAN, which is handled by the `Biostrings` package,
 
-```{r a1bg, message=FALSE}
+```{r a1bg, messages=FALSE}
 fasta_file_path <- 'https://rest.uniprot.org/uniprotkb/P04217.fasta'
 fasta_sequences <- readAAStringSet(fasta_file_path, format = "fasta")
 first_sequence <- fasta_sequences[[1]]
