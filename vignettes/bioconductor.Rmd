@@ -260,7 +260,7 @@ eKEGG <- enricher(gene=VEGF, TERM2GENE = kegg_t2g,
 
 ```
 
-# Peptide squence
+# Peptide sequence
 
 Here is an example for A1BG_HUMAN, `https://rest.uniprot.org/uniprotkb/P04217.fasta`.
 
