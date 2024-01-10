@@ -27,7 +27,7 @@ knitr::opts_chunk$set(
 This article collects notes on Bioconductor packages, made available here to faciliate their use and extensions.
 
 ```{r, message=FALSE, warning=FALSE}
-pkgs <- c("AnnotationDbi", "ComplexHeatmap", "DESeq2", "EnsDb.Hsapiens.v86",
+pkgs <- c("AnnotationDbi", "Biostrings", "ComplexHeatmap", "DESeq2", "EnsDb.Hsapiens.v86",
           "FlowSorted.DLPFC.450k", "GeneNet", "GenomicFeatures", "RColorBrewer",
           "RMariaDB", "Rgraphviz", "S4Vectors", "SummarizedExperiment",
           "TxDb.Hsapiens.UCSC.hg38.knownGene", "bladderbatch", "clusterProfiler",
@@ -260,12 +260,11 @@ eKEGG <- enricher(gene=VEGF, TERM2GENE = kegg_t2g,
 
 ```
 
-# Peptide data
+# Peptide squence
 
 Here is an example for A1BG_HUMAN, `https://rest.uniprot.org/uniprotkb/P04217.fasta`.
 
 ```r
-library(Biostrings)
 fasta_file_path <- 'P04217.fasta'
 fasta_sequences <- readAAStringSet(fasta_file_path, format = "fasta")
 first_sequence <- fasta_sequences[[1]]
@@ -274,7 +273,7 @@ search_442688365 <- 'TDGEGALSEPSATVTIEELAAPPPPVLMHHGESSQVLHPGNK'
 match_position <- regexpr(search_442688365, first_sequence)
 ```
 
-giving,
+which is handled by the `Biostrings` package, giving,
 
 ```
 > match_position
