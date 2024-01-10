@@ -260,6 +260,33 @@ eKEGG <- enricher(gene=VEGF, TERM2GENE = kegg_t2g,
 
 ```
 
+# Peptide data
+
+Here is an example for A1BG_HUMAN, `https://rest.uniprot.org/uniprotkb/P04217.fasta`.
+
+```r
+library(Biostrings)
+fasta_file_path <- 'P04217.fasta'
+fasta_sequences <- readAAStringSet(fasta_file_path, format = "fasta")
+first_sequence <- fasta_sequences[[1]]
+cat("Sequence:", toString(first_sequence), "\n")
+search_442688365 <- 'TDGEGALSEPSATVTIEELAAPPPPVLMHHGESSQVLHPGNK'
+match_position <- regexpr(search_442688365, first_sequence)
+```
+
+giving,
+
+```
+> match_position
+[1] 186
+attr(,"match.length")
+[1] 42
+attr(,"index.type")
+[1] "chars"
+attr(,"useBytes")
+[1] TRUE
+```
+
 # Transcript databases
 
 An overview of annotation is available @carlson16.
@@ -307,6 +334,7 @@ Package | Description
 **Bioconductor** |
 AnnotationDbi | AnnotationDb objects and their progeny, methods etc.
 Biobase | Base functions for Bioconductor
+Biostrings | Efficient manipulation of biological strings
 org.Hs.eg.db | Conversion of Entrez ID -- gene symbols
 EnsDb.Hsapiens.v86 | Exposes an annotation databases generated from Ensembl
 ensembldb | Retrieve annotation data from an Ensembl based package
