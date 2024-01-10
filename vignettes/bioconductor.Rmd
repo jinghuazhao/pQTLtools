@@ -271,6 +271,7 @@ first_sequence <- fasta_sequences[[1]]
 cat("Sequence:", toString(first_sequence), "\n")
 search_442688365 <- 'TDGEGALSEPSATVTIEELAAPPPPVLMHHGESSQVLHPGNK'
 match_position <- regexpr(search_442688365, first_sequence)
+match_position
 ```
 
 # Transcript databases
