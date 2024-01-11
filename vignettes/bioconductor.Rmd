@@ -267,11 +267,13 @@ Here is an example for A1BG_HUMAN, which is handled by the `Biostrings` package,
 ```{r a1bg, messages=FALSE}
 fasta_file_path <- 'https://rest.uniprot.org/uniprotkb/P04217.fasta'
 fasta_sequences <- readAAStringSet(fasta_file_path, format = "fasta")
-first_sequence <- fasta_sequences[[1]]
-cat("Sequence:", toString(first_sequence), "\n")
-search_442688365 <- 'TDGEGALSEPSATVTIEELAAPPPPVLMHHGESSQVLHPGNK'
-match_position <- regexpr(search_442688365, first_sequence)
+AA_sequence <- fasta_sequences[[1]]
+cat("Sequence:", toString(AA_sequence), "\n")
+iso_442688365 <- 'TDGEGALSEPSATVTIEELAAPPPPVLMHHGESSQVLHPGNK'
+match_position <- regexpr(iso_442688365, AA_sequence)
 match_position
+mp <- matchPattern(iso_442688365,AA_sequence)
+mp
 ```
 
 # Transcript databases
