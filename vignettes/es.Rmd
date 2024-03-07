@@ -85,11 +85,11 @@ invisible(esApply(exampleSet[1:2],1,function(x){par(mfrow=c(3,1));boxplot(x);his
 but it is nicer to add feature name in the title.
 
 ```{r plots, fig.height=12}
+par(mfrow=c(2,3))
 f <- featureNames(exampleSet[1:2])
 invisible(sapply(f,function(x) {
                      d <- t(exprs(exampleSet[x]))
                      fn <- featureNames(exampleSet[x])
-                     par(mfrow=c(3,1))
                      hist(d,main="",xlab=fn); plot(d, ylab=fn); boxplot(d,ylab=fn)
                    }
           )
