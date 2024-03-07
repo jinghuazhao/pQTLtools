@@ -27,7 +27,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{r, message=FALSE, warning=FALSE}
-pkgs <- c("Biobase", "arrayQualityMetrics", "dplyr", "knitr", "pQTLtools")
+pkgs <- c("Biobase", "arrayQualityMetrics", "dplyr", "knitr", "pQTLtools", "rgl", "scatterplot3d")
 for (p in pkgs) if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
     if (!requireNamespace(p)) warning(paste0("This vignette needs package `", p, "'; please install"))
 }
@@ -110,6 +110,23 @@ for (method in c("KS","sum","upperquartile"))
 }
 ```
 
+# Clustering
+
+We employ model-based clustering absed on principal compoents to see potential groupings in the data,
+
+```{r mcpca, fig.height=7, fig.with=7}
+  pca <- prcomp(na.omit(t(exprs(exampleSet))), rank=10, scale=TRUE)
+  pc1pc2pc3 <- with(pca,x)[,1:3]
+  library(mclust)
+  mc <- Mclust(pc1pc2pc3,G=2)
+  with(mc, {
+      scatterplot3d::scatterplot3d(with(pca,x[,c(2,1,3)]),
+                                   color=c("blue","red")[classification],
+                                   main="Plot of the PC1, PC2 and PC3", pch=16)
+      legend("right", legend=levels(as.factor(classification)), col=c("blue", "red"), pch=16)
+      rgl::plot3d(with(pca,x[,c(2,1,3)]),col=classification)
+  })
+```
 # Data transformation
 
 Suppose we wish use log2 for those greater than zero but set those negative values to be missing.
