@@ -40,6 +40,9 @@ The script is as follows,
 
 ```{r, message=FALSE, warning=FALSE}
 liftover <- function(chr_start_end_snpid)
+# chain import currently only handles local, uncompressed file paths
+# https://hgdownload.cse.ucsc.edu/goldenpath/hg19/liftOver/hg19ToHg38.over.chain.gz
+# https://hgdownload.soe.ucsc.edu/goldenPath/hg38/liftOver/hg38ToHg19.over.chain.gz
 {
   HPC_WORK <- Sys.getenv("HPC_WORK")
   f <- file.path(HPC_WORK,"bin","hg19ToHg38.over.chain")
