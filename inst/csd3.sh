@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-module load gcc/6 texlive
+module load gcc/6 texlive ceuadmin/R
 
 export version=$(awk '/Version/{print $2}' ~/pQTLtools/DESCRIPTION)
 R CMD build --resave-data --compact-vignettes=both pQTLtools
