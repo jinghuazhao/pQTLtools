@@ -209,8 +209,19 @@ One could resort to <code>esApply</code> for its simplicity as before</p>
 <span>                   <span class="op">}</span></span>
 <span>          <span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
-<p><img src="es/plots-1.png" width="672" style="display:block; margin: auto"><img src="es/plots-2.png" width="672" style="display:block; margin: auto">
-where the expression set is indexed using feature name(s).</p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:plots-1"></span>
+<img src="es/plots-1.png" alt="Histogram, scatter &amp; boxplots" width="672" style="display:block; margin: auto"><p class="caption">
+Figure 2.1: Histogram, scatter &amp; boxplots
+</p>
+</div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:plots-2"></span>
+<img src="es/plots-2.png" alt="Histogram, scatter &amp; boxplots" width="672" style="display:block; margin: auto"><p class="caption">
+Figure 2.2: Histogram, scatter &amp; boxplots
+</p>
+</div>
+<p>where the expression set is indexed using feature name(s).</p>
 </div>
 <div class="section level2" number="3">
 <h2 id="outlier-detections">
@@ -251,7 +262,12 @@ where the expression set is indexed using feature name(s).</p>
 <span>      <span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="st">"right"</span>, legend<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/levels.html" class="external-link">levels</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">as.factor</a></span><span class="op">(</span><span class="va">classification</span><span class="op">)</span><span class="op">)</span>, col<span class="op">=</span><span class="va">cols</span><span class="op">[</span><span class="va">classification</span><span class="op">]</span>, pch<span class="op">=</span><span class="fl">16</span><span class="op">)</span></span>
 <span>      <span class="fu">rgl</span><span class="fu">::</span><span class="fu"><a href="https://dmurdoch.github.io/rgl/dev/reference/plot3d.html" class="external-link">plot3d</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">pca</span>,<span class="va">x</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>,cex<span class="op">=</span><span class="fl">1.2</span>,col<span class="op">=</span><span class="va">cols</span><span class="op">[</span><span class="va">classification</span><span class="op">]</span>,type<span class="op">=</span><span class="st">"h"</span><span class="op">)</span></span>
 <span>  <span class="op">}</span><span class="op">)</span></span></code></pre></div>
-<p><img src="es/mcpca-1.png" width="672" style="display:block; margin: auto"></p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:mcpca"></span>
+<img src="es/mcpca-1.png" alt="Three-group Clustering" width="672" style="display:block; margin: auto"><p class="caption">
+Figure 4.1: Three-group Clustering
+</p>
+</div>
 </div>
 <div class="section level2" number="5">
 <h2 id="data-transformation">
@@ -615,8 +631,13 @@ where the expression set is indexed using feature name(s).</p>
 </tbody>
 </table>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>, main<span class="op">=</span><span class="st">"Random quantile cut off"</span>, ylab<span class="op">=</span><span class="st">"&lt;lod%"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="es/lod-1.png" width="672" style="display:block; margin: auto"></p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>, main<span class="op">=</span><span class="st">"Random quantile cutoff"</span>, ylab<span class="op">=</span><span class="st">"&lt;lod%"</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:lod"></span>
+<img src="es/lod-1.png" alt="LOD based on a random cutoff" width="672" style="display:block; margin: auto"><p class="caption">
+Figure 6.1: LOD based on a random cutoff
+</p>
+</div>
 <p>The quantity has been shown to have a big impact on protein abundance and therefore pQTL detection as is shown with a real example.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span>list<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/ls.html" class="external-link">ls</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
@@ -653,7 +674,12 @@ where the expression set is indexed using feature name(s).</p>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/mtext.html" class="external-link">mtext</a></span><span class="op">(</span><span class="st">"% samples above LLOD"</span>,side<span class="op">=</span><span class="fl">2</span>,line<span class="op">=</span><span class="fl">2.5</span>,cex<span class="op">=</span><span class="fl">1.2</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/mtext.html" class="external-link">mtext</a></span><span class="op">(</span><span class="st">"Ordered protein"</span>,side<span class="op">=</span><span class="fl">1</span>,line<span class="op">=</span><span class="fl">6.5</span>,cex<span class="op">=</span><span class="fl">1.2</span>,font<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span>x<span class="op">=</span><span class="fl">1</span>,y<span class="op">=</span><span class="fl">25</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"without pQTL"</span>,<span class="st">"with pQTL"</span><span class="op">)</span>,box.lwd<span class="op">=</span><span class="fl">0</span>,cex<span class="op">=</span><span class="fl">2</span>,col<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>,<span class="st">"blue"</span><span class="op">)</span>,pch<span class="op">=</span><span class="fl">19</span><span class="op">)</span></span></code></pre></div>
-<p><img src="es/test-1.png" width="1440" style="display:block; margin: auto"></p>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:test"></span>
+<img src="es/test-1.png" alt="LOD in SCALLOP-INF/INTERVAL" width="1440" style="display:block; margin: auto"><p class="caption">
+Figure 6.2: LOD in SCALLOP-INF/INTERVAL
+</p>
+</div>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/detach.html" class="external-link">detach</a></span><span class="op">(</span><span class="va">annot</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>width<span class="op">=</span><span class="fl">120</span><span class="op">)</span></span>
