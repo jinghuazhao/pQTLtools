@@ -49,7 +49,7 @@ See `inst/turboman`in the source, <https://github.com/jinghuazhao/pQTLtools/tree
 
 This is the documentation example, based on Bioconductor 3.14.
 
-```{r ComBat, messages=FALSE}
+```{r ComBat, fig.cap="ComBat example", messages=FALSE}
 data(bladderdata)
 dat <- bladderEset[1:50,]
 
@@ -72,7 +72,7 @@ combat_edata3 = ComBat(dat=edata, batch=batch, mod=mod, par.prior=TRUE, ref.batc
 
 Again, this is adapted from the package vignette. noting that `FlowSorted.DLPFC.450k` instead of `FlowSorted` is used.
 
-```{r quantro, messages=FALSE}
+```{r quantro, fig.cap="quantro example", messages=FALSE}
 p <- getBeta(FlowSorted.DLPFC.450k,offset=100)
 pd <- pData(FlowSorted.DLPFC.450k)
 matdensity(p, groupFactor = pd$CellType, xlab = " ", ylab = "density",
@@ -89,7 +89,7 @@ qtest <- quantro(object = p, groupFactor = pd$CellType)
 
 # Differential expression
 
-```{r DESeq2, messages=FALSE}
+```{r DESeq2, fig.cap="DESeq2 example", messages=FALSE}
 ex <- makeExampleDESeqDataSet(m=4)
 dds <- DESeq(ex)
 res <- results(dds, contrast=c("condition","B","A"))
@@ -112,7 +112,7 @@ See the package in action from a snakemake workflow @koster21.
 
 A simple network is furnished with the `GeneNet` documentation example,
 
-```{r GeneNet, messages=FALSE}
+```{r GeneNet, fig.cap="GeneNet example", messages=FALSE}
 ## A random network with 40 nodes 
 # it contains 780=40*39/2 edges of which 5 percent (=39) are non-zero
 true.pcor <- ggm.simulate.pcor(40)
@@ -186,7 +186,7 @@ plot(gr2, "fdp")
 
 A side-by-side heatmaps
 
-```{r heatmap, messages=FALSE}
+```{r heatmap, fig.cap="Heatmaps", messages=FALSE}
 set.seed(123454321)
 m <- matrix(runif(2500),50)
 r <- cor(m)
@@ -244,7 +244,7 @@ expand_sra_attributes(blood_rse)
 
 # Pathway and enrichment analysis
 
-```{r pathway-enrichment, messages=FALSE}
+```{r pathway-enrichment, fig.cap="enricher example", messages=FALSE}
 reactome <- pathways("hsapiens", "reactome")
 kegg <- pathways("hsapiens","kegg")
 pharmgkb <- pathways("hsapiens","pharmgkb")
