@@ -15,6 +15,7 @@
 * Import dplyr, gap, ggplot2, Rdpack
 * importFrom utils read.table tail.
 * Import from lmm as template, use save(compress='xz').
+* Reduce size by `sed -i '/ISSN/d' REFERENCES.bib`
 * Suggest htmlwidgets, plotly.
 * Suggest bookdown, cowplot, gap.datasets, httr, plyr, rmarkdown, Biobase, stringr.
 * Suggest circlize, openxlsx, knitr and add HTML vignette (biomaRt, regioneR).
