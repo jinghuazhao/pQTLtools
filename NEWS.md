@@ -16,6 +16,7 @@
 * importFrom utils read.table tail.
 * Import from lmm as template, use save(compress='xz').
 * Reduce size by `sed -i '/ISSN/d' REFERENCES.bib`
+* Reflow turboman.r/[partial]turboqq.r by formatR::tidy_source()
 * Suggest htmlwidgets, plotly.
 * Suggest bookdown, cowplot, gap.datasets, httr, plyr, rmarkdown, Biobase, stringr.
 * Suggest circlize, openxlsx, knitr and add HTML vignette (biomaRt, regioneR).
