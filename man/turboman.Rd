@@ -18,7 +18,7 @@ turboman(
 
 \item{custom_peak_annotation_file_path}{Path of the custom annotation of variants.}
 
-\item{reference_file_path}{Path to the "turboman_hg19_reference_data.rda" / "turboman_hg19_reference_data.rda" reference file.}
+\item{reference_file_path}{Path to the 'turboman_hg19_reference_data.rda' / 'turboman_hg19_reference_data.rda' reference file.}
 
 \item{pvalue_sign}{Significance threshold p-value.}
 
@@ -54,11 +54,11 @@ NB!: If no label is given, variants will be automatically annotated
 
 \strong{Reference file / reference_file_path}
 
-Define the path to the "turboman_hg19_reference_data.rda" / "turboman_hg38_reference_data.rda" reference file that
+Define the path to the 'turboman_hg19_reference_data.rda' / 'turboman_hg38_reference_data.rda' reference file that
 contains the LD block breaks as in \insertCite{berisa16;textual}{pQTLtools}
 and gene coordinates used to construct and annotate the Manhattan plot. Both
 are available from the \code{turboman} directory of the installed package, e.g.,
-\code{file.path(find.package("pQTLtools"),"turboman","turboman_hg38_reference_data.rda")}.
+\code{file.path(find.package('pQTLtools'),'turboman','turboman_hg38_reference_data.rda')}.
 
 \strong{Significance threshold p-value / pvalue_sign}
 
@@ -82,24 +82,24 @@ Define a fixed number of points (pixels) on vertical axis.
 \dontrun{
 # Screen output
 require(gap.datasets)
-test <- mhtdata[c("chr","pos","p")]
-write.table(test,file="test.txt",row.names=FALSE,quote=FALSE)
-annotate <- subset(mhtdata[c("chr","start","gene","p")],p<5e-8 & gene!="")
-names(annotate) <- c("chromosome","position","nearest_gene_name","p")
-write.table(unique(annotate[,-4]),file="annotate.txt",row.names=FALSE,quote=FALSE)
-input_data_path <- "test.txt"
-custom_peak_annotation_file_path <- "annotate.txt"
-reference_file_path <- file.path(find.package("pQTLtools"),"turboman","turboman_hg19_reference_data.rda")
+test <- mhtdata[c('chr','pos','p')]
+write.table(test,file='test.txt',row.names=FALSE,quote=FALSE)
+annotate <- subset(mhtdata[c('chr','start','gene','p')],p<5e-8 & gene!='')
+names(annotate) <- c('chromosome','position','nearest_gene_name','p')
+write.table(unique(annotate[,-4]),file='annotate.txt',row.names=FALSE,quote=FALSE)
+input_data_path <- 'test.txt'
+custom_peak_annotation_file_path <- 'annotate.txt'
+reference_file_path <- file.path(find.package('pQTLtools'),'turboman','turboman_hg19_reference_data.rda')
 pvalue_sign <- 5e-8
-plot_title <- "gap.datasets example"
+plot_title <- 'gap.datasets example'
 turboman(input_data_path, custom_peak_annotation_file_path, reference_file_path, pvalue_sign, plot_title)
 # Figure shown on https://github.com/jinghuazhao/tests/tree/main/turboman
-png("IL12B.png",width=3600, height=3600, pointsize = 12, res=450)
-input_data_path <- "IL.12B.txt.gz"
-custom_peak_annotation_file_path <- "IL.12B.annotate"
-reference_file_path <- file.path(find.package("pQTLtools"),"turboman","turboman_hg19_reference_data.rda")
+png('IL12B.png',width=3600, height=3600, pointsize = 12, res=450)
+input_data_path <- 'IL.12B.txt.gz'
+custom_peak_annotation_file_path <- 'IL.12B.annotate'
+reference_file_path <- file.path(find.package('pQTLtools'),'turboman','turboman_hg19_reference_data.rda')
 pvalue_sign <- 5e-8
-plot_title <- "IL12B"
+plot_title <- 'IL12B'
 turboman(input_data_path, custom_peak_annotation_file_path, reference_file_path, pvalue_sign, plot_title)
 dev.off()
 }

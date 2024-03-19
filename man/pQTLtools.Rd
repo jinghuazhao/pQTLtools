@@ -3,7 +3,6 @@
 \docType{package}
 \name{pQTLtools}
 \alias{pQTLtools}
-\alias{_PACKAGE}
 \alias{pQTLtools-package}
 \title{A summary of functions}
 \description{
