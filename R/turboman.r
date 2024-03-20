@@ -84,7 +84,8 @@
 #' \insertAllCited{}
 
 turboman <- function(input_data_path, custom_peak_annotation_file_path, reference_file_path,
-    pvalue_sign, plot_title, vertical_resolution = 1800) {
+    pvalue_sign, plot_title, vertical_resolution = 1800)
+{
     ### ================================================================================================================================================###
     ### 1. Defining input settings ###
     ### ================================================================================================================================================###
@@ -92,7 +93,8 @@ turboman <- function(input_data_path, custom_peak_annotation_file_path, referenc
     ## Verbose printing status bars
     fat_status_bar <- strrep("=", 108)
     skinny_status_bar <- strrep("-", 108)
-    print_status_bar <- function(message) {
+    print_status_bar <- function(message)
+    {
         cat("\n", fat_status_bar, "\n", message, "\n", fat_status_bar, "\n\n", sep = "")
     }
     print_status_bar("1. Defining input settings")
@@ -100,9 +102,11 @@ turboman <- function(input_data_path, custom_peak_annotation_file_path, referenc
     start.time <- Sys.time()
     print(paste0(" Starting at ", start.time))
     ## Read in arguments from the command line
-    for (arg in commandArgs(trailingOnly = TRUE)) {
+    for (arg in commandArgs(trailingOnly = TRUE))
+    {
         ta = strsplit(arg, "=", fixed = TRUE)
-        if (!is.na(ta[[1]][2])) {
+        if (!is.na(ta[[1]][2]))
+        {
             assign(ta[[1]][1], ta[[1]][2])
         } else {
             stop("Not all arguments are given")
@@ -112,7 +116,8 @@ turboman <- function(input_data_path, custom_peak_annotation_file_path, referenc
     custom_peak_annotation_file_path_exists <- exists("custom_peak_annotation_file_path")
     ## Assign variable classes
     input_data_path <- as.character(input_data_path)
-    if (custom_peak_annotation_file_path_exists) {
+    if (custom_peak_annotation_file_path_exists)
+    {
         custom_peak_annotation_file_path <- as.character(custom_peak_annotation_file_path)
     }
     reference_file_path <- as.character(reference_file_path)
@@ -137,7 +142,8 @@ turboman <- function(input_data_path, custom_peak_annotation_file_path, referenc
 
     initial_data_dims <- dim(as.data.frame(read.table(input_data_path, header = TRUE,
         stringsAsFactors = FALSE, nrows = 10)))[2]
-    if (initial_data_dims == 3) {
+    if (initial_data_dims == 3)
+    {
         initial_data <- data.frame(scan(input_data_path, what = list(chromosome = 0,
             position = 0, pvalue = 0), skip = 1, sep = " ", quiet = TRUE))
         initial_data_contains_beta_se <- FALSE
@@ -155,7 +161,8 @@ turboman <- function(input_data_path, custom_peak_annotation_file_path, referenc
     # annotated with gene names
     #---------------------------------------------------------------------
 
-    if (custom_peak_annotation_file_path_exists) {
+    if (custom_peak_annotation_file_path_exists)
+    {
         gene_plot_data <- data.frame(read.table(custom_peak_annotation_file_path,
             header = TRUE, stringsAsFactors = FALSE))
         nearest_gene_names_annotated <- ("nearest_gene_name" %in% colnames(gene_plot_data))
@@ -168,7 +175,8 @@ turboman <- function(input_data_path, custom_peak_annotation_file_path, referenc
     #---------------------------------------------------------------------
 
     ## Check if p-values are already logged
-    if (length(which(initial_data$pvalue > 1)) > 0) {
+    if (length(which(initial_data$pvalue > 1)) > 0)
+    {
         initial_data$log_pvalue <- initial_data$pvalue
         ## Get only the complete data
         initial_data <- initial_data[complete.cases(initial_data), ]
@@ -181,7 +189,8 @@ turboman <- function(input_data_path, custom_peak_annotation_file_path, referenc
         ## extreme), log10 P recalculate from beta/SE
         missing_pvalues_index <- which((is.na(initial_data$log_pvalue) | initial_data$log_pvalue ==
             0))
-        if (initial_data_contains_beta_se & (length(missing_pvalues_index) > 0)) {
+        if (initial_data_contains_beta_se & (length(missing_pvalues_index) > 0))
+        {
             # Calculate expected p-values for missing data
             missing_pvalues <- (-log(2, base = 10) - pnorm(-abs(initial_data$beta[missing_pvalues_index]/initial_data$se[missing_pvalues_index]),
                 log = T)/log(10))
@@ -226,7 +235,8 @@ turboman <- function(input_data_path, custom_peak_annotation_file_path, referenc
     plot_data <- as.data.frame(plot_data)
     ## If the custom annotation data is not given, create an empty data frame
     ## for annotation downstream which will be filled
-    if (!custom_peak_annotation_file_path_exists) {
+    if (!custom_peak_annotation_file_path_exists)
+    {
         gene_plot_data <- NULL
         gene_plot_data <- as.data.frame(gene_plot_data)
     }
@@ -247,7 +257,8 @@ turboman <- function(input_data_path, custom_peak_annotation_file_path, referenc
     gene_coordinates <- get(ls()[substring(ls(), 1, nchar(ref_label)) == ref_label])
     ## Start the loop that will go over all unique chromosomes to reduce the
     ## data
-    for (chromosome_number in chromosomes) {
+    for (chromosome_number in chromosomes)
+    {
         ## Verbose progress tracker
         johnny_bravo <- ifelse(chromosome_number%%2 == 0, " ha !", " hoo !")
         print(paste0("chromosome ", chromosome_number, johnny_bravo))
@@ -278,8 +289,8 @@ turboman <- function(input_data_path, custom_peak_annotation_file_path, referenc
         ## Determine the number of bins in a chromosome, for which we will loop
         ## over to reduce the p_value data
         unique_x_bins <- number_of_ld_block_bins
-        for (bin_number in 1:unique_x_bins) {
-
+        for (bin_number in 1:unique_x_bins)
+        {
             #-----------------------------------------------------------------------------------
             # Reduce the p-value data for plotting to imagined resolution of
             # vertical_resolution
@@ -298,12 +309,12 @@ turboman <- function(input_data_path, custom_peak_annotation_file_path, referenc
             ## If there are no p-values for a bin, enter one line with
             ## chromosome and position, missing pvalue, and missing highlight
             ## value
-            if (length(plot_data_per_bin_in_chromosome_pvalues) == 0) {
+            n_indexes <- length(plot_data_per_bin_in_chromosome_pvalues)
+            if (n_indexes == 0) {
                 plot_data_per_bin_in_chromosome_df[1, 1] <- chromosome_number
                 plot_data_per_bin_in_chromosome_df[1, 2] <- plot_x_coordinates[bin_number]
                 plot_data_per_bin_in_chromosome_df[1, 3:5] <- NA
-                ## Name the columns in the plotting data dataframe that was
-                ## made for this bin
+                ## Name the columns in the plotting data dataframe that was made for this bin
                 colnames(plot_data_per_bin_in_chromosome_df) <- c("chromosome", "position",
                   "log_pvalue", "highlight_vector", "highlight_color")
             } else {
@@ -365,7 +376,6 @@ turboman <- function(input_data_path, custom_peak_annotation_file_path, referenc
                 ## Else if there are p-values for a bin, enter the chromosome,
                 ## the midposition for this bin, the pvalue, and vector values
                 ## telling whether this bin should be highlighted in the plot
-                n_indexes <- length(plot_data_per_bin_in_chromosome_pvalues)
                 indexes <- 1:n_indexes
                 plot_data_per_bin_in_chromosome_df[indexes, 1] <- rep(chromosome_number,
                   n_indexes)
@@ -404,14 +414,16 @@ turboman <- function(input_data_path, custom_peak_annotation_file_path, referenc
     ## annotation for nearest genes and look up their pvalues in the
     ## association data
 
-    if (custom_peak_annotation_file_path_exists & !nearest_gene_names_annotated) {
+    if (custom_peak_annotation_file_path_exists & !nearest_gene_names_annotated)
+    {
         ## Create an additional column filled with NA
         gene_plot_data$nearest_gene_name <- NA
         ## Count how many variants should be annotated
         number_of_peak_annotations <- dim(gene_plot_data)[1]
         ## Loop over the variants, find the nearest genes and p-values of these
         ## variants in the association data
-        for (peak_number in 1:number_of_peak_annotations) {
+        for (peak_number in 1:number_of_peak_annotations)
+        {
             peak_snp_chromosome <- gene_plot_data$chromosome[peak_number]
             peak_snp_position <- gene_plot_data$position[peak_number]
             ## Extract the gene annotation data from the gene table for this
@@ -457,7 +469,8 @@ turboman <- function(input_data_path, custom_peak_annotation_file_path, referenc
     ## Define image properties Sorting the plotting data from the GWAS datafile
     ## and the gene annotation file
     plot_data <- plot_data[order(plot_data$chromosome, plot_data$position), ]
-    if (dim(gene_plot_data)[1] > 0) {
+    if (dim(gene_plot_data)[1] > 0)
+    {
         gene_plot_data <- gene_plot_data[order(gene_plot_data$chromosome, gene_plot_data$position),
             ]
     }
@@ -488,14 +501,16 @@ turboman <- function(input_data_path, custom_peak_annotation_file_path, referenc
     x2 <- 1:max_nchr
     ## Define the actual plotting X coordinates as will be used in the plot,
     ## based on basepair positions of the variants
-    for (i in 1:max_nchr) {
+    for (i in 1:max_nchr)
+    {
         chromosome_number = which(chromosomes == i)
         x[i] <- trunc((max(na.omit(positions[chromosome_number])))/100) + 1e+05
         x2[i] <- trunc((min(na.omit(positions[chromosome_number])))/100) - 1e+05
     }
     x[1] <- x[1] - x2[1]
     x2[1] <- 0 - x2[1]
-    for (i in 2:(max_nchr + 1)) {
+    for (i in 2:(max_nchr + 1))
+    {
         x[i] <- x[i - 1] - x2[i] + x[i]
         x2[i] <- x[i - 1] - x2[i]
     }
@@ -507,7 +522,8 @@ turboman <- function(input_data_path, custom_peak_annotation_file_path, referenc
     y_coordinates <- log_pvalues
     ## Calculate the final x-coordinates of the top SNPs with annotated genes
     ## to plot
-    if (nrow(gene_plot_data) > 0) {
+    if (nrow(gene_plot_data) > 0)
+    {
         gene_x_coordinates <- trunc(gene_plot_data$position/100) + x2[gene_plot_data$chromosome]
         ## Set the final y-coordinates of the top SNPs with annotated genes to
         ## plot
@@ -528,7 +544,8 @@ turboman <- function(input_data_path, custom_peak_annotation_file_path, referenc
         ylab = "", xlab = "", bty = "n", ylim = c(0, y_axis_true_limit), cex = 0.8,
         main = plot_title)
     ## Plot the gene annotation data
-    if (nrow(gene_plot_data) > 0) {
+    if (nrow(gene_plot_data) > 0)
+    {
         ## Create X-axis breaks at which the gene names will be plotted,
         ## chosing random number of 150 as I simply Assume maximally 150 peaks
         ## will be annotated and at 150 genes I hope no gene names will be
@@ -538,7 +555,8 @@ turboman <- function(input_data_path, custom_peak_annotation_file_path, referenc
         y_axis_stop_gene_annotation_vertical_lines <- y_axis_plot_data_limit
         y_axis_stop_gene_annotation_diagonal_lines <- y_axis_plot_data_limit * 1.1
         y_axis_true_limit <- y_axis_plot_data_limit * 1.3
-        for (i in 1:length(gene_x_coordinates)) {
+        for (i in 1:length(gene_x_coordinates))
+        {
             ## Define the coordinates for the vertical annotation lines
             vertical_annotation_line_x_coordinate_start <- gene_x_coordinates[i]
             vertical_annotation_line_x_coordinate_stop <- gene_x_coordinates[i]
@@ -589,7 +607,7 @@ turboman <- function(input_data_path, custom_peak_annotation_file_path, referenc
     lines(c(0, max(x_coordinates, na.rm = TRUE)), c(log_pvalue_sign, log_pvalue_sign),
         col = "dodgerblue4", lty = 2, lwd = 1)
     ## Draw horizontal axis(can't find a way to nicely draw a x-axis without
-    ## not running over points :/
+    ## not running over points:
     lines(c(0, max(x_coordinates, na.rm = TRUE)), c((y_axis_plot_data_limit/200) *
         -1, (y_axis_plot_data_limit/200) * -1), col = "black", lty = 1, lwd = 1)
     ## Highlight the significant peaks
@@ -598,7 +616,8 @@ turboman <- function(input_data_path, custom_peak_annotation_file_path, referenc
     ## Make (non-existing) x-axis text and labels
     x_axis_chromosome_labels_text <- c(1:22, "X", "Y XY M", "", "")
     x_axis_chromosome_labels <- x_axis_chromosome_labels_text[unique_chromosomes]
-    for (i in 1:max_nchr) {
+    for (i in 1:max_nchr)
+    {
         label_positions = (x[i] + x2[i])/2
         mtext(x_axis_chromosome_labels[i], 1, at = label_positions, cex = 1, line = 0,
             las = 2)
