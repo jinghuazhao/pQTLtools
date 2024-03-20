@@ -268,17 +268,13 @@ turboman <- function(input_data_path, custom_peak_annotation_file_path, referenc
         #---------------------------------------------------------------------
 
         ## Extract the LD block breaks for the chromosome
-        chromosome_ld_block_breaks <- ld_block_breaks[which(ld_block_breaks[, 1] ==
-            chromosome_number), 2]
+        chromosome_ld_block_breaks <- ld_block_breaks[which(ld_block_breaks[, 1] == chromosome_number), 2]
         ## Count the number of LD block breaks for the chromosome
-        number_of_ld_block_bins <- as.integer(length(chromosome_ld_block_breaks) -
-            1)
+        number_of_ld_block_bins <- as.integer(length(chromosome_ld_block_breaks) - 1)
         ## Select the association data for this chromosome to be reduced
-        initial_data_chromosome <- initial_data[which(initial_data$chromosome ==
-            chromosome_number), ]
+        initial_data_chromosome <- initial_data[which(initial_data$chromosome == chromosome_number), ]
         ## Assign bin numbers to the positions based on the LD block breaks
-        initial_data_chromosome$bin <- findInterval(initial_data_chromosome$position,
-            chromosome_ld_block_breaks)
+        initial_data_chromosome$bin <- findInterval(initial_data_chromosome$position, chromosome_ld_block_breaks)
         ## Calculate the midpoints of the breaks, which we will use as
         ## X-coordinates on the Manhattan plot.
         plot_x_coordinates <- (head(chromosome_ld_block_breaks, -1) + diff(chromosome_ld_block_breaks)/2)
@@ -303,7 +299,8 @@ turboman <- function(input_data_path, custom_peak_annotation_file_path, referenc
             ## Now reduce (bin) the p-values (Y-axis values) to
             ## vertical_resolution bins, and multiply each bin (starting from 1
             ## to max resolution) by the calculated pvalue_break_size
-            plot_data_per_bin_in_chromosome_pvalues <- (unique(.bincode((initial_data_chromosome[["log_pvalue"]][which(initial_data_chromosome$bin ==
+            plot_data_per_bin_in_chromosome_pvalues <-
+                (unique(.bincode((initial_data_chromosome[["log_pvalue"]][which(initial_data_chromosome$bin ==
                 bin_number)]), scaling_vector, right = TRUE, include.lowest = FALSE) *
                 log_pvalue_break_size))
             ## If there are no p-values for a bin, enter one line with
@@ -320,10 +317,11 @@ turboman <- function(input_data_path, custom_peak_annotation_file_path, referenc
             } else {
                 ## First find the top SNP in the bin based on the maximum
                 ## p-value in this bin
-                largest_pvalue_in_bin <- max((initial_data_chromosome[["log_pvalue"]][which(initial_data_chromosome$bin ==
-                  bin_number)]), na.rm = TRUE)[1]
-                largest_pvalue_index_in_bin <- which(initial_data_chromosome[["log_pvalue"]][which(initial_data_chromosome$bin ==
-                  bin_number)] == largest_pvalue_in_bin)
+                largest_pvalue_in_bin <-
+                  max((initial_data_chromosome[["log_pvalue"]][which(initial_data_chromosome$bin == bin_number)]), na.rm = TRUE)[1]
+                largest_pvalue_index_in_bin <-
+                  which(initial_data_chromosome[["log_pvalue"]][which(initial_data_chromosome$bin ==
+                        bin_number)] == largest_pvalue_in_bin)
                 ## If the largest p-value in the bin is significant, continue
                 ## with finding the matching position for the SNP with highest
                 ## p-value, and it's nearest gene but only if a custom
@@ -332,12 +330,12 @@ turboman <- function(input_data_path, custom_peak_annotation_file_path, referenc
                   ## Increase top SNP counter
                   top_snp_counter = top_snp_counter + 1
                   ## Define the position of the top SNP in the bin
-                  largest_pvalue_index_in_bin_position <- initial_data_chromosome[which(initial_data_chromosome$bin ==
+                  largest_pvalue_index_in_bin_position <-
+                    initial_data_chromosome[which(initial_data_chromosome$bin ==
                     bin_number), ][largest_pvalue_index_in_bin, ][["position"]][1]
                   ## Extract the gene annotation data from the gene table for
                   ## this particular chromosome
-                  gene_coordinates_chromosome <- gene_coordinates[which(gene_coordinates$chromosome ==
-                    chromosome_number), ]
+                  gene_coordinates_chromosome <- gene_coordinates[which(gene_coordinates$chromosome == chromosome_number), ]
                   ## Find the smallest distances to the position of our top SNP
                   ## OLD CODE: smallest_distance_to_gene_for_top_snp_in_bin <-
                   ## min(abs(gene_coordinates_chromosome$gene_transcription_midposition-largest_pvalue_index_in_bin_position),na.rm=TRUE)
@@ -349,11 +347,13 @@ turboman <- function(input_data_path, custom_peak_annotation_file_path, referenc
                   ## the position of our top SNP OLD CODE:
                   ## genename_for_top_snp_in_bin<-as.character(gene_coordinates_chromosome[which(abs(gene_coordinates_chromosome$gene_transcription_midposition-largest_pvalue_index_in_bin_position)==smallest_distance_to_gene_for_top_snp_in_bin),c('gene_name')])[1]
                   if (smallest_distance_to_gene_start_for_top_snp_in_bin < smallest_distance_to_gene_stop_for_top_snp_in_bin) {
-                    genename_for_top_snp_in_bin <- as.character(gene_coordinates_chromosome[which(abs(gene_coordinates_chromosome$gene_transcription_start -
+                    genename_for_top_snp_in_bin <-
+                      as.character(gene_coordinates_chromosome[which(abs(gene_coordinates_chromosome$gene_transcription_start -
                       largest_pvalue_index_in_bin_position) == smallest_distance_to_gene_start_for_top_snp_in_bin),
                       c("gene_name")])[1]
                   } else {
-                    genename_for_top_snp_in_bin <- as.character(gene_coordinates_chromosome[which(abs(gene_coordinates_chromosome$gene_transcription_stop -
+                    genename_for_top_snp_in_bin <-
+                      as.character(gene_coordinates_chromosome[which(abs(gene_coordinates_chromosome$gene_transcription_stop -
                       largest_pvalue_index_in_bin_position) == smallest_distance_to_gene_stop_for_top_snp_in_bin),
                       c("gene_name")])[1]
                   }
@@ -377,10 +377,8 @@ turboman <- function(input_data_path, custom_peak_annotation_file_path, referenc
                 ## the midposition for this bin, the pvalue, and vector values
                 ## telling whether this bin should be highlighted in the plot
                 indexes <- 1:n_indexes
-                plot_data_per_bin_in_chromosome_df[indexes, 1] <- rep(chromosome_number,
-                  n_indexes)
-                plot_data_per_bin_in_chromosome_df[indexes, 2] <- rep(plot_x_coordinates[bin_number],
-                  n_indexes)
+                plot_data_per_bin_in_chromosome_df[indexes, 1] <- rep(chromosome_number, n_indexes)
+                plot_data_per_bin_in_chromosome_df[indexes, 2] <- rep(plot_x_coordinates[bin_number], n_indexes)
                 plot_data_per_bin_in_chromosome_df[indexes, 3] <- plot_data_per_bin_in_chromosome_pvalues
                 plot_data_per_bin_in_chromosome_df[indexes, 4] <- ifelse(largest_pvalue_in_bin >
                   log_pvalue_sign, rep(1, n_indexes), rep(0, n_indexes))
@@ -435,27 +433,29 @@ turboman <- function(input_data_path, custom_peak_annotation_file_path, referenc
                 peak_snp_position), na.rm = TRUE)
             ## Find which gene corresponds to the smallest distances to the
             ## position of our top SNP
-            genename_for_top_snp_in_bin <- as.character(gene_coordinates_chromosome[which(abs(gene_coordinates_chromosome$gene_transcription_midposition -
+            genename_for_top_snp_in_bin <-
+                as.character(gene_coordinates_chromosome[which(abs(gene_coordinates_chromosome$gene_transcription_midposition -
                 peak_snp_position) == smallest_distance_to_gene_for_top_snp_in_bin),
                 c("gene_name")])[1]
             gene_plot_data$nearest_gene_name[peak_number] <- genename_for_top_snp_in_bin
             ## Also find the p-vals !!!
-            gene_plot_data$log_pvalue[peak_number] <- initial_data[which(initial_data$chromosome ==
-                peak_snp_chromosome & initial_data$position == peak_snp_position),
-                c("log_pvalue")][1]
+            gene_plot_data$log_pvalue[peak_number] <-
+                 initial_data[which(initial_data$chromosome == peak_snp_chromosome &
+                 initial_data$position == peak_snp_position), c("log_pvalue")][1]
         }
     } else if (custom_peak_annotation_file_path_exists & nearest_gene_names_annotated) {
         ## Count how many variants should be annotated
         number_of_peak_annotations <- dim(gene_plot_data)[1]
         ## Loop over the variants, find the nearest genes and p-values of these
         ## variants in the association data
-        for (peak_number in 1:number_of_peak_annotations) {
+        for (peak_number in 1:number_of_peak_annotations)
+        {
             peak_snp_chromosome <- gene_plot_data$chromosome[peak_number]
             peak_snp_position <- gene_plot_data$position[peak_number]
             ## Also find the p-vals !!!
-            gene_plot_data$log_pvalue[peak_number] <- initial_data[which(initial_data$chromosome ==
-                peak_snp_chromosome & initial_data$position == peak_snp_position),
-                c("log_pvalue")][1]
+            gene_plot_data$log_pvalue[peak_number] <-
+                 initial_data[which(initial_data$chromosome == peak_snp_chromosome &
+                 initial_data$position == peak_snp_position), c("log_pvalue")][1]
         }
     } else {
         cat("\n Custom annotation data fully provided\n\n")
@@ -541,8 +541,8 @@ turboman <- function(input_data_path, custom_peak_annotation_file_path, referenc
     chromosome_colour <- ifelse(chromosomes%%2 == 0, col1, col2)
     ## Plot the association data
     plot(x_coordinates, y_coordinates, pch = 20, col = chromosome_colour, axes = F,
-        ylab = "", xlab = "", bty = "n", ylim = c(0, y_axis_true_limit), cex = 0.8,
-        main = plot_title)
+         ylab = "", xlab = "", bty = "n", ylim = c(0, y_axis_true_limit), cex = 0.8,
+         main = plot_title)
     ## Plot the gene annotation data
     if (nrow(gene_plot_data) > 0)
     {
@@ -619,8 +619,7 @@ turboman <- function(input_data_path, custom_peak_annotation_file_path, referenc
     for (i in 1:max_nchr)
     {
         label_positions = (x[i] + x2[i])/2
-        mtext(x_axis_chromosome_labels[i], 1, at = label_positions, cex = 1, line = 0,
-            las = 2)
+        mtext(x_axis_chromosome_labels[i], 1, at = label_positions, cex = 1, line = 0, las = 2)
     }
     ## Set the horizontal axis text - 'Chromosome' and each chromosome number
     ## for which the data is plotted
