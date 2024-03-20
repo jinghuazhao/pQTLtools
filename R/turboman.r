@@ -233,7 +233,7 @@ turboman <- function(input_data_path, custom_peak_annotation_file_path, referenc
     }
 
     ## Initialise a counter that keeps track of how many top signals we have
-    top_snp_counter = 0
+    top_snp_counter <- 0
     ## Define the LD block data (loaded from rda reference data file)
     ld_label <- "ld_block_breaks_pickrell_hg"
     ld_block_breaks <- get(ls()[substring(ls(), 1, nchar(ld_label)) == ld_label])
@@ -293,7 +293,8 @@ turboman <- function(input_data_path, custom_peak_annotation_file_path, referenc
             ## Now reduce (bin) the p-values (Y-axis values) to
             ## vertical_resolution bins, and multiply each bin (starting from 1
             ## to max resolution) by the calculated pvalue_break_size
-            plot_data_per_bin_in_chromosome_pvalues <- (unique(.bincode((initial_data_chromosome[["log_pvalue"]][which(initial_data_chromosome$bin ==
+            plot_data_per_bin_in_chromosome_pvalues <-
+                (unique(.bincode((initial_data_chromosome[["log_pvalue"]][which(initial_data_chromosome$bin ==
                 bin_number)]), scaling_vector, right = TRUE, include.lowest = FALSE) *
                 log_pvalue_break_size))
             ## If there are no p-values for a bin, enter one line with
@@ -331,8 +332,8 @@ turboman <- function(input_data_path, custom_peak_annotation_file_path, referenc
                   gene_coordinates_chromosome <- gene_coordinates[which(gene_coordinates$chromosome ==
                     chromosome_number), ]
                   ## Find the smallest distances to the position of our top SNP
-                  ## OLD CODE :
-                  ## smallest_distance_to_gene_for_top_snp_in_bin<-min(abs(gene_coordinates_chromosome$gene_transcription_midposition-largest_pvalue_index_in_bin_position),na.rm=TRUE)
+                  ## OLD CODE:
+                  ## smallest_distance_to_gene_for_top_snp_in_bin <- min(abs(gene_coordinates_chromosome$gene_transcription_midposition-largest_pvalue_index_in_bin_position),na.rm=TRUE)
                   smallest_distance_to_gene_start_for_top_snp_in_bin <- min(abs(gene_coordinates_chromosome$gene_transcription_start -
                     largest_pvalue_index_in_bin_position), na.rm = TRUE)
                   smallest_distance_to_gene_stop_for_top_snp_in_bin <- min(abs(gene_coordinates_chromosome$gene_transcription_stop -
@@ -341,11 +342,13 @@ turboman <- function(input_data_path, custom_peak_annotation_file_path, referenc
                   ## the position of our top SNP OLD CODE:
                   ## genename_for_top_snp_in_bin<-as.character(gene_coordinates_chromosome[which(abs(gene_coordinates_chromosome$gene_transcription_midposition-largest_pvalue_index_in_bin_position)==smallest_distance_to_gene_for_top_snp_in_bin),c('gene_name')])[1]
                   if (smallest_distance_to_gene_start_for_top_snp_in_bin < smallest_distance_to_gene_stop_for_top_snp_in_bin) {
-                    genename_for_top_snp_in_bin <- as.character(gene_coordinates_chromosome[which(abs(gene_coordinates_chromosome$gene_transcription_start -
+                    genename_for_top_snp_in_bin <-
+                      as.character(gene_coordinates_chromosome[which(abs(gene_coordinates_chromosome$gene_transcription_start -
                       largest_pvalue_index_in_bin_position) == smallest_distance_to_gene_start_for_top_snp_in_bin),
                       c("gene_name")])[1]
                   } else {
-                    genename_for_top_snp_in_bin <- as.character(gene_coordinates_chromosome[which(abs(gene_coordinates_chromosome$gene_transcription_stop -
+                    genename_for_top_snp_in_bin <-
+                      as.character(gene_coordinates_chromosome[which(abs(gene_coordinates_chromosome$gene_transcription_stop -
                       largest_pvalue_index_in_bin_position) == smallest_distance_to_gene_stop_for_top_snp_in_bin),
                       c("gene_name")])[1]
                   }
@@ -427,7 +430,8 @@ turboman <- function(input_data_path, custom_peak_annotation_file_path, referenc
                 peak_snp_position), na.rm = TRUE)
             ## Find which gene corresponds to the smallest distances to the
             ## position of our top SNP
-            genename_for_top_snp_in_bin <- as.character(gene_coordinates_chromosome[which(abs(gene_coordinates_chromosome$gene_transcription_midposition -
+            genename_for_top_snp_in_bin <-
+                as.character(gene_coordinates_chromosome[which(abs(gene_coordinates_chromosome$gene_transcription_midposition -
                 peak_snp_position) == smallest_distance_to_gene_for_top_snp_in_bin),
                 c("gene_name")])[1]
             gene_plot_data$nearest_gene_name[peak_number] <- genename_for_top_snp_in_bin
