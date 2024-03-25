@@ -56,7 +56,7 @@ edat <- bladderEset[1:50,]
 pheno = pData(edat)
 batch = pheno$batch
 table(batch)
-matdensity(edat,batch)
+matdensity(edat,batch,xlab=" ",ylab="density")
 legend("topleft",legend=1:5,col=1:5,lty=1)
 
 # 1. parametric adjustment
