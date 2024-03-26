@@ -73,21 +73,22 @@ combat_edata3 = ComBat(dat=edat, batch=batch, mod=mod, par.prior=TRUE, ref.batch
 
 ## quantro
 
-Again, this is adapted from the package vignette. noting that `FlowSorted.DLPFC.450k` instead of `FlowSorted` is used.
+This is also adapted from the package vignette but with `FlowSorted.DLPFC.450k` in place of `FlowSorted`.
 
 ```{r quantro, fig.cap="quantro example", messages=FALSE}
 p <- getBeta(FlowSorted.DLPFC.450k,offset=100)
 pd <- pData(FlowSorted.DLPFC.450k)
+matboxplot(p, groupFactor = pd$CellType, xaxt = "n", main = "Beta Values")
 matdensity(p, groupFactor = pd$CellType, xlab = " ", ylab = "density",
            main = "Beta Values", brewer.n = 8, brewer.name = "Dark2")
 legend('top', c("NeuN_neg", "NeuN_pos"), col = c(1, 2), lty = 1, lwd = 3)
-matboxplot(p, groupFactor = pd$CellType, xaxt = "n", main = "Beta Values")
 qtest <- quantro(object = p, groupFactor = pd$CellType)
-# commented since `R CMD check` returns error with multithreads
-# registerDoParallel(cores=10)
-# qtestPerm <- quantro(p, groupFactor = pd$CellType, B = 1000)
-# qtestPerm
-# quantroPlot(qtestPerm)
+if (FALSE)
+{
+  registerDoParallel(cores=10)
+  qtestPerm <- quantro(p, groupFactor = pd$CellType, B = 1000)
+  quantroPlot(qtestPerm)
+}
 ```
 
 # Differential expression
