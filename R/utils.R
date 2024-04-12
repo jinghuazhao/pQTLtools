@@ -953,8 +953,8 @@ mr_leaveoneout_plot2 <- function (leaveoneout_results, alpha = 0.05)
 #' This function takes data intrumental variables as produced by `format_data()` and
 #' used to perform MR analysis against a list of outcomes from MR-Base.
 #'
-#' @param ivs Instrumental variables from `format_data()`.
-#' @param outcome The counterpart for outcome.
+#' @param exposure exposure data.
+#' @param outcome the counterpart for outcome.
 #' @param mr_plot to produce plots.
 #' @param prefix a prefix for output files.
 #' @param reverse if TRUE, perform reverse MR.
@@ -975,28 +975,28 @@ mr_leaveoneout_plot2 <- function (leaveoneout_results, alpha = 0.05)
 #' library(TwoSampleMR)
 #' library(pQTLtools)
 #' fi <- file.path(find.package("pQTLtools",lib.loc=.libPaths()),"tests","Ins.csv")
-#' ivs <- format_data(read.csv(fi),type="exposure")
+#' exposure <- format_data(read.csv(fi),type="exposure")
 #' fo <- file.path(find.package("pQTLtools",lib.loc=.libPaths()),"tests","Out.csv")
 #' outcome <- format_data(read.csv(fo),type="outcome")
-#' pqtlMR(ivs, outcome, prefix="IL6R-")
-#' pqtlMR(ivs, outcome, prefix="IL6R_rev-",reverse=TRUE)
+#' pqtlMR(exposure, outcome, prefix="IL6R-")
+#' pqtlMR(exposure, outcome, prefix="IL6R_rev-",reverse=TRUE)
 #' # Phenotype,SNP,effect_allele,other_allele,eaf,beta,se,pval
 #' # ABO,rs505922,C,T,0.313,1.298,0.014,1.2e-1828
 #' # LIFR,rs635634,T,C,0.180,-0.300,0.032,6.00E-21
 #' # f <- file.path(find.package("pQTLtools",lib.loc=.libPaths()),"tests","ms.ins")
-#' # ivs <- format_data(read.table(f, header=TRUE), samplesize_col="N")
+#' # exposure <- format_data(read.table(f, header=TRUE), samplesize_col="N")
 #' # SNP Phenotype effect_allele other_allele eaf beta se pval N
 #' # rs1800693 TNFB T C 0.6033 0.0282  0.0136 0.0389045   11787
 #' # rs2364485 TNFB A C 0.1645 6514963 0.1759 1.62181e-20 11344
 #' # ids <- c("ieu-a-7","ebi-a-GCST007432")
-#' # outcome_data <- TwoSampleMR::extract_outcome_data(snps=with(ivs,SNP),outcomes=ids)
+#' # outcome_data <- TwoSampleMR::extract_outcome_data(snps=with(exposure,SNP),outcomes=ids)
 #' # https://raw.githubusercontent.com/MRCIEU/epigraphdb-pqtl/master/scripts/MR-pQTL-script.R
 #'
 #' @note
 #' Adapted from script by Jie Zheng.
 #' @keywords utilities
 
-pqtlMR <- function(ivs, outcome, mr_plot=FALSE, prefix="pQTL-combined-", reverse=FALSE)
+pqtlMR <- function(exposure, outcome, mr_plot=FALSE, prefix="pQTL-combined-", reverse=FALSE)
 {
    for (p in c("TwoSampleMR")) {
      if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
@@ -1020,7 +1020,7 @@ pqtlMR <- function(ivs, outcome, mr_plot=FALSE, prefix="pQTL-combined-", reverse
    pval.exposure <- NA
    pval.outcome <- NA
    swap_unique_var_a <- NA
-   harmonise <- TwoSampleMR::harmonise_data(ivs,outcome)
+   harmonise <- TwoSampleMR::harmonise_data(exposure,outcome)
    if (reverse) harmonise <- subset(within(harmonise,
    {
       swap(id.exposure,id.outcome)
