@@ -200,14 +200,14 @@ spirit similar to <code>run_TwoSampleMR</code>.</p>
 <span class="r-in"><span><span class="co"># Phenotype,SNP,effect_allele,other_allele,eaf,beta,se,pval</span></span></span>
 <span class="r-in"><span><span class="co"># ABO,rs505922,C,T,0.313,1.298,0.014,1.2e-1828</span></span></span>
 <span class="r-in"><span><span class="co"># LIFR,rs635634,T,C,0.180,-0.300,0.032,6.00E-21</span></span></span>
-<span class="r-in"><span><span class="co"># ids &lt;- c("ieu-a-7","ebi-a-GCST007432")</span></span></span>
 <span class="r-in"><span><span class="co"># f &lt;- file.path(find.package("pQTLtools",lib.loc=.libPaths()),"tests","ms.ins")</span></span></span>
 <span class="r-in"><span><span class="co"># ivs &lt;- format_data(read.table(f, header=TRUE), samplesize_col="N")</span></span></span>
 <span class="r-in"><span><span class="co"># SNP Phenotype effect_allele other_allele eaf beta se pval N</span></span></span>
 <span class="r-in"><span><span class="co"># rs1800693 TNFB T C 0.6033 0.0282  0.0136 0.0389045   11787</span></span></span>
 <span class="r-in"><span><span class="co"># rs2364485 TNFB A C 0.1645 6514963 0.1759 1.62181e-20 11344</span></span></span>
-<span class="r-in"><span><span class="co"># https://raw.githubusercontent.com/MRCIEU/epigraphdb-pqtl/master/scripts/MR-pQTL-script.R</span></span></span>
+<span class="r-in"><span><span class="co"># ids &lt;- c("ieu-a-7","ebi-a-GCST007432")</span></span></span>
 <span class="r-in"><span><span class="co"># outcome_data &lt;- TwoSampleMR::extract_outcome_data(snps=with(ivs,SNP),outcomes=ids)</span></span></span>
+<span class="r-in"><span><span class="co"># https://raw.githubusercontent.com/MRCIEU/epigraphdb-pqtl/master/scripts/MR-pQTL-script.R</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
