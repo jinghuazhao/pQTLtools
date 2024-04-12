@@ -1,0 +1,5 @@
+study,pmid,Phenotype,efo,beta,se,pval,SNP,other_allele,effect_allele
+EAGLE,26482879,Atopic dermatitis,EFO_0000274,-0.07637,0.01716,8.67e-06,rs2228145,A,C
+Neale B,UKBB,Abdominal aortic aneurysm,NCIT_C27046,0.0001508,0.001067,0.8876,rs2228145,A,C
+Okada Y,24390342,Rheumatoid arthritis,EFO_0000685,0.07696,0.01418,3.5e-09,rs2228145,A,C
+van der Harst P,29212778,Coronary artery disease,EFO_0000378;EFO_0001645,0.0389,0.0052,4.802e-14,rs2228145,A,C
