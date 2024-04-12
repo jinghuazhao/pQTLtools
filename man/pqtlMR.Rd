@@ -49,14 +49,14 @@ pqtlMR(ivs, outcome, prefix="IL6R_rev-",reverse=TRUE)
 # Phenotype,SNP,effect_allele,other_allele,eaf,beta,se,pval
 # ABO,rs505922,C,T,0.313,1.298,0.014,1.2e-1828
 # LIFR,rs635634,T,C,0.180,-0.300,0.032,6.00E-21
-# ids <- c("ieu-a-7","ebi-a-GCST007432")
 # f <- file.path(find.package("pQTLtools",lib.loc=.libPaths()),"tests","ms.ins")
 # ivs <- format_data(read.table(f, header=TRUE), samplesize_col="N")
 # SNP Phenotype effect_allele other_allele eaf beta se pval N
 # rs1800693 TNFB T C 0.6033 0.0282  0.0136 0.0389045   11787
 # rs2364485 TNFB A C 0.1645 6514963 0.1759 1.62181e-20 11344
-# https://raw.githubusercontent.com/MRCIEU/epigraphdb-pqtl/master/scripts/MR-pQTL-script.R
+# ids <- c("ieu-a-7","ebi-a-GCST007432")
 # outcome_data <- TwoSampleMR::extract_outcome_data(snps=with(ivs,SNP),outcomes=ids)
+# https://raw.githubusercontent.com/MRCIEU/epigraphdb-pqtl/master/scripts/MR-pQTL-script.R
 
 }
 \references{
