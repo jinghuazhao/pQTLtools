@@ -141,8 +141,8 @@
 <p>The examples here are based on the SCALLOP work<span class="citation"><sup>1</sup></span>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pkgs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GenomicRanges"</span>, <span class="st">"TwoSampleMR"</span>, <span class="st">"biomaRt"</span>, <span class="st">"coloc"</span>, <span class="st">"dplyr"</span>, <span class="st">"gap"</span>, <span class="st">"ggplot2"</span>, <span class="st">"httr"</span>,</span>
-<span>          <span class="st">"karyoploteR"</span>, <span class="st">"circlize"</span>, <span class="st">"knitr"</span>, <span class="st">"plotly"</span>, <span class="st">"pQTLtools"</span>, <span class="st">"rGREAT"</span>, <span class="st">"readr"</span>, <span class="st">"regioneR"</span>,</span>
-<span>          <span class="st">"seqminer"</span><span class="op">)</span></span>
+<span>          <span class="st">"ieugwasr"</span>, <span class="st">"karyoploteR"</span>, <span class="st">"circlize"</span>, <span class="st">"knitr"</span>, <span class="st">"plotly"</span>, <span class="st">"pQTLtools"</span>,</span>
+<span>          <span class="st">"rGREAT"</span>, <span class="st">"readr"</span>, <span class="st">"regioneR"</span>, <span class="st">"seqminer"</span><span class="op">)</span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">p</span> <span class="kw">in</span> <span class="va">pkgs</span><span class="op">)</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"^package:"</span>, <span class="va">p</span>, <span class="st">"$"</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/search.html" class="external-link">search</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/warning.html" class="external-link">warning</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"This vignette needs package `"</span>, <span class="va">p</span>, <span class="st">"'; please install"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
@@ -155,7 +155,7 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">OPG</span>,package<span class="op">=</span><span class="st">"gap.datasets"</span><span class="op">)</span></span>
 <span><span class="fu">meta</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/meta/man/settings.meta.html" class="external-link">settings.meta</a></span><span class="op">(</span>method.tau<span class="op">=</span><span class="st">"DL"</span><span class="op">)</span></span>
-<span><span class="fu">METAL_forestplot</span><span class="op">(</span><span class="va">OPGtbl</span>,<span class="va">OPGall</span>,<span class="va">OPGrsid</span>,width<span class="op">=</span><span class="fl">6.75</span>,height<span class="op">=</span><span class="fl">5</span>,digits.TE<span class="op">=</span><span class="fl">2</span>,digits.se<span class="op">=</span><span class="fl">2</span>,</span>
+<span><span class="fu">gap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gap/man/METAL_forestplot.html" class="external-link">METAL_forestplot</a></span><span class="op">(</span><span class="va">OPGtbl</span>,<span class="va">OPGall</span>,<span class="va">OPGrsid</span>,width<span class="op">=</span><span class="fl">6.75</span>,height<span class="op">=</span><span class="fl">5</span>,digits.TE<span class="op">=</span><span class="fl">2</span>,digits.se<span class="op">=</span><span class="fl">2</span>,</span>
 <span>                 col.diamond<span class="op">=</span><span class="st">"black"</span>,col.inside<span class="op">=</span><span class="st">"black"</span>,col.square<span class="op">=</span><span class="st">"black"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Joining with `by = join_by(MarkerName)`</span></span>
 <span><span class="co">#&gt; Joining with `by = join_by(MarkerName)`</span></span></code></pre></div>
@@ -172,7 +172,7 @@ Figure 1.2: Forest plots
 </p>
 </div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">METAL_forestplot</span><span class="op">(</span><span class="va">OPGtbl</span>,<span class="va">OPGall</span>,<span class="va">OPGrsid</span>,package<span class="op">=</span><span class="st">"metafor"</span>,method<span class="op">=</span><span class="st">"FE"</span>,xlab<span class="op">=</span><span class="st">"Effect"</span>,</span>
+<code class="sourceCode R"><span><span class="fu">gap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gap/man/METAL_forestplot.html" class="external-link">METAL_forestplot</a></span><span class="op">(</span><span class="va">OPGtbl</span>,<span class="va">OPGall</span>,<span class="va">OPGrsid</span>,package<span class="op">=</span><span class="st">"metafor"</span>,method<span class="op">=</span><span class="st">"FE"</span>,xlab<span class="op">=</span><span class="st">"Effect"</span>,</span>
 <span>                 showweights<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Joining with `by = join_by(MarkerName)`</span></span>
 <span><span class="co">#&gt; Joining with `by = join_by(MarkerName)`</span></span></code></pre></div>
@@ -206,7 +206,7 @@ Figure 1.4: Forest plots
 <span>              <span class="fu">pQTLdata</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/pQTLdata/man/inf1.html" class="external-link">inf1</a></span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"prot"</span>,<span class="st">"uniprot"</span><span class="op">)</span><span class="op">]</span>,by<span class="op">=</span><span class="st">"prot"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>        <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>log10p<span class="op">=</span><span class="op">-</span><span class="va">log10p</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">hits</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"prot"</span>,<span class="st">"Chr"</span>,<span class="st">"bp"</span>,<span class="st">"SNP"</span>,<span class="st">"log10p"</span>,<span class="st">"uniprot"</span><span class="op">)</span></span>
-<span><span class="va">cistrans</span> <span class="op">&lt;-</span> <span class="fu">cis.vs.trans.classification</span><span class="op">(</span><span class="va">hits</span>,<span class="fu">pQTLdata</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/pQTLdata/man/inf1.html" class="external-link">inf1</a></span>,<span class="st">"uniprot"</span><span class="op">)</span></span>
+<span><span class="va">cistrans</span> <span class="op">&lt;-</span> <span class="fu">gap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gap/man/cis.vs.trans.classification.html" class="external-link">cis.vs.trans.classification</a></span><span class="op">(</span><span class="va">hits</span>,<span class="fu">pQTLdata</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/pQTLdata/man/inf1.html" class="external-link">inf1</a></span>,<span class="st">"uniprot"</span><span class="op">)</span></span>
 <span><span class="va">cis.vs.trans</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">cistrans</span>,<span class="va">data</span><span class="op">)</span></span>
 <span><span class="fu">kable</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">cistrans</span>,<span class="va">table</span><span class="op">)</span>,caption<span class="op">=</span><span class="st">"cis/trans classification"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
@@ -665,12 +665,12 @@ Figure 1.4: Forest plots
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pQTLs</span> <span class="op">&lt;-</span> <span class="fu">transmute</span><span class="op">(</span><span class="va">merge_cvt</span>,chr<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"chr"</span>,<span class="va">Chr</span><span class="op">)</span>,start<span class="op">=</span><span class="va">bp</span>,end<span class="op">=</span><span class="va">bp</span>,<span class="va">log10p</span><span class="op">)</span></span>
 <span><span class="va">cis.pQTLs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">merge_cvt</span>,<span class="va">cis</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>             <span class="fu">transmute</span><span class="op">(</span>chr<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"chr"</span>,<span class="va">p.chr</span><span class="op">)</span>,start<span class="op">=</span><span class="va">p.start</span>,end<span class="op">=</span><span class="va">p.end</span>,gene<span class="op">=</span><span class="va">p.gene</span>,cols<span class="op">=</span><span class="st">"red"</span><span class="op">)</span></span>
+<span>             <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/transmute.html" class="external-link">transmute</a></span><span class="op">(</span>chr<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"chr"</span>,<span class="va">p.chr</span><span class="op">)</span>,start<span class="op">=</span><span class="va">p.start</span>,end<span class="op">=</span><span class="va">p.end</span>,gene<span class="op">=</span><span class="va">p.gene</span>,cols<span class="op">=</span><span class="st">"red"</span><span class="op">)</span></span>
 <span><span class="va">pQTL_genes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/find.package.html" class="external-link">find.package</a></span><span class="op">(</span><span class="st">"pQTLtools"</span><span class="op">)</span>,<span class="st">"tests"</span>,<span class="st">"pQTL_genes.txt"</span><span class="op">)</span>,</span>
 <span>                         col.names<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"chr"</span>,<span class="st">"start"</span>,<span class="st">"end"</span>,<span class="st">"gene"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>              <span class="fu">mutate</span><span class="op">(</span>chr<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">"hs"</span>,<span class="st">"chr"</span>,<span class="va">chr</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>              <span class="fu">left_join</span><span class="op">(</span><span class="va">cis.pQTLs</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>              <span class="fu">mutate</span><span class="op">(</span>cols<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">cols</span><span class="op">)</span>,<span class="st">"blue"</span>,<span class="va">cols</span><span class="op">)</span><span class="op">)</span></span>
+<span>              <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>chr<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">"hs"</span>,<span class="st">"chr"</span>,<span class="va">chr</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>              <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">cis.pQTLs</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>              <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>cols<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">cols</span><span class="op">)</span>,<span class="st">"blue"</span>,<span class="va">cols</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Joining with `by = join_by(chr, start, end, gene)`</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>cex<span class="op">=</span><span class="fl">0.7</span><span class="op">)</span></span>
 <span><span class="fu">gap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gap/man/circos.mhtplot2.html" class="external-link">circos.mhtplot2</a></span><span class="op">(</span><span class="va">pQTLs</span>,<span class="va">pQTL_genes</span>,ticks<span class="op">=</span><span class="fl">0</span><span class="op">:</span><span class="fl">3</span><span class="op">*</span><span class="fl">10</span>,ymax<span class="op">=</span><span class="fl">30</span><span class="op">)</span></span>
@@ -717,7 +717,7 @@ Figure 2.2: Bar chart
 </p>
 </div>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">circos.cis.vs.trans.plot</span><span class="op">(</span>hits<span class="op">=</span><span class="va">f</span>,<span class="fu">pQTLdata</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/pQTLdata/man/inf1.html" class="external-link">inf1</a></span>,<span class="st">"uniprot"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">gap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gap/man/circos.cis.vs.trans.plot.html" class="external-link">circos.cis.vs.trans.plot</a></span><span class="op">(</span>hits<span class="op">=</span><span class="va">f</span>,<span class="fu">pQTLdata</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/pQTLdata/man/inf1.html" class="external-link">inf1</a></span>,<span class="st">"uniprot"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ctcircos"></span>
 <img src="pQTLtools/ctcircos-1.png" alt="circos plot" width="672" style="display:block; margin: auto"><p class="caption">
@@ -734,17 +734,17 @@ Figure 2.3: circos plot
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span>  <span class="va">HOTSPOT</span> <span class="op">&lt;-</span> <span class="st">"chr12:111884608_C_T"</span></span>
 <span>  <span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>chr<span class="op">=</span><span class="st">"chr12"</span>,start<span class="op">=</span><span class="fl">111884607</span>,end<span class="op">=</span><span class="fl">111884608</span>,gene<span class="op">=</span><span class="st">"SH2B3"</span><span class="op">)</span></span>
-<span>  <span class="va">b</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">cis.vs.trans</span>,<span class="va">SNP</span><span class="op">==</span><span class="va">HOTSPOT</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>       <span class="fu">mutate</span><span class="op">(</span>p.chr<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"chr"</span>,<span class="va">p.chr</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>       <span class="fu">rename</span><span class="op">(</span>chr<span class="op">=</span><span class="va">p.chr</span>,start<span class="op">=</span><span class="va">p.start</span>,end<span class="op">=</span><span class="va">p.end</span>,gene<span class="op">=</span><span class="va">p.gene</span>,cistrans<span class="op">=</span><span class="va">cis.trans</span><span class="op">)</span></span>
+<span>  <span class="va">b</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">cis.vs.trans</span>,<span class="va">SNP</span><span class="op">==</span><span class="va">HOTSPOT</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>       <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>p.chr<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"chr"</span>,<span class="va">p.chr</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>       <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>chr<span class="op">=</span><span class="va">p.chr</span>,start<span class="op">=</span><span class="va">p.start</span>,end<span class="op">=</span><span class="va">p.end</span>,gene<span class="op">=</span><span class="va">p.gene</span>,cistrans<span class="op">=</span><span class="va">cis.trans</span><span class="op">)</span></span>
 <span>  <span class="va">cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">12</span>,<span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="va">cols</span><span class="op">[</span><span class="va">b</span><span class="op">[[</span><span class="st">"cis"</span><span class="op">]</span><span class="op">]</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">10</span></span>
-<span>  <span class="va">labels</span> <span class="op">&lt;-</span> <span class="fu">bind_rows</span><span class="op">(</span><span class="va">b</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"chr"</span>,<span class="st">"start"</span>,<span class="st">"end"</span>,<span class="st">"gene"</span><span class="op">)</span><span class="op">]</span>,<span class="va">a</span><span class="op">)</span></span>
-<span>  <span class="fu">circos.clear</span><span class="op">(</span><span class="op">)</span></span>
-<span>  <span class="fu">circos.par</span><span class="op">(</span>start.degree<span class="op">=</span><span class="fl">90</span>, track.height<span class="op">=</span><span class="fl">0.1</span>, cell.padding<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="fu">circos.initializeWithIdeogram</span><span class="op">(</span>species<span class="op">=</span><span class="st">"hg19"</span>, track.height<span class="op">=</span><span class="fl">0.05</span>, ideogram.height<span class="op">=</span><span class="fl">0.06</span><span class="op">)</span></span>
-<span>  <span class="fu">circos.genomicLabels</span><span class="op">(</span><span class="va">labels</span>, labels.column<span class="op">=</span><span class="fl">4</span>, cex<span class="op">=</span><span class="fl">1.1</span>, font<span class="op">=</span><span class="fl">3</span>, side<span class="op">=</span><span class="st">"inside"</span><span class="op">)</span></span>
-<span>  <span class="fu">circos.genomicLink</span><span class="op">(</span><span class="fu">bind_rows</span><span class="op">(</span><span class="va">a</span>,<span class="va">a</span>,<span class="va">a</span>,<span class="va">a</span>,<span class="va">a</span>,<span class="va">a</span><span class="op">)</span>, <span class="va">b</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"chr"</span>,<span class="st">"start"</span>,<span class="st">"end"</span><span class="op">)</span><span class="op">]</span>, col<span class="op">=</span><span class="va">cols</span>,</span>
+<span>  <span class="va">labels</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html" class="external-link">bind_rows</a></span><span class="op">(</span><span class="va">b</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"chr"</span>,<span class="st">"start"</span>,<span class="st">"end"</span>,<span class="st">"gene"</span><span class="op">)</span><span class="op">]</span>,<span class="va">a</span><span class="op">)</span></span>
+<span>  <span class="fu">circlize</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/circlize/man/circos.clear.html" class="external-link">circos.clear</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="fu">circlize</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/circlize/man/circos.par.html" class="external-link">circos.par</a></span><span class="op">(</span>start.degree<span class="op">=</span><span class="fl">90</span>, track.height<span class="op">=</span><span class="fl">0.1</span>, cell.padding<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu">circlize</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/circlize/man/circos.initializeWithIdeogram.html" class="external-link">circos.initializeWithIdeogram</a></span><span class="op">(</span>species<span class="op">=</span><span class="st">"hg19"</span>, track.height<span class="op">=</span><span class="fl">0.05</span>, ideogram.height<span class="op">=</span><span class="fl">0.06</span><span class="op">)</span></span>
+<span>  <span class="fu">circlize</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/circlize/man/circos.genomicLabels.html" class="external-link">circos.genomicLabels</a></span><span class="op">(</span><span class="va">labels</span>, labels.column<span class="op">=</span><span class="fl">4</span>, cex<span class="op">=</span><span class="fl">1.1</span>, font<span class="op">=</span><span class="fl">3</span>, side<span class="op">=</span><span class="st">"inside"</span><span class="op">)</span></span>
+<span>  <span class="fu">circlize</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/circlize/man/circos.genomicLink.html" class="external-link">circos.genomicLink</a></span><span class="op">(</span><span class="fu">bind_rows</span><span class="op">(</span><span class="va">a</span>,<span class="va">a</span>,<span class="va">a</span>,<span class="va">a</span>,<span class="va">a</span>,<span class="va">a</span><span class="op">)</span>, <span class="va">b</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"chr"</span>,<span class="st">"start"</span>,<span class="st">"end"</span><span class="op">)</span><span class="op">]</span>, col<span class="op">=</span><span class="va">cols</span>,</span>
 <span>                     directional<span class="op">=</span><span class="fl">1</span>, border<span class="op">=</span><span class="fl">10</span>, lwd<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:sh2b3"></span>
@@ -758,7 +758,7 @@ Figure 2.4: <em>SH2B3</em> hotspot
 <span><span class="va">geneSNP</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html" class="external-link">merge</a></span><span class="op">(</span><span class="va">merged</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"prot"</span>,<span class="st">"MarkerName"</span><span class="op">)</span><span class="op">]</span>,<span class="fu">pQTLdata</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/pQTLdata/man/inf1.html" class="external-link">inf1</a></span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"prot"</span>,<span class="st">"gene"</span><span class="op">)</span><span class="op">]</span>,by<span class="op">=</span><span class="st">"prot"</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"gene"</span>,<span class="st">"MarkerName"</span>,<span class="st">"prot"</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="va">SNPPos</span> <span class="op">&lt;-</span> <span class="va">merged</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"MarkerName"</span>,<span class="st">"CHR"</span>,<span class="st">"POS"</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="va">genePos</span> <span class="op">&lt;-</span> <span class="fu">pQTLdata</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/pQTLdata/man/inf1.html" class="external-link">inf1</a></span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"gene"</span>,<span class="st">"chr"</span>,<span class="st">"start"</span>,<span class="st">"end"</span><span class="op">)</span><span class="op">]</span></span>
-<span><span class="va">cvt</span> <span class="op">&lt;-</span> <span class="fu">qtlClassifier</span><span class="op">(</span><span class="va">geneSNP</span>,<span class="va">SNPPos</span>,<span class="va">genePos</span>,<span class="fl">1e6</span><span class="op">)</span></span>
+<span><span class="va">cvt</span> <span class="op">&lt;-</span> <span class="fu">gap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gap/man/qtlClassifier.html" class="external-link">qtlClassifier</a></span><span class="op">(</span><span class="va">geneSNP</span>,<span class="va">SNPPos</span>,<span class="va">genePos</span>,<span class="fl">1e6</span><span class="op">)</span></span>
 <span><span class="fu">kable</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">cvt</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
@@ -888,12 +888,12 @@ Figure 2.5: pQTL-gene plot
 </h3>
 <p>The pQTL-gene plot above can be also viewed in a 2-d plotly style, <a href="fig2d.html">fig2d.html</a>,</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">fig2d</span> <span class="op">&lt;-</span> <span class="fu">qtl2dplotly</span><span class="op">(</span><span class="va">cis.vs.trans</span>,xlab<span class="op">=</span><span class="st">"pQTL position"</span>,ylab<span class="op">=</span><span class="st">"Gene position"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">fig2d</span> <span class="op">&lt;-</span> <span class="fu">gap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gap/man/qtl2dplotly.html" class="external-link">qtl2dplotly</a></span><span class="op">(</span><span class="va">cis.vs.trans</span>,xlab<span class="op">=</span><span class="st">"pQTL position"</span>,ylab<span class="op">=</span><span class="st">"Gene position"</span><span class="op">)</span></span>
 <span><span class="fu">htmlwidgets</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/htmlwidgets/man/saveWidget.html" class="external-link">saveWidget</a></span><span class="op">(</span><span class="va">fig2d</span>,file<span class="op">=</span><span class="st">"fig2d.html"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">fig2d</span><span class="op">)</span></span></code></pre></div>
 <p>and 3-d counterpart, <a href="fig3d.html">fig3d.html</a>,</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">fig3d</span> <span class="op">&lt;-</span> <span class="fu">qtl3dplotly</span><span class="op">(</span><span class="va">cis.vs.trans</span>,zmax<span class="op">=</span><span class="fl">300</span>,qtl.prefix<span class="op">=</span><span class="st">"pQTL:"</span>,xlab<span class="op">=</span><span class="st">"pQTL position"</span>,ylab<span class="op">=</span><span class="st">"Gene position"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">fig3d</span> <span class="op">&lt;-</span> <span class="fu">gap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gap/man/qtl3dplotly.html" class="external-link">qtl3dplotly</a></span><span class="op">(</span><span class="va">cis.vs.trans</span>,zmax<span class="op">=</span><span class="fl">300</span>,qtl.prefix<span class="op">=</span><span class="st">"pQTL:"</span>,xlab<span class="op">=</span><span class="st">"pQTL position"</span>,ylab<span class="op">=</span><span class="st">"Gene position"</span><span class="op">)</span></span>
 <span><span class="fu">htmlwidgets</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/htmlwidgets/man/saveWidget.html" class="external-link">saveWidget</a></span><span class="op">(</span><span class="va">fig3d</span>,file<span class="op">=</span><span class="st">"fig3d.html"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">fig3d</span><span class="op">)</span></span></code></pre></div>
 <p>Both plots are responsive.</p>
@@ -930,10 +930,10 @@ Figure 2.5: pQTL-gene plot
 <span>  <span class="va">loci</span> <span class="op">&lt;-</span> <span class="fu">toGRanges</span><span class="op">(</span><span class="va">Chr</span>,<span class="va">Start</span>,<span class="va">End</span><span class="op">)</span></span>
 <span>  <span class="va">colors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>,<span class="st">"blue"</span><span class="op">)</span></span>
 <span>  <span class="fu">seqlevelsStyle</span><span class="op">(</span><span class="va">sentinels</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"UCSC"</span></span>
-<span>  <span class="va">kp</span> <span class="op">&lt;-</span> <span class="fu">plotKaryotype</span><span class="op">(</span>genome<span class="op">=</span><span class="st">"hg19"</span>,chromosomes<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/levels.html" class="external-link">levels</a></span><span class="op">(</span><span class="fu">seqnames</span><span class="op">(</span><span class="va">sentinels</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="fu">kpAddBaseNumbers</span><span class="op">(</span><span class="va">kp</span><span class="op">)</span></span>
-<span>  <span class="fu">kpPlotRegions</span><span class="op">(</span><span class="va">kp</span>, data<span class="op">=</span><span class="va">loci</span>,r0<span class="op">=</span><span class="fl">0.05</span>,r1<span class="op">=</span><span class="fl">0.15</span>,border<span class="op">=</span><span class="st">"black"</span><span class="op">)</span></span>
-<span>  <span class="fu">kpPlotMarkers</span><span class="op">(</span><span class="va">kp</span>, data<span class="op">=</span><span class="va">sentinels</span>, labels<span class="op">=</span><span class="va">hgnc</span>, text.orientation<span class="op">=</span><span class="st">"vertical"</span>,</span>
+<span>  <span class="va">kp</span> <span class="op">&lt;-</span> <span class="fu">karyoploteR</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/karyoploteR/man/plotKaryotype.html" class="external-link">plotKaryotype</a></span><span class="op">(</span>genome<span class="op">=</span><span class="st">"hg19"</span>,chromosomes<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/levels.html" class="external-link">levels</a></span><span class="op">(</span><span class="fu">seqnames</span><span class="op">(</span><span class="va">sentinels</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="fu">karyoploteR</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/karyoploteR/man/kpAddBaseNumbers.html" class="external-link">kpAddBaseNumbers</a></span><span class="op">(</span><span class="va">kp</span><span class="op">)</span></span>
+<span>  <span class="fu">karyoploteR</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/karyoploteR/man/kpPlotRegions.html" class="external-link">kpPlotRegions</a></span><span class="op">(</span><span class="va">kp</span>, data<span class="op">=</span><span class="va">loci</span>,r0<span class="op">=</span><span class="fl">0.05</span>,r1<span class="op">=</span><span class="fl">0.15</span>,border<span class="op">=</span><span class="st">"black"</span><span class="op">)</span></span>
+<span>  <span class="fu">karyoploteR</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/karyoploteR/man/kpPlotMarkers.html" class="external-link">kpPlotMarkers</a></span><span class="op">(</span><span class="va">kp</span>, data<span class="op">=</span><span class="va">sentinels</span>, labels<span class="op">=</span><span class="va">hgnc</span>, text.orientation<span class="op">=</span><span class="st">"vertical"</span>,</span>
 <span>                cex<span class="op">=</span><span class="fl">0.5</span>, y<span class="op">=</span><span class="fl">0.3</span><span class="op">*</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_along</a></span><span class="op">(</span><span class="va">hgnc</span><span class="op">)</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">hgnc</span><span class="op">)</span>, srt<span class="op">=</span><span class="fl">30</span>,</span>
 <span>                ignore.chromosome.ends<span class="op">=</span><span class="cn">TRUE</span>,</span>
 <span>                adjust.label.position<span class="op">=</span><span class="cn">TRUE</span>, label.color<span class="op">=</span><span class="va">colors</span><span class="op">[</span><span class="fl">2</span><span class="op">-</span><span class="va">cis</span><span class="op">]</span>, label.dist<span class="op">=</span><span class="fl">0.002</span>,</span>
@@ -961,8 +961,8 @@ Figure 2.6: Karyoplot of cis/trans pQTLs
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">post</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">regions</span><span class="op">)</span></span>
 <span><span class="op">{</span></span>
-<span>  <span class="va">job</span> <span class="op">&lt;-</span> <span class="fu">submitGreatJob</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/get.html" class="external-link">get</a></span><span class="op">(</span><span class="va">regions</span><span class="op">)</span>, species<span class="op">=</span><span class="st">"hg19"</span>, version<span class="op">=</span><span class="st">"3.0.0"</span><span class="op">)</span></span>
-<span>  <span class="va">et</span> <span class="op">&lt;-</span> <span class="fu">getEnrichmentTables</span><span class="op">(</span><span class="va">job</span>,download_by <span class="op">=</span> <span class="st">'tsv'</span><span class="op">)</span></span>
+<span>  <span class="va">job</span> <span class="op">&lt;-</span> <span class="fu">rGREAT</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rGREAT/man/submitGreatJob.html" class="external-link">submitGreatJob</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/get.html" class="external-link">get</a></span><span class="op">(</span><span class="va">regions</span><span class="op">)</span>, species<span class="op">=</span><span class="st">"hg19"</span>, version<span class="op">=</span><span class="st">"3.0.0"</span><span class="op">)</span></span>
+<span>  <span class="va">et</span> <span class="op">&lt;-</span> <span class="fu">rGREAT</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rGREAT/man/getEnrichmentTables-dispatch.html" class="external-link">getEnrichmentTables</a></span><span class="op">(</span><span class="va">job</span>,download_by <span class="op">=</span> <span class="st">'tsv'</span><span class="op">)</span></span>
 <span>  <span class="va">tb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/do.call.html" class="external-link">do.call</a></span><span class="op">(</span><span class="st">'rbind'</span>,<span class="va">et</span><span class="op">)</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.table</a></span><span class="op">(</span><span class="va">tb</span>,file<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">regions</span>,<span class="st">".tsv"</span><span class="op">)</span>,quote<span class="op">=</span><span class="cn">FALSE</span>,row.names<span class="op">=</span><span class="cn">FALSE</span>,sep<span class="op">=</span><span class="st">"\t"</span><span class="op">)</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/invisible.html" class="external-link">invisible</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>job<span class="op">=</span><span class="va">job</span>,tb<span class="op">=</span><span class="va">tb</span><span class="op">)</span><span class="op">)</span></span>
@@ -979,7 +979,7 @@ Figure 2.6: Karyoplot of cis/trans pQTLs
 <span><span class="co"># All regions</span></span>
 <span><span class="va">cistrans.post</span> <span class="op">&lt;-</span> <span class="fu">post</span><span class="op">(</span><span class="st">"cistrans"</span><span class="op">)</span></span>
 <span><span class="va">job</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">cistrans.post</span>,<span class="va">job</span><span class="op">)</span></span>
-<span><span class="fu">plotRegionGeneAssociationGraphs</span><span class="op">(</span><span class="va">job</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">rGREAT</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rGREAT/man/plotRegionGeneAssociationGraphs-GreatJob-method.html" class="external-link">plotRegionGeneAssociationGraphs</a></span><span class="op">(</span><span class="va">job</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:GREAT-1"></span>
 <img src="pQTLtools/GREAT-1.png" alt="GREAT plots" width="768" style="display:block; margin: auto"><p class="caption">
@@ -987,11 +987,11 @@ Figure 3.1: GREAT plots
 </p>
 </div>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">availableOntologies</span><span class="op">(</span><span class="va">job</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu">rGREAT</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rGREAT/man/availableOntologies-GreatJob-method.html" class="external-link">availableOntologies</a></span><span class="op">(</span><span class="va">job</span><span class="op">)</span></span>
 <span><span class="co"># plot of the top term</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfcol<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu">plotRegionGeneAssociationGraphs</span><span class="op">(</span><span class="va">job</span>, ontology<span class="op">=</span><span class="st">"GO Molecular Function"</span><span class="op">)</span></span>
-<span><span class="fu">plotRegionGeneAssociationGraphs</span><span class="op">(</span><span class="va">job</span>, ontology<span class="op">=</span><span class="st">"GO Biological Process"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">rGREAT</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rGREAT/man/plotRegionGeneAssociationGraphs-GreatJob-method.html" class="external-link">plotRegionGeneAssociationGraphs</a></span><span class="op">(</span><span class="va">job</span>, ontology<span class="op">=</span><span class="st">"GO Molecular Function"</span><span class="op">)</span></span>
+<span><span class="fu">rGREAT</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rGREAT/man/plotRegionGeneAssociationGraphs-GreatJob-method.html" class="external-link">plotRegionGeneAssociationGraphs</a></span><span class="op">(</span><span class="va">job</span>, ontology<span class="op">=</span><span class="st">"GO Biological Process"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:GREAT-2"></span>
 <img src="pQTLtools/GREAT-2.png" alt="GREAT plots" width="768" style="display:block; margin: auto"><p class="caption">
@@ -999,7 +999,7 @@ Figure 3.2: GREAT plots
 </p>
 </div>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">plotRegionGeneAssociationGraphs</span><span class="op">(</span><span class="va">job</span>, ontology<span class="op">=</span><span class="st">"GO Cellular Component"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu">rGREAT</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rGREAT/man/plotRegionGeneAssociationGraphs-GreatJob-method.html" class="external-link">plotRegionGeneAssociationGraphs</a></span><span class="op">(</span><span class="va">job</span>, ontology<span class="op">=</span><span class="st">"GO Cellular Component"</span><span class="op">)</span></span>
 <span><span class="co"># Specific regions</span></span>
 <span><span class="va">IL12B</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">merge</span>,<span class="va">prot</span><span class="op">==</span><span class="st">"IL.12B"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">chr</span>,<span class="va">start</span>,<span class="va">end</span><span class="op">)</span></span>
 <span><span class="va">KITLG</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">merge</span>,<span class="va">prot</span><span class="op">==</span><span class="st">"SCF"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">chr</span>,<span class="va">start</span>,<span class="va">end</span><span class="op">)</span></span>
@@ -2083,11 +2083,11 @@ the <code><a href="../reference/run_TwoSampleMR.html">run_TwoSampleMR()</a></cod
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package<span class="op">=</span><span class="st">"pQTLtools"</span><span class="op">)</span>,<span class="st">"tests"</span>,<span class="st">"Ins.csv"</span><span class="op">)</span></span>
 <span><span class="va">ivs</span> <span class="op">&lt;-</span> <span class="fu">format_data</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">caption4</span> <span class="op">&lt;-</span> <span class="st">"ABO/LIFR variants and CHD/FEV1"</span></span>
+<span><span class="va">caption4</span> <span class="op">&lt;-</span> <span class="st">"IL6R variant and diseases"</span></span>
 <span><span class="fu">kable</span><span class="op">(</span><span class="va">ivs</span>, caption<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">caption4</span>,<span class="st">"(instruments)"</span><span class="op">)</span>,digits<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>
-<span id="tab:unnamed-chunk-3">Table 5.1: </span>ABO/LIFR variants and CHD/FEV1 (instruments)</caption>
+<span id="tab:unnamed-chunk-3">Table 5.1: </span>IL6R variant and diseases (instruments)</caption>
 <colgroup>
 <col width="5%">
 <col width="13%">
@@ -2114,63 +2114,47 @@ the <code><a href="../reference/run_TwoSampleMR.html">run_TwoSampleMR()</a></cod
 <th align="left">pval_origin.exposure</th>
 <th align="left">id.exposure</th>
 </tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">rs505922</td>
+<tbody><tr class="odd">
+<td align="left">rs2228145</td>
+<td align="left">A</td>
 <td align="left">C</td>
-<td align="left">T</td>
-<td align="right">0.313</td>
-<td align="right">1.298</td>
-<td align="right">0.014</td>
+<td align="right">0.613</td>
+<td align="right">-0.168</td>
+<td align="right">0.012</td>
 <td align="right">0</td>
-<td align="left">ABO</td>
+<td align="left">IL.6</td>
 <td align="left">TRUE</td>
 <td align="left">reported</td>
-<td align="left">dU3C0x</td>
-</tr>
-<tr class="even">
-<td align="left">rs635634</td>
-<td align="left">T</td>
-<td align="left">C</td>
-<td align="right">0.180</td>
-<td align="right">-0.300</td>
-<td align="right">0.032</td>
-<td align="right">0</td>
-<td align="left">LIFR</td>
-<td align="left">TRUE</td>
-<td align="left">reported</td>
-<td align="left">YmGdhW</td>
-</tr>
-</tbody>
+<td align="left">68ekAE</td>
+</tr></tbody>
 </table>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">ids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ieu-a-7"</span>,<span class="st">"ebi-a-GCST007432"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/pqtlMR.html">pqtlMR</a></span><span class="op">(</span><span class="va">ivs</span>, <span class="va">ids</span><span class="op">)</span></span>
-<span><span class="co">#&gt; API: public: http://gwas-api.mrcieu.ac.uk/</span></span>
-<span><span class="co">#&gt; Extracting data for 2 SNP(s) from 2 GWAS(s)</span></span>
-<span><span class="co">#&gt; Harmonising ABO (dU3C0x) and FEV1 || id:ebi-a-GCST007432 (ebi-a-GCST007432)</span></span>
-<span><span class="co">#&gt; Harmonising LIFR (YmGdhW) and FEV1 || id:ebi-a-GCST007432 (ebi-a-GCST007432)</span></span>
-<span><span class="co">#&gt; Harmonising ABO (dU3C0x) and Coronary heart disease || id:ieu-a-7 (ieu-a-7)</span></span>
-<span><span class="co">#&gt; Harmonising LIFR (YmGdhW) and Coronary heart disease || id:ieu-a-7 (ieu-a-7)</span></span>
-<span><span class="co">#&gt; Analysing 'dU3C0x' on 'ebi-a-GCST007432'</span></span>
-<span><span class="co">#&gt; Analysing 'dU3C0x' on 'ieu-a-7'</span></span>
-<span><span class="co">#&gt; Analysing 'YmGdhW' on 'ebi-a-GCST007432'</span></span>
-<span><span class="co">#&gt; Analysing 'YmGdhW' on 'ieu-a-7'</span></span>
-<span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.delim</a></span><span class="op">(</span><span class="st">"pQTL-combined-result.txt"</span>,header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package<span class="op">=</span><span class="st">"pQTLtools"</span><span class="op">)</span>,<span class="st">"tests"</span>,<span class="st">"Out.csv"</span><span class="op">)</span></span>
+<span><span class="va">outcome</span> <span class="op">&lt;-</span> <span class="fu">format_data</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span>,type<span class="op">=</span><span class="st">"outcome"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/pqtlMR.html">pqtlMR</a></span><span class="op">(</span><span class="va">ivs</span>, <span class="va">outcome</span>, prefix<span class="op">=</span><span class="st">"IL6R-"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Harmonising IL.6 (68ekAE) and Rheumatoid arthritis (jrjVHU)</span></span>
+<span><span class="co">#&gt; Harmonising IL.6 (68ekAE) and Abdominal aortic aneurysm (oJAAxF)</span></span>
+<span><span class="co">#&gt; Harmonising IL.6 (68ekAE) and Coronary artery disease (y59FBK)</span></span>
+<span><span class="co">#&gt; Harmonising IL.6 (68ekAE) and Atopic dermatitis (ZoHewj)</span></span>
+<span><span class="co">#&gt; Analysing '68ekAE' on 'jrjVHU'</span></span>
+<span><span class="co">#&gt; Analysing '68ekAE' on 'oJAAxF'</span></span>
+<span><span class="co">#&gt; Analysing '68ekAE' on 'y59FBK'</span></span>
+<span><span class="co">#&gt; Analysing '68ekAE' on 'ZoHewj'</span></span>
+<span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.delim</a></span><span class="op">(</span><span class="st">"IL6R-result.txt"</span><span class="op">)</span></span>
 <span><span class="fu">kable</span><span class="op">(</span><span class="va">result</span>,caption<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">caption4</span>, <span class="st">"(result)"</span><span class="op">)</span>,digits<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span></code></pre></div>
-<table style="width:100%;" class="table">
+<table class="table">
 <caption>
-<span id="tab:unnamed-chunk-3">Table 5.1: </span>ABO/LIFR variants and CHD/FEV1 (result)</caption>
+<span id="tab:unnamed-chunk-3">Table 5.1: </span>IL6R variant and diseases (result)</caption>
 <colgroup>
-<col width="10%">
-<col width="14%">
-<col width="39%">
-<col width="7%">
+<col width="12%">
+<col width="11%">
+<col width="27%">
 <col width="9%">
-<col width="4%">
+<col width="11%">
 <col width="5%">
-<col width="5%">
-<col width="4%">
+<col width="7%">
+<col width="6%">
+<col width="6%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">id.exposure</th>
@@ -2185,68 +2169,68 @@ the <code><a href="../reference/run_TwoSampleMR.html">run_TwoSampleMR()</a></cod
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">dU3C0x</td>
-<td align="left">ebi-a-GCST007432</td>
-<td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">ABO</td>
+<td align="left">68ekAE</td>
+<td align="left">jrjVHU</td>
+<td align="left">Rheumatoid arthritis</td>
+<td align="left">IL.6</td>
 <td align="left">Wald ratio</td>
 <td align="right">1</td>
-<td align="right">-0.011</td>
-<td align="right">0.002</td>
-<td align="right">0</td>
+<td align="right">0.457</td>
+<td align="right">0.084</td>
+<td align="right">0.000</td>
 </tr>
 <tr class="even">
-<td align="left">dU3C0x</td>
-<td align="left">ieu-a-7</td>
-<td align="left">Coronary heart disease || id:ieu-a-7</td>
-<td align="left">ABO</td>
+<td align="left">68ekAE</td>
+<td align="left">oJAAxF</td>
+<td align="left">Abdominal aortic aneurysm</td>
+<td align="left">IL.6</td>
 <td align="left">Wald ratio</td>
 <td align="right">1</td>
-<td align="right">0.033</td>
-<td align="right">0.007</td>
-<td align="right">0</td>
+<td align="right">0.001</td>
+<td align="right">0.006</td>
+<td align="right">0.888</td>
 </tr>
 <tr class="odd">
-<td align="left">YmGdhW</td>
-<td align="left">ebi-a-GCST007432</td>
-<td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">LIFR</td>
+<td align="left">68ekAE</td>
+<td align="left">y59FBK</td>
+<td align="left">Coronary artery disease</td>
+<td align="left">IL.6</td>
 <td align="left">Wald ratio</td>
 <td align="right">1</td>
-<td align="right">0.062</td>
-<td align="right">0.010</td>
-<td align="right">0</td>
+<td align="right">0.231</td>
+<td align="right">0.031</td>
+<td align="right">0.000</td>
 </tr>
 <tr class="even">
-<td align="left">YmGdhW</td>
-<td align="left">ieu-a-7</td>
-<td align="left">Coronary heart disease || id:ieu-a-7</td>
-<td align="left">LIFR</td>
+<td align="left">68ekAE</td>
+<td align="left">ZoHewj</td>
+<td align="left">Atopic dermatitis</td>
+<td align="left">IL.6</td>
 <td align="left">Wald ratio</td>
 <td align="right">1</td>
-<td align="right">-0.257</td>
-<td align="right">0.039</td>
-<td align="right">0</td>
+<td align="right">-0.454</td>
+<td align="right">0.102</td>
+<td align="right">0.000</td>
 </tr>
 </tbody>
 </table>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">single</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.delim</a></span><span class="op">(</span><span class="st">"pQTL-combined-single.txt"</span>,header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">single</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.delim</a></span><span class="op">(</span><span class="st">"IL6R-single.txt"</span><span class="op">)</span></span>
 <span><span class="fu">kable</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">single</span>,<span class="op">!</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">"All"</span>,<span class="va">SNP</span><span class="op">)</span><span class="op">)</span>, caption<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">caption4</span>, <span class="st">"(single)"</span><span class="op">)</span>,digits<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>
-<span id="tab:unnamed-chunk-3">Table 5.1: </span>ABO/LIFR variants and CHD/FEV1 (single)</caption>
+<span id="tab:unnamed-chunk-3">Table 5.1: </span>IL6R variant and diseases (single)</caption>
 <colgroup>
 <col width="2%">
-<col width="6%">
-<col width="35%">
-<col width="9%">
-<col width="12%">
 <col width="8%">
-<col width="6%">
-<col width="6%">
-<col width="6%">
-<col width="6%">
+<col width="23%">
+<col width="11%">
+<col width="10%">
+<col width="10%">
+<col width="9%">
+<col width="9%">
+<col width="7%">
+<col width="8%">
 </colgroup>
 <thead><tr class="header">
 <th align="left"></th>
@@ -2254,7 +2238,7 @@ the <code><a href="../reference/run_TwoSampleMR.html">run_TwoSampleMR()</a></cod
 <th align="left">outcome</th>
 <th align="left">id.exposure</th>
 <th align="left">id.outcome</th>
-<th align="right">samplesize</th>
+<th align="left">samplesize</th>
 <th align="left">SNP</th>
 <th align="left">b</th>
 <th align="left">se</th>
@@ -2263,57 +2247,57 @@ the <code><a href="../reference/run_TwoSampleMR.html">run_TwoSampleMR()</a></cod
 <tbody>
 <tr class="odd">
 <td align="left">1</td>
-<td align="left">ABO</td>
-<td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">dU3C0x</td>
-<td align="left">ebi-a-GCST007432</td>
-<td align="right">321047</td>
-<td align="left">rs505922</td>
-<td align="left">-0.0109</td>
-<td align="left">0.00193</td>
-<td align="left">1.35e-08</td>
+<td align="left">IL.6</td>
+<td align="left">Rheumatoid arthritis</td>
+<td align="left">68ekAE</td>
+<td align="left">jrjVHU</td>
+<td align="left">NA</td>
+<td align="left">rs2228145</td>
+<td align="left">0.457007</td>
+<td align="left">0.08420</td>
+<td align="left">5.72e-08</td>
 </tr>
 <tr class="even">
 <td align="left">4</td>
-<td align="left">ABO</td>
-<td align="left">Coronary heart disease || id:ieu-a-7</td>
-<td align="left">dU3C0x</td>
-<td align="left">ieu-a-7</td>
-<td align="right">184305</td>
-<td align="left">rs505922</td>
-<td align="left">0.0334</td>
-<td align="left">0.00730</td>
-<td align="left">4.63e-06</td>
+<td align="left">IL.6</td>
+<td align="left">Abdominal aortic aneurysm</td>
+<td align="left">68ekAE</td>
+<td align="left">oJAAxF</td>
+<td align="left">NA</td>
+<td align="left">rs2228145</td>
+<td align="left">0.000895</td>
+<td align="left">0.00634</td>
+<td align="left">8.88e-01</td>
 </tr>
 <tr class="odd">
 <td align="left">7</td>
-<td align="left">LIFR</td>
-<td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">YmGdhW</td>
-<td align="left">ebi-a-GCST007432</td>
-<td align="right">321047</td>
-<td align="left">rs635634</td>
-<td align="left">0.0620</td>
-<td align="left">0.01000</td>
-<td align="left">5.65e-10</td>
+<td align="left">IL.6</td>
+<td align="left">Coronary artery disease</td>
+<td align="left">68ekAE</td>
+<td align="left">y59FBK</td>
+<td align="left">NA</td>
+<td align="left">rs2228145</td>
+<td align="left">0.230998</td>
+<td align="left">0.03088</td>
+<td align="left">7.39e-14</td>
 </tr>
 <tr class="even">
 <td align="left">10</td>
-<td align="left">LIFR</td>
-<td align="left">Coronary heart disease || id:ieu-a-7</td>
-<td align="left">YmGdhW</td>
-<td align="left">ieu-a-7</td>
-<td align="right">184305</td>
-<td align="left">rs635634</td>
-<td align="left">-0.2572</td>
-<td align="left">0.03904</td>
-<td align="left">4.47e-11</td>
+<td align="left">IL.6</td>
+<td align="left">Atopic dermatitis</td>
+<td align="left">68ekAE</td>
+<td align="left">ZoHewj</td>
+<td align="left">NA</td>
+<td align="left">rs2228145</td>
+<td align="left">-0.453504</td>
+<td align="left">0.10190</td>
+<td align="left">8.57e-06</td>
 </tr>
 </tbody>
 </table>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/invisible.html" class="external-link">invisible</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"harmonise"</span>,<span class="st">"result"</span>,<span class="st">"single"</span><span class="op">)</span>,</span>
-<span>                 <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"pQTL-combined-"</span>,<span class="va">x</span>,<span class="st">".txt"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span>                 <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"IL6R-"</span>,<span class="va">x</span>,<span class="st">".txt"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3" number="5.2">
 <h3 id="two-sample-mr">
@@ -2327,27 +2311,24 @@ the <code><a href="../reference/run_TwoSampleMR.html">run_TwoSampleMR()</a></cod
 <span><span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">prot</span>,<span class="st">"-"</span>,<span class="va">type</span>,<span class="st">".mrx"</span><span class="op">)</span></span>
 <span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package<span class="op">=</span><span class="st">"pQTLtools"</span><span class="op">)</span>,<span class="st">"tests"</span>,<span class="va">f</span><span class="op">)</span>,</span>
 <span>                header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="va">exposure</span> <span class="op">&lt;-</span> <span class="fu">format_data</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">within</a></span><span class="op">(</span><span class="va">d</span>,<span class="op">{</span><span class="va">P</span><span class="op">=</span><span class="fl">10</span><span class="op">^</span><span class="va">logP</span><span class="op">}</span><span class="op">)</span>, phenotype_col<span class="op">=</span><span class="st">"prot"</span>, snp_col<span class="op">=</span><span class="st">"rsid"</span>,</span>
+<span><span class="va">exposure</span> <span class="op">&lt;-</span> <span class="fu">TwoSampleMR</span><span class="fu">::</span><span class="fu"><a href="https://mrcieu.github.io/TwoSampleMR/reference/format_data.html" class="external-link">format_data</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">within</a></span><span class="op">(</span><span class="va">d</span>,<span class="op">{</span><span class="va">P</span><span class="op">=</span><span class="fl">10</span><span class="op">^</span><span class="va">logP</span><span class="op">}</span><span class="op">)</span>, phenotype_col<span class="op">=</span><span class="st">"prot"</span>, snp_col<span class="op">=</span><span class="st">"rsid"</span>,</span>
 <span>                        chr_col<span class="op">=</span><span class="st">"Chromosome"</span>, pos_col<span class="op">=</span><span class="st">"Posistion"</span>,</span>
 <span>                        effect_allele_col<span class="op">=</span><span class="st">"Allele1"</span>, other_allele_col<span class="op">=</span><span class="st">"Allele2"</span>,</span>
 <span>                        eaf_col<span class="op">=</span><span class="st">"Freq1"</span>, beta_col<span class="op">=</span><span class="st">"Effect"</span>, se_col<span class="op">=</span><span class="st">"StdErr"</span>,</span>
 <span>                        pval_col<span class="op">=</span><span class="st">"P"</span>, log_pval<span class="op">=</span><span class="cn">FALSE</span>,</span>
 <span>                        samplesize_col<span class="op">=</span><span class="st">"N"</span><span class="op">)</span></span>
-<span><span class="va">clump</span> <span class="op">&lt;-</span> <span class="fu">clump_data</span><span class="op">(</span><span class="va">exposure</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Please look at vignettes for options on running this locally if you need to run many instances of this command.</span></span>
-<span><span class="co">#&gt; Clumping ZoHewj, 1106 variants, using EUR population reference</span></span>
-<span><span class="co">#&gt; Removing 1102 of 1106 variants due to LD with other variants or absence from LD reference panel</span></span>
-<span><span class="va">outcome</span> <span class="op">&lt;-</span> <span class="fu">extract_outcome_data</span><span class="op">(</span>snps<span class="op">=</span><span class="va">exposure</span><span class="op">$</span><span class="va">SNP</span>,outcomes<span class="op">=</span><span class="va">outcomes</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Extracting data for 1106 SNP(s) from 1 GWAS(s)</span></span>
-<span><span class="co">#&gt; Server code: 502; Server is possibly experiencing traffic, trying again...</span></span>
-<span><span class="co">#&gt; Retry succeeded!</span></span>
-<span><span class="co">#&gt; Finding proxies for 155 SNPs in outcome ebi-a-GCST007432</span></span>
-<span><span class="co">#&gt; Extracting data for 155 SNP(s) from 1 GWAS(s)</span></span>
-<span><span class="va">harmonise</span> <span class="op">&lt;-</span> <span class="fu">harmonise_data</span><span class="op">(</span><span class="va">clump</span>,<span class="va">outcome</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Harmonising MMP.10 (ZoHewj) and FEV1 || id:ebi-a-GCST007432 (ebi-a-GCST007432)</span></span>
+<span><span class="va">clump</span> <span class="op">&lt;-</span> <span class="va">exposure</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">exposure</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">exposure</span><span class="op">)</span><span class="op">/</span><span class="fl">10</span><span class="op">)</span>,<span class="op">]</span> <span class="co"># TwoSampleMR::clump_data(exposure)</span></span>
+<span><span class="va">outcome</span> <span class="op">&lt;-</span> <span class="fu">TwoSampleMR</span><span class="fu">::</span><span class="fu"><a href="https://mrcieu.github.io/TwoSampleMR/reference/extract_outcome_data.html" class="external-link">extract_outcome_data</a></span><span class="op">(</span>snps<span class="op">=</span><span class="va">clump</span><span class="op">$</span><span class="va">SNP</span>,outcomes<span class="op">=</span><span class="va">outcomes</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Extracting data for 110 SNP(s) from 1 GWAS(s)</span></span>
+<span><span class="co">#&gt; Finding proxies for 17 SNPs in outcome ebi-a-GCST007432</span></span>
+<span><span class="co">#&gt; Extracting data for 17 SNP(s) from 1 GWAS(s)</span></span>
+<span><span class="va">harmonise</span> <span class="op">&lt;-</span> <span class="fu">TwoSampleMR</span><span class="fu">::</span><span class="fu"><a href="https://mrcieu.github.io/TwoSampleMR/reference/harmonise_data.html" class="external-link">harmonise_data</a></span><span class="op">(</span><span class="va">clump</span>,<span class="va">outcome</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Harmonising MMP.10 (m5UDHo) and FEV1 || id:ebi-a-GCST007432 (ebi-a-GCST007432)</span></span>
+<span><span class="co">#&gt; Removing the following SNPs for being palindromic with intermediate allele frequencies:</span></span>
+<span><span class="co">#&gt; rs1606668, rs1711438, rs1793502, rs3133399, rs35091444</span></span>
 <span><span class="va">prefix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">outcomes</span>,<span class="va">prot</span>,<span class="va">type</span>,sep<span class="op">=</span><span class="st">"-"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/run_TwoSampleMR.html">run_TwoSampleMR</a></span><span class="op">(</span><span class="va">harmonise</span>, mr_plot<span class="op">=</span><span class="st">"pQTLtools"</span>, prefix<span class="op">=</span><span class="va">prefix</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Analysing 'ZoHewj' on 'ebi-a-GCST007432'</span></span></code></pre></div>
+<span><span class="co">#&gt; Analysing 'm5UDHo' on 'ebi-a-GCST007432'</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:runTwoSampleMR-1"></span>
 <img src="pQTLtools/runTwoSampleMR-1.png" alt="Two-sample MR" width="672" style="display:block; margin: auto"><p class="caption">
@@ -2372,6 +2353,7 @@ Figure 5.3: Two-sample MR
 Figure 5.4: Two-sample MR
 </p>
 </div>
+<p>At time of running (12/4/2024), <code>clump_data</code> fails to run so 10% sample is used for illustrative purpose.</p>
 <p>The output is contained in individual <code>.txt</code> files, together with the scatter, forest, funnel and leave-one-out plots.</p>
 <table class="table">
 <caption>
@@ -2400,59 +2382,59 @@ Figure 5.4: Two-sample MR
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">ZoHewj</td>
+<td align="left">m5UDHo</td>
 <td align="left">ebi-a-GCST007432</td>
 <td align="left">FEV1 || id:ebi-a-GCST007432</td>
 <td align="left">MMP.10</td>
 <td align="left">MR Egger</td>
-<td align="right">4</td>
-<td align="right">-0.001</td>
-<td align="right">0.010</td>
-<td align="right">0.959</td>
+<td align="right">98</td>
+<td align="right">0.012</td>
+<td align="right">0.005</td>
+<td align="right">0.009</td>
 </tr>
 <tr class="even">
-<td align="left">ZoHewj</td>
+<td align="left">m5UDHo</td>
 <td align="left">ebi-a-GCST007432</td>
 <td align="left">FEV1 || id:ebi-a-GCST007432</td>
 <td align="left">MMP.10</td>
 <td align="left">Weighted median</td>
-<td align="right">4</td>
-<td align="right">0.002</td>
-<td align="right">0.006</td>
-<td align="right">0.750</td>
+<td align="right">98</td>
+<td align="right">0.004</td>
+<td align="right">0.003</td>
+<td align="right">0.229</td>
 </tr>
 <tr class="odd">
-<td align="left">ZoHewj</td>
+<td align="left">m5UDHo</td>
 <td align="left">ebi-a-GCST007432</td>
 <td align="left">FEV1 || id:ebi-a-GCST007432</td>
 <td align="left">MMP.10</td>
 <td align="left">Inverse variance weighted</td>
-<td align="right">4</td>
+<td align="right">98</td>
+<td align="right">-0.003</td>
 <td align="right">0.002</td>
-<td align="right">0.006</td>
-<td align="right">0.728</td>
+<td align="right">0.139</td>
 </tr>
 <tr class="even">
-<td align="left">ZoHewj</td>
+<td align="left">m5UDHo</td>
 <td align="left">ebi-a-GCST007432</td>
 <td align="left">FEV1 || id:ebi-a-GCST007432</td>
 <td align="left">MMP.10</td>
 <td align="left">Simple mode</td>
-<td align="right">4</td>
-<td align="right">0.004</td>
-<td align="right">0.010</td>
-<td align="right">0.704</td>
+<td align="right">98</td>
+<td align="right">0.008</td>
+<td align="right">0.007</td>
+<td align="right">0.223</td>
 </tr>
 <tr class="odd">
-<td align="left">ZoHewj</td>
+<td align="left">m5UDHo</td>
 <td align="left">ebi-a-GCST007432</td>
 <td align="left">FEV1 || id:ebi-a-GCST007432</td>
 <td align="left">MMP.10</td>
 <td align="left">Weighted mode</td>
-<td align="right">4</td>
-<td align="right">0.001</td>
-<td align="right">0.007</td>
-<td align="right">0.883</td>
+<td align="right">98</td>
+<td align="right">0.006</td>
+<td align="right">0.004</td>
+<td align="right">0.079</td>
 </tr>
 </tbody>
 </table>
@@ -2481,28 +2463,28 @@ Figure 5.4: Two-sample MR
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">ZoHewj</td>
+<td align="left">m5UDHo</td>
 <td align="left">ebi-a-GCST007432</td>
 <td align="left">FEV1 || id:ebi-a-GCST007432</td>
 <td align="left">MMP.10</td>
 <td align="left">MR Egger</td>
-<td align="right">0.114</td>
-<td align="right">2</td>
-<td align="right">0.944</td>
+<td align="right">89.6</td>
+<td align="right">96</td>
+<td align="right">0.664</td>
 </tr>
 <tr class="even">
-<td align="left">ZoHewj</td>
+<td align="left">m5UDHo</td>
 <td align="left">ebi-a-GCST007432</td>
 <td align="left">FEV1 || id:ebi-a-GCST007432</td>
 <td align="left">MMP.10</td>
 <td align="left">Inverse variance weighted</td>
-<td align="right">0.222</td>
-<td align="right">3</td>
-<td align="right">0.974</td>
+<td align="right">104.1</td>
+<td align="right">97</td>
+<td align="right">0.292</td>
 </tr>
 </tbody>
 </table>
-<table class="table">
+<table style="width:100%;" class="table">
 <caption>
 <span id="tab:unnamed-chunk-4">Table 5.2: </span>MMP.10 variants and FEV1 (pleiotropy)</caption>
 <colgroup>
@@ -2512,7 +2494,7 @@ Figure 5.4: Two-sample MR
 <col width="8%">
 <col width="15%">
 <col width="5%">
-<col width="5%">
+<col width="4%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">id.exposure</th>
@@ -2524,13 +2506,13 @@ Figure 5.4: Two-sample MR
 <th align="right">pval</th>
 </tr></thead>
 <tbody><tr class="odd">
-<td align="left">ZoHewj</td>
+<td align="left">m5UDHo</td>
 <td align="left">ebi-a-GCST007432</td>
 <td align="left">FEV1 || id:ebi-a-GCST007432</td>
 <td align="left">MMP.10</td>
+<td align="right">-0.002</td>
 <td align="right">0.001</td>
-<td align="right">0.004</td>
-<td align="right">0.774</td>
+<td align="right">0</td>
 </tr></tbody>
 </table>
 <table class="table">
@@ -2562,72 +2544,1106 @@ Figure 5.4: Two-sample MR
 <tr class="odd">
 <td align="left">MMP.10</td>
 <td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">ZoHewj</td>
+<td align="left">m5UDHo</td>
 <td align="left">ebi-a-GCST007432</td>
 <td align="right">321047</td>
-<td align="left">rs11225354</td>
-<td align="right">0.006</td>
-<td align="right">0.012</td>
-<td align="right">0.598</td>
+<td align="left">rs10160727</td>
+<td align="right">0.015</td>
+<td align="right">0.021</td>
+<td align="right">0.479</td>
 </tr>
 <tr class="even">
 <td align="left">MMP.10</td>
 <td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">ZoHewj</td>
+<td align="left">m5UDHo</td>
 <td align="left">ebi-a-GCST007432</td>
 <td align="right">321047</td>
-<td align="left">rs142915220</td>
-<td align="right">-0.004</td>
+<td align="left">rs10466640</td>
+<td align="right">0.009</td>
 <td align="right">0.029</td>
-<td align="right">0.889</td>
+<td align="right">0.762</td>
 </tr>
 <tr class="odd">
 <td align="left">MMP.10</td>
 <td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">ZoHewj</td>
+<td align="left">m5UDHo</td>
 <td align="left">ebi-a-GCST007432</td>
 <td align="right">321047</td>
-<td align="left">rs17099622</td>
-<td align="right">0.004</td>
-<td align="right">0.022</td>
-<td align="right">0.845</td>
+<td align="left">rs10895335</td>
+<td align="right">0.009</td>
+<td align="right">0.014</td>
+<td align="right">0.549</td>
 </tr>
 <tr class="even">
 <td align="left">MMP.10</td>
 <td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">ZoHewj</td>
+<td align="left">m5UDHo</td>
 <td align="left">ebi-a-GCST007432</td>
 <td align="right">321047</td>
-<td align="left">rs17860955</td>
-<td align="right">0.001</td>
-<td align="right">0.007</td>
-<td align="right">0.934</td>
+<td align="left">rs111612083</td>
+<td align="right">0.010</td>
+<td align="right">0.011</td>
+<td align="right">0.356</td>
 </tr>
 <tr class="odd">
 <td align="left">MMP.10</td>
 <td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">ZoHewj</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs11225353</td>
+<td align="right">0.012</td>
+<td align="right">0.015</td>
+<td align="right">0.432</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs11225389</td>
+<td align="right">0.006</td>
+<td align="right">0.011</td>
+<td align="right">0.590</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs11225673</td>
+<td align="right">-0.039</td>
+<td align="right">0.035</td>
+<td align="right">0.262</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs11225679</td>
+<td align="right">-0.034</td>
+<td align="right">0.030</td>
+<td align="right">0.250</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs11225685</td>
+<td align="right">-0.039</td>
+<td align="right">0.034</td>
+<td align="right">0.250</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs11225699</td>
+<td align="right">-0.024</td>
+<td align="right">0.033</td>
+<td align="right">0.462</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs113442134</td>
+<td align="right">-0.009</td>
+<td align="right">0.033</td>
+<td align="right">0.792</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs11512689</td>
+<td align="right">0.009</td>
+<td align="right">0.010</td>
+<td align="right">0.376</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs11605152</td>
+<td align="right">-0.002</td>
+<td align="right">0.012</td>
+<td align="right">0.836</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs117462234</td>
+<td align="right">-0.041</td>
+<td align="right">0.028</td>
+<td align="right">0.134</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs117717060</td>
+<td align="right">0.009</td>
+<td align="right">0.031</td>
+<td align="right">0.785</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs117730258</td>
+<td align="right">0.009</td>
+<td align="right">0.020</td>
+<td align="right">0.661</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs117862972</td>
+<td align="right">-0.019</td>
+<td align="right">0.022</td>
+<td align="right">0.372</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs118063597</td>
+<td align="right">0.002</td>
+<td align="right">0.014</td>
+<td align="right">0.878</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs118186420</td>
+<td align="right">0.031</td>
+<td align="right">0.032</td>
+<td align="right">0.329</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs12288698</td>
+<td align="right">0.023</td>
+<td align="right">0.036</td>
+<td align="right">0.519</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs12289906</td>
+<td align="right">-0.018</td>
+<td align="right">0.023</td>
+<td align="right">0.437</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs12290839</td>
+<td align="right">-0.027</td>
+<td align="right">0.034</td>
+<td align="right">0.424</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs12363883</td>
+<td align="right">0.015</td>
+<td align="right">0.016</td>
+<td align="right">0.336</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs12365082</td>
+<td align="right">0.005</td>
+<td align="right">0.011</td>
+<td align="right">0.617</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs12418070</td>
+<td align="right">-0.033</td>
+<td align="right">0.023</td>
+<td align="right">0.157</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs12419842</td>
+<td align="right">-0.034</td>
+<td align="right">0.029</td>
+<td align="right">0.250</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs12420219</td>
+<td align="right">-0.021</td>
+<td align="right">0.031</td>
+<td align="right">0.486</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1276260</td>
+<td align="right">-0.020</td>
+<td align="right">0.021</td>
+<td align="right">0.358</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1276266</td>
+<td align="right">-0.003</td>
+<td align="right">0.020</td>
+<td align="right">0.858</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1276270</td>
+<td align="right">-0.019</td>
+<td align="right">0.018</td>
+<td align="right">0.287</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs12789483</td>
+<td align="right">0.017</td>
+<td align="right">0.034</td>
+<td align="right">0.617</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1606669</td>
+<td align="right">-0.055</td>
+<td align="right">0.035</td>
+<td align="right">0.113</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1612069</td>
+<td align="right">-0.031</td>
+<td align="right">0.025</td>
+<td align="right">0.227</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1709145</td>
+<td align="right">-0.060</td>
+<td align="right">0.033</td>
+<td align="right">0.068</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1709148</td>
+<td align="right">-0.054</td>
+<td align="right">0.034</td>
+<td align="right">0.113</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1709150</td>
+<td align="right">-0.055</td>
+<td align="right">0.033</td>
+<td align="right">0.098</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1711423</td>
+<td align="right">0.018</td>
+<td align="right">0.031</td>
+<td align="right">0.572</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1711437</td>
+<td align="right">0.015</td>
+<td align="right">0.036</td>
+<td align="right">0.677</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs17360292</td>
+<td align="right">-0.063</td>
+<td align="right">0.029</td>
+<td align="right">0.031</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1784440</td>
+<td align="right">-0.031</td>
+<td align="right">0.025</td>
+<td align="right">0.227</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1784451</td>
+<td align="right">-0.001</td>
+<td align="right">0.031</td>
+<td align="right">0.965</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1793496</td>
+<td align="right">-0.056</td>
+<td align="right">0.033</td>
+<td align="right">0.090</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1793497</td>
+<td align="right">-0.055</td>
+<td align="right">0.035</td>
+<td align="right">0.113</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1793508</td>
+<td align="right">-0.055</td>
+<td align="right">0.035</td>
+<td align="right">0.113</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1835493</td>
+<td align="right">-0.038</td>
+<td align="right">0.034</td>
+<td align="right">0.262</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1939013</td>
+<td align="right">0.034</td>
+<td align="right">0.028</td>
+<td align="right">0.223</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1940048</td>
+<td align="right">-0.002</td>
+<td align="right">0.012</td>
+<td align="right">0.836</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1940474</td>
+<td align="right">0.033</td>
+<td align="right">0.032</td>
+<td align="right">0.297</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs2003796</td>
+<td align="right">-0.009</td>
+<td align="right">0.029</td>
+<td align="right">0.756</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs2003797</td>
+<td align="right">-0.007</td>
+<td align="right">0.028</td>
+<td align="right">0.809</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs2012837</td>
+<td align="right">-0.031</td>
+<td align="right">0.026</td>
+<td align="right">0.227</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs2137864</td>
+<td align="right">-0.056</td>
+<td align="right">0.034</td>
+<td align="right">0.096</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs2245803</td>
+<td align="right">0.011</td>
+<td align="right">0.038</td>
+<td align="right">0.779</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs2509020</td>
+<td align="right">0.019</td>
+<td align="right">0.029</td>
+<td align="right">0.514</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs2509239</td>
+<td align="right">-0.009</td>
+<td align="right">0.021</td>
+<td align="right">0.674</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs2701995</td>
+<td align="right">0.046</td>
+<td align="right">0.035</td>
+<td align="right">0.192</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs2846343</td>
+<td align="right">-0.011</td>
+<td align="right">0.015</td>
+<td align="right">0.458</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs2846707</td>
+<td align="right">0.033</td>
+<td align="right">0.024</td>
+<td align="right">0.169</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs34686002</td>
+<td align="right">0.008</td>
+<td align="right">0.029</td>
+<td align="right">0.785</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs3758863</td>
+<td align="right">-0.023</td>
+<td align="right">0.033</td>
+<td align="right">0.480</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs3819099</td>
+<td align="right">0.010</td>
+<td align="right">0.031</td>
+<td align="right">0.762</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs3847571</td>
+<td align="right">-0.024</td>
+<td align="right">0.034</td>
+<td align="right">0.475</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs41380244</td>
+<td align="right">0.006</td>
+<td align="right">0.036</td>
+<td align="right">0.864</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs4434970</td>
+<td align="right">0.039</td>
+<td align="right">0.023</td>
+<td align="right">0.088</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs4754047</td>
+<td align="right">-0.012</td>
+<td align="right">0.030</td>
+<td align="right">0.681</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs4754898</td>
+<td align="right">-0.023</td>
+<td align="right">0.034</td>
+<td align="right">0.493</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs4754905</td>
+<td align="right">-0.038</td>
+<td align="right">0.034</td>
+<td align="right">0.262</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs4754909</td>
+<td align="right">-0.039</td>
+<td align="right">0.034</td>
+<td align="right">0.262</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs4754930</td>
+<td align="right">-0.052</td>
+<td align="right">0.033</td>
+<td align="right">0.118</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs484316</td>
+<td align="right">-0.059</td>
+<td align="right">0.032</td>
+<td align="right">0.062</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs502588</td>
+<td align="right">0.014</td>
+<td align="right">0.028</td>
+<td align="right">0.617</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs510347</td>
+<td align="right">-0.061</td>
+<td align="right">0.033</td>
+<td align="right">0.068</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs519166</td>
+<td align="right">0.026</td>
+<td align="right">0.026</td>
+<td align="right">0.317</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs532050154</td>
+<td align="right">-0.010</td>
+<td align="right">0.019</td>
+<td align="right">0.571</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs548279</td>
+<td align="right">-0.088</td>
+<td align="right">0.036</td>
+<td align="right">0.014</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs589533</td>
+<td align="right">0.010</td>
+<td align="right">0.034</td>
+<td align="right">0.769</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs58993965</td>
+<td align="right">-0.024</td>
+<td align="right">0.033</td>
+<td align="right">0.475</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs605751</td>
+<td align="right">-0.060</td>
+<td align="right">0.033</td>
+<td align="right">0.068</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs61893839</td>
+<td align="right">-0.003</td>
+<td align="right">0.015</td>
+<td align="right">0.833</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs61893871</td>
+<td align="right">-0.003</td>
+<td align="right">0.011</td>
+<td align="right">0.809</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs61893908</td>
+<td align="right">0.000</td>
+<td align="right">0.024</td>
+<td align="right">0.986</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs61895560</td>
+<td align="right">0.010</td>
+<td align="right">0.010</td>
+<td align="right">0.336</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs61895693</td>
+<td align="right">0.022</td>
+<td align="right">0.014</td>
+<td align="right">0.134</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs61895694</td>
+<td align="right">0.021</td>
+<td align="right">0.014</td>
+<td align="right">0.143</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs636777</td>
+<td align="right">-0.044</td>
+<td align="right">0.030</td>
+<td align="right">0.139</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs6590979</td>
+<td align="right">0.006</td>
+<td align="right">0.026</td>
+<td align="right">0.817</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs6590984</td>
+<td align="right">-0.019</td>
+<td align="right">0.014</td>
+<td align="right">0.188</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs661028</td>
+<td align="right">-0.024</td>
+<td align="right">0.032</td>
+<td align="right">0.462</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs683878</td>
+<td align="right">0.022</td>
+<td align="right">0.025</td>
+<td align="right">0.376</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs695130</td>
+<td align="right">-0.030</td>
+<td align="right">0.027</td>
+<td align="right">0.275</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs7124515</td>
+<td align="right">0.011</td>
+<td align="right">0.016</td>
+<td align="right">0.482</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs7129790</td>
+<td align="right">0.015</td>
+<td align="right">0.021</td>
+<td align="right">0.479</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs72977504</td>
+<td align="right">-0.013</td>
+<td align="right">0.037</td>
+<td align="right">0.732</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs72977568</td>
+<td align="right">0.010</td>
+<td align="right">0.034</td>
+<td align="right">0.772</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs751547</td>
+<td align="right">0.014</td>
+<td align="right">0.036</td>
+<td align="right">0.708</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs78270346</td>
+<td align="right">-0.037</td>
+<td align="right">0.036</td>
+<td align="right">0.296</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs78847320</td>
+<td align="right">-0.038</td>
+<td align="right">0.034</td>
+<td align="right">0.267</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs79991976</td>
+<td align="right">-0.040</td>
+<td align="right">0.033</td>
+<td align="right">0.230</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
 <td align="left">ebi-a-GCST007432</td>
 <td align="right">321047</td>
 <td align="left">All - Inverse variance weighted</td>
+<td align="right">-0.003</td>
 <td align="right">0.002</td>
-<td align="right">0.006</td>
-<td align="right">0.728</td>
+<td align="right">0.139</td>
 </tr>
 <tr class="even">
 <td align="left">MMP.10</td>
 <td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">ZoHewj</td>
+<td align="left">m5UDHo</td>
 <td align="left">ebi-a-GCST007432</td>
 <td align="right">321047</td>
 <td align="left">All - MR Egger</td>
-<td align="right">-0.001</td>
-<td align="right">0.010</td>
-<td align="right">0.959</td>
+<td align="right">0.012</td>
+<td align="right">0.005</td>
+<td align="right">0.009</td>
 </tr>
 </tbody>
 </table>
-<table class="table">
+<table style="width:100%;" class="table">
 <caption>
 <span id="tab:unnamed-chunk-4">Table 5.2: </span>MMP.10 variants and FEV1 (loo)</caption>
 <colgroup>
@@ -2656,57 +3672,1091 @@ Figure 5.4: Two-sample MR
 <tr class="odd">
 <td align="left">MMP.10</td>
 <td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">ZoHewj</td>
+<td align="left">m5UDHo</td>
 <td align="left">ebi-a-GCST007432</td>
 <td align="right">321047</td>
-<td align="left">rs11225354</td>
-<td align="right">0.001</td>
-<td align="right">0.007</td>
-<td align="right">0.918</td>
+<td align="left">rs10160727</td>
+<td align="right">-0.004</td>
+<td align="right">0.002</td>
+<td align="right">0.119</td>
 </tr>
 <tr class="even">
 <td align="left">MMP.10</td>
 <td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">ZoHewj</td>
+<td align="left">m5UDHo</td>
 <td align="left">ebi-a-GCST007432</td>
 <td align="right">321047</td>
-<td align="left">rs142915220</td>
+<td align="left">rs10466640</td>
+<td align="right">-0.003</td>
 <td align="right">0.002</td>
-<td align="right">0.006</td>
-<td align="right">0.700</td>
+<td align="right">0.134</td>
 </tr>
 <tr class="odd">
 <td align="left">MMP.10</td>
 <td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">ZoHewj</td>
+<td align="left">m5UDHo</td>
 <td align="left">ebi-a-GCST007432</td>
 <td align="right">321047</td>
-<td align="left">rs17099622</td>
+<td align="left">rs10895335</td>
+<td align="right">-0.004</td>
 <td align="right">0.002</td>
-<td align="right">0.006</td>
-<td align="right">0.759</td>
+<td align="right">0.113</td>
 </tr>
 <tr class="even">
 <td align="left">MMP.10</td>
 <td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">ZoHewj</td>
+<td align="left">m5UDHo</td>
 <td align="left">ebi-a-GCST007432</td>
 <td align="right">321047</td>
-<td align="left">rs17860955</td>
-<td align="right">0.005</td>
-<td align="right">0.010</td>
-<td align="right">0.636</td>
+<td align="left">rs111612083</td>
+<td align="right">-0.004</td>
+<td align="right">0.002</td>
+<td align="right">0.088</td>
 </tr>
 <tr class="odd">
 <td align="left">MMP.10</td>
 <td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">ZoHewj</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs11225353</td>
+<td align="right">-0.004</td>
+<td align="right">0.002</td>
+<td align="right">0.108</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs11225389</td>
+<td align="right">-0.004</td>
+<td align="right">0.002</td>
+<td align="right">0.106</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs11225673</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.157</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs11225679</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.161</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs11225685</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.158</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs11225699</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.152</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs113442134</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.145</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs11512689</td>
+<td align="right">-0.004</td>
+<td align="right">0.002</td>
+<td align="right">0.088</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs11605152</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.144</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs117462234</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.169</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs117717060</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.135</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs117730258</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.126</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs117862972</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.163</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs118063597</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.130</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs118186420</td>
+<td align="right">-0.004</td>
+<td align="right">0.002</td>
+<td align="right">0.121</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs12288698</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.130</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs12289906</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.158</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs12290839</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.153</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs12363883</td>
+<td align="right">-0.004</td>
+<td align="right">0.002</td>
+<td align="right">0.104</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs12365082</td>
+<td align="right">-0.004</td>
+<td align="right">0.002</td>
+<td align="right">0.108</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs12418070</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.174</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs12419842</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.161</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs12420219</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.153</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1276260</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.164</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1276266</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.144</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1276270</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.173</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs12789483</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.132</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1606669</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.163</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1612069</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.166</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1709145</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.168</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1709148</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.164</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1709150</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.166</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1711423</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.129</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1711437</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.133</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs17360292</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.177</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1784440</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.166</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1784451</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.141</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1793496</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.166</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1793497</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.163</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1793508</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.163</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1835493</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.158</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1939013</td>
+<td align="right">-0.004</td>
+<td align="right">0.002</td>
+<td align="right">0.114</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1940048</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.144</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1940474</td>
+<td align="right">-0.004</td>
+<td align="right">0.002</td>
+<td align="right">0.120</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs2003796</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.146</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs2003797</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.145</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs2012837</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.166</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs2137864</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.165</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs2245803</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.136</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs2509020</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.127</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs2509239</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.150</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs2701995</td>
+<td align="right">-0.004</td>
+<td align="right">0.002</td>
+<td align="right">0.117</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs2846343</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.166</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs2846707</td>
+<td align="right">-0.004</td>
+<td align="right">0.002</td>
+<td align="right">0.106</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs34686002</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.134</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs3758863</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.152</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs3819099</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.134</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs3847571</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.152</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs41380244</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.138</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs4434970</td>
+<td align="right">-0.004</td>
+<td align="right">0.002</td>
+<td align="right">0.096</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs4754047</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.148</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs4754898</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.151</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs4754905</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.158</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs4754909</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.158</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs4754930</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.164</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs484316</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.170</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs502588</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.130</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs510347</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.168</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs519166</td>
+<td align="right">-0.004</td>
+<td align="right">0.002</td>
+<td align="right">0.117</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs532050154</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.156</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs548279</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.171</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs589533</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.135</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs58993965</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.152</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs605751</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.168</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs61893839</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.145</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs61893871</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.146</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs61893908</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.140</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs61895560</td>
+<td align="right">-0.004</td>
+<td align="right">0.002</td>
+<td align="right">0.086</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs61895693</td>
+<td align="right">-0.004</td>
+<td align="right">0.002</td>
+<td align="right">0.083</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs61895694</td>
+<td align="right">-0.004</td>
+<td align="right">0.002</td>
+<td align="right">0.084</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs636777</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.166</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs6590979</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.134</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs6590984</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.194</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs661028</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.153</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs683878</td>
+<td align="right">-0.004</td>
+<td align="right">0.002</td>
+<td align="right">0.119</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs695130</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.162</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs7124515</td>
+<td align="right">-0.004</td>
+<td align="right">0.002</td>
+<td align="right">0.113</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs7129790</td>
+<td align="right">-0.004</td>
+<td align="right">0.002</td>
+<td align="right">0.119</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs72977504</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.146</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs72977568</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.135</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs751547</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.134</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs78270346</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.156</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs78847320</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.157</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs79991976</td>
+<td align="right">-0.003</td>
+<td align="right">0.002</td>
+<td align="right">0.159</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1 || id:ebi-a-GCST007432</td>
+<td align="left">m5UDHo</td>
 <td align="left">ebi-a-GCST007432</td>
 <td align="right">321047</td>
 <td align="left">All</td>
+<td align="right">-0.003</td>
 <td align="right">0.002</td>
-<td align="right">0.006</td>
-<td align="right">0.728</td>
+<td align="right">0.139</td>
 </tr>
 </tbody>
 </table>
@@ -3105,7 +5155,7 @@ Figure 5.5: MR with cis, trans and cis+trans variants of IL-12B
 </table>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
-<span><span class="fu">mr_forestplot</span><span class="op">(</span><span class="va">tnfb</span>,colgap.forest.left<span class="op">=</span><span class="st">"0.05cm"</span>, fontsize<span class="op">=</span><span class="fl">14</span>,</span>
+<span><span class="fu">gap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gap/man/mr_forestplot.html" class="external-link">mr_forestplot</a></span><span class="op">(</span><span class="va">tnfb</span>,colgap.forest.left<span class="op">=</span><span class="st">"0.05cm"</span>, fontsize<span class="op">=</span><span class="fl">14</span>,</span>
 <span>              leftcols<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"studlab"</span><span class="op">)</span>, leftlabs<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Outcome"</span><span class="op">)</span>,</span>
 <span>              plotwidth<span class="op">=</span><span class="st">"5inch"</span>, sm<span class="op">=</span><span class="st">"OR"</span>, sortvar<span class="op">=</span><span class="va">tnfb</span><span class="op">[[</span><span class="st">"Effect"</span><span class="op">]</span><span class="op">]</span>,</span>
 <span>              rightcols<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"effect"</span>,<span class="st">"ci"</span>,<span class="st">"pval"</span><span class="op">)</span>, rightlabs<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"OR"</span>,<span class="st">"95%CI"</span>,<span class="st">"GSMR P"</span><span class="op">)</span>,</span>
