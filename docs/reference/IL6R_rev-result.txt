@@ -1,0 +1,5 @@
+id.exposure	id.outcome	outcome	exposure	method	nsnp	b	se	pval
+4nec1Z	ImbABK	Atopic dermatitis	IL.6	Wald ratio	1	  -2.21	 0.156	1.83e-45
+HYx53L	ImbABK	Rheumatoid arthritis	IL.6	Wald ratio	1	   2.19	 0.155	1.83e-45
+Ku3B84	ImbABK	Abdominal aortic aneurysm	IL.6	Wald ratio	1	1116.71	78.912	1.83e-45
+SGZG4k	ImbABK	Coronary artery disease	IL.6	Wald ratio	1	   4.33	 0.306	1.83e-45

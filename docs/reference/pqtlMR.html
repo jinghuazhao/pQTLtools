@@ -107,23 +107,29 @@ used to perform MR analysis against a list of outcomes from MR-Base."><meta prop
     </div>
 
     <div class="ref-description section level2">
-    <p>This function takes data intrumental variables as produced by <code>format_data()</code> and
+    <p>This function takes data intrumental variables as produced by <code><a href="https://rdrr.io/pkg/TwoSampleMR/man/format_data.html" class="external-link">format_data()</a></code> and
 used to perform MR analysis against a list of outcomes from MR-Base.</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">pqtlMR</span><span class="op">(</span><span class="va">ivs</span>, <span class="va">ids</span>, mr_plot <span class="op">=</span> <span class="cn">FALSE</span>, prefix <span class="op">=</span> <span class="st">"pQTL-combined-"</span>, reverse <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">pqtlMR</span><span class="op">(</span></span>
+<span>  <span class="va">ivs</span>,</span>
+<span>  <span class="va">outcome</span>,</span>
+<span>  mr_plot <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  prefix <span class="op">=</span> <span class="st">"pQTL-combined-"</span>,</span>
+<span>  reverse <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>ivs</dt>
-<dd><p>Instrumental variables from format_data().</p></dd>
+<dd><p>Instrumental variables from <code><a href="https://rdrr.io/pkg/TwoSampleMR/man/format_data.html" class="external-link">format_data()</a></code>.</p></dd>
 
 
-<dt>ids</dt>
-<dd><p>A list of MR-Base IDs.</p></dd>
+<dt>outcome</dt>
+<dd><p>The counterpart for outcome.</p></dd>
 
 
 <dt>mr_plot</dt>
@@ -159,81 +165,49 @@ spirit similar to <code>run_TwoSampleMR</code>.</p>
     <p>Zheng J, Haberland V, Baird D, Walker V, Haycock PC, Hurle MR, Gutteridge A, Erola P, Liu Y, Luo S, Robinson J, Richardson TG, Staley JR, Elsworth B, Burgess S, Sun BB, Danesh J, Runz H, Maranville JC, Martin HM, Yarmolinsky J, Laurin C, Holmes MV, Liu JZ, Estrada K, Santos R, McCarthy L, Waterworth D, Nelson MR, Smith GD, Butterworth AS, Hemani G, Scott RA, Gaunt TR (2020).
 “Phenome-wide Mendelian randomization mapping the influence of the plasma proteome on complex diseases.”
 <em>Nature Genetics</em>, <b>52</b>(10), 1122-1131.
-ISSN 1546-1718, <a href="https://doi.org/10.1038/s41588-020-0682-6" class="external-link">doi:10.1038/s41588-020-0682-6</a>
+<a href="https://doi.org/10.1038/s41588-020-0682-6" class="external-link">doi:10.1038/s41588-020-0682-6</a>
 .</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">TwoSampleMR</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> TwoSampleMR version 0.5.6 </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> [&gt;] New: Option to use non-European LD reference panels for clumping etc</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> [&gt;] Some studies temporarily quarantined to verify effect allele</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> [&gt;] See news(package='TwoSampleMR') and https://gwas.mrcieu.ac.uk for further details</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Warning:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> You are running an old version of the TwoSampleMR package.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> This version:   0.5.6</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Latest version: 0.5.8</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Please consider updating using devtools::install_github('MRCIEU/TwoSampleMR')</span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jinghuazhao/pQTLtools" class="external-link">pQTLtools</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="co"># Original examples</span></span></span>
-<span class="r-in"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/find.package.html" class="external-link">find.package</a></span><span class="op">(</span><span class="st">"pQTLtools"</span>,lib.loc<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">.libPaths</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,<span class="st">"tests"</span>,<span class="st">"Ins.csv"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">ivs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/TwoSampleMR/man/format_data.html" class="external-link">format_data</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">ids</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ieu-a-7"</span>,<span class="st">"ebi-a-GCST007432"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">pqtlMR</span><span class="op">(</span><span class="va">ivs</span>, <span class="va">ids</span>, mr_plot<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting data for 2 SNP(s) from 2 GWAS(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Server code: 502; Server is possibly experiencing traffic, trying again...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Server code: 502; Server is possibly experiencing traffic, trying again...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Server code: 502; Server is possibly experiencing traffic, trying again...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Server code: 502; Server is possibly experiencing traffic, trying again...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Server code: 502; Server is possibly experiencing traffic, trying again...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Server code: 502; Server is possibly experiencing traffic, trying again...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Server error: 502</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Failed to retrieve results from server. See error status message in the returned object and contact the developers if the problem persists.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Finding proxies for 2 SNPs in outcome ieu-a-7</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting data for 2 SNP(s) from 1 GWAS(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Server code: 502; Server is possibly experiencing traffic, trying again...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Retry succeeded!</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Finding proxies for 2 SNPs in outcome ebi-a-GCST007432</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting data for 2 SNP(s) from 1 GWAS(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Server code: 502; Server is possibly experiencing traffic, trying again...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Retry succeeded!</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising ABO (DPHRWY) and FEV1 || id:ebi-a-GCST007432 (ebi-a-GCST007432)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising LIFR (8uOMQE) and FEV1 || id:ebi-a-GCST007432 (ebi-a-GCST007432)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising ABO (DPHRWY) and Coronary heart disease || id:ieu-a-7 (ieu-a-7)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising LIFR (8uOMQE) and Coronary heart disease || id:ieu-a-7 (ieu-a-7)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing '8uOMQE' on 'ebi-a-GCST007432'</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing '8uOMQE' on 'ieu-a-7'</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'DPHRWY' on 'ebi-a-GCST007432'</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'DPHRWY' on 'ieu-a-7'</span>
-<span class="r-in"><span><span class="co"># A bidirectional analysis</span></span></span>
-<span class="r-in"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/find.package.html" class="external-link">find.package</a></span><span class="op">(</span><span class="st">"pQTLtools"</span>,lib.loc<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">.libPaths</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,<span class="st">"tests"</span>,<span class="st">"ms.ins"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">ivs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/TwoSampleMR/man/format_data.html" class="external-link">format_data</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span><span class="va">f</span>, header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>, samplesize_col<span class="op">=</span><span class="st">"N"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">ids</span> <span class="op">&lt;-</span> <span class="st">"ieu-b-18"</span></span></span>
-<span class="r-in"><span><span class="co"># MR</span></span></span>
-<span class="r-in"><span><span class="fu">pqtlMR</span><span class="op">(</span><span class="va">ivs</span>, <span class="va">ids</span>, prefix<span class="op">=</span><span class="st">"MS-"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting data for 2 SNP(s) from 1 GWAS(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Server code: 502; Server is possibly experiencing traffic, trying again...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Server code: 502; Server is possibly experiencing traffic, trying again...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Retry succeeded!</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Finding proxies for 1 SNPs in outcome ieu-b-18</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting data for 1 SNP(s) from 1 GWAS(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Server code: 502; Server is possibly experiencing traffic, trying again...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Server code: 502; Server is possibly experiencing traffic, trying again...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Server code: 502; Server is possibly experiencing traffic, trying again...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Server code: 502; Server is possibly experiencing traffic, trying again...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Server code: 502; Server is possibly experiencing traffic, trying again...</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Retry succeeded!</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising TNFB (SbCjpK) and multiple sclerosis || id:ieu-b-18 (ieu-b-18)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'SbCjpK' on 'ieu-b-18'</span>
-<span class="r-in"><span><span class="co"># reverse MR</span></span></span>
-<span class="r-in"><span><span class="fu">pqtlMR</span><span class="op">(</span><span class="va">ivs</span>, <span class="va">ids</span>, ,prefix<span class="op">=</span><span class="st">"MS_rev-"</span>,reverse<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting data for 2 SNP(s) from 1 GWAS(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Finding proxies for 1 SNPs in outcome ieu-b-18</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting data for 1 SNP(s) from 1 GWAS(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising TNFB (SbCjpK) and multiple sclerosis || id:ieu-b-18 (ieu-b-18)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'ieu-b-18' on 'SbCjpK'</span>
+<span class="r-in"><span><span class="va">fi</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/find.package.html" class="external-link">find.package</a></span><span class="op">(</span><span class="st">"pQTLtools"</span>,lib.loc<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">.libPaths</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,<span class="st">"tests"</span>,<span class="st">"Ins.csv"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">ivs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/TwoSampleMR/man/format_data.html" class="external-link">format_data</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="va">fi</span><span class="op">)</span>,type<span class="op">=</span><span class="st">"exposure"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">fo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/find.package.html" class="external-link">find.package</a></span><span class="op">(</span><span class="st">"pQTLtools"</span>,lib.loc<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">.libPaths</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,<span class="st">"tests"</span>,<span class="st">"Out.csv"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">outcome</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/TwoSampleMR/man/format_data.html" class="external-link">format_data</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="va">fo</span><span class="op">)</span>,type<span class="op">=</span><span class="st">"outcome"</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The following columns are not present but are helpful for harmonisation</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> eaf</span>
+<span class="r-in"><span><span class="fu">pqtlMR</span><span class="op">(</span><span class="va">ivs</span>, <span class="va">outcome</span>, prefix<span class="op">=</span><span class="st">"IL6R-"</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising IL.6 (ImbABK) and Atopic dermatitis (4nec1Z)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising IL.6 (ImbABK) and Rheumatoid arthritis (HYx53L)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising IL.6 (ImbABK) and Abdominal aortic aneurysm (Ku3B84)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising IL.6 (ImbABK) and Coronary artery disease (SGZG4k)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'ImbABK' on '4nec1Z'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'ImbABK' on 'HYx53L'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'ImbABK' on 'Ku3B84'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'ImbABK' on 'SGZG4k'</span>
+<span class="r-in"><span><span class="fu">pqtlMR</span><span class="op">(</span><span class="va">ivs</span>, <span class="va">outcome</span>, prefix<span class="op">=</span><span class="st">"IL6R_rev-"</span>,reverse<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising IL.6 (ImbABK) and Atopic dermatitis (4nec1Z)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising IL.6 (ImbABK) and Rheumatoid arthritis (HYx53L)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising IL.6 (ImbABK) and Abdominal aortic aneurysm (Ku3B84)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising IL.6 (ImbABK) and Coronary artery disease (SGZG4k)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing '4nec1Z' on 'ImbABK'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'HYx53L' on 'ImbABK'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'Ku3B84' on 'ImbABK'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'SGZG4k' on 'ImbABK'</span>
+<span class="r-in"><span><span class="co"># Phenotype,SNP,effect_allele,other_allele,eaf,beta,se,pval</span></span></span>
+<span class="r-in"><span><span class="co"># ABO,rs505922,C,T,0.313,1.298,0.014,1.2e-1828</span></span></span>
+<span class="r-in"><span><span class="co"># LIFR,rs635634,T,C,0.180,-0.300,0.032,6.00E-21</span></span></span>
+<span class="r-in"><span><span class="co"># ids &lt;- c("ieu-a-7","ebi-a-GCST007432")</span></span></span>
+<span class="r-in"><span><span class="co"># f &lt;- file.path(find.package("pQTLtools",lib.loc=.libPaths()),"tests","ms.ins")</span></span></span>
+<span class="r-in"><span><span class="co"># ivs &lt;- format_data(read.table(f, header=TRUE), samplesize_col="N")</span></span></span>
+<span class="r-in"><span><span class="co"># SNP Phenotype effect_allele other_allele eaf beta se pval N</span></span></span>
+<span class="r-in"><span><span class="co"># rs1800693 TNFB T C 0.6033 0.0282  0.0136 0.0389045   11787</span></span></span>
+<span class="r-in"><span><span class="co"># rs2364485 TNFB A C 0.1645 6514963 0.1759 1.62181e-20 11344</span></span></span>
+<span class="r-in"><span><span class="co"># https://raw.githubusercontent.com/MRCIEU/epigraphdb-pqtl/master/scripts/MR-pQTL-script.R</span></span></span>
+<span class="r-in"><span><span class="co"># outcome_data &lt;- TwoSampleMR::extract_outcome_data(snps=with(ivs,SNP),outcomes=ids)</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

@@ -1,0 +1,13 @@
+exposure	outcome	id.exposure	id.outcome	samplesize	SNP	b	se	p
+IL.6	Atopic dermatitis	4nec1Z	ImbABK	NA	rs2228145	  -2.21	 0.156	1.83e-45
+IL.6	Atopic dermatitis	4nec1Z	ImbABK	NA	All - Inverse variance weighted	     NA	    NA	      NA
+IL.6	Atopic dermatitis	4nec1Z	ImbABK	NA	All - MR Egger	     NA	    NA	      NA
+IL.6	Rheumatoid arthritis	HYx53L	ImbABK	NA	rs2228145	   2.19	 0.155	1.83e-45
+IL.6	Rheumatoid arthritis	HYx53L	ImbABK	NA	All - Inverse variance weighted	     NA	    NA	      NA
+IL.6	Rheumatoid arthritis	HYx53L	ImbABK	NA	All - MR Egger	     NA	    NA	      NA
+IL.6	Abdominal aortic aneurysm	Ku3B84	ImbABK	NA	rs2228145	1116.71	78.912	1.83e-45
+IL.6	Abdominal aortic aneurysm	Ku3B84	ImbABK	NA	All - Inverse variance weighted	     NA	    NA	      NA
+IL.6	Abdominal aortic aneurysm	Ku3B84	ImbABK	NA	All - MR Egger	     NA	    NA	      NA
+IL.6	Coronary artery disease	SGZG4k	ImbABK	NA	rs2228145	   4.33	 0.306	1.83e-45
+IL.6	Coronary artery disease	SGZG4k	ImbABK	NA	All - Inverse variance weighted	     NA	    NA	      NA
+IL.6	Coronary artery disease	SGZG4k	ImbABK	NA	All - MR Egger	     NA	    NA	      NA
