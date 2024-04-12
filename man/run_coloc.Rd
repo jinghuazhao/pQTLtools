@@ -17,5 +17,5 @@ run_coloc(eqtl_sumstats, gwas_sumstats, harmonise = TRUE)
 Summary from \code{coloc.abf}.
 }
 \description{
-The function takes eQTL and GWAS summary statistics for a colocalisation analysis..
+The function takes eQTL and GWAS summary statistics for a colocalisation analysis.
 }
