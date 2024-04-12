@@ -424,16 +424,17 @@ the `run_TwoSampleMR()` function can be used.
 ```{r, warning=FALSE}
 f <- file.path(system.file(package="pQTLtools"),"tests","Ins.csv")
 ivs <- format_data(read.csv(f))
-caption4 <- "ABO/LIFR variants and CHD/FEV1"
+caption4 <- "IL6R variant and diseases"
 kable(ivs, caption=paste(caption4,"(instruments)"),digits=3)
-ids <- c("ieu-a-7","ebi-a-GCST007432")
-pqtlMR(ivs, ids)
-result <- read.delim("pQTL-combined-result.txt",header=TRUE)
+f <- file.path(system.file(package="pQTLtools"),"tests","Out.csv")
+outcome <- format_data(read.csv(f),type="outcome")
+pqtlMR(ivs, outcome, prefix="IL6R-")
+result <- read.delim("IL6R-result.txt")
 kable(result,caption=paste(caption4, "(result)"),digits=3)
-single <- read.delim("pQTL-combined-single.txt",header=TRUE)
+single <- read.delim("IL6R-single.txt")
 kable(subset(single,!grepl("All",SNP)), caption=paste(caption4, "(single)"),digits=3)
 invisible(sapply(c("harmonise","result","single"),
-                 function(x) unlink(paste0("pQTL-combined-",x,".txt"))))
+                 function(x) unlink(paste0("IL6R-",x,".txt"))))
 ```
 
 ## Two-sample MR
