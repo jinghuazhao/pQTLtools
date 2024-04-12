@@ -433,6 +433,24 @@ result <- read.delim("IL6R-result.txt")
 kable(result,caption=paste(caption4, "(result)"),digits=3)
 single <- read.delim("IL6R-single.txt")
 kable(subset(single,!grepl("All",SNP)), caption=paste(caption4, "(single)"),digits=3)
+```
+
+We carry to producing a forest plot.
+
+```{r pqtlMR, fig.cap="pQTL-MR", fig.height=7, fig.width=7, results='hide', warning=FALSE}
+IL6R <- single %>%
+       filter(grepl("^rs222",SNP)) %>%
+       select(outcome,b,se) %>%
+       setNames(c("outcome","Effect","StdErr")) %>%
+       mutate(outcome=gsub("\\b(^[a-z])","\\U\\1",outcome,perl=TRUE),
+              Effect=as.numeric(Effect),StdErr=as.numeric(StdErr))
+gap::mr_forestplot(IL6R,colgap.forest.left="0.05cm", fontsize=14,
+                   leftcols=c("studlab"), leftlabs=c("Outcome"),
+                   plotwidth="3.5inch", sm="OR",
+                   rightcols=c("effect","ci","pval"), rightlabs=c("OR","95%CI","P"),
+                   digits=2, digits.pval=2, scientific.pval=TRUE,
+                   common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE,
+                   addrow=TRUE, backtransf=TRUE, at=c(1:3)*0.5, spacing=1.5, xlim=c(0.5,1.5))
 invisible(sapply(c("harmonise","result","single"),
                  function(x) unlink(paste0("IL6R-",x,".txt"))))
 ```
