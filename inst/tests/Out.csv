@@ -1,4 +1,4 @@
-study,pmid,Phenotype,efo,SNP,other_allele,effect_allele,beta,se,pval
+study,pmid,Phenotype,efo,SNP,effect_allele,other_allele,beta,se,pval
 EAGLE,26482879,Atopic dermatitis,EFO_0000274,rs2228145,C,A,-0.07637,0.01716,8.67e-06
 Okada Y,24390342,Rheumatoid arthritis,EFO_0000685,rs2228145,A,C,0.07696,0.01418,3.5e-09
 van der Harst P,29212778,Coronary artery disease,EFO_0000378;EFO_0001645,rs2228145,A,C,0.0389,0.0052,4.802e-14
