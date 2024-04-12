@@ -429,9 +429,11 @@ kable(exposure, caption=paste(caption4,"(instruments)"),digits=3)
 f <- file.path(system.file(package="pQTLtools"),"tests","Out.csv")
 outcome <- format_data(read.csv(f),type="outcome")
 pqtlMR(exposure, outcome, prefix="IL6R-")
-result <- read.delim("IL6R-result.txt")
+result <- read.delim("IL6R-result.txt") %>%
+          select(-id.exposure,-id.outcome)
 kable(result,caption=paste(caption4, "(result)"),digits=3)
-single <- read.delim("IL6R-single.txt")
+single <- read.delim("IL6R-single.txt") %>%
+          select(-id.exposure,-id.outcome,-samplesize)
 kable(subset(single,!grepl("All",SNP)), caption=paste(caption4, "(single)"),digits=3)
 ```
 
@@ -472,14 +474,14 @@ exposure <- TwoSampleMR::format_data(within(d,{P=10^logP}), phenotype_col="prot"
                         eaf_col="Freq1", beta_col="Effect", se_col="StdErr",
                         pval_col="P", log_pval=FALSE,
                         samplesize_col="N")
-clump <- exposure[sample(1:nrow(exposure),nrow(exposure)/10),] # TwoSampleMR::clump_data(exposure)
+clump <- exposure[sample(1:nrow(exposure),nrow(exposure)/20),] # TwoSampleMR::clump_data(exposure)
 outcome <- TwoSampleMR::extract_outcome_data(snps=clump$SNP,outcomes=outcomes)
 harmonise <- TwoSampleMR::harmonise_data(clump,outcome)
 prefix <- paste(outcomes,prot,type,sep="-")
 run_TwoSampleMR(harmonise, mr_plot="pQTLtools", prefix=prefix)
 ```
 
-At time of running (12/4/2024), `clump_data` fails to run so 10% sample is used for illustrative purpose.
+At time of running (12/4/2024), `clump_data` fails to run so 5% sample is used for illustrative purpose.
 
 The output is contained in individual `.txt` files, together with the scatter, forest, funnel and leave-one-out plots.
 
