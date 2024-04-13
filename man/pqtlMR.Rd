@@ -27,8 +27,9 @@ pqtlMR(
 No value is returned but several files.
 }
 \description{
-This function takes data intrumental variables as produced by \code{format_data()} and
-used to perform MR analysis against a list of outcomes from MR-Base.
+This function takes exposure and outcome data as produced by \code{format_data()} and used to perform
+MR analysis against a list of outcomes; in the latter case it can be data from MR-Base, e.g.,
+\code{outcome <- extract_outcome_data(snps=with(exposure,SNP),outcomes=c("ieu-a-7","ebi-a-GCST007432"))}.
 }
 \details{
 This function is adapted from \insertCite{zheng20;textual}{pQTLtools} and in
@@ -54,8 +55,6 @@ pqtlMR(exposure, outcome, prefix="IL6R_rev-",reverse=TRUE)
 # SNP Phenotype effect_allele other_allele eaf beta se pval N
 # rs1800693 TNFB T C 0.6033 0.0282  0.0136 0.0389045   11787
 # rs2364485 TNFB A C 0.1645 6514963 0.1759 1.62181e-20 11344
-# ids <- c("ieu-a-7","ebi-a-GCST007432")
-# outcome_data <- TwoSampleMR::extract_outcome_data(snps=with(exposure,SNP),outcomes=ids)
 # https://raw.githubusercontent.com/MRCIEU/epigraphdb-pqtl/master/scripts/MR-pQTL-script.R
 
 }
