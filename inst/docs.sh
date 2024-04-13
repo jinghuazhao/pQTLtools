@@ -37,8 +37,8 @@ if [ -f vignettes/fig3d.html ]; then
 fi
 
 for f in .github .gitignore .Rbuildignore .Rinstignore .travis.yml \
-         data/ DESCRIPTION INDEX inst/ LICENSE LICENSE.md man/ \
-         NAMESPACE NEWS.md pkgdown/ R/ README.* tests/ vignettes/
+         DESCRIPTION INDEX LICENSE LICENSE.md NAMESPACE NEWS.md R/ README.* \
+         docs/ inst/ man/ pkgdown/ vignettes/
 do
   echo adding ${f}
   git add ${f}
