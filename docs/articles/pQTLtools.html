@@ -140,8 +140,8 @@
     
 <p>The examples here are based on the SCALLOP work<span class="citation"><sup>1</sup></span>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">pkgs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GenomicRanges"</span>, <span class="st">"TwoSampleMR"</span>, <span class="st">"biomaRt"</span>, <span class="st">"coloc"</span>, <span class="st">"dplyr"</span>, <span class="st">"gap"</span>, <span class="st">"ggplot2"</span>, <span class="st">"httr"</span>,</span>
-<span>          <span class="st">"ieugwasr"</span>, <span class="st">"karyoploteR"</span>, <span class="st">"circlize"</span>, <span class="st">"knitr"</span>, <span class="st">"plotly"</span>, <span class="st">"pQTLtools"</span>,</span>
+<code class="sourceCode R"><span><span class="va">pkgs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GenomicRanges"</span>, <span class="st">"TwoSampleMR"</span>, <span class="st">"biomaRt"</span>, <span class="st">"coloc"</span>, <span class="st">"dplyr"</span>, <span class="st">"gap"</span>, <span class="st">"ggplot2"</span>, <span class="st">"gwasvcf"</span>, <span class="st">"httr"</span>,</span>
+<span>          <span class="st">"ieugwasr"</span>, <span class="st">"karyoploteR"</span>, <span class="st">"circlize"</span>, <span class="st">"knitr"</span>, <span class="st">"meta"</span>, <span class="st">"plotly"</span>, <span class="st">"pQTLdata"</span>, <span class="st">"pQTLtools"</span>,</span>
 <span>          <span class="st">"rGREAT"</span>, <span class="st">"readr"</span>, <span class="st">"regioneR"</span>, <span class="st">"seqminer"</span><span class="op">)</span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">p</span> <span class="kw">in</span> <span class="va">pkgs</span><span class="op">)</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"^package:"</span>, <span class="va">p</span>, <span class="st">"$"</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/search.html" class="external-link">search</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/warning.html" class="external-link">warning</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"This vignette needs package `"</span>, <span class="va">p</span>, <span class="st">"'; please install"</span><span class="op">)</span><span class="op">)</span></span>
@@ -905,7 +905,7 @@ Figure 2.5: pQTL-gene plot
 <p>As <code>biomaRt</code> is not always on, we keep a copy of hgnc.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">set_config</span><span class="op">(</span><span class="fu">config</span><span class="op">(</span>ssl_verifypeer <span class="op">=</span> <span class="fl">0L</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">mart</span> <span class="op">&lt;-</span> <span class="fu">useMart</span><span class="op">(</span>biomart <span class="op">=</span> <span class="st">"ensembl"</span>, dataset <span class="op">=</span> <span class="st">"hsapiens_gene_ensembl"</span><span class="op">)</span></span>
+<span><span class="va">mart</span> <span class="op">&lt;-</span> <span class="fu">biomaRt</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/biomaRt/man/useMart.html" class="external-link">useMart</a></span><span class="op">(</span>biomart <span class="op">=</span> <span class="st">"ensembl"</span>, dataset <span class="op">=</span> <span class="st">"hsapiens_gene_ensembl"</span><span class="op">)</span></span>
 <span><span class="va">attrs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"hgnc_symbol"</span>, <span class="st">"chromosome_name"</span>, <span class="st">"start_position"</span>, <span class="st">"end_position"</span>, <span class="st">"band"</span><span class="op">)</span></span>
 <span><span class="va">hgnc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">vector</a></span><span class="op">(</span><span class="st">"character"</span>,<span class="fl">180</span><span class="op">)</span></span>
 <span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">180</span><span class="op">)</span></span>
@@ -925,8 +925,8 @@ Figure 2.5: pQTL-gene plot
 <span><span class="op">}</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">merge_cvt</span>, <span class="op">{</span></span>
-<span>  <span class="va">sentinels</span> <span class="op">&lt;-</span> <span class="fu">toGRanges</span><span class="op">(</span><span class="va">Chr</span>,<span class="va">bp</span><span class="op">-</span><span class="fl">1</span>,<span class="va">bp</span>,labels<span class="op">=</span><span class="va">hgnc</span><span class="op">)</span></span>
-<span>  <span class="va">cis.regions</span> <span class="op">&lt;-</span> <span class="fu">toGRanges</span><span class="op">(</span><span class="va">Chr</span>,<span class="va">cis.start</span>,<span class="va">cis.end</span><span class="op">)</span></span>
+<span>  <span class="va">sentinels</span> <span class="op">&lt;-</span> <span class="fu">regioneR</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/regioneR/man/toGRanges.html" class="external-link">toGRanges</a></span><span class="op">(</span><span class="va">Chr</span>,<span class="va">bp</span><span class="op">-</span><span class="fl">1</span>,<span class="va">bp</span>,labels<span class="op">=</span><span class="va">hgnc</span><span class="op">)</span></span>
+<span>  <span class="va">cis.regions</span> <span class="op">&lt;-</span> <span class="fu">regioneR</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/regioneR/man/toGRanges.html" class="external-link">toGRanges</a></span><span class="op">(</span><span class="va">Chr</span>,<span class="va">cis.start</span>,<span class="va">cis.end</span><span class="op">)</span></span>
 <span>  <span class="va">loci</span> <span class="op">&lt;-</span> <span class="fu">toGRanges</span><span class="op">(</span><span class="va">Chr</span>,<span class="va">Start</span>,<span class="va">End</span><span class="op">)</span></span>
 <span>  <span class="va">colors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>,<span class="st">"blue"</span><span class="op">)</span></span>
 <span>  <span class="fu">seqlevelsStyle</span><span class="op">(</span><span class="va">sentinels</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"UCSC"</span></span>
@@ -1011,7 +1011,7 @@ Figure 3.2: GREAT plots
 <span>  <span class="va">tb_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">tb_all</span>,<span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>gene<span class="op">=</span><span class="va">r</span>,<span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">r.post</span>,<span class="va">tb</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span><span class="co">#&gt; Don't make too frequent requests. The time break is 60s.</span></span>
-<span><span class="co">#&gt; Please wait for 54s for the next request.</span></span>
+<span><span class="co">#&gt; Please wait for 55s for the next request.</span></span>
 <span><span class="co">#&gt; The time break can be set by `request_interval` argument.</span></span>
 <span><span class="co">#&gt; Don't make too frequent requests. The time break is 60s.</span></span>
 <span><span class="co">#&gt; Please wait for 57s for the next request.</span></span>
@@ -1607,7 +1607,7 @@ Figure 4.1: Association plot &amp; histogram
 <span>                          H2<span class="op">=</span><span class="va">PP.H2.abf</span>,H3<span class="op">=</span><span class="va">PP.H3.abf</span>,H4<span class="op">=</span><span class="va">PP.H4.abf</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>            <span class="fu">mutate</span><span class="op">(</span>Tissue<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">"GTEx_V8_"</span>,<span class="st">""</span>,<span class="va">Tissue</span><span class="op">)</span>,</span>
 <span>                   H0<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">H0</span>,<span class="fl">2</span><span class="op">)</span>,H1<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">H1</span>,<span class="fl">2</span><span class="op">)</span>,H2<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">H2</span>,<span class="fl">2</span><span class="op">)</span>,H3<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">H3</span>,<span class="fl">2</span><span class="op">)</span>,H4<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">H4</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
-<span>                   <span class="fu">arrange</span><span class="op">(</span><span class="op">-</span><span class="va">H4</span><span class="op">)</span></span>
+<span>                   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="op">-</span><span class="va">H4</span><span class="op">)</span></span>
 <span><span class="va">ktitle</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">sentinel</span>,<span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"Colocalization results for "</span>,<span class="va">prot</span>,<span class="st">"-"</span>,<span class="va">SNP</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu">kable</span><span class="op">(</span><span class="va">coloc_df</span>,caption<span class="op">=</span><span class="va">ktitle</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
@@ -2077,7 +2077,7 @@ analysis. The output are saved in the <code>.RDS</code> files. Note that <code>f
 <h3 id="pqtl-based-mr">
 <span class="header-section-number">5.1</span> pQTL-based MR<a class="anchor" aria-label="anchor" href="#pqtl-based-mr"></a>
 </h3>
-<p>The function <code>pqtlMR</code> has an attractive feature that multiple pQTLs
+<p>The function <code><a href="../reference/pqtlMR.html">pqtlMR()</a></code> has an attractive feature that multiple pQTLs
 can be used together for conducting MR with a list of outcomes from MR-Base, e.g.,
 <code>outcome &lt;- extract_outcome_data(snps=with(exposure,SNP),outcomes=c("ieu-a-7","ebi-a-GCST007432"))</code>.
 For generic applications, the <code><a href="../reference/run_TwoSampleMR.html">run_TwoSampleMR()</a></code> function can be used.</p>
@@ -2291,15 +2291,11 @@ Figure 5.1: pQTL-MR
 <span>                        eaf_col<span class="op">=</span><span class="st">"Freq1"</span>, beta_col<span class="op">=</span><span class="st">"Effect"</span>, se_col<span class="op">=</span><span class="st">"StdErr"</span>,</span>
 <span>                        pval_col<span class="op">=</span><span class="st">"P"</span>, log_pval<span class="op">=</span><span class="cn">FALSE</span>,</span>
 <span>                        samplesize_col<span class="op">=</span><span class="st">"N"</span><span class="op">)</span></span>
-<span><span class="va">clump</span> <span class="op">&lt;-</span> <span class="va">exposure</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">exposure</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">exposure</span><span class="op">)</span><span class="op">/</span><span class="fl">40</span><span class="op">)</span>,<span class="op">]</span> <span class="co"># TwoSampleMR::clump_data(exposure)</span></span>
+<span><span class="va">clump</span> <span class="op">&lt;-</span> <span class="va">exposure</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">exposure</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">exposure</span><span class="op">)</span><span class="op">/</span><span class="fl">80</span><span class="op">)</span>,<span class="op">]</span> <span class="co"># TwoSampleMR::clump_data(exposure)</span></span>
 <span><span class="va">outcome</span> <span class="op">&lt;-</span> <span class="fu">TwoSampleMR</span><span class="fu">::</span><span class="fu"><a href="https://mrcieu.github.io/TwoSampleMR/reference/extract_outcome_data.html" class="external-link">extract_outcome_data</a></span><span class="op">(</span>snps<span class="op">=</span><span class="va">clump</span><span class="op">$</span><span class="va">SNP</span>,outcomes<span class="op">=</span><span class="va">outcomes</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Extracting data for 27 SNP(s) from 1 GWAS(s)</span></span>
-<span><span class="co">#&gt; Finding proxies for 3 SNPs in outcome ebi-a-GCST007432</span></span>
-<span><span class="co">#&gt; Extracting data for 3 SNP(s) from 1 GWAS(s)</span></span>
+<span><span class="co">#&gt; Extracting data for 13 SNP(s) from 1 GWAS(s)</span></span>
 <span><span class="va">harmonise</span> <span class="op">&lt;-</span> <span class="fu">TwoSampleMR</span><span class="fu">::</span><span class="fu"><a href="https://mrcieu.github.io/TwoSampleMR/reference/harmonise_data.html" class="external-link">harmonise_data</a></span><span class="op">(</span><span class="va">clump</span>,<span class="va">outcome</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Harmonising MMP.10 (jrjVHU) and FEV1 || id:ebi-a-GCST007432 (ebi-a-GCST007432)</span></span>
-<span><span class="co">#&gt; Removing the following SNPs for being palindromic with intermediate allele frequencies:</span></span>
-<span><span class="co">#&gt; rs1606668</span></span>
 <span><span class="va">prefix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">outcomes</span>,<span class="va">prot</span>,<span class="va">type</span>,sep<span class="op">=</span><span class="st">"-"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/run_TwoSampleMR.html">run_TwoSampleMR</a></span><span class="op">(</span><span class="va">harmonise</span>, mr_plot<span class="op">=</span><span class="st">"pQTLtools"</span>, prefix<span class="op">=</span><span class="va">prefix</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Analysing 'jrjVHU' on 'ebi-a-GCST007432'</span></span></code></pre></div>
@@ -2327,7 +2323,7 @@ Figure 5.4: Two-sample MR
 Figure 5.5: Two-sample MR
 </p>
 </div>
-<p>At time of running (12/4/2024), <code>clump_data</code> fails to run so 2.5% variants is used for illustrative purpose.</p>
+<p>At time of running (12/4/2024), <code>clump_data</code> fails to run so 1.25% variants is used for illustrative purpose.</p>
 <p>The output is contained in individual <code>.txt</code> files, together with the scatter, forest, funnel and leave-one-out plots.</p>
 <table class="table">
 <caption>
@@ -2361,10 +2357,10 @@ Figure 5.5: Two-sample MR
 <td align="left">FEV1 || id:ebi-a-GCST007432</td>
 <td align="left">MMP.10</td>
 <td align="left">MR Egger</td>
-<td align="right">25</td>
-<td align="right">0.017</td>
-<td align="right">0.010</td>
-<td align="right">0.095</td>
+<td align="right">13</td>
+<td align="right">0.018</td>
+<td align="right">0.014</td>
+<td align="right">0.210</td>
 </tr>
 <tr class="even">
 <td align="left">jrjVHU</td>
@@ -2372,10 +2368,10 @@ Figure 5.5: Two-sample MR
 <td align="left">FEV1 || id:ebi-a-GCST007432</td>
 <td align="left">MMP.10</td>
 <td align="left">Weighted median</td>
-<td align="right">25</td>
-<td align="right">0.004</td>
-<td align="right">0.006</td>
-<td align="right">0.502</td>
+<td align="right">13</td>
+<td align="right">0.001</td>
+<td align="right">0.007</td>
+<td align="right">0.940</td>
 </tr>
 <tr class="odd">
 <td align="left">jrjVHU</td>
@@ -2383,10 +2379,10 @@ Figure 5.5: Two-sample MR
 <td align="left">FEV1 || id:ebi-a-GCST007432</td>
 <td align="left">MMP.10</td>
 <td align="left">Inverse variance weighted</td>
-<td align="right">25</td>
+<td align="right">13</td>
 <td align="right">-0.004</td>
-<td align="right">0.004</td>
-<td align="right">0.383</td>
+<td align="right">0.005</td>
+<td align="right">0.497</td>
 </tr>
 <tr class="even">
 <td align="left">jrjVHU</td>
@@ -2394,10 +2390,10 @@ Figure 5.5: Two-sample MR
 <td align="left">FEV1 || id:ebi-a-GCST007432</td>
 <td align="left">MMP.10</td>
 <td align="left">Simple mode</td>
-<td align="right">25</td>
-<td align="right">0.006</td>
-<td align="right">0.011</td>
-<td align="right">0.618</td>
+<td align="right">13</td>
+<td align="right">-0.001</td>
+<td align="right">0.013</td>
+<td align="right">0.952</td>
 </tr>
 <tr class="odd">
 <td align="left">jrjVHU</td>
@@ -2405,10 +2401,10 @@ Figure 5.5: Two-sample MR
 <td align="left">FEV1 || id:ebi-a-GCST007432</td>
 <td align="left">MMP.10</td>
 <td align="left">Weighted mode</td>
-<td align="right">25</td>
-<td align="right">0.005</td>
-<td align="right">0.007</td>
-<td align="right">0.444</td>
+<td align="right">13</td>
+<td align="right">0.000</td>
+<td align="right">0.009</td>
+<td align="right">0.984</td>
 </tr>
 </tbody>
 </table>
@@ -2442,9 +2438,9 @@ Figure 5.5: Two-sample MR
 <td align="left">FEV1 || id:ebi-a-GCST007432</td>
 <td align="left">MMP.10</td>
 <td align="left">MR Egger</td>
-<td align="right">17.7</td>
-<td align="right">23</td>
-<td align="right">0.771</td>
+<td align="right">8.8</td>
+<td align="right">11</td>
+<td align="right">0.641</td>
 </tr>
 <tr class="even">
 <td align="left">jrjVHU</td>
@@ -2452,9 +2448,9 @@ Figure 5.5: Two-sample MR
 <td align="left">FEV1 || id:ebi-a-GCST007432</td>
 <td align="left">MMP.10</td>
 <td align="left">Inverse variance weighted</td>
-<td align="right">23.2</td>
-<td align="right">24</td>
-<td align="right">0.509</td>
+<td align="right">11.8</td>
+<td align="right">12</td>
+<td align="right">0.463</td>
 </tr>
 </tbody>
 </table>
@@ -2484,9 +2480,9 @@ Figure 5.5: Two-sample MR
 <td align="left">ebi-a-GCST007432</td>
 <td align="left">FEV1 || id:ebi-a-GCST007432</td>
 <td align="left">MMP.10</td>
-<td align="right">-0.003</td>
-<td align="right">0.001</td>
-<td align="right">0.029</td>
+<td align="right">-0.004</td>
+<td align="right">0.002</td>
+<td align="right">0.112</td>
 </tr></tbody>
 </table>
 <table class="table">
@@ -2521,54 +2517,10 @@ Figure 5.5: Two-sample MR
 <td align="left">jrjVHU</td>
 <td align="left">ebi-a-GCST007432</td>
 <td align="right">321047</td>
-<td align="left">rs10160727</td>
-<td align="right">0.015</td>
-<td align="right">0.021</td>
-<td align="right">0.479</td>
-</tr>
-<tr class="even">
-<td align="left">MMP.10</td>
-<td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">jrjVHU</td>
-<td align="left">ebi-a-GCST007432</td>
-<td align="right">321047</td>
-<td align="left">rs111612083</td>
-<td align="right">0.010</td>
-<td align="right">0.011</td>
-<td align="right">0.356</td>
-</tr>
-<tr class="odd">
-<td align="left">MMP.10</td>
-<td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">jrjVHU</td>
-<td align="left">ebi-a-GCST007432</td>
-<td align="right">321047</td>
-<td align="left">rs11225679</td>
-<td align="right">-0.034</td>
-<td align="right">0.030</td>
-<td align="right">0.250</td>
-</tr>
-<tr class="even">
-<td align="left">MMP.10</td>
-<td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">jrjVHU</td>
-<td align="left">ebi-a-GCST007432</td>
-<td align="right">321047</td>
 <td align="left">rs11605152</td>
 <td align="right">-0.002</td>
 <td align="right">0.012</td>
 <td align="right">0.836</td>
-</tr>
-<tr class="odd">
-<td align="left">MMP.10</td>
-<td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">jrjVHU</td>
-<td align="left">ebi-a-GCST007432</td>
-<td align="right">321047</td>
-<td align="left">rs12289906</td>
-<td align="right">-0.018</td>
-<td align="right">0.023</td>
-<td align="right">0.437</td>
 </tr>
 <tr class="even">
 <td align="left">MMP.10</td>
@@ -2598,32 +2550,10 @@ Figure 5.5: Two-sample MR
 <td align="left">jrjVHU</td>
 <td align="left">ebi-a-GCST007432</td>
 <td align="right">321047</td>
-<td align="left">rs1709145</td>
-<td align="right">-0.060</td>
-<td align="right">0.033</td>
-<td align="right">0.068</td>
-</tr>
-<tr class="odd">
-<td align="left">MMP.10</td>
-<td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">jrjVHU</td>
-<td align="left">ebi-a-GCST007432</td>
-<td align="right">321047</td>
 <td align="left">rs17099555</td>
 <td align="right">0.020</td>
 <td align="right">0.033</td>
 <td align="right">0.548</td>
-</tr>
-<tr class="even">
-<td align="left">MMP.10</td>
-<td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">jrjVHU</td>
-<td align="left">ebi-a-GCST007432</td>
-<td align="right">321047</td>
-<td align="left">rs1711423</td>
-<td align="right">0.018</td>
-<td align="right">0.031</td>
-<td align="right">0.572</td>
 </tr>
 <tr class="odd">
 <td align="left">MMP.10</td>
@@ -2653,28 +2583,6 @@ Figure 5.5: Two-sample MR
 <td align="left">jrjVHU</td>
 <td align="left">ebi-a-GCST007432</td>
 <td align="right">321047</td>
-<td align="left">rs2003797</td>
-<td align="right">-0.007</td>
-<td align="right">0.028</td>
-<td align="right">0.809</td>
-</tr>
-<tr class="even">
-<td align="left">MMP.10</td>
-<td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">jrjVHU</td>
-<td align="left">ebi-a-GCST007432</td>
-<td align="right">321047</td>
-<td align="left">rs2137864</td>
-<td align="right">-0.056</td>
-<td align="right">0.034</td>
-<td align="right">0.096</td>
-</tr>
-<tr class="odd">
-<td align="left">MMP.10</td>
-<td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">jrjVHU</td>
-<td align="left">ebi-a-GCST007432</td>
-<td align="right">321047</td>
 <td align="left">rs2846341</td>
 <td align="right">-0.013</td>
 <td align="right">0.016</td>
@@ -2686,23 +2594,12 @@ Figure 5.5: Two-sample MR
 <td align="left">jrjVHU</td>
 <td align="left">ebi-a-GCST007432</td>
 <td align="right">321047</td>
-<td align="left">rs3819099</td>
-<td align="right">0.010</td>
-<td align="right">0.031</td>
-<td align="right">0.762</td>
-</tr>
-<tr class="odd">
-<td align="left">MMP.10</td>
-<td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">jrjVHU</td>
-<td align="left">ebi-a-GCST007432</td>
-<td align="right">321047</td>
 <td align="left">rs41380244</td>
 <td align="right">0.006</td>
 <td align="right">0.036</td>
 <td align="right">0.864</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">MMP.10</td>
 <td align="left">FEV1 || id:ebi-a-GCST007432</td>
 <td align="left">jrjVHU</td>
@@ -2713,7 +2610,7 @@ Figure 5.5: Two-sample MR
 <td align="right">0.033</td>
 <td align="right">0.068</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">MMP.10</td>
 <td align="left">FEV1 || id:ebi-a-GCST007432</td>
 <td align="left">jrjVHU</td>
@@ -2724,29 +2621,7 @@ Figure 5.5: Two-sample MR
 <td align="right">0.014</td>
 <td align="right">0.143</td>
 </tr>
-<tr class="even">
-<td align="left">MMP.10</td>
-<td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">jrjVHU</td>
-<td align="left">ebi-a-GCST007432</td>
-<td align="right">321047</td>
-<td align="left">rs6590979</td>
-<td align="right">0.006</td>
-<td align="right">0.026</td>
-<td align="right">0.818</td>
-</tr>
 <tr class="odd">
-<td align="left">MMP.10</td>
-<td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">jrjVHU</td>
-<td align="left">ebi-a-GCST007432</td>
-<td align="right">321047</td>
-<td align="left">rs661028</td>
-<td align="right">-0.024</td>
-<td align="right">0.032</td>
-<td align="right">0.462</td>
-</tr>
-<tr class="even">
 <td align="left">MMP.10</td>
 <td align="left">FEV1 || id:ebi-a-GCST007432</td>
 <td align="left">jrjVHU</td>
@@ -2757,7 +2632,7 @@ Figure 5.5: Two-sample MR
 <td align="right">0.037</td>
 <td align="right">0.732</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">MMP.10</td>
 <td align="left">FEV1 || id:ebi-a-GCST007432</td>
 <td align="left">jrjVHU</td>
@@ -2767,17 +2642,6 @@ Figure 5.5: Two-sample MR
 <td align="right">-0.039</td>
 <td align="right">0.033</td>
 <td align="right">0.230</td>
-</tr>
-<tr class="even">
-<td align="left">MMP.10</td>
-<td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">jrjVHU</td>
-<td align="left">ebi-a-GCST007432</td>
-<td align="right">321047</td>
-<td align="left">rs78847320</td>
-<td align="right">-0.038</td>
-<td align="right">0.034</td>
-<td align="right">0.266</td>
 </tr>
 <tr class="odd">
 <td align="left">MMP.10</td>
@@ -2798,8 +2662,8 @@ Figure 5.5: Two-sample MR
 <td align="right">321047</td>
 <td align="left">All - Inverse variance weighted</td>
 <td align="right">-0.004</td>
-<td align="right">0.004</td>
-<td align="right">0.383</td>
+<td align="right">0.005</td>
+<td align="right">0.497</td>
 </tr>
 <tr class="odd">
 <td align="left">MMP.10</td>
@@ -2808,13 +2672,13 @@ Figure 5.5: Two-sample MR
 <td align="left">ebi-a-GCST007432</td>
 <td align="right">321047</td>
 <td align="left">All - MR Egger</td>
-<td align="right">0.017</td>
-<td align="right">0.010</td>
-<td align="right">0.095</td>
+<td align="right">0.018</td>
+<td align="right">0.014</td>
+<td align="right">0.210</td>
 </tr>
 </tbody>
 </table>
-<table style="width:100%;" class="table">
+<table class="table">
 <caption>
 <span id="tab:unnamed-chunk-4">Table 5.2: </span>MMP.10 variants and FEV1 (loo)</caption>
 <colgroup>
@@ -2823,7 +2687,7 @@ Figure 5.5: Two-sample MR
 <col width="10%">
 <col width="14%">
 <col width="9%">
-<col width="10%">
+<col width="9%">
 <col width="5%">
 <col width="5%">
 <col width="5%">
@@ -2846,54 +2710,10 @@ Figure 5.5: Two-sample MR
 <td align="left">jrjVHU</td>
 <td align="left">ebi-a-GCST007432</td>
 <td align="right">321047</td>
-<td align="left">rs10160727</td>
-<td align="right">-0.004</td>
-<td align="right">0.004</td>
-<td align="right">0.300</td>
-</tr>
-<tr class="even">
-<td align="left">MMP.10</td>
-<td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">jrjVHU</td>
-<td align="left">ebi-a-GCST007432</td>
-<td align="right">321047</td>
-<td align="left">rs111612083</td>
-<td align="right">-0.006</td>
-<td align="right">0.005</td>
-<td align="right">0.177</td>
-</tr>
-<tr class="odd">
-<td align="left">MMP.10</td>
-<td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">jrjVHU</td>
-<td align="left">ebi-a-GCST007432</td>
-<td align="right">321047</td>
-<td align="left">rs11225679</td>
-<td align="right">-0.003</td>
-<td align="right">0.004</td>
-<td align="right">0.473</td>
-</tr>
-<tr class="even">
-<td align="left">MMP.10</td>
-<td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">jrjVHU</td>
-<td align="left">ebi-a-GCST007432</td>
-<td align="right">321047</td>
 <td align="left">rs11605152</td>
 <td align="right">-0.004</td>
-<td align="right">0.004</td>
-<td align="right">0.394</td>
-</tr>
-<tr class="odd">
-<td align="left">MMP.10</td>
-<td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">jrjVHU</td>
-<td align="left">ebi-a-GCST007432</td>
-<td align="right">321047</td>
-<td align="left">rs12289906</td>
-<td align="right">-0.003</td>
-<td align="right">0.004</td>
-<td align="right">0.456</td>
+<td align="right">0.006</td>
+<td align="right">0.525</td>
 </tr>
 <tr class="even">
 <td align="left">MMP.10</td>
@@ -2902,9 +2722,9 @@ Figure 5.5: Two-sample MR
 <td align="left">ebi-a-GCST007432</td>
 <td align="right">321047</td>
 <td align="left">rs12365082</td>
-<td align="right">-0.005</td>
-<td align="right">0.005</td>
-<td align="right">0.248</td>
+<td align="right">-0.007</td>
+<td align="right">0.006</td>
+<td align="right">0.286</td>
 </tr>
 <tr class="odd">
 <td align="left">MMP.10</td>
@@ -2913,22 +2733,11 @@ Figure 5.5: Two-sample MR
 <td align="left">ebi-a-GCST007432</td>
 <td align="right">321047</td>
 <td align="left">rs1276270</td>
-<td align="right">-0.003</td>
-<td align="right">0.004</td>
-<td align="right">0.522</td>
+<td align="right">-0.002</td>
+<td align="right">0.006</td>
+<td align="right">0.707</td>
 </tr>
 <tr class="even">
-<td align="left">MMP.10</td>
-<td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">jrjVHU</td>
-<td align="left">ebi-a-GCST007432</td>
-<td align="right">321047</td>
-<td align="left">rs1709145</td>
-<td align="right">-0.003</td>
-<td align="right">0.004</td>
-<td align="right">0.518</td>
-</tr>
-<tr class="odd">
 <td align="left">MMP.10</td>
 <td align="left">FEV1 || id:ebi-a-GCST007432</td>
 <td align="left">jrjVHU</td>
@@ -2936,19 +2745,8 @@ Figure 5.5: Two-sample MR
 <td align="right">321047</td>
 <td align="left">rs17099555</td>
 <td align="right">-0.004</td>
-<td align="right">0.004</td>
-<td align="right">0.339</td>
-</tr>
-<tr class="even">
-<td align="left">MMP.10</td>
-<td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">jrjVHU</td>
-<td align="left">ebi-a-GCST007432</td>
-<td align="right">321047</td>
-<td align="left">rs1711423</td>
-<td align="right">-0.004</td>
-<td align="right">0.004</td>
-<td align="right">0.339</td>
+<td align="right">0.005</td>
+<td align="right">0.437</td>
 </tr>
 <tr class="odd">
 <td align="left">MMP.10</td>
@@ -2958,8 +2756,8 @@ Figure 5.5: Two-sample MR
 <td align="right">321047</td>
 <td align="left">rs17880553</td>
 <td align="right">-0.004</td>
-<td align="right">0.004</td>
-<td align="right">0.374</td>
+<td align="right">0.006</td>
+<td align="right">0.496</td>
 </tr>
 <tr class="even">
 <td align="left">MMP.10</td>
@@ -2969,30 +2767,8 @@ Figure 5.5: Two-sample MR
 <td align="right">321047</td>
 <td align="left">rs1835493</td>
 <td align="right">-0.003</td>
-<td align="right">0.004</td>
-<td align="right">0.458</td>
-</tr>
-<tr class="odd">
-<td align="left">MMP.10</td>
-<td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">jrjVHU</td>
-<td align="left">ebi-a-GCST007432</td>
-<td align="right">321047</td>
-<td align="left">rs2003797</td>
-<td align="right">-0.004</td>
-<td align="right">0.004</td>
-<td align="right">0.399</td>
-</tr>
-<tr class="even">
-<td align="left">MMP.10</td>
-<td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">jrjVHU</td>
-<td align="left">ebi-a-GCST007432</td>
-<td align="right">321047</td>
-<td align="left">rs2137864</td>
-<td align="right">-0.003</td>
-<td align="right">0.004</td>
-<td align="right">0.502</td>
+<td align="right">0.005</td>
+<td align="right">0.610</td>
 </tr>
 <tr class="odd">
 <td align="left">MMP.10</td>
@@ -3001,22 +2777,11 @@ Figure 5.5: Two-sample MR
 <td align="left">ebi-a-GCST007432</td>
 <td align="right">321047</td>
 <td align="left">rs2846341</td>
-<td align="right">-0.003</td>
-<td align="right">0.004</td>
-<td align="right">0.499</td>
+<td align="right">-0.002</td>
+<td align="right">0.006</td>
+<td align="right">0.680</td>
 </tr>
 <tr class="even">
-<td align="left">MMP.10</td>
-<td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">jrjVHU</td>
-<td align="left">ebi-a-GCST007432</td>
-<td align="right">321047</td>
-<td align="left">rs3819099</td>
-<td align="right">-0.004</td>
-<td align="right">0.004</td>
-<td align="right">0.357</td>
-</tr>
-<tr class="odd">
 <td align="left">MMP.10</td>
 <td align="left">FEV1 || id:ebi-a-GCST007432</td>
 <td align="left">jrjVHU</td>
@@ -3024,65 +2789,43 @@ Figure 5.5: Two-sample MR
 <td align="right">321047</td>
 <td align="left">rs41380244</td>
 <td align="right">-0.004</td>
-<td align="right">0.004</td>
-<td align="right">0.370</td>
+<td align="right">0.006</td>
+<td align="right">0.490</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">MMP.10</td>
 <td align="left">FEV1 || id:ebi-a-GCST007432</td>
 <td align="left">jrjVHU</td>
 <td align="left">ebi-a-GCST007432</td>
 <td align="right">321047</td>
 <td align="left">rs510347</td>
-<td align="right">-0.003</td>
-<td align="right">0.004</td>
-<td align="right">0.516</td>
+<td align="right">-0.002</td>
+<td align="right">0.005</td>
+<td align="right">0.696</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">MMP.10</td>
 <td align="left">FEV1 || id:ebi-a-GCST007432</td>
 <td align="left">jrjVHU</td>
 <td align="left">ebi-a-GCST007432</td>
 <td align="right">321047</td>
 <td align="left">rs61895694</td>
-<td align="right">-0.006</td>
-<td align="right">0.004</td>
-<td align="right">0.175</td>
-</tr>
-<tr class="even">
-<td align="left">MMP.10</td>
-<td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">jrjVHU</td>
-<td align="left">ebi-a-GCST007432</td>
-<td align="right">321047</td>
-<td align="left">rs6590979</td>
-<td align="right">-0.004</td>
-<td align="right">0.004</td>
-<td align="right">0.357</td>
+<td align="right">-0.008</td>
+<td align="right">0.006</td>
+<td align="right">0.187</td>
 </tr>
 <tr class="odd">
-<td align="left">MMP.10</td>
-<td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">jrjVHU</td>
-<td align="left">ebi-a-GCST007432</td>
-<td align="right">321047</td>
-<td align="left">rs661028</td>
-<td align="right">-0.003</td>
-<td align="right">0.004</td>
-<td align="right">0.433</td>
-</tr>
-<tr class="even">
 <td align="left">MMP.10</td>
 <td align="left">FEV1 || id:ebi-a-GCST007432</td>
 <td align="left">jrjVHU</td>
 <td align="left">ebi-a-GCST007432</td>
 <td align="right">321047</td>
 <td align="left">rs72977504</td>
-<td align="right">-0.004</td>
-<td align="right">0.004</td>
-<td align="right">0.402</td>
+<td align="right">-0.003</td>
+<td align="right">0.006</td>
+<td align="right">0.538</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">MMP.10</td>
 <td align="left">FEV1 || id:ebi-a-GCST007432</td>
 <td align="left">jrjVHU</td>
@@ -3090,19 +2833,8 @@ Figure 5.5: Two-sample MR
 <td align="right">321047</td>
 <td align="left">rs75093003</td>
 <td align="right">-0.003</td>
-<td align="right">0.004</td>
-<td align="right">0.468</td>
-</tr>
-<tr class="even">
-<td align="left">MMP.10</td>
-<td align="left">FEV1 || id:ebi-a-GCST007432</td>
-<td align="left">jrjVHU</td>
-<td align="left">ebi-a-GCST007432</td>
-<td align="right">321047</td>
-<td align="left">rs78847320</td>
-<td align="right">-0.003</td>
-<td align="right">0.004</td>
-<td align="right">0.457</td>
+<td align="right">0.005</td>
+<td align="right">0.624</td>
 </tr>
 <tr class="odd">
 <td align="left">MMP.10</td>
@@ -3112,8 +2844,8 @@ Figure 5.5: Two-sample MR
 <td align="right">321047</td>
 <td align="left">rs79991976</td>
 <td align="right">-0.003</td>
-<td align="right">0.004</td>
-<td align="right">0.467</td>
+<td align="right">0.005</td>
+<td align="right">0.623</td>
 </tr>
 <tr class="even">
 <td align="left">MMP.10</td>
@@ -3123,8 +2855,8 @@ Figure 5.5: Two-sample MR
 <td align="right">321047</td>
 <td align="left">All</td>
 <td align="right">-0.004</td>
-<td align="right">0.004</td>
-<td align="right">0.383</td>
+<td align="right">0.005</td>
+<td align="right">0.497</td>
 </tr>
 </tbody>
 </table>
