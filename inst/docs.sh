@@ -45,7 +45,5 @@ do
   git commit -m "${f}"
 done
 
-git add -f docs
-git commit -m "docs"
 git push
 du -hs --exclude .git --exclude docs
