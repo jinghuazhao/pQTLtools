@@ -1,10 +1,10 @@
 exposure	outcome	id.exposure	id.outcome	samplesize	SNP	b	se	p
-IL.6	Coronary artery disease	ImbABK	4nec1Z	NA	rs2228145	0.231	0.0309	7.39e-14
-IL.6	Coronary artery disease	ImbABK	4nec1Z	NA	All - Inverse variance weighted	   NA	    NA	      NA
-IL.6	Coronary artery disease	ImbABK	4nec1Z	NA	All - MR Egger	   NA	    NA	      NA
-IL.6	Atopic dermatitis	ImbABK	Ku3B84	NA	rs2228145	0.454	0.1019	8.57e-06
-IL.6	Atopic dermatitis	ImbABK	Ku3B84	NA	All - Inverse variance weighted	   NA	    NA	      NA
-IL.6	Atopic dermatitis	ImbABK	Ku3B84	NA	All - MR Egger	   NA	    NA	      NA
-IL.6	Rheumatoid arthritis	ImbABK	SGZG4k	NA	rs2228145	0.457	0.0842	5.72e-08
-IL.6	Rheumatoid arthritis	ImbABK	SGZG4k	NA	All - Inverse variance weighted	   NA	    NA	      NA
-IL.6	Rheumatoid arthritis	ImbABK	SGZG4k	NA	All - MR Egger	   NA	    NA	      NA
+IL.6	Coronary artery disease	ImbABK	4nec1Z	NA	rs2228145	-0.231	0.0309	7.39e-14
+IL.6	Coronary artery disease	ImbABK	4nec1Z	NA	All - Inverse variance weighted	    NA	    NA	      NA
+IL.6	Coronary artery disease	ImbABK	4nec1Z	NA	All - MR Egger	    NA	    NA	      NA
+IL.6	Atopic dermatitis	ImbABK	Ku3B84	NA	rs2228145	-0.454	0.1019	8.57e-06
+IL.6	Atopic dermatitis	ImbABK	Ku3B84	NA	All - Inverse variance weighted	    NA	    NA	      NA
+IL.6	Atopic dermatitis	ImbABK	Ku3B84	NA	All - MR Egger	    NA	    NA	      NA
+IL.6	Rheumatoid arthritis	ImbABK	SGZG4k	NA	rs2228145	-0.457	0.0842	5.72e-08
+IL.6	Rheumatoid arthritis	ImbABK	SGZG4k	NA	All - Inverse variance weighted	    NA	    NA	      NA
+IL.6	Rheumatoid arthritis	ImbABK	SGZG4k	NA	All - MR Egger	    NA	    NA	      NA
