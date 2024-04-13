@@ -519,43 +519,6 @@ p <- ggplot2::ggplot(d3,aes(y = trait, x = y))+
 p
 ```
 
-## GSMR forest plots
-
-This is based on GSMR results of TNFB and a range of immune-mediated traits,
-
-```{r tnfb, echo=FALSE}
-tnfb <- '
-              "multiple sclerosis"  0.69058600 0.059270400
-    "systemic lupus erythematosus"  0.76687500 0.079000500
-          "sclerosing cholangitis"  0.62671500 0.075954700
-   "juvenile idiopathic arthritis" -1.17577000 0.160293000
-                       "psoriasis"  0.00582586 0.000800016
-            "rheumatoid arthritis" -0.00378072 0.000625160
-      "inflammatory bowel disease" -0.14334200 0.025272500
-          "ankylosing spondylitis" -0.00316852 0.000626225
-                  "hypothyroidism" -0.00432054 0.000987324
-               "allergic rhinitis"  0.00393075 0.000926002
-          "IgA glomerulonephritis" -0.32696600 0.105262000
-                   "atopic eczema" -0.00204018 0.000678061
-'
-
-tnfb <- as.data.frame(scan(file=textConnection(tnfb),what=list("",0,0))) %>%
-        setNames(c("Outcome","Effect","StdErr")) %>%
-        dplyr::mutate(Outcome=gsub("\\b(^[a-z])","\\U\\1",Outcome,perl=TRUE))
-kable(tnfb,caption="GSMR results for TNFB and immune-mediated traits",digits=3)
-```
-
-```{r mrforestplot, fig.cap="Forest plots based on MR results on TNFB", fig.align="left", fig.height=8, fig.width=12, results="hide"}
-
-gap::mr_forestplot(tnfb,colgap.forest.left="0.05cm", fontsize=14,
-              leftcols=c("studlab"), leftlabs=c("Outcome"),
-              plotwidth="5inch", sm="OR", sortvar=tnfb[["Effect"]],
-              rightcols=c("effect","ci","pval"), rightlabs=c("OR","95%CI","GSMR P"),
-              digits=3, digits.pval=2, scientific.pval=TRUE,
-              common=FALSE, random=FALSE, print.I2=FALSE, print.pval.Q=FALSE, print.tau2=FALSE,
-              addrow=TRUE, backtransf=TRUE, spacing=1.6, col.inside="black", col.square="black")
-```
-
 # Literature on pQTLs
 
 References @sun18 @suhre20 are included as EndNote libraries which is now part of pQTLdata package.
