@@ -942,7 +942,9 @@ mr_leaveoneout_plot2 <- function (leaveoneout_results, alpha = 0.05)
       ggplot2::scale_colour_manual(values = c("black", "red")) +
       ggplot2::scale_size_manual(values = c(0.3, 1)) +
       ggplot2::theme(legend.position = "none", axis.text.y = ggplot2::element_text(size = 8),
-                     axis.ticks.y = ggplot2::element_line(size = 0), axis.title.x = ggplot2::element_text(size = 8),panel.grid=ggplot2::element_blank()) +
+                     axis.ticks.y = ggplot2::element_line(size = 0),
+                     axis.title.x = ggplot2::element_text(size = 8),
+                     panel.grid=ggplot2::element_blank()) +
       ggplot2::labs(y = "", x = paste0("MR leave-one-out sensitivity analysis for\n'", with(d, exposure)[1], "' on '", with(d, outcome)[1], "'"))
   })
   res
@@ -950,8 +952,9 @@ mr_leaveoneout_plot2 <- function (leaveoneout_results, alpha = 0.05)
 
 #' Basic pQTL-MR analysis
 #'
-#' This function takes data intrumental variables as produced by `format_data()` and
-#' used to perform MR analysis against a list of outcomes from MR-Base.
+#' This function takes exposure and outcome data as produced by `format_data()` and used to perform
+#' MR analysis against a list of outcomes; in the latter case it can be data from MR-Base, e.g.,
+#' `outcome <- extract_outcome_data(snps=with(exposure,SNP),outcomes=c("ieu-a-7","ebi-a-GCST007432"))`.
 #'
 #' @param exposure exposure data.
 #' @param outcome the counterpart for outcome.
@@ -988,8 +991,6 @@ mr_leaveoneout_plot2 <- function (leaveoneout_results, alpha = 0.05)
 #' # SNP Phenotype effect_allele other_allele eaf beta se pval N
 #' # rs1800693 TNFB T C 0.6033 0.0282  0.0136 0.0389045   11787
 #' # rs2364485 TNFB A C 0.1645 6514963 0.1759 1.62181e-20 11344
-#' # ids <- c("ieu-a-7","ebi-a-GCST007432")
-#' # outcome_data <- TwoSampleMR::extract_outcome_data(snps=with(exposure,SNP),outcomes=ids)
 #' # https://raw.githubusercontent.com/MRCIEU/epigraphdb-pqtl/master/scripts/MR-pQTL-script.R
 #'
 #' @note
