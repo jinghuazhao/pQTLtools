@@ -1085,7 +1085,7 @@ pqtlMR <- function(exposure, outcome, mr_plot=FALSE, prefix="pQTL-combined-", re
 #'                                      eaf_col="Freq1", beta_col="Effect", se_col="StdErr",
 #'                                      pval_col="P", log_pval=FALSE,
 #'                                      samplesize_col="N")
-#' clump <- TwoSampleMR::clump_data(exposure)
+#' clump <- exposure[sample(1:nrow(exposure),nrow(exposure)/80),] # TwoSampleMR::clump_data(exposure)
 #' outcome <- TwoSampleMR::extract_outcome_data(snps=exposure$SNP,outcomes=outcomes)
 #' harmonise <- TwoSampleMR::harmonise_data(clump,outcome)
 #' prefix <- paste(outcomes,prot,type,sep="-")
