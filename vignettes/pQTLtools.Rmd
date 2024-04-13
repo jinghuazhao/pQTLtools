@@ -31,8 +31,8 @@ knitr::opts_chunk$set(
 The examples here are based on the SCALLOP work @scallop_inf.
 
 ```{r, message=FALSE, warning=FALSE}
-pkgs <- c("GenomicRanges", "TwoSampleMR", "biomaRt", "coloc", "dplyr", "gap", "ggplot2", "httr",
-          "ieugwasr", "karyoploteR", "circlize", "knitr", "plotly", "pQTLtools",
+pkgs <- c("GenomicRanges", "TwoSampleMR", "biomaRt", "coloc", "dplyr", "gap", "ggplot2", "gwasvcf", "httr",
+          "ieugwasr", "karyoploteR", "circlize", "knitr", "meta", "plotly", "pQTLdata", "pQTLtools",
           "rGREAT", "readr", "regioneR", "seqminer")
 for (p in pkgs) if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
     if (!requireNamespace(p)) warning(paste0("This vignette needs package `", p, "'; please install"))
@@ -179,7 +179,7 @@ As `biomaRt` is not always on, we keep a copy of hgnc.
 
 ```r
 set_config(config(ssl_verifypeer = 0L))
-mart <- useMart(biomart = "ensembl", dataset = "hsapiens_gene_ensembl")
+mart <- biomaRt::useMart(biomart = "ensembl", dataset = "hsapiens_gene_ensembl")
 attrs <- c("hgnc_symbol", "chromosome_name", "start_position", "end_position", "band")
 hgnc <- vector("character",180)
 for(i in 1:180)
@@ -202,8 +202,8 @@ merge_cvt <- within(merge_cvt,{
 })
 
 with(merge_cvt, {
-  sentinels <- toGRanges(Chr,bp-1,bp,labels=hgnc)
-  cis.regions <- toGRanges(Chr,cis.start,cis.end)
+  sentinels <- regioneR::toGRanges(Chr,bp-1,bp,labels=hgnc)
+  cis.regions <- regioneR::toGRanges(Chr,cis.start,cis.end)
   loci <- toGRanges(Chr,Start,End)
   colors <- c("red","blue")
   seqlevelsStyle(sentinels) <- "UCSC"
@@ -405,7 +405,7 @@ coloc_df <- readRDS(file.path(find.package("pQTLtools"),"tests","OPG-chr8:120081
                           H2=PP.H2.abf,H3=PP.H3.abf,H4=PP.H4.abf) %>%
             mutate(Tissue=gsub("GTEx_V8_","",Tissue),
                    H0=round(H0,2),H1=round(H1,2),H2=round(H2,2),H3=round(H3,2),H4=round(H4,2)) %>%
-                   arrange(-H4)
+                   dplyr::arrange(-H4)
 ktitle <- with(sentinel,paste0("Colocalization results for ",prot,"-",SNP))
 kable(coloc_df,caption=ktitle)
 ```
@@ -417,7 +417,7 @@ analysis. The output are saved in the `.RDS` files. Note that `ftp_path` changes
 
 ## pQTL-based MR
 
-The function `pqtlMR` has an attractive feature that multiple pQTLs
+The function `pqtlMR()` has an attractive feature that multiple pQTLs
 can be used together for conducting MR with a list of outcomes from MR-Base, e.g.,
 `outcome <- extract_outcome_data(snps=with(exposure,SNP),outcomes=c("ieu-a-7","ebi-a-GCST007432"))`.
 For generic applications, the `run_TwoSampleMR()` function can be used.
@@ -475,14 +475,14 @@ exposure <- TwoSampleMR::format_data(within(d,{P=10^logP}), phenotype_col="prot"
                         eaf_col="Freq1", beta_col="Effect", se_col="StdErr",
                         pval_col="P", log_pval=FALSE,
                         samplesize_col="N")
-clump <- exposure[sample(1:nrow(exposure),nrow(exposure)/40),] # TwoSampleMR::clump_data(exposure)
+clump <- exposure[sample(1:nrow(exposure),nrow(exposure)/80),] # TwoSampleMR::clump_data(exposure)
 outcome <- TwoSampleMR::extract_outcome_data(snps=clump$SNP,outcomes=outcomes)
 harmonise <- TwoSampleMR::harmonise_data(clump,outcome)
 prefix <- paste(outcomes,prot,type,sep="-")
 run_TwoSampleMR(harmonise, mr_plot="pQTLtools", prefix=prefix)
 ```
 
-At time of running (12/4/2024), `clump_data` fails to run so 2.5% variants is used for illustrative purpose.
+At time of running (12/4/2024), `clump_data` fails to run so 1.25% variants is used for illustrative purpose.
 
 The output is contained in individual `.txt` files, together with the scatter, forest, funnel and leave-one-out plots.
 
