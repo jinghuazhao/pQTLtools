@@ -22,15 +22,17 @@ workflow.
 \details{
 Available functions are listed in the following table.\tabular{ll}{
    Objects \tab Description \cr
-   \strong{eQTL/GWAS} \tab   \cr
-   \code{\link{get.prop.below.LLOD}} \tab Limit of detection analysis \cr
-   \code{\link{import_eQTLCatalogue}} \tab Import eQTL Catalogue \cr
+   \strong{GWAS} \tab   \cr
    \code{\link{import_OpenGWAS}} \tab Import OpenGWAS \cr
-   \code{\link{make_ExpressionSet}} \tab A call to ExpressionSet class \cr
    \code{\link{novelty_check}} \tab Locus novelty check \cr
-   \code{\link{run_coloc}} \tab Colocalisation analysis \cr
    \code{\link{turboman}} \tab Manhattan plots \cr
    \code{\link{turboqq}} \tab QQ plots \cr
+     \tab   \cr
+   \strong{Expression} \tab   \cr
+   \code{\link{get.prop.below.LLOD}} \tab Limit of detection analysis \cr
+   \code{\link{import_eQTLCatalogue}} \tab Import eQTL Catalogue \cr
+   \code{\link{make_ExpressionSet}} \tab A call to ExpressionSet class \cr
+   \code{\link{run_coloc}} \tab Colocalisation analysis \cr
      \tab   \cr
    \strong{MR analysis} \tab   \cr
    \code{\link{pqtlMR}} \tab Bidirectional pQTL-MR analysis \cr
