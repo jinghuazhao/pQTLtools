@@ -31,7 +31,8 @@ knitr::opts_chunk$set(
 The examples here are based on the SCALLOP work @scallop_inf.
 
 ```{r, message=FALSE, warning=FALSE}
-pkgs <- c("GenomicRanges", "TwoSampleMR", "biomaRt", "coloc", "dplyr", "gap", "ggplot2", "gwasvcf", "httr",
+pkgs <- c("GenomeInfoDb", "GenomicRanges", "TwoSampleMR", "biomaRt",
+          "coloc", "dplyr", "gap", "ggplot2", "gwasvcf", "httr",
           "ieugwasr", "karyoploteR", "circlize", "knitr", "meta", "plotly", "pQTLdata", "pQTLtools",
           "rGREAT", "readr", "regioneR", "seqminer")
 for (p in pkgs) if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
@@ -206,7 +207,7 @@ with(merge_cvt, {
   cis.regions <- regioneR::toGRanges(Chr,cis.start,cis.end)
   loci <- toGRanges(Chr,Start,End)
   colors <- c("red","blue")
-  seqlevelsStyle(sentinels) <- "UCSC"
+  GenomeInfoDb::seqlevelsStyle(sentinels) <- "UCSC"
   kp <- karyoploteR::plotKaryotype(genome="hg19",chromosomes=levels(seqnames(sentinels)))
   karyoploteR::kpAddBaseNumbers(kp)
   karyoploteR::kpPlotRegions(kp, data=loci,r0=0.05,r1=0.15,border="black")
@@ -292,7 +293,7 @@ liftRegion <- function(x,chain,flanking=1e6)
 {
   require(GenomicRanges)
   gr <- with(x,GenomicRanges::GRanges(seqnames=chr,IRanges::IRanges(start,end))+flanking)
-  seqlevelsStyle(gr) <- "UCSC"
+  GenomeInfoDb::seqlevelsStyle(gr) <- "UCSC"
   gr38 <- rtracklayer::liftOver(gr, chain)
   chr <- gsub("chr","",colnames(table(seqnames(gr38))))
   start <- min(unlist(start(gr38)))
