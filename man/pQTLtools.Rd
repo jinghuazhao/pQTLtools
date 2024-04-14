@@ -28,7 +28,7 @@ Available functions are listed in the following table.\tabular{ll}{
    \code{\link{turboman}} \tab Manhattan plots \cr
    \code{\link{turboqq}} \tab QQ plots \cr
      \tab   \cr
-   \strong{Expression} \tab   \cr
+   \strong{Expression analysis} \tab   \cr
    \code{\link{get.prop.below.LLOD}} \tab Limit of detection analysis \cr
    \code{\link{import_eQTLCatalogue}} \tab Import eQTL Catalogue \cr
    \code{\link{make_ExpressionSet}} \tab A call to ExpressionSet class \cr
