@@ -18,15 +18,17 @@
 #'
 #' Objects                  |   Description
 #' -------------------------|---------------------------------------------
-#' **eQTL/GWAS**            |   &nbsp;
-#' [`get.prop.below.LLOD`]  |   Limit of detection analysis
-#' [`import_eQTLCatalogue`] |   Import eQTL Catalogue
+#' **GWAS**                 |   &nbsp;
 #' [`import_OpenGWAS`]      |   Import OpenGWAS
-#' [`make_ExpressionSet`]   |   A call to ExpressionSet class
 #' [`novelty_check`]        |   Locus novelty check
-#' [`run_coloc`]            |   Colocalisation analysis
 #' [`turboman`]             |   Manhattan plots
 #' [`turboqq`]              |   QQ plots
+#'  &nbsp;                  |   &nbsp;
+#' **Expression**           |   &nbsp;
+#' [`get.prop.below.LLOD`]  |   Limit of detection analysis
+#' [`import_eQTLCatalogue`] |   Import eQTL Catalogue
+#' [`make_ExpressionSet`]   |   A call to ExpressionSet class
+#' [`run_coloc`]            |   Colocalisation analysis
 #'  &nbsp;                  |   &nbsp;
 #'  **MR analysis**         |   &nbsp;
 #' [`pqtlMR`]               |   Bidirectional pQTL-MR analysis
