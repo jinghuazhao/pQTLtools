@@ -24,7 +24,7 @@
 #' [`turboman`]             |   Manhattan plots
 #' [`turboqq`]              |   QQ plots
 #'  &nbsp;                  |   &nbsp;
-#' **Expression**           |   &nbsp;
+#' **Expression analysis**  |   &nbsp;
 #' [`get.prop.below.LLOD`]  |   Limit of detection analysis
 #' [`import_eQTLCatalogue`] |   Import eQTL Catalogue
 #' [`make_ExpressionSet`]   |   A call to ExpressionSet class
