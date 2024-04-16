@@ -1,3 +1,4 @@
 .Rhistory
 .git
 inst/snakemake/.snakemake
+tests/
