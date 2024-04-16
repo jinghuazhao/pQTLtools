@@ -25,6 +25,8 @@ Available functions are listed in the following table.\tabular{ll}{
    \strong{GWAS} \tab   \cr
    \code{\link{import_OpenGWAS}} \tab Import OpenGWAS \cr
    \code{\link{novelty_check}} \tab Locus novelty check \cr
+   \code{\link{peptideAssociationPlot}} \tab peptide association plot \cr
+   \code{\link{peptideMapping}} \tab peptide-to-protein mapping \cr
    \code{\link{turboman}} \tab Manhattan plots \cr
    \code{\link{turboqq}} \tab QQ plots \cr
      \tab   \cr
