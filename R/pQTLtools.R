@@ -21,6 +21,8 @@
 #' **GWAS**                 |   &nbsp;
 #' [`import_OpenGWAS`]      |   Import OpenGWAS
 #' [`novelty_check`]        |   Locus novelty check
+#' [`peptideAssociationPlot`]   | peptide association plot
+#' [`peptideMapping`]       |   peptide-to-protein mapping
 #' [`turboman`]             |   Manhattan plots
 #' [`turboqq`]              |   QQ plots
 #'  &nbsp;                  |   &nbsp;
