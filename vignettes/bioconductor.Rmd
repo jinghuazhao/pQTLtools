@@ -266,10 +266,10 @@ eKEGG <- enricher(gene=VEGF, TERM2GENE = kegg_t2g,
 
 # Peptide sequence
 
-Here is an example for A1BG_HUMAN, which is handled by the `Biostrings` package,
+Here is an example for PROC_HUMAN, which is handled by the `Biostrings` package,
 
 ```{r a1bg, fig.cap="peptide association plot",fig.height=6,fig.width=10,messages=FALSE}
-fasta_file_path <- 'https://rest.uniprot.org/uniprotkb/P04217.fasta'
+fasta_file_path <- 'https://rest.uniprot.org/uniprotkb/P04070.fasta'
 fasta_sequences <- Biostrings::readAAStringSet(fasta_file_path, format = "fasta")
 AA_sequence <- fasta_sequences[[1]]
 cat("Sequence:", toString(AA_sequence), "\n")
