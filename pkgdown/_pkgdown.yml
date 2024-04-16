@@ -120,6 +120,8 @@ reference:
     - import_eQTLCatalogue
     - make_ExpressionSet
     - novelty_check
+    - peptideAssociationPlot
+    - peptideMapping
     - pqtlMR
     - qtl_lookup
     - regionqueries
