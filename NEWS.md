@@ -1,5 +1,3 @@
-# pQTLtools 0.2
-
 ## Landmarks by date
 
 * ***2023.12***. Add LocusZoom.js vignette
@@ -8,9 +6,7 @@
 * ***2022.06***. It passes [CRAN](https://cran.r-project.org/) checks with no warning.
 * ***2021.02***. A web-driven documentation is now available, [https://jinghuazhao.github.io/pQTLtools/](https://jinghuazhao.github.io/pQTLtools/)
 
-## Changes
-
-### Package
+## Package
 
 * First release.
 * Depends R (>=3.5.0), pQTLdata
@@ -36,7 +32,7 @@
 * pQTLtools.Rmd, bioconductor.Rmd, es.Rmd, LocusZoom.js.Rmd, snakemake.Rmd and SCALLOP-INF.Rmd articles.
 * List publications on pQTLs by Sun et al. (2018) and Suhre et al. (2020).
 
-### Functions
+## Functions
 
 * peptideMapping(), peptideAssociationPlot()
 * make_ExpressionSet(), novelty_check(), qtl_lookup(), turboman(), turboqq()
