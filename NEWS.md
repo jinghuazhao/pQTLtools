@@ -1,4 +1,4 @@
-## Landmarks by date
+## Landmarks
 
 * ***2023.12***. Add LocusZoom.js vignette
 * ***2023.05***. Test data are fully available with medRxiv post of the SCALLOP paper.
