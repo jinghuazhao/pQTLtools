@@ -1,4 +1,18 @@
-#' A summary of functions
+#' A reference manual
+#'
+#' @docType package
+#' @name pQTLtools
+#' @aliases pQTLtools-package
+#'
+#' @section Usage:
+#' Vignettes on package usage:
+#' - An Overview of pQTLtools. `vignette("pQTLtools")`.
+#' - Bioconductor Notes. `vignette("bioconductor")`.
+#' - ExpressionSet usage. `vignette("es")`.
+#' - LocusZoom.js. `vignette("LocusZoom.js")`.
+#' - snakemake showcases. `vignette("snakemake")`.
+#' - SCALLOP-INF scripts. `vignette("SCALLOP-INF")`.
+#' @md
 #'
 #' @details
 #' Available functions are listed in the following table.
@@ -57,20 +71,6 @@
 #' [`gap::qtl2dplot`]           |    2D QTL plot
 #' [`gap::qtl2dplotly`]         |    2D QTL plotly
 #' [`gap::qtl3dplotly`]         |    3D QTL plotly
-#'
-#' @section Usage:
-#' Vignettes on package usage:
-#' - An Overview of pQTLtools. `vignette("pQTLtools")`.
-#' - Bioconductor Notes. `vignette("bioconductor")`.
-#' - ExpressionSet usage. `vignette("es")`.
-#' - LocusZoom.js. `vignette("LocusZoom.js")`.
-#' - snakemake showcases. `vignette("snakemake")`.
-#' - SCALLOP-INF scripts. `vignette("SCALLOP-INF")`.
-#' @md
-#'
-#' @docType package
-#' @name pQTLtools
-#' @aliases pQTLtools-package
 #'
 #' @import dplyr ggplot2 pQTLdata
 #' @importFrom stats na.omit qnorm
