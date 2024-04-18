@@ -1,6 +1,6 @@
-# NEWS
-
 ## Landmarks
+
+Major milestones are listed below
 
 * ***2023.12***. Add LocusZoom.js vignette
 * ***2023.05***. Test data are fully available with medRxiv post of the SCALLOP paper.
@@ -9,6 +9,8 @@
 * ***2021.02***. A web-driven documentation is now available, [https://jinghuazhao.github.io/pQTLtools/](https://jinghuazhao.github.io/pQTLtools/)
 
 ## Package
+
+The information here mirrors the package DESCRIPTION,
 
 * First release.
 * Depends R (>=3.5.0), pQTLdata
@@ -35,6 +37,8 @@
 * List publications on pQTLs by Sun et al. (2018) and Suhre et al. (2020).
 
 ## Functions
+
+The list is in no particular order,
 
 * peptideMapping(), peptideAssociationPlot()
 * make_ExpressionSet(), novelty_check(), qtl_lookup(), turboman(), turboqq()
