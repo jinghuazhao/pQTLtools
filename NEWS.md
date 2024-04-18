@@ -1,3 +1,5 @@
+# NEWS
+
 ## Landmarks
 
 * ***2023.12***. Add LocusZoom.js vignette
