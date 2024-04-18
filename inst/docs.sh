@@ -5,8 +5,6 @@ function build()
   Rscript -e 'devtools::build_readme();devtools::document()'
   Rscript -e '
     usethis::use_github_action("pkgdown", save_as = "R-CMD-check.yaml", ref = NULL, ignore = TRUE, open = FALSE)
-    libs <- c("gwasvcf","rtracklayer","VariantAnnotation")
-    invisible(suppressMessages(lapply(libs, require, character.only = TRUE)))
     library(pkgdown)
 #   clean_site(); init_site(); build_home(); build_news(); build_articles(); build_reference(); build_search()
     build_site()
