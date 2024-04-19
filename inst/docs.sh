@@ -4,7 +4,7 @@ Rscript -e '
   devtools::build_readme();devtools::document()
   pkgdown::build_site_github_pages()
 # usethis::use_github_action("pkgdown", save_as = "R-CMD-check.yaml", ref = NULL, ignore = TRUE, open = FALSE)
-# clean_site(); init_site(); build_home_index(); build_news(); build_articles(); build_reference(); build_search()
+# clean_site(); init_site(); build_home(); build_news(); build_articles(); build_reference(); build_search()
 '
 # pandoc README.md --citeproc --mathjax -s --self-contained -o index.html
 
