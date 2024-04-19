@@ -11,9 +11,9 @@ peptideAssociationPlot(protein, cistrans, chrlen = gap::hg19, disp = 85)
 
 \item{cistrans}{peptide signals and classification.}
 
-\item{disp}{distance from x-axis.}
+\item{chrlen}{chromosome length (hg18, hg19, hg38).}
 
-\item{chren}{chromosome length (hg19, hg38).}
+\item{disp}{distance from x-axis.}
 }
 \value{
 None.
