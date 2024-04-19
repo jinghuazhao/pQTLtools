@@ -11,11 +11,11 @@ Authors@R: c(
   )
 Description: The package seeds collection of data and utilities for pQTL analysis, currently containing
   1. Articles linking functions for cis/trans classification, pQTL-gene plot, 2d/3d-plotly plots, forest plots
-  among others available from [gap](https://github.com/jinghuazhao/R/tree/master/gap);
-  2. Query on genes, regions, and SNPs via [PhenoScanner](http://www.phenoscanner.medschl.cam.ac.uk/), adding
+  among others available from gap, <https://cran.r-project.org/package=gap>;
+  2. Query on genes, regions, and SNPs via PhenoScanner, <http://www.phenoscanner.medschl.cam.ac.uk/>, adding
   functionality for pQTL novelty check;
   3. Downstream analysis such as colocalization, pQTL-Mendelian Randomization via
-  [TwoSampleMR](https://github.com/MRCIEU/TwoSampleMR), mapping of
+  TwoSampleMR. <https://github.com/MRCIEU/TwoSampleMR>, mapping of
   UniProt IDs to other resources; 4. Bioconductor notes, and showcases of LocusZoom.js snakemake workflow.
 License: MIT + file LICENSE
 URL: https://github.com/jinghuazhao/pQTLtools
