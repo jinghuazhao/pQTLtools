@@ -1,6 +1,6 @@
-# pQTLtools 0.2
+## pQTLtools 0.2
 
-## Milestones
+### Milestones
 
 * ***2023.12***. Add LocusZoom.js article.
 * ***2023.05***. Test data are fully available with medRxiv post of the SCALLOP paper.
@@ -8,11 +8,10 @@
 * ***2022.06***. It passes [CRAN](https://cran.r-project.org/) checks with no warning.
 * ***2021.02***. A web-driven documentation is now available, [https://jinghuazhao.github.io/pQTLtools/](https://jinghuazhao.github.io/pQTLtools/).
 
-## Package
+### Package
 
 The information here mirrors the package DESCRIPTION,
 
-* First release: 0.1
 * Depends R (>=3.5.0), pQTLdata
 * Import dplyr, gap, ggplot2, Rdpack
 * importFrom utils read.table tail.
@@ -36,7 +35,7 @@ The information here mirrors the package DESCRIPTION,
 * pQTLtools.Rmd, bioconductor.Rmd, es.Rmd, LocusZoom.js.Rmd, snakemake.Rmd and SCALLOP-INF.Rmd articles.
 * List publications on pQTLs by Sun et al. (2018) and Suhre et al. (2020).
 
-## Functions
+### Functions
 
 The list is in no particular order,
 
@@ -49,3 +48,7 @@ The list is in no particular order,
 * import_eQTLCatalogue().
 * genequries(), regionqueries(), snpqueries().
 * uniprot2ids().
+
+## pQTLtools 0.1
+
+* First release
