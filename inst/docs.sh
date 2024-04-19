@@ -34,7 +34,7 @@ if [ "$(uname -n | sed 's/-[0-9]*$//')" == "login-q" ]; then
 fi
 
 for f in .gitignore .Rbuildignore .Rinstignore .travis.yml \
-         DESCRIPTION LICENSE LICENSE.md NAMESPACE NEWS.md R/ README.* \
+         DESCRIPTION LICENSE LICENSE.md NAMESPACE NEWS.md R/ README.Rmd README.md \
          docs/ inst/ man/ pkgdown/ vignettes/
 do
   echo adding ${f}
