@@ -1,18 +1,12 @@
 #!/usr/bin/bash
 
-function build()
-{
-  Rscript -e 'devtools::build_readme();devtools::document()'
-  Rscript -e '
-    usethis::use_github_action("pkgdown", save_as = "R-CMD-check.yaml", ref = NULL, ignore = TRUE, open = FALSE)
-    library(pkgdown)
-#   clean_site(); init_site(); build_home(); build_news(); build_articles(); build_reference(); build_search()
-    build_site()
-  '
+Rscript -e '
+  devtools::build_readme();devtools::document()
+  pkgdown::build_site()
+# usethis::use_github_action("pkgdown", save_as = "R-CMD-check.yaml", ref = NULL, ignore = TRUE, open = FALSE)
+# clean_site(); init_site(); build_home(); build_news(); build_articles(); build_reference(); build_search()
+'
 # pandoc README.md --citeproc --mathjax -s --self-contained -o index.html
-}
-
-build
 
 if [ -d vignettes/bioconductor ]; then
    rm -rf docs/articles/bioconductor
@@ -34,13 +28,18 @@ if [ -f vignettes/fig3d.html ]; then
    mv vignettes/fig3d.html docs/articles/
 fi
 
-for f in .github .gitignore .Rbuildignore .Rinstignore .travis.yml \
-         DESCRIPTION INDEX LICENSE LICENSE.md NAMESPACE NEWS.md R/ README.* \
+if [ "$(uname -n | sed 's/-[0-9]*$//')" == "login-q" ]; then
+   module load ceuadmin/libssh/0.10.6-icelake
+   module load ceuadmin/openssh/9.7p1-icelake
+fi
+
+for f in .gitignore .Rbuildignore .Rinstignore .travis.yml \
+         DESCRIPTION LICENSE LICENSE.md NAMESPACE NEWS.md R/ README.* \
          docs/ inst/ man/ pkgdown/ vignettes/
 do
   echo adding ${f}
   git add ${f}
-  git commit -m "${f}"
+  git commit -m  --no-verify "${f}"
 done
 
 git push
