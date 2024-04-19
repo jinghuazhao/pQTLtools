@@ -46,7 +46,7 @@ peptideMapping <- function(protein,batch="ZWK",mm=5)
 #' peptide association plot
 #' @param protein protein name.
 #' @param cistrans peptide signals and classification.
-#' @param chren chromosome length (hg19, hg38).
+#' @param chrlen chromosome length (hg18, hg19, hg38).
 #' @param disp distance from x-axis.
 #'
 #' @export
