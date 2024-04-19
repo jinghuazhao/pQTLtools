@@ -1,6 +1,6 @@
-## Landmarks
+## pQTLtools 0.2
 
-Major milestones are listed below
+### Milestones
 
 * ***2023.12***. Add LocusZoom.js vignette
 * ***2023.05***. Test data are fully available with medRxiv post of the SCALLOP paper.
@@ -8,11 +8,11 @@ Major milestones are listed below
 * ***2022.06***. It passes [CRAN](https://cran.r-project.org/) checks with no warning.
 * ***2021.02***. A web-driven documentation is now available, [https://jinghuazhao.github.io/pQTLtools/](https://jinghuazhao.github.io/pQTLtools/)
 
-## Package
+### Package
 
 The information here mirrors the package DESCRIPTION,
 
-* First release.
+* First release: 0.1
 * Depends R (>=3.5.0), pQTLdata
 * Import dplyr, gap, ggplot2, Rdpack
 * importFrom utils read.table tail.
