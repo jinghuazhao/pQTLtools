@@ -61,7 +61,7 @@ navbar:
           text: Reference
           href: reference/pQTLtools.html
     changelog:
-          text: Changelog
+          text: ChangeLog
           href: news/index.html
     cran:
         icon: fab fa-r-project
