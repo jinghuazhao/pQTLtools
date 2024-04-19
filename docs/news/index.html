@@ -42,7 +42,7 @@
   <a class="nav-link" href="../reference/pQTLtools.html">Reference</a>
 </li>
 <li class="active nav-item">
-  <a class="nav-link" href="../news/index.html">Changelog</a>
+  <a class="nav-link" href="../news/index.html">ChangeLog</a>
 </li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
@@ -103,7 +103,53 @@
       <small>Source: <a href="https://github.com/jinghuazhao/pQTLtools/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
-  </main></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.2" id="pqtltools-02">pQTLtools 0.2<a class="anchor" aria-label="anchor" href="#pqtltools-02"></a></h2>
+<div class="section level3">
+<h3 id="milestones-0-2">Milestones<a class="anchor" aria-label="anchor" href="#milestones-0-2"></a></h3>
+<ul><li>
+<strong><em>2023.12</em></strong>. Add LocusZoom.js vignette</li>
+<li>
+<strong><em>2023.05</em></strong>. Test data are fully available with medRxiv post of the SCALLOP paper.</li>
+<li>
+<strong><em>2022.12</em></strong>. A new package <a href="https://github.com/jinghuazhao/pQTLdata" class="external-link">pQTLdata</a> is created to hold panel and meta data.</li>
+<li>
+<strong><em>2022.06</em></strong>. It passes <a href="https://cran.r-project.org/" class="external-link">CRAN</a> checks with no warning.</li>
+<li>
+<strong><em>2021.02</em></strong>. A web-driven documentation is now available, <a href="https://jinghuazhao.github.io/pQTLtools/">https://jinghuazhao.github.io/pQTLtools/</a>
+</li>
+</ul></div>
+<div class="section level3">
+<h3 id="package-0-2">Package<a class="anchor" aria-label="anchor" href="#package-0-2"></a></h3>
+<p>The information here mirrors the package DESCRIPTION,</p>
+<ul><li>First release: 0.1</li>
+<li>Depends R (&gt;=3.5.0), pQTLdata</li>
+<li>Import dplyr, gap, ggplot2, Rdpack</li>
+<li>importFrom utils read.table tail.</li>
+<li>Import from lmm as template, use save(compress=‘xz’).</li>
+<li>Replace ChangeLog with NEWS.md.</li>
+<li>LICENSE.md and README.md.</li>
+<li>Reduce size by <code>sed -i '/ISSN/d' REFERENCES.bib</code>
+</li>
+<li>Suggest htmlwidgets, plotly</li>
+<li>Suggest BioStrings, GenomeInfoDb</li>
+<li>Suggest bookdown, cowplot, gap.datasets, httr, plyr, rmarkdown, Biobase, stringr</li>
+<li>Suggest circlize, openxlsx, knitr and add HTML vignette (biomaRt, regioneR)</li>
+<li>Suggest gwasvcf, ieugwasr, rtracklayer, VariantAnnotation</li>
+<li>Suggest seqminer</li>
+<li>Suggest GenomicRanges, IRanges</li>
+<li>Suggest Roxygen2</li>
+<li>GitHub action</li>
+<li>inst/Bioconductor/.</li>
+<li>inst/STRING/change_STRING_colors.py.</li>
+<li>inst/UniProt|PPI/README.md.</li>
+<li>inst/snakemake</li>
+<li>pQTLtools.Rmd, bioconductor.Rmd, es.Rmd, LocusZoom.js.Rmd, snakemake.Rmd and SCALLOP-INF.Rmd articles.</li>
+<li>List publications on pQTLs by Sun et al. (2018) and Suhre et al. (2020).</li>
+</ul></div>
+</div>
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">
