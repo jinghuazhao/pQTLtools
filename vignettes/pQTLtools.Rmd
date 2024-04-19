@@ -307,8 +307,8 @@ sumstats <- function(prot,chr,region37)
   vcf <- file.path(INF,"METAL/gwas2vcf",paste0(prot,".vcf.gz"))
   gwas_stats <- gwasvcf::query_gwas(vcf, chrompos = region37) %>%
                 gwasvcf::vcf_to_granges() %>%
-                keepSeqlevels(chr) %>%
-                renameSeqlevels(paste0("chr",chr))
+                GenomeInfoDb::keepSeqlevels(chr) %>%
+                GenomeInfoDb::renameSeqlevels(paste0("chr",chr))
   gwas_stats_hg38 <- rtracklayer::liftOver(gwas_stats, chain) %>%
     unlist() %>%
     dplyr::as_tibble() %>%
