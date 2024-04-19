@@ -1,6 +1,6 @@
-## pQTLtools 0.2
+# pQTLtools 0.2
 
-### Milestones
+## Milestones
 
 * ***2023.12***. Add LocusZoom.js vignette
 * ***2023.05***. Test data are fully available with medRxiv post of the SCALLOP paper.
@@ -8,7 +8,7 @@
 * ***2022.06***. It passes [CRAN](https://cran.r-project.org/) checks with no warning.
 * ***2021.02***. A web-driven documentation is now available, [https://jinghuazhao.github.io/pQTLtools/](https://jinghuazhao.github.io/pQTLtools/)
 
-### Package
+## Package
 
 The information here mirrors the package DESCRIPTION,
 
