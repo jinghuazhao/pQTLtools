@@ -70,7 +70,7 @@ hits <- merge(merged[c("CHR","POS","MarkerName","prot","log10p")],
 names(hits) <- c("prot","Chr","bp","SNP","log10p","uniprot")
 cistrans <- gap::cis.vs.trans.classification(hits,pQTLdata::inf1,"uniprot")
 cis.vs.trans <- with(cistrans,data)
-kable(with(cistrans,table),caption="cis/trans classification")
+knitr::kable(with(cistrans,table),caption="cis/trans classification")
 with(cistrans,total)
 T <- with(cistrans,table)
 H <- T[rownames(T)!="total","total"]
@@ -142,7 +142,7 @@ geneSNP <- merge(merged[c("prot","MarkerName")],pQTLdata::inf1[c("prot","gene")]
 SNPPos <- merged[c("MarkerName","CHR","POS")]
 genePos <- pQTLdata::inf1[c("gene","chr","start","end")]
 cvt <- gap::qtlClassifier(geneSNP,SNPPos,genePos,1e6)
-kable(head(cvt))
+knitr::kable(head(cvt))
 cistrans.check <- merge(cvt[c("gene","MarkerName","Type")],cis.vs.trans[c("p.gene","SNP","cis.trans")],
                         by.x=c("gene","MarkerName"),by.y=c("p.gene","SNP"))
 with(cistrans.check,table(Type,cis.trans))
@@ -273,7 +273,7 @@ The top terms at Binomial p=1e-5 could be extracted as follows,
 options(width=100)
 great3 <- filter(tb_all,BinomP<=1e-5) %>%
           dplyr::mutate(ID=gsub(":",": ",ID))
-kable(great3,caption="GREAT IL12B-KITLG-TNFSF10 results",digits=3)
+knitr::kable(great3,caption="GREAT IL12B-KITLG-TNFSF10 results",digits=3)
 great <- read.delim("cistrans.tsv") %>%
          dplyr::filter(BinomBonfP<=1e-8) %>%
          dplyr::mutate(ID=gsub(":",": ",ID))
@@ -285,10 +285,10 @@ unlink("cistrans.tsv")
 
 # eQTL Catalog for colocalization analysis
 
-See example associated with `import_eQTLCatalogue`. A related function is `import_OpenGWAS` used to fetch data from OpenGWAS. The cis-pQTLs and 1e+6 
+See example associated with `import_eQTLCatalogue()`. A related function is `import_OpenGWAS()` used to fetch data from OpenGWAS. The cis-pQTLs and 1e+6
 flanking regions were considered and data are actually fetched from files stored locally. Only the first sentinel was used (r=1).
 
-```{r coloc, fig.cap="Association plot & histogram", fig.height=7, fig.width=8, message=FALSE, warning=FALSE}
+```r
 liftRegion <- function(x,chain,flanking=1e6)
 {
   require(GenomicRanges)
@@ -400,15 +400,19 @@ gwasvcf::set_bcftools(file.path(HPC_WORK,"bin","bcftools"))
 r <- 1
 sentinel <- sentinels[r,]
 single_run()
-# The results are also loadable as follows.
+ktitle <- with(sentinel,paste0("Colocalization results for ",prot,"-",SNP))
+```
+
+The results are also loadable as follows.
+
+```{r coloc, fig.cap="Association plot & histogram", fig.height=7, fig.width=8, message=FALSE, warning=FALSE}
 coloc_df <- readRDS(file.path(find.package("pQTLtools"),"tests","OPG-chr8:120081031_C_T.RDS")) %>%
             dplyr::rename(Tissue=qtl_id, H0=PP.H0.abf,H1=PP.H1.abf,
                           H2=PP.H2.abf,H3=PP.H3.abf,H4=PP.H4.abf) %>%
             mutate(Tissue=gsub("GTEx_V8_","",Tissue),
                    H0=round(H0,2),H1=round(H1,2),H2=round(H2,2),H3=round(H3,2),H4=round(H4,2)) %>%
                    dplyr::arrange(-H4)
-ktitle <- with(sentinel,paste0("Colocalization results for ",prot,"-",SNP))
-kable(coloc_df,caption=ktitle)
+knitr::kable(coloc_df,caption="Colocalization results for OPG-chr8:120081031_C_T")
 ```
 
 The function `sumstats()` obtained meta-analysis summary statistics (in build 37 and therefore lifted over to build 38) to be used in colocalization 
@@ -427,16 +431,16 @@ For generic applications, the `run_TwoSampleMR()` function can be used.
 f <- file.path(system.file(package="pQTLtools"),"tests","Ins.csv")
 exposure <- format_data(read.csv(f))
 caption4 <- "IL6R variant and diseases"
-kable(exposure, caption=paste(caption4,"(instruments)"),digits=3)
+knitr::kable(exposure, caption=paste(caption4,"(instruments)"),digits=3)
 f <- file.path(system.file(package="pQTLtools"),"tests","Out.csv")
 outcome <- format_data(read.csv(f),type="outcome")
 pqtlMR(exposure, outcome, prefix="IL6R-")
 result <- read.delim("IL6R-result.txt") %>%
           select(-id.exposure,-id.outcome)
-kable(result,caption=paste(caption4, "(result)"),digits=3)
+knitr::kable(result,caption=paste(caption4, "(result)"),digits=3)
 single <- read.delim("IL6R-single.txt") %>%
           select(-id.exposure,-id.outcome,-samplesize)
-kable(subset(single,!grepl("All",SNP)), caption=paste(caption4, "(single)"),digits=3)
+knitr::kable(subset(single,!grepl("All",SNP)), caption=paste(caption4, "(single)"),digits=3)
 ```
 
 We carry on producing a forest plot.
@@ -489,11 +493,11 @@ The output is contained in individual `.txt` files, together with the scatter, f
 
 ```{r, echo=FALSE}
 caption5 <- "MMP.10 variants and FEV1"
-kable(read.delim(paste0(prefix,"-result.txt"),header=TRUE),caption=paste(caption5, "(result)"),digits=3)
-kable(read.delim(paste0(prefix,"-heterogeneity.txt"),header=TRUE),caption=paste(caption5,"(heterogeneity)"),digits=3)
-kable(read.delim(paste0(prefix,"-pleiotropy.txt"),header=TRUE),caption=paste(caption5,"(pleiotropy)"),digits=3)
-kable(read.delim(paste0(prefix,"-single.txt"),header=TRUE),caption=paste(caption5,"(single)"),digits=3)
-kable(read.delim(paste0(prefix,"-loo.txt"),header=TRUE),caption=paste(caption5,"(loo)"),digits=3)
+knitr::kable(read.delim(paste0(prefix,"-result.txt"),header=TRUE),caption=paste(caption5, "(result)"),digits=3)
+knitr::kable(read.delim(paste0(prefix,"-heterogeneity.txt"),header=TRUE),caption=paste(caption5,"(heterogeneity)"),digits=3)
+knitr::kable(read.delim(paste0(prefix,"-pleiotropy.txt"),header=TRUE),caption=paste(caption5,"(pleiotropy)"),digits=3)
+knitr::kable(read.delim(paste0(prefix,"-single.txt"),header=TRUE),caption=paste(caption5,"(single)"),digits=3)
+knitr::kable(read.delim(paste0(prefix,"-loo.txt"),header=TRUE),caption=paste(caption5,"(loo)"),digits=3)
 for (x in c("result","heterogeneity","pleiotropy","single","loo")) unlink(paste0(prefix,"-",x,".txt"))
 ```
 
@@ -508,7 +512,7 @@ d3 <- read.delim(file.path(find.package("pQTLtools"),"tests","IL.12B.txt")) %>%
       dplyr::select(-outcome,-method) %>%
       left_join(efo) %>%
       dplyr::arrange(cistrans)
-kable(head(d3[c("MRBASEID","trait","cistrans","nsnp","b","se","pval")],29),caption="MR with IL-12B variants",digits=3)
+knitr::kable(head(d3[c("MRBASEID","trait","cistrans","nsnp","b","se","pval")],29),caption="MR with IL-12B variants",digits=3)
 p <- ggplot2::ggplot(d3,aes(y = trait, x = y))+
      ggplot2::theme_bw()+
      ggplot2::geom_point()+
