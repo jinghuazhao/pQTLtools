@@ -429,17 +429,17 @@ For generic applications, the `run_TwoSampleMR()` function can be used.
 
 ```{r, warning=FALSE}
 f <- file.path(system.file(package="pQTLtools"),"tests","Ins.csv")
-exposure <- format_data(read.csv(f))
+exposure <- TwoSampleMR::format_data(read.csv(f))
 caption4 <- "IL6R variant and diseases"
 knitr::kable(exposure, caption=paste(caption4,"(instruments)"),digits=3)
 f <- file.path(system.file(package="pQTLtools"),"tests","Out.csv")
-outcome <- format_data(read.csv(f),type="outcome")
+outcome <- TwoSampleMR::format_data(read.csv(f),type="outcome")
 pqtlMR(exposure, outcome, prefix="IL6R-")
 result <- read.delim("IL6R-result.txt") %>%
-          select(-id.exposure,-id.outcome)
+          dplyr::select(-id.exposure,-id.outcome)
 knitr::kable(result,caption=paste(caption4, "(result)"),digits=3)
 single <- read.delim("IL6R-single.txt") %>%
-          select(-id.exposure,-id.outcome,-samplesize)
+          dplyr::select(-id.exposure,-id.outcome,-samplesize)
 knitr::kable(subset(single,!grepl("All",SNP)), caption=paste(caption4, "(single)"),digits=3)
 ```
 
@@ -447,10 +447,10 @@ We carry on producing a forest plot.
 
 ```{r pqtlMR, fig.cap="pQTL-MR", fig.height=3, fig.width=10, results='hide', warning=FALSE}
 IL6R <- single %>%
-        filter(grepl("^rs222",SNP)) %>%
-        select(outcome,b,se) %>%
+        dplyr::filter(grepl("^rs222",SNP)) %>%
+        dplyr::select(outcome,b,se) %>%
         setNames(c("outcome","Effect","StdErr")) %>%
-        mutate(outcome=gsub("\\b(^[a-z])","\\U\\1",outcome,perl=TRUE),
+        dplyr::mutate(outcome=gsub("\\b(^[a-z])","\\U\\1",outcome,perl=TRUE),
                Effect=as.numeric(Effect),StdErr=as.numeric(StdErr))
 gap::mr_forestplot(IL6R,colgap.forest.left="0.05cm", fontsize=14,
                    leftcols=c("studlab"), leftlabs=c("Outcome"),
