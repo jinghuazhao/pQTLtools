@@ -1,4 +1,0 @@
-id.exposure	id.outcome	outcome	exposure	method	nsnp	b	se	pval
-O9YIMd	4WZ5NH	Rheumatoid arthritis	IL.6	Wald ratio	1	-0.457	0.0842	5.72e-08
-O9YIMd	aL6STL	Coronary artery disease	IL.6	Wald ratio	1	-0.231	0.0309	7.39e-14
-O9YIMd	cG94vA	Atopic dermatitis	IL.6	Wald ratio	1	-0.454	0.1019	8.57e-06
