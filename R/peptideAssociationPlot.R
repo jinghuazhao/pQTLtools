@@ -15,6 +15,7 @@
 
 peptideMapping <- function(protein,batch="ZWK",mm=5)
 {
+  Protein <- Modified.Peptide.Sequence <- Isotope.Group.ID <- Monoisotopic.mz <- Max.Isotope.Time.Centroid <- Charge <- NA
   accession <- subset(pQTLdata::caprion,grepl(protein,Protein))[["Accession"]]
   mapping <- subset(get(paste0("mapping_",batch)),grepl(protein,Protein))[1:6] %>%
              setNames(c("Isotope.Group.ID",
@@ -70,6 +71,7 @@ peptideMapping <- function(protein,batch="ZWK",mm=5)
 
 peptideAssociationPlot <- function(protein,cistrans,chrlen=gap::hg19,disp=85)
 {
+  SNPChrom <- SNPPos <- isotope <- NA
   par(mar=c(16,3,1,1))
   mapping <- get(protein)
   g2d <-  gap::grid2d(chrlen,plot=FALSE)
@@ -77,8 +79,8 @@ peptideAssociationPlot <- function(protein,cistrans,chrlen=gap::hg19,disp=85)
   CM <- with(g2d, CM)
   dseq <- CM[n+1]/length(mapping$sequence)
   positions <- with(mapping,positions) %>%
-               data.frame %>%
-               mutate(Modified.Peptide.Sequence=rownames(.),ID=(1:nrow(.))/2)
+               data.frame
+  positions <- data.frame(positions,Modified.Peptide.Sequence=rownames(positions),ID=(1:nrow(positions))/2)
   cistrans <- mutate(cistrans,pos=g2d$CM[SNPChrom]+SNPPos) %>%
               left_join(mapping$mapping,by=c('isotope'='Isotope.Group.ID')) %>%
               left_join(positions)
