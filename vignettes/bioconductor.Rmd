@@ -28,8 +28,8 @@ This article collects notes on Bioconductor packages, made available here to fac
 
 ```{r, message=FALSE, warning=FALSE}
 pkgs <- c("AnnotationDbi", "Biostrings", "ComplexHeatmap", "DESeq2", "EnsDb.Hsapiens.v86",
-          "FlowSorted.DLPFC.450k", "GeneNet", "GenomicFeatures", "RColorBrewer",
-          "RMariaDB", "Rgraphviz", "S4Vectors", "SummarizedExperiment",
+          "FlowSorted.DLPFC.450k", "GeneNet", "GenomicFeatures", "IlluminaHumanMethylation450kmanifest",
+          "RColorBrewer", "RMariaDB", "Rgraphviz", "S4Vectors", "SummarizedExperiment",
           "TxDb.Hsapiens.UCSC.hg38.knownGene", "bladderbatch", "clusterProfiler",
           "corpcor", "ensembldb", "fdrtool", "graph", "graphite", "heatmaply",
           "minfi", "org.Hs.eg.db", "plyr", "quantro", "recount3", "sva")

@@ -406,7 +406,7 @@ ktitle <- with(sentinel,paste0("Colocalization results for ",prot,"-",SNP))
 The results are also loadable as follows.
 
 ```{r coloc, fig.cap="Association plot & histogram", fig.height=7, fig.width=8, message=FALSE, warning=FALSE}
-coloc_df <- readRDS(file.path(find.package("pQTLtools"),"tests","OPG-chr8:120081031_C_T.RDS")) %>%
+coloc_df <- readRDS(file.path(find.package("pQTLtools"),"tests","OPG-rs2247769.RDS")) %>%
             dplyr::rename(Tissue=qtl_id, H0=PP.H0.abf,H1=PP.H1.abf,
                           H2=PP.H2.abf,H3=PP.H3.abf,H4=PP.H4.abf) %>%
             mutate(Tissue=gsub("GTEx_V8_","",Tissue),
