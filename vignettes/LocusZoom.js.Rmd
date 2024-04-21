@@ -10,7 +10,7 @@ csl: nature-genetics.csl
 pkgdown:
   as_is: true
 vignette: >
-  %\VignetteIndexEntry{snakemake showcases}
+  %\VignetteIndexEntry{LocusZoom.js}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
