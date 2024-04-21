@@ -11,8 +11,8 @@ link-citations: yes
 pkgdown:
   as_is: true
 vignette: >
+  %\VignetteIndexEntry{Bioconductor notes}
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{Bioconductor Applications}
   %\VignetteEncoding{UTF-8}
 ---
 
