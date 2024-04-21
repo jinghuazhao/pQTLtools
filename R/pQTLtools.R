@@ -73,9 +73,10 @@
 #' @md
 #'
 #' @import dplyr ggplot2 pQTLdata
-#' @importFrom stats na.omit qnorm
-#' @importFrom utils write.table
-#' @importFrom utils read.table tail
+#' @importFrom graphics axis legend lines mtext par points polygon segments text title
+#' @importFrom grDevices colors xy.coords
+#' @importFrom stats complete.cases median na.omit pnorm qbeta qchisq qnorm setNames
+#' @importFrom utils head read.table tail write.table
 #' @importFrom Rdpack reprompt
 #'
 #' @author Jing Hua Zhao in collaboration with other colleagues
