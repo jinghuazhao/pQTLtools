@@ -197,7 +197,7 @@ turboman <- function(input_data_path, custom_peak_annotation_file_path, referenc
         {
             # Calculate expected p-values for missing data
             missing_pvalues <- (-log(2, base = 10) - pnorm(-abs(initial_data$beta[missing_pvalues_index]/initial_data$se[missing_pvalues_index]),
-                log = T)/log(10))
+                log.p = T)/log(10))
             # Only replace if indeed they were below the smallest non-zero
             # normalized floating-point number
             initial_data[missing_pvalues_index, c("log_pvalue")] <- ifelse(missing_pvalues >

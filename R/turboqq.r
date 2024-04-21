@@ -98,7 +98,7 @@ turboqq <- function(input_data_path, plot_title, plot_resolution = 1800) {
         if (initial_data_contains_beta_se & (length(missing_pvalues_index) > 0)) {
             # Calculate expected p-values for missing data
             missing_pvalues <- (-log(2, base = 10) - pnorm(-abs(initial_data$beta[missing_pvalues_index]/initial_data$se[missing_pvalues_index]),
-                log = T)/log(10))
+                log.p = T)/log(10))
             # Only replace if indeed they were below the smallest non-zero
             # normalized floating-point number
             initial_data[missing_pvalues_index, c("log_pvalue")] <- ifelse(missing_pvalues >
