@@ -47,6 +47,7 @@ fo <- file.path(find.package("pQTLtools",lib.loc=.libPaths()),"tests","Out.csv")
 outcome <- format_data(read.csv(fo),type="outcome")
 pqtlMR(exposure, outcome, prefix="IL6R-")
 pqtlMR(exposure, outcome, prefix="IL6R_rev-",reverse=TRUE)
+unlink(c("IL6R*","pQTL-combined*"))
 # Phenotype,SNP,effect_allele,other_allele,eaf,beta,se,pval
 # ABO,rs505922,C,T,0.313,1.298,0.014,1.2e-1828
 # LIFR,rs635634,T,C,0.180,-0.300,0.032,6.00E-21

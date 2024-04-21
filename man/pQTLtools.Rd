@@ -6,7 +6,7 @@
 \alias{pQTLtools-package}
 \title{A reference manual}
 \description{
-The package seeds the following collection of data and utilities for pQTL analysis: 1. Articles linking functions for cis/trans classification, pQTL-gene plot, 2d/3d-plotly plots, forest plots among others available from gap, \url{https://cran.r-project.org/package=gap}; 2. Query on genes, regions, and SNPs via PhenoScanner, \url{http://www.phenoscanner.medschl.cam.ac.uk/}, adding functionality for pQTL novelty check; 3. Downstream analysis such as colocalization, pQTL-Mendelian Randomization via TwoSampleMR. \url{https://mrcieu.github.io/TwoSampleMR/}, mapping of UniProt IDs to other resources; 4. Bioconductor notes, and showcases of LocusZoom.js snakemake workflow.
+It seeds the following collection of data and utilities for pQTL analysis: 1. Articles linking functions for cis/trans classification, pQTL-gene plot, 2d/3d-plotly plots, forest plots among others available from gap, \url{https://cran.r-project.org/package=gap}; 2. Query on genes, regions, and SNPs via PhenoScanner, \url{http://www.phenoscanner.medschl.cam.ac.uk/}, adding functionality for pQTL novelty check; 3. Downstream analysis such as colocalization, pQTL-Mendelian Randomization via TwoSampleMR. \url{https://mrcieu.github.io/TwoSampleMR/}, mapping of UniProt IDs to other resources; 4. Bioconductor notes, and showcases of LocusZoom.js snakemake workflow.
 }
 \details{
 Available functions are listed in the following table.\tabular{ll}{
