@@ -19,14 +19,14 @@ The information here mirrors the package DESCRIPTION,
 * Replace ChangeLog with NEWS.md.
 * LICENSE.md and README.md.
 * Reduce size by `sed -i '/ISSN/d' REFERENCES.bib`
-* Suggest htmlwidgets, plotly
-* Suggest BioStrings, GenomeInfoDb
-* Suggest bookdown, cowplot, gap.datasets, httr, plyr, rmarkdown, Biobase, stringr
-* Suggest circlize, openxlsx, knitr and add HTML vignette (biomaRt, regioneR)
-* Suggest gwasvcf, ieugwasr, rtracklayer, VariantAnnotation
-* Suggest seqminer
-* Suggest GenomicRanges, IRanges
+* Suggest Biobase, BioStrings, GenomeInfoDb, GenomicRanges, IRanges, VariantAnnotation
 * Suggest Roxygen2
+* Suggest biomaRt, bookdown, circlize, cowplot
+* Suggest gap.datasets, gwasvcf, htmlwidgets, httr, ieugwasr
+* Suggest knitr, mclust, meta
+* Suggest openxlsx, plotly, plyr
+* Suggest regione, rgl, rmarkdown, rtracklayer
+* Suggest scatterplot3d, seqminer, stringr
 * GitHub action
 * inst/Bioconductor/.
 * inst/STRING/change_STRING_colors.py.
