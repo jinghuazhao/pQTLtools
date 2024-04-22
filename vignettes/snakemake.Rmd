@@ -178,9 +178,8 @@ snakemake --dag | dot -Tsvg > output/dag.svg
 
 An introduction, <https://ucdavis-bioinformatics-training.github.io/2020-Genome_Assembly_Workshop/snakemake/snakemake_intro>;
 csd3, <https://cambridge-ceu.github.io/csd3/Python/snakemake.html>;
-snakemake-with-R, <https://github.com/fritzbayer/snakemake-with-R>
-snakemake-workflows, <https://github.com/snakemake-workflows/>
-[![Circulation](https://www.ahajournals.org/pb-assets/images/logos/circ-logo-1526571039097.svg)](https://www.ahajournals.org/doi/10.1161/CIRCULATIONAHA.121.056663)
+snakemake-with-R, <https://github.com/fritzbayer/snakemake-with-R>;
+snakemake-workflows, <https://github.com/snakemake-workflows/>;
 [![DOI](https://zenodo.org/badge/429122036.svg)](https://zenodo.org/badge/latestdoi/429122036).
 
 # References
