@@ -510,9 +510,11 @@ efo <- read.delim(file.path(find.package("pQTLtools"),"tests","efo.txt"))
 d3 <- read.delim(file.path(find.package("pQTLtools"),"tests","IL.12B.txt")) %>%
       dplyr::mutate(MRBASEID=unlist(lapply(strsplit(outcome,"id:"),"[",2)),y=b) %>%
       dplyr::select(-outcome,-method) %>%
-      left_join(efo) %>%
+      dplyr::left_join(efo) %>%
       dplyr::arrange(cistrans)
-knitr::kable(head(d3[c("MRBASEID","trait","cistrans","nsnp","b","se","pval")],29),caption="MR with IL-12B variants",digits=3)
+knitr::kable(dplyr::select(d3,MRBASEID,trait,cistrans,nsnp,b,se,pval) %>%
+             dplyr::group_by(cistrans),
+             caption="MR with IL-12B variants",digits=3)
 p <- ggplot2::ggplot(d3,aes(y = trait, x = y))+
      ggplot2::theme_bw()+
      ggplot2::geom_point()+
