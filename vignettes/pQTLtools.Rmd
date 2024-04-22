@@ -509,9 +509,10 @@ This is illustrated with IL-12B.
 efo <- read.delim(file.path(find.package("pQTLtools"),"tests","efo.txt"))
 d3 <- read.delim(file.path(find.package("pQTLtools"),"tests","IL.12B.txt")) %>%
       dplyr::mutate(MRBASEID=unlist(lapply(strsplit(outcome,"id:"),"[",2)),y=b) %>%
-      dplyr::select(-outcome,-method) %>%
       dplyr::left_join(efo) %>%
-      dplyr::arrange(cistrans)
+      dplyr::mutate(trait=gsub("\\b(^[a-z])","\\U\\1",trait,perl=TRUE)) %>%
+      dplyr::select(-outcome,-method) %>%
+      dplyr::arrange(cistrans,desc(trait))
 knitr::kable(dplyr::select(d3,MRBASEID,trait,cistrans,nsnp,b,se,pval) %>%
              dplyr::group_by(cistrans),
              caption="MR with IL-12B variants",digits=3)
