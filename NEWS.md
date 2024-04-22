@@ -1,5 +1,6 @@
 ## pQTLtools v0.3
 
+* Suggest IlluminaHumanMethylation450kmanifest
 * Fix URL in snakemake.Rmd
 
 ## pQTLtools 0.2
