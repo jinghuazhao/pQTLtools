@@ -1,3 +1,7 @@
+## pQTLtools v0.3
+
+* Fix URL in snakemake.Rmd
+
 ## pQTLtools 0.2
 
 ### Milestones
