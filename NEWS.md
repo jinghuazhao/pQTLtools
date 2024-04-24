@@ -1,6 +1,6 @@
 ## pQTLtools v0.3
 
-* Suggest IlluminaHumanMethylation450kmanifest
+* Suggest IlluminaHumanMethylation450kmanifest, OUTRIDER
 * Fix URL in DESCRIPTION/snakemake.Rmd
 
 ## pQTLtools 0.2
