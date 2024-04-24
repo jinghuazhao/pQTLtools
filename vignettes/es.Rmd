@@ -27,7 +27,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{r, message=FALSE, warning=FALSE}
-pkgs <- c("Biobase", "arrayQualityMetrics", "dplyr", "knitr", "mclust", "pQTLtools", "OUTRIDER", "rgl", "scatterplot3d")
+pkgs <- c("Biobase", "arrayQualityMetrics", "dplyr", "knitr", "mclust", "pQTLtools", "rgl", "scatterplot3d")
 for (p in pkgs) if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
     if (!requireNamespace(p)) warning(paste0("This vignette needs package `", p, "'; please install"))
 }
@@ -108,19 +108,6 @@ for (method in c("KS","sum","upperquartile"))
   ZWK_outliers <- list_outliers(protein_ZWK,method=method)
   print(ZWK_outliers@statistic[ZWK_outliers@which])
 }
-```
-
-This is also related to outlier detection, e.g.,
-
-```{r ods, fig.cap="Most significant outlier in Kremer data", fig.height=7, fig.with=7}
-ctsFile <- system.file('extdata', 'KremerNBaderSmall.tsv', package='OUTRIDER')
-ctsTable <- read.table(ctsFile, check.names=FALSE)
-ods <- OUTRIDER::OutriderDataSet(countData=ctsTable)
-ods <- OUTRIDER::filterExpression(ods, minCounts=TRUE, filterGenes=TRUE)
-ods <- OUTRIDER::OUTRIDER(ods)
-res <- OUTRIDER::results(ods)
-OUTRIDER::plotQQ(ods, res[1, geneID])
-head(res)
 ```
 
 # Clustering

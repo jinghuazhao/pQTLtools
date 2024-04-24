@@ -29,7 +29,7 @@ This article collects notes on Bioconductor packages, made available here to fac
 ```{r, message=FALSE, warning=FALSE}
 pkgs <- c("AnnotationDbi", "Biostrings", "ComplexHeatmap", "DESeq2", "EnsDb.Hsapiens.v86",
           "FlowSorted.DLPFC.450k", "GeneNet", "GenomicFeatures", "IlluminaHumanMethylation450kmanifest",
-          "RColorBrewer", "RMariaDB", "Rgraphviz", "S4Vectors", "SummarizedExperiment",
+          "OUTRIDER","RColorBrewer", "RMariaDB", "Rgraphviz", "S4Vectors", "SummarizedExperiment",
           "TxDb.Hsapiens.UCSC.hg38.knownGene", "bladderbatch", "clusterProfiler",
           "corpcor", "ensembldb", "fdrtool", "graph", "graphite", "heatmaply",
           "minfi", "org.Hs.eg.db", "plyr", "quantro", "recount3", "sva")
@@ -91,22 +91,37 @@ if (FALSE)
 }
 ```
 
+# Outlier detection in RNA-Seq
+
+The following is adapted from package OUTRIDER,
+
+```{r ods, fig.cap="Most significant outlier in Kremer data", fig.height=7, fig.with=7, messages=FALSE}
+ctsFile <- system.file('extdata', 'KremerNBaderSmall.tsv', package='OUTRIDER')
+ctsTable <- read.table(ctsFile, check.names=FALSE)
+ods <- OUTRIDER::OutriderDataSet(countData=ctsTable)
+ods <- OUTRIDER::filterExpression(ods, minCounts=TRUE, filterGenes=TRUE)
+ods <- OUTRIDER::OUTRIDER(ods)
+res <- OUTRIDER::results(ods)
+knitr::kable(res,caption="A check list of outliers")
+OUTRIDER::plotQQ(ods, res[1, geneID])
+```
+
 # Differential expression
 
 ```{r DESeq2, fig.cap="DESeq2 example", messages=FALSE}
-ex <- makeExampleDESeqDataSet(m=4)
-dds <- DESeq(ex)
-res <- results(dds, contrast=c("condition","B","A"))
-rld <- rlogTransformation(ex, blind=TRUE)
-dat <- plotPCA(rld, intgroup=c("condition"),returnData=TRUE)
+ex <- DESeq2::makeExampleDESeqDataSet(m=4)
+dds <- DESeq2::DESeq(ex)
+res <- DESeq2::results(dds, contrast=c("condition","B","A"))
+rld <- DESeq2::rlogTransformation(ex, blind=TRUE)
+dat <- DESeq2::plotPCA(rld, intgroup=c("condition"),returnData=TRUE)
 percentVar <- round(100 * attr(dat,"percentVar"))
 ggplot(dat, aes(PC1, PC2, color=condition, shape=condition)) +
 geom_point(size=3) +
 xlab(paste0("PC1:",percentVar[1],"% variance")) +
 ylab(paste0("PC2:",percentVar[2],"% variance"))
 ex$condition <- relevel(ex$condition, ref="B")
-dds2 <- DESeq(dds)
-res <- results(dds2)
+dds2 <- DESeq2::DESeq(dds)
+res <- DESeq2::results(dds2)
 knitr::kable(head(as.data.frame(res)))
 ```
 
@@ -343,6 +358,7 @@ graphite | GRAPH Interaction from pathway topological environment
 IlluminaHumanMethylation450kmanifest | Annotation for Illumina's 450k methylation arrays
 INSPEcT | Quantification of the intronic and exonic gene features and the post-transcriptional regulation analysis
 org.Hs.eg.db | Conversion of Entrez ID -- gene symbols
+OUTRIDER | OUTlier in RNA-Seq fInDER
 Pi | Priority index, leveraging genetic evidence to prioritise drug targets at the gene and pathway level
 quantro | A test for when to use quantile normalisation
 recount3 | Interface to uniformly processed RNA-seq data
@@ -352,11 +368,11 @@ TxDb.Hsapiens.UCSC.hg38.knownGene | Annotation of the human genome
 **CRAN** |
 doParallel | Foreach Parallel Adaptor for the 'parallel' Package
 GeneNet | Modeling and Inferring Gene Networks
-RColorBrewer | ColorBrewer Palettes
 ggplot2 | Data Visualisations Using the grammar of graphics
 heatmaply | Interactive Cluster Heat Maps Using `plotly` and `ggplot2`
 pheatmap | results visualisation
 plyr | Splitting, applying and combining data
+RColorBrewer | ColorBrewer Palettes
 WGCNA | Weighted correlation network analysis
 
 # References
