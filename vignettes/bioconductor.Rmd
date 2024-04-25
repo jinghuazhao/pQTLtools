@@ -95,7 +95,7 @@ if (FALSE)
 
 The following is adapted from package OUTRIDER,
 
-```{r ods, fig.cap="Most significant outlier in Kremer data", fig.height=7, fig.with=7, messages=FALSE}
+```{r ods, fig.cap="Q-Q plot for Kremer data", fig.height=7, fig.with=7, messages=FALSE}
 ctsFile <- system.file('extdata', 'KremerNBaderSmall.tsv', package='OUTRIDER')
 ctsTable <- read.table(ctsFile, check.names=FALSE)
 ods <- OUTRIDER::OutriderDataSet(countData=ctsTable)
@@ -103,7 +103,7 @@ ods <- OUTRIDER::filterExpression(ods, minCounts=TRUE, filterGenes=TRUE)
 ods <- OUTRIDER::OUTRIDER(ods)
 res <- OUTRIDER::results(ods)
 knitr::kable(res,caption="A check list of outliers")
-OUTRIDER::plotQQ(ods, res[1, geneID])
+OUTRIDER::plotQQ(ods, res["geneID"],global=TRUE)
 ```
 
 # Differential expression

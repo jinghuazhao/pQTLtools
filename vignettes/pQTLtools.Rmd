@@ -468,7 +468,6 @@ invisible(sapply(c("harmonise","result","single"),
 The documentation example is quoted here,
 
 ```{r runTwoSampleMR, fig.cap="Two-sample MR", fig.height=7, fig.width=7, results='hide', warning=FALSE}
-outcomes <- "ebi-a-GCST007432"
 prot <- "MMP.10"
 type <- "cis"
 f <- paste0(prot,"-",type,".mrx")
@@ -481,9 +480,9 @@ exposure <- TwoSampleMR::format_data(within(d,{P=10^logP}), phenotype_col="prot"
                         pval_col="P", log_pval=FALSE,
                         samplesize_col="N")
 clump <- exposure[sample(1:nrow(exposure),nrow(exposure)/80),] # TwoSampleMR::clump_data(exposure)
-outcome <- TwoSampleMR::extract_outcome_data(snps=clump$SNP,outcomes=outcomes)
+outcome <- TwoSampleMR::extract_outcome_data(snps=clump$SNP,outcomes="ebi-a-GCST007432")
 harmonise <- TwoSampleMR::harmonise_data(clump,outcome)
-prefix <- paste(outcomes,prot,type,sep="-")
+prefix <- paste(prot,type,sep="-")
 run_TwoSampleMR(harmonise, mr_plot="pQTLtools", prefix=prefix)
 ```
 
