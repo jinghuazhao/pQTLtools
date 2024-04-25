@@ -21,7 +21,7 @@ License: MIT + file LICENSE
 URL: https://github.com/jinghuazhao/pQTLtools
 BugReports: https://github.com/jinghuazhao/pQTLtools/issues
 Depends:
-    R (>= 3.5.0)
+    R (>= 3.5.0), pQTLdata
 Imports: dplyr, gap, ggplot2, Rdpack
 Suggests:
     Biobase,
@@ -66,7 +66,6 @@ Suggests:
     minfi,
     openxlsx,
     org.Hs.eg.db,
-    phenoscanner,
     plyr,
     plotly,
     purrr,
@@ -83,9 +82,11 @@ Suggests:
     seqminer,
     stringr,
     tourr,
-    sva
+    sva,
+    gwasvcf,
+    TwoSampleMR,
+    phenoscanner
 Remotes:
-    jinghuazhao/pQTLdata,
     mrcieu/gwasvcf,
     mrcieu/TwoSampleMR,
     phenoscanner/phenoscanner
