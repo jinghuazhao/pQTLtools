@@ -49,9 +49,9 @@ regionqueries("chr17:26691290-26700110")
 
 # SCALLOP -- SomaLogic lookup from PhenoScanner
 INF <- Sys.getenv("INF")
-INF1_merge <- merge(inf1,
-                  read.delim(file.path(INF,"work","INF1.merge-rsid"),as.is=TRUE),
-                  by="prot")
+INF1_merge <- merge(gap.datasets::inf1,
+                    read.delim(file.path(INF,"work","INF1.merge-rsid"),as.is=TRUE),
+                    by="prot")
 INF1_merge_uniprot <- with(INF1_merge,unique(uniprot))
 SomaLogic_INF1_merge <- subset(SomaLogic160410,UniProt \%in\% INF1_merge_uniprot)
 regions <- subset(INF1_merge,uniprot \%in\% with(SomaLogic_INF1_merge,UniProt))

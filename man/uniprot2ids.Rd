@@ -30,7 +30,7 @@ Adapted from script by UniProt
 \dontrun{
 uniprotid <- "ACC+ID"
 to <- "CHEMBL_ID"
-query <- noquote(inf1[["uniprot"]])
+query <- noquote(gap.datasets::inf1[["uniprot"]])
 query <- paste(query,collapse=" ")
 r <- pQTLtools::uniprot2ids(uniprotid,to,query)
 cat(r,file="INF1.merge.chembl")

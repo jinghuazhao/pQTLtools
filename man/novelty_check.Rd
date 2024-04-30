@@ -46,7 +46,7 @@ Both known_loci and query_loci have these variables: chr, pos, uniprot, rsid, pr
  sentinels <- left_join(METAL,ST10,by="prot_rsid") \%>\%
               select(prot_rsid,cis.trans,rsID) \%>\%
               filter(!is.na(rsID))
- inf1 <- c(with(pQTLtools::inf1,uniprot),with(METAL,uniprot)) \%>\%
+ inf1 <- c(with(gap.datasets::inf1,uniprot),with(METAL,uniprot)) \%>\%
          unique()
  overlap <- filter(ST10,uniprot \%in\% inf1)
  dim(overlap)
