@@ -81,9 +81,9 @@ genequeries <- function(genelist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.8,bu
 #'
 #' # SCALLOP -- SomaLogic lookup from PhenoScanner
 #' INF <- Sys.getenv("INF")
-#' INF1_merge <- merge(inf1,
-#'                   read.delim(file.path(INF,"work","INF1.merge-rsid"),as.is=TRUE),
-#'                   by="prot")
+#' INF1_merge <- merge(gap.datasets::inf1,
+#'                     read.delim(file.path(INF,"work","INF1.merge-rsid"),as.is=TRUE),
+#'                     by="prot")
 #' INF1_merge_uniprot <- with(INF1_merge,unique(uniprot))
 #' SomaLogic_INF1_merge <- subset(SomaLogic160410,UniProt %in% INF1_merge_uniprot)
 #' regions <- subset(INF1_merge,uniprot %in% with(SomaLogic_INF1_merge,UniProt))
@@ -272,7 +272,7 @@ snpqueries <- function(snplist,block_size=100,waiting_time=60*60,
 #' \dontrun{
 #' uniprotid <- "ACC+ID"
 #' to <- "CHEMBL_ID"
-#' query <- noquote(inf1[["uniprot"]])
+#' query <- noquote(gap.datasets::inf1[["uniprot"]])
 #' query <- paste(query,collapse=" ")
 #' r <- pQTLtools::uniprot2ids(uniprotid,to,query)
 #' cat(r,file="INF1.merge.chembl")
@@ -1326,7 +1326,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #'  sentinels <- left_join(METAL,ST10,by="prot_rsid") %>%
 #'               select(prot_rsid,cis.trans,rsID) %>%
 #'               filter(!is.na(rsID))
-#'  inf1 <- c(with(pQTLtools::inf1,uniprot),with(METAL,uniprot)) %>%
+#'  inf1 <- c(with(gap.datasets::inf1,uniprot),with(METAL,uniprot)) %>%
 #'          unique()
 #'  overlap <- filter(ST10,uniprot %in% inf1)
 #'  dim(overlap)
