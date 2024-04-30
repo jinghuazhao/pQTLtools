@@ -1315,7 +1315,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #'  options(width=2000)
 #'  suppressMessages(require(dplyr))
 #'  # SCALLOP-INF list
-#'  METAL <- read.delim("~/pQTLtools/tests/INF1.METAL") %>%
+#'  METAL <- read.delim(file.path(find.packages("pQTLtools"),"tests","INF1.METAL")) %>%
 #'           mutate(prot_rsid=paste0(uniprot,"-",rsid),pos=Position)
 #'  # UKB_PPP list
 #'  require(openxlsx)
@@ -1340,7 +1340,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #'  replication <- filter(b,r2>=0.8)
 #'  # Mutual uses of pQTLtools/SCALLOP-INF
 #'  write.table(replication,file="~/INF/work/UKB-PPP.txt",row.names=FALSE,quote=FALSE,sep="\t")
-#'  load("~/pQTLtools/tests/novel_data.rda")
+#'  load(file.path(find.packages("pQTLtools"),"tests","novel_data.rda"))
 #'  prot_rsid <- with(novel_data,paste0(prot,"-",rsid))
 #'  prot_rsid_repl <- with(replication,paste0(query.prot,"-",query.rsid))
 #'  left <- setdiff(prot_rsid,prot_rsid_repl)
