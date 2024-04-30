@@ -1319,7 +1319,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #'           mutate(prot_rsid=paste0(uniprot,"-",rsid),pos=Position)
 #'  # UKB_PPP list
 #'  require(openxlsx)
-#'  url <- "~/rds/results/public/proteomics/UKB-PPP/sun22.xlsx"
+#'  url <- "~/rds/results/public/proteomics/UKB-PPP/doc/sun22.xlsx"
 #'  ST10 <- read.xlsx(url,"ST10",startRow=3) %>%
 #'          mutate(uniprot=Target.UniProt,rsid=rsID,prot=Assay.Target) %>%
 #'          mutate(prot_rsid=paste0(uniprot,"-",rsid))
