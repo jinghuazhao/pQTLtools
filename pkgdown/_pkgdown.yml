@@ -92,6 +92,8 @@ navbar:
         href: https://www.ebi.ac.uk/gwas/
       - text: metascape
         href: https://metascape.org/
+      - text: Ligand discovery
+        href: https://ligand-discovery.ai/
       - text: MRBase
         href: https://www.mrbase.org/
       - text: ProteomicsDB
