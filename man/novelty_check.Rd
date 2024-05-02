@@ -64,7 +64,8 @@ Both known_loci and query_loci have these variables: chr, pos, uniprot, rsid, pr
  prot_rsid <- with(novel_data,paste0(prot,"-",rsid))
  prot_rsid_repl <- with(replication,paste0(query.prot,"-",query.rsid))
  left <- setdiff(prot_rsid,prot_rsid_repl)
- # local LD reference panel:
+ # local LD reference panel,
+ # https://raw.githubusercontent.com/jinghuazhao/INF/master/rsid/UKB-PPP.sh:
  variant_list <- b[c("UKB.seqnames","UKB.rsid","SCALLOP.rsid")]
  for (i in 1:nrow(variant_list))
  {
