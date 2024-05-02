@@ -1344,6 +1344,20 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #'  prot_rsid <- with(novel_data,paste0(prot,"-",rsid))
 #'  prot_rsid_repl <- with(replication,paste0(query.prot,"-",query.rsid))
 #'  left <- setdiff(prot_rsid,prot_rsid_repl)
+#'  # local LD reference panel:
+#'  variant_list <- b[c("UKB.seqnames","UKB.rsid","SCALLOP.rsid")]
+#'  for (i in 1:nrow(variant_list))
+#'  {
+#'      z <- variant_list[i,]
+#'      r <- ieugwasr::ld_matrix_local(z[c("known.rsid","query.rsid")],with_alleles=TRUE,
+#'                                     bfile=file.path(INF,"INTERVAL","per_chr",paste0("interval.imputed.olink.chr_",z$UKB.seqnames)),
+#'                                     plink_bin="/rds/user/jhz22/hpc-work/bin/plink")
+#'      r <- ifelse(nrow(r)==2,r[1,2],r)
+#'      variant_list[i,"r"] <- round(r,3)
+#'  }
+#'  # LDlink:
+#'  # token <- Sys.getenv("LDLINK_TOKEN")
+#'  # r2 <- LDlinkR::LDmatrix(variant_list,pop="CEU",token=token)
 #' }
 
 novelty_check <- function(known_loci,query_loci,flanking=1e6,pop="EUR",verbose=TRUE)
