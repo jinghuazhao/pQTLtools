@@ -151,7 +151,7 @@ with(cistrans.check,table(Type,cis.trans))
 ## pQTL-gene plot
 
 ```{r qtl2dplot, fig.cap="pQTL-gene plot", fig.height=8, fig.width=8}
-t2d <- qtl2dplot(cis.vs.trans,xlab="pQTL position",ylab="Gene position")
+t2d <- gap::qtl2dplot(cis.vs.trans,xlab="pQTL position",ylab="Gene position")
 ```
 
 ## pQTL-gene plotly
