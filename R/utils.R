@@ -1316,7 +1316,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #'  suppressMessages(require(dplyr))
 #'  # SCALLOP-INF list
 #'  METAL <- read.delim(file.path(find.package("pQTLtools"),"tests","INF1.METAL")) %>%
-#'           mutate(prot_rsid=paste0(uniprot,"-",rsid),pos=Position)
+#'           mutate(prot_rsid=paste0(uniprot,"-",rsid),chr=Chromosome,pos=Position)
 #'  # UKB_PPP list
 #'  require(openxlsx)
 #'  url <- "~/rds/results/public/proteomics/UKB-PPP/doc/sun22.xlsx"
