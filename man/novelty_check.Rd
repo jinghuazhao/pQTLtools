@@ -7,6 +7,7 @@
 novelty_check(
   known_loci,
   query_loci,
+  ldops = NULL,
   flanking = 1e+06,
   pop = "EUR",
   verbose = TRUE
@@ -16,6 +17,8 @@ novelty_check(
 \item{known_loci}{A data.frame of published loci.}
 
 \item{query_loci}{A data.frame of loci whose novelties are unclear.}
+
+\item{ldops}{arguments for ieugwasr::ld_matrix_local()}
 
 \item{flanking}{A flanking distance.}
 
@@ -58,26 +61,30 @@ Both known_loci and query_loci have these variables: chr, pos, uniprot, rsid, pr
  suppressMessages(require(GenomicRanges))
  b <- novelty_check(UKB_PPP,METAL)
  replication <- filter(b,r2>=0.8)
- # Mutual uses of pQTLtools/SCALLOP-INF
- write.table(replication,file="~/INF/work/UKB-PPP.txt",row.names=FALSE,quote=FALSE,sep="\t")
+ # write.table(replication,file=file.path(INF,"work","UKB-PPP.txt"),
+               row.names=FALSE,quote=FALSE,sep="\t")
  load(file.path(find.package("pQTLtools"),"tests","novel_data.rda"))
  prot_rsid <- with(novel_data,paste0(prot,"-",rsid))
  prot_rsid_repl <- with(replication,paste0(query.prot,"-",query.rsid))
  left <- setdiff(prot_rsid,prot_rsid_repl)
- # local LD reference panel,
+ # local LD reference panel
  # https://raw.githubusercontent.com/jinghuazhao/INF/master/rsid/UKB-PPP.sh:
- variant_list <- b[c("UKB.seqnames","UKB.rsid","SCALLOP.rsid")]
+ INF <- "/rds/project/jmmh2/rds-jmmh2-projects/olink_proteomics/scallop/INF/"
+ plink <- "/rds/user/jhz22/hpc-work/bin/plink"
+ bfile <- file.path(INF,"INTERVAL","per_chr","INTERVAL")
+ b <- novelty_check(UKB_PPP,METAL,ldops=list(bfile,plink))
+ # By chromosome
+ variant_list <- read.delim(file.path(INF,"work","UKB-PPP.txt")) \%>\%
+                 select(known.seqnames,known.rsid,query.rsid)
  for (i in 1:nrow(variant_list))
  {
      z <- variant_list[i,]
-     r <- ieugwasr::ld_matrix_local(z[c("known.rsid","query.rsid")],with_alleles=TRUE,
-                                    bfile=file.path(INF,"INTERVAL","per_chr",paste0("interval.imputed.olink.chr_",z$UKB.seqnames)),
-                                    plink_bin="/rds/user/jhz22/hpc-work/bin/plink")
+     r <- ieugwasr::ld_matrix_local(c(z[["known.rsid"]],z[["query.rsid"]]),with_alleles=TRUE,
+                                    bfile=file.path(INF,"INTERVAL","per_chr",paste0("chr",z[["known.seqnames"]])),
+                                    plink_bin=plink)
      r <- ifelse(nrow(r)==2,r[1,2],r)
      variant_list[i,"r"] <- round(r,3)
  }
- # LDlink:
- # token <- Sys.getenv("LDLINK_TOKEN")
- # r2 <- LDlinkR::LDmatrix(variant_list,pop="CEU",token=token)
+ # r2 <- LDlinkR::LDmatrix(variant_list,pop="CEU",token=Sys.getenv("LDLINK_TOKEN"))
 }
 }
