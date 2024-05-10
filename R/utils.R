@@ -1365,7 +1365,7 @@ novelty_check <- function(known_loci,query_loci,flanking=1e6,pop="EUR",verbose=T
 {
   rsid <- seqnames <- start <- strand <- width <- NA
   query <- with(known_loci,GenomicRanges::GRanges(seqnames=chr,IRanges::IRanges(start=pos,width=1),
-                                                  uniprot=uniprot,rsid=rsid,prot=prot))
+                                                  uniprot=uniprot,rsid=rsid,pos=pos,prot=prot))
   subject <- with(query_loci,GenomicRanges::GRanges(seqnames=chr,IRanges::IRanges(start=pos-flanking,end=pos+flanking),
                                                     uniprot=uniprot,rsid=rsid,pos=pos,prot=prot))
   fo <- GenomicRanges::findOverlaps(query,subject) %>%
