@@ -1332,7 +1332,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #'  dim(overlap)
 #'  UKB_PPP <- mutate(overlap,
 #'             chrpos=strsplit(overlap[["Variant.ID.(CHROM:GENPOS.(hg37):A0:A1:imp:v1)"]],":"),
-#'             chr=unlist(lapply(chrpos,"[[",1)),
+#'             chr=as.integer(unlist(lapply(chrpos,"[[",1))),
 #'             pos=as.integer(unlist(lapply(chrpos,"[[",2))),
 #'             chrpos=paste(chr,pos,sep=":"))
 #'  suppressMessages(require(GenomicRanges))
@@ -1379,8 +1379,8 @@ novelty_check <- function(known_loci,query_loci,flanking=1e6,pop="EUR",verbose=T
   ov2 <- subject[ov$subjectHits,] %>%
          data.frame() %>%
          select(-strand,-width)
-  b <- bind_cols(data.frame(ov1),data.frame(ov2))
-  names(b) <- c(paste("known",names(ov1),sep="."),paste("query",names(ov2),sep="."))
+  b <- bind_cols(data.frame(ov1) %>% setNames(paste("known",names(ov1),sep=".")),
+                 data.frame(ov2) %>% setNames(paste("query",names(ov2),sep=".")))
   variant_list <- unique(c(b[["known.rsid"]],b[["query.rsid"]]))
   r <- ieugwasr::ld_matrix(variant_list,pop=pop,with_alleles=FALSE)
   failure <- setdiff(variant_list,colnames(r))
