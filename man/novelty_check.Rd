@@ -52,8 +52,8 @@ Both known_loci and query_loci have these variables: chr, pos, uniprot, rsid, pr
  dim(overlap)
  UKB_PPP <- mutate(overlap,
             chrpos=strsplit(overlap[["Variant.ID.(CHROM:GENPOS.(hg37):A0:A1:imp:v1)"]],":"),
-            chr=lapply(chrpos,"[[",1),
-            pos=as.integer(lapply(chrpos,"[[",2)),
+            chr=unlist(lapply(chrpos,"[[",1)),
+            pos=as.integer(unlist(lapply(chrpos,"[[",2))),
             chrpos=paste(chr,pos,sep=":"))
  suppressMessages(require(GenomicRanges))
  b <- novelty_check(UKB_PPP,METAL)
