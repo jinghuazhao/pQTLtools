@@ -1333,7 +1333,7 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #'  UKB_PPP <- mutate(overlap,
 #'             chrpos=strsplit(overlap[["Variant.ID.(CHROM:GENPOS.(hg37):A0:A1:imp:v1)"]],":"),
 #'             chr=lapply(chrpos,"[[",1),
-#'             pos=lapply(chrpos,"[[",2),
+#'             pos=as.integer(lapply(chrpos,"[[",2)),
 #'             chrpos=paste(chr,pos,sep=":"))
 #'  suppressMessages(require(GenomicRanges))
 #'  b <- novelty_check(UKB_PPP,METAL)
@@ -1364,9 +1364,9 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 novelty_check <- function(known_loci,query_loci,flanking=1e6,pop="EUR",verbose=TRUE)
 {
   rsid <- seqnames <- start <- strand <- width <- NA
-  query <- with(known_loci,GenomicRanges::GRanges(seqnames=as.integer(chr),IRanges::IRanges(start=as.integer(pos),width=1),
+  query <- with(known_loci,GenomicRanges::GRanges(seqnames=chr,IRanges::IRanges(start=pos,width=1),
                                                   uniprot=uniprot,rsid=rsid,prot=prot))
-  subject <- with(query_loci,GenomicRanges::GRanges(seqnames=Chromosome,IRanges::IRanges(start=pos-flanking,end=pos+flanking),
+  subject <- with(query_loci,GenomicRanges::GRanges(seqnames=chr,IRanges::IRanges(start=pos-flanking,end=pos+flanking),
                                                     uniprot=uniprot,rsid=rsid,pos=pos,prot=prot))
   fo <- GenomicRanges::findOverlaps(query,subject) %>%
         data.frame()
