@@ -1357,11 +1357,14 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #' b <- list()
 #' for(i in unique(pull(METAL,Chromosome)))
 #' {
-#'    u <- filter(UKB_PPP,chr %in% i) %>% select(chr,pos,uniprot,rsid,prot)
-#'    m <- filter(METAL,Chromosome %in% i) %>% select(chr,pos,uniprot,rsid,prot)
+#'    u <- filter(UKB_PPP,chr %in% i) %>%
+#'         select(chr,pos,uniprot,rsid,prot)
+#'    m <- filter(METAL,Chromosome %in% i) %>%
+#'         select(chr,pos,uniprot,rsid,prot)
 #'    bfile <- file.path(INF,"INTERVAL","per_chr",paste0("chr",i))
 #'    b[[i]] <- novelty_check(u,m,ldops=list(bfile,plink))
 #' }
+#' filter(bind_rows(b), r2>=0.8)
 #' }
 
 novelty_check <- function(known_loci,query_loci,ldops=NULL,flanking=1e6,pop="EUR",verbose=TRUE)
