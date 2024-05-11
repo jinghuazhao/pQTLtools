@@ -1340,24 +1340,25 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #' suppressMessages(require(GenomicRanges))
 #' b <- novelty_check(UKB_PPP,METAL)
 #' replication <- filter(b,r2>=0.8)
+#' INF <- "/rds/project/jmmh2/rds-jmmh2-projects/olink_proteomics/scallop/INF/"
 #' # write.table(replication,file=file.path(INF,"work","UKB-PPP.txt"),
 #' #             row.names=FALSE,quote=FALSE,sep="\t")
-#' variant_list <- read.delim(file.path(INF,"work","UKB-PPP.txt")) %>%
-#'                 select(known.seqnames,known.rsid,query.rsid)
-#' # r2 <- LDlinkR::LDmatrix(variant_list,pop="CEU",token=Sys.getenv("LDLINK_TOKEN"))
+#' replication <- read.delim(file.path(find.package("pQTLtools"),"tests","UKB-PPP.txt")) %>%
+#'                select(known.seqnames,known.rsid,query.rsid,query.prot)
+#' variant_list <- unique(c(pull(replication,known.rsid),pull(replication,query.rsid)))
 #' load(file.path(find.package("pQTLtools"),"tests","novel_data.rda"))
 #' prot_rsid <- with(novel_data,paste0(prot,"-",rsid))
 #' prot_rsid_repl <- with(replication,paste0(query.prot,"-",query.rsid))
 #' left <- setdiff(prot_rsid,prot_rsid_repl)
 #' # local LD reference panel by chromosome
+#' # r2 <- LDlinkR::LDmatrix(variant_list,pop="CEU",token=Sys.getenv("LDLINK_TOKEN"))
 #' # https://raw.githubusercontent.com/jinghuazhao/INF/master/rsid/UKB-PPP.sh
-#' INF <- "/rds/project/jmmh2/rds-jmmh2-projects/olink_proteomics/scallop/INF/"
 #' plink <- "/rds/user/jhz22/hpc-work/bin/plink"
 #' b <- list()
 #' for(i in unique(pull(METAL,Chromosome)))
 #' {
-#'    u <- filter(UKB_PPP,Chromosome %in% i)
-#'    m <- filter(METAL,Chromosome %in% i)
+#'    u <- filter(UKB_PPP,chr %in% i) %>% select(chr,pos,uniprot,rsid,prot)
+#'    m <- filter(METAL,Chromosome %in% i) %>% select(chr,pos,uniprot,rsid,prot)
 #'    bfile <- file.path(INF,"INTERVAL","per_chr",paste0("chr",i))
 #'    b[[i]] <- novelty_check(u,m,ldops=list(bfile,plink))
 #' }
@@ -1386,7 +1387,7 @@ novelty_check <- function(known_loci,query_loci,ldops=NULL,flanking=1e6,pop="EUR
   variant_list <- unique(c(b[["known.rsid"]],b[["query.rsid"]]))
   if (!is.null(ldops))
   {
-    r <- ieugwasr::ld_matrix_local(c(known_loci[["known.rsid"]],query_loci[["query.rsid"]]),
+    r <- ieugwasr::ld_matrix_local(c(b[["known.rsid"]],b[["query.rsid"]]),
                                    with_alleles=TRUE,
                                    bfile=bfile,
                                    plink_bin=plink)
