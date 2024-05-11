@@ -1317,7 +1317,8 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #' suppressMessages(require(dplyr))
 #' # SCALLOP-INF list
 #' METAL <- read.delim(file.path(find.package("pQTLtools"),"tests","INF1.METAL")) %>%
-#'          mutate(prot_rsid=paste0(uniprot,"-",rsid),chr=Chromosome,pos=Position)
+#'          left_join(gap.datasets::inf1[c("prot","gene")]) %>%
+#'          mutate(prot=gene,prot_rsid=paste0(uniprot,"-",rsid),chr=Chromosome,pos=Position)
 #' # UKB_PPP list
 #' require(openxlsx)
 #' results <- "/rds/project/jmmh2/rds-jmmh2-results/public/proteomics"
@@ -1352,7 +1353,6 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #' left <- setdiff(prot_rsid,prot_rsid_repl)
 #' # local LD reference panel by chromosome
 #' # r2 <- LDlinkR::LDmatrix(variant_list,pop="CEU",token=Sys.getenv("LDLINK_TOKEN"))
-#' # https://raw.githubusercontent.com/jinghuazhao/INF/master/rsid/UKB-PPP.sh
 #' plink <- "/rds/user/jhz22/hpc-work/bin/plink"
 #' b <- list()
 #' for(i in unique(pull(METAL,Chromosome)))
@@ -1391,7 +1391,7 @@ novelty_check <- function(known_loci,query_loci,ldops=NULL,flanking=1e6,pop="EUR
   if (!is.null(ldops))
   {
     r <- ieugwasr::ld_matrix_local(c(b[["known.rsid"]],b[["query.rsid"]]),
-                                   with_alleles=TRUE,
+                                   with_alleles=FALSE,
                                    bfile=bfile,
                                    plink_bin=plink)
   } else r <- ieugwasr::ld_matrix(variant_list,pop=pop,with_alleles=FALSE)
@@ -1402,7 +1402,7 @@ novelty_check <- function(known_loci,query_loci,ldops=NULL,flanking=1e6,pop="EUR
   }
   known.keep <- intersect(b[["known.rsid"]],colnames(r))
   query.keep <- intersect(b[["query.rsid"]],colnames(r))
-  ll <- table(b$known.rsid,b$query.rsid)
+  ll <- table(b[["known.rsid"]],b[["query.rsid"]])
   ll[,] <- NA
   ll[known.keep,query.keep] <- r[known.keep,query.keep]
   r2 <- sapply(1:nrow(b), function(x) with(b[x, ], ifelse(known.rsid == query.rsid, 1, ll[known.rsid, query.rsid]^2)))
