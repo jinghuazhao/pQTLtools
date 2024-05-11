@@ -1312,58 +1312,55 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #' @return A data.frame containing nonnovel loci.
 #' @export
 #' @examples
-#' \dontrun{ 
-#'  options(width=2000)
-#'  suppressMessages(require(dplyr))
-#'  # SCALLOP-INF list
-#'  METAL <- read.delim(file.path(find.package("pQTLtools"),"tests","INF1.METAL")) %>%
-#'           mutate(prot_rsid=paste0(uniprot,"-",rsid),chr=Chromosome,pos=Position)
-#'  # UKB_PPP list
-#'  require(openxlsx)
-#'  url <- "~/rds/results/public/proteomics/UKB-PPP/doc/sun22.xlsx"
-#'  ST10 <- read.xlsx(url,"ST10",startRow=3) %>%
-#'          mutate(uniprot=Target.UniProt,rsid=rsID,prot=Assay.Target) %>%
-#'          mutate(prot_rsid=paste0(uniprot,"-",rsid))
-#'  sentinels <- left_join(METAL,ST10,by="prot_rsid") %>%
-#'               select(prot_rsid,cis.trans,rsID) %>%
-#'               filter(!is.na(rsID))
-#'  inf1 <- c(with(gap.datasets::inf1,uniprot),with(METAL,uniprot)) %>%
-#'          unique()
-#'  overlap <- filter(ST10,uniprot %in% inf1)
-#'  dim(overlap)
-#'  UKB_PPP <- mutate(overlap,
-#'             chrpos=strsplit(overlap[["Variant.ID.(CHROM:GENPOS.(hg37):A0:A1:imp:v1)"]],":"),
-#'             chr=as.integer(unlist(lapply(chrpos,"[[",1))),
-#'             pos=as.integer(unlist(lapply(chrpos,"[[",2))),
-#'             chrpos=paste(chr,pos,sep=":"))
-#'  suppressMessages(require(GenomicRanges))
-#'  b <- novelty_check(UKB_PPP,METAL)
-#'  replication <- filter(b,r2>=0.8)
-#'  # write.table(replication,file=file.path(INF,"work","UKB-PPP.txt"),
-#'                row.names=FALSE,quote=FALSE,sep="\t")
-#'  load(file.path(find.package("pQTLtools"),"tests","novel_data.rda"))
-#'  prot_rsid <- with(novel_data,paste0(prot,"-",rsid))
-#'  prot_rsid_repl <- with(replication,paste0(query.prot,"-",query.rsid))
-#'  left <- setdiff(prot_rsid,prot_rsid_repl)
-#'  # local LD reference panel
-#'  # https://raw.githubusercontent.com/jinghuazhao/INF/master/rsid/UKB-PPP.sh:
-#'  INF <- "/rds/project/jmmh2/rds-jmmh2-projects/olink_proteomics/scallop/INF/"
-#'  plink <- "/rds/user/jhz22/hpc-work/bin/plink"
-#'  bfile <- file.path(INF,"INTERVAL","per_chr","INTERVAL")
-#'  b <- novelty_check(UKB_PPP,METAL,ldops=list(bfile,plink))
-#'  # By chromosome
-#'  variant_list <- read.delim(file.path(INF,"work","UKB-PPP.txt")) %>%
-#'                  select(known.seqnames,known.rsid,query.rsid)
-#'  for (i in 1:nrow(variant_list))
-#'  {
-#'      z <- variant_list[i,]
-#'      r <- ieugwasr::ld_matrix_local(c(z[["known.rsid"]],z[["query.rsid"]]),with_alleles=TRUE,
-#'                                     bfile=file.path(INF,"INTERVAL","per_chr",paste0("chr",z[["known.seqnames"]])),
-#'                                     plink_bin=plink)
-#'      r <- ifelse(nrow(r)==2,r[1,2],r)
-#'      variant_list[i,"r"] <- round(r,3)
-#'  }
-#'  # r2 <- LDlinkR::LDmatrix(variant_list,pop="CEU",token=Sys.getenv("LDLINK_TOKEN"))
+#' \dontrun{
+#' options(width=2000)
+#' suppressMessages(require(dplyr))
+#' # SCALLOP-INF list
+#' METAL <- read.delim(file.path(find.package("pQTLtools"),"tests","INF1.METAL")) %>%
+#'          mutate(prot_rsid=paste0(uniprot,"-",rsid),chr=Chromosome,pos=Position)
+#' # UKB_PPP list
+#' require(openxlsx)
+#' results <- "/rds/project/jmmh2/rds-jmmh2-results/public/proteomics"
+#' url <- file.path(results,"UKB-PPP","doc","sun22.xlsx")
+#' ST10 <- read.xlsx(url,"ST10",startRow=3) %>%
+#'         mutate(uniprot=Target.UniProt,rsid=rsID,prot=Assay.Target) %>%
+#'         mutate(prot_rsid=paste0(uniprot,"-",rsid))
+#' sentinels <- left_join(METAL,ST10,by="prot_rsid") %>%
+#'              select(prot_rsid,cis.trans,rsID) %>%
+#'              filter(!is.na(rsID))
+#' inf1 <- c(with(gap.datasets::inf1,uniprot),with(METAL,uniprot)) %>%
+#'         unique()
+#' overlap <- filter(ST10,uniprot %in% inf1)
+#' dim(overlap)
+#' UKB_PPP <- mutate(overlap,
+#'            chrpos=strsplit(overlap[["Variant.ID.(CHROM:GENPOS.(hg37):A0:A1:imp:v1)"]],":"),
+#'            chr=as.integer(unlist(lapply(chrpos,"[[",1))),
+#'            pos=as.integer(unlist(lapply(chrpos,"[[",2))),
+#'            chrpos=paste(chr,pos,sep=":"))
+#' suppressMessages(require(GenomicRanges))
+#' b <- novelty_check(UKB_PPP,METAL)
+#' replication <- filter(b,r2>=0.8)
+#' # write.table(replication,file=file.path(INF,"work","UKB-PPP.txt"),
+#' #             row.names=FALSE,quote=FALSE,sep="\t")
+#' variant_list <- read.delim(file.path(INF,"work","UKB-PPP.txt")) %>%
+#'                 select(known.seqnames,known.rsid,query.rsid)
+#' # r2 <- LDlinkR::LDmatrix(variant_list,pop="CEU",token=Sys.getenv("LDLINK_TOKEN"))
+#' load(file.path(find.package("pQTLtools"),"tests","novel_data.rda"))
+#' prot_rsid <- with(novel_data,paste0(prot,"-",rsid))
+#' prot_rsid_repl <- with(replication,paste0(query.prot,"-",query.rsid))
+#' left <- setdiff(prot_rsid,prot_rsid_repl)
+#' # local LD reference panel by chromosome
+#' # https://raw.githubusercontent.com/jinghuazhao/INF/master/rsid/UKB-PPP.sh
+#' INF <- "/rds/project/jmmh2/rds-jmmh2-projects/olink_proteomics/scallop/INF/"
+#' plink <- "/rds/user/jhz22/hpc-work/bin/plink"
+#' b <- list()
+#' for(i in unique(pull(METAL,Chromosome)))
+#' {
+#'    u <- filter(UKB_PPP,Chromosome %in% i)
+#'    m <- filter(METAL,Chromosome %in% i)
+#'    bfile <- file.path(INF,"INTERVAL","per_chr",paste0("chr",i))
+#'    b[[i]] <- novelty_check(u,m,ldops=list(bfile,plink))
+#' }
 #' }
 
 novelty_check <- function(known_loci,query_loci,ldops=NULL,flanking=1e6,pop="EUR",verbose=TRUE)
@@ -1387,9 +1384,13 @@ novelty_check <- function(known_loci,query_loci,ldops=NULL,flanking=1e6,pop="EUR
   b <- bind_cols(data.frame(ov1) %>% setNames(paste("known",names(ov1),sep=".")),
                  data.frame(ov2) %>% setNames(paste("query",names(ov2),sep=".")))
   variant_list <- unique(c(b[["known.rsid"]],b[["query.rsid"]]))
-  if (!is.null(ldops)) r <- ieugwasr::ld_matrix_local(variant_list,with_alleles=TRUE,
-                                                      bfile=ldops[[1]],plink_bin=ldops[[2]])
-  else r <- ieugwasr::ld_matrix(variant_list,pop=pop,with_alleles=FALSE)
+  if (!is.null(ldops))
+  {
+    r <- ieugwasr::ld_matrix_local(c(known_loci[["known.rsid"]],query_loci[["query.rsid"]]),
+                                   with_alleles=TRUE,
+                                   bfile=bfile,
+                                   plink_bin=plink)
+  } else r <- ieugwasr::ld_matrix(variant_list,pop=pop,with_alleles=FALSE)
   failure <- setdiff(variant_list,colnames(r))
   if (verbose) {
      cat("\nLD information cannot be retrieved for", length(failure), "variants:\n")
