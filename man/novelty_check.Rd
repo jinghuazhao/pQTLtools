@@ -79,10 +79,13 @@ plink <- "/rds/user/jhz22/hpc-work/bin/plink"
 b <- list()
 for(i in unique(pull(METAL,Chromosome)))
 {
-   u <- filter(UKB_PPP,chr \%in\% i) \%>\% select(chr,pos,uniprot,rsid,prot)
-   m <- filter(METAL,Chromosome \%in\% i) \%>\% select(chr,pos,uniprot,rsid,prot)
+   u <- filter(UKB_PPP,chr \%in\% i) \%>\%
+        select(chr,pos,uniprot,rsid,prot)
+   m <- filter(METAL,Chromosome \%in\% i) \%>\%
+        select(chr,pos,uniprot,rsid,prot)
    bfile <- file.path(INF,"INTERVAL","per_chr",paste0("chr",i))
    b[[i]] <- novelty_check(u,m,ldops=list(bfile,plink))
 }
+filter(bind_rows(b), r2>=0.8)
 }
 }
