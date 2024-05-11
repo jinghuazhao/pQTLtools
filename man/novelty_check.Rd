@@ -39,7 +39,8 @@ options(width=2000)
 suppressMessages(require(dplyr))
 # SCALLOP-INF list
 METAL <- read.delim(file.path(find.package("pQTLtools"),"tests","INF1.METAL")) \%>\%
-         mutate(prot_rsid=paste0(uniprot,"-",rsid),chr=Chromosome,pos=Position)
+         left_join(gap.datasets::inf1[c("prot","gene")]) \%>\%
+         mutate(prot=gene,prot_rsid=paste0(uniprot,"-",rsid),chr=Chromosome,pos=Position)
 # UKB_PPP list
 require(openxlsx)
 results <- "/rds/project/jmmh2/rds-jmmh2-results/public/proteomics"
@@ -74,7 +75,6 @@ prot_rsid_repl <- with(replication,paste0(query.prot,"-",query.rsid))
 left <- setdiff(prot_rsid,prot_rsid_repl)
 # local LD reference panel by chromosome
 # r2 <- LDlinkR::LDmatrix(variant_list,pop="CEU",token=Sys.getenv("LDLINK_TOKEN"))
-# https://raw.githubusercontent.com/jinghuazhao/INF/master/rsid/UKB-PPP.sh
 plink <- "/rds/user/jhz22/hpc-work/bin/plink"
 b <- list()
 for(i in unique(pull(METAL,Chromosome)))
