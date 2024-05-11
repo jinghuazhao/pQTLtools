@@ -1364,7 +1364,11 @@ get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
 #'    bfile <- file.path(INF,"INTERVAL","per_chr",paste0("chr",i))
 #'    b[[i]] <- novelty_check(u,m,ldops=list(bfile,plink))
 #' }
-#' filter(bind_rows(b), r2>=0.8)
+#' replication2 <- filter(bind_rows(b), r2>=0.8)
+#' prot_rsid <- with(novel_data %>%
+#'              left_join(gap.datasets::inf1[c("prot","gene")]),paste0(gene,"-",rsid))
+#' prot_rsid_repl <- with(replication2,paste0(query.prot,"-",query.rsid))
+#' novel <- setdiff(prot_rsid,prot_rsid_repl)
 #' }
 
 novelty_check <- function(known_loci,query_loci,ldops=NULL,flanking=1e6,pop="EUR",verbose=TRUE)
