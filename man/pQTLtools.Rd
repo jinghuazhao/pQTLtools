@@ -12,7 +12,6 @@ It seeds the following collection of data and utilities for pQTL analysis: 1. Ar
 Available functions are listed in the following table.\tabular{ll}{
    Objects \tab Description \cr
    \strong{GWAS} \tab   \cr
-   \code{\link{import_OpenGWAS}} \tab Import OpenGWAS \cr
    \code{\link{novelty_check}} \tab Locus novelty check \cr
    \code{\link{peptideAssociationPlot}} \tab peptide association plot \cr
    \code{\link{peptideMapping}} \tab peptide-to-protein mapping \cr
@@ -26,6 +25,7 @@ Available functions are listed in the following table.\tabular{ll}{
    \code{\link{run_coloc}} \tab Colocalisation analysis \cr
      \tab   \cr
    \strong{MR analysis} \tab   \cr
+   \code{\link{import_OpenGWAS}} \tab Import OpenGWAS \cr
    \code{\link{pqtlMR}} \tab Bidirectional pQTL-MR analysis \cr
    \code{\link{qtl_lookup}} \tab QTL lookup \cr
    \code{\link{run_TwoSampleMR}} \tab A generic wrapper for TwoSampleMR analysis \cr
