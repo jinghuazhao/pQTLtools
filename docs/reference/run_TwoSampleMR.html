@@ -78,6 +78,7 @@
     <a class="external-link dropdown-item" href="https://www.ebi.ac.uk/eqtl/">eQTL catalog</a>
     <a class="external-link dropdown-item" href="https://www.ebi.ac.uk/gwas/">GWAS catalog</a>
     <a class="external-link dropdown-item" href="https://metascape.org/">metascape</a>
+    <a class="external-link dropdown-item" href="https://ligand-discovery.ai/">Ligand discovery</a>
     <a class="external-link dropdown-item" href="https://www.mrbase.org/">MRBase</a>
     <a class="external-link dropdown-item" href="https://www.proteomicsdb.org/">ProteomicsDB</a>
     <a class="external-link dropdown-item" href="https://pubmed.ncbi.nlm.nih.gov/">PubMed</a>
@@ -100,7 +101,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.svg" class="logo" alt=""><h1>Basic TwoSampleMR analysis</h1>
-      <small class="dont-index">Source: <a href="https://github.com/jinghuazhao/pQTLtools/blob/HEAD/R/utils.R" class="external-link"><code>R/utils.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/jinghuazhao/pQTLtools/blob/HEAD/R/run_TwoSampleMR.R" class="external-link"><code>R/run_TwoSampleMR.R</code></a></small>
       <div class="d-none name"><code>run_TwoSampleMR.Rd</code></div>
     </div>
 
@@ -154,10 +155,6 @@ ISBN 978-1-4939-7868-7, <a href="https://doi.org/10.1007/978-1-4939-7868-7_13" c
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/MRCIEU/TwoSampleMR" class="external-link">TwoSampleMR</a></span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> TwoSampleMR version 0.6.0 </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> [&gt;] New: Improved API performance and stability</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> [&gt;] New: Authentication required for all OpenGWAS queries from 1st May 2024</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> [&gt;] For guidance see https://mrcieu.github.io/ieugwasr/articles/guide.html#authentication</span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jinghuazhao/pQTLtools" class="external-link">pQTLtools</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">prot</span> <span class="op">&lt;-</span> <span class="st">"MMP.10"</span></span></span>
 <span class="r-in"><span><span class="va">type</span> <span class="op">&lt;-</span> <span class="st">"cis"</span></span></span>
@@ -173,95 +170,38 @@ ISBN 978-1-4939-7868-7, <a href="https://doi.org/10.1007/978-1-4939-7868-7_13" c
 <span class="r-in"><span><span class="va">clump</span> <span class="op">&lt;-</span> <span class="va">exposure</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">exposure</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">exposure</span><span class="op">)</span><span class="op">/</span><span class="fl">80</span><span class="op">)</span>,<span class="op">]</span> <span class="co"># TwoSampleMR::clump_data(exposure)</span></span></span>
 <span class="r-in"><span><span class="va">outcome</span> <span class="op">&lt;-</span> <span class="fu">TwoSampleMR</span><span class="fu">::</span><span class="fu"><a href="https://mrcieu.github.io/TwoSampleMR/reference/extract_outcome_data.html" class="external-link">extract_outcome_data</a></span><span class="op">(</span>snps<span class="op">=</span><span class="va">exposure</span><span class="op">$</span><span class="va">SNP</span>,outcomes<span class="op">=</span><span class="st">"ebi-a-GCST007432"</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting data for 1106 SNP(s) from 1 GWAS(s)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Finding proxies for 155 SNPs in outcome ebi-a-GCST007432</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting data for 155 SNP(s) from 1 GWAS(s)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Finding proxies for 1106 SNPs in outcome ebi-a-GCST007432</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Extracting data for 1106 SNP(s) from 1 GWAS(s)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 1 of 1 outcomes</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  [&gt;] 1 of 3 chunks</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  [&gt;] 2 of 3 chunks</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span>  [&gt;] 3 of 3 chunks</span>
 <span class="r-in"><span><span class="va">harmonise</span> <span class="op">&lt;-</span> <span class="fu">TwoSampleMR</span><span class="fu">::</span><span class="fu"><a href="https://mrcieu.github.io/TwoSampleMR/reference/harmonise_data.html" class="external-link">harmonise_data</a></span><span class="op">(</span><span class="va">clump</span>,<span class="va">outcome</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising MMP.10 (ImbABK) and FEV1 || id:ebi-a-GCST007432 (ebi-a-GCST007432)</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in check_required_columns(outcome_dat, "outcome"):</span> The following required columns are missing from outcome: SNP, id.outcome, outcome, beta.outcome, se.outcome, effect_allele.outcome, other_allele.outcome</span>
 <span class="r-in"><span><span class="va">prefix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">prot</span>,<span class="va">type</span>,sep<span class="op">=</span><span class="st">"-"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">run_TwoSampleMR</span><span class="op">(</span><span class="va">harmonise</span>, mr_plot<span class="op">=</span><span class="st">"pQTLtools"</span>, prefix<span class="op">=</span><span class="va">prefix</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'ImbABK' on 'ebi-a-GCST007432'</span>
-<span class="r-plt img"><img src="run_TwoSampleMR-1.png" alt="" width="700" height="433"></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 1 row containing missing values or values outside the scale range (`geom_errorbarh()`).</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 1 row containing missing values or values outside the scale range (`geom_point()`).</span>
-<span class="r-plt img"><img src="run_TwoSampleMR-2.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="run_TwoSampleMR-3.png" alt="" width="700" height="433"></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 1 row containing missing values or values outside the scale range (`geom_errorbarh()`).</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 1 row containing missing values or values outside the scale range (`geom_point()`).</span>
-<span class="r-plt img"><img src="run_TwoSampleMR-4.png" alt="" width="700" height="433"></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'harmonise' not found</span>
 <span class="r-in"><span><span class="va">caption</span> <span class="op">&lt;-</span> <span class="st">"Table. MMP.10 variants and FEV1"</span></span></span>
 <span class="r-in"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.delim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">prefix</span>,<span class="st">"-result.txt"</span><span class="op">)</span>,header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>             caption<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">caption</span>, <span class="st">"(result)"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Table: Table. MMP.10 variants and FEV1 (result)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |id.exposure |id.outcome       |outcome                               |exposure |method                    | nsnp|        b|      se|  pval|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |:-----------|:----------------|:-------------------------------------|:--------|:-------------------------|----:|--------:|-------:|-----:|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |ImbABK      |ebi-a-GCST007432 |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |MMP.10   |MR Egger                  |   11|  0.00883| 0.02618| 0.744|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |ImbABK      |ebi-a-GCST007432 |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |MMP.10   |Weighted median           |   11|  0.00156| 0.01122| 0.890|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |ImbABK      |ebi-a-GCST007432 |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |MMP.10   |Inverse variance weighted |   11| -0.00365| 0.00836| 0.662|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |ImbABK      |ebi-a-GCST007432 |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |MMP.10   |Simple mode               |   11|  0.00866| 0.02057| 0.683|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |ImbABK      |ebi-a-GCST007432 |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |MMP.10   |Weighted mode             |   11|  0.01204| 0.01947| 0.550|</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>cannot open file 'MMP.10-cis-result.txt': No such file or directory</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in file(file, "rt"):</span> cannot open the connection</span>
 <span class="r-in"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.delim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">prefix</span>,<span class="st">"-heterogeneity.txt"</span><span class="op">)</span>,header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>             caption<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">caption</span>,<span class="st">"(heterogeneity)"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Table: Table. MMP.10 variants and FEV1 (heterogeneity)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |id.exposure |id.outcome       |outcome                               |exposure |method                    |    Q| Q_df| Q_pval|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |:-----------|:----------------|:-------------------------------------|:--------|:-------------------------|----:|----:|------:|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |ImbABK      |ebi-a-GCST007432 |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |MMP.10   |MR Egger                  | 7.97|    9|  0.537|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |ImbABK      |ebi-a-GCST007432 |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |MMP.10   |Inverse variance weighted | 8.22|   10|  0.607|</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>cannot open file 'MMP.10-cis-heterogeneity.txt': No such file or directory</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in file(file, "rt"):</span> cannot open the connection</span>
 <span class="r-in"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.delim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">prefix</span>,<span class="st">"-pleiotropy.txt"</span><span class="op">)</span>,header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>             caption<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">caption</span>,<span class="st">"(pleiotropy)"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Table: Table. MMP.10 variants and FEV1 (pleiotropy)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |id.exposure |id.outcome       |outcome                               |exposure | egger_intercept|     se|  pval|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |:-----------|:----------------|:-------------------------------------|:--------|---------------:|------:|-----:|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |ImbABK      |ebi-a-GCST007432 |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |MMP.10   |        -0.00156| 0.0031| 0.627|</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>cannot open file 'MMP.10-cis-pleiotropy.txt': No such file or directory</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in file(file, "rt"):</span> cannot open the connection</span>
 <span class="r-in"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.delim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">prefix</span>,<span class="st">"-single.txt"</span><span class="op">)</span>,header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>             caption<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">caption</span>,<span class="st">"(single)"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Table: Table. MMP.10 variants and FEV1 (single)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |exposure |outcome                               |id.exposure |id.outcome       | samplesize|SNP                             |         b|      se|     p|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |:--------|:-------------------------------------|:-----------|:----------------|----------:|:-------------------------------|---------:|-------:|-----:|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |ImbABK      |ebi-a-GCST007432 |     321047|rs12418070                      | -0.032669| 0.02311| 0.157|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |ImbABK      |ebi-a-GCST007432 |     321047|rs12807063                      |  0.011429| 0.03238| 0.724|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |ImbABK      |ebi-a-GCST007432 |     321047|rs17098913                      |  0.018028| 0.01972| 0.361|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |ImbABK      |ebi-a-GCST007432 |     321047|rs17099562                      |  0.014941| 0.03349| 0.655|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |ImbABK      |ebi-a-GCST007432 |     321047|rs17860942                      |  0.000563| 0.03151| 0.986|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |ImbABK      |ebi-a-GCST007432 |     321047|rs17860975                      |  0.009259| 0.03056| 0.762|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |ImbABK      |ebi-a-GCST007432 |     321047|rs2186602                       |  0.034356| 0.02822| 0.223|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |ImbABK      |ebi-a-GCST007432 |     321047|rs2671375                       | -0.052478| 0.03499| 0.134|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |ImbABK      |ebi-a-GCST007432 |     321047|rs4559658                       | -0.009709| 0.03689| 0.792|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |ImbABK      |ebi-a-GCST007432 |     321047|rs76344628                      | -0.019860| 0.02103| 0.345|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |ImbABK      |ebi-a-GCST007432 |     321047|rs7926065                       | -0.023011| 0.03356| 0.493|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |ImbABK      |ebi-a-GCST007432 |     321047|All - Inverse variance weighted | -0.003653| 0.00836| 0.662|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |ImbABK      |ebi-a-GCST007432 |     321047|All - MR Egger                  |  0.008831| 0.02618| 0.744|</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>cannot open file 'MMP.10-cis-single.txt': No such file or directory</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in file(file, "rt"):</span> cannot open the connection</span>
 <span class="r-in"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.delim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">prefix</span>,<span class="st">"-loo.txt"</span><span class="op">)</span>,header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>             caption<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">caption</span>,<span class="st">"(loo)"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Table: Table. MMP.10 variants and FEV1 (loo)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |exposure |outcome                               |id.exposure |id.outcome       | samplesize|SNP        |         b|      se|     p|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |:--------|:-------------------------------------|:-----------|:----------------|----------:|:----------|---------:|-------:|-----:|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |ImbABK      |ebi-a-GCST007432 |     321047|rs12418070 |  0.000711| 0.00896| 0.937|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |ImbABK      |ebi-a-GCST007432 |     321047|rs12807063 | -0.004729| 0.00865| 0.585|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |ImbABK      |ebi-a-GCST007432 |     321047|rs17098913 | -0.008397| 0.00922| 0.363|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |ImbABK      |ebi-a-GCST007432 |     321047|rs17099562 | -0.004887| 0.00863| 0.571|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |ImbABK      |ebi-a-GCST007432 |     321047|rs17860942 | -0.003972| 0.00867| 0.647|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |ImbABK      |ebi-a-GCST007432 |     321047|rs17860975 | -0.004696| 0.00869| 0.589|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |ImbABK      |ebi-a-GCST007432 |     321047|rs2186602  | -0.007304| 0.00875| 0.404|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |ImbABK      |ebi-a-GCST007432 |     321047|rs2671375  | -0.000700| 0.00860| 0.935|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |ImbABK      |ebi-a-GCST007432 |     321047|rs4559658  | -0.003325| 0.00858| 0.698|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |ImbABK      |ebi-a-GCST007432 |     321047|rs76344628 | -0.000615| 0.00910| 0.946|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |ImbABK      |ebi-a-GCST007432 |     321047|rs7926065  | -0.002374| 0.00863| 0.783|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1 &amp;#124;&amp;#124; id:ebi-a-GCST007432 |ImbABK      |ebi-a-GCST007432 |     321047|All        | -0.003653| 0.00836| 0.662|</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>cannot open file 'MMP.10-cis-loo.txt': No such file or directory</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in file(file, "rt"):</span> cannot open the connection</span>
 <span class="r-in"><span><span class="kw">for</span> <span class="op">(</span><span class="va">x</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"result"</span>,<span class="st">"heterogeneity"</span>,<span class="st">"pleiotropy"</span>,<span class="st">"single"</span>,<span class="st">"loo"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">prefix</span>,<span class="st">"-"</span>,<span class="va">x</span>,<span class="st">".txt"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>

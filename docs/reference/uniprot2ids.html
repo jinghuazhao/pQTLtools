@@ -101,7 +101,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.svg" class="logo" alt=""><h1>UniProt IDs to others</h1>
-      <small class="dont-index">Source: <a href="https://github.com/jinghuazhao/pQTLtools/blob/HEAD/R/utils.R" class="external-link"><code>R/utils.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/jinghuazhao/pQTLtools/blob/HEAD/R/uniprot2ids.R" class="external-link"><code>R/uniprot2ids.R</code></a></small>
       <div class="d-none name"><code>uniprot2ids.Rd</code></div>
     </div>
 
@@ -150,7 +150,7 @@ See https://www.uniprot.org/help/api_idmapping</p>
 <span class="r-in"><span><span class="va">uniprotid</span> <span class="op">&lt;-</span> <span class="st">"ACC+ID"</span></span></span>
 <span class="r-in"><span><span class="va">to</span> <span class="op">&lt;-</span> <span class="st">"CHEMBL_ID"</span></span></span>
 <span class="r-in"><span><span class="va">query</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/noquote.html" class="external-link">noquote</a></span><span class="op">(</span><span class="fu">gap.datasets</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/gap.datasets/man/inf1.html" class="external-link">inf1</a></span><span class="op">[[</span><span class="st">"uniprot"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">query</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">query</span>,collapse<span class="op">=</span><span class="st">" "</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">query</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">query</span>,collapse<span class="op">=</span><span class="st">" "</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu">pQTLtools</span><span class="fu">::</span><span class="fu">uniprot2ids</span><span class="op">(</span><span class="va">uniprotid</span>,<span class="va">to</span>,<span class="va">query</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="va">r</span>,file<span class="op">=</span><span class="st">"INF1.merge.chembl"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>

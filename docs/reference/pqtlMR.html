@@ -14,7 +14,7 @@ outcome &amp;lt;- extract_outcome_data(snps=with(exposure,SNP),outcomes=c("ieu-a
     
     <a class="navbar-brand me-2" href="../index.html">pQTLtools</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -82,6 +82,7 @@ outcome &amp;lt;- extract_outcome_data(snps=with(exposure,SNP),outcomes=c("ieu-a
     <a class="external-link dropdown-item" href="https://www.ebi.ac.uk/eqtl/">eQTL catalog</a>
     <a class="external-link dropdown-item" href="https://www.ebi.ac.uk/gwas/">GWAS catalog</a>
     <a class="external-link dropdown-item" href="https://metascape.org/">metascape</a>
+    <a class="external-link dropdown-item" href="https://ligand-discovery.ai/">Ligand discovery</a>
     <a class="external-link dropdown-item" href="https://www.mrbase.org/">MRBase</a>
     <a class="external-link dropdown-item" href="https://www.proteomicsdb.org/">ProteomicsDB</a>
     <a class="external-link dropdown-item" href="https://pubmed.ncbi.nlm.nih.gov/">PubMed</a>
@@ -104,7 +105,7 @@ outcome &amp;lt;- extract_outcome_data(snps=with(exposure,SNP),outcomes=c("ieu-a
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.svg" class="logo" alt=""><h1>Basic pQTL-MR analysis</h1>
-      <small class="dont-index">Source: <a href="https://github.com/jinghuazhao/pQTLtools/blob/HEAD/R/utils.R" class="external-link"><code>R/utils.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/jinghuazhao/pQTLtools/blob/HEAD/R/pqtlMR.R" class="external-link"><code>R/pqtlMR.R</code></a></small>
       <div class="d-none name"><code>pqtlMR.Rd</code></div>
     </div>
 
@@ -175,10 +176,16 @@ spirit similar to <code>run_TwoSampleMR</code>.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/MRCIEU/TwoSampleMR" class="external-link">TwoSampleMR</a></span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> TwoSampleMR version 0.5.11 </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> [&gt;] New: Option to use non-European LD reference panels for clumping etc</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> [&gt;] Some studies temporarily quarantined to verify effect allele</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> [&gt;] See news(package = 'TwoSampleMR') and https://gwas.mrcieu.ac.uk for further details</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> TwoSampleMR version 0.6.0 </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> [&gt;] New: Improved API performance and stability</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> [&gt;] New: Authentication required for all OpenGWAS queries from 1st May 2024</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> [&gt;] For guidance see https://mrcieu.github.io/ieugwasr/articles/guide.html#authentication</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Warning:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> You are running an old version of the TwoSampleMR package.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> This version:   0.6.0</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Latest version: 0.6.2</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Please consider updating using remotes::install_github('MRCIEU/TwoSampleMR')</span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jinghuazhao/pQTLtools" class="external-link">pQTLtools</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">fi</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/find.package.html" class="external-link">find.package</a></span><span class="op">(</span><span class="st">"pQTLtools"</span>,lib.loc<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">.libPaths</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>,<span class="st">"tests"</span>,<span class="st">"Ins.csv"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">exposure</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://mrcieu.github.io/TwoSampleMR/reference/format_data.html" class="external-link">format_data</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="va">fi</span><span class="op">)</span>,type<span class="op">=</span><span class="st">"exposure"</span><span class="op">)</span></span></span>
