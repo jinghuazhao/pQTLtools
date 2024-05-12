@@ -10,7 +10,6 @@
 #' Objects                  |   Description
 #' -------------------------|---------------------------------------------
 #' **GWAS**                 |   &nbsp;
-#' [`import_OpenGWAS`]      |   Import OpenGWAS
 #' [`novelty_check`]        |   Locus novelty check
 #' [`peptideAssociationPlot`]   | peptide association plot
 #' [`peptideMapping`]       |   peptide-to-protein mapping
@@ -24,6 +23,7 @@
 #' [`run_coloc`]            |   Colocalisation analysis
 #'  &nbsp;                  |   &nbsp;
 #'  **MR analysis**         |   &nbsp;
+#' [`import_OpenGWAS`]      |   Import OpenGWAS
 #' [`pqtlMR`]               |   Bidirectional pQTL-MR analysis
 #' [`qtl_lookup`]           |   QTL lookup
 #' [`run_TwoSampleMR`]      |   A generic wrapper for TwoSampleMR analysis
