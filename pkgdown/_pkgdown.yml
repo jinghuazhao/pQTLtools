@@ -6,6 +6,8 @@ home:
     href: https://cloud.r-project.org/package=gap
   - text: rdrr.io snapshots
     href: https://rdrr.io/github/jinghuazhao/pQTLtools/
+  - text: <img src='https://jinghuazhao.github.io/bees.svg' width=24> GitHub repositories
+    href: https://github.com/jinghuazhao/
   sidebar:
     structure: [links, support, license, community, authors, dev]
     components:
@@ -16,7 +18,7 @@ home:
 authors:
   Jing Hua Zhao:
     title: Jing Hua Zhao
-    html: "[<img src='https://jinghuazhao.github.io/bees.svg' width=24>](https://github.com/jinghuazhao/)"
+    html: "[Jing Hua Zhao](https://jinghuazhao.github.io)"
   footer:
     roles: [cre, fnd]
     text: "Crafted by"
