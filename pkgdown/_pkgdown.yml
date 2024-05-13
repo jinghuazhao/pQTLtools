@@ -16,7 +16,7 @@ home:
 authors:
   Jing Hua Zhao:
     title: Jing Hua Zhao
-    html: "[<img src='https://jinghuazhao.github.io/bees.svg' width=24> Jing Hua Zhao](https://github.com/jinghuazhao/)"
+    html: "[<img src='https://jinghuazhao.github.io/bees.svg' width=24>](https://github.com/jinghuazhao/)"
   footer:
     roles: [cre, fnd]
     text: "Crafted by"
