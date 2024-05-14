@@ -23,9 +23,11 @@ fi
 if [ -f vignettes/fig2d.html ]; then
    mv vignettes/fig2d.html docs/articles/
 fi
-
 if [ -f vignettes/fig3d.html ]; then
    mv vignettes/fig3d.html docs/articles/
+fi
+if [ -f vignettes/heatmaply.html ]; then
+   mv vignettes/heatmaply.html docs/articles/
 fi
 
 if [ "$(uname -n | sed 's/-[0-9]*$//')" == "login-q" ]; then
