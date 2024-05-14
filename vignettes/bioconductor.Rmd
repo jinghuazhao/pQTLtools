@@ -53,22 +53,22 @@ This is the documentation example, based on Bioconductor 3.14.
 data(bladderdata)
 edat <- bladderEset[1:50,]
 
-pheno <- pData(edat)
+pheno <- Biobase::pData(edat)
 batch <- pheno$batch
 table(batch)
-matboxplot(edat,batch,cex.axis=0.6,notch=TRUE,ylab="Expression")
-matdensity(edat,batch,xlab=" ",ylab="density")
+quantro::matboxplot(edat,batch,cex.axis=0.6,notch=TRUE,ylab="Expression")
+quantro::matdensity(edat,batch,xlab=" ",ylab="density")
 legend("topleft",legend=1:5,col=1:5,lty=1)
 
 # 1. parametric adjustment
-combat_edata1 <- ComBat(dat=edat, batch=batch, par.prior=TRUE, prior.plots=TRUE)
+combat_edata1 <- sva::ComBat(dat=edat, batch=batch, par.prior=TRUE, prior.plots=TRUE)
 
 # 2. non-parametric adjustment, mean-only version
-combat_edata2 <- ComBat(dat=edat, batch=batch, par.prior=FALSE, mean.only=TRUE)
+combat_edata2 <- sva::ComBat(dat=edat, batch=batch, par.prior=FALSE, mean.only=TRUE)
 
 # 3. reference-batch version, with covariates
 mod <- model.matrix(~as.factor(cancer), data=pheno)
-combat_edata3 <- ComBat(dat=edat, batch=batch, mod=mod, par.prior=TRUE, ref.batch=3, prior.plots=TRUE)
+combat_edata3 <- sva::ComBat(dat=edat, batch=batch, mod=mod, par.prior=TRUE, ref.batch=3, prior.plots=TRUE)
 ```
 
 ## quantro
@@ -77,17 +77,17 @@ This is also adapted from the package vignette but with `FlowSorted.DLPFC.450k` 
 
 ```{r quantro, fig.cap="quantro example", messages=FALSE}
 p <- getBeta(FlowSorted.DLPFC.450k,offset=100)
-pd <- pData(FlowSorted.DLPFC.450k)
-matboxplot(p, groupFactor = pd$CellType, xaxt = "n", main = "Beta Values")
-matdensity(p, groupFactor = pd$CellType, xlab = " ", ylab = "density",
-           main = "Beta Values", brewer.n = 8, brewer.name = "Dark2")
+pd <- Biobase::pData(FlowSorted.DLPFC.450k)
+quantro::matboxplot(p, groupFactor = pd$CellType, xaxt = "n", main = "Beta Values")
+quantro::matdensity(p, groupFactor = pd$CellType, xlab = " ", ylab = "density",
+                    main = "Beta Values", brewer.n = 8, brewer.name = "Dark2")
 legend('top', c("NeuN_neg", "NeuN_pos"), col = c(1, 2), lty = 1, lwd = 3)
-qtest <- quantro(object = p, groupFactor = pd$CellType)
+qtest <- quantro::quantro(object = p, groupFactor = pd$CellType)
 if (FALSE)
 {
-  registerDoParallel(cores=10)
-  qtestPerm <- quantro(p, groupFactor = pd$CellType, B = 1000)
-  quantroPlot(qtestPerm)
+  doParallel::registerDoParallel(cores=10)
+  qtestPerm <- quantro::quantro(p, groupFactor = pd$CellType, B = 1000)
+  quantro::quantroPlot(qtestPerm)
 }
 ```
 
@@ -115,10 +115,10 @@ res <- DESeq2::results(dds, contrast=c("condition","B","A"))
 rld <- DESeq2::rlogTransformation(ex, blind=TRUE)
 dat <- DESeq2::plotPCA(rld, intgroup=c("condition"),returnData=TRUE)
 percentVar <- round(100 * attr(dat,"percentVar"))
-ggplot(dat, aes(PC1, PC2, color=condition, shape=condition)) +
-geom_point(size=3) +
-xlab(paste0("PC1:",percentVar[1],"% variance")) +
-ylab(paste0("PC2:",percentVar[2],"% variance"))
+ggplot2::ggplot(dat, ggplot2::aes(PC1, PC2, color=condition, shape=condition)) +
+ggplot2::geom_point(size=3) +
+ggplot2::xlab(paste0("PC1:",percentVar[1],"% variance")) +
+ggplot2::ylab(paste0("PC2:",percentVar[2],"% variance"))
 ex$condition <- relevel(ex$condition, ref="B")
 dds2 <- DESeq2::DESeq(dds)
 res <- DESeq2::results(dds2)
@@ -134,35 +134,35 @@ A simple network is furnished with the `GeneNet` documentation example,
 ```{r GeneNet, fig.cap="GeneNet example", messages=FALSE}
 ## A random network with 40 nodes 
 # it contains 780=40*39/2 edges of which 5 percent (=39) are non-zero
-true.pcor <- ggm.simulate.pcor(40)
+true.pcor <- GeneNet::ggm.simulate.pcor(40)
   
 # A data set with 40 observations
-m.sim <- ggm.simulate.data(40, true.pcor)
+m.sim <- GeneNet::ggm.simulate.data(40, true.pcor)
 
 # A simple estimate of partial correlations
-estimated.pcor <- cor2pcor( cor(m.sim) )
+estimated.pcor <- corpcor::cor2pcor( cor(m.sim) )
 
 # A comparison of estimated and true values
 sum((true.pcor-estimated.pcor)^2)
 
 # A slightly better estimate ...
-estimated.pcor.2 <- ggm.estimate.pcor(m.sim)
+estimated.pcor.2 <- GeneNet::ggm.estimate.pcor(m.sim)
 sum((true.pcor-estimated.pcor.2)^2)
 
 ## ecoli data 
 data(ecoli)
 
 # partial correlation matrix 
-inferred.pcor <- ggm.estimate.pcor(ecoli)
+inferred.pcor <- GeneNet::ggm.estimate.pcor(ecoli)
 
 # p-values, q-values and posterior probabilities for each potential edge 
-test.results <- network.test.edges(inferred.pcor)
+test.results <- GeneNet::network.test.edges(inferred.pcor)
 
 # best 20 edges (strongest correlation)
 test.results[1:20,]
 
 # network containing edges with prob > 0.9 (i.e. local fdr < 0.1)
-net <- extract.network(test.results, cutoff.ggm=0.9)
+net <- GeneNet::extract.network(test.results, cutoff.ggm=0.9)
 net
 
 # significant based on FDR cutoff Q=0.05?
@@ -174,14 +174,14 @@ num.significant.2 <- sum(test.results$prob > 0.9)
 test.results[test.results$prob > 0.9,]
 
 # parameters of the mixture distribution used to compute p-values etc.
-c <- fdrtool(sm2vec(inferred.pcor), statistic="correlation")
+c <- fdrtool::fdrtool(corpcor::sm2vec(inferred.pcor), statistic="correlation")
 c$param
 
 ## A random network with 20 nodes and 10 percent (=19) edges
-true.pcor <- ggm.simulate.pcor(20, 0.1)
+true.pcor <- GeneNet::ggm.simulate.pcor(20, 0.1)
 
 # convert to edge list
-test.results <- ggm.list.edges(true.pcor)[1:19,]
+test.results <- GeneNet::ggm.list.edges(true.pcor)[1:19,]
 nlab <- LETTERS[1:20]
 
 # graphviz
@@ -189,14 +189,14 @@ nlab <- LETTERS[1:20]
 # system("fdp -T svg -o test.svg test.dot")
 
 # Rgraphviz
-gr <- network.make.graph( test.results, nlab)
+gr <- GeneNet::network.make.graph( test.results, nlab)
 gr
 num.nodes(gr)
 edge.info(gr)
-gr2 <- network.make.graph( test.results, nlab, drop.singles=TRUE)
+gr2 <- GeneNet::network.make.graph( test.results, nlab, drop.singles=TRUE)
 gr2
-num.nodes(gr2)
-edge.info(gr2)
+GeneNet::num.nodes(gr2)
+GeneNet::edge.info(gr2)
 
 # plot network
 plot(gr, "fdp")
@@ -210,40 +210,41 @@ set.seed(123454321)
 m <- matrix(runif(2500),50)
 r <- cor(m)
 g <- as.matrix(r>=0.7)+0
-f1 <- Heatmap(r)
-f2 <- Heatmap(g)
+f1 <- ComplexHeatmap::Heatmap(r)
+f2 <- ComplexHeatmap::Heatmap(g)
 f <- f1+f2
-draw(f)
+ComplexHeatmap::draw(f)
 
-df <- normalize(mtcars)
-heatmaply(df,k_col=5,k_row=5,colors = colorRampPalette(brewer.pal(3, "RdBu"))(256))
+df <- heatmaply::normalize(mtcars)
+heatmaply::heatmaply(df,k_col=5,k_row=5,
+                     colors = grDevices::colorRampPalette(RColorBrewer::brewer.pal(3, "RdBu"))(256))
 ```
 
 and a module analysis with WGCNA,
 
 ```r
 pwr <- c(1:10, seq(from=12, to=30, by=2))
-sft <- pickSoftThreshold(dat, powerVector=pwr, verbose=5)
+sft <- WGCNA::pickSoftThreshold(dat, powerVector=pwr, verbose=5)
 ADJ <- abs(cor(dat, method="pearson", use="pairwise.complete.obs"))^6
 dissADJ <- 1-ADJ
-dissTOM <- TOMdist(ADJ)
-TOM <- TOMsimilarityFromExpr(dat)
+dissTOM <- WGCNA::TOMdist(ADJ)
+TOM <- WGCNA::TOMsimilarityFromExpr(dat)
 Tree <- hclust(as.dist(1-TOM), method="average")
 for(j in pwr)
 {
   pam_name <- paste0("pam",j)
-  assign(pam_name, pam(as.dist(dissADJ),j))
+  assign(pam_name, cluster::pam(as.dist(dissADJ),j))
   pamTOM_name <- paste0("pamTOM",j)
-  assign(pamTOM_name,pam(as.dist(dissTOM),j))
+  assign(pamTOM_name,cluster::pam(as.dist(dissTOM),j))
   tc <- table(get(pam_name)$clustering,get(pamTOM_name)$clustering)
   print(tc)
   print(diag(tc))
 }
-colorStaticTOM <- as.character(cutreeStaticColor(Tree,cutHeight=.99,minSize=5))
-colorDynamicTOM <- labels2colors(cutreeDynamic(Tree,method="tree",minClusterSize=5))
+colorStaticTOM <- as.character(WGCNA::cutreeStaticColor(Tree,cutHeight=.99,minSize=5))
+colorDynamicTOM <- WGCNA::labels2colors(cutreeDynamic(Tree,method="tree",minClusterSize=5))
 Colors <- data.frame(pamTOM6$clustering,colorStaticTOM,colorDynamicTOM)
-plotDendroAndColors(Tree, Colors, dendroLabels=FALSE, hang=0.03, addGuide=TRUE, guideHang=0.05)
-meg <- moduleEigengenes(dat, color=1:ncol(dat), softPower=6)
+WGCNA::plotDendroAndColors(Tree, Colors, dendroLabels=FALSE, hang=0.03, addGuide=TRUE, guideHang=0.05)
+meg <- WGCNA::moduleEigengenes(dat, color=1:ncol(dat), softPower=6)
 ```
 
 # Meta-data
@@ -251,32 +252,31 @@ meg <- moduleEigengenes(dat, color=1:ncol(dat), softPower=6)
 This section is based on package `recount3`.
 
 ```r
-hs <- available_projects()
+hs <- recount3::available_projects()
 dim(subset(hs,file_source=="gtex"))
-annotation_options("human")
-blood_rse <- create_rse(subset(hs,project=="BLOOD"))
-metadata(blood_rse)
-rowRanges(blood_rse)
-colnames(colData(blood_rse))[1:20]
-expand_sra_attributes(blood_rse)
+recount3::annotation_options("human")
+blood_rse <- recount3::create_rse(subset(hs,project=="BLOOD"))
+S4Vectors::metadata(blood_rse)
+SummarizedExperiment::rowRanges(blood_rse)
+colnames(SummarizedExperiment::colData(blood_rse))[1:20]
+recount3::expand_sra_attributes(blood_rse)
 ```
 
 # Pathway and enrichment analysis
 
 ```{r pathway-enrichment, fig.cap="enricher example", messages=FALSE}
-reactome <- pathways("hsapiens", "reactome")
-kegg <- pathways("hsapiens","kegg")
-pharmgkb <- pathways("hsapiens","pharmgkb")
+reactome <- graphite::pathways("hsapiens", "reactome")
+kegg <- graphite::pathways("hsapiens","kegg")
+pharmgkb <- graphite::pathways("hsapiens","pharmgkb")
 nodes(kegg[[21]])
 kegg_t2g <- ldply(lapply(kegg, nodes), data.frame)
 names(kegg_t2g) <- c("gs_name", "gene_symbol")
 VEGF <- subset(kegg_t2g,gs_name=="VEGF signaling pathway")[[2]]
-eKEGG <- enricher(gene=VEGF, TERM2GENE = kegg_t2g,
-                  universe=,
-                  pAdjustMethod = "BH",
-                  pvalueCutoff = 0.1, qvalueCutoff = 0.05,
-                  minGSSize = 10, maxGSSize = 500)
-
+eKEGG <- clusterProfiler::enricher(gene=VEGF, TERM2GENE = kegg_t2g,
+                                   universe=,
+                                   pAdjustMethod = "BH",
+                                   pvalueCutoff = 0.1, qvalueCutoff = 0.05,
+                                   minGSSize = 10, maxGSSize = 500)
 ```
 
 # Peptide sequence
@@ -312,21 +312,23 @@ options(width=200)
 # subset(symbol_uniprot,SYMBOL=="MC4R")
 
 x <- EnsDb.Hsapiens.v86
-listColumns(x, "protein", skip.keys=TRUE)
-listGenebiotypes(x)
-listTxbiotypes(x)
-listTables(x)
-metadata(x)
-organism(x)
-returnFilterColumns(x)
-seqinfo(x)
-seqlevels(x)
-updateEnsDb(x)
+ensembldb::listColumns(x, "protein", skip.keys=TRUE)
+ensembldb::listGenebiotypes(x)
+ensembldb::listTxbiotypes(x)
+ensembldb::listTables(x)
+ensembldb::metadata(x)
+ensembldb::organism(x)
+ensembldb::returnFilterColumns(x)
+ensembldb::seqinfo(x)
+ensembldb::seqlevels(x)
+ensembldb::updateEnsDb(x)
 
-genes(x, columns=c("gene_name"), filter=list(SeqNameFilter("X"), GeneBiotypeFilter("protein_coding")))
-transcripts(x, columns=listColumns(x, "tx"), filter = AnnotationFilterList(), order.type = "asc", return.type = "GRanges")
+ensembldb::genes(x, columns=c("gene_name"),
+             filter=list(SeqNameFilter("X"), AnnotationFilter::GeneBiotypeFilter("protein_coding")))
+ensembldb ::transcripts(x, columns=ensembldb::listColumns(x, "tx"),
+                        filter = AnnotationFilter::AnnotationFilterList(), order.type = "asc", return.type = "GRanges")
 
-txdbEnsemblGRCh38 <- makeTxDbFromEnsembl(organism="Homo sapiens", release=98)
+txdbEnsemblGRCh38 <- GenomicFeatures::makeTxDbFromEnsembl(organism="Homo sapiens", release=98)
 txdb <- as.list(txdbEnsemblGRCh38)
 lapply(txdb,head)
 
