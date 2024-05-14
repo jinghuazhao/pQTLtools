@@ -50,7 +50,7 @@ See `inst/turboman`in the source, <https://github.com/jinghuazhao/pQTLtools/tree
 This is the documentation example, based on Bioconductor 3.14.
 
 ```{r ComBat, fig.cap="ComBat example", messages=FALSE}
-data(bladderdata)
+data(bladderdata, package="bladderbatch")
 edat <- bladderEset[1:50,]
 
 pheno <- Biobase::pData(edat)
@@ -76,6 +76,7 @@ combat_edata3 <- sva::ComBat(dat=edat, batch=batch, mod=mod, par.prior=TRUE, ref
 This is also adapted from the package vignette but with `FlowSorted.DLPFC.450k` in place of `FlowSorted`.
 
 ```{r quantro, fig.cap="quantro example", messages=FALSE}
+data(FlowSorted.DLPFC.450k,package="FlowSorted.DLPFC.450k")
 p <- getBeta(FlowSorted.DLPFC.450k,offset=100)
 pd <- Biobase::pData(FlowSorted.DLPFC.450k)
 quantro::matboxplot(p, groupFactor = pd$CellType, xaxt = "n", main = "Beta Values")
@@ -150,7 +151,7 @@ estimated.pcor.2 <- GeneNet::ggm.estimate.pcor(m.sim)
 sum((true.pcor-estimated.pcor.2)^2)
 
 ## ecoli data 
-data(ecoli)
+data(ecoli, package="GeneNet")
 
 # partial correlation matrix 
 inferred.pcor <- GeneNet::ggm.estimate.pcor(ecoli)
@@ -216,11 +217,12 @@ f <- f1+f2
 ComplexHeatmap::draw(f)
 
 df <- heatmaply::normalize(mtcars)
-heatmaply::heatmaply(df,k_col=5,k_row=5,
-                     colors = grDevices::colorRampPalette(RColorBrewer::brewer.pal(3, "RdBu"))(256))
+hm <- heatmaply::heatmaply(df,k_col=5,k_row=5,
+                           colors = grDevices::colorRampPalette(RColorBrewer::brewer.pal(3, "RdBu"))(256))
+htmlwidgets::saveWidget(hm,file="heatmaply.html")
 ```
 
-and a module analysis with WGCNA,
+so we have [heatmaply.html](heatmaply.html) and a module analysis with WGCNA,
 
 ```r
 pwr <- c(1:10, seq(from=12, to=30, by=2))
