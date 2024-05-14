@@ -1,6 +1,6 @@
-## pQTLtools v0.3
+## pQTLtools 0.3
 
-* Regenerage token to .Renviron OPENGWAS_JWT from <https://api.opengwas.io/profile/>
+* Mask TwoSampleMR example due to problem with OPENGWAS_JWT from <https://api.opengwas.io/profile/>
 * Suggest IlluminaHumanMethylation450kmanifest, OUTRIDER
 * Fix URL in DESCRIPTION/snakemake.Rmd
 
