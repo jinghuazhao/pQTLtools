@@ -51,12 +51,12 @@ This is the documentation example, based on Bioconductor 3.14.
 
 ```{r ComBat, fig.cap="ComBat example", messages=FALSE}
 data(bladderdata, package="bladderbatch")
-edat <- bladderEset[1:50,]
+edat <- bladderEset[1:50]
 
 pheno <- Biobase::pData(edat)
 batch <- pheno$batch
 table(batch)
-quantro::matboxplot(edat,batch,cex.axis=0.6,notch=TRUE,ylab="Expression")
+quantro::matboxplot(edat,batch,cex.axis=0.6,notch=TRUE,pch=19,ylab="Expression")
 quantro::matdensity(edat,batch,xlab=" ",ylab="density")
 legend("topleft",legend=1:5,col=1:5,lty=1)
 
@@ -79,7 +79,7 @@ This is also adapted from the package vignette but with `FlowSorted.DLPFC.450k` 
 data(FlowSorted.DLPFC.450k,package="FlowSorted.DLPFC.450k")
 p <- getBeta(FlowSorted.DLPFC.450k,offset=100)
 pd <- Biobase::pData(FlowSorted.DLPFC.450k)
-quantro::matboxplot(p, groupFactor = pd$CellType, xaxt = "n", main = "Beta Values")
+quantro::matboxplot(p, groupFactor = pd$CellType, xaxt = "n", main = "Beta Values", pch=19)
 quantro::matdensity(p, groupFactor = pd$CellType, xlab = " ", ylab = "density",
                     main = "Beta Values", brewer.n = 8, brewer.name = "Dark2")
 legend('top', c("NeuN_neg", "NeuN_pos"), col = c(1, 2), lty = 1, lwd = 3)
