@@ -59,7 +59,7 @@ experimentData <- new("MIAME",
   other=list(notes="Created from text files"))
 exampleSet <- make_ExpressionSet(exprs,phenoData,experimentData=experimentData,
                                  annotation="hgu95av2")
-data(sample.ExpressionSet)
+data(sample.ExpressionSet, package="Biobase")
 identical(exampleSet,sample.ExpressionSet)
 ```
 
@@ -68,7 +68,7 @@ identical(exampleSet,sample.ExpressionSet)
 The great benefit is to use the object directly as a data.frame.
 
 ```{r}
-lm.result <- esApply(exampleSet,1,function(x) lm(score~gender+x))
+lm.result <- Biobase::esApply(exampleSet,1,function(x) lm(score~gender+x))
 beta.x <- unlist(lapply(lapply(lm.result,coef),"[",3))
 beta.x[1]
 lm(score~gender+AFFX.MurIL2_at,data=exampleSet)
@@ -80,16 +80,18 @@ We wish to examine the distribution of each feature via histogram, scatter and b
 One could resort to `esApply` for its simplicity as before
 
 ```r
-invisible(esApply(exampleSet[1:2],1,function(x){par(mfrow=c(3,1));boxplot(x);hist(x);plot(x)}))
+invisible(Biobase::esApply(exampleSet[1:2],1,function(x)
+                                             {par(mfrow=c(3,1));boxplot(x);hist(x);plot(x)}
+))
 ```
 but it is nicer to add feature name in the title.
 
 ```{r plots, fig.cap="Histogram, scatter & boxplots", fig.height=3}
 par(mfrow=c(1,3))
-f <- featureNames(exampleSet[1:2])
+f <- Biobase::featureNames(exampleSet[1:2])
 invisible(sapply(f,function(x) {
-                     d <- t(exprs(exampleSet[x]))
-                     fn <- featureNames(exampleSet[x])
+                     d <- t(Biobase::exprs(exampleSet[x]))
+                     fn <- Biobase::featureNames(exampleSet[x])
                      hist(d,main="",xlab=fn); plot(d, ylab=fn); boxplot(d,ylab=fn)
                    }
           )
@@ -102,7 +104,8 @@ where the expression set is indexed using feature name(s).
 This illustrates one mechanism,
 
 ```r
-list_outliers <- function(es, method="upperquartile") outliers(exprs(es),method=method)
+list_outliers <- function(es, method="upperquartile")
+                 arrayQualityMetrics::outliers(exprs(es),method=method)
 for (method in c("KS","sum","upperquartile"))
 {
   ZWK_outliers <- list_outliers(protein_ZWK,method=method)
@@ -143,7 +146,7 @@ Suppose we wish use log2 for those greater than zero but set those negative valu
 
 ```r
 log2.na <- function(x) log2(ifelse(x>0, x, NA))
-exprs(exampleSet) <- log2.na(exprs(exampleSet))
+Biobase::exprs(exampleSet) <- log2.na(Biobase::exprs(exampleSet))
 ```
 
 # Limit of detection (LOD)
@@ -151,11 +154,11 @@ exprs(exampleSet) <- log2.na(exprs(exampleSet))
 We generate a `lod.max` ~ U[0,1] variable to experiment
 
 ```{r lod, fig.cap="LOD based on a random cutoff", fig.height=7}
-fData(exampleSet)
-fData(exampleSet)$lod.max <- apply(exprs(exampleSet),1,quantile,runif(nrow(exampleSet)))
-lod <- get.prop.below.LLOD(exampleSet)
-x <- dplyr::arrange(fData(lod),desc(pc.belowLOD.new))
-kable(head(lod))
+Biobase::fData(exampleSet)
+Biobase::fData(exampleSet)$lod.max <- apply(Biobase::exprs(exampleSet),1,quantile,runif(nrow(exampleSet)))
+lod <- pQTLtools::get.prop.below.LLOD(exampleSet)
+x <- dplyr::arrange(Biobase::fData(lod),desc(pc.belowLOD.new))
+knitr::kable(head(lod))
 plot(x[,2], main="Random quantile cutoff", ylab="<lod%")
 ```
 
@@ -165,8 +168,8 @@ The quantity has been shown to have a big impact on protein abundance and theref
 rm(list=ls())
 dir <- "~/rds/post_qc_data/interval/phenotype/olink_proteomics/post-qc/"
 eset <- readRDS(paste0(dir,"eset.inf1.flag.out.outlier.in.rds"))
-x <- get.prop.below.LLOD(eset)
-annot <- fData(x)
+x <- pQTLtools::get.prop.below.LLOD(eset)
+annot <- Biobase::fData(x)
 annot$MissDataProp <- as.numeric(gsub("\\%$", "", annot$MissDataProp))
 plot(annot$MissDataProp, annot$pc.belowLOD.new, xlab="% <LLOD in Original",
      ylab="% <LLOD in post QC dataset", pch=19)
@@ -185,9 +188,9 @@ saveRDS(annot,file=file.path("~","pQTLtools","tests","annot.RDS"))
 
 ```{r test, fig.cap="LOD in SCALLOP-INF/INTERVAL", fig.height=8, fig.width=15}
 annot <- readRDS(file.path(find.package("pQTLtools"),"tests","annot.RDS")) %>%
-         left_join(pQTLdata::inf1[c("prot","target.short","alt_name")],by=c("ID"="prot")) %>%
-         mutate(prot=if_else(is.na(alt_name),target.short,alt_name),order=1:n()) %>%
-         arrange(desc(order))
+         dplyr::left_join(pQTLdata::inf1[c("prot","target.short","alt_name")],by=c("ID"="prot")) %>%
+         dplyr::mutate(prot=if_else(is.na(alt_name),target.short,alt_name),order=1:n()) %>%
+         dplyr::arrange(desc(order))
 xtick <- seq(1, nrow(annot))
 attach(annot)
 par(mar=c(10,5,1,1))
