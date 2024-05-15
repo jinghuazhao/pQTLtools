@@ -146,7 +146,7 @@ to various directories.</p>
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
     <p>Dimou NL, Tsilidis KK (2018).
 “A Primer in Mendelian Randomization Methodology with a Focus on Utilizing Published Summary Association Data.”
-In Evangelou E (ed.), <em>Genetic Epidemiology: Methods and Protocols</em>, chapter 13, 211-230.
+In Evangelou E (ed.), <em>Genetic Epidemiology: Methods and Protocols</em>, chapter 13, 211--230.
 Springer New York, New York, NY.
 ISBN 978-1-4939-7868-7, <a href="https://doi.org/10.1007/978-1-4939-7868-7_13" class="external-link">doi:10.1007/978-1-4939-7868-7_13</a>
 .</p>
@@ -155,7 +155,16 @@ ISBN 978-1-4939-7868-7, <a href="https://doi.org/10.1007/978-1-4939-7868-7_13" c
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/MRCIEU/TwoSampleMR" class="external-link">TwoSampleMR</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jinghuazhao/pQTLtools" class="external-link">pQTLtools</a></span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> TwoSampleMR version 0.6.0 </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> [&gt;] New: Improved API performance and stability</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> [&gt;] New: Authentication required for all OpenGWAS queries from 1st May 2024</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> [&gt;] For guidance see https://mrcieu.github.io/ieugwasr/articles/guide.html#authentication</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Warning:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> You are running an old version of the TwoSampleMR package.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> This version:   0.6.0</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Latest version: 0.6.2</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Please consider updating using remotes::install_github('MRCIEU/TwoSampleMR')</span>
 <span class="r-in"><span><span class="va">prot</span> <span class="op">&lt;-</span> <span class="st">"MMP.10"</span></span></span>
 <span class="r-in"><span><span class="va">type</span> <span class="op">&lt;-</span> <span class="st">"cis"</span></span></span>
 <span class="r-in"><span><span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">prot</span>,<span class="st">"-"</span>,<span class="va">type</span>,<span class="st">".mrx"</span><span class="op">)</span></span></span>
@@ -179,7 +188,7 @@ ISBN 978-1-4939-7868-7, <a href="https://doi.org/10.1007/978-1-4939-7868-7_13" c
 <span class="r-in"><span><span class="va">harmonise</span> <span class="op">&lt;-</span> <span class="fu">TwoSampleMR</span><span class="fu">::</span><span class="fu"><a href="https://mrcieu.github.io/TwoSampleMR/reference/harmonise_data.html" class="external-link">harmonise_data</a></span><span class="op">(</span><span class="va">clump</span>,<span class="va">outcome</span><span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in check_required_columns(outcome_dat, "outcome"):</span> The following required columns are missing from outcome: SNP, id.outcome, outcome, beta.outcome, se.outcome, effect_allele.outcome, other_allele.outcome</span>
 <span class="r-in"><span><span class="va">prefix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">prot</span>,<span class="va">type</span>,sep<span class="op">=</span><span class="st">"-"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu">run_TwoSampleMR</span><span class="op">(</span><span class="va">harmonise</span>, mr_plot<span class="op">=</span><span class="st">"pQTLtools"</span>, prefix<span class="op">=</span><span class="va">prefix</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">pQTLtools</span><span class="fu">::</span><span class="fu">run_TwoSampleMR</span><span class="op">(</span><span class="va">harmonise</span>, mr_plot<span class="op">=</span><span class="st">"pQTLtools"</span>, prefix<span class="op">=</span><span class="va">prefix</span><span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'harmonise' not found</span>
 <span class="r-in"><span><span class="va">caption</span> <span class="op">&lt;-</span> <span class="st">"Table. MMP.10 variants and FEV1"</span></span></span>
 <span class="r-in"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.delim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">prefix</span>,<span class="st">"-result.txt"</span><span class="op">)</span>,header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>,</span></span>
