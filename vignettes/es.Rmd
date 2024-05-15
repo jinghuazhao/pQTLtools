@@ -49,14 +49,13 @@ metadata <- data.frame(labelDescription=
                          "Tumor progress on XYZ scale"),
                        row.names=c("gender", "type", "score"))
 phenoData <- Biobase::AnnotatedDataFrame(data=pData, varMetadata=metadata)
-experimentData <- Biobase::MIAME(
-    name="Pierre Fermat",
-    lab="Francis Galton Lab",
-    contact="pfermat@lab.not.exist",
-    title="Smoking-Cancer Experiment",
-    abstract="An example ExpressionSet",
-    url="www.lab.not.exist",
-    other=list(notes="Created from text files"))
+experimentData <- Biobase::MIAME(name="Pierre Fermat",
+                                 lab="Francis Galton Lab",
+                                 contact="pfermat@lab.not.exist",
+                                 title="Smoking-Cancer Experiment",
+                                 abstract="An example ExpressionSet",
+                                 url="www.lab.not.exist",
+                                 other=list(notes="Created from text files"))
 exampleSet <- pQTLtools::make_ExpressionSet(exprs,phenoData,experimentData=experimentData,
                                             annotation="hgu95av2")
 data(sample.ExpressionSet, package="Biobase")
@@ -77,7 +76,7 @@ lm(score~gender+AFFX.MurIL2_at,data=exampleSet)
 # Composite plots
 
 We wish to examine the distribution of each feature via histogram, scatter and boxplot.
-One could resort to `esApply` for its simplicity as before
+One could resort to `esApply()` for its simplicity as before
 
 ```r
 invisible(Biobase::esApply(exampleSet[1:2],1,function(x)
