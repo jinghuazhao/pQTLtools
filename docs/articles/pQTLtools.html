@@ -894,14 +894,14 @@ Figure 2.5: pQTL-gene plot
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fig2d</span> <span class="op">&lt;-</span> <span class="fu">gap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gap/man/qtl2dplotly.html" class="external-link">qtl2dplotly</a></span><span class="op">(</span><span class="va">cis.vs.trans</span>,xlab<span class="op">=</span><span class="st">"pQTL position"</span>,ylab<span class="op">=</span><span class="st">"Gene position"</span><span class="op">)</span></span>
 <span><span class="fu">htmlwidgets</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/htmlwidgets/man/saveWidget.html" class="external-link">saveWidget</a></span><span class="op">(</span><span class="va">fig2d</span>,file<span class="op">=</span><span class="st">"fig2d.html"</span><span class="op">)</span></span>
-<span><span class="fu">htmltools</span><span class="fu">::</span><span class="va"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">tags</a></span><span class="op">$</span><span class="fu">iframe</span><span class="op">(</span>src <span class="op">=</span> <span class="st">"fig2d.html"</span>, width <span class="op">=</span> <span class="st">"100%"</span>, height <span class="op">=</span> <span class="st">"400px"</span><span class="op">)</span></span></code></pre></div>
-<iframe src="fig2d.html" width="100%" height="400px"></iframe>
+<span><span class="fu">htmltools</span><span class="fu">::</span><span class="va"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">tags</a></span><span class="op">$</span><span class="fu">iframe</span><span class="op">(</span>src <span class="op">=</span> <span class="st">"fig2d.html"</span>, width <span class="op">=</span> <span class="st">"100%"</span>, height <span class="op">=</span> <span class="st">"500px"</span><span class="op">)</span></span></code></pre></div>
+<iframe src="fig2d.html" width="100%" height="500px"></iframe>
 <p>and 3-d counterpart, <a href="fig3d.html">fig3d.html</a>,</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fig3d</span> <span class="op">&lt;-</span> <span class="fu">gap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gap/man/qtl3dplotly.html" class="external-link">qtl3dplotly</a></span><span class="op">(</span><span class="va">cis.vs.trans</span>,zmax<span class="op">=</span><span class="fl">300</span>,qtl.prefix<span class="op">=</span><span class="st">"pQTL:"</span>,xlab<span class="op">=</span><span class="st">"pQTL position"</span>,ylab<span class="op">=</span><span class="st">"Gene position"</span><span class="op">)</span></span>
 <span><span class="fu">htmlwidgets</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/htmlwidgets/man/saveWidget.html" class="external-link">saveWidget</a></span><span class="op">(</span><span class="va">fig3d</span>,file<span class="op">=</span><span class="st">"fig3d.html"</span><span class="op">)</span></span>
-<span><span class="fu">htmltools</span><span class="fu">::</span><span class="va"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">tags</a></span><span class="op">$</span><span class="fu">iframe</span><span class="op">(</span>src <span class="op">=</span> <span class="st">"fig2d.html"</span>, width <span class="op">=</span> <span class="st">"100%"</span>, height <span class="op">=</span> <span class="st">"400px"</span><span class="op">)</span></span></code></pre></div>
-<iframe src="fig2d.html" width="100%" height="400px"></iframe>
+<span><span class="fu">htmltools</span><span class="fu">::</span><span class="va"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">tags</a></span><span class="op">$</span><span class="fu">iframe</span><span class="op">(</span>src <span class="op">=</span> <span class="st">"fig3d.html"</span>, width <span class="op">=</span> <span class="st">"100%"</span>, height <span class="op">=</span> <span class="st">"500px"</span><span class="op">)</span></span></code></pre></div>
+<iframe src="fig3d.html" width="100%" height="500px"></iframe>
 <p>Both plots are responsive.</p>
 </div>
 <div class="section level3" number="2.7">
@@ -1017,12 +1017,11 @@ Figure 3.2: GREAT plots
 <span>  <span class="va">tb_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">tb_all</span>,<span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>gene<span class="op">=</span><span class="va">r</span>,<span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">r.post</span>,<span class="va">tb</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span><span class="co">#&gt; Don't make too frequent requests. The time break is 60s.</span></span>
-<span><span class="co">#&gt; Please wait for 55s for the next request.</span></span>
+<span><span class="co">#&gt; Please wait for 56s for the next request.</span></span>
 <span><span class="co">#&gt; The time break can be set by `request_interval` argument.</span></span>
 <span><span class="co">#&gt; Don't make too frequent requests. The time break is 60s.</span></span>
-<span><span class="co">#&gt; Please wait for 58s for the next request.</span></span>
+<span><span class="co">#&gt; Please wait for 57s for the next request.</span></span>
 <span><span class="co">#&gt; The time break can be set by `request_interval` argument.</span></span>
-<span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Don't make too frequent requests. The time break is 60s.</span></span>
 <span><span class="co">#&gt; Please wait for 58s for the next request.</span></span>
 <span><span class="co">#&gt; The time break can be set by `request_interval` argument.</span></span></code></pre></div>
