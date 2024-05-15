@@ -57,8 +57,8 @@ experimentData <- new("MIAME",
   abstract="An example ExpressionSet",
   url="www.lab.not.exist",
   other=list(notes="Created from text files"))
-exampleSet <- make_ExpressionSet(exprs,phenoData,experimentData=experimentData,
-                                 annotation="hgu95av2")
+exampleSet <- pQTLtools::make_ExpressionSet(exprs,phenoData,experimentData=experimentData,
+                                            annotation="hgu95av2")
 data(sample.ExpressionSet, package="Biobase")
 identical(exampleSet,sample.ExpressionSet)
 ```
