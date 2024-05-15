@@ -55,15 +55,15 @@ metadata <- data.frame(labelDescription=
                        row.names=c("gender", "type", "score"))
 suppressMessages(library(Biobase))
 suppressMessages(library(pQTLtools))
-phenoData <- new("AnnotatedDataFrame", data=pData, varMetadata=metadata)
-experimentData <- new("MIAME",
-  name="Pierre Fermat",
-  lab="Francis Galton Lab",
-  contact="pfermat@lab.not.exist",
-  title="Smoking-Cancer Experiment",
-  abstract="An example ExpressionSet",
-  url="www.lab.not.exist",
-  other=list(notes="Created from text files"))
+phenoData <- Biobase::AnnotatedDataFrame(data=pData, varMetadata=metadata)
+experimentData <- Biobase::MIAME(
+    name="Pierre Fermat",
+    lab="Francis Galton Lab",
+    contact="pfermat@lab.not.exist",
+    title="Smoking-Cancer Experiment",
+    abstract="An example ExpressionSet",
+    url="www.lab.not.exist",
+    other=list(notes="Created from text files"))
 exampleSet <- make_ExpressionSet(exprs,phenoData,experimentData=experimentData,
                                  annotation="hgu95av2")
 data(sample.ExpressionSet, package="Biobase")
