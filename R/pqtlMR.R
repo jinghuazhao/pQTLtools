@@ -11,8 +11,8 @@
 #' @param reverse if TRUE, perform reverse MR.
 #'
 #' @details
-#' This function is adapted from \insertCite{zheng20;textual}{pQTLtools} and in
-#' spirit similar to `run_TwoSampleMR`.
+#' Adapted from \insertCite{zheng20;textual}{pQTLtools}, this function is in spirit of
+#' \insertCite{dt18;textual}{pQTLtools} and analogous to `run_TwoSampleMR`.
 #' @md
 #'
 #' @export
