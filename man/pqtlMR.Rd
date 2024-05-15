@@ -33,7 +33,7 @@ MR analysis against a list of outcomes; in the latter case it can be data from M
 }
 \details{
 Adapted from \insertCite{zheng20;textual}{pQTLtools}, this function is in spirit of
-\insertCite{dt18;textual}{pQTLtools} and analogous to \code{run_TwoSampleMR}.
+\insertCite{dt18;textual}{pQTLtools} and analogous to \code{run_TwoSampleMR()}.
 }
 \note{
 Adapted from script by Jie Zheng.
