@@ -220,7 +220,7 @@ df <- heatmaply::normalize(mtcars)
 hm <- heatmaply::heatmaply(df,k_col=5,k_row=5,
                            colors = grDevices::colorRampPalette(RColorBrewer::brewer.pal(3, "RdBu"))(256))
 htmlwidgets::saveWidget(hm,file="heatmaply.html")
-htmltools::tags$iframe(src = "heatmaply.html", width = "100%", height = "400px")
+htmltools::tags$iframe(src = "heatmaply.html", width = "100%", height = "500px")
 ```
 
 so we have [heatmaply.html](heatmaply.html) and a module analysis with WGCNA,
