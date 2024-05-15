@@ -19,7 +19,6 @@
 #'
 #' @examples
 #' \dontrun{
-#' library(pQTLtools)
 #' suppressMessages(invisible(lapply(c("dplyr", "ggplot2", "readr", "coloc",
 #'                                     "GenomicRanges","seqminer"),
 #'                  require, character.only = TRUE)))
@@ -32,7 +31,7 @@
 #' platelet_df <- dplyr::filter(tabix_paths, study == "CEDAR", tissue_label == "platelet")
 #' hdr <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","column_names.CEDAR")
 #' column_names <- names(read.delim(hdr))
-#' summary_stats <- import_eQTLCatalogue(platelet_df$ftp_path, region,
+#' summary_stats <- pQTLtools::import_eQTLCatalogue(platelet_df$ftp_path, region,
 #'                                       selected_gene_id = ensGene, column_names)
 #' summary_stats
 #' ggplot(summary_stats, aes(x = position, y = -log(pvalue, 10))) + geom_point()
@@ -43,14 +42,14 @@
 #' # wget https://gwas.mrcieu.ac.uk/files/ebi-a-GCST004599/ebi-a-GCST004599.vcf.gz.tbi
 #' # gwas_stats <- gwasvcf::query_gwas("ebi-a-GCST004599.vcf.gz", chrompos = "3:56649749-57049749")
 #' # gwas_stats <- gwasvcf::vcf_to_granges(gwas_stats) %>%
-#'                 keepSeqlevels("3") %>%
-#'                 renameSeqlevels("chr3")
+#' #               keepSeqlevels("3") %>%
+#' #               renameSeqlevels("chr3")
 #' # via import_OpenGWAS
 #' opengwas_id <- "ebi-a-GCST004599"
 #' region <- "3:56649749-57049749"
 #' gwas_stats <- import_OpenGWAS(opengwas_id,region) %>%
-#'               keepSeqlevels("3") %>%
-#'               renameSeqlevels("chr3")
+#' #             keepSeqlevels("3") %>%
+#' #             renameSeqlevels("chr3")
 #' f <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","hg19ToHg38.over.chain")
 #' chain <- rtracklayer::import.chain(f)
 #' gwas_stats_hg38 <- rtracklayer::liftOver(gwas_stats, chain) %>%
@@ -65,7 +64,7 @@
 #'   dplyr::ungroup() %>%
 #'   dplyr::filter(row_count == 1) %>%
 #'   dplyr::mutate(chromosome=gsub("chr","",chromosome))
-#' ggplot(gwas_stats_hg38, aes(x = position, y = LP)) + geom_point()
+#' ggplot2::ggplot(gwas_stats_hg38, aes(x = position, y = LP)) + geom_point()
 #' # Colocalisation
 #' res <- run_coloc(summary_stats, gwas_stats_hg38)
 #'
@@ -140,7 +139,7 @@
 #'
 #' coloc_df = dplyr::bind_rows(coloc_df_microarray, coloc_df_rnaseq, coloc_df_imported)
 #' dplyr::arrange(coloc_df, -PP.H4.abf)
-#' ggplot(coloc_df, aes(x = PP.H4.abf)) + geom_histogram()
+#' ggplot2::ggplot(coloc_df, aes(x = PP.H4.abf)) + geom_histogram()
 #' }
 #' @note
 #' Adapted function.

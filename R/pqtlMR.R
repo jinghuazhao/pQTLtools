@@ -22,14 +22,12 @@
 #' \insertAllCited{}
 #'
 #' @examples
-#' library(TwoSampleMR)
-#' library(pQTLtools)
 #' fi <- file.path(find.package("pQTLtools",lib.loc=.libPaths()),"tests","Ins.csv")
-#' exposure <- format_data(read.csv(fi),type="exposure")
+#' exposure <- TwoSampleMR::format_data(read.csv(fi),type="exposure")
 #' fo <- file.path(find.package("pQTLtools",lib.loc=.libPaths()),"tests","Out.csv")
-#' outcome <- format_data(read.csv(fo),type="outcome")
-#' pqtlMR(exposure, outcome, prefix="IL6R-")
-#' pqtlMR(exposure, outcome, prefix="IL6R_rev-",reverse=TRUE)
+#' outcome <- TwoSampleMR::format_data(read.csv(fo),type="outcome")
+#' pQTLtools::pqtlMR(exposure, outcome, prefix="IL6R-")
+#' pQTLtools::pqtlMR(exposure, outcome, prefix="IL6R_rev-",reverse=TRUE)
 #' unlink(c("IL6R*","pQTL-combined*"))
 #' # Phenotype,SNP,effect_allele,other_allele,eaf,beta,se,pval
 #' # ABO,rs505922,C,T,0.313,1.298,0.014,1.2e-1828
