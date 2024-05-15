@@ -42,7 +42,7 @@
 #'   other=list(notes="Created from text files"))
 #' exampleSet <- make_ExpressionSet(exprs,phenoData,experimentData=experimentData,
 #'                                  annotation="hgu95av2")
-#' data(sample.ExpressionSet)
+#' data(sample.ExpressionSet, package="Biobase")
 #' identical(exampleSet,sample.ExpressionSet)
 #' invisible(esApply(exampleSet,2,hist))
 #' lm(score~gender+X31739_at,data=exampleSet)
@@ -73,10 +73,11 @@ Biobase::ExpressionSet(assayData,phenoData=phenoData,
 #' @return An updated ExpressionSet object.
 #' @examples
 #' suppressMessages(library(Biobase))
-#' data(sample.ExpressionSet)
+#' data(sample.ExpressionSet, package="Biobase")
 #' exampleSet <- sample.ExpressionSet
-#' fData(exampleSet)
-#' fData(exampleSet)$lod.max <- apply(exprs(exampleSet),1,quantile,runif(nrow(exampleSet)))
+#' Biobase::fData(exampleSet)
+#' Biobase::fData(exampleSet)$lod.max <-
+#'     apply(Biobase::exprs(exampleSet),1,quantile,runif(nrow(exampleSet)))
 #' lod <- get.prop.below.LLOD(exampleSet)
 #' x <- dplyr::arrange(fData(lod),desc(pc.belowLOD.new))
 #' knitr::kable(head(lod))
