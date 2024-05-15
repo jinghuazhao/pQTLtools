@@ -54,7 +54,6 @@ metadata <- data.frame(labelDescription=
                          "Tumor progress on XYZ scale"),
                        row.names=c("gender", "type", "score"))
 suppressMessages(library(Biobase))
-suppressMessages(library(pQTLtools))
 phenoData <- Biobase::AnnotatedDataFrame(data=pData, varMetadata=metadata)
 experimentData <- Biobase::MIAME(
     name="Pierre Fermat",
@@ -64,11 +63,12 @@ experimentData <- Biobase::MIAME(
     abstract="An example ExpressionSet",
     url="www.lab.not.exist",
     other=list(notes="Created from text files"))
-exampleSet <- make_ExpressionSet(exprs,phenoData,experimentData=experimentData,
+exampleSet <- pQTLtools::make_ExpressionSet(exprs,phenoData,
+                                 experimentData=experimentData,
                                  annotation="hgu95av2")
 data(sample.ExpressionSet, package="Biobase")
 identical(exampleSet,sample.ExpressionSet)
-invisible(esApply(exampleSet,2,hist))
+invisible(Biobase::esApply(exampleSet,2,hist))
 lm(score~gender+X31739_at,data=exampleSet)
 
 }

@@ -27,7 +27,6 @@ to various directories.
 }
 \examples{
 library(TwoSampleMR)
-library(pQTLtools)
 prot <- "MMP.10"
 type <- "cis"
 f <- paste0(prot,"-",type,".mrx")
@@ -43,7 +42,7 @@ clump <- exposure[sample(1:nrow(exposure),nrow(exposure)/80),] # TwoSampleMR::cl
 outcome <- TwoSampleMR::extract_outcome_data(snps=exposure$SNP,outcomes="ebi-a-GCST007432")
 harmonise <- TwoSampleMR::harmonise_data(clump,outcome)
 prefix <- paste(prot,type,sep="-")
-run_TwoSampleMR(harmonise, mr_plot="pQTLtools", prefix=prefix)
+pQTLtools::run_TwoSampleMR(harmonise, mr_plot="pQTLtools", prefix=prefix)
 caption <- "Table. MMP.10 variants and FEV1"
 knitr::kable(read.delim(paste0(prefix,"-result.txt"),header=TRUE),
              caption=paste(caption, "(result)"))
