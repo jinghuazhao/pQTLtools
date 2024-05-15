@@ -19,10 +19,11 @@ The function obtains lower limit of detection as in proteomic analysis.
 }
 \examples{
 suppressMessages(library(Biobase))
-data(sample.ExpressionSet)
+data(sample.ExpressionSet, package="Biobase")
 exampleSet <- sample.ExpressionSet
-fData(exampleSet)
-fData(exampleSet)$lod.max <- apply(exprs(exampleSet),1,quantile,runif(nrow(exampleSet)))
+Biobase::fData(exampleSet)
+Biobase::fData(exampleSet)$lod.max <-
+    apply(Biobase::exprs(exampleSet),1,quantile,runif(nrow(exampleSet)))
 lod <- get.prop.below.LLOD(exampleSet)
 x <- dplyr::arrange(fData(lod),desc(pc.belowLOD.new))
 knitr::kable(head(lod))

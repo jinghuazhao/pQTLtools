@@ -66,7 +66,7 @@ experimentData <- new("MIAME",
   other=list(notes="Created from text files"))
 exampleSet <- make_ExpressionSet(exprs,phenoData,experimentData=experimentData,
                                  annotation="hgu95av2")
-data(sample.ExpressionSet)
+data(sample.ExpressionSet, package="Biobase")
 identical(exampleSet,sample.ExpressionSet)
 invisible(esApply(exampleSet,2,hist))
 lm(score~gender+X31739_at,data=exampleSet)
