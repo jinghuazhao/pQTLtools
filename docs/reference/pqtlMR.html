@@ -156,9 +156,10 @@ MR analysis against a list of outcomes; in the latter case it can be data from M
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>This function is adapted from Zheng et al. (2020)
- and in
-spirit similar to <code>run_TwoSampleMR</code>.</p>
+    <p>Adapted from Zheng et al. (2020)
+, this function is in spirit of
+Dimou and Tsilidis (2018)
+ and analogous to <code>run_TwoSampleMR</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a></h2>
@@ -166,7 +167,12 @@ spirit similar to <code>run_TwoSampleMR</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
-    <p>Zheng J, Haberland V, Baird D, Walker V, Haycock PC, Hurle MR, Gutteridge A, Erola P, Liu Y, Luo S, Robinson J, Richardson TG, Staley JR, Elsworth B, Burgess S, Sun BB, Danesh J, Runz H, Maranville JC, Martin HM, Yarmolinsky J, Laurin C, Holmes MV, Liu JZ, Estrada K, Santos R, McCarthy L, Waterworth D, Nelson MR, Smith GD, Butterworth AS, Hemani G, Scott RA, Gaunt TR (2020).
+    <p>Dimou NL, Tsilidis KK (2018).
+“A Primer in Mendelian Randomization Methodology with a Focus on Utilizing Published Summary Association Data.”
+In Evangelou E (ed.), <em>Genetic Epidemiology: Methods and Protocols</em>, chapter 13, 211--230.
+Springer New York, New York, NY.
+ISBN 978-1-4939-7868-7, <a href="https://doi.org/10.1007/978-1-4939-7868-7_13" class="external-link">doi:10.1007/978-1-4939-7868-7_13</a>
+.<br><br> Zheng J, Haberland V, Baird D, Walker V, Haycock PC, Hurle MR, Gutteridge A, Erola P, Liu Y, Luo S, Robinson J, Richardson TG, Staley JR, Elsworth B, Burgess S, Sun BB, Danesh J, Runz H, Maranville JC, Martin HM, Yarmolinsky J, Laurin C, Holmes MV, Liu JZ, Estrada K, Santos R, McCarthy L, Waterworth D, Nelson MR, Smith GD, Butterworth AS, Hemani G, Scott RA, Gaunt TR (2020).
 “Phenome-wide Mendelian randomization mapping the influence of the plasma proteome on complex diseases.”
 <em>Nature Genetics</em>, <b>52</b>(10), 1122-1131.
 <a href="https://doi.org/10.1038/s41588-020-0682-6" class="external-link">doi:10.1038/s41588-020-0682-6</a>
@@ -194,19 +200,19 @@ spirit similar to <code>run_TwoSampleMR</code>.</p>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The following columns are not present but are helpful for harmonisation</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> eaf</span>
 <span class="r-in"><span><span class="fu">pqtlMR</span><span class="op">(</span><span class="va">exposure</span>, <span class="va">outcome</span>, prefix<span class="op">=</span><span class="st">"IL6R-"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising IL.6 (O9YIMd) and Rheumatoid arthritis (4WZ5NH)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising IL.6 (O9YIMd) and Coronary artery disease (aL6STL)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising IL.6 (O9YIMd) and Atopic dermatitis (cG94vA)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'O9YIMd' on '4WZ5NH'</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'O9YIMd' on 'aL6STL'</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'O9YIMd' on 'cG94vA'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising IL.6 (ImbABK) and Coronary artery disease (4nec1Z)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising IL.6 (ImbABK) and Atopic dermatitis (Ku3B84)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising IL.6 (ImbABK) and Rheumatoid arthritis (SGZG4k)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'ImbABK' on '4nec1Z'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'ImbABK' on 'Ku3B84'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'ImbABK' on 'SGZG4k'</span>
 <span class="r-in"><span><span class="fu">pqtlMR</span><span class="op">(</span><span class="va">exposure</span>, <span class="va">outcome</span>, prefix<span class="op">=</span><span class="st">"IL6R_rev-"</span>,reverse<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising IL.6 (O9YIMd) and Rheumatoid arthritis (4WZ5NH)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising IL.6 (O9YIMd) and Coronary artery disease (aL6STL)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising IL.6 (O9YIMd) and Atopic dermatitis (cG94vA)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing '4WZ5NH' on 'O9YIMd'</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'aL6STL' on 'O9YIMd'</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'cG94vA' on 'O9YIMd'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising IL.6 (ImbABK) and Coronary artery disease (4nec1Z)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising IL.6 (ImbABK) and Atopic dermatitis (Ku3B84)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising IL.6 (ImbABK) and Rheumatoid arthritis (SGZG4k)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing '4nec1Z' on 'ImbABK'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'Ku3B84' on 'ImbABK'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'SGZG4k' on 'ImbABK'</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"IL6R*"</span>,<span class="st">"pQTL-combined*"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># Phenotype,SNP,effect_allele,other_allele,eaf,beta,se,pval</span></span></span>
 <span class="r-in"><span><span class="co"># ABO,rs505922,C,T,0.313,1.298,0.014,1.2e-1828</span></span></span>
