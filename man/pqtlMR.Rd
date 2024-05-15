@@ -32,8 +32,7 @@ MR analysis against a list of outcomes; in the latter case it can be data from M
 \code{outcome <- extract_outcome_data(snps=with(exposure,SNP),outcomes=c("ieu-a-7","ebi-a-GCST007432"))}.
 }
 \details{
-Adapted from \insertCite{zheng20;textual}{pQTLtools}, this function is in spirit of
-\insertCite{dt18;textual}{pQTLtools} and analogous to \code{run_TwoSampleMR()}.
+Adapted from \insertCite{zheng20;textual}{pQTLtools}, this function is analogous to \code{run_TwoSampleMR()}.
 }
 \note{
 Adapted from script by Jie Zheng.
