@@ -142,7 +142,7 @@ We employ model-based clustering absed on principal compoents to see potential g
 
 An interactive version is also available,
 
-```{r rgl3d, fig.cap="Three-group clustering using rgl", fig.height=7, fig.width=7}
+```{r rgl3d, echo=FALSE}
 htmltools::tags$iframe(src = "mcpca3d.html", width = "100%", height = "450px")
 ```
 
