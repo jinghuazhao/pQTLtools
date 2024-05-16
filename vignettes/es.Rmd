@@ -134,7 +134,7 @@ We employ model-based clustering absed on principal compoents to see potential g
            labels = row.names(pc1pc2pc3),
            pos = 4)
       legend("right", legend=levels(as.factor(classification)), col=cols[classification], pch=16)
-      rgl::plot3d(with(pca,x[,c(2,1,3)]),cex=1.2,col=cols[classification],type="h")
+      rgl::plot3d(with(pca,x[,c(2,1,3)]),cex=1.2,col=cols[classification],size=2,type="h")
       htmlwidgets::saveWidget(rgl::rglwidget(), file = "mcpca3d.html")
   })
 htmltools::tags$iframe(src = "mcpca3d.html", width = "100%", height = "550px")
