@@ -8,30 +8,19 @@ Rscript -e '
 '
 # pandoc README.md --citeproc --mathjax -s --self-contained -o index.html
 
-if [ -d vignettes/bioconductor ]; then
-   rm -rf docs/articles/bioconductor
-   mv vignettes/bioconductor docs/articles/
-fi
-if [ -f vignettes/heatmaply.html ]; then
-   mv vignettes/heatmaply.html docs/articles/
-fi
-if [ -d vignettes/es ]; then
-   rm -rf docs/articles/es
-   mv vignettes/es docs/articles/
-fi
-if [ -f vignettes/mcpca_3d_plot.html ]; then
-   mv vignettes/mcpca_3d_plot.html docs/articles/
-fi
-if [ -d vignettes/pQTLtools ]; then
-   rm -rf docs/articles/pQTLtools
-   mv vignettes/pQTLtools docs/articles/
-fi
-if [ -f vignettes/fig2d.html ]; then
-   mv vignettes/fig2d.html docs/articles/
-fi
-if [ -f vignettes/fig3d.html ]; then
-   mv vignettes/fig3d.html docs/articles/
-fi
+for d in bioconductor es pQTLtools
+do
+    if [ -d vignettes/${d} ]; then
+       rm -rf docs/articles/${d}
+       mv vignettes/${d} docs/articles/
+    fi
+done
+for f in fig2d fig3d heatmaply mcpca3d
+do
+    if [ -f vignettes/${f}.html ]; then
+       mv vignettes/${f}.html docs/articles/
+    fi
+done
 
 if [ "$(uname -n | sed 's/-[0-9]*$//')" == "login-q" ]; then
    module load ceuadmin/libssh/0.10.6-icelake
