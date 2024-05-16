@@ -12,9 +12,15 @@ if [ -d vignettes/bioconductor ]; then
    rm -rf docs/articles/bioconductor
    mv vignettes/bioconductor docs/articles/
 fi
+if [ -f vignettes/heatmaply.html ]; then
+   mv vignettes/heatmaply.html docs/articles/
+fi
 if [ -d vignettes/es ]; then
    rm -rf docs/articles/es
    mv vignettes/es docs/articles/
+fi
+if [ -f vignettes/mcpca_3d_plot.html ]; then
+   mv vignettes/mcpca_3d_plot.html docs/articles/
 fi
 if [ -d vignettes/pQTLtools ]; then
    rm -rf docs/articles/pQTLtools
@@ -25,9 +31,6 @@ if [ -f vignettes/fig2d.html ]; then
 fi
 if [ -f vignettes/fig3d.html ]; then
    mv vignettes/fig3d.html docs/articles/
-fi
-if [ -f vignettes/heatmaply.html ]; then
-   mv vignettes/heatmaply.html docs/articles/
 fi
 
 if [ "$(uname -n | sed 's/-[0-9]*$//')" == "login-q" ]; then
