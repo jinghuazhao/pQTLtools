@@ -147,10 +147,10 @@
 <span>          <span class="st">"TxDb.Hsapiens.UCSC.hg38.knownGene"</span>, <span class="st">"bladderbatch"</span>, <span class="st">"clusterProfiler"</span>,</span>
 <span>          <span class="st">"corpcor"</span>, <span class="st">"ensembldb"</span>, <span class="st">"fdrtool"</span>, <span class="st">"graph"</span>, <span class="st">"graphite"</span>, <span class="st">"heatmaply"</span>,</span>
 <span>          <span class="st">"minfi"</span>, <span class="st">"org.Hs.eg.db"</span>, <span class="st">"plyr"</span>, <span class="st">"quantro"</span>, <span class="st">"recount3"</span>, <span class="st">"sva"</span><span class="op">)</span></span>
-<span><span class="kw">for</span> <span class="op">(</span><span class="va">p</span> <span class="kw">in</span> <span class="va">pkgs</span><span class="op">)</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"^package:"</span>, <span class="va">p</span>, <span class="st">"$"</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/search.html" class="external-link">search</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">p</span> <span class="kw">in</span> <span class="va">pkgs</span><span class="op">)</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"^package:"</span>, <span class="va">p</span>, <span class="st">"$"</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/search.html" class="external-link">search</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/warning.html" class="external-link">warning</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"This vignette needs package `"</span>, <span class="va">p</span>, <span class="st">"'; please install"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/invisible.html" class="external-link">invisible</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressMessages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">pkgs</span>, <span class="va">require</span>, character.only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/invisible.html" class="external-link">invisible</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressMessages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">pkgs</span>, <span class="va">require</span>, character.only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="section level2" number="1">
 <h2 id="liftover">
 <span class="header-section-number">1</span> liftover<a class="anchor" aria-label="anchor" href="#liftover"></a>
@@ -172,7 +172,7 @@
 <span></span>
 <span><span class="va">pheno</span> <span class="op">&lt;-</span> <span class="fu">Biobase</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/Biobase/man/phenoData.html" class="external-link">pData</a></span><span class="op">(</span><span class="va">edat</span><span class="op">)</span></span>
 <span><span class="va">batch</span> <span class="op">&lt;-</span> <span class="va">pheno</span><span class="op">$</span><span class="va">batch</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">batch</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">batch</span><span class="op">)</span></span>
 <span><span class="co">#&gt; batch</span></span>
 <span><span class="co">#&gt;  1  2  3  4  5 </span></span>
 <span><span class="co">#&gt; 11 18  4  5 19</span></span></code></pre></div>
@@ -294,31 +294,31 @@ Figure 2.6: quantro example
 <span><span class="co">#&gt; 229 genes did not pass the filter due to zero counts. This is 22.9% of the genes.</span></span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ods</span> <span class="op">&lt;-</span> <span class="fu">OUTRIDER</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/OUTRIDER/man/OUTRIDER.html" class="external-link">OUTRIDER</a></span><span class="op">(</span><span class="va">ods</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Wed May 15 22:33:45 2024: SizeFactor estimation ...</span></span>
-<span><span class="co">#&gt; Wed May 15 22:33:45 2024: Controlling for confounders ...</span></span>
+<span><span class="co">#&gt; Thu May 16 08:12:52 2024: SizeFactor estimation ...</span></span>
+<span><span class="co">#&gt; Thu May 16 08:12:52 2024: Controlling for confounders ...</span></span>
 <span><span class="co">#&gt; Using estimated q with: 23</span></span>
-<span><span class="co">#&gt; Wed May 15 22:33:45 2024: Using the autoencoder implementation for controlling.</span></span>
-<span><span class="co">#&gt; [1] "Wed May 15 22:33:50 2024: Initial PCA loss: 4.73997327486604"</span></span>
-<span><span class="co">#&gt; [1] "Wed May 15 22:33:54 2024: Iteration: 1 loss: 4.19495955308718"</span></span>
-<span><span class="co">#&gt; [1] "Wed May 15 22:33:58 2024: Iteration: 2 loss: 4.175558109168"</span></span>
-<span><span class="co">#&gt; [1] "Wed May 15 22:34:01 2024: Iteration: 3 loss: 4.16627394855922"</span></span>
-<span><span class="co">#&gt; [1] "Wed May 15 22:34:03 2024: Iteration: 4 loss: 4.16188545534749"</span></span>
-<span><span class="co">#&gt; [1] "Wed May 15 22:34:06 2024: Iteration: 5 loss: 4.15785003075681"</span></span>
-<span><span class="co">#&gt; [1] "Wed May 15 22:34:08 2024: Iteration: 6 loss: 4.15514657702473"</span></span>
-<span><span class="co">#&gt; [1] "Wed May 15 22:34:10 2024: Iteration: 7 loss: 4.15361195345535"</span></span>
-<span><span class="co">#&gt; [1] "Wed May 15 22:34:12 2024: Iteration: 8 loss: 4.1519827021534"</span></span>
-<span><span class="co">#&gt; [1] "Wed May 15 22:34:14 2024: Iteration: 9 loss: 4.15111658632385"</span></span>
-<span><span class="co">#&gt; [1] "Wed May 15 22:34:16 2024: Iteration: 10 loss: 4.14989393180947"</span></span>
-<span><span class="co">#&gt; [1] "Wed May 15 22:34:17 2024: Iteration: 11 loss: 4.14980710469775"</span></span>
-<span><span class="co">#&gt; [1] "Wed May 15 22:34:18 2024: Iteration: 12 loss: 4.14920776796145"</span></span>
-<span><span class="co">#&gt; [1] "Wed May 15 22:34:20 2024: Iteration: 13 loss: 4.14899084050906"</span></span>
-<span><span class="co">#&gt; [1] "Wed May 15 22:34:21 2024: Iteration: 14 loss: 4.14820997972724"</span></span>
-<span><span class="co">#&gt; [1] "Wed May 15 22:34:22 2024: Iteration: 15 loss: 4.14814964413254"</span></span>
-<span><span class="co">#&gt; Time difference of 31.69997 secs</span></span>
-<span><span class="co">#&gt; [1] "Wed May 15 22:34:22 2024: 15 Final nb-AE loss: 4.14814964413254"</span></span>
-<span><span class="co">#&gt; Wed May 15 22:34:22 2024: Used the autoencoder implementation for controlling.</span></span>
-<span><span class="co">#&gt; Wed May 15 22:34:22 2024: P-value calculation ...</span></span>
-<span><span class="co">#&gt; Wed May 15 22:34:26 2024: Zscore calculation ...</span></span></code></pre></div>
+<span><span class="co">#&gt; Thu May 16 08:12:52 2024: Using the autoencoder implementation for controlling.</span></span>
+<span><span class="co">#&gt; [1] "Thu May 16 08:12:55 2024: Initial PCA loss: 4.73997327486604"</span></span>
+<span><span class="co">#&gt; [1] "Thu May 16 08:12:59 2024: Iteration: 1 loss: 4.19416269506454"</span></span>
+<span><span class="co">#&gt; [1] "Thu May 16 08:13:01 2024: Iteration: 2 loss: 4.17550752619036"</span></span>
+<span><span class="co">#&gt; [1] "Thu May 16 08:13:04 2024: Iteration: 3 loss: 4.16639365666912"</span></span>
+<span><span class="co">#&gt; [1] "Thu May 16 08:13:06 2024: Iteration: 4 loss: 4.16142359470334"</span></span>
+<span><span class="co">#&gt; [1] "Thu May 16 08:13:07 2024: Iteration: 5 loss: 4.15785341106832"</span></span>
+<span><span class="co">#&gt; [1] "Thu May 16 08:13:09 2024: Iteration: 6 loss: 4.15533343090454"</span></span>
+<span><span class="co">#&gt; [1] "Thu May 16 08:13:10 2024: Iteration: 7 loss: 4.15339892434562"</span></span>
+<span><span class="co">#&gt; [1] "Thu May 16 08:13:12 2024: Iteration: 8 loss: 4.15175378925737"</span></span>
+<span><span class="co">#&gt; [1] "Thu May 16 08:13:13 2024: Iteration: 9 loss: 4.15069201289976"</span></span>
+<span><span class="co">#&gt; [1] "Thu May 16 08:13:14 2024: Iteration: 10 loss: 4.1501222741797"</span></span>
+<span><span class="co">#&gt; [1] "Thu May 16 08:13:15 2024: Iteration: 11 loss: 4.14904801948777"</span></span>
+<span><span class="co">#&gt; [1] "Thu May 16 08:13:17 2024: Iteration: 12 loss: 4.14805452270911"</span></span>
+<span><span class="co">#&gt; [1] "Thu May 16 08:13:18 2024: Iteration: 13 loss: 4.14796461892655"</span></span>
+<span><span class="co">#&gt; [1] "Thu May 16 08:13:19 2024: Iteration: 14 loss: 4.14722109314569"</span></span>
+<span><span class="co">#&gt; [1] "Thu May 16 08:13:20 2024: Iteration: 15 loss: 4.14696284053289"</span></span>
+<span><span class="co">#&gt; Time difference of 23.85668 secs</span></span>
+<span><span class="co">#&gt; [1] "Thu May 16 08:13:20 2024: 15 Final nb-AE loss: 4.14696284053289"</span></span>
+<span><span class="co">#&gt; Thu May 16 08:13:20 2024: Used the autoencoder implementation for controlling.</span></span>
+<span><span class="co">#&gt; Thu May 16 08:13:20 2024: P-value calculation ...</span></span>
+<span><span class="co">#&gt; Thu May 16 08:13:23 2024: Zscore calculation ...</span></span></code></pre></div>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">OUTRIDER</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/OUTRIDER/man/results.html" class="external-link">results</a></span><span class="op">(</span><span class="va">ods</span><span class="op">)</span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">res</span>,caption<span class="op">=</span><span class="st">"A check list of outliers"</span><span class="op">)</span></span></code></pre></div>
@@ -364,14 +364,14 @@ Figure 2.6: quantro example
 <td align="left">ATAD3C</td>
 <td align="left">MUC1360</td>
 <td align="right">0.0e+00</td>
-<td align="right">0.0000002</td>
+<td align="right">0.0000001</td>
 <td align="right">5.28</td>
-<td align="right">1.87</td>
+<td align="right">1.88</td>
 <td align="right">948</td>
 <td align="right">82.29</td>
-<td align="right">247.03</td>
-<td align="right">67.31</td>
-<td align="right">16.60</td>
+<td align="right">248.14</td>
+<td align="right">67.33</td>
+<td align="right">16.48</td>
 <td align="left">TRUE</td>
 <td align="right">1</td>
 <td align="right">1</td>
@@ -381,14 +381,14 @@ Figure 2.6: quantro example
 <td align="left">NBPF15</td>
 <td align="left">MUC1351</td>
 <td align="right">0.0e+00</td>
-<td align="right">0.0000037</td>
-<td align="right">5.78</td>
-<td align="right">0.78</td>
+<td align="right">0.0000035</td>
+<td align="right">5.80</td>
+<td align="right">0.77</td>
 <td align="right">7591</td>
 <td align="right">4224.88</td>
-<td align="right">7054.78</td>
-<td align="right">4121.48</td>
-<td align="right">110.75</td>
+<td align="right">7028.35</td>
+<td align="right">4121.14</td>
+<td align="right">112.78</td>
 <td align="left">TRUE</td>
 <td align="right">2</td>
 <td align="right">1</td>
@@ -398,14 +398,14 @@ Figure 2.6: quantro example
 <td align="left">MSTO1</td>
 <td align="left">MUC1367</td>
 <td align="right">0.0e+00</td>
-<td align="right">0.0000215</td>
-<td align="right">-6.23</td>
+<td align="right">0.0000177</td>
+<td align="right">-6.26</td>
 <td align="right">-0.81</td>
 <td align="right">761</td>
 <td align="right">1327.87</td>
-<td align="right">728.28</td>
-<td align="right">1276.06</td>
-<td align="right">151.81</td>
+<td align="right">727.74</td>
+<td align="right">1276.02</td>
+<td align="right">153.26</td>
 <td align="left">TRUE</td>
 <td align="right">1</td>
 <td align="right">1</td>
@@ -415,14 +415,14 @@ Figure 2.6: quantro example
 <td align="left">HDAC1</td>
 <td align="left">MUC1350</td>
 <td align="right">0.0e+00</td>
-<td align="right">0.0000764</td>
-<td align="right">-5.95</td>
+<td align="right">0.0001133</td>
+<td align="right">-5.88</td>
 <td align="right">-0.78</td>
 <td align="right">2215</td>
 <td align="right">3805.56</td>
-<td align="right">2122.51</td>
-<td align="right">3648.82</td>
-<td align="right">137.72</td>
+<td align="right">2128.19</td>
+<td align="right">3649.04</td>
+<td align="right">135.60</td>
 <td align="left">TRUE</td>
 <td align="right">1</td>
 <td align="right">1</td>
@@ -432,14 +432,14 @@ Figure 2.6: quantro example
 <td align="left">DCAF6</td>
 <td align="left">MUC1374</td>
 <td align="right">1.0e-07</td>
-<td align="right">0.0003708</td>
-<td align="right">-5.69</td>
-<td align="right">-0.62</td>
+<td align="right">0.0004182</td>
+<td align="right">-5.67</td>
+<td align="right">-0.61</td>
 <td align="right">2348</td>
 <td align="right">4869.53</td>
-<td align="right">3082.74</td>
-<td align="right">4724.20</td>
-<td align="right">197.18</td>
+<td align="right">3085.40</td>
+<td align="right">4724.25</td>
+<td align="right">196.31</td>
 <td align="left">TRUE</td>
 <td align="right">1</td>
 <td align="right">1</td>
@@ -449,14 +449,14 @@ Figure 2.6: quantro example
 <td align="left">NBPF16</td>
 <td align="left">MUC1351</td>
 <td align="right">2.0e-07</td>
-<td align="right">0.0006284</td>
-<td align="right">4.84</td>
-<td align="right">0.68</td>
+<td align="right">0.0006791</td>
+<td align="right">4.83</td>
+<td align="right">0.67</td>
 <td align="right">4014</td>
 <td align="right">2459.90</td>
-<td align="right">3836.96</td>
-<td align="right">2402.50</td>
-<td align="right">106.52</td>
+<td align="right">3822.18</td>
+<td align="right">2402.36</td>
+<td align="right">107.85</td>
 <td align="left">TRUE</td>
 <td align="right">2</td>
 <td align="right">1</td>
@@ -466,14 +466,14 @@ Figure 2.6: quantro example
 <td align="left">FAM102B</td>
 <td align="left">MUC1363</td>
 <td align="right">1.2e-06</td>
-<td align="right">0.0068396</td>
+<td align="right">0.0067682</td>
 <td align="right">-5.37</td>
-<td align="right">-1.28</td>
+<td align="right">-1.29</td>
 <td align="right">455</td>
 <td align="right">1138.75</td>
-<td align="right">443.55</td>
-<td align="right">1076.64</td>
-<td align="right">42.53</td>
+<td align="right">440.62</td>
+<td align="right">1076.81</td>
+<td align="right">41.98</td>
 <td align="left">TRUE</td>
 <td align="right">1</td>
 <td align="right">1</td>
@@ -482,49 +482,49 @@ Figure 2.6: quantro example
 <tr class="even">
 <td align="left">LOC100288142</td>
 <td align="left">MUC1361</td>
-<td align="right">4.0e-06</td>
-<td align="right">0.0222251</td>
-<td align="right">4.20</td>
-<td align="right">0.84</td>
+<td align="right">3.0e-06</td>
+<td align="right">0.0167927</td>
+<td align="right">4.25</td>
+<td align="right">0.85</td>
 <td align="right">637</td>
 <td align="right">356.12</td>
-<td align="right">618.68</td>
-<td align="right">345.77</td>
-<td align="right">57.25</td>
+<td align="right">622.40</td>
+<td align="right">345.76</td>
+<td align="right">57.44</td>
 <td align="left">TRUE</td>
 <td align="right">1</td>
 <td align="right">1</td>
 <td align="right">1</td>
 </tr>
 <tr class="odd">
-<td align="left">SERINC2</td>
-<td align="left">MUC1343</td>
-<td align="right">7.5e-06</td>
-<td align="right">0.0416750</td>
-<td align="right">-6.10</td>
-<td align="right">-4.91</td>
-<td align="right">42</td>
-<td align="right">1718.44</td>
-<td align="right">45.84</td>
-<td align="right">1405.65</td>
-<td align="right">4.52</td>
+<td align="left">TARDBP</td>
+<td align="left">MUC0486</td>
+<td align="right">7.3e-06</td>
+<td align="right">0.0407384</td>
+<td align="right">-4.56</td>
+<td align="right">-0.32</td>
+<td align="right">5911</td>
+<td align="right">5780.34</td>
+<td align="right">4449.25</td>
+<td align="right">5565.44</td>
+<td align="right">464.81</td>
 <td align="left">TRUE</td>
 <td align="right">1</td>
 <td align="right">1</td>
 <td align="right">1</td>
 </tr>
 <tr class="even">
-<td align="left">TARDBP</td>
-<td align="left">MUC0486</td>
-<td align="right">7.6e-06</td>
-<td align="right">0.0423348</td>
-<td align="right">-4.55</td>
-<td align="right">-0.32</td>
-<td align="right">5911</td>
-<td align="right">5780.34</td>
-<td align="right">4452.35</td>
-<td align="right">5565.42</td>
-<td align="right">466.01</td>
+<td align="left">ZMPSTE24</td>
+<td align="left">MUC1370</td>
+<td align="right">7.7e-06</td>
+<td align="right">0.0426990</td>
+<td align="right">4.28</td>
+<td align="right">0.38</td>
+<td align="right">6180</td>
+<td align="right">4026.77</td>
+<td align="right">5088.19</td>
+<td align="right">3905.38</td>
+<td align="right">273.05</td>
 <td align="left">TRUE</td>
 <td align="right">1</td>
 <td align="right">1</td>
@@ -583,7 +583,7 @@ Figure 4.1: DESeq2 example
 <span><span class="co">#&gt; fitting model and testing</span></span></code></pre></div>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">DESeq2</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/DESeq2/man/results.html" class="external-link">results</a></span><span class="op">(</span><span class="va">dds2</span><span class="op">)</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="8%">
@@ -1043,7 +1043,11 @@ Figure 5.2: GeneNet example
 </p>
 </div>
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gr2</span>, <span class="st">"fdp"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gr2</span>, <span class="st">"fdp"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =</span></span>
+<span><span class="co">#&gt; edgeColor, : zero-length arrow is of indeterminate angle and so skipped</span></span>
+<span><span class="co">#&gt; Warning in arrows(head_from[1], head_from[2], head_to[1], head_to[2], col =</span></span>
+<span><span class="co">#&gt; edgeColor, : zero-length arrow is of indeterminate angle and so skipped</span></span></code></pre></div>
 <div class="figure">
 <span style="display:block;" id="fig:GeneNet-3"></span>
 <img src="bioconductor/GeneNet-3.png" alt="GeneNet example" width="672"><p class="caption">
@@ -1072,8 +1076,8 @@ Figure 5.4: Heatmaps
 <span><span class="va">hm</span> <span class="op">&lt;-</span> <span class="fu">heatmaply</span><span class="fu">::</span><span class="fu"><a href="https://talgalili.github.io/heatmaply/reference/heatmaply.html" class="external-link">heatmaply</a></span><span class="op">(</span><span class="va">df</span>,k_col<span class="op">=</span><span class="fl">5</span>,k_row<span class="op">=</span><span class="fl">5</span>,</span>
 <span>                           colors <span class="op">=</span> <span class="fu">grDevices</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/grDevices/colorRamp.html" class="external-link">colorRampPalette</a></span><span class="op">(</span><span class="fu">RColorBrewer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html" class="external-link">brewer.pal</a></span><span class="op">(</span><span class="fl">3</span>, <span class="st">"RdBu"</span><span class="op">)</span><span class="op">)</span><span class="op">(</span><span class="fl">256</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu">htmlwidgets</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/htmlwidgets/man/saveWidget.html" class="external-link">saveWidget</a></span><span class="op">(</span><span class="va">hm</span>,file<span class="op">=</span><span class="st">"heatmaply.html"</span><span class="op">)</span></span>
-<span><span class="fu">htmltools</span><span class="fu">::</span><span class="va"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">tags</a></span><span class="op">$</span><span class="fu">iframe</span><span class="op">(</span>src <span class="op">=</span> <span class="st">"heatmaply.html"</span>, width <span class="op">=</span> <span class="st">"100%"</span>, height <span class="op">=</span> <span class="st">"500px"</span><span class="op">)</span></span></code></pre></div>
-<iframe src="heatmaply.html" width="100%" height="500px"></iframe>
+<span><span class="fu">htmltools</span><span class="fu">::</span><span class="va"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">tags</a></span><span class="op">$</span><span class="fu">iframe</span><span class="op">(</span>src <span class="op">=</span> <span class="st">"heatmaply.html"</span>, width <span class="op">=</span> <span class="st">"100%"</span>, height <span class="op">=</span> <span class="st">"550px"</span><span class="op">)</span></span></code></pre></div>
+<iframe src="heatmaply.html" width="100%" height="550px"></iframe>
 <p>so we have <a href="heatmaply.html">heatmaply.html</a> and a module analysis with WGCNA,</p>
 <div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pwr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span>from<span class="op">=</span><span class="fl">12</span>, to<span class="op">=</span><span class="fl">30</span>, by<span class="op">=</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
@@ -1089,7 +1093,7 @@ Figure 5.4: Heatmaps
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/assign.html" class="external-link">assign</a></span><span class="op">(</span><span class="va">pam_name</span>, <span class="fu">cluster</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/cluster/man/pam.html" class="external-link">pam</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/dist.html" class="external-link">as.dist</a></span><span class="op">(</span><span class="va">dissADJ</span><span class="op">)</span>,<span class="va">j</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="va">pamTOM_name</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"pamTOM"</span>,<span class="va">j</span><span class="op">)</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/assign.html" class="external-link">assign</a></span><span class="op">(</span><span class="va">pamTOM_name</span>,<span class="fu">cluster</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/cluster/man/pam.html" class="external-link">pam</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/dist.html" class="external-link">as.dist</a></span><span class="op">(</span><span class="va">dissTOM</span><span class="op">)</span>,<span class="va">j</span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="va">tc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/get.html" class="external-link">get</a></span><span class="op">(</span><span class="va">pam_name</span><span class="op">)</span><span class="op">$</span><span class="va">clustering</span>,<span class="fu"><a href="https://rdrr.io/r/base/get.html" class="external-link">get</a></span><span class="op">(</span><span class="va">pamTOM_name</span><span class="op">)</span><span class="op">$</span><span class="va">clustering</span><span class="op">)</span></span>
+<span>  <span class="va">tc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/table.html" class="external-link">table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/get.html" class="external-link">get</a></span><span class="op">(</span><span class="va">pam_name</span><span class="op">)</span><span class="op">$</span><span class="va">clustering</span>,<span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/get.html" class="external-link">get</a></span><span class="op">(</span><span class="va">pamTOM_name</span><span class="op">)</span><span class="op">$</span><span class="va">clustering</span><span class="op">)</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">tc</span><span class="op">)</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="va">tc</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
@@ -1097,7 +1101,7 @@ Figure 5.4: Heatmaps
 <span><span class="va">colorDynamicTOM</span> <span class="op">&lt;-</span> <span class="fu">WGCNA</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/WGCNA/man/labels2colors.html" class="external-link">labels2colors</a></span><span class="op">(</span><span class="fu">cutreeDynamic</span><span class="op">(</span><span class="va">Tree</span>,method<span class="op">=</span><span class="st">"tree"</span>,minClusterSize<span class="op">=</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">Colors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">pamTOM6</span><span class="op">$</span><span class="va">clustering</span>,<span class="va">colorStaticTOM</span>,<span class="va">colorDynamicTOM</span><span class="op">)</span></span>
 <span><span class="fu">WGCNA</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/WGCNA/man/plotDendroAndColors.html" class="external-link">plotDendroAndColors</a></span><span class="op">(</span><span class="va">Tree</span>, <span class="va">Colors</span>, dendroLabels<span class="op">=</span><span class="cn">FALSE</span>, hang<span class="op">=</span><span class="fl">0.03</span>, addGuide<span class="op">=</span><span class="cn">TRUE</span>, guideHang<span class="op">=</span><span class="fl">0.05</span><span class="op">)</span></span>
-<span><span class="va">meg</span> <span class="op">&lt;-</span> <span class="fu">WGCNA</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/WGCNA/man/moduleEigengenes.html" class="external-link">moduleEigengenes</a></span><span class="op">(</span><span class="va">dat</span>, color<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span>, softPower<span class="op">=</span><span class="fl">6</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">meg</span> <span class="op">&lt;-</span> <span class="fu">WGCNA</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/WGCNA/man/moduleEigengenes.html" class="external-link">moduleEigengenes</a></span><span class="op">(</span><span class="va">dat</span>, color<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span>, softPower<span class="op">=</span><span class="fl">6</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2" number="6">
 <h2 id="meta-data">
@@ -1106,12 +1110,12 @@ Figure 5.4: Heatmaps
 <p>This section is based on package <code>recount3</code>.</p>
 <div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">hs</span> <span class="op">&lt;-</span> <span class="fu">recount3</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/recount3/man/available_projects.html" class="external-link">available_projects</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">hs</span>,<span class="va">file_source</span><span class="op">==</span><span class="st">"gtex"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">hs</span>,<span class="va">file_source</span><span class="op">==</span><span class="st">"gtex"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu">recount3</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/recount3/man/annotation_options.html" class="external-link">annotation_options</a></span><span class="op">(</span><span class="st">"human"</span><span class="op">)</span></span>
-<span><span class="va">blood_rse</span> <span class="op">&lt;-</span> <span class="fu">recount3</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/recount3/man/create_rse.html" class="external-link">create_rse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">hs</span>,<span class="va">project</span><span class="op">==</span><span class="st">"BLOOD"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">blood_rse</span> <span class="op">&lt;-</span> <span class="fu">recount3</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/recount3/man/create_rse.html" class="external-link">create_rse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">hs</span>,<span class="va">project</span><span class="op">==</span><span class="st">"BLOOD"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu">S4Vectors</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Annotated-class.html" class="external-link">metadata</a></span><span class="op">(</span><span class="va">blood_rse</span><span class="op">)</span></span>
 <span><span class="fu">SummarizedExperiment</span><span class="fu">::</span><span class="fu">rowRanges</span><span class="op">(</span><span class="va">blood_rse</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="fu">SummarizedExperiment</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData</a></span><span class="op">(</span><span class="va">blood_rse</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">]</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/row_colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="fu">SummarizedExperiment</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData</a></span><span class="op">(</span><span class="va">blood_rse</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">]</span></span>
 <span><span class="fu">recount3</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/recount3/man/expand_sra_attributes.html" class="external-link">expand_sra_attributes</a></span><span class="op">(</span><span class="va">blood_rse</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2" number="7">
@@ -1136,9 +1140,9 @@ Figure 5.4: Heatmaps
 <span><span class="co">#&gt; [31] "ENTREZID:64902"     "ENTREZID:669"       "ENTREZID:875"      </span></span>
 <span><span class="co">#&gt; [34] "ENTREZID:9380"      "ENTREZID:1491"</span></span></code></pre></div>
 <div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">kegg_t2g</span> <span class="op">&lt;-</span> <span class="fu">ldply</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">kegg</span>, <span class="va">nodes</span><span class="op">)</span>, <span class="va">data.frame</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">kegg_t2g</span> <span class="op">&lt;-</span> <span class="fu">ldply</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">kegg</span>, <span class="va">nodes</span><span class="op">)</span>, <span class="va">data.frame</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">kegg_t2g</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"gs_name"</span>, <span class="st">"gene_symbol"</span><span class="op">)</span></span>
-<span><span class="va">VEGF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">kegg_t2g</span>,<span class="va">gs_name</span><span class="op">==</span><span class="st">"VEGF signaling pathway"</span><span class="op">)</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="va">VEGF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">kegg_t2g</span>,<span class="va">gs_name</span><span class="op">==</span><span class="st">"VEGF signaling pathway"</span><span class="op">)</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="va">eKEGG</span> <span class="op">&lt;-</span> <span class="fu">clusterProfiler</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/clusterProfiler/man/enricher.html" class="external-link">enricher</a></span><span class="op">(</span>gene<span class="op">=</span><span class="va">VEGF</span>, TERM2GENE <span class="op">=</span> <span class="va">kegg_t2g</span>,</span>
 <span>                                   universe<span class="op">=</span>,</span>
 <span>                                   pAdjustMethod <span class="op">=</span> <span class="st">"BH"</span>,</span>
@@ -1454,8 +1458,8 @@ Figure 8.1: peptide association plot
 <span><span class="co">#&gt; Gather the metadata ... OK</span></span>
 <span><span class="co">#&gt; Make the TxDb object ... OK</span></span></code></pre></div>
 <div class="sourceCode" id="cb64"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">txdb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">as.list</a></span><span class="op">(</span><span class="va">txdbEnsemblGRCh38</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">txdb</span>,<span class="va">head</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">txdb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/as.list.html" class="external-link">as.list</a></span><span class="op">(</span><span class="va">txdbEnsemblGRCh38</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">txdb</span>,<span class="va">head</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $transcripts</span></span>
 <span><span class="co">#&gt;   tx_id         tx_name        tx_type        tx_chrom tx_strand tx_start  tx_end</span></span>
 <span><span class="co">#&gt; 1     1 ENST00000636745         lncRNA CHR_HG107_PATCH         +  1049876 1055745</span></span>
