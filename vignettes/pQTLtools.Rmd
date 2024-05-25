@@ -486,11 +486,11 @@ prefix <- paste(prot,type,sep="-")
 run_TwoSampleMR(harmonise, mr_plot="pQTLtools", prefix=prefix)
 ```
 
-Function `clump_data` requires a two-week authentication but 1.25% variants is used for illustrative purpose.
+Function `clump_data` requires a valid authentication token generated within two weeks but 1.25% variants is used for illustrative purpose.
 
 The output is contained in individual `.txt` files, together with the scatter, forest, funnel and leave-one-out plots.
 
-```{r mmp10, fig.cap="MMP.10 and FEV1", fig.height=8, fig.width=9, results='hide', warning=FALSE}
+```{r mmp10, echo=FALSE, warning=FALSE}
 caption5 <- "MMP.10 variants and FEV1"
 knitr::kable(read.delim(paste0(prefix,"-result.txt"),header=TRUE),caption=paste(caption5, "(result)"),digits=3)
 knitr::kable(read.delim(paste0(prefix,"-heterogeneity.txt"),header=TRUE),caption=paste(caption5,"(heterogeneity)"),digits=3)
