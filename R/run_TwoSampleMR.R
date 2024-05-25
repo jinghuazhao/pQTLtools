@@ -58,7 +58,7 @@ format_data.args <- function(dat=NULL, type = "exposure", snps = NULL, header = 
 #' @return OUTPUT_DESCRIPTION
 #' @details DETAILS
 #' @seealso
-#'  \code{\link[ieugwasr]{check_access_token}}
+#' \code{\link[ieugwasr]{check_access_token}}
 #' @rdname extract_outcome_data.args
 #' @keywords internal
 
@@ -203,8 +203,8 @@ mr_scatter_plot2 <- function (mr_results, dat, alpha=0.05)
 #' @param alpha Confidence level, Default: 0.05.
 #' @return A graphic object.
 #' @seealso
-#'  \code{\link[plyr]{dlply}},\code{\link[plyr]{mutate}}
-#'  \code{\link[ggplot2]{ggplot}},\code{\link[ggplot2]{aes}},\code{\link[ggplot2]{ggtheme}},\code{\link[ggplot2]{geom_abline}},\code{\link[ggplot2]{geom_errorbarh}},\code{\link[ggplot2]{geom_point}},\code{\link[ggplot2]{scale_manual}},\code{\link[ggplot2]{theme}},\code{\link[ggplot2]{margin}},\code{\link[ggplot2]{labs}}
+#' \code{\link[plyr]{dlply}},\code{\link[plyr]{mutate}}
+#' \code{\link[ggplot2]{ggplot}},\code{\link[ggplot2]{aes}},\code{\link[ggplot2]{ggtheme}},\code{\link[ggplot2]{geom_abline}},\code{\link[ggplot2]{geom_errorbarh}},\code{\link[ggplot2]{geom_point}},\code{\link[ggplot2]{scale_manual}},\code{\link[ggplot2]{theme}},\code{\link[ggplot2]{margin}},\code{\link[ggplot2]{labs}}
 #' @export
 #' @keywords internal
 
@@ -267,9 +267,9 @@ mr_forest_plot2 <- function (singlesnp_results, exponentiate = FALSE, alpha = 0.
 #' @param singlesnp_results Results based on single variants.
 #' @return A graphic object.
 #' @seealso
-#'  \code{\link[plyr]{dlply}},\code{\link[plyr]{mutate}}
-#'  \code{\link[ggplot2]{ggplot}},\code{\link[ggplot2]{aes}},\code{\link[ggplot2]{geom_point}},\code{\link[ggplot2]{ggtheme}},\code{\link[ggplot2]{geom_abline}},\code{\link[ggplot2]{scale_manual}},\code{\link[ggplot2]{labs}},\code{\link[ggplot2]{theme}}
-#'  \code{\link[cowplot]{theme_cowplot}}
+#' \code{\link[plyr]{dlply}},\code{\link[plyr]{mutate}}
+#' \code{\link[ggplot2]{ggplot}},\code{\link[ggplot2]{aes}},\code{\link[ggplot2]{geom_point}},\code{\link[ggplot2]{ggtheme}},\code{\link[ggplot2]{geom_abline}},\code{\link[ggplot2]{scale_manual}},\code{\link[ggplot2]{labs}},\code{\link[ggplot2]{theme}}
+#' \code{\link[cowplot]{theme_cowplot}}
 #' @export
 #' @keywords internal
 
@@ -308,8 +308,8 @@ mr_funnel_plot2 <- function (singlesnp_results)
 #' @param alpha PARAM_DESCRIPTION, Default: 0.05.
 #' @return A graphic object.
 #' @seealso
-#'  \code{\link[plyr]{dlply}},\code{\link[plyr]{mutate}}
-#'  \code{\link[ggplot2]{ggplot}},\code{\link[ggplot2]{aes}},\code{\link[ggplot2]{ggtheme}},\code{\link[ggplot2]{geom_abline}},\code{\link[ggplot2]{geom_errorbarh}},\code{\link[ggplot2]{geom_point}},\code{\link[ggplot2]{scale_manual}},\code{\link[ggplot2]{theme}},\code{\link[ggplot2]{margin}},\code{\link[ggplot2]{labs}}
+#' \code{\link[plyr]{dlply}},\code{\link[plyr]{mutate}}
+#' \code{\link[ggplot2]{ggplot}},\code{\link[ggplot2]{aes}},\code{\link[ggplot2]{ggtheme}},\code{\link[ggplot2]{geom_abline}},\code{\link[ggplot2]{geom_errorbarh}},\code{\link[ggplot2]{geom_point}},\code{\link[ggplot2]{scale_manual}},\code{\link[ggplot2]{theme}},\code{\link[ggplot2]{margin}},\code{\link[ggplot2]{labs}}
 #' @export
 #' @keywords internal
 
@@ -371,6 +371,8 @@ mr_leaveoneout_plot2 <- function (leaveoneout_results, alpha = 0.05)
 #' e.g., multiple proteins and their cis/trans regions need to be examined, in which case prefix could direct the output
 #' to various directories.
 #'
+#' Check your authentication token if the example below fails to run.
+#'
 #' @export
 #' @return
 #' No value is returned but several files.
@@ -379,7 +381,6 @@ mr_leaveoneout_plot2 <- function (leaveoneout_results, alpha = 0.05)
 #' \insertAllCited{}
 #'
 #' @examples
-#' library(TwoSampleMR)
 #' prot <- "MMP.10"
 #' type <- "cis"
 #' f <- paste0(prot,"-",type,".mrx")
