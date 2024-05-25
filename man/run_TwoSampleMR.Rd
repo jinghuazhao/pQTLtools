@@ -24,9 +24,10 @@ As TwoSampleMR faces seemingly perplexing options, this function intends to simp
 as in \insertCite{dt18;textual}{pQTLtools}. It is particularly useful when a large numbher of MRs are necessary,
 e.g., multiple proteins and their cis/trans regions need to be examined, in which case prefix could direct the output
 to various directories.
+
+Check your authentication token if the example below fails to run.
 }
 \examples{
-library(TwoSampleMR)
 prot <- "MMP.10"
 type <- "cis"
 f <- paste0(prot,"-",type,".mrx")
