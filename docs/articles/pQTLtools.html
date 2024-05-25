@@ -1017,12 +1017,11 @@ Figure 3.2: GREAT plots
 <span>  <span class="va">tb_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">tb_all</span>,<span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>gene<span class="op">=</span><span class="va">r</span>,<span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">r.post</span>,<span class="va">tb</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span><span class="co">#&gt; Don't make too frequent requests. The time break is 60s.</span></span>
-<span><span class="co">#&gt; Please wait for 56s for the next request.</span></span>
+<span><span class="co">#&gt; Please wait for 55s for the next request.</span></span>
 <span><span class="co">#&gt; The time break can be set by `request_interval` argument.</span></span>
 <span><span class="co">#&gt; Don't make too frequent requests. The time break is 60s.</span></span>
-<span><span class="co">#&gt; Please wait for 58s for the next request.</span></span>
+<span><span class="co">#&gt; Please wait for 57s for the next request.</span></span>
 <span><span class="co">#&gt; The time break can be set by `request_interval` argument.</span></span>
-<span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Don't make too frequent requests. The time break is 60s.</span></span>
 <span><span class="co">#&gt; Please wait for 58s for the next request.</span></span>
 <span><span class="co">#&gt; The time break can be set by `request_interval` argument.</span></span></code></pre></div>
@@ -2097,12 +2096,41 @@ Figure 5.1: pQTL-MR
 <span>                        samplesize_col<span class="op">=</span><span class="st">"N"</span><span class="op">)</span></span>
 <span><span class="va">clump</span> <span class="op">&lt;-</span> <span class="va">exposure</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">exposure</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">exposure</span><span class="op">)</span><span class="op">/</span><span class="fl">80</span><span class="op">)</span>,<span class="op">]</span> <span class="co"># TwoSampleMR::clump_data(exposure)</span></span>
 <span><span class="va">outcome</span> <span class="op">&lt;-</span> <span class="fu">TwoSampleMR</span><span class="fu">::</span><span class="fu"><a href="https://mrcieu.github.io/TwoSampleMR/reference/extract_outcome_data.html" class="external-link">extract_outcome_data</a></span><span class="op">(</span>snps<span class="op">=</span><span class="va">clump</span><span class="op">$</span><span class="va">SNP</span>,outcomes<span class="op">=</span><span class="st">"ebi-a-GCST007432"</span><span class="op">)</span></span>
-<span><span class="va">harmonise</span> <span class="op">&lt;-</span> <span class="fu">TwoSampleMR</span><span class="fu">::</span><span class="fu"><a href="https://mrcieu.github.io/TwoSampleMR/reference/harmonise_data.html" class="external-link">harmonise_data</a></span><span class="op">(</span><span class="va">clump</span>,<span class="va">outcome</span><span class="op">)</span></span>
-<span><span class="va">prefix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">prot</span>,<span class="va">type</span>,sep<span class="op">=</span><span class="st">"-"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/run_TwoSampleMR.html">run_TwoSampleMR</a></span><span class="op">(</span><span class="va">harmonise</span>, mr_plot<span class="op">=</span><span class="st">"pQTLtools"</span>, prefix<span class="op">=</span><span class="va">prefix</span><span class="op">)</span></span></code></pre></div>
+<span><span class="co">#&gt; Extracting data for 13 SNP(s) from 1 GWAS(s)</span></span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">harmonise</span> <span class="op">&lt;-</span> <span class="fu">TwoSampleMR</span><span class="fu">::</span><span class="fu"><a href="https://mrcieu.github.io/TwoSampleMR/reference/harmonise_data.html" class="external-link">harmonise_data</a></span><span class="op">(</span><span class="va">clump</span>,<span class="va">outcome</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Harmonising MMP.10 (jrjVHU) and FEV1 || id:ebi-a-GCST007432 (ebi-a-GCST007432)</span></span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">prefix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">prot</span>,<span class="va">type</span>,sep<span class="op">=</span><span class="st">"-"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/run_TwoSampleMR.html">run_TwoSampleMR</a></span><span class="op">(</span><span class="va">harmonise</span>, mr_plot<span class="op">=</span><span class="st">"pQTLtools"</span>, prefix<span class="op">=</span><span class="va">prefix</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Analysing 'jrjVHU' on 'ebi-a-GCST007432'</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:TwoSampleMR-1"></span>
+<img src="pQTLtools/TwoSampleMR-1.png" alt="Two-sample MR" width="960" style="display:block; margin: auto"><p class="caption">
+Figure 5.2: Two-sample MR
+</p>
+</div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:TwoSampleMR-2"></span>
+<img src="pQTLtools/TwoSampleMR-2.png" alt="Two-sample MR" width="960" style="display:block; margin: auto"><p class="caption">
+Figure 5.3: Two-sample MR
+</p>
+</div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:TwoSampleMR-3"></span>
+<img src="pQTLtools/TwoSampleMR-3.png" alt="Two-sample MR" width="960" style="display:block; margin: auto"><p class="caption">
+Figure 5.4: Two-sample MR
+</p>
+</div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:TwoSampleMR-4"></span>
+<img src="pQTLtools/TwoSampleMR-4.png" alt="Two-sample MR" width="960" style="display:block; margin: auto"><p class="caption">
+Figure 5.5: Two-sample MR
+</p>
+</div>
 <p>At time of running (12/4/2024), <code>clump_data</code> fails to run so 1.25% variants is used for illustrative purpose.</p>
 <p>The output is contained in individual <code>.txt</code> files, together with the scatter, forest, funnel and leave-one-out plots.</p>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">caption5</span> <span class="op">&lt;-</span> <span class="st">"MMP.10 variants and FEV1"</span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.delim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">prefix</span>,<span class="st">"-result.txt"</span><span class="op">)</span>,header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>,caption<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">caption5</span>, <span class="st">"(result)"</span><span class="op">)</span>,digits<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.delim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">prefix</span>,<span class="st">"-heterogeneity.txt"</span><span class="op">)</span>,header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>,caption<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">caption5</span>,<span class="st">"(heterogeneity)"</span><span class="op">)</span>,digits<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
@@ -2116,7 +2144,7 @@ Figure 5.1: pQTL-MR
 <span class="header-section-number">5.3</span> MR using cis, trans and cis+trans (pan) instruments<a class="anchor" aria-label="anchor" href="#mr-using-cis-trans-and-cistrans-pan-instruments"></a>
 </h3>
 <p>This is illustrated with IL-12B.</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">efo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.delim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/find.package.html" class="external-link">find.package</a></span><span class="op">(</span><span class="st">"pQTLtools"</span><span class="op">)</span>,<span class="st">"tests"</span>,<span class="st">"efo.txt"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">d3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.delim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/find.package.html" class="external-link">find.package</a></span><span class="op">(</span><span class="st">"pQTLtools"</span><span class="op">)</span>,<span class="st">"tests"</span>,<span class="st">"IL.12B.txt"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>      <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>MRBASEID<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/strsplit.html" class="external-link">strsplit</a></span><span class="op">(</span><span class="va">outcome</span>,<span class="st">"id:"</span><span class="op">)</span>,<span class="st">"["</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span>,y<span class="op">=</span><span class="va">b</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
@@ -2125,7 +2153,7 @@ Figure 5.1: pQTL-MR
 <span>      <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">outcome</span>,<span class="op">-</span><span class="va">method</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>      <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">cistrans</span>,<span class="fu"><a href="https://rdrr.io/pkg/IRanges/man/MaskCollection-class.html" class="external-link">desc</a></span><span class="op">(</span><span class="va">trait</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Joining with `by = join_by(MRBASEID)`</span></span></code></pre></div>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">d3</span>,<span class="va">MRBASEID</span>,<span class="va">trait</span>,<span class="va">cistrans</span>,<span class="va">nsnp</span>,<span class="va">b</span>,<span class="va">se</span>,<span class="va">pval</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>             <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">cistrans</span><span class="op">)</span>,</span>
 <span>             caption<span class="op">=</span><span class="st">"MR with IL-12B variants"</span>,digits<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span></code></pre></div>
@@ -2936,7 +2964,7 @@ Figure 5.1: pQTL-MR
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">d3</span>,<span class="fu">aes</span><span class="op">(</span>y <span class="op">=</span> <span class="va">trait</span>, x <span class="op">=</span> <span class="va">y</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
 <span>     <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span></span>
 <span>     <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span></span>
@@ -2949,7 +2977,7 @@ Figure 5.1: pQTL-MR
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:mr"></span>
 <img src="pQTLtools/mr-1.png" alt="MR with cis, trans and cis+trans variants of IL-12B" width="672" style="display:block; margin: auto"><p class="caption">
-Figure 5.2: MR with cis, trans and cis+trans variants of IL-12B
+Figure 5.6: MR with cis, trans and cis+trans variants of IL-12B
 </p>
 </div>
 </div>
