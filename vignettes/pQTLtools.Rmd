@@ -467,7 +467,7 @@ invisible(sapply(c("harmonise","result","single"),
 
 The documentation example is quoted here,
 
-```{r TwoSampleMR, fig.cap="Two-sample MR", fig.height=3, fig.width=10, results='hide', warning=FALSE}
+```{r TwoSampleMR, fig.cap="Two-sample MR", fig.height=6, fig.width=9, results='hide', warning=FALSE}
 prot <- "MMP.10"
 type <- "cis"
 f <- paste0(prot,"-",type,".mrx")
@@ -490,7 +490,7 @@ At time of running (12/4/2024), `clump_data` fails to run so 1.25% variants is u
 
 The output is contained in individual `.txt` files, together with the scatter, forest, funnel and leave-one-out plots.
 
-```{r mmp10, fig.cap="MMP.10 and FEV1", fig.height=3, fig.width=10, results='hide', warning=FALSE}
+```{r mmp10, fig.cap="MMP.10 and FEV1", fig.height=6, fig.width=9, results='hide', warning=FALSE}
 caption5 <- "MMP.10 variants and FEV1"
 knitr::kable(read.delim(paste0(prefix,"-result.txt"),header=TRUE),caption=paste(caption5, "(result)"),digits=3)
 knitr::kable(read.delim(paste0(prefix,"-heterogeneity.txt"),header=TRUE),caption=paste(caption5,"(heterogeneity)"),digits=3)
