@@ -1,10 +1,10 @@
 ## pQTLtools 0.3
 
-* Activate package logo for the GitHub repository
-* Use scope operator for clarification, e.g., ensembldb::genes()
-* Mask TwoSampleMR example due to problem with OPENGWAS_JWT from <https://api.opengwas.io/profile/>
-* Suggest IlluminaHumanMethylation450kmanifest, OUTRIDER
-* Fix URL in DESCRIPTION/snakemake.Rmd
+* Activate package logo for the GitHub repository.
+* Use scope operator for clarification, e.g., ensembldb::genes().
+* Mask TwoSampleMR example due to problem with OPENGWAS_JWT from <https://api.opengwas.io/profile/>.
+* Suggest IlluminaHumanMethylation450kmanifest, OUTRIDER.
+* Fix URL in DESCRIPTION/snakemake.Rmd.
 
 ## pQTLtools 0.2
 
@@ -20,21 +20,21 @@
 
 The information here mirrors the package DESCRIPTION,
 
-* Depends R (>=3.5.0), pQTLdata
-* Import dplyr, gap, ggplot2, Rdpack
+* Depends R (>=3.5.0), pQTLdata.
+* Import dplyr, gap, ggplot2, Rdpack.
 * importFrom utils read.table tail.
 * Import from lmm as template, use save(compress='xz').
 * Replace ChangeLog with NEWS.md.
 * LICENSE.md and README.md.
-* Reduce size by `sed -i '/ISSN/d' REFERENCES.bib`
-* Suggest Biobase, BioStrings, GenomeInfoDb, GenomicRanges, IRanges, VariantAnnotation
-* Suggest Roxygen2
-* Suggest biomaRt, bookdown, circlize, cowplot
-* Suggest gap.datasets, gwasvcf, htmlwidgets, httr, ieugwasr
-* Suggest knitr, mclust, meta
-* Suggest openxlsx, plotly, plyr
-* Suggest regione, rgl, rmarkdown, rtracklayer
-* Suggest scatterplot3d, seqminer, stringr
+* Reduce size by `sed -i '/ISSN/d' REFERENCES.bib`.
+* Suggest Biobase, BioStrings, GenomeInfoDb, GenomicRanges, IRanges, VariantAnnotation.
+* Suggest Roxygen2.
+* Suggest biomaRt, bookdown, circlize, cowplot.
+* Suggest gap.datasets, gwasvcf, htmlwidgets, httr, ieugwasr.
+* Suggest knitr, mclust, meta.
+* Suggest openxlsx, plotly, plyr.
+* Suggest regione, rgl, rmarkdown, rtracklayer.
+* Suggest scatterplot3d, seqminer, stringr.
 * GitHub action
 * inst/Bioconductor/.
 * inst/STRING/change_STRING_colors.py.
@@ -47,9 +47,9 @@ The information here mirrors the package DESCRIPTION,
 
 The list is in no particular order,
 
-* peptideMapping(), peptideAssociationPlot()
-* make_ExpressionSet(), novelty_check(), qtl_lookup(), turboman(), turboqq()
-* Reflow turboman.r/[partial]turboqq.r by formatR::tidy_source()
+* peptideMapping(), peptideAssociationPlot().
+* make_ExpressionSet(), novelty_check(), qtl_lookup(), turboman(), turboqq().
+* Reflow turboman.r/[partial]turboqq.r by formatR::tidy_source().
 * pqtlMR(), run_TwoSampleMR().
 * run_coloc().
 * import_OpenGWAS()
