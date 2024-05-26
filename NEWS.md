@@ -2,7 +2,7 @@
 
 (2024/05/26)
 
-* Retitle README.md.
+* Minor changes.
 
 ## pQTLtools 0.3
 
