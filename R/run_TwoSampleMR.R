@@ -381,7 +381,7 @@ mr_leaveoneout_plot2 <- function (leaveoneout_results, alpha = 0.05)
 #' \insertAllCited{}
 #'
 #' @examples
-#' library(dplyr)
+#' suppressMessages(require(dplyr))
 #' prot <- "MMP.10"
 #' type <- "cis"
 #' f <- paste0(prot,"-",type,".mrx")
