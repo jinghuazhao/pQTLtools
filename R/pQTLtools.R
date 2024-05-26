@@ -73,6 +73,10 @@
 #' @md
 #'
 #' @import dplyr ggplot2 pQTLdata
+#' @importFrom AnnotationFilter AnnotationFilter GeneBiotypeFilter
+#' @importFrom GenomicFeatures makeTxDbFromEnsembl
+#' @importFrom RColorBrewer brewer.pal
+#' @importFrom doParallel registerDoParallel
 #' @importFrom graphics axis legend lines mtext par points polygon segments text title
 #' @importFrom grDevices colors xy.coords
 #' @importFrom stats complete.cases median na.omit pnorm qbeta qchisq qnorm setNames
