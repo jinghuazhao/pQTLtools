@@ -25,6 +25,7 @@ Depends:
     R (>= 3.5.0), pQTLdata
 Imports: dplyr, gap, ggplot2, Rdpack
 Suggests:
+    AnnotationFilter,
     Biobase,
     Biostrings,
     ComplexHeatmap,
@@ -32,11 +33,13 @@ Suggests:
     EnsDb.Hsapiens.v86,
     FlowSorted.DLPFC.450k,
     GeneNet,
+    GenomicFeatures,
     GenomeInfoDb,
     GenomicRanges,
     IlluminaHumanMethylation450kmanifest,
     IRanges,
     OUTRIDER,
+    RColorBrewer,
     RMariaDB,
     Rgraphviz,
     TxDb.Hsapiens.UCSC.hg38.knownGene,
@@ -50,6 +53,7 @@ Suggests:
     coloc,
     corpcor,
     cowplot,
+    doParallel,
     ensembldb,
     fdrtool,
     gap.datasets,
