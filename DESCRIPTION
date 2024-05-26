@@ -1,7 +1,7 @@
 Package: pQTLtools
 Type: Package
 Title: A Protein Quantitative Trait Locus Toolkit
-Version: 0.3
+Version: 0.4
 Date: 2024-5-26
 Authors@R: c(
     person("Jing Hua", "Zhao", , "jinghuazhao@hotmail.com", role = c("aut", "cre"),
