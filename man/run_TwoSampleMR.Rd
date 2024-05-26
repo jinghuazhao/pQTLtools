@@ -28,6 +28,7 @@ to various directories.
 Check your authentication token if the example below fails to run.
 }
 \examples{
+library(dplyr)
 prot <- "MMP.10"
 type <- "cis"
 f <- paste0(prot,"-",type,".mrx")
