@@ -1,17 +1,20 @@
-
+# A summary
 
 File/Directory   | Description
------------------|-------------------------
+-----------------|------------------------
 Bioconductor/    | Bioconductor-related
-docs.sh          | GitHub scripts
 eQTL-Catalogue/  | eQTL-catalog-related
 PPI/             | PPI-related
-pQTLtools.sh     | CRAN-related
-README.md        | This file
-REFERENCES.bib   | BibTeX bibliography
-snakemake/       | snakemake showcase
 STRING/          | StringDB-related
-suggests.R       | CRAN/Bioconductor
+snakemake/       | snakemake showcase
 tests/           | SCALLOP-INF-related
 turboman/        | turboman reference data
 UniProt/         | UniProt-related
+README.md        | This file
+REFERENCES.bib   | BibTeX bibliography
+csd3.sh[^csd3]   | build/INSTALL/check
+docs.sh          | GitHub scripts
+
+[^csd3]: **csd3.sh**
+
+     CSD3 stands for Cambridge Service for Data Driven Discovery, <https://cambridge-ceu.github.io/csd3/>.
