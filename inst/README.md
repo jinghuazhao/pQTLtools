@@ -1,4 +1,4 @@
-# A summary
+# Auxiliary files
 
 File/Directory   | Description
 -----------------|------------------------
