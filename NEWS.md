@@ -1,4 +1,12 @@
+## pQTLtools 0.4
+
+(2024/05/26)
+
+* Retitle README.md.
+
 ## pQTLtools 0.3
+
+(2024/05/26)
 
 * Activate package logo for the GitHub repository.
 * Dedicated .R files for (blocks of) functions.
@@ -8,6 +16,8 @@
 * Fix URL in DESCRIPTION/snakemake.Rmd.
 
 ## pQTLtools 0.2
+
+(2024/04/24)
 
 ### Milestones
 
