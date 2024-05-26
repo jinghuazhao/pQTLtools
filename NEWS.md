@@ -1,7 +1,8 @@
 ## pQTLtools 0.3
 
 * Activate package logo for the GitHub repository.
-* Use scope operator for clarification, e.g., ensembldb::genes().
+* Dedicated .R files for (blocks of) functions.
+* Use of scope operator for clarification, e.g., ensembldb::genes().
 * Use of OPENGWAS_JWT from <https://api.opengwas.io/profile/>.
 * Suggest IlluminaHumanMethylation450kmanifest, OUTRIDER.
 * Fix URL in DESCRIPTION/snakemake.Rmd.
