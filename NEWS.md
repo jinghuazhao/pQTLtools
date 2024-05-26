@@ -2,7 +2,7 @@
 
 * Activate package logo for the GitHub repository.
 * Use scope operator for clarification, e.g., ensembldb::genes().
-* Mask TwoSampleMR example due to problem with OPENGWAS_JWT from <https://api.opengwas.io/profile/>.
+* Use of OPENGWAS_JWT from <https://api.opengwas.io/profile/>.
 * Suggest IlluminaHumanMethylation450kmanifest, OUTRIDER.
 * Fix URL in DESCRIPTION/snakemake.Rmd.
 
