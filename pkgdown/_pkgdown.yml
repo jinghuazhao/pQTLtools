@@ -65,6 +65,9 @@ navbar:
     changelog:
           text: Changelog
           href: news/index.html
+    github:
+        icon: fab fa-github
+        href: https://github.com/jinghuazhao/pQTLtools
     cran:
         icon: fab fa-r-project
         href: https://jinghuazhao.github.io/R/
