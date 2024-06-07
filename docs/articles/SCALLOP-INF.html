@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">pQTLtools</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,8 +75,8 @@
 
       <ul class="navbar-nav">
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/jinghuazhao/pQTLtools/" aria-label="github">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a class="external-link nav-link" href="https://github.com/jinghuazhao/pQTLtools">
+    <span class="fab fa fab fa-github"></span>
      
   </a>
 </li>
@@ -165,8 +165,8 @@
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>id<span class="op">=</span><span class="va">ontology</span><span class="op">$</span><span class="va">id</span><span class="op">[</span><span class="va">inf</span><span class="op">]</span>,name<span class="op">=</span><span class="va">ontology</span><span class="op">$</span><span class="va">name</span><span class="op">[</span><span class="va">inf</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span></span>
-<span><span class="va">goidname</span> <span class="op">&lt;-</span> <span class="fu">id</span><span class="op">(</span><span class="va">go</span><span class="op">)</span></span>
-<span><span class="va">efoidname</span> <span class="op">&lt;-</span> <span class="fu">id</span><span class="op">(</span><span class="va">efo</span><span class="op">)</span></span>
+<span><span class="va">goidname</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/defunct.html" class="external-link">id</a></span><span class="op">(</span><span class="va">go</span><span class="op">)</span></span>
+<span><span class="va">efoidname</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/defunct.html" class="external-link">id</a></span><span class="op">(</span><span class="va">efo</span><span class="op">)</span></span>
 <span><span class="co"># all diseases</span></span>
 <span><span class="va">efo_diseases</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ontologyIndex/man/get_descendants.html" class="external-link">get_descendants</a></span><span class="op">(</span><span class="va">efo</span>,<span class="st">"EFO:0000408"</span><span class="op">)</span></span>
 <span><span class="va">diseases_name</span> <span class="op">&lt;-</span> <span class="va">efo</span><span class="op">$</span><span class="va">name</span><span class="op">[</span><span class="va">efo_diseases</span><span class="op">]</span></span>

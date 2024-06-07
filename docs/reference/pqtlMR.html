@@ -14,7 +14,7 @@ outcome &amp;lt;- extract_outcome_data(snps=with(exposure,SNP),outcomes=c("ieu-a
     
     <a class="navbar-brand me-2" href="../index.html">pQTLtools</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,8 +52,8 @@ outcome &amp;lt;- extract_outcome_data(snps=with(exposure,SNP),outcomes=c("ieu-a
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
       <ul class="navbar-nav"><li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/jinghuazhao/pQTLtools/" aria-label="github">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a class="external-link nav-link" href="https://github.com/jinghuazhao/pQTLtools">
+    <span class="fab fa fab fa-github"></span>
      
   </a>
 </li>
@@ -181,19 +181,19 @@ MR analysis against a list of outcomes; in the latter case it can be data from M
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The following columns are not present but are helpful for harmonisation</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> eaf</span>
 <span class="r-in"><span><span class="fu">pQTLtools</span><span class="fu">::</span><span class="fu">pqtlMR</span><span class="op">(</span><span class="va">exposure</span>, <span class="va">outcome</span>, prefix<span class="op">=</span><span class="st">"IL6R-"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising IL.6 (ImbABK) and Coronary artery disease (4nec1Z)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising IL.6 (ImbABK) and Atopic dermatitis (Ku3B84)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising IL.6 (ImbABK) and Rheumatoid arthritis (SGZG4k)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'ImbABK' on '4nec1Z'</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'ImbABK' on 'Ku3B84'</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'ImbABK' on 'SGZG4k'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising IL.6 (O9YIMd) and Rheumatoid arthritis (4WZ5NH)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising IL.6 (O9YIMd) and Coronary artery disease (aL6STL)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising IL.6 (O9YIMd) and Atopic dermatitis (cG94vA)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'O9YIMd' on '4WZ5NH'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'O9YIMd' on 'aL6STL'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'O9YIMd' on 'cG94vA'</span>
 <span class="r-in"><span><span class="fu">pQTLtools</span><span class="fu">::</span><span class="fu">pqtlMR</span><span class="op">(</span><span class="va">exposure</span>, <span class="va">outcome</span>, prefix<span class="op">=</span><span class="st">"IL6R_rev-"</span>,reverse<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising IL.6 (ImbABK) and Coronary artery disease (4nec1Z)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising IL.6 (ImbABK) and Atopic dermatitis (Ku3B84)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising IL.6 (ImbABK) and Rheumatoid arthritis (SGZG4k)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing '4nec1Z' on 'ImbABK'</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'Ku3B84' on 'ImbABK'</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'SGZG4k' on 'ImbABK'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising IL.6 (O9YIMd) and Rheumatoid arthritis (4WZ5NH)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising IL.6 (O9YIMd) and Coronary artery disease (aL6STL)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising IL.6 (O9YIMd) and Atopic dermatitis (cG94vA)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing '4WZ5NH' on 'O9YIMd'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'aL6STL' on 'O9YIMd'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'cG94vA' on 'O9YIMd'</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"IL6R*"</span>,<span class="st">"pQTL-combined*"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># Phenotype,SNP,effect_allele,other_allele,eaf,beta,se,pval</span></span></span>
 <span class="r-in"><span><span class="co"># ABO,rs505922,C,T,0.313,1.298,0.014,1.2e-1828</span></span></span>
