@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+function setup()
+{
 Rscript -e '
   devtools::build_readme();devtools::document()
   pkgdown::build_site_github_pages()
@@ -7,6 +9,7 @@ Rscript -e '
 # clean_site(); init_site(); build_home(); build_news(); build_articles(); build_reference(); build_search()
 '
 # pandoc README.md --citeproc --mathjax -s --self-contained -o index.html
+}
 
 for d in bioconductor es pQTLtools
 do
