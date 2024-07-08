@@ -1,6 +1,6 @@
 ## pQTLtools 0.4
 
-(2024/05/26)
+(2024/07/08)
 
 * Minor changes.
 
