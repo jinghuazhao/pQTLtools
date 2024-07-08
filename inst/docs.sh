@@ -23,11 +23,6 @@ do
     if [ -f vignettes/${f}.html ]; then mv vignettes/${f}.html docs/articles/; fi
 done
 
-if [ "$(uname -n | sed 's/-[0-9]*$//')" == "login-q" ]; then
-   module load ceuadmin/libssh/0.10.6-icelake
-   module load ceuadmin/openssh/9.7p1-icelake
-fi
-
 for f in .gitignore .Rbuildignore .Rinstignore .travis.yml \
          DESCRIPTION LICENSE LICENSE.md NAMESPACE NEWS.md R/ README.Rmd README.md \
          docs/ inst/ man/ pkgdown/ vignettes/
