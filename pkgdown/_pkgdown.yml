@@ -4,6 +4,8 @@ home:
   links:
   - text: gap from CRAN
     href: https://cloud.r-project.org/package=gap
+  - text: pQTLdata
+    href: https://rdrr.io/github/jinghuazhao/pQTLdata/
   - text: rdrr.io snapshots
     href: https://rdrr.io/github/jinghuazhao/pQTLtools/
   - text: <img src='https://jinghuazhao.github.io/bees.svg' width=24> GitHub repositories
