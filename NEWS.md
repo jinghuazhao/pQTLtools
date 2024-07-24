@@ -1,8 +1,8 @@
 ## pQTLtools 0.4
 
-(2024/07/08)
+(2024/07/24)
 
-* Minor changes.
+* Minor changes, fix call to ldops in novelty_check().
 
 ## pQTLtools 0.3
 
