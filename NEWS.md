@@ -2,7 +2,7 @@
 
 (2024/07/24)
 
-* Minor changes, fix call to ldops in novelty_check().
+* Minor changes, renew call to ldops in novelty_check() in accordance with ieugwasr.
 
 ## pQTLtools 0.3
 
