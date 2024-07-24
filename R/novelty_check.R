@@ -98,8 +98,8 @@ novelty_check <- function(known_loci,query_loci,ldops=NULL,flanking=1e6,pop="EUR
   {
     r <- ieugwasr::ld_matrix_local(c(b[["known.rsid"]],b[["query.rsid"]]),
                                    with_alleles=FALSE,
-                                   bfile=bfile,
-                                   plink_bin=plink)
+                                   bfile=ldops[["bfile"]],
+                                   plink_bin=ldops[["plink"]])
   } else r <- ieugwasr::ld_matrix(variant_list,pop=pop,with_alleles=FALSE)
   failure <- setdiff(variant_list,colnames(r))
   if (verbose) {
