@@ -2,7 +2,8 @@
 
 (2024/07/24)
 
-* Minor changes, renew call to ldops in novelty_check() in accordance with ieugwasr.
+* Renew call to ldops in novelty_check() in accordance with ieugwasr.
+* Replace tests/ with most recent PROC results
 
 ## pQTLtools 0.3
 
