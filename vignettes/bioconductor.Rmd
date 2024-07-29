@@ -286,7 +286,7 @@ eKEGG <- clusterProfiler::enricher(gene=VEGF, TERM2GENE = kegg_t2g,
 
 Here is an example for PROC_HUMAN, which is handled by the `Biostrings` package,
 
-```{r a1bg, fig.cap="peptide association plot",fig.height=6,fig.width=10,messages=FALSE}
+```r
 fasta_file_path <- 'https://rest.uniprot.org/uniprotkb/P04070.fasta'
 fasta_sequences <- Biostrings::readAAStringSet(fasta_file_path, format = "fasta")
 AA_sequence <- fasta_sequences[[1]]
@@ -296,9 +296,10 @@ match_position <- regexpr(iso_442688365, AA_sequence)
 match_position
 mp <- matchPattern(iso_442688365,AA_sequence)
 mp
-protein <- "PROC"
-cistrans <- read.csv(paste0("~/pQTLtools/tests","/",protein,".cis.vs.trans"))
-load(paste0("~/pQTLtools/tests/",protein,".rda"))
+```
+
+```{r a1bg, fig.cap="peptide association plot",fig.height=6,fig.width=10,messages=FALSE}
+load("~/pQTLtools/tests/PROC.rda")
 pQTLtools::peptideAssociationPlot(protein,cistrans)
 ```
 
