@@ -74,6 +74,7 @@ Vignettes on package usage:
 \item ExpressionSet usage. \code{vignette("es")}.
 \item LocusZoom.js. \code{vignette("LocusZoom.js")}.
 \item snakemake showcases. \code{vignette("snakemake")}.
+\item snakemake showcases. \code{vignette("spectrum")}.
 \item SCALLOP-INF scripts. \code{vignette("SCALLOP-INF")}.
 }
 }
