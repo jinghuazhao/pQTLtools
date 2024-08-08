@@ -8,7 +8,8 @@ articles:
   pQTLtools: pQTLtools.html
   SCALLOP-INF: SCALLOP-INF.html
   snakemake: snakemake.html
-last_built: 2024-07-29T12:17Z
+  spectrum: spectrum.html
+last_built: 2024-08-08T08:43Z
 urls:
   reference: https://jinghuazhao.github.io/pQTLtools/reference
   article: https://jinghuazhao.github.io/pQTLtools/articles
