@@ -1,7 +1,8 @@
 ## pQTLtools 0.4
 
-(2024/07/29)
+(2024/08/08)
 
+* Add spectra.Rmd
 * Renew call to ldops in novelty_check() in accordance with ieugwasr.
 * Replace tests/ with most recent PROC results
 
