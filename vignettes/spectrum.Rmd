@@ -59,7 +59,7 @@ pQTLtools::peptideAssociationPlot(protein,cistrans)
 
 This will be expanded in details in due course.
 
-``r
+```r
 options(width=200)
 # ZWK .raw data
 library(rawrr)
