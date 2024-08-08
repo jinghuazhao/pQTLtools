@@ -17,7 +17,8 @@ Description: It seeds the following collection of data and utilities for pQTL an
   functionality for pQTL novelty check;
   3. Downstream analysis such as colocalization, pQTL-Mendelian Randomization via
   TwoSampleMR. <https://mrcieu.github.io/TwoSampleMR/>, mapping of
-  UniProt IDs to other resources; 4. Bioconductor notes, and showcases of LocusZoom.js snakemake workflow.
+  UniProt IDs to other resources; 4. Bioconductor notes, showcases of LocusZoom.js, snakemake workflow, and
+  spectrum data analysis.
 License: MIT + file LICENSE
 URL: https://github.com/jinghuazhao/pQTLtools
 BugReports: https://github.com/jinghuazhao/pQTLtools/issues
