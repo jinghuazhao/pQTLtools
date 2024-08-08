@@ -69,6 +69,7 @@
 #' - ExpressionSet usage. `vignette("es")`.
 #' - LocusZoom.js. `vignette("LocusZoom.js")`.
 #' - snakemake showcases. `vignette("snakemake")`.
+#' - snakemake showcases. `vignette("spectrum")`.
 #' - SCALLOP-INF scripts. `vignette("SCALLOP-INF")`.
 #' @md
 #'
