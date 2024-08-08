@@ -59,6 +59,8 @@ navbar:
           href: articles/LocusZoom.js.html
         - text: snakemake showcases
           href: articles/snakemake.html
+        - text: spectrum data analysis
+          href: articles/spectrum.html
         - text: SCALLOP-INF scripts
           href: articles/SCALLOP-INF.html
     reference:
