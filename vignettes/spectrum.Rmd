@@ -264,7 +264,7 @@ Package | Description
 --------|------------
 **Bioconductor** |
 Biostrings | Efficient manipulation of biological strings
-rawrr | AnnotationDb objects and their progeny, methods etc.
+rawrr | Direct Access to Orbitrap Data and Beyond
 **CRAN** |
 protViz | Foreach Parallel Adaptor for the 'parallel' Package
 
