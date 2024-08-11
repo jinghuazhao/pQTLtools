@@ -102,7 +102,7 @@
     
 <p>This article collects notes on peptide/protein analysis, especially with respect to spectrum data.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">pkgs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Biostrings"</span>, <span class="st">"protViz"</span>, <span class="st">"rawrr"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">pkgs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Biostrings"</span>, <span class="st">"CAMERA"</span>, <span class="st">"MSnbase"</span>, <span class="st">"MSstats"</span>, <span class="st">"Spectra"</span>, <span class="st">"mzR"</span>, <span class="st">"protViz"</span>, <span class="st">"rawrr"</span><span class="op">)</span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">p</span> <span class="kw">in</span> <span class="va">pkgs</span><span class="op">)</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"^package:"</span>, <span class="va">p</span>, <span class="st">"$"</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/search.html" class="external-link">search</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/warning.html" class="external-link">warning</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"This vignette needs package `"</span>, <span class="va">p</span>, <span class="st">"'; please install"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
@@ -360,6 +360,10 @@ Figure 1.1: peptide association plot
 <span class="header-section-number">3</span> Bioconductor/CRAN packages<a class="anchor" aria-label="anchor" href="#bioconductorcran-packages"></a>
 </h2>
 <table class="table">
+<colgroup>
+<col width="40%">
+<col width="60%">
+</colgroup>
 <thead><tr class="header">
 <th>Package</th>
 <th>Description</th>
@@ -374,14 +378,34 @@ Figure 1.1: peptide association plot
 <td>Efficient manipulation of biological strings</td>
 </tr>
 <tr class="odd">
+<td>CAMERA</td>
+<td>Collection of annotation related methods</td>
+</tr>
+<tr class="even">
+<td>MSnbase</td>
+<td>Base Functions and Classes for Mass Spectrometry and Proteomics</td>
+</tr>
+<tr class="odd">
+<td>MSstats</td>
+<td>Protein Significance Analysis in DDA, SRM and DIA Proteomics</td>
+</tr>
+<tr class="even">
+<td>Spectra</td>
+<td>Spectra Infrastructure for Mass Spectrometry</td>
+</tr>
+<tr class="odd">
+<td>mzR</td>
+<td>parser for netCDF, mzXML and mzML and mzIdentML files</td>
+</tr>
+<tr class="even">
 <td>rawrr</td>
 <td>Direct Access to Orbitrap Data and Beyond</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong>CRAN</strong></td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>protViz</td>
 <td>Foreach Parallel Adaptor for the ‘parallel’ Package</td>
 </tr>
