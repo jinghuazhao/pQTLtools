@@ -27,7 +27,7 @@ knitr::opts_chunk$set(
 This article collects notes on peptide/protein analysis, especially with respect to spectrum data.
 
 ```{r, message=FALSE, warning=FALSE}
-pkgs <- c("Biostrings", "protViz", "rawrr")
+pkgs <- c("Biostrings", "CAMERA", "MSnbase", "MSstats", "Spectra", "mzR", "protViz", "rawrr")
 for (p in pkgs) if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
     if (!requireNamespace(p)) warning(paste0("This vignette needs package `", p, "'; please install"))
 }
@@ -280,6 +280,11 @@ Package | Description
 --------|------------
 **Bioconductor** |
 Biostrings | Efficient manipulation of biological strings
+CAMERA | Collection of annotation related methods
+MSnbase | Base Functions and Classes for Mass Spectrometry and Proteomics
+MSstats | Protein Significance Analysis in DDA, SRM and DIA Proteomics
+Spectra | Spectra Infrastructure for Mass Spectrometry
+mzR | parser for netCDF, mzXML and mzML and mzIdentML files
 rawrr | Direct Access to Orbitrap Data and Beyond
 **CRAN** |
 protViz | Foreach Parallel Adaptor for the 'parallel' Package
