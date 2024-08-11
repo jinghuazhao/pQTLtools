@@ -71,6 +71,8 @@ if (isFALSE(file.exists(rawrr:::.rawrrAssembly()))){
 }
 ```
 
+## Making .raw files ready
+
 Based on a real project, the following is an example of listing/generating multiple .raw from .zip files
 
 ```r
@@ -107,6 +109,8 @@ ZYQ_UDP
 ZYQ_UDP |> Spectra::spectraVariables()
 save(ZYQ_UDP,file="~/Caprion/analysis/work/ZYQ_UDP.rda")
 ```
+
+## Showcases
 
 We are now ready to expose various facilities in R.
 
