@@ -57,11 +57,11 @@ pQTLtools::peptideAssociationPlot(protein,cistrans)
 
 # Spectrum data analysis
 
-This will be expanded in details in due course.
+## Setup
+
+The .raw files can be handled by `rawrr` package nevertheless it requires necessary files,
 
 ```r
-options(width=200)
-# ZWK .raw data
 library(rawrr)
 if (isFALSE(rawrr::.checkDllInMonoPath())){
    rawrr::installRawFileReaderDLLs()
@@ -69,6 +69,12 @@ if (isFALSE(rawrr::.checkDllInMonoPath())){
 if (isFALSE(file.exists(rawrr:::.rawrrAssembly()))){
    rawrr::installRawrrExe()
 }
+```
+
+Based on a real project, the following is an example of listing/generating multiple .raw from .zip files
+
+```r
+# ZWK .raw data
 spectra_ZWK <- "~/Caprion/pre_qc_data/spectral_library_ZWK"
 raw_files <- list.files(spectra_ZWK, pattern = "\\.raw$", full.names = TRUE)
 ## collectively
@@ -100,6 +106,12 @@ class(ZYQ_UDP)
 ZYQ_UDP
 ZYQ_UDP |> Spectra::spectraVariables()
 save(ZYQ_UDP,file="~/Caprion/analysis/work/ZYQ_UDP.rda")
+```
+
+We are now ready to expose various facilities in R.
+
+```r
+options(width=200)
 
 # mzML
 library(mzR)
