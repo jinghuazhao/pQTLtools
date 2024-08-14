@@ -71,7 +71,7 @@ if (isFALSE(file.exists(rawrr:::.rawrrAssembly()))){
 }
 ```
 
-## Making .raw files ready
+## List of.raw files
 
 Based on a real project, the following is an example of listing/generating multiple .raw from .zip files
 
@@ -110,30 +110,49 @@ ZYQ_UDP |> Spectra::spectraVariables()
 save(ZYQ_UDP,file="~/Caprion/analysis/work/ZYQ_UDP.rda")
 ```
 
-## Showcases
+## Usage
 
-We are now ready to expose various facilities in R.
+Various facilities are shown below.
 
 ```r
 options(width=200)
 
+# various files
+d <- "/rds/project/rds-zuZwCZMsS0w/Caprion_proteomics/analysis/crux"
+f <- file.path(d,"szwk901104i19801xms1.mzML")
+x <- file.path(d,"szwk901104i19801xms1.mzXML")
+g <- file.path(d,"szwk901104i19801xms1.mgf")
+r <- file.path(d,"szwk901104i19801xms1.rda")
+z <- file.path(d,"szwk901104i19801xms1.mzML.gz")
+
 # mzML
-d <- "/rds/project/rds-MkfvQMuSUxk/interval/caprion_proteomics/spectra"
-mz <-  mzR::openMSfile(file.path(d,"budp082710c21101xms1.mzML"))
-methods(class="mzRpwiz")
+mz <- mzR::openMSfile(f)
+header_info <- mzR::header(mz)
+table(header_info$msLevel)
+peak_data <- mzR::peaks(mz)
 spec <- mzR::spectra(mz)
 class(spec)
 length(spec)
 lapply(spec,head,3)
+methods(class="mzRpwiz")
+mzR::close(mz)
+
+mz <- mzR::openMSfile(z, backend = "pwiz")
+mz
+nChrom(mz)
+head(tic(mz))
+head(chromatogram(mz, 1L)) ## same as tic(x)
+str(chromatogram(mz))
+head(peaks(mz, scan=4))
 
 # MSnbase
-mzXML <- MSnbase::readMSData("szwk901104i19801xms1.mzXML")
-mgf <- MSnbase::readMgfData("szwk901104i19801xms1.mgf")
-save(mzXML,mgf,file="szwk901104i19801xms1.rda")
+mzXML <- MSnbase::readMSData(x)
+mgf <- MSnbase::readMgfData(g)
+save(mzXML,mgf,file=r)
 
 MSnbase::extractSpectraData(mzXML)
-MSnbase::hasSpectra("szwk901104i19801xms1.mzML,gz")
-MSnbase::hasChromatograms("szwk901104i19801xms1.mzML,gz")
+MSnbase::hasSpectra(z)
+MSnbase::hasChromatograms(z)
 MSnbase::plot2d(mzXML,z="peaks.count")
 MSnbase::plotDensity(mzXML,z="precursor.mz")
 
@@ -186,7 +205,7 @@ sp4 <- MSnbase::pickPeaks(sp1, refineMz = "descendPeak", signalPercentage = 50)
 points(MSnbase::mz(sp4), MSnbase::intensity(sp4), col = "red", type = "h")
 
 # CAMERA
-xs   <- CAMERA::xcmsSet(c("szwk901104i19801xms1.mzML"), method="centWave", ppm=30, peakwidth=c(5,10))
+xs   <- CAMERA::xcmsSet(f, method="centWave", ppm=30, peakwidth=c(5,10))
 an   <- CAMERA::xsAnnotate(xs)
 an   <- CAMERA::groupFWHM(an)
 #For one group
@@ -196,8 +215,7 @@ peaklist <- CAMERA::getpspectra(an, c(1,2))
 
 # Spectra
 suppressMessages(library(Spectra))
-f <- "szwk901104i19801xms1.mzML,gz"
-sp <- Spectra::Spectra(f)
+sp <- Spectra::Spectra(z)
 head(sp)
 table(sp$msLevel)
 d <- Spectra::computeMzDeltas(sp[1:1000])
@@ -217,7 +235,6 @@ peptides <- subset(mapping_ZWK,Protein=="PROC_HUMAN")[["Modified.Peptide.Sequenc
 pim <- protViz::parentIonMass(peptides)
 fi <- protViz::fragmentIon(peptides)
 df <- as.data.frame(fi)
-pdf("~/Caprion/analysis/peptide/PROC/PROC-fragmention.pdf",width=10,height=12)
 op <- par(mfrow=c(3,1))
 for (i in 1:length(peptides)){
     plot(0, 0,
@@ -243,31 +260,20 @@ for (i in 1:length(peptides)){
     abline(v=fi[[i]]$y, col='blue',lwd=2)
 }
 par(op)
-dev.off()
 
 # MSstats
-library(MSstats)
-f <- "szwk901104i19801xms1.mzML,gz"
-x <- mzR::openMSfile(f, backend = "pwiz")
-x
-nChrom(x)
-head(tic(x))
-head(chromatogram(x, 1L)) ## same as tic(x)
-str(chromatogram(x))
-p <- mzR::peaks(x)
-head(peaks(x, scan=4))
-
 head(SRMRawData)
-QuantData <- dataProcess(SRMRawData, use_log_file = FALSE)
-head(QuantData$FeatureLevelData)
-
-quant <- dataProcess(SRMRawData,
-                      normalization = "equalizeMedians",
-                      summaryMethod = "TMP",
-                      censoredInt = "NA",
-                      MBimpute = TRUE,
-                      maxQuantileforCensored = 0.999)
-head(quant)
+QuantData <- MSstats::dataProcess(SRMRawData, use_log_file = FALSE)
+quant <- MSstats::dataProcess(SRMRawData,
+                              normalization = "equalizeMedians",
+                              summaryMethod = "TMP",
+                              censoredInt = "NA",
+                              MBimpute = TRUE,
+                              maxQuantileforCensored = 0.999,
+                              logTrans=2,
+                              use_log_file=FALSE,
+                              numberOfCores=5)
+names(quant)
 ```
 
 # Bioconductor/CRAN packages
