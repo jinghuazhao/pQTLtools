@@ -276,6 +276,8 @@ quant <- MSstats::dataProcess(SRMRawData,
 names(quant)
 ```
 
+MSstats @kohler23 takes output from other data-processing pipelines.
+
 # Bioconductor/CRAN packages
 
 Package | Description
