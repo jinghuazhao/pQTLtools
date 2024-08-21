@@ -1,7 +1,8 @@
 ## pQTLtools 0.4
 
-(2024/08/14)
+(2024/08/21)
 
+* Add notes on deCODE_EUR_LD_blocks.bed
 * Add spectrum.Rmd
 * Renew call to ldops in novelty_check() in accordance with ieugwasr.
 * Replace tests/ with most recent PROC results
