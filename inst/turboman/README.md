@@ -201,3 +201,7 @@ chr|start|end|gene
 1|66534152|66729362|SGIP1
 
 becomes `1|66533360|66743095|SGIP1` as composed to `1|66999251|67216822| SGIP1` (hg19).
+
+## External data
+
+This is deCODE_EUR_LD_blocks.bed from <https://raw.githubusercontent.com/jmacdon/LDblocks_GRCh38/master/data/deCODE_EUR_LD_blocks.bed>.
