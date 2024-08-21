@@ -63,8 +63,8 @@
 #' write.table(unique(annotate[,-4]),file='annotate.txt',row.names=FALSE,quote=FALSE)
 #' input_data_path <- 'test.txt'
 #' custom_peak_annotation_file_path <- 'annotate.txt'
-#' reference_file_path <-
-#'   file.path(find.package('pQTLtools'),'turboman','turboman_hg19_reference_data.rda')
+#' reference_file_path <- file.path(find.package('pQTLtools',lib.loc=.libPaths()[1]),
+#'   'turboman','turboman_hg19_reference_data.rda')
 #' pvalue_sign <- 5e-8
 #' plot_title <- 'gap.datasets example'
 #' turboman(input_data_path, custom_peak_annotation_file_path,
@@ -248,12 +248,14 @@ turboman <- function(input_data_path, custom_peak_annotation_file_path, referenc
     ## Initialise a counter that keeps track of how many top signals we have
     top_snp_counter <- 0
     ## Define the LD block data (loaded from rda reference data file)
-    ld_label <- "ld_block_breaks_pickrell_hg"
-    ld_block_breaks <- get(ls()[substring(ls(), 1, nchar(ld_label)) == ld_label])
     if (build37)
+        ld_label <- "ld_block_breaks_pickrell_hg"
+        ld_block_breaks <- get(ls()[substring(ls(), 1, nchar(ld_label)) == ld_label])
         ld_block_breaks <- rbind(ld_block_breaks, data.frame(chr = c(23, 23), start = c(1,
             gap::hg19[23])))
     if (build38)
+        ld_label <- "ld_block_breaks_macdonald_hg"
+        ld_block_breaks <- get(ls()[substring(ls(), 1, nchar(ld_label)) == ld_label])
         ld_block_breaks <- rbind(ld_block_breaks, data.frame(chr = c(23, 23), start = c(1,
             gap::hg38[23])))
     ## Define the gene annotation data (loaded from rda reference data file)
