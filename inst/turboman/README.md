@@ -7,7 +7,7 @@ output:
     number_sections: true
     self_contained: true
 fontsize: 11pt
-bibliography: '/rds/project/jmmh2/rds-jmmh2-public_databases/software/R/pQTLtools/REFERENCES.bib'
+bibliography: '/rds/project/rds-4o5vpvAowP0/software/R/pQTLtools/REFERENCES.bib'
 csl: nature-genetics.csl
 pkgdown:
   as_is: true
@@ -22,7 +22,7 @@ vignette: >
 Details of the reference data are shown as follows,
 
 
-```r
+``` r
 options(width=200)
 rm(list=ls())
 load("~/cambridge-ceu/turboman/turboman_hg19_reference_data.rda")
@@ -33,7 +33,7 @@ ls()
 ## [1] "ld_block_breaks_pickrell_hg19_eur" "refgene_gene_coordinates_h19"
 ```
 
-```r
+``` r
 refgene_gene_coordinates_hg19_eur <- refgene_gene_coordinates_h19
 head(ld_block_breaks_pickrell_hg19_eur)
 ```
@@ -48,7 +48,7 @@ head(ld_block_breaks_pickrell_hg19_eur)
 ## 6   1 7247335
 ```
 
-```r
+``` r
 dim(ld_block_breaks_pickrell_hg19_eur)
 ```
 
@@ -56,7 +56,7 @@ dim(ld_block_breaks_pickrell_hg19_eur)
 ## [1] 1725    2
 ```
 
-```r
+``` r
 head(refgene_gene_coordinates_hg19_eur)
 ```
 
@@ -70,7 +70,7 @@ head(refgene_gene_coordinates_hg19_eur)
 ## 45166          1                    30365                   30503  MIR1302-9                        30434.0
 ```
 
-```r
+``` r
 dim(refgene_gene_coordinates_hg19_eur)
 ```
 
@@ -78,8 +78,9 @@ dim(refgene_gene_coordinates_hg19_eur)
 ## [1] 27285     5
 ```
 
-```r
-save(ld_block_breaks_pickrell_hg19_eur,refgene_gene_coordinates_hg19_eur,file="turboman_hg19_reference_data.rda")
+``` r
+save(ld_block_breaks_pickrell_hg19_eur,refgene_gene_coordinates_hg19_eur,
+     file="turboman_hg19_reference_data.rda",compress='xz')
 ```
 
 ## liftover
@@ -87,8 +88,11 @@ save(ld_block_breaks_pickrell_hg19_eur,refgene_gene_coordinates_hg19_eur,file="t
 The script is as follows,
 
 
-```r
+``` r
 liftover <- function(chr_start_end_snpid)
+# chain import currently only handles local, uncompressed file paths
+# https://hgdownload.cse.ucsc.edu/goldenpath/hg19/liftOver/hg19ToHg38.over.chain.gz
+# https://hgdownload.soe.ucsc.edu/goldenPath/hg38/liftOver/hg38ToHg19.over.chain.gz
 {
   HPC_WORK <- Sys.getenv("HPC_WORK")
   f <- file.path(HPC_WORK,"bin","hg19ToHg38.over.chain")
@@ -126,7 +130,7 @@ head(ld_block_breaks_pickrell_hg38_eur)
 ## 6   1 7187275
 ```
 
-```r
+``` r
 dim(ld_block_breaks_pickrell_hg38_eur)
 ```
 
@@ -137,7 +141,7 @@ dim(ld_block_breaks_pickrell_hg38_eur)
 ## refGene for hg38 (build 38)
 
 
-```r
+``` r
 refGene38 <- read.delim("~/tests/turboman/refGene38.tsv") %>%
              setNames(c("chrom","start","end","gene"))
 refgene_gene_coordinates_hg38_eur <- valr::bed_merge(dplyr::group_by(refGene38,gene)) %>%
@@ -161,7 +165,7 @@ head(refgene_gene_coordinates_hg38_eur)
 ## 6 1                             34610                   36081 FAM138A                             35346.
 ```
 
-```r
+``` r
 dim(refgene_gene_coordinates_hg38_eur)
 ```
 
@@ -173,14 +177,10 @@ dim(refgene_gene_coordinates_hg38_eur)
 
 LD blocks and refGene are saved into a `.rda` file.
 
-
 ```r
-save(ld_block_breaks_pickrell_hg38_eur,refgene_gene_coordinates_hg38_eur,file="turboman_hg38_reference_data.rda")
+save(ld_block_breaks_pickrell_hg38_eur,refgene_gene_coordinates_hg38_eur,
+     file="turboman_hg38_reference_data.rda",compress='xz')
 dir(pattern="*rda")
-```
-
-```
-## [1] "turboman_hg19_reference_data.rda" "turboman_hg38_reference_data.rda"
 ```
 
 ## Remarks
@@ -204,4 +204,12 @@ becomes `1|66533360|66743095|SGIP1` as composed to `1|66999251|67216822| SGIP1` 
 
 ## External data
 
-This is deCODE_EUR_LD_blocks.bed from <https://raw.githubusercontent.com/jmacdon/LDblocks_GRCh38/master/data/deCODE_EUR_LD_blocks.bed>.
+This is from <https://raw.githubusercontent.com/jmacdon/LDblocks_GRCh38/master/data/deCODE_EUR_LD_blocks.bed>.
+
+
+``` r
+ld_block_breaks_macdonald_hg38_eur <- read.delim("~/tests/turboman/deCODE_EUR_LD_blocks.bed") %>%
+                                      transmute(chr=as.numeric(gsub("chr","",chr)),start)
+save(ld_block_breaks_macdonald_hg38_eur,refgene_gene_coordinates_hg38_eur,
+     file="turboman_hg38_reference_data.rda",compress='xz')
+```
