@@ -89,8 +89,8 @@ names(annotate) <- c('chromosome','position','nearest_gene_name','p')
 write.table(unique(annotate[,-4]),file='annotate.txt',row.names=FALSE,quote=FALSE)
 input_data_path <- 'test.txt'
 custom_peak_annotation_file_path <- 'annotate.txt'
-reference_file_path <-
-  file.path(find.package('pQTLtools'),'turboman','turboman_hg19_reference_data.rda')
+reference_file_path <- file.path(find.package('pQTLtools',lib.loc=.libPaths()[1]),
+  'turboman','turboman_hg19_reference_data.rda')
 pvalue_sign <- 5e-8
 plot_title <- 'gap.datasets example'
 turboman(input_data_path, custom_peak_annotation_file_path,
