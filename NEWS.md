@@ -2,10 +2,10 @@
 
 (2024/08/21)
 
-* Add notes on deCODE_EUR_LD_blocks.bed
-* Add spectrum.Rmd
+* Adopt new hg38 LD blocks for turboman.
+* Add spectrum.Rmd.
 * Renew call to ldops in novelty_check() in accordance with ieugwasr.
-* Replace tests/ with most recent PROC results
+* Replace tests/ with most recent PROC results.
 
 ## pQTLtools 0.3
 
