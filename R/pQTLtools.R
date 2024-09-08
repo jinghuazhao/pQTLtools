@@ -10,6 +10,7 @@
 #' Objects                  |   Description
 #' -------------------------|---------------------------------------------
 #' **GWAS**                 |   &nbsp;
+#' [`csq`]                  |   Variant consequence
 #' [`novelty_check`]        |   Locus novelty check
 #' [`peptideAssociationPlot`]   | peptide association plot
 #' [`peptideMapping`]       |   peptide-to-protein mapping
