@@ -27,9 +27,49 @@
 #'                        chr=Chromosome,pos=Position)
 #' # VEP output
 #' vep <- "/rds/project/rds-zuZwCZMsS0w/Caprion_proteomics/analysis/bgen/vep"
-#' consequences <- c("frameshift_variant","missense_variant","splice_acceptor_variant",
-#'                   "splice_acceptor_variant","start_lost","stop_gained")
-#' pattern <- paste(consequences, collapse = "|")
+#' # gunzip -c chr1.tab.gz | sed "/#'/d" | cut -f9 | sort | uniq | awk '{print "#",$0}'
+#' frameshift_variants <- c(
+#'   "frameshift_variant",
+#'   "frameshift_variant,splice_region_variant",
+#'   "frameshift_variant,start_lost,start_retained_variant",
+#'   "frameshift_variant,stop_retained_variant"
+#' )
+#'
+#' inframe_insertion <- c(
+#'   "inframe_insertion",
+#'   "inframe_insertion,splice_region_variant"
+#' )
+#'
+#' missense_variants <- c(
+#'   "missense_variant",
+#'   "missense_variant,NMD_transcript_variant",
+#'   "missense_variant,splice_region_variant",
+#'   "missense_variant,splice_region_variant,NMD_transcript_variant",
+#'   "missense_variant,stop_retained_variant"
+#' )
+#'
+#' stop_codon_variants <- c(
+#'   "stop_gained",
+#'   "stop_gained,frameshift_variant",
+#'   "stop_gained,splice_region_variant",
+#'   "stop_lost",
+#'   "stop_lost,splice_region_variant",
+#'   "stop_retained_variant"
+#' )
+#'
+#' start_codon_variants <- c(
+#'   "start_lost"
+#' )
+#'
+#' protein_altering_variants <- c(
+#'   frameshift_variants,
+#'   inframe_insertions,
+#'   missense_variants,
+#'   stop_codon_variants,
+#'   start_codon_variants
+#' )
+#'
+#' pattern <- paste(protein_altering_variants, collapse = "|")
 #' suppressMessages(require(GenomicRanges))
 #' INF <- "/rds/project/rds-zuZwCZMsS0w/olink_proteomics/scallop/INF"
 #' plink <- "/rds/user/jhz22/hpc-work/bin/plink"
@@ -99,60 +139,3 @@ csq <- function(query_loci,annotated_loci,pattern,ldops=NULL,flanking=1e6,pop="E
   r2 <- sapply(1:nrow(b), function(x) with(b[x, ], ifelse(rsid == ref.rsid, 1, ll[rsid, ref.rsid]^2)))
   invisible(mutate(b,r2=r2))
 }
-
-# gunzip -c chr1.tab.gz | sed "/#'/d" | cut -f9 | sort | uniq | awk '{print "#",$0}'
-# 3_prime_UTR_variant
-# 3_prime_UTR_variant,NMD_transcript_variant
-# 5_prime_UTR_variant
-# downstream_gene_variant
-# frameshift_variant
-# frameshift_variant,splice_region_variant
-# frameshift_variant,start_lost,start_retained_variant
-# frameshift_variant,stop_retained_variant
-# inframe_insertion
-# inframe_insertion,splice_region_variant
-# intergenic_variant
-# intron_variant
-# intron_variant,NMD_transcript_variant
-# intron_variant,non_coding_transcript_variant
-# mature_miRNA_variant
-# missense_variant
-# missense_variant,NMD_transcript_variant
-# missense_variant,splice_region_variant
-# missense_variant,splice_region_variant,NMD_transcript_variant
-# missense_variant,stop_retained_variant
-# non_coding_transcript_exon_variant
-# splice_acceptor_variant
-# splice_acceptor_variant,non_coding_transcript_variant
-# splice_donor_5th_base_variant,intron_variant
-# splice_donor_5th_base_variant,intron_variant,non_coding_transcript_variant
-# splice_donor_region_variant,intron_variant
-# splice_donor_region_variant,intron_variant,non_coding_transcript_variant
-# splice_donor_region_variant,non_coding_transcript_exon_variant
-# splice_donor_variant
-# splice_donor_variant,non_coding_transcript_variant
-# splice_polypyrimidine_tract_variant,intron_variant
-# splice_polypyrimidine_tract_variant,intron_variant,NMD_transcript_variant
-# splice_polypyrimidine_tract_variant,intron_variant,non_coding_transcript_variant
-# splice_region_variant,3_prime_UTR_variant
-# splice_region_variant,5_prime_UTR_variant
-# splice_region_variant,intron_variant
-# splice_region_variant,intron_variant,NMD_transcript_variant
-# splice_region_variant,intron_variant,non_coding_transcript_variant
-# splice_region_variant,non_coding_transcript_exon_variant
-# splice_region_variant,non_coding_transcript_variant
-# splice_region_variant,splice_polypyrimidine_tract_variant,intron_variant
-# splice_region_variant,splice_polypyrimidine_tract_variant,intron_variant,NMD_transcript_variant
-# splice_region_variant,splice_polypyrimidine_tract_variant,intron_variant,non_coding_transcript_variant
-# splice_region_variant,synonymous_variant
-# splice_region_variant,synonymous_variant,NMD_transcript_variant
-# start_lost
-# stop_gained
-# stop_gained,frameshift_variant
-# stop_gained,splice_region_variant
-# stop_lost
-# stop_lost,splice_region_variant
-# stop_retained_variant
-# synonymous_variant
-# synonymous_variant,NMD_transcript_variant
-# upstream_gene_variant
