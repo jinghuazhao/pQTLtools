@@ -125,6 +125,7 @@ reference:
     - pQTLtools
   - title: Functions
     contents:
+    - csq
     - genequeries
     - get.prop.below.LLOD
     - import_OpenGWAS
