@@ -19,22 +19,97 @@ csq(
 
 \item{annotated_loci}{A data.frame of annotated loci.}
 
-\item{ldops}{arguments for ieugwasr::ld_matrix_local()}
+\item{pattern}{A character string or pattern to match the consequences against.}
 
-\item{flanking}{A flanking distance.}
+\item{ldops}{Arguments for \code{ieugwasr::ld_matrix_local()}, typically a list with \code{bfile} and \code{plink} paths.}
 
-\item{pop}{The reference population as for ieugwasr::ld_matrix().}
+\item{flanking}{A numeric value specifying the flanking distance (default is 1e6).}
 
-\item{verbose}{A flag to show nonexistent variants.}
+\item{pop}{A character string specifying the reference population for \code{ieugwasr::ld_matrix()} (default is "EUR").}
 
-\item{consequences}{A set of consequences to check against.}
+\item{verbose}{A logical flag to show nonexistent variants (default is TRUE).}
 }
 \value{
-A data.frame with an indicator with/without those consequences.
+A data.frame with an indicator showing whether the consequences are present or absent.
 }
 \description{
 This function maps consequences (CSQ) of a given list of variants to those in an annotated
 set based on facilities such as variant effect predictor (VEP). In the case of
 protein-altering variants (PAVs), many consequences can be involved. The procedure also
 takes into account linkage disequilibrium (LD) in flanking regions.
+}
+\examples{
+\dontrun{
+options(width=2000)
+suppressMessages(require(dplyr))
+suppressMessages(require(stringr))
+# SCALLOP-INF list
+METAL <- read.delim(file.path(find.package("pQTLtools"), "tests", "INF1.METAL")) \%>\%
+         dplyr::left_join(gap.datasets::inf1[c("prot", "gene")]) \%>\%
+         dplyr::mutate(prot = gene, prot_rsid = paste0(uniprot, "-", rsid),
+                       chr = Chromosome, pos = Position)
+# VEP output
+vep <- "/rds/project/rds-zuZwCZMsS0w/Caprion_proteomics/analysis/bgen/vep"
+# Define protein-altering variants
+frameshift_variants <- c(
+  "frameshift_variant",
+  "frameshift_variant,splice_region_variant",
+  "frameshift_variant,start_lost,start_retained_variant",
+  "frameshift_variant,stop_retained_variant"
+)
+inframe_insertions <- c(
+  "inframe_insertion",
+  "inframe_insertion,splice_region_variant"
+)
+missense_variants <- c(
+  "missense_variant",
+  "missense_variant,NMD_transcript_variant",
+  "missense_variant,splice_region_variant",
+  "missense_variant,splice_region_variant,NMD_transcript_variant",
+  "missense_variant,stop_retained_variant"
+)
+stop_codon_variants <- c(
+  "stop_gained",
+  "stop_gained,frameshift_variant",
+  "stop_gained,splice_region_variant",
+  "stop_lost",
+  "stop_lost,splice_region_variant",
+  "stop_retained_variant"
+)
+start_codon_variants <- c(
+  "start_lost"
+)
+protein_altering_variants <- c(
+  frameshift_variants,
+  inframe_insertions,
+  missense_variants,
+  stop_codon_variants,
+  start_codon_variants
+)
+pattern <- paste(protein_altering_variants, collapse = "|")
+suppressMessages(require(GenomicRanges))
+INF <- "/rds/project/rds-zuZwCZMsS0w/olink_proteomics/scallop/INF"
+plink <- "/rds/user/jhz22/hpc-work/bin/plink"
+# CSQ
+b <- list()
+for (i in unique(pull(METAL, Chromosome))) {
+  m <- dplyr::filter(METAL, Chromosome \%in\% i) \%>\%
+       dplyr::select(chr, pos, MarkerName, prot) \%>\%
+       dplyr::mutate(rsid = gsub("chr", "", MarkerName)) \%>\%
+       dplyr::select(-MarkerName)
+  u <- read.delim(file.path(vep, paste0("chr", i, ".tab.gz"))) \%>\%
+       dplyr::select(Chrom, Pos, X.Uploaded_variation, Consequence) \%>\%
+       setNames(c("chr", "pos", "rsid", "csq"))
+  bfile <- file.path(INF, "INTERVAL", "per_chr", paste0("snpid", i))
+  b[[i]] <- csq(m, u, pattern, ldops = list(bfile = bfile, plink = plink))
+  names(b[[i]]) <- i
+}
+b[["23"]] <- dplyr::mutate(b[["X"]], seqnames = "23", ref.seqnames = "23")
+replication <- dplyr::filter(dplyr::bind_rows(b[-which(names(b) == "X")]), r2 >= 0.8) \%>\%
+               dplyr::rename(gene = prot, ref.gene = ref.prot) \%>\%
+               dplyr::mutate(seqnames = as.integer(seqnames), pos = as.integer(pos)) \%>\%
+               dplyr::arrange(seqnames, pos) \%>\%
+               dplyr::select(-ref.seqnames, -ref.start, -ref.end, -seqnames, -pos)
+}
+
 }
