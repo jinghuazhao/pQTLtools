@@ -70,7 +70,7 @@
 #' plink <- "/rds/user/jhz22/hpc-work/bin/plink"
 #' # CSQ
 #' b <- list()
-#' for (i in unique(pull(METAL, Chromosome))) {
+#' for (i in unique(dplyr::pull(METAL, Chromosome))) {
 #'   m <- dplyr::filter(METAL, Chromosome %in% i) %>%
 #'        dplyr::select(chr, pos, MarkerName, prot) %>%
 #'        dplyr::mutate(rsid = gsub("chr", "", MarkerName)) %>%
