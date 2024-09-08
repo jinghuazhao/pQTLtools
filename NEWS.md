@@ -2,6 +2,7 @@
 
 (2024/08/21)
 
+* Add csq()
 * Adopt new hg38 LD blocks for turboman.
 * Add spectrum.Rmd.
 * Renew call to ldops in novelty_check() in accordance with ieugwasr.
