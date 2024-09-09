@@ -2,7 +2,7 @@
 
 (2024/09/09)
 
-* Add csq()
+* Add csq(), protein_altering_variants (so data/)
 * Adopt new hg38 LD blocks for turboman.
 * Add spectrum.Rmd.
 * Renew call to ldops in novelty_check() in accordance with ieugwasr.
