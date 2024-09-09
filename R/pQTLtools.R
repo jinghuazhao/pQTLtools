@@ -9,8 +9,10 @@
 #'
 #' Objects                  |   Description
 #' -------------------------|---------------------------------------------
-#' **GWAS**                 |   &nbsp;
+#' **pGWAS**                |   &nbsp;
+#' [`protein_altering_variants`] | Protein Altering Variants (PAVs)
 #' [`csq`]                  |   Variant consequence
+#' **GWAS**                 |   &nbsp;
 #' [`novelty_check`]        |   Locus novelty check
 #' [`peptideAssociationPlot`]   | peptide association plot
 #' [`peptideMapping`]       |   peptide-to-protein mapping
