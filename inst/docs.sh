@@ -25,7 +25,7 @@ done
 
 for f in .gitignore .Rbuildignore .Rinstignore .travis.yml \
          DESCRIPTION LICENSE LICENSE.md NAMESPACE NEWS.md R/ README.Rmd README.md \
-         docs/ inst/ man/ pkgdown/ vignettes/
+         data/ docs/ inst/ man/ pkgdown/ vignettes/
 do
   echo adding ${f}
   git add ${f}
