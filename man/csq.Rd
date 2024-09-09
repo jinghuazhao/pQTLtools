@@ -50,7 +50,6 @@ METAL <- read.delim(file.path(find.package("pQTLtools"), "tests", "INF1.METAL"))
                        chr = Chromosome, pos = Position)
 # VEP output
 vep <- "/rds/project/rds-zuZwCZMsS0w/Caprion_proteomics/analysis/bgen/vep"
-# Define protein-altering variants
 frameshift_variants <- c(
   "frameshift_variant",
   "frameshift_variant,splice_region_variant",
@@ -104,12 +103,12 @@ for (i in unique(dplyr::pull(METAL, Chromosome))) {
   b[[i]] <- csq(m, u, pattern, ldops = list(bfile = bfile, plink = plink))
   names(b[[i]]) <- i
 }
-b[["23"]] <- dplyr::mutate(b[["X"]], seqnames = "23", ref.seqnames = "23")
-replication <- dplyr::filter(dplyr::bind_rows(b[-which(names(b) == "X")]), r2 >= 0.8) \%>\%
-               dplyr::rename(gene = prot, ref.gene = ref.prot) \%>\%
-               dplyr::mutate(seqnames = as.integer(seqnames), pos = as.integer(pos)) \%>\%
-               dplyr::arrange(seqnames, pos) \%>\%
-               dplyr::select(-ref.seqnames, -ref.start, -ref.end, -seqnames, -pos)
+r <- dplyr::filter(dplyr::bind_rows(b[-which(names(b) == "X")]), r2 >= 0.8) \%>\%
+     dplyr::rename(gene = prot) \%>\%
+     dplyr::mutate(seqnames = as.integer(seqnames), pos = as.integer(pos)) \%>\%
+     dplyr::arrange(seqnames, pos) \%>\%
+     dplyr::select(-ref.seqnames, -ref.start, -ref.end, -seqnames, -pos)
+# b[["23"]] <- dplyr::mutate(b[["X"]], seqnames = "23", ref.seqnames = "23")
 }
 
 }
