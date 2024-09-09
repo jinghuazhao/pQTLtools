@@ -11,8 +11,10 @@ It seeds the following collection of data and utilities for pQTL analysis: 1. Ar
 \details{
 Available functions are listed in the following table.\tabular{ll}{
    Objects \tab Description \cr
-   \strong{GWAS} \tab   \cr
+   \strong{pGWAS} \tab   \cr
+   \code{\link{protein_altering_variants}} \tab Protein Altering Variants (PAVs) \cr
    \code{\link{csq}} \tab Variant consequence \cr
+   \strong{GWAS} \tab   \cr
    \code{\link{novelty_check}} \tab Locus novelty check \cr
    \code{\link{peptideAssociationPlot}} \tab peptide association plot \cr
    \code{\link{peptideMapping}} \tab peptide-to-protein mapping \cr

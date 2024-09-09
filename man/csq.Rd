@@ -50,42 +50,7 @@ METAL <- read.delim(file.path(find.package("pQTLtools"), "tests", "INF1.METAL"))
                        chr = Chromosome, pos = Position)
 # VEP output
 vep <- "/rds/project/rds-zuZwCZMsS0w/Caprion_proteomics/analysis/bgen/vep"
-frameshift_variants <- c(
-  "frameshift_variant",
-  "frameshift_variant,splice_region_variant",
-  "frameshift_variant,start_lost,start_retained_variant",
-  "frameshift_variant,stop_retained_variant"
-)
-inframe_insertions <- c(
-  "inframe_insertion",
-  "inframe_insertion,splice_region_variant"
-)
-missense_variants <- c(
-  "missense_variant",
-  "missense_variant,NMD_transcript_variant",
-  "missense_variant,splice_region_variant",
-  "missense_variant,splice_region_variant,NMD_transcript_variant",
-  "missense_variant,stop_retained_variant"
-)
-stop_codon_variants <- c(
-  "stop_gained",
-  "stop_gained,frameshift_variant",
-  "stop_gained,splice_region_variant",
-  "stop_lost",
-  "stop_lost,splice_region_variant",
-  "stop_retained_variant"
-)
-start_codon_variants <- c(
-  "start_lost"
-)
-PAVs <- c(
-  frameshift_variants,
-  inframe_insertions,
-  missense_variants,
-  stop_codon_variants,
-  start_codon_variants
-)
-pattern <- paste(PAVs, collapse = "|")
+pattern <- paste( protein_altering_variants, collapse = "|")
 suppressMessages(require(GenomicRanges))
 INF <- "/rds/project/rds-zuZwCZMsS0w/olink_proteomics/scallop/INF"
 plink <- "/rds/user/jhz22/hpc-work/bin/plink"
