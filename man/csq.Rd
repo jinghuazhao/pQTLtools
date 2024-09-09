@@ -78,14 +78,14 @@ stop_codon_variants <- c(
 start_codon_variants <- c(
   "start_lost"
 )
-protein_altering_variants <- c(
+PAVs <- c(
   frameshift_variants,
   inframe_insertions,
   missense_variants,
   stop_codon_variants,
   start_codon_variants
 )
-pattern <- paste(protein_altering_variants, collapse = "|")
+pattern <- paste(PAVs, collapse = "|")
 suppressMessages(require(GenomicRanges))
 INF <- "/rds/project/rds-zuZwCZMsS0w/olink_proteomics/scallop/INF"
 plink <- "/rds/user/jhz22/hpc-work/bin/plink"
@@ -101,14 +101,13 @@ for (i in unique(dplyr::pull(METAL, Chromosome))) {
        setNames(c("chr", "pos", "rsid", "csq"))
   bfile <- file.path(INF, "INTERVAL", "per_chr", paste0("snpid", i))
   b[[i]] <- csq(m, u, pattern, ldops = list(bfile = bfile, plink = plink))
-  names(b[[i]]) <- i
 }
-r <- dplyr::filter(dplyr::bind_rows(b[-which(names(b) == "X")]), r2 >= 0.8) \%>\%
+r <- dplyr::bind_rows(b) \%>\%
+     dplyr::filter(r2 >= 0.8) \%>\%
      dplyr::rename(gene = prot) \%>\%
      dplyr::mutate(seqnames = as.integer(seqnames), pos = as.integer(pos)) \%>\%
      dplyr::arrange(seqnames, pos) \%>\%
      dplyr::select(-ref.seqnames, -ref.start, -ref.end, -seqnames, -pos)
-# b[["23"]] <- dplyr::mutate(b[["X"]], seqnames = "23", ref.seqnames = "23")
 }
 
 }
