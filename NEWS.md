@@ -1,6 +1,6 @@
 ## pQTLtools 0.4
 
-(2024/09/08)
+(2024/09/09)
 
 * Add csq()
 * Adopt new hg38 LD blocks for turboman.
