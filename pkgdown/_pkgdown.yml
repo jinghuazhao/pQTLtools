@@ -135,6 +135,7 @@ reference:
     - peptideAssociationPlot
     - peptideMapping
     - pqtlMR
+    - protein_altering_variants
     - qtl_lookup
     - regionqueries
     - run_coloc
