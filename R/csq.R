@@ -28,7 +28,6 @@
 #'                        chr = Chromosome, pos = Position)
 #' # VEP output
 #' vep <- "/rds/project/rds-zuZwCZMsS0w/Caprion_proteomics/analysis/bgen/vep"
-#' # Define protein-altering variants
 #' frameshift_variants <- c(
 #'   "frameshift_variant",
 #'   "frameshift_variant,splice_region_variant",
@@ -82,33 +81,28 @@
 #'   b[[i]] <- csq(m, u, pattern, ldops = list(bfile = bfile, plink = plink))
 #'   names(b[[i]]) <- i
 #' }
-#' b[["23"]] <- dplyr::mutate(b[["X"]], seqnames = "23", ref.seqnames = "23")
-#' replication <- dplyr::filter(dplyr::bind_rows(b[-which(names(b) == "X")]), r2 >= 0.8) %>%
-#'                dplyr::rename(gene = prot, ref.gene = ref.prot) %>%
-#'                dplyr::mutate(seqnames = as.integer(seqnames), pos = as.integer(pos)) %>%
-#'                dplyr::arrange(seqnames, pos) %>%
-#'                dplyr::select(-ref.seqnames, -ref.start, -ref.end, -seqnames, -pos)
+#' r <- dplyr::filter(dplyr::bind_rows(b[-which(names(b) == "X")]), r2 >= 0.8) %>%
+#'      dplyr::rename(gene = prot) %>%
+#'      dplyr::mutate(seqnames = as.integer(seqnames), pos = as.integer(pos)) %>%
+#'      dplyr::arrange(seqnames, pos) %>%
+#'      dplyr::select(-ref.seqnames, -ref.start, -ref.end, -seqnames, -pos)
+#' # b[["23"]] <- dplyr::mutate(b[["X"]], seqnames = "23", ref.seqnames = "23")
 #' }
 #'
 csq <- function(query_loci, annotated_loci, pattern, ldops=NULL, flanking=1e6, pop="EUR", verbose=TRUE) {
-  rsid <- seqnames <- start <- strand <- width <- NA
-  bfile <- plink <- NA
+  rsid <- seqnames <- start <- strand <- width <- bfile <- plink <- NA
   
-  # Create GenomicRanges object for query loci
   subject <- with(query_loci,
     GenomicRanges::GRanges(seqnames=chr, IRanges::IRanges(start=pos-flanking, end=pos+flanking),
                            rsid=rsid, pos=pos, prot=prot))
   
-  # Create GenomicRanges object for annotated loci
   query <- with(filter(annotated_loci, stringr::str_detect(csq, pattern)),
     GenomicRanges::GRanges(seqnames=chr, IRanges::IRanges(start=pos-flanking, end=pos+flanking),
                            rsid=rsid, pos=pos, csq=csq))
   
-  # Find overlaps between query and subject
   ov <- GenomicRanges::findOverlaps(query, subject) %>%
     data.frame()
   
-  # Process overlaps
   ov1 <- subject[ov$subjectHits, ] %>%
     data.frame() %>%
     dplyr::select(-strand, -width)
@@ -117,13 +111,11 @@ csq <- function(query_loci, annotated_loci, pattern, ldops=NULL, flanking=1e6, p
     dplyr::select(-strand, -width) %>%
     dplyr::mutate(rsid=if_else(rsid=="-", paste0("chr", seqnames, ":", start), rsid))
   
-  # Combine data
   b <- dplyr::bind_cols(data.frame(ov1),
                         data.frame(ov2) %>% setNames(paste("ref", names(ov2), sep=".")))
   b_granges <- GenomicRanges::makeGRangesFromDataFrame(b, keep.extra.columns = TRUE)
   variant_list <- unique(c(b[["rsid"]], b[["ref.rsid"]]))
   
-  # Retrieve linkage disequilibrium information
   if (!is.null(ldops)) {
     r <- ieugwasr::ld_matrix_local(variants = c(b[["rsid"]], b[["ref.rsid"]]),
                                    bfile = ldops[["bfile"]],
@@ -133,7 +125,6 @@ csq <- function(query_loci, annotated_loci, pattern, ldops=NULL, flanking=1e6, p
     r <- ieugwasr::ld_matrix(variant_list, pop = pop, with_alleles = FALSE)
   }
   
-  # Handle missing LD information
   failure <- setdiff(variant_list, colnames(r))
   if (verbose) {
     cat("\nLD information cannot be retrieved for", length(failure), "variants:\n")
@@ -146,9 +137,7 @@ csq <- function(query_loci, annotated_loci, pattern, ldops=NULL, flanking=1e6, p
   ll[,] <- NA
   ll[keep, ref.keep] <- r[keep, ref.keep]
   
-  # Calculate r^2 values
   r2 <- sapply(1:nrow(b), function(x) with(b[x, ], ifelse(rsid == ref.rsid, 1, ll[rsid, ref.rsid]^2)))
   
-  # Return the result
   invisible(dplyr::mutate(b, r2 = r2))
 }
