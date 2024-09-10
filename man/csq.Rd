@@ -71,7 +71,7 @@ r <- dplyr::bind_rows(b) \%>\%
      dplyr::rename(gene = prot) \%>\%
      dplyr::mutate(seqnames = as.integer(seqnames), pos = as.integer(pos)) \%>\%
      dplyr::arrange(seqnames, pos) \%>\%
-     dplyr::select(-ref.seqnames, -ref.start, -ref.end, -seqnames, -pos)
+     dplyr::select(-ref.seqnames, -ref.start, -ref.end, -seqnames, -pos, -start, -end)
 }
 
 }

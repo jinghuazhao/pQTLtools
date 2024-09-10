@@ -5,7 +5,7 @@
 \alias{protein_altering_variants}
 \title{Protein-altering variants}
 \format{
-A vector of consequences..
+A vector of consequences.
 }
 \usage{
 protein_altering_variants
