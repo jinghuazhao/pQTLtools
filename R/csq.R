@@ -49,7 +49,7 @@
 #'      dplyr::rename(gene = prot) %>%
 #'      dplyr::mutate(seqnames = as.integer(seqnames), pos = as.integer(pos)) %>%
 #'      dplyr::arrange(seqnames, pos) %>%
-#'      dplyr::select(-ref.seqnames, -ref.start, -ref.end, -seqnames, -pos)
+#'      dplyr::select(-ref.seqnames, -ref.start, -ref.end, -seqnames, -pos, -start, -end)
 #' }
 #'
 csq <- function(query_loci, annotated_loci, pattern, ldops=NULL, flanking=1e6, pop="EUR", verbose=TRUE) {
