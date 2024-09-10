@@ -46,11 +46,10 @@ suppressMessages(require(stringr))
 # SCALLOP-INF list
 METAL <- read.delim(file.path(find.package("pQTLtools"), "tests", "INF1.METAL")) \%>\%
          dplyr::left_join(gap.datasets::inf1[c("prot", "gene")]) \%>\%
-         dplyr::mutate(prot = gene, prot_rsid = paste0(uniprot, "-", rsid),
-                       chr = Chromosome, pos = Position)
+         dplyr::mutate(prot = gene, chr = Chromosome, pos = Position)
 # VEP output
 vep <- "/rds/project/rds-zuZwCZMsS0w/Caprion_proteomics/analysis/bgen/vep"
-pattern <- paste( protein_altering_variants, collapse = "|")
+pattern <- paste(protein_altering_variants, collapse = "|")
 suppressMessages(require(GenomicRanges))
 INF <- "/rds/project/rds-zuZwCZMsS0w/olink_proteomics/scallop/INF"
 plink <- "/rds/user/jhz22/hpc-work/bin/plink"

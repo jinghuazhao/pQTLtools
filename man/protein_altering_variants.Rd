@@ -3,14 +3,17 @@
 \docType{data}
 \name{protein_altering_variants}
 \alias{protein_altering_variants}
-\title{Protein-Altering Variants}
+\title{Protein-altering variants}
 \format{
-A vector containing lengths of chromosomes.
+A vector of consequences..
 }
 \usage{
 protein_altering_variants
 }
 \description{
 Variants which directly affect the coding sequence or the protein produced.
+}
+\examples{
+protein_altering_variants
 }
 \keyword{datasets}
