@@ -50,6 +50,13 @@
 #'      dplyr::mutate(seqnames = as.integer(seqnames), pos = as.integer(pos)) %>%
 #'      dplyr::arrange(seqnames, pos) %>%
 #'      dplyr::select(-ref.seqnames, -ref.start, -ref.end, -seqnames, -pos, -start, -end)
+#' w <- r %>%
+#'      mutate(gene_rsid=paste0(gene,"_",rsid)) %>%
+#'      group_by(gene_rsid) %>%
+#'      summarize(ref.rsid.all=paste(ref.rsid,collapse=";"),
+#'                ref.pos.all=paste(ref.pos,collapse=";"),
+#'                ref.csq.all=paste(ref.csq,collapse=";"),
+#'                r2.all=paste(r2,collapse=";"))
 #' }
 #'
 csq <- function(query_loci, annotated_loci, pattern, ldops=NULL, flanking=1e6, pop="EUR", verbose=TRUE) {
