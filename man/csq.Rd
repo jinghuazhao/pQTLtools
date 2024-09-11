@@ -73,8 +73,7 @@ r <- dplyr::bind_rows(b) \%>\%
      dplyr::arrange(seqnames, pos) \%>\%
      dplyr::select(-ref.seqnames, -ref.start, -ref.end, -seqnames, -pos, -start, -end)
 w <- r \%>\%
-     mutate(gene_rsid=paste0(gene,"_",rsid)) \%>\%
-     group_by(gene_rsid) \%>\%
+     group_by(gene,rsid) \%>\%
      summarize(ref.rsid.all=paste(ref.rsid,collapse=";"),
                ref.pos.all=paste(ref.pos,collapse=";"),
                ref.csq.all=paste(ref.csq,collapse=";"),
