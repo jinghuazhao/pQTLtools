@@ -1,6 +1,6 @@
 ## pQTLtools 0.4
 
-(2024/09/10)
+(2024/09/11)
 
 * Add csq(), protein_altering_variants (so data/)
 * Adopt new hg38 LD blocks for turboman.
