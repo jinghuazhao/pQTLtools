@@ -9,11 +9,8 @@
 It seeds the following collection of data and utilities for pQTL analysis: 1. Articles linking functions for cis/trans classification, pQTL-gene plot, 2d/3d-plotly plots, forest plots among others available from gap, \url{https://cran.r-project.org/package=gap}; 2. Query on genes, regions, and SNPs via PhenoScanner, \url{http://www.phenoscanner.medschl.cam.ac.uk/}, adding functionality for pQTL novelty check; 3. Downstream analysis such as colocalization, pQTL-Mendelian Randomization via TwoSampleMR. \url{https://mrcieu.github.io/TwoSampleMR/}, mapping of UniProt IDs to other resources; 4. Bioconductor notes, showcases of LocusZoom.js, snakemake workflow, and spectrum data analysis.
 }
 \details{
-Available functions are listed in the following table.\tabular{ll}{
+Available data and functions are listed in the following table.\tabular{ll}{
    Objects \tab Description \cr
-   \strong{pGWAS} \tab   \cr
-   \code{\link{csq}} \tab Variant consequence \cr
-   \code{\link{protein_altering_variants}} \tab Protein Altering Variants (PAVs) \cr
    \strong{GWAS} \tab   \cr
    \code{\link{novelty_check}} \tab Locus novelty check \cr
    \code{\link{peptideAssociationPlot}} \tab peptide association plot \cr
@@ -21,6 +18,9 @@ Available functions are listed in the following table.\tabular{ll}{
    \code{\link{turboman}} \tab Manhattan plots \cr
    \code{\link{turboqq}} \tab QQ plots \cr
      \tab   \cr
+   \strong{pGWAS} \tab   \cr
+   \code{\link{csq}} \tab Variant consequence \cr
+   \code{\link{protein_altering_variants}} \tab Protein Altering Variants (PAVs) \cr
    \strong{Expression analysis} \tab   \cr
    \code{\link{get.prop.below.LLOD}} \tab Limit of detection analysis \cr
    \code{\link{import_eQTLCatalogue}} \tab Import eQTL Catalogue \cr
