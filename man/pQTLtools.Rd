@@ -21,6 +21,7 @@ Available data and functions are listed in the following table.\tabular{ll}{
    \strong{pGWAS} \tab   \cr
    \code{\link{csq}} \tab Variant consequence \cr
    \code{\link{protein_altering_variants}} \tab Protein Altering Variants (PAVs) \cr
+     \tab   \cr
    \strong{Expression analysis} \tab   \cr
    \code{\link{get.prop.below.LLOD}} \tab Limit of detection analysis \cr
    \code{\link{import_eQTLCatalogue}} \tab Import eQTL Catalogue \cr
