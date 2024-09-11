@@ -5,13 +5,10 @@
 #' @aliases pQTLtools-package
 #'
 #' @details
-#' Available functions are listed in the following table.
+#' Available data and functions are listed in the following table.
 #'
 #' Objects                  |   Description
 #' -------------------------|---------------------------------------------
-#' **pGWAS**                |   &nbsp;
-#' [`csq`]                  |   Variant consequence
-#' [`protein_altering_variants`] | Protein Altering Variants (PAVs)
 #' **GWAS**                 |   &nbsp;
 #' [`novelty_check`]        |   Locus novelty check
 #' [`peptideAssociationPlot`]   | peptide association plot
@@ -19,6 +16,9 @@
 #' [`turboman`]             |   Manhattan plots
 #' [`turboqq`]              |   QQ plots
 #'  &nbsp;                  |   &nbsp;
+#' **pGWAS**                |   &nbsp;
+#' [`csq`]                  |   Variant consequence
+#' [`protein_altering_variants`] | Protein Altering Variants (PAVs)
 #' **Expression analysis**  |   &nbsp;
 #' [`get.prop.below.LLOD`]  |   Limit of detection analysis
 #' [`import_eQTLCatalogue`] |   Import eQTL Catalogue
