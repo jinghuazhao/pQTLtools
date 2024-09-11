@@ -19,6 +19,7 @@
 #' **pGWAS**                |   &nbsp;
 #' [`csq`]                  |   Variant consequence
 #' [`protein_altering_variants`] | Protein Altering Variants (PAVs)
+#'  &nbsp;                  |   &nbsp;
 #' **Expression analysis**  |   &nbsp;
 #' [`get.prop.below.LLOD`]  |   Limit of detection analysis
 #' [`import_eQTLCatalogue`] |   Import eQTL Catalogue
