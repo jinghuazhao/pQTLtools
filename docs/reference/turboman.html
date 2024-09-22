@@ -45,6 +45,7 @@
     <li><a class="external-link dropdown-item" href="https://esmatlas.com/">ESMfold</a></li>
     <li><a class="external-link dropdown-item" href="https://www.ebi.ac.uk/eqtl/">eQTL catalog</a></li>
     <li><a class="external-link dropdown-item" href="https://www.ebi.ac.uk/gwas/">GWAS catalog</a></li>
+    <li><a class="external-link dropdown-item" href="https://www.histo.fyi/">histo.fyi</a></li>
     <li><a class="external-link dropdown-item" href="https://metascape.org/">metascape</a></li>
     <li><a class="external-link dropdown-item" href="https://ligand-discovery.ai/">Ligand discovery</a></li>
     <li><a class="external-link dropdown-item" href="https://www.mrbase.org/">MRBase</a></li>
@@ -63,7 +64,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.svg" class="logo" alt=""><h1>Manhattan plots</h1>
-      <small class="dont-index">Source: <a href="https://github.com/jinghuazhao/pQTLtools/blob/HEAD/R/turboman.r" class="external-link"><code>R/turboman.r</code></a></small>
+
       <div class="d-none name"><code>turboman.Rd</code></div>
     </div>
 
@@ -127,8 +128,7 @@ The input data needs to be a file that has:</p><ol><li><p>Spaces / tabs as field
 NB!: If no label is given, variants will be automatically annotated</p></li>
 </ol><p><strong>Reference file / reference_file_path</strong></p>
 <p>Define the path to the 'turboman_hg19_reference_data.rda' / 'turboman_hg38_reference_data.rda' reference file that
-contains the LD block breaks as in Berisa and Pickrell (2016)
-
+contains the LD block breaks as in berisa16;textualpQTLtools
 and gene coordinates used to construct and annotate the Manhattan plot. Both
 are available from the <code>turboman</code> directory of the installed package, e.g.,
 <code>file.path(find.package('pQTLtools'),'turboman','turboman_hg38_reference_data.rda')</code>.</p>
@@ -144,11 +144,7 @@ This will be used to</p><ol><li><p>Highlight signal peaks that come above this s
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
-    <p>Berisa T, Pickrell JK (2016).
-“Approximately independent linkage disequilibrium blocks in human populations.”
-<em>Bioinformatics</em>, <b>32</b>(2), 283-285.
-<a href="https://doi.org/10.1093/bioinformatics/btv546" class="external-link">doi:10.1093/bioinformatics/btv546</a>
-.</p>
+    <p></p>
     </div>
     <div class="section level2">
     <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>
@@ -162,9 +158,9 @@ This will be used to</p><ol><li><p>Highlight signal peaks that come above this s
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://jinghuazhao.github.io/R/" class="external-link">gap.datasets</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">test</span> <span class="op">&lt;-</span> <span class="va">mhtdata</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'chr'</span>,<span class="st">'pos'</span>,<span class="st">'p'</span><span class="op">)</span><span class="op">]</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.table</a></span><span class="op">(</span><span class="va">test</span>,file<span class="op">=</span><span class="st">'test.txt'</span>,row.names<span class="op">=</span><span class="cn">FALSE</span>,quote<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">annotate</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">mhtdata</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'chr'</span>,<span class="st">'start'</span>,<span class="st">'gene'</span>,<span class="st">'p'</span><span class="op">)</span><span class="op">]</span>,<span class="va">p</span><span class="op">&lt;</span><span class="fl">5e-8</span> <span class="op">&amp;</span> <span class="va">gene</span><span class="op">!=</span><span class="st">''</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">annotate</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">mhtdata</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'chr'</span>,<span class="st">'start'</span>,<span class="st">'gene'</span>,<span class="st">'p'</span><span class="op">)</span><span class="op">]</span>,<span class="va">p</span><span class="op">&lt;</span><span class="fl">5e-8</span> <span class="op">&amp;</span> <span class="va">gene</span><span class="op">!=</span><span class="st">''</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">annotate</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'chromosome'</span>,<span class="st">'position'</span>,<span class="st">'nearest_gene_name'</span>,<span class="st">'p'</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">annotate</span><span class="op">[</span>,<span class="op">-</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span>,file<span class="op">=</span><span class="st">'annotate.txt'</span>,row.names<span class="op">=</span><span class="cn">FALSE</span>,quote<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">annotate</span><span class="op">[</span>,<span class="op">-</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span>,file<span class="op">=</span><span class="st">'annotate.txt'</span>,row.names<span class="op">=</span><span class="cn">FALSE</span>,quote<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">input_data_path</span> <span class="op">&lt;-</span> <span class="st">'test.txt'</span></span></span>
 <span class="r-in"><span><span class="va">custom_peak_annotation_file_path</span> <span class="op">&lt;-</span> <span class="st">'annotate.txt'</span></span></span>
 <span class="r-in"><span><span class="va">reference_file_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/find.package.html" class="external-link">find.package</a></span><span class="op">(</span><span class="st">'pQTLtools'</span>,lib.loc<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/libPaths.html" class="external-link">.libPaths</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>,</span></span>
@@ -193,7 +189,7 @@ This will be used to</p><ol><li><p>Highlight signal peaks that come above this s
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Crafted by <a href="https://jinghuazhao.github.io" class="external-link">Jing Hua Zhao</a>. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Crafted by <a href="https://jinghuazhao.github.io" class="external-link">Jing Hua Zhao</a>. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
 <div class="pkgdown-footer-right">

@@ -45,6 +45,7 @@
     <li><a class="external-link dropdown-item" href="https://esmatlas.com/">ESMfold</a></li>
     <li><a class="external-link dropdown-item" href="https://www.ebi.ac.uk/eqtl/">eQTL catalog</a></li>
     <li><a class="external-link dropdown-item" href="https://www.ebi.ac.uk/gwas/">GWAS catalog</a></li>
+    <li><a class="external-link dropdown-item" href="https://www.histo.fyi/">histo.fyi</a></li>
     <li><a class="external-link dropdown-item" href="https://metascape.org/">metascape</a></li>
     <li><a class="external-link dropdown-item" href="https://ligand-discovery.ai/">Ligand discovery</a></li>
     <li><a class="external-link dropdown-item" href="https://www.mrbase.org/">MRBase</a></li>
@@ -63,7 +64,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.svg" class="logo" alt=""><h1>Basic TwoSampleMR analysis</h1>
-      <small class="dont-index">Source: <a href="https://github.com/jinghuazhao/pQTLtools/blob/HEAD/R/run_TwoSampleMR.R" class="external-link"><code>R/run_TwoSampleMR.R</code></a></small>
+
       <div class="d-none name"><code>run_TwoSampleMR.Rd</code></div>
     </div>
 
@@ -99,20 +100,14 @@
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>As TwoSampleMR faces seemingly perplexing options, this function intends to simplify various steps in a two-sample MR
-as in Dimou and Tsilidis (2018)
-. It is particularly useful when a large numbher of MRs are necessary,
+as in dt18;textualpQTLtools. It is particularly useful when a large numbher of MRs are necessary,
 e.g., multiple proteins and their cis/trans regions need to be examined, in which case prefix could direct the output
 to various directories.</p>
 <p>Check your authentication token if the example below fails to run.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
-    <p>Dimou NL, Tsilidis KK (2018).
-“A Primer in Mendelian Randomization Methodology with a Focus on Utilizing Published Summary Association Data.”
-In Evangelou E (ed.), <em>Genetic Epidemiology: Methods and Protocols</em>, chapter 13, 211–230.
-Springer New York, New York, NY.
-ISBN 978-1-4939-7868-7, <a href="https://doi.org/10.1007/978-1-4939-7868-7_13" class="external-link">doi:10.1007/978-1-4939-7868-7_13</a>
-.</p>
+    <p></p>
     </div>
 
     <div class="section level2">
@@ -142,7 +137,7 @@ ISBN 978-1-4939-7868-7, <a href="https://doi.org/10.1007/978-1-4939-7868-7_13" c
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in check_required_columns(outcome_dat, "outcome"):</span> The following required columns are missing from outcome: SNP, id.outcome, outcome, beta.outcome, se.outcome, effect_allele.outcome, other_allele.outcome</span>
 <span class="r-in"><span><span class="va">prefix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">prot</span>,<span class="va">type</span>,sep<span class="op">=</span><span class="st">"-"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">pQTLtools</span><span class="fu">::</span><span class="fu">run_TwoSampleMR</span><span class="op">(</span><span class="va">harmonise</span>, mr_plot<span class="op">=</span><span class="st">"pQTLtools"</span>, prefix<span class="op">=</span><span class="va">prefix</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in eval(expr, envir, enclos):</span> object 'harmonise' not found</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'harmonise' not found</span>
 <span class="r-in"><span><span class="va">caption</span> <span class="op">&lt;-</span> <span class="st">"Table. MMP.10 variants and FEV1"</span></span></span>
 <span class="r-in"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.delim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">prefix</span>,<span class="st">"-result.txt"</span><span class="op">)</span>,header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>             caption<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">caption</span>, <span class="st">"(result)"</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -174,7 +169,7 @@ ISBN 978-1-4939-7868-7, <a href="https://doi.org/10.1007/978-1-4939-7868-7_13" c
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Crafted by <a href="https://jinghuazhao.github.io" class="external-link">Jing Hua Zhao</a>. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Crafted by <a href="https://jinghuazhao.github.io" class="external-link">Jing Hua Zhao</a>. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
 </div>
 
 <div class="pkgdown-footer-right">
