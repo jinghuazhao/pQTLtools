@@ -99,6 +99,8 @@ navbar:
         href: https://www.ebi.ac.uk/eqtl/
       - text: GWAS catalog
         href: https://www.ebi.ac.uk/gwas/
+      - text: histo.fyi
+        href: https://www.histo.fyi/
       - text: metascape
         href: https://metascape.org/
       - text: Ligand discovery
