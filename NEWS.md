@@ -1,9 +1,9 @@
 ## pQTLtools 0.4
 
-(2024/09/22)
+(2024/09/23)
 
 * Add csq(), protein_altering_variants (so data/), histo.fyi
-* Adopt new hg38 LD blocks for turboman.
+* Adopt new hg38 LD blocks for turboman().
 * Add spectrum.Rmd.
 * Renew call to ldops in novelty_check() in accordance with ieugwasr.
 * Replace tests/ with most recent PROC results.
