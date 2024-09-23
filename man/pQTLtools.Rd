@@ -86,8 +86,8 @@ Vignettes on package usage:
 \seealso{
 Useful links:
 \itemize{
-  \item \url{<https://github.com/jinghuazhao/pQTLtools>}
-  \item Report bugs at \url{<https://github.com/jinghuazhao/pQTLtools/issues>}
+  \item \url{https://github.com/jinghuazhao/pQTLtools}
+  \item Report bugs at \url{https://github.com/jinghuazhao/pQTLtools/issues}
 }
 
 }
