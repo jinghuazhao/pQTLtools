@@ -63,7 +63,7 @@
 #'    m <- filter(METAL,Chromosome %in% i) %>%
 #'         select(chr,pos,uniprot,rsid,prot)
 #'    bfile <- file.path(INF,"INTERVAL","per_chr",paste0("chr",i))
-#'    b[[i]] <- novelty_check(u,m,ldops=list(bfile,plink))
+#'    b[[i]] <- novelty_check(u,m,ldops=list(bfile=bfile,plink=plink))
 #' }
 #' replication2 <- filter(bind_rows(b), r2>=0.8)
 #' prot_rsid <- with(novel_data %>%
