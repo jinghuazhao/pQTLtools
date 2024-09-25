@@ -12,14 +12,14 @@ It seeds the following collection of data and utilities for pQTL analysis: 1. Ar
 Available data and functions are listed in the following table.\tabular{ll}{
    Objects \tab Description \cr
    \strong{GWAS} \tab   \cr
-   \code{\link{novelty_check}} \tab Locus novelty check \cr
-   \code{\link{peptideAssociationPlot}} \tab peptide association plot \cr
-   \code{\link{peptideMapping}} \tab peptide-to-protein mapping \cr
    \code{\link{turboman}} \tab Manhattan plots \cr
    \code{\link{turboqq}} \tab QQ plots \cr
      \tab   \cr
    \strong{pGWAS} \tab   \cr
    \code{\link{csq}} \tab Variant consequence \cr
+   \code{\link{novelty_check}} \tab Locus novelty check \cr
+   \code{\link{peptideAssociationPlot}} \tab peptide association plot \cr
+   \code{\link{peptideMapping}} \tab peptide-to-protein mapping \cr
    \code{\link{protein_altering_variants}} \tab Protein Altering Variants (PAVs) \cr
      \tab   \cr
    \strong{Expression analysis} \tab   \cr
