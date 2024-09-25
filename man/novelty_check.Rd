@@ -89,7 +89,7 @@ for(i in unique(dplyr::pull(METAL,Chromosome)))
    bfile <- file.path(INF,"INTERVAL","per_chr",paste0("chr",i))
    b[[i]] <- novelty_check(u,m,ldops=list(bfile=bfile,plink=plink))
 }
-replication2 <- filter(bind_rows(b), r2>=0.8)
+replication2 <- dplyr::filter(bind_rows(b), r2>=0.8)
 prot_rsid <- with(novel_data \%>\%
              dplyr::left_join(gap.datasets::inf1[c("prot","gene")]),paste0(gene,"-",rsid))
 prot_rsid_repl <- with(replication2,paste0(query.prot,"-",query.rsid))
