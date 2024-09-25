@@ -61,7 +61,7 @@ UKB_PPP <- dplyr::mutate(overlap,
            chr=as.integer(unlist(lapply(chrpos,"[[",1))),
            pos=as.integer(unlist(lapply(chrpos,"[[",2))),
            chrpos=paste(chr,pos,sep=":"))
-# use of ieugwasr meta-data
+# ieugwasr LD reference which requires an up-to-date registration.
 suppressMessages(require(GenomicRanges))
 b <- novelty_check(UKB_PPP,METAL)
 replication <- dplyr::filter(b,r2>=0.8)
