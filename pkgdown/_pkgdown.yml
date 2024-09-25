@@ -43,6 +43,7 @@ navbar:
     home:
         icon: fa-home
         href: index.html
+        aria-label: Home
     articles:
         text: Articles
         menu:
@@ -72,12 +73,15 @@ navbar:
     github:
         icon: fab fa-github
         href: https://github.com/jinghuazhao/pQTLtools
+        aria-label: GitHub
     cran:
         icon: fab fa-r-project
         href: https://jinghuazhao.github.io/R/
+        aria-label: R packages
     alphafold:
       icon: fas fa-fast-backward
       href: https://alphafold.ebi.ac.uk/
+      aria-label: AlphaFold
     urls:
       text: URLs
       menu:
@@ -120,6 +124,7 @@ navbar:
     uniprot:
       icon: fas fa-fast-forward
       href: https://www.uniprot.org/
+      aria-label: UniProt
 
 reference:
   - title: A summary
