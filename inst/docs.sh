@@ -3,7 +3,8 @@
 function setup()
 {
 Rscript -e '
-  devtools::build_readme();devtools::document()
+  devtools::build_readme()
+  roxygen2::roxygenise()
   pkgdown::build_site_github_pages()
 # usethis::use_github_action("pkgdown", save_as = "R-CMD-check.yaml", ref = NULL, ignore = TRUE, open = FALSE)
 # clean_site(); init_site(); build_home(); build_news(); build_articles(); build_reference(); build_search()
