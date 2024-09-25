@@ -10,14 +10,14 @@
 #' Objects                  |   Description
 #' -------------------------|---------------------------------------------
 #' **GWAS**                 |   &nbsp;
-#' [`novelty_check`]        |   Locus novelty check
-#' [`peptideAssociationPlot`]   | peptide association plot
-#' [`peptideMapping`]       |   peptide-to-protein mapping
 #' [`turboman`]             |   Manhattan plots
 #' [`turboqq`]              |   QQ plots
 #'  &nbsp;                  |   &nbsp;
 #' **pGWAS**                |   &nbsp;
 #' [`csq`]                  |   Variant consequence
+#' [`novelty_check`]        |   Locus novelty check
+#' [`peptideAssociationPlot`]   | peptide association plot
+#' [`peptideMapping`]       |   peptide-to-protein mapping
 #' [`protein_altering_variants`] | Protein Altering Variants (PAVs)
 #'  &nbsp;                  |   &nbsp;
 #' **Expression analysis**  |   &nbsp;
