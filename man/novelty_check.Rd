@@ -43,7 +43,6 @@ METAL <- read.delim(file.path(find.package("pQTLtools"),"tests","INF1.METAL")) \
          dplyr::left_join(gap.datasets::inf1[c("prot","gene")]) \%>\%
          dplyr::mutate(prot=gene,prot_rsid=paste0(uniprot,"-",rsid),chr=Chromosome,pos=Position)
 # UKB_PPP list
-require(openxlsx)
 results <- "/rds/project/jmmh2/rds-jmmh2-results/public/proteomics"
 url <- file.path(results,"UKB-PPP","doc","sun22.xlsx")
 ST10 <- read.xlsx(url,"ST10",startRow=3) \%>\%
