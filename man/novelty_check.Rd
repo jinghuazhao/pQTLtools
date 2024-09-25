@@ -80,7 +80,7 @@ left <- setdiff(prot_rsid,prot_rsid_repl)
 # r2 <- LDlinkR::LDmatrix(variant_list,pop="CEU",token=Sys.getenv("LDLINK_TOKEN"))
 plink <- "/rds/user/jhz22/hpc-work/bin/plink"
 b <- list()
-for(i in unique(pull(METAL,Chromosome)))
+for(i in unique(dplyr::pull(METAL,Chromosome)))
 {
    u <- dplyr::filter(UKB_PPP,chr \%in\% i) \%>\%
         dplyr::select(chr,pos,uniprot,rsid,prot)
