@@ -40,7 +40,7 @@
 #'            chr=as.integer(unlist(lapply(chrpos,"[[",1))),
 #'            pos=as.integer(unlist(lapply(chrpos,"[[",2))),
 #'            chrpos=paste(chr,pos,sep=":"))
-#' # use of gwasvcf meta-data
+#' # use of ieugwasr meta-data
 #' suppressMessages(require(GenomicRanges))
 #' b <- novelty_check(UKB_PPP,METAL)
 #' replication <- dplyr::filter(b,r2>=0.8)
