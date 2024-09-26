@@ -98,7 +98,7 @@ novelty_check <- function(known_loci,query_loci,ldops=NULL,flanking=1e6,pop="EUR
   variant_list <- unique(c(b[["known.rsid"]],b[["query.rsid"]]))
   if (!is.null(ldops))
   {
-    r <- ieugwasr::ld_matrix_local(variants=c(b[["known.rsid"]],b[["query.rsid"]]),
+    r <- ieugwasr::ld_matrix_local(variants=variant_list,
                                    bfile=ldops[["bfile"]],
                                    plink_bin=ldops[["plink"]],
                                    with_alleles=FALSE)
