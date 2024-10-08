@@ -215,10 +215,6 @@ options(width=120)
 knitr::kable(annot,caption="Summary statistics",row.names=FALSE)
 ```
 
-# Combination of proteins and other variables
-
-This is available by design.
-
 # maEndtoEnd
 
 Web: <https://bioconductor.org/packages/release/workflows/html/maEndToEnd.html>.
@@ -227,7 +223,7 @@ Examples can be found on PCA, heatmap, normalisation, linear models, and enrichm
 
 # SummarizedExperiment
 
-This is more modern construct. The following script is adapted from the documentation example, illustrating ranged summarized experiment (rse) adding missing values.
+This is a more modern construct. The following script is adapted from the documentation example, showing ranged summarized experiment (rse) adding missing values.
 
 ```{r, message=FALSE, warning=FALSE}
 set.seed(123)
