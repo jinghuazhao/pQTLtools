@@ -75,7 +75,7 @@ Vignettes on package usage:
 \itemize{
 \item An Overview of pQTLtools. \code{vignette("pQTLtools")}.
 \item Bioconductor Notes. \code{vignette("bioconductor")}.
-\item ExpressionSet usage. \code{vignette("es")}.
+\item ExpressionSet usage. \code{vignette("esse")}.
 \item LocusZoom.js. \code{vignette("LocusZoom.js")}.
 \item snakemake showcases. \code{vignette("snakemake")}.
 \item Spectrum data analysis. \code{vignette("spectrum")}.
