@@ -2,7 +2,7 @@
 
 (2024/10/8)
 
-* Add SummarizedExperiment section to es.Rmd.
+* Add SummarizedExperiment section to es.Rmd --> esse.Rmd.
 * Add csq(), protein_altering_variants (so data/), histo.fyi, aria-label.
 * Adopt new hg38 LD blocks for turboman().
 * Add spectrum.Rmd.
