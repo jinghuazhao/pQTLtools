@@ -223,7 +223,7 @@ Examples can be found on PCA, heatmap, normalisation, linear models, and enrichm
 
 # SummarizedExperiment
 
-This is a more modern construct. The following script is adapted from the documentation example, showing ranged summarized experiment (rse) adding missing values.
+This is a more modern construct. Based on the documentation example, ranged summarized experiment (rse) and imputation are shown below.
 
 ```{r, message=FALSE, warning=FALSE}
 set.seed(123)
