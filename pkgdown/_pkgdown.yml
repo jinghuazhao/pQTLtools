@@ -54,7 +54,7 @@ navbar:
         - text: "Articles:"
         - text: Bioconductor notes
           href: articles/bioconductor.html
-        - text: ExpressionSet usage
+        - text: ExpressionSet/SummarizedExperiment usage
           href: articles/esse.html
         - text: LocusZoom.js
           href: articles/LocusZoom.js.html
