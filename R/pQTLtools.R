@@ -70,7 +70,7 @@
 #' Vignettes on package usage:
 #' - An Overview of pQTLtools. `vignette("pQTLtools")`.
 #' - Bioconductor Notes. `vignette("bioconductor")`.
-#' - ExpressionSet usage. `vignette("es")`.
+#' - ExpressionSet usage. `vignette("esse")`.
 #' - LocusZoom.js. `vignette("LocusZoom.js")`.
 #' - snakemake showcases. `vignette("snakemake")`.
 #' - Spectrum data analysis. `vignette("spectrum")`.
