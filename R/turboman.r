@@ -475,7 +475,7 @@ turboman <- function(input_data_path, custom_peak_annotation_file_path, referenc
     ## Define image properties Sorting the plotting data from the GWAS datafile
     ## and the gene annotation file
     plot_data <- plot_data[order(plot_data$chromosome, plot_data$position), ]
-    if (dim(gene_plot_data)[1] > 0)
+    if (nrow(gene_plot_data) > 0)
     {
         gene_plot_data <- gene_plot_data[order(gene_plot_data$chromosome, gene_plot_data$position),
             ]
