@@ -35,7 +35,7 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item"><a class="nav-link" href="../index.html"><span class="fa fa-home"></span></a></li>
+<li class="nav-item"><a class="nav-link" href="../index.html" aria-label="Home"><span class="fa fa-home"></span></a></li>
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
@@ -44,7 +44,7 @@
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Articles:</h6></li>
     <li><a class="dropdown-item" href="../articles/bioconductor.html">Bioconductor notes</a></li>
-    <li><a class="dropdown-item" href="../articles/es.html">ExpressionSet usage</a></li>
+    <li><a class="dropdown-item" href="../articles/esse.html">ExpressionSet usage</a></li>
     <li><a class="dropdown-item" href="../articles/LocusZoom.js.html">LocusZoom.js</a></li>
     <li><a class="dropdown-item" href="../articles/snakemake.html">snakemake showcases</a></li>
     <li><a class="dropdown-item" href="../articles/spectrum.html">Spectrum data analysis</a></li>
@@ -55,9 +55,9 @@
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul>
 <ul class="navbar-nav">
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/jinghuazhao/pQTLtools"><span class="fa fab fa-github"></span></a></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://jinghuazhao.github.io/R/"><span class="fa fab fa-r-project"></span></a></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://alphafold.ebi.ac.uk/"><span class="fa fas fa-fast-backward"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/jinghuazhao/pQTLtools" aria-label="GitHub"><span class="fa fab fa-github"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://jinghuazhao.github.io/R/" aria-label="R packages"><span class="fa fab fa-r-project"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://alphafold.ebi.ac.uk/" aria-label="AlphaFold"><span class="fa fas fa-fast-backward"></span></a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-urls" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">URLs</button>
   <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-urls">
@@ -81,7 +81,7 @@
     <li><a class="external-link dropdown-item" href="https://www.uniprot.org/">UniProt</a></li>
   </ul>
 </li>
-<li class="nav-item"><a class="external-link nav-link" href="https://www.uniprot.org/"><span class="fa fas fa-fast-forward"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://www.uniprot.org/" aria-label="UniProt"><span class="fa fas fa-fast-forward"></span></a></li>
       </ul>
 </div>
 
@@ -251,31 +251,31 @@ Figure 2.6: quantro example
 <span><span class="va">ods</span> <span class="op">&lt;-</span> <span class="fu">OUTRIDER</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/OUTRIDER/man/filterExpression.html" class="external-link">filterExpression</a></span><span class="op">(</span><span class="va">ods</span>, minCounts<span class="op">=</span><span class="cn">TRUE</span>, filterGenes<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 229 genes did not pass the filter due to zero counts. This is 22.9% of the genes.</span></span>
 <span><span class="va">ods</span> <span class="op">&lt;-</span> <span class="fu">OUTRIDER</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/OUTRIDER/man/OUTRIDER.html" class="external-link">OUTRIDER</a></span><span class="op">(</span><span class="va">ods</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Mon Sep 23 10:46:40 2024: SizeFactor estimation ...</span></span>
-<span><span class="co">#&gt; Mon Sep 23 10:46:40 2024: Controlling for confounders ...</span></span>
+<span><span class="co">#&gt; Tue Oct  8 10:02:50 2024: SizeFactor estimation ...</span></span>
+<span><span class="co">#&gt; Tue Oct  8 10:02:50 2024: Controlling for confounders ...</span></span>
 <span><span class="co">#&gt; Using estimated q with: 23</span></span>
-<span><span class="co">#&gt; Mon Sep 23 10:46:40 2024: Using the autoencoder implementation for controlling.</span></span>
-<span><span class="co">#&gt; [1] "Mon Sep 23 10:46:42 2024: Initial PCA loss: 4.73997327486604"</span></span>
-<span><span class="co">#&gt; [1] "Mon Sep 23 10:46:50 2024: Iteration: 1 loss: 4.1941928513778"</span></span>
-<span><span class="co">#&gt; [1] "Mon Sep 23 10:46:52 2024: Iteration: 2 loss: 4.17533494991789"</span></span>
-<span><span class="co">#&gt; [1] "Mon Sep 23 10:46:54 2024: Iteration: 3 loss: 4.16629394417218"</span></span>
-<span><span class="co">#&gt; [1] "Mon Sep 23 10:46:55 2024: Iteration: 4 loss: 4.16116322481112"</span></span>
-<span><span class="co">#&gt; [1] "Mon Sep 23 10:46:57 2024: Iteration: 5 loss: 4.15778153531172"</span></span>
-<span><span class="co">#&gt; [1] "Mon Sep 23 10:46:58 2024: Iteration: 6 loss: 4.1552156569908"</span></span>
-<span><span class="co">#&gt; [1] "Mon Sep 23 10:46:59 2024: Iteration: 7 loss: 4.15349342022442"</span></span>
-<span><span class="co">#&gt; [1] "Mon Sep 23 10:47:00 2024: Iteration: 8 loss: 4.15179068270742"</span></span>
-<span><span class="co">#&gt; [1] "Mon Sep 23 10:47:01 2024: Iteration: 9 loss: 4.15084764641122"</span></span>
-<span><span class="co">#&gt; [1] "Mon Sep 23 10:47:03 2024: Iteration: 10 loss: 4.14995079973815"</span></span>
-<span><span class="co">#&gt; [1] "Mon Sep 23 10:47:04 2024: Iteration: 11 loss: 4.14922407983485"</span></span>
-<span><span class="co">#&gt; [1] "Mon Sep 23 10:47:04 2024: Iteration: 12 loss: 4.14898308414091"</span></span>
-<span><span class="co">#&gt; [1] "Mon Sep 23 10:47:05 2024: Iteration: 13 loss: 4.14837365500828"</span></span>
-<span><span class="co">#&gt; [1] "Mon Sep 23 10:47:06 2024: Iteration: 14 loss: 4.1477217113268"</span></span>
-<span><span class="co">#&gt; [1] "Mon Sep 23 10:47:07 2024: Iteration: 15 loss: 4.14695790295889"</span></span>
-<span><span class="co">#&gt; Time difference of 19.30094 secs</span></span>
-<span><span class="co">#&gt; [1] "Mon Sep 23 10:47:07 2024: 15 Final nb-AE loss: 4.14695790295889"</span></span>
-<span><span class="co">#&gt; Mon Sep 23 10:47:07 2024: Used the autoencoder implementation for controlling.</span></span>
-<span><span class="co">#&gt; Mon Sep 23 10:47:07 2024: P-value calculation ...</span></span>
-<span><span class="co">#&gt; Mon Sep 23 10:47:10 2024: Zscore calculation ...</span></span>
+<span><span class="co">#&gt; Tue Oct  8 10:02:50 2024: Using the autoencoder implementation for controlling.</span></span>
+<span><span class="co">#&gt; [1] "Tue Oct  8 10:02:54 2024: Initial PCA loss: 4.73997327486604"</span></span>
+<span><span class="co">#&gt; [1] "Tue Oct  8 10:02:57 2024: Iteration: 1 loss: 4.1941928513778"</span></span>
+<span><span class="co">#&gt; [1] "Tue Oct  8 10:02:59 2024: Iteration: 2 loss: 4.17533494991789"</span></span>
+<span><span class="co">#&gt; [1] "Tue Oct  8 10:03:01 2024: Iteration: 3 loss: 4.16629394417218"</span></span>
+<span><span class="co">#&gt; [1] "Tue Oct  8 10:03:03 2024: Iteration: 4 loss: 4.16116322481112"</span></span>
+<span><span class="co">#&gt; [1] "Tue Oct  8 10:03:05 2024: Iteration: 5 loss: 4.15778153531172"</span></span>
+<span><span class="co">#&gt; [1] "Tue Oct  8 10:03:06 2024: Iteration: 6 loss: 4.1552156569908"</span></span>
+<span><span class="co">#&gt; [1] "Tue Oct  8 10:03:07 2024: Iteration: 7 loss: 4.15349342022442"</span></span>
+<span><span class="co">#&gt; [1] "Tue Oct  8 10:03:09 2024: Iteration: 8 loss: 4.15179068270742"</span></span>
+<span><span class="co">#&gt; [1] "Tue Oct  8 10:03:10 2024: Iteration: 9 loss: 4.15084764641122"</span></span>
+<span><span class="co">#&gt; [1] "Tue Oct  8 10:03:11 2024: Iteration: 10 loss: 4.14995079973815"</span></span>
+<span><span class="co">#&gt; [1] "Tue Oct  8 10:03:12 2024: Iteration: 11 loss: 4.14922407983485"</span></span>
+<span><span class="co">#&gt; [1] "Tue Oct  8 10:03:13 2024: Iteration: 12 loss: 4.14898308414091"</span></span>
+<span><span class="co">#&gt; [1] "Tue Oct  8 10:03:14 2024: Iteration: 13 loss: 4.14837365500828"</span></span>
+<span><span class="co">#&gt; [1] "Tue Oct  8 10:03:15 2024: Iteration: 14 loss: 4.1477217113268"</span></span>
+<span><span class="co">#&gt; [1] "Tue Oct  8 10:03:16 2024: Iteration: 15 loss: 4.14695790295889"</span></span>
+<span><span class="co">#&gt; Time difference of 21.36636 secs</span></span>
+<span><span class="co">#&gt; [1] "Tue Oct  8 10:03:16 2024: 15 Final nb-AE loss: 4.14695790295889"</span></span>
+<span><span class="co">#&gt; Tue Oct  8 10:03:16 2024: Used the autoencoder implementation for controlling.</span></span>
+<span><span class="co">#&gt; Tue Oct  8 10:03:16 2024: P-value calculation ...</span></span>
+<span><span class="co">#&gt; Tue Oct  8 10:03:20 2024: Zscore calculation ...</span></span>
 <span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">OUTRIDER</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/OUTRIDER/man/results.html" class="external-link">results</a></span><span class="op">(</span><span class="va">ods</span><span class="op">)</span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">res</span>,caption<span class="op">=</span><span class="st">"A check list of outliers"</span><span class="op">)</span></span></code></pre></div>
 <table style="width:100%;" class="table">
