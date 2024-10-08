@@ -20,7 +20,7 @@ set.seed(0)
 knitr::opts_chunk$set(
   out.extra = 'style="display:block; margin: auto"',
   fig.align = "center",
-  fig.path = "es/",
+  fig.path = "esse/",
   collapse = TRUE,
   comment = "#>",
   dev = "png")
@@ -227,7 +227,7 @@ Examples can be found on PCA, heatmap, normalisation, linear models, and enrichm
 
 # SummarizedExperiment
 
-This is more modern construct. The following script is adapted from the documentation example, illustrating range summarized experiment (rse) adding missing values.
+This is more modern construct. The following script is adapted from the documentation example, illustrating ranged summarized experiment (rse) adding missing values.
 
 ```{r, message=FALSE, warning=FALSE}
 set.seed(123)
