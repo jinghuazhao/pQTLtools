@@ -12,7 +12,7 @@ Rscript -e '
 # pandoc README.md --citeproc --mathjax -s --self-contained -o index.html
 }
 
-for d in bioconductor es pQTLtools spectrum
+for d in bioconductor esse pQTLtools spectrum
 do
     if [ -d vignettes/${d} ]; then
        rm -rf docs/articles/${d}
