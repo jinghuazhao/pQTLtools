@@ -1,26 +1,28 @@
+---
+output: github_document
+---
+
+
 
 <img src="man/figures/logo.svg" align="right" alt="" width="120" />
 
 <!-- badges: start -->
-
 [![pages-build-deployment](https://github.com/jinghuazhao/pQTLtools/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/jinghuazhao/pQTLtools/actions/workflows/pages/pages-build-deployment)
 [![R-CMD-check](https://github.com/jinghuazhao/pQTLtools/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jinghuazhao/pQTLtools/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 ## A protein Quantitative Trait Locus toolkit
 
-The package seeds collection of data and utilities for pQTL analysis.
-Currently, the repository contains 1. Articles linking functions for
-cis/trans classification, pQTL-gene plot, 2d/3d-plotly plots, forest
-plots among others available from
-[gap](https://github.com/jinghuazhao/R/tree/master/gap); 2. Query on
-genes, regions, and SNPs via
-[PhenoScanner](http://www.phenoscanner.medschl.cam.ac.uk/), adding
-functionality to check for replication across platforms; 3. Downstream
-analysis such as colocalization, pQTL-Mendelian Randomization via
-[TwoSampleMR](https://github.com/MRCIEU/TwoSampleMR), mapping of
-UniProt IDs to other resources; 4. Bioconductor notes, LocusZoom.js,
-and a showcase of snakemake workflow.
+It collects data and utilities for pQTL analysis, including
+  1. Extended facilities to GWAS for Mahattan/QQ plots, novelty/consequence checking;
+  2. Articles linking functions for cis/trans classification, pQTL-gene plot, 2d/3d-plotly plots, forest plots
+  among others available from gap, <https://cran.r-project.org/package=gap> as well as other Bionductor showcases;
+  3. Query on genes, regions, and SNPs via PhenoScanner, <http://www.phenoscanner.medschl.cam.ac.uk/>, adding
+  functionality for pQTL novelty check;
+  4. Downstream analysis such as colocalization, pQTL-Mendelian Randomization via
+  TwoSampleMR. <https://mrcieu.github.io/TwoSampleMR/>, mapping of
+  UniProt IDs to other resources; 4. Bioconductor notes, showcases of LocusZoom.js, snakemake workflow, and
+  spectrum data analysis.
 
 ## Installation
 
@@ -28,32 +30,31 @@ The latest version of pQTLtools can be installed as usual:
 
 ### 1. Install from R
 
-``` r
+```r
 if (!requireNamespace("remotes", quietly = TRUE)) install.packages("remotes")
 remotes::install_github("jinghuazhao/pQTLtools")
 ```
 
 ### 2. Install from GitHub repository
 
-``` bash
+```bash
 git clone https://github.com/jinghuazhao/pQTLtools
 R CMD INSTALL pQTLtools
 ```
 
-Dependencies are detailed in the DECRIPTION file of the package at
-GitHub.
+Dependencies are detailed in the DECRIPTION file of the package at GitHub.
 
 ## A summary of functions
 
 This can be seen from R with
 
-``` r
+```r
 library(help=pQTLtools)
 ```
 
 or
 
-``` r
+```r
 library(pQTLtools)
 ?pQTLtools
 ```
