@@ -98,7 +98,16 @@
 <div class="section level2">
 <h2 id="a-protein-quantitative-trait-locus-toolkit">A protein Quantitative Trait Locus toolkit<a class="anchor" aria-label="anchor" href="#a-protein-quantitative-trait-locus-toolkit"></a>
 </h2>
-<p>It collects data and utilities for pQTL analysis, including 1. Extended facilities to GWAS for Manhattan/QQ plots, novelty/consequence checking; 2. Articles linking functions for cis/trans classification, pQTL-gene plot, 2d/3d-plotly plots, forest plots among others available from gap, <a href="https://cran.r-project.org/package=gap" class="external-link uri">https://cran.r-project.org/package=gap</a> as well as other Bionductor showcases; 3. Query on genes, regions, and SNPs via PhenoScanner, <a href="http://www.phenoscanner.medschl.cam.ac.uk/" class="external-link uri">http://www.phenoscanner.medschl.cam.ac.uk/</a>, adding functionality for pQTL novelty check; 4. Downstream analysis such as colocalization, pQTL-Mendelian Randomization via TwoSampleMR. <a href="https://mrcieu.github.io/TwoSampleMR/" class="external-link uri">https://mrcieu.github.io/TwoSampleMR/</a>, mapping of UniProt IDs to other resources; 4. Bioconductor notes, showcases of LocusZoom.js, snakemake workflow, and spectrum data analysis.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; It collects data and utilities for pQTL analysis, including</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1. Extended facilities to GWAS for Manhattan/QQ/LocusZoom plots, novelty/consequence checking;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2. Articles linking functions for cis/trans classification, pQTL-gene plot, 2d/3d-plotly plots, forest plots</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; among others available from gap, &lt;https://cran.r-project.org/package=gap&gt; as well as other Bionductor showcases;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3. Query on genes, regions, and SNPs via PhenoScanner, &lt;http://www.phenoscanner.medschl.cam.ac.uk/&gt;, adding</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; functionality for pQTL novelty check;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4. Downstream analysis such as colocalization, pQTL-Mendelian Randomization via</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; TwoSampleMR. &lt;https://mrcieu.github.io/TwoSampleMR/&gt;, mapping of</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; UniProt IDs to other resources; 4. Bioconductor notes, showcases of LocusZoom.js, snakemake workflow, and</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; spectrum data analysis.</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -107,15 +116,15 @@
 <div class="section level3">
 <h3 id="id_1-install-from-r">1. Install from R<a class="anchor" aria-label="anchor" href="#id_1-install-from-r"></a>
 </h3>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"remotes"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"jinghuazhao/pQTLtools"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="id_2-install-from-github-repository">2. Install from GitHub repository<a class="anchor" aria-label="anchor" href="#id_2-install-from-github-repository"></a>
 </h3>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/jinghuazhao/pQTLtools</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> CMD INSTALL pQTLtools</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/jinghuazhao/pQTLtools</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> CMD INSTALL pQTLtools</span></code></pre></div>
 <p>Dependencies are detailed in the DECRIPTION file of the package at GitHub.</p>
 </div>
 </div>
@@ -123,10 +132,10 @@
 <h2 id="a-summary-of-functions">A summary of functions<a class="anchor" aria-label="anchor" href="#a-summary-of-functions"></a>
 </h2>
 <p>This can be seen from R with</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span>help<span class="op">=</span><span class="va">pQTLtools</span><span class="op">)</span></span></code></pre></div>
 <p>or</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jinghuazhao/pQTLtools" class="external-link">pQTLtools</a></span><span class="op">)</span></span>
 <span><span class="op">?</span><span class="va">pQTLtools</span></span></code></pre></div>
 </div>
