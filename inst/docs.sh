@@ -3,12 +3,13 @@
 function setup()
 {
 Rscript -e '
-  devtools::build_readme()
+  knitr::knit("README.Rmd")
   roxygen2::roxygenise()
   pkgdown::build_site_github_pages()
 # usethis::use_github_action("pkgdown", save_as = "R-CMD-check.yaml", ref = NULL, ignore = TRUE, open = FALSE)
 # clean_site(); init_site(); build_home(); build_news(); build_articles(); build_reference(); build_search()
 '
+# devtools::build_rmd() is equivalent but limited, so knitr::knit/pandoc are better options.
 # pandoc README.md --citeproc --mathjax -s --self-contained -o index.html
 }
 
