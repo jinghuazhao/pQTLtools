@@ -11,7 +11,7 @@ Authors@R: c(
     person("Bram", "Prins", role = "aut")
   )
 Description: It collects data and utilities for pQTL analysis, including
-  1. Extended facilities to GWAS for Manhattan/QQ plots, novelty/consequence checking;
+  1. Extended facilities to GWAS for Manhattan/QQ/LocusZoom plots, novelty/consequence checking;
   2. Articles linking functions for cis/trans classification, pQTL-gene plot, 2d/3d-plotly plots, forest plots
   among others available from gap, <https://cran.r-project.org/package=gap> as well as other Bionductor showcases;
   3. Query on genes, regions, and SNPs via PhenoScanner, <http://www.phenoscanner.medschl.cam.ac.uk/>, adding
