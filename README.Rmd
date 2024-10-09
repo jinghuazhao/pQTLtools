@@ -19,10 +19,12 @@ knitr::opts_chunk$set(
 
 ## A protein Quantitative Trait Locus toolkit
 
-```{r, echo = FALSE}
+
+```{r, echo = FALSE, message=FALSE, warning=FALSE}
 desc <- read.dcf("DESCRIPTION")
 description <- desc[, "Description"]
-cat(description, "\n")
+lines <- gsub("#> ", "", unlist(strsplit(description, "\n")))
+knitr::asis_output(lines)
 ```
 
 ## Installation
