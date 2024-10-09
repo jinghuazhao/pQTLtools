@@ -2,6 +2,7 @@
 
 (2024/10/8)
 
+* Unify DESCRIPTION/README (finally!).
 * Add SummarizedExperiment section to es.Rmd --> esse.Rmd.
 * Add csq(), protein_altering_variants (so data/), histo.fyi, aria-label.
 * Adopt new hg38 LD blocks for turboman().
