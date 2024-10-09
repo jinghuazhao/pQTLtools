@@ -19,7 +19,6 @@ knitr::opts_chunk$set(
 
 ## A protein Quantitative Trait Locus toolkit
 
-
 ```{r, echo = FALSE, message=FALSE, warning=FALSE}
 desc <- read.dcf("DESCRIPTION")
 description <- desc[, "Description"]

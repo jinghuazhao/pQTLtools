@@ -13,7 +13,6 @@ output: github_document
 
 ## A protein Quantitative Trait Locus toolkit
 
-
 It collects data and utilities for pQTL analysis, including1. Extended facilities to GWAS for Manhattan/QQ/LocusZoom plots, novelty/consequence checking;2. Articles linking functions for cis/trans classification, pQTL-gene plot, 2d/3d-plotly plots, forest plotsamong others available from gap, <https://cran.r-project.org/package=gap> as well as other Bionductor showcases;3. Query on genes, regions, and SNPs via PhenoScanner, <http://www.phenoscanner.medschl.cam.ac.uk/>, addingfunctionality for pQTL novelty check;4. Downstream analysis such as colocalization, pQTL-Mendelian Randomization viaTwoSampleMR. <https://mrcieu.github.io/TwoSampleMR/>, mapping ofUniProt IDs to other resources; 4. Bioconductor notes, showcases of LocusZoom.js, snakemake workflow, andspectrum data analysis.
 
 ## Installation
