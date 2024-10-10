@@ -1,6 +1,6 @@
 ## pQTLtools 0.4
 
-(2024/10/9)
+(2024/10/10)
 
 * Unify DESCRIPTION/README (finally!).
 * Add SummarizedExperiment section to es.Rmd --> esse.Rmd.
