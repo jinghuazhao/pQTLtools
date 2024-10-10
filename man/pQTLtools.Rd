@@ -6,7 +6,7 @@
 \alias{pQTLtools-package}
 \title{A reference manual}
 \description{
-It collects data and utilities for pQTL analysis, including 1. Extended facilities to GWAS for Manhattan/QQ/LocusZoom plots, novelty/consequence checking; 2. Articles linking functions for cis/trans classification, pQTL-gene plot, 2d/3d-plotly plots, forest plots among others available from gap, \url{https://cran.r-project.org/package=gap} as well as other Biconductor showcases; 3. Query on genes, regions, and SNPs via PhenoScanner, \url{http://www.phenoscanner.medschl.cam.ac.uk/}. 4. Downstream analysis such as colocalization, pQTL-Mendelian Randomization via TwoSampleMR. \url{https://mrcieu.github.io/TwoSampleMR/}, mapping of UniProt IDs to other resources; 4. Bioconductor notes, showcases of LocusZoom.js, snakemake workflow, and spectrum data analysis.
+It collects data and utilities for pQTL analysis, including 1. Extended facilities to GWAS for Manhattan/QQ/LocusZoom plots, novelty/consequence checking; 2. Articles linking functions for cis/trans classification, pQTL-gene plot, 2d/3d-plotly plots, forest plots among others available from gap, \url{https://cran.r-project.org/package=gap} as well as other Biconductor showcases; 3. Query on genes, regions, and SNPs via PhenoScanner, \url{http://www.phenoscanner.medschl.cam.ac.uk/}. 4. Downstream analysis such as colocalization, pQTL-Mendelian Randomization via TwoSampleMR. \url{https://mrcieu.github.io/TwoSampleMR/}, mapping of UniProt IDs to other resources; 5. Bioconductor notes, showcases of LocusZoom.js, snakemake workflow, and spectrum data analysis.
 }
 \details{
 Available data and functions are listed in the following table.\tabular{ll}{
