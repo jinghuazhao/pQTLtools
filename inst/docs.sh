@@ -32,15 +32,13 @@ do
 done
 
 for f in .gitignore .Rbuildignore .Rinstignore .travis.yml \
-         DESCRIPTION LICENSE LICENSE.md NAMESPACE NEWS.md  \
+         DESCRIPTION LICENSE LICENSE.md NAMESPACE NEWS.md README.Rmd README.md \
          R/ data/ docs/ inst/ man/ pkgdown/ vignettes/
 do
   echo adding ${f}
   git add ${f}
-  git commit -m  --no-verify "${f}"
+  git commit --no-verify -m "${f}"
 done
-git add README.Rmd README.md
-git commit -m "README"
 
 git push
 du -hs --exclude .git --exclude docs
