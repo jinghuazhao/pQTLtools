@@ -2,7 +2,7 @@ Package: pQTLtools
 Type: Package
 Title: A Protein Quantitative Trait Locus Toolkit
 Version: 0.4
-Date: 2024-10-10
+Date: 2024-10-11
 Authors@R: c(
     person("Jing Hua", "Zhao", , "jinghuazhao@hotmail.com", role = c("aut", "cre"),
       comment = c(ORCID = "0000-0002-1463-5870", "0000-0003-4930-3582")
@@ -11,7 +11,7 @@ Authors@R: c(
     person("Bram", "Prins", role = "aut")
   )
 Description: It collects data and utilities for pQTL analysis, including
-  1. Extended facilities to GWAS for Manhattan/QQ/LocusZoom plots, novelty/consequence checking;
+  1. Protein GWAS facilities such as Manhattan/QQ/LocusZoom plots, novelty/consequence checking;
   2. Articles linking functions for cis/trans classification, pQTL-gene plot, 2d/3d-plotly plots, forest plots among others available from gap, <https://cran.r-project.org/package=gap> as well as other Biconductor showcases;
   3. Query on genes, regions, and SNPs via PhenoScanner, <http://www.phenoscanner.medschl.cam.ac.uk/>.
   4. Downstream analysis such as colocalization, pQTL-Mendelian Randomization via TwoSampleMR. <https://mrcieu.github.io/TwoSampleMR/>, mapping of UniProt IDs to other resources;
