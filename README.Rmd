@@ -23,6 +23,7 @@ knitr::opts_chunk$set(
 desc <- read.dcf("DESCRIPTION")
 description <- desc[, "Description"]
 lines <- unlist(lapply(strsplit(description, "\n"),paste,""))
+lines[[length(lines)]] <- gsub(" $","",lines[[length(lines)]])
 knitr::asis_output(lines)
 ```
 
