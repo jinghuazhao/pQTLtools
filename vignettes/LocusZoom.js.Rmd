@@ -33,7 +33,7 @@ This calls `caprion_dr.js`.
 ```{r, results='asis', echo=FALSE}
 library(htmltools)
 lz <- tags$iframe(src ="lz.htm", width = "100%", height = "800px")
-print(HTML(as.character(lz)))
+lz
 ```
 
 # Shiny
