@@ -56,7 +56,7 @@
   var apiBase = "https://portaldev.sph.umich.edu/api/v1/";
   const AssociationLZ = LocusZoom.Adapters.get('AssociationLZ');
   var data_sources = new LocusZoom.DataSources()
-//.add("ace", ["StaticJSON", { data: input.data}])
+  .add("ace", ["StaticJSON", { data: input.data}])
   .add("height", ["AssociationLZ", {url: apiBase + "statistic/single/", source: 25 }])
   .add("chol", ["AssociationLZ", {url: apiBase + "statistic/single/", source: 179 }])
 //.add("assoc", ["AssociationLZ", { url: "https://localhost:11211/Caprion/work/ACE.json" }])
