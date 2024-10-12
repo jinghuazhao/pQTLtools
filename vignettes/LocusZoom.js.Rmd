@@ -36,6 +36,14 @@ lz <- tags$iframe(src ="lz.htm", width = "100%", height = "800px")
 lz
 ```
 
+This calls `ACE.js`.
+
+```{r, results='asis', echo=FALSE}
+library(htmltools)
+lz <- tags$iframe(src ="ACE.htm", width = "100%", height = "800px")
+lz
+```
+
 # Shiny
 
 This is a skeleton for possibly interactive use.
