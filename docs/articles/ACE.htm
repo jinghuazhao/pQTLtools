@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locuszoom@0.14.0/dist/locuszoom.css" type="text/css" crossorigin="anonymous"/>
+  <script src="https://cdn.jsdelivr.net/npm/d3@5.16.0/dist/d3.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/locuszoom@0.14.0/dist/locuszoom.app.min.js"></script>
+  <script src="https://statgen.github.io/locuszoom/dist/ext/lz-credible-sets.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/locuszoom@0.14.0/dist/ext/lz-dynamic-urls.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/locuszoom@0.14.0/dist/ext/lz-intervals-track.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/locuszoom@0.14.0/dist/ext/lz-parsers.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/locuszoom@0.14.0/dist/ext/lz-tabix-source.min.js"></script>
+  <title>LocusZoom.js</title>
+  <style>
+    body {
+      background-color: #FAFAFA;
+      margin: 0px 20px;
+    }
+    img {
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+    div.example > a > h6 {
+      margin-bottom: 0.5em;
+    }
+    div.example > a > img {
+      border: 1px solid #8A8A8A;
+      margin-bottom: 1.4em;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="ten columns">
+        <div id="lz-plot" class="lz-container-responsive"></div>
+      </div>
+    </div>
+  </div>
+  <script src="ACE.js"></script>
+  <script type="text/javascript">
+  const gwasParser = LzParsers.makeGWASParser({
+      chrom_col: 1,
+      pos_col: 2,
+      ref_col: 4,
+      alt_col: 5,
+      pvalue_col: 6,
+      is_neg_log_pvalue: true,
+      beta_col: 7,
+      stderr_beta_col: 8
+  });
+  const bedParser = LzParsers.makeBed12Parser({normalize: true});
+  const ldParser = LzParsers.makePlinkLdParser({normalize: true});
+  var apiBase = "https://portaldev.sph.umich.edu/api/v1/";
+  const AssociationLZ = LocusZoom.Adapters.get('AssociationLZ');
+  var data_sources = new LocusZoom.DataSources()
+//.add("ace", ["StaticJSON", { data: input.data}])
+  .add("height", ["AssociationLZ", {url: apiBase + "statistic/single/", source: 25 }])
+  .add("chol", ["AssociationLZ", {url: apiBase + "statistic/single/", source: 179 }])
+//.add("assoc", ["AssociationLZ", { url: "https://localhost:11211/Caprion/work/ACE.json" }])
+//.add("assoc", ["TabixUrlSource", {url_data: 'https://locuszoom-web-demos.s3.us-east-2.amazonaws.com/tabix-demo/gwas_giant-bmi_meta_women-only.gz', parser_func: gwasParser, overfetch: 0 }])
+  .add("credset", ["CredibleSetLZ", { threshold: 0.95, significance_threshold: 7.301 }])
+  .add("catalog", ["GwasCatalogLZ", { url: apiBase + 'annotation/gwascatalog/results/', build: 'GRCh37' }])
+  .add("ld", ["LDServer", { url: "https://portaldev.sph.umich.edu/ld/", source: '1000G', build: 'GRCh37', population: 'ALL' }])
+//.add("ld", ["UserTabixLD", { url_data: 'https://locuszoom-web-demos.s3.us-east-2.amazonaws.com/tabix-demo/plink.ld.tab.gz', parser_func: ldParser }])
+  .add("gene", ["GeneLZ", { url: apiBase + "annotation/genes/", build: 'GRCh37' }])
+  .add("recomb", ["RecombLZ", { url: apiBase + "annotation/recomb/results/", build: 'GRCh37' }])
+  .add("constraint", ["GeneConstraintLZ", { url: "https://gnomad.broadinstitute.org/api/", build: 'GRCh37' }]);
+  var stateUrlMapping = {chr: "chrom", start: "start", end: "end", ldrefvar: 'ld_variant' };
+  var initialState = LzDynamicUrls.paramsFromUrl(stateUrlMapping);
+  if (!Object.keys(initialState).length) {
+     initialState = {chr: '17', start: 61320422, end: 61820422 };
+  }
+  const layout = LocusZoom.Layouts.get('plot', 'standard_association', {
+      responsive_resize: true,
+      state: initialState,
+      panels: [
+          LocusZoom.Layouts.get('panel', 'association', {
+              namespace: { assoc: 'ace' },
+              height: 400,
+              id: 'assoc_study1',
+              title: { text: 'ACE-rs4353' },
+          }),
+          LocusZoom.Layouts.get('panel', 'association', {
+              namespace: { assoc: 'height' },
+              height: 400,
+              id: 'assoc_study2',
+              title: { text: 'Height' },
+          }),
+          LocusZoom.Layouts.get('panel', 'genes', { height: 400 })
+      ]
+  });
+  var extra_panel_layout = LocusZoom.Layouts.get('panel', 'association', {
+      namespace: { assoc: 'chol' },
+      id: 'assoc_study3',
+      height: 400,
+      title: { text: 'Cholesterol' },
+      y_index: -1
+  });
+//  const layout = LocusZoom.Layouts.get('plot', 'standard_association', {
+//      state: initialState,
+//      panels: [
+//          LocusZoom.Layouts.get('panel', 'association', { title: { text: "ACE-rs4353" }}},
+//          LocusZoom.Layouts.get('panel', 'annotation_catalog', { title: { text: "GWAS catalog" }}),
+//          LocusZoom.Layouts.get('panel', 'annotation_credible_set'),
+//          LocusZoom.Layouts.get('panel', 'genes'),
+//      ],
+//  });
+  var plot = LocusZoom.populate("#lz-plot", data_sources, layout);
+  const new_panel = plot.addPanel(extra_panel_layout);
+  plot.applyState({ chr: 17, start: 61320422, end: 61820422, ldrefvar: "" });
+  LzDynamicUrls.plotUpdatesUrl(plot, stateUrlMapping);
+  LzDynamicUrls.plotUpdatesUrl(plot, stateUrlMapping);
+</script>
+</body>
+</html>
