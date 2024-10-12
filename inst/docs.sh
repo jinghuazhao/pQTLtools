@@ -26,10 +26,11 @@ do
        mv vignettes/${d} docs/articles/
     fi
 done
-for f in caprion_dr.js fig2d fig3d heatmaply mcpca3d
+for f in fig2d fig3d heatmaply mcpca3d
 do
     if [ -f vignettes/${f}.html ]; then mv vignettes/${f}.html docs/articles/; fi
 done
+cp vignettes/caprion_dr.js docs/articles
 
 for f in .gitignore .Rbuildignore .Rinstignore .travis.yml \
          DESCRIPTION LICENSE LICENSE.md NAMESPACE NEWS.md README.Rmd README.md \
