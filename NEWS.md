@@ -1,8 +1,8 @@
 ## pQTLtools 0.4
 
-(2024/10/12)
+(2024/10/13)
 
-* LocusZoom.js display is fixed.
+* Amend LocusZoom.js.Rmd.
 * Unify DESCRIPTION/README (finally!).
 * Add SummarizedExperiment section to es.Rmd --> esse.Rmd.
 * Add csq(), protein_altering_variants (so data/), histo.fyi, aria-label.
