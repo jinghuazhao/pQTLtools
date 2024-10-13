@@ -109,6 +109,10 @@
 <span>    <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/warning.html" class="external-link">warning</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"This vignette needs package `"</span>, <span class="va">p</span>, <span class="st">"'; please install"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/invisible.html" class="external-link">invisible</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressMessages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">pkgs</span>, <span class="va">require</span>, character.only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="section level2" number="1">
+<h2 id="expressionset">
+<span class="header-section-number">1</span> ExpressionSet<a class="anchor" aria-label="anchor" href="#expressionset"></a>
+</h2>
 <p>We start with Bioconductor/Biobase’s ExpressionSet example and finish with a real application.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dataDirectory</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package<span class="op">=</span><span class="st">"Biobase"</span><span class="op">)</span></span>
@@ -133,10 +137,10 @@
 <span>                                            annotation<span class="op">=</span><span class="st">"hgu95av2"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">sample.ExpressionSet</span>, package<span class="op">=</span><span class="st">"Biobase"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/identical.html" class="external-link">identical</a></span><span class="op">(</span><span class="va">exampleSet</span>,<span class="va">sample.ExpressionSet</span><span class="op">)</span></span></code></pre></div>
-<div class="section level2" number="1">
-<h2 id="data-frame">
-<span class="header-section-number">1</span> data.frame<a class="anchor" aria-label="anchor" href="#data-frame"></a>
-</h2>
+<div class="section level3" number="1.1">
+<h3 id="data-frame">
+<span class="header-section-number">1.1</span> data.frame<a class="anchor" aria-label="anchor" href="#data-frame"></a>
+</h3>
 <p>The great benefit is to use the object directly as a data.frame.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">lm.result</span> <span class="op">&lt;-</span> <span class="fu">Biobase</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/Biobase/man/esApply.html" class="external-link">esApply</a></span><span class="op">(</span><span class="va">exampleSet</span>,<span class="fl">1</span>,<span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">score</span><span class="op">~</span><span class="va">gender</span><span class="op">+</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
@@ -153,10 +157,10 @@
 <span><span class="co">#&gt;    (Intercept)      genderMale  AFFX.MurIL2_at  </span></span>
 <span><span class="co">#&gt;      0.5531725       0.0098932      -0.0001907</span></span></code></pre></div>
 </div>
-<div class="section level2" number="2">
-<h2 id="composite-plots">
-<span class="header-section-number">2</span> Composite plots<a class="anchor" aria-label="anchor" href="#composite-plots"></a>
-</h2>
+<div class="section level3" number="1.2">
+<h3 id="composite-plots">
+<span class="header-section-number">1.2</span> Composite plots<a class="anchor" aria-label="anchor" href="#composite-plots"></a>
+</h3>
 <p>We wish to examine the distribution of each feature via histogram, scatter and boxplot.
 One could resort to <code>esApply()</code> for its simplicity as before</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -177,21 +181,21 @@ One could resort to <code>esApply()</code> for its simplicity as before</p>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:plots-1"></span>
 <img src="esse%2Fplots-1.png" alt="Histogram, scatter &amp; boxplots" width="672" style="display:block; margin: auto"><p class="caption">
-Figure 2.1: Histogram, scatter &amp; boxplots
+Figure 1.1: Histogram, scatter &amp; boxplots
 </p>
 </div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:plots-2"></span>
 <img src="esse%2Fplots-2.png" alt="Histogram, scatter &amp; boxplots" width="672" style="display:block; margin: auto"><p class="caption">
-Figure 2.2: Histogram, scatter &amp; boxplots
+Figure 1.2: Histogram, scatter &amp; boxplots
 </p>
 </div>
 <p>where the expression set is indexed using feature name(s).</p>
 </div>
-<div class="section level2" number="3">
-<h2 id="outlier-detections">
-<span class="header-section-number">3</span> Outlier detections<a class="anchor" aria-label="anchor" href="#outlier-detections"></a>
-</h2>
+<div class="section level3" number="1.3">
+<h3 id="outlier-detections">
+<span class="header-section-number">1.3</span> Outlier detections<a class="anchor" aria-label="anchor" href="#outlier-detections"></a>
+</h3>
 <p>This illustrates one mechanism,</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">list_outliers</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">es</span>, <span class="va">method</span><span class="op">=</span><span class="st">"upperquartile"</span><span class="op">)</span></span>
@@ -202,10 +206,10 @@ Figure 2.2: Histogram, scatter &amp; boxplots
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">ZWK_outliers</span><span class="op">@</span><span class="va">statistic</span><span class="op">[</span><span class="va">ZWK_outliers</span><span class="op">@</span><span class="va">which</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 </div>
-<div class="section level2" number="4">
-<h2 id="clustering">
-<span class="header-section-number">4</span> Clustering<a class="anchor" aria-label="anchor" href="#clustering"></a>
-</h2>
+<div class="section level3" number="1.4">
+<h3 id="clustering">
+<span class="header-section-number">1.4</span> Clustering<a class="anchor" aria-label="anchor" href="#clustering"></a>
+</h3>
 <p>We employ model-based clustering absed on principal compoents to see potential groupings in the data,</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span>  <span class="va">pca</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/prcomp.html" class="external-link">prcomp</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/na.fail.html" class="external-link">na.omit</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="fu">Biobase</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/Biobase/man/exprs.html" class="external-link">exprs</a></span><span class="op">(</span><span class="va">exampleSet</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>, rank<span class="op">=</span><span class="fl">10</span>, scale<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
@@ -234,7 +238,7 @@ Figure 2.2: Histogram, scatter &amp; boxplots
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:mcpca"></span>
 <img src="esse%2Fmcpca-1.png" alt="Three-group Clustering" width="672" style="display:block; margin: auto"><p class="caption">
-Figure 4.1: Three-group Clustering
+Figure 1.3: Three-group Clustering
 </p>
 </div>
 <pre><code><span><span class="co">#&gt; Warning in par3d(userMatrix = structure(c(1, 0, 0, 0, 0, 0.342020143325668, :</span></span>
@@ -244,19 +248,19 @@ Figure 4.1: Three-group Clustering
 <p>An interactive version is also available,</p>
 <iframe src="mcpca3d.html" width="100%" height="450px"></iframe>
 </div>
-<div class="section level2" number="5">
-<h2 id="data-transformation">
-<span class="header-section-number">5</span> Data transformation<a class="anchor" aria-label="anchor" href="#data-transformation"></a>
-</h2>
+<div class="section level3" number="1.5">
+<h3 id="data-transformation">
+<span class="header-section-number">1.5</span> Data transformation<a class="anchor" aria-label="anchor" href="#data-transformation"></a>
+</h3>
 <p>Suppose we wish use log2 for those greater than zero but set those negative values to be missing.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">log2.na</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log2</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">x</span><span class="op">&gt;</span><span class="fl">0</span>, <span class="va">x</span>, <span class="cn">NA</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu">Biobase</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/Biobase/man/exprs.html" class="external-link">exprs</a></span><span class="op">(</span><span class="va">exampleSet</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">log2.na</span><span class="op">(</span><span class="fu">Biobase</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/Biobase/man/exprs.html" class="external-link">exprs</a></span><span class="op">(</span><span class="va">exampleSet</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level2" number="6">
-<h2 id="limit-of-detection-lod">
-<span class="header-section-number">6</span> Limit of detection (LOD)<a class="anchor" aria-label="anchor" href="#limit-of-detection-lod"></a>
-</h2>
+<div class="section level3" number="1.6">
+<h3 id="limit-of-detection-lod">
+<span class="header-section-number">1.6</span> Limit of detection (LOD)<a class="anchor" aria-label="anchor" href="#limit-of-detection-lod"></a>
+</h3>
 <p>We generate a <code>lod.max</code> ~ U[0,1] variable to experiment</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">Biobase</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/Biobase/man/featureData.html" class="external-link">fData</a></span><span class="op">(</span><span class="va">exampleSet</span><span class="op">)</span></span>
@@ -610,7 +614,7 @@ Figure 4.1: Three-group Clustering
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:lod"></span>
 <img src="esse%2Flod-1.png" alt="LOD based on a random cutoff" width="672" style="display:block; margin: auto"><p class="caption">
-Figure 6.1: LOD based on a random cutoff
+Figure 1.4: LOD based on a random cutoff
 </p>
 </div>
 <p>The quantity has been shown to have a big impact on protein abundance and therefore pQTL detection as is shown with a real example.</p>
@@ -652,7 +656,7 @@ Figure 6.1: LOD based on a random cutoff
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:test"></span>
 <img src="esse%2Ftest-1.png" alt="LOD in SCALLOP-INF/INTERVAL" width="1440" style="display:block; margin: auto"><p class="caption">
-Figure 6.2: LOD in SCALLOP-INF/INTERVAL
+Figure 1.5: LOD in SCALLOP-INF/INTERVAL
 </p>
 </div>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
@@ -661,7 +665,7 @@ Figure 6.2: LOD in SCALLOP-INF/INTERVAL
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">annot</span>,caption<span class="op">=</span><span class="st">"Summary statistics"</span>,row.names<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>
-<span id="tab:test">Table 6.1: </span>Summary statistics</caption>
+<span id="tab:test">Table 1.1: </span>Summary statistics</caption>
 <colgroup>
 <col width="10%">
 <col width="5%">
@@ -1968,16 +1972,17 @@ Figure 6.2: LOD in SCALLOP-INF/INTERVAL
 </tbody>
 </table>
 </div>
-<div class="section level2" number="7">
-<h2 id="maendtoend">
-<span class="header-section-number">7</span> maEndtoEnd<a class="anchor" aria-label="anchor" href="#maendtoend"></a>
-</h2>
+<div class="section level3" number="1.7">
+<h3 id="maendtoend">
+<span class="header-section-number">1.7</span> maEndtoEnd<a class="anchor" aria-label="anchor" href="#maendtoend"></a>
+</h3>
 <p>Web: <a href="https://bioconductor.org/packages/release/workflows/html/maEndToEnd.html" class="external-link uri">https://bioconductor.org/packages/release/workflows/html/maEndToEnd.html</a>.</p>
 <p>Examples can be found on PCA, heatmap, normalisation, linear models, and enrichment analysis from this Bioconductor package.</p>
 </div>
-<div class="section level2" number="8">
+</div>
+<div class="section level2" number="2">
 <h2 id="summarizedexperiment">
-<span class="header-section-number">8</span> SummarizedExperiment<a class="anchor" aria-label="anchor" href="#summarizedexperiment"></a>
+<span class="header-section-number">2</span> SummarizedExperiment<a class="anchor" aria-label="anchor" href="#summarizedexperiment"></a>
 </h2>
 <p>This is a more modern construct. Based on the documentation example, ranged summarized experiment (rse) and imputation are shown below.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
