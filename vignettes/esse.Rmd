@@ -36,6 +36,8 @@ for (p in pkgs) if (length(grep(paste("^package:", p, "$", sep=""), search())) =
 invisible(suppressMessages(lapply(pkgs, require, character.only = TRUE)))
 ```
 
+# ExpressionSet
+
 We start with Bioconductor/Biobase's ExpressionSet example and finish with a real application.
 
 ```{r, results='hide'}
@@ -63,7 +65,7 @@ data(sample.ExpressionSet, package="Biobase")
 identical(exampleSet,sample.ExpressionSet)
 ```
 
-# data.frame
+## data.frame
 
 The great benefit is to use the object directly as a data.frame.
 
@@ -74,7 +76,7 @@ beta.x[1]
 lm(score~gender+AFFX.MurIL2_at,data=exampleSet)
 ```
 
-# Composite plots
+## Composite plots
 
 We wish to examine the distribution of each feature via histogram, scatter and boxplot.
 One could resort to `esApply()` for its simplicity as before
@@ -99,7 +101,7 @@ invisible(sapply(f,function(x) {
 ```
 where the expression set is indexed using feature name(s).
 
-# Outlier detections
+## Outlier detections
 
 This illustrates one mechanism,
 
@@ -113,7 +115,7 @@ for (method in c("KS","sum","upperquartile"))
 }
 ```
 
-# Clustering
+## Clustering
 
 We employ model-based clustering absed on principal compoents to see potential groupings in the data,
 
@@ -149,7 +151,7 @@ An interactive version is also available,
 htmltools::tags$iframe(src = "mcpca3d.html", width = "100%", height = "450px")
 ```
 
-# Data transformation
+## Data transformation
 
 Suppose we wish use log2 for those greater than zero but set those negative values to be missing.
 
@@ -158,7 +160,7 @@ log2.na <- function(x) log2(ifelse(x>0, x, NA))
 Biobase::exprs(exampleSet) <- log2.na(Biobase::exprs(exampleSet))
 ```
 
-# Limit of detection (LOD)
+## Limit of detection (LOD)
 
 We generate a `lod.max` ~ U[0,1] variable to experiment
 
@@ -215,7 +217,7 @@ options(width=120)
 knitr::kable(annot,caption="Summary statistics",row.names=FALSE)
 ```
 
-# maEndtoEnd
+## maEndtoEnd
 
 Web: <https://bioconductor.org/packages/release/workflows/html/maEndToEnd.html>.
 
