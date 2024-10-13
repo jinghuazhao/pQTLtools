@@ -87,7 +87,7 @@ shinyApp(ui, server)
 
 # Stacked association plots
 
-This plot below contain three panels.
+The plot below contain three panels.
 
 ```{r, results='asis', echo=FALSE}
 library(htmltools)
