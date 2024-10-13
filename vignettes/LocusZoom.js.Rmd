@@ -85,7 +85,7 @@ server <- function(input, output) {
 shinyApp(ui, server)
 ```
 
-# Stack association plots
+# Stacked association plots
 
 This calls `ACE.js`.
 
