@@ -30,7 +30,7 @@ knitr::opts_chunk$set(
 
 ## JavaScript
 
-This calls `caprion_dr.js`.
+This plot starts with a default and is updated when clicked for one of the two alternatives.
 
 ```{r, results='asis', echo=FALSE}
 library(htmltools)
@@ -87,7 +87,7 @@ shinyApp(ui, server)
 
 # Stacked association plots
 
-This calls `ACE.js`.
+This plots contain three panels.
 
 ```{r, results='asis', echo=FALSE}
 library(htmltools)
