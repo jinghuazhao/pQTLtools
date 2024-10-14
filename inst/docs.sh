@@ -19,7 +19,7 @@ Rscript -e '
 # pandoc README.md --citeproc --mathjax -s --self-contained -o index.html
 }
 
-cp vignettes/ACE.js docs/articles
+cp vignettes/ACE.js vignettes/lz.htm docs/articles
 cp -r vignettes/data docs/articles
 for d in bioconductor esse pQTLtools spectrum
 do
