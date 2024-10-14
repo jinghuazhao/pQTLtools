@@ -43,100 +43,106 @@
       </div>
     </div>
   </div>
-  <script src="caprion_dr.js"></script>
   <script type="text/javascript">
-  const gwasParser = LzParsers.makeGWASParser({
-      chrom_col: 1,
-      pos_col: 2,
-      ref_col: 4,
-      alt_col: 5,
-      pvalue_col: 6,
-      is_neg_log_pvalue: true,
-      beta_col: 7,
-      stderr_beta_col: 8
-  });
-  const bedParser = LzParsers.makeBed12Parser({normalize: true});
-  const ldParser = LzParsers.makePlinkLdParser({normalize: true});
-  var apiBase = "https://portaldev.sph.umich.edu/api/v1/";
-  const AssociationLZ = LocusZoom.Adapters.get('AssociationLZ');
-  var data_sources = new LocusZoom.DataSources()
-//.add("assoc", ["AssociationLZ", { url: apiBase + "statistic/single/", source: 45 }])
-  .add("assoc", ["TabixUrlSource", {url_data: 'https://locuszoom-web-demos.s3.us-east-2.amazonaws.com/tabix-demo/gwas_giant-bmi_meta_women-only.gz', parser_func: gwasParser, overfetch: 0 }])
-  .add("credset", ["CredibleSetLZ", { threshold: 0.95, significance_threshold: 7.301 }])
-  .add("catalog", ["GwasCatalogLZ", { url: apiBase + 'annotation/gwascatalog/results/', build: 'GRCh37' }])
-  .add("ld", ["LDServer", { url: "https://portaldev.sph.umich.edu/ld/", source: '1000G', build: 'GRCh37', population: 'ALL' }])
-//.add("ld", ["UserTabixLD", { url_data: 'https://locuszoom-web-demos.s3.us-east-2.amazonaws.com/tabix-demo/plink.ld.tab.gz', parser_func: ldParser }])
-  .add("gene", ["GeneLZ", { url: apiBase + "annotation/genes/", build: 'GRCh37' }])
-  .add("recomb", ["RecombLZ", { url: apiBase + "annotation/recomb/results/", build: 'GRCh37' }])
-  .add("constraint", ["GeneConstraintLZ", { url: "https://gnomad.broadinstitute.org/api/", build: 'GRCh37' }]);
-  var stateUrlMapping = {chr: "chrom", start: "start", end: "end", ldrefvar: 'ld_variant' };
-  var initialState = LzDynamicUrls.paramsFromUrl(stateUrlMapping);
-  if (!Object.keys(initialState).length) {
-    initialState = {chr: '16', start: 53609247, end: 54009247 };
-  }
-  const layout = LocusZoom.Layouts.get("plot", "standard_association", {
-      state: initialState,
-      panels: [
-          LocusZoom.Layouts.get('panel', 'association', { title: { text: "GIANT BMI meta-analysis (women only)" }}),
-          LocusZoom.Layouts.get('panel', 'annotation_catalog', { title: { text: "GWAS catalog" }}),
-          LocusZoom.Layouts.get('panel', 'annotation_credible_set'),
-          LocusZoom.Layouts.get('panel', 'genes' ),
-      ],
-  });
-  var plot = LocusZoom.populate("#lz-plot", data_sources, layout);
-  plot.applyState({ chr: '16', start: 53609247, end: 54009247, ldrefvar: "" });
-  LzDynamicUrls.plotUpdatesUrl(plot, stateUrlMapping);
-  LzDynamicUrls.plotUpdatesUrl(plot, stateUrlMapping);
-  function jumpTo(region) {
-    var target = region.split(":");
-    var chr = target[0];
-    var pos = target[1];
-    var no = target[2]
-    var ppid = target[3]
-    var start = 0;
-    var end = 0;
-    if (!pos.match(/[-+]/)) {
-      start = +pos - 250000;
-      end = +pos + 250000
-    }
-    var new_data_sources = new LocusZoom.DataSources()
-    .add("assoc", ["StaticJSON", { data: input[no].data } ])
+    const gwasParser = LzParsers.makeGWASParser({
+        chrom_col: 1,
+        pos_col: 2,
+        ref_col: 4,
+        alt_col: 5,
+        pvalue_col: 6,
+        is_neg_log_pvalue: true,
+        beta_col: 7,
+        stderr_beta_col: 8
+    });
+    const bedParser = LzParsers.makeBed12Parser({normalize: true});
+    const ldParser = LzParsers.makePlinkLdParser({normalize: true});
+    var apiBase = "https://portaldev.sph.umich.edu/api/v1/";
+    const AssociationLZ = LocusZoom.Adapters.get('AssociationLZ');
+    var data_sources = new LocusZoom.DataSources()
+    .add("assoc", ["TabixUrlSource", {url_data: 'https://locuszoom-web-demos.s3.us-east-2.amazonaws.com/tabix-demo/gwas_giant-bmi_meta_women-only.gz', parser_func: gwasParser, overfetch: 0 }])
     .add("credset", ["CredibleSetLZ", { threshold: 0.95, significance_threshold: 7.301 }])
     .add("catalog", ["GwasCatalogLZ", { url: apiBase + 'annotation/gwascatalog/results/', build: 'GRCh37' }])
     .add("ld", ["LDServer", { url: "https://portaldev.sph.umich.edu/ld/", source: '1000G', build: 'GRCh37', population: 'ALL' }])
     .add("gene", ["GeneLZ", { url: apiBase + "annotation/genes/", build: 'GRCh37' }])
     .add("recomb", ["RecombLZ", { url: apiBase + "annotation/recomb/results/", build: 'GRCh37' }])
     .add("constraint", ["GeneConstraintLZ", { url: "https://gnomad.broadinstitute.org/api/", build: 'GRCh37' }]);
-    var new_stateUrlMapping = {chr: "chrom", start: "start", end: "end", ldrefvar: 'ld_variant' };
-    var new_initialState = LzDynamicUrls.paramsFromUrl(new_stateUrlMapping);
-    if (!Object.keys(new_initialState).length) {
-      new_initialState = {chr: chr, start: start, end: end};
+    var stateUrlMapping = {chr: "chrom", start: "start", end: "end", ldrefvar: 'ld_variant' };
+    var initialState = LzDynamicUrls.paramsFromUrl(stateUrlMapping);
+    if (!Object.keys(initialState).length) {
+      initialState = {chr: '16', start: 53609247, end: 54009247 };
     }
-    const new_layout = LocusZoom.Layouts.get("plot", "standard_association", {
-        state: new_initialState,
+    const layout = LocusZoom.Layouts.get("plot", "standard_association", {
+        state: initialState,
         panels: [
-            LocusZoom.Layouts.get('panel', 'association', { title: { text: ppid }}),
+            LocusZoom.Layouts.get('panel', 'association', { title: { text: "GIANT BMI meta-analysis (women only)" }}),
             LocusZoom.Layouts.get('panel', 'annotation_catalog', { title: { text: "GWAS catalog" }}),
             LocusZoom.Layouts.get('panel', 'annotation_credible_set'),
             LocusZoom.Layouts.get('panel', 'genes' ),
         ],
     });
-    plot = LocusZoom.populate("#lz-plot", new_data_sources, new_layout);
-    plot.applyState({ chr: chr, start: start, end: end, ldrefvar: "" });
-    LzDynamicUrls.plotUpdatesUrl(plot, new_stateUrlMapping);
-    LzDynamicUrls.plotUpdatesUrl(plot, new_stateUrlMapping);
-    return false;
-  }
-  var top_hits = [
-    ["A1BG", "rs145685027", "19:58948122", "0"],
-    ["ACE", "rs4353", "17:61570422", "1"]
-  ];
-  top_hits.forEach(function (hit) {
-    var ppid = hit[0] + "-" + hit[1];
-    var hits = hit[2] + ":" + hit[3] + ":" + ppid;
-    d3.select("ul.top_hits").append("li")
-      .html("<a href=\"javascript:void(0);\" onclick=\"javascript:jumpTo('" + hits + "');\">" + ppid + "</a>");
+    var plot = LocusZoom.populate("#lz-plot", data_sources, layout);
+    plot.applyState({ chr: '16', start: 53609247, end: 54009247, ldrefvar: "" });
+    LzDynamicUrls.plotUpdatesUrl(plot, stateUrlMapping);
+    LzDynamicUrls.plotUpdatesUrl(plot, stateUrlMapping);
+
+    function jumpTo(region) {
+      var target = region.split(":");
+      var chr = target[0];
+      var pos = target[1];
+      var no = target[2];
+      var ppid = target[3];
+      var start = 0;
+      var end = 0;
+      if (!pos.match(/[-+]/)) {
+        start = +pos - 250000;
+        end = +pos + 250000;
+      }
+
+      d3.json('data/${0}.json').then(function(data) {
+        var new_data_sources = new LocusZoom.DataSources()
+          .add("assoc", ["StaticJSON", { data: data.data }])
+          .add("credset", ["CredibleSetLZ", { threshold: 0.95, significance_threshold: 7.301 }])
+          .add("catalog", ["GwasCatalogLZ", { url: apiBase + 'annotation/gwascatalog/results/', build: 'GRCh37' }])
+          .add("ld", ["LDServer", { url: "https://portaldev.sph.umich.edu/ld/", source: '1000G', build: 'GRCh37', population: 'ALL' }])
+          .add("gene", ["GeneLZ", { url: apiBase + "annotation/genes/", build: 'GRCh37' }])
+          .add("recomb", ["RecombLZ", { url: apiBase + "annotation/recomb/results/", build: 'GRCh37' }])
+          .add("constraint", ["GeneConstraintLZ", { url: "https://gnomad.broadinstitute.org/api/", build: 'GRCh37' }]);
+
+        var new_stateUrlMapping = {chr: "chrom", start: "start", end: "end", ldrefvar: 'ld_variant' };
+        var new_initialState = LzDynamicUrls.paramsFromUrl(new_stateUrlMapping);
+        if (!Object.keys(new_initialState).length) {
+          new_initialState = {chr: chr, start: start, end: end};
+        }
+        const new_layout = LocusZoom.Layouts.get("plot", "standard_association", {
+            state: new_initialState,
+            panels: [
+                LocusZoom.Layouts.get('panel', 'association', { title: { text: ppid } }),
+                LocusZoom.Layouts.get('panel', 'annotation_catalog', { title: { text: "GWAS catalog" } }),
+                LocusZoom.Layouts.get('panel', 'annotation_credible_set'),
+                LocusZoom.Layouts.get('panel', 'genes' ),
+            ],
+        });
+        plot = LocusZoom.populate("#lz-plot", new_data_sources, new_layout);
+        plot.applyState({ chr: chr, start: start, end: end, ldrefvar: "" });
+        LzDynamicUrls.plotUpdatesUrl(plot, new_stateUrlMapping);
+        LzDynamicUrls.plotUpdatesUrl(plot, new_stateUrlMapping);
+      }).catch(function(error) {
+        console.error("Error loading JSON data:", error);
+      });
+
+      return false;
+    }
+
+  d3.json("data/top_hits.json").then(function(data) {
+    data.forEach(function (hit) {
+      var ppid = hit[0] + "-" + hit[1];
+      var hits = hit[2] + ":" + hit[3] + ":" + ppid;
+      d3.select("ul.top_hits").append("li")
+        .html("<a href=\"javascript:void(0);\" onclick=\"javascript:jumpTo('" + hits + "');\">" + ppid + "</a>");
+    });
+  }).catch(function(error) {
+    console.error("Error loading top hits JSON:", error);
   });
-</script>
+  </script>
 </body>
 </html>
