@@ -98,7 +98,9 @@
         end = +pos + 250000;
       }
 
-      d3.json('data/${0}.json').then(function(data) {
+      var filePath = `data/${no}.json`;
+      console.log("Attempting to load:", filePath);
+      d3.json(filePath).then(function(data) {
         var new_data_sources = new LocusZoom.DataSources()
           .add("assoc", ["StaticJSON", { data: data.data }])
           .add("credset", ["CredibleSetLZ", { threshold: 0.95, significance_threshold: 7.301 }])
