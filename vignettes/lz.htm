@@ -85,7 +85,6 @@
     LzDynamicUrls.plotUpdatesUrl(plot, stateUrlMapping);
     LzDynamicUrls.plotUpdatesUrl(plot, stateUrlMapping);
 
-    // Define your JSON data
     function jumpTo(region) {
       var target = region.split(":");
       var chr = target[0];
@@ -99,11 +98,9 @@
         end = +pos + 250000;
       }
 
-      // Load the JSON data from a file
       d3.json('data/${0}.json').then(function(data) {
-        // Use the loaded data to create a new LocusZoom plot
         var new_data_sources = new LocusZoom.DataSources()
-          .add("assoc", ["StaticJSON", { data: data.data }]) // Use the loaded data here
+          .add("assoc", ["StaticJSON", { data: data.data }])
           .add("credset", ["CredibleSetLZ", { threshold: 0.95, significance_threshold: 7.301 }])
           .add("catalog", ["GwasCatalogLZ", { url: apiBase + 'annotation/gwascatalog/results/', build: 'GRCh37' }])
           .add("ld", ["LDServer", { url: "https://portaldev.sph.umich.edu/ld/", source: '1000G', build: 'GRCh37', population: 'ALL' }])
@@ -130,14 +127,12 @@
         LzDynamicUrls.plotUpdatesUrl(plot, new_stateUrlMapping);
         LzDynamicUrls.plotUpdatesUrl(plot, new_stateUrlMapping);
       }).catch(function(error) {
-        // Handle any errors that occur while loading the data
         console.error("Error loading JSON data:", error);
       });
 
       return false;
     }
 
-  // Load the top_hits data from a JSON file
   d3.json("data/top_hits.json").then(function(data) {
     data.forEach(function (hit) {
       var ppid = hit[0] + "-" + hit[1];
