@@ -20,7 +20,8 @@ Rscript -e '
 }
 
 cp vignettes/ACE.js vignettes/lz.htm docs/articles
-for d in bioconductor esse pQTLtools spectrum data
+if [ -d docs/articles/data ]; then rm -rf docs/articles/data; cp -r vignettes/data docs/articles; fi
+for d in bioconductor esse pQTLtools spectrum
 do
     if [ -d vignettes/${d} ]; then
        rm -rf docs/articles/${d}
