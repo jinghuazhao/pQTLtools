@@ -34,7 +34,7 @@ This figure starts with a default and is updated when clicked for one of the two
 
 ```{r, results='asis', echo=FALSE}
 library(htmltools)
-lz <- tags$iframe(src ="lz.htm", width = "100%", height = "800px")
+lz <- tags$iframe(src ="lz.htm", width = "100%", height = "600px")
 lz
 ```
 
