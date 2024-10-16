@@ -111,19 +111,43 @@
 </h3>
 <p>This figure starts with a default and is updated when clicked for one of the two alternatives.</p>
 <iframe src="lz.htm" width="100%" height="800px"></iframe>
+<p>Details of the GWAS summary statistics are shown as follows,</p>
+<pre><code>&gt; d &lt;- jsonlite::fromJSON("vignettes/data/ACE-rs4353.json")
+&gt; class(d)
+[1] "list"
+&gt; lapply(d,class)
+$ppid
+[1] "character"
+
+$data
+[1] "data.frame"
+
+&gt; lapply(d,head,3)
+$ppid
+[1] "ACE-rs4353"
+
+$data
+          variant position ref_allele alt_allele_freq    beta log_pvalue
+1 17:61322094_G/T 61322094          G          0.0154 -0.1899       0.69
+2 17:61322221_G/A 61322221          G          0.1905  0.0190       0.22
+3 17:61322307_G/T 61322307          G          0.9682  0.4065       5.65
+
+&gt; j &lt;- toJSON(lapply(d,head,3))
+&gt; j
+{"ppid":["ACE-rs4353"],"data":[{"variant":"17:61322094_G/T","position":61322094,"ref_allele":"G","alt_allele_freq":0.0154,"beta":-0.1899,"log_pvalue":0.69},{"variant":"17:61322221_G/A","position":61322221,"ref_allele":"G","alt_allele_freq":0.1905,"beta":0.019,"log_pvalue":0.22},{"variant":"17:61322307_G/T","position":61322307,"ref_allele":"G","alt_allele_freq":0.9682,"beta":0.4065,"log_pvalue":5.65}]}</code></pre>
 </div>
 <div class="section level3" number="1.2">
 <h3 id="shiny">
 <span class="header-section-number">1.2</span> Shiny<a class="anchor" aria-label="anchor" href="#shiny"></a>
 </h3>
 <p>This is a skeleton for possibly interactive use.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/" class="external-link">shiny</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Define a list of protein-pQTL pairs with named elements</span></span>
 <span><span class="va">protein_pqtl_pairs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>  <span class="st">"A1BG"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A1BG"</span>, <span class="st">"rs145685027"</span>, <span class="st">"19:58948122"</span>, <span class="st">"0"</span><span class="op">)</span>,</span>
-<span>  <span class="st">"ACE"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ACE"</span>, <span class="st">"rs4353"</span>, <span class="st">"17:61570422"</span>, <span class="st">"1"</span><span class="op">)</span></span>
+<span>  <span class="st">"A1BG"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A1BG"</span>, <span class="st">"rs145685027"</span>, <span class="st">"19:58948122"</span><span class="op">)</span>,</span>
+<span>  <span class="st">"ACE"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ACE"</span>, <span class="st">"rs4353"</span>, <span class="st">"17:61570422"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Define a list of image URLs corresponding to each protein-pQTL pair</span></span>
