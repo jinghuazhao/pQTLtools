@@ -38,6 +38,34 @@ lz <- tags$iframe(src ="lz.htm", width = "100%", height = "800px")
 lz
 ```
 
+Details of the GWAS summary statistics are shown as follows,
+
+```
+> d <- jsonlite::fromJSON("vignettes/data/ACE-rs4353.json")
+> class(d)
+[1] "list"
+> lapply(d,class)
+$ppid
+[1] "character"
+
+$data
+[1] "data.frame"
+
+> lapply(d,head,3)
+$ppid
+[1] "ACE-rs4353"
+
+$data
+          variant position ref_allele alt_allele_freq    beta log_pvalue
+1 17:61322094_G/T 61322094          G          0.0154 -0.1899       0.69
+2 17:61322221_G/A 61322221          G          0.1905  0.0190       0.22
+3 17:61322307_G/T 61322307          G          0.9682  0.4065       5.65
+
+> j <- toJSON(lapply(d,head,3))
+> j
+{"ppid":["ACE-rs4353"],"data":[{"variant":"17:61322094_G/T","position":61322094,"ref_allele":"G","alt_allele_freq":0.0154,"beta":-0.1899,"log_pvalue":0.69},{"variant":"17:61322221_G/A","position":61322221,"ref_allele":"G","alt_allele_freq":0.1905,"beta":0.019,"log_pvalue":0.22},{"variant":"17:61322307_G/T","position":61322307,"ref_allele":"G","alt_allele_freq":0.9682,"beta":0.4065,"log_pvalue":5.65}]}
+```
+
 ## Shiny
 
 This is a skeleton for possibly interactive use.
@@ -47,8 +75,8 @@ library(shiny)
 
 # Define a list of protein-pQTL pairs with named elements
 protein_pqtl_pairs <- list(
-  "A1BG" = c("A1BG", "rs145685027", "19:58948122", "0"),
-  "ACE" = c("ACE", "rs4353", "17:61570422", "1")
+  "A1BG" = c("A1BG", "rs145685027", "19:58948122"),
+  "ACE" = c("ACE", "rs4353", "17:61570422")
 )
 
 # Define a list of image URLs corresponding to each protein-pQTL pair
