@@ -1,6 +1,6 @@
 ## pQTLtools 0.4
 
-(2024/10/16)
+(2024/10/17)
 
 * Amend LocusZoom.js.Rmd.
 * Unify DESCRIPTION/README (finally!).
