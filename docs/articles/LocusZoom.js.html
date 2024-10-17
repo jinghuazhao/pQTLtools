@@ -109,9 +109,17 @@
 <h3 id="javascript">
 <span class="header-section-number">1.1</span> JavaScript<a class="anchor" aria-label="anchor" href="#javascript"></a>
 </h3>
-<p>This figure starts with a default and is updated when clicked for one of the two alternatives.</p>
+<p>This figure starts with a default and is updated when selected for one of the two alternatives.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rstudio/htmltools" class="external-link">htmltools</a></span><span class="op">)</span></span>
+<span><span class="va">lz</span> <span class="op">&lt;-</span> <span class="va">tags</span><span class="op">$</span><span class="fu">iframe</span><span class="op">(</span>src <span class="op">=</span><span class="st">"lz.htm"</span>, width <span class="op">=</span> <span class="st">"100%"</span>, height <span class="op">=</span> <span class="st">"600px"</span><span class="op">)</span></span>
+<span><span class="va">lz</span></span></code></pre></div>
 <iframe src="lz.htm" width="100%" height="600px"></iframe>
-<p>Details of the GWAS summary statistics are shown as follows,</p>
+<p>THe HTML skeleton (<code>lz.htm</code>) takes a file named <code>top_hits.json</code> containing the menu items,</p>
+<pre><code>  ["A1BG", "rs145685027", "19:58948122"],
+  ["ACE", "rs4353", "17:61570422"]
+]</code></pre>
+<p>each corresponds to a file for GWAS summary statistics as shown below</p>
 <pre><code>&gt; d &lt;- jsonlite::fromJSON("vignettes/data/ACE-rs4353.json")
 &gt; class(d)
 [1] "list"
@@ -141,7 +149,7 @@ $data
 <span class="header-section-number">1.2</span> Shiny<a class="anchor" aria-label="anchor" href="#shiny"></a>
 </h3>
 <p>This is a skeleton for possibly interactive use.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.posit.co/" class="external-link">shiny</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Define a list of protein-pQTL pairs with named elements</span></span>
