@@ -41,6 +41,7 @@ lz
 THe HTML skeleton (`lz.htm`) takes a file named `top_hits.json` containing the menu items,
 
 ```
+[
   ["A1BG", "rs145685027", "19:58948122"],
   ["ACE", "rs4353", "17:61570422"]
 ]
