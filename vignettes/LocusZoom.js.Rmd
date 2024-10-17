@@ -30,15 +30,23 @@ knitr::opts_chunk$set(
 
 ## JavaScript
 
-This figure starts with a default and is updated when clicked for one of the two alternatives.
+This figure starts with a default and is updated when selected for one of the two alternatives.
 
-```{r, results='asis', echo=FALSE}
+```{r, results='asis'}
 library(htmltools)
 lz <- tags$iframe(src ="lz.htm", width = "100%", height = "600px")
 lz
 ```
 
-Details of the GWAS summary statistics are shown as follows,
+THe HTML skeleton (`lz.htm`) takes a file named `top_hits.json` containing the menu items,
+
+```
+  ["A1BG", "rs145685027", "19:58948122"],
+  ["ACE", "rs4353", "17:61570422"]
+]
+```
+
+each corresponds to a file for GWAS summary statistics as shown below
 
 ```
 > d <- jsonlite::fromJSON("vignettes/data/ACE-rs4353.json")
