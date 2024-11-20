@@ -72,7 +72,7 @@
       .add("assoc", ["TabixUrlSource", { url_data: 'https://locuszoom-web-demos.s3.us-east-2.amazonaws.com/tabix-demo/gwas_giant-bmi_meta_women-only.gz', parser_func: gwasParser, overfetch: 0 }])
       .add("credset", ["CredibleSetLZ", { threshold: 0.95, significance_threshold: 7.301 }])
       .add("catalog", ["GwasCatalogLZ", { url: 'https://portaldev.sph.umich.edu/api/v1/annotation/gwascatalog/results/', build: 'GRCh37' }])
-      .add("ld", ["LDServer", { url: "https://portaldev.sph.umich.edu/ld/", source: '1000G', build: 'GRCh37', population: 'ALL' }])
+      .add("ld", ["LDServer", { url: "https://portaldev.sph.umich.edu/ld/", source: '1000G', build: 'GRCh37', population: 'EUR' }])
       .add("gene", ["GeneLZ", { url: 'https://portaldev.sph.umich.edu/api/v1/annotation/genes/', build: 'GRCh37' }])
       .add("recomb", ["RecombLZ", { url: 'https://portaldev.sph.umich.edu/api/v1/annotation/recomb/results/', build: 'GRCh37' }])
       .add("constraint", ["GeneConstraintLZ", { url: "https://gnomad.broadinstitute.org/api/", build: 'GRCh37' }]);
