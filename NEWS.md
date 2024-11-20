@@ -1,7 +1,8 @@
 ## pQTLtools 0.4
 
-(2024/10/18)
+(2024/11/20)
 
+* Amend lz.htm (called by LocusZoom.js.Rmd) to use EUR reference panel.
 * Amend LocusZoom.js.Rmd.
 * Unify DESCRIPTION/README (finally!).
 * Add SummarizedExperiment section to es.Rmd --> esse.Rmd.
