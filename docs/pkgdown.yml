@@ -6,10 +6,10 @@ articles:
   esse: esse.html
   LocusZoom.js: LocusZoom.js.html
   pQTLtools: pQTLtools.html
-  SCALLOP-INF: SCALLOP-INF.html
+  SCALLOP-Caprion: SCALLOP-Caprion.html
   snakemake: snakemake.html
   spectrum: spectrum.html
-last_built: 2024-10-08T09:24Z
+last_built: 2024-12-14T17:20Z
 urls:
   reference: https://jinghuazhao.github.io/pQTLtools/reference
   article: https://jinghuazhao.github.io/pQTLtools/articles

@@ -14,8 +14,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Bioconductor notes">
 </head>
 <body>
@@ -48,7 +48,7 @@
     <li><a class="dropdown-item" href="../articles/LocusZoom.js.html">LocusZoom.js</a></li>
     <li><a class="dropdown-item" href="../articles/snakemake.html">snakemake showcases</a></li>
     <li><a class="dropdown-item" href="../articles/spectrum.html">Spectrum data analysis</a></li>
-    <li><a class="dropdown-item" href="../articles/SCALLOP-INF.html">SCALLOP-INF scripts</a></li>
+    <li><a class="dropdown-item" href="../articles/SCALLOP-Caprion.html">SCALLOP-Caprion scripts</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../reference/pQTLtools.html">Reference</a></li>
@@ -109,10 +109,10 @@
 <span>          <span class="st">"TxDb.Hsapiens.UCSC.hg38.knownGene"</span>, <span class="st">"bladderbatch"</span>, <span class="st">"clusterProfiler"</span>,</span>
 <span>          <span class="st">"corpcor"</span>, <span class="st">"doParallel"</span>, <span class="st">"ensembldb"</span>, <span class="st">"fdrtool"</span>, <span class="st">"graph"</span>, <span class="st">"graphite"</span>, <span class="st">"heatmaply"</span>,</span>
 <span>          <span class="st">"minfi"</span>, <span class="st">"org.Hs.eg.db"</span>, <span class="st">"plyr"</span>, <span class="st">"quantro"</span>, <span class="st">"recount3"</span>, <span class="st">"sva"</span><span class="op">)</span></span>
-<span><span class="kw">for</span> <span class="op">(</span><span class="va">p</span> <span class="kw">in</span> <span class="va">pkgs</span><span class="op">)</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"^package:"</span>, <span class="va">p</span>, <span class="st">"$"</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/search.html" class="external-link">search</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">p</span> <span class="kw">in</span> <span class="va">pkgs</span><span class="op">)</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"^package:"</span>, <span class="va">p</span>, <span class="st">"$"</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/search.html" class="external-link">search</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/warning.html" class="external-link">warning</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"This vignette needs package `"</span>, <span class="va">p</span>, <span class="st">"'; please install"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/invisible.html" class="external-link">invisible</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressMessages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">pkgs</span>, <span class="va">require</span>, character.only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/invisible.html" class="external-link">invisible</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressMessages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">pkgs</span>, <span class="va">require</span>, character.only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="section level2" number="1">
 <h2 id="liftover">
 <span class="header-section-number">1</span> liftover<a class="anchor" aria-label="anchor" href="#liftover"></a>
@@ -134,7 +134,7 @@
 <span></span>
 <span><span class="va">pheno</span> <span class="op">&lt;-</span> <span class="fu">Biobase</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/Biobase/man/phenoData.html" class="external-link">pData</a></span><span class="op">(</span><span class="va">edat</span><span class="op">)</span></span>
 <span><span class="va">batch</span> <span class="op">&lt;-</span> <span class="va">pheno</span><span class="op">$</span><span class="va">batch</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">batch</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">batch</span><span class="op">)</span></span>
 <span><span class="co">#&gt; batch</span></span>
 <span><span class="co">#&gt;  1  2  3  4  5 </span></span>
 <span><span class="co">#&gt; 11 18  4  5 19</span></span>
@@ -251,31 +251,31 @@ Figure 2.6: quantro example
 <span><span class="va">ods</span> <span class="op">&lt;-</span> <span class="fu">OUTRIDER</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/OUTRIDER/man/filterExpression.html" class="external-link">filterExpression</a></span><span class="op">(</span><span class="va">ods</span>, minCounts<span class="op">=</span><span class="cn">TRUE</span>, filterGenes<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 229 genes did not pass the filter due to zero counts. This is 22.9% of the genes.</span></span>
 <span><span class="va">ods</span> <span class="op">&lt;-</span> <span class="fu">OUTRIDER</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/OUTRIDER/man/OUTRIDER.html" class="external-link">OUTRIDER</a></span><span class="op">(</span><span class="va">ods</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Sun Oct 13 08:58:38 2024: SizeFactor estimation ...</span></span>
-<span><span class="co">#&gt; Sun Oct 13 08:58:38 2024: Controlling for confounders ...</span></span>
+<span><span class="co">#&gt; Sat Dec 14 17:22:52 2024: SizeFactor estimation ...</span></span>
+<span><span class="co">#&gt; Sat Dec 14 17:22:52 2024: Controlling for confounders ...</span></span>
 <span><span class="co">#&gt; Using estimated q with: 23</span></span>
-<span><span class="co">#&gt; Sun Oct 13 08:58:38 2024: Using the autoencoder implementation for controlling.</span></span>
-<span><span class="co">#&gt; [1] "Sun Oct 13 08:58:41 2024: Initial PCA loss: 4.73997327486604"</span></span>
-<span><span class="co">#&gt; [1] "Sun Oct 13 08:58:44 2024: Iteration: 1 loss: 4.1941928513778"</span></span>
-<span><span class="co">#&gt; [1] "Sun Oct 13 08:58:46 2024: Iteration: 2 loss: 4.17533494991789"</span></span>
-<span><span class="co">#&gt; [1] "Sun Oct 13 08:58:48 2024: Iteration: 3 loss: 4.16629394417218"</span></span>
-<span><span class="co">#&gt; [1] "Sun Oct 13 08:58:49 2024: Iteration: 4 loss: 4.16116322481112"</span></span>
-<span><span class="co">#&gt; [1] "Sun Oct 13 08:58:51 2024: Iteration: 5 loss: 4.15778153531172"</span></span>
-<span><span class="co">#&gt; [1] "Sun Oct 13 08:58:52 2024: Iteration: 6 loss: 4.1552156569908"</span></span>
-<span><span class="co">#&gt; [1] "Sun Oct 13 08:58:53 2024: Iteration: 7 loss: 4.15349342022442"</span></span>
-<span><span class="co">#&gt; [1] "Sun Oct 13 08:58:54 2024: Iteration: 8 loss: 4.15179068270742"</span></span>
-<span><span class="co">#&gt; [1] "Sun Oct 13 08:58:55 2024: Iteration: 9 loss: 4.15084764641122"</span></span>
-<span><span class="co">#&gt; [1] "Sun Oct 13 08:58:56 2024: Iteration: 10 loss: 4.14995079973815"</span></span>
-<span><span class="co">#&gt; [1] "Sun Oct 13 08:58:57 2024: Iteration: 11 loss: 4.14922407983485"</span></span>
-<span><span class="co">#&gt; [1] "Sun Oct 13 08:58:58 2024: Iteration: 12 loss: 4.14898308414091"</span></span>
-<span><span class="co">#&gt; [1] "Sun Oct 13 08:58:59 2024: Iteration: 13 loss: 4.14837365500828"</span></span>
-<span><span class="co">#&gt; [1] "Sun Oct 13 08:59:00 2024: Iteration: 14 loss: 4.1477217113268"</span></span>
-<span><span class="co">#&gt; [1] "Sun Oct 13 08:59:01 2024: Iteration: 15 loss: 4.14695790295889"</span></span>
-<span><span class="co">#&gt; Time difference of 19.24515 secs</span></span>
-<span><span class="co">#&gt; [1] "Sun Oct 13 08:59:01 2024: 15 Final nb-AE loss: 4.14695790295889"</span></span>
-<span><span class="co">#&gt; Sun Oct 13 08:59:01 2024: Used the autoencoder implementation for controlling.</span></span>
-<span><span class="co">#&gt; Sun Oct 13 08:59:01 2024: P-value calculation ...</span></span>
-<span><span class="co">#&gt; Sun Oct 13 08:59:05 2024: Zscore calculation ...</span></span>
+<span><span class="co">#&gt; Sat Dec 14 17:22:52 2024: Using the autoencoder implementation for controlling.</span></span>
+<span><span class="co">#&gt; [1] "Sat Dec 14 17:22:55 2024: Initial PCA loss: 4.73997327486604"</span></span>
+<span><span class="co">#&gt; [1] "Sat Dec 14 17:22:59 2024: Iteration: 1 loss: 4.19416269506454"</span></span>
+<span><span class="co">#&gt; [1] "Sat Dec 14 17:23:01 2024: Iteration: 2 loss: 4.17550752619036"</span></span>
+<span><span class="co">#&gt; [1] "Sat Dec 14 17:23:03 2024: Iteration: 3 loss: 4.16639365666912"</span></span>
+<span><span class="co">#&gt; [1] "Sat Dec 14 17:23:05 2024: Iteration: 4 loss: 4.16142359470334"</span></span>
+<span><span class="co">#&gt; [1] "Sat Dec 14 17:23:07 2024: Iteration: 5 loss: 4.15785341106832"</span></span>
+<span><span class="co">#&gt; [1] "Sat Dec 14 17:23:09 2024: Iteration: 6 loss: 4.15533343090454"</span></span>
+<span><span class="co">#&gt; [1] "Sat Dec 14 17:23:10 2024: Iteration: 7 loss: 4.15339892434562"</span></span>
+<span><span class="co">#&gt; [1] "Sat Dec 14 17:23:11 2024: Iteration: 8 loss: 4.15175378925737"</span></span>
+<span><span class="co">#&gt; [1] "Sat Dec 14 17:23:13 2024: Iteration: 9 loss: 4.15069201289976"</span></span>
+<span><span class="co">#&gt; [1] "Sat Dec 14 17:23:14 2024: Iteration: 10 loss: 4.1501222741797"</span></span>
+<span><span class="co">#&gt; [1] "Sat Dec 14 17:23:15 2024: Iteration: 11 loss: 4.14904801948777"</span></span>
+<span><span class="co">#&gt; [1] "Sat Dec 14 17:23:16 2024: Iteration: 12 loss: 4.14805452270911"</span></span>
+<span><span class="co">#&gt; [1] "Sat Dec 14 17:23:17 2024: Iteration: 13 loss: 4.14796461892655"</span></span>
+<span><span class="co">#&gt; [1] "Sat Dec 14 17:23:19 2024: Iteration: 14 loss: 4.14722109314569"</span></span>
+<span><span class="co">#&gt; [1] "Sat Dec 14 17:23:20 2024: Iteration: 15 loss: 4.14696284053289"</span></span>
+<span><span class="co">#&gt; Time difference of 23.69409 secs</span></span>
+<span><span class="co">#&gt; [1] "Sat Dec 14 17:23:20 2024: 15 Final nb-AE loss: 4.14696284053289"</span></span>
+<span><span class="co">#&gt; Sat Dec 14 17:23:20 2024: Used the autoencoder implementation for controlling.</span></span>
+<span><span class="co">#&gt; Sat Dec 14 17:23:20 2024: P-value calculation ...</span></span>
+<span><span class="co">#&gt; Sat Dec 14 17:23:22 2024: Zscore calculation ...</span></span>
 <span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">OUTRIDER</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/OUTRIDER/man/results.html" class="external-link">results</a></span><span class="op">(</span><span class="va">ods</span><span class="op">)</span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">res</span>,caption<span class="op">=</span><span class="st">"A check list of outliers"</span><span class="op">)</span></span></code></pre></div>
 <table style="width:100%;" class="table">
@@ -325,9 +325,9 @@ Figure 2.6: quantro example
 <td align="right">1.88</td>
 <td align="right">948</td>
 <td align="right">82.29</td>
-<td align="right">248.30</td>
+<td align="right">248.14</td>
 <td align="right">67.33</td>
-<td align="right">16.49</td>
+<td align="right">16.48</td>
 <td align="left">TRUE</td>
 <td align="right">1</td>
 <td align="right">1</td>
@@ -337,14 +337,14 @@ Figure 2.6: quantro example
 <td align="left">NBPF15</td>
 <td align="left">MUC1351</td>
 <td align="right">0.0e+00</td>
-<td align="right">0.0000043</td>
-<td align="right">5.76</td>
+<td align="right">0.0000035</td>
+<td align="right">5.80</td>
 <td align="right">0.77</td>
 <td align="right">7591</td>
 <td align="right">4224.88</td>
-<td align="right">7019.13</td>
-<td align="right">4121.25</td>
-<td align="right">112.12</td>
+<td align="right">7028.35</td>
+<td align="right">4121.14</td>
+<td align="right">112.78</td>
 <td align="left">TRUE</td>
 <td align="right">2</td>
 <td align="right">1</td>
@@ -354,14 +354,14 @@ Figure 2.6: quantro example
 <td align="left">MSTO1</td>
 <td align="left">MUC1367</td>
 <td align="right">0.0e+00</td>
-<td align="right">0.0000181</td>
+<td align="right">0.0000177</td>
 <td align="right">-6.26</td>
 <td align="right">-0.81</td>
 <td align="right">761</td>
 <td align="right">1327.87</td>
-<td align="right">728.28</td>
+<td align="right">727.74</td>
 <td align="right">1276.02</td>
-<td align="right">153.50</td>
+<td align="right">153.26</td>
 <td align="left">TRUE</td>
 <td align="right">1</td>
 <td align="right">1</td>
@@ -371,14 +371,14 @@ Figure 2.6: quantro example
 <td align="left">HDAC1</td>
 <td align="left">MUC1350</td>
 <td align="right">0.0e+00</td>
-<td align="right">0.0001460</td>
-<td align="right">-5.83</td>
-<td align="right">-0.77</td>
+<td align="right">0.0001133</td>
+<td align="right">-5.88</td>
+<td align="right">-0.78</td>
 <td align="right">2215</td>
 <td align="right">3805.56</td>
-<td align="right">2143.23</td>
-<td align="right">3648.91</td>
-<td align="right">136.84</td>
+<td align="right">2128.19</td>
+<td align="right">3649.04</td>
+<td align="right">135.60</td>
 <td align="left">TRUE</td>
 <td align="right">1</td>
 <td align="right">1</td>
@@ -388,14 +388,14 @@ Figure 2.6: quantro example
 <td align="left">DCAF6</td>
 <td align="left">MUC1374</td>
 <td align="right">1.0e-07</td>
-<td align="right">0.0003961</td>
-<td align="right">-5.68</td>
-<td align="right">-0.62</td>
+<td align="right">0.0004182</td>
+<td align="right">-5.67</td>
+<td align="right">-0.61</td>
 <td align="right">2348</td>
 <td align="right">4869.53</td>
-<td align="right">3082.96</td>
+<td align="right">3085.40</td>
 <td align="right">4724.25</td>
-<td align="right">196.33</td>
+<td align="right">196.31</td>
 <td align="left">TRUE</td>
 <td align="right">1</td>
 <td align="right">1</td>
@@ -404,15 +404,15 @@ Figure 2.6: quantro example
 <tr class="even">
 <td align="left">NBPF16</td>
 <td align="left">MUC1351</td>
-<td align="right">3.0e-07</td>
-<td align="right">0.0007275</td>
-<td align="right">4.82</td>
+<td align="right">2.0e-07</td>
+<td align="right">0.0006791</td>
+<td align="right">4.83</td>
 <td align="right">0.67</td>
 <td align="right">4014</td>
 <td align="right">2459.90</td>
-<td align="right">3818.18</td>
+<td align="right">3822.18</td>
 <td align="right">2402.36</td>
-<td align="right">107.84</td>
+<td align="right">107.85</td>
 <td align="left">TRUE</td>
 <td align="right">2</td>
 <td align="right">1</td>
@@ -422,14 +422,14 @@ Figure 2.6: quantro example
 <td align="left">FAM102B</td>
 <td align="left">MUC1363</td>
 <td align="right">1.2e-06</td>
-<td align="right">0.0065107</td>
-<td align="right">-5.38</td>
-<td align="right">-1.28</td>
+<td align="right">0.0067682</td>
+<td align="right">-5.37</td>
+<td align="right">-1.29</td>
 <td align="right">455</td>
 <td align="right">1138.75</td>
-<td align="right">442.45</td>
-<td align="right">1076.65</td>
-<td align="right">42.49</td>
+<td align="right">440.62</td>
+<td align="right">1076.81</td>
+<td align="right">41.98</td>
 <td align="left">TRUE</td>
 <td align="right">1</td>
 <td align="right">1</td>
@@ -438,15 +438,15 @@ Figure 2.6: quantro example
 <tr class="even">
 <td align="left">LOC100288142</td>
 <td align="left">MUC1361</td>
-<td align="right">3.2e-06</td>
-<td align="right">0.0179562</td>
-<td align="right">4.24</td>
-<td align="right">0.84</td>
+<td align="right">3.0e-06</td>
+<td align="right">0.0167927</td>
+<td align="right">4.25</td>
+<td align="right">0.85</td>
 <td align="right">637</td>
 <td align="right">356.12</td>
-<td align="right">621.54</td>
+<td align="right">622.40</td>
 <td align="right">345.76</td>
-<td align="right">57.39</td>
+<td align="right">57.44</td>
 <td align="left">TRUE</td>
 <td align="right">1</td>
 <td align="right">1</td>
@@ -455,15 +455,15 @@ Figure 2.6: quantro example
 <tr class="odd">
 <td align="left">TARDBP</td>
 <td align="left">MUC0486</td>
-<td align="right">7.1e-06</td>
-<td align="right">0.0394571</td>
-<td align="right">-4.57</td>
+<td align="right">7.3e-06</td>
+<td align="right">0.0407384</td>
+<td align="right">-4.56</td>
 <td align="right">-0.32</td>
 <td align="right">5911</td>
 <td align="right">5780.34</td>
-<td align="right">4447.90</td>
+<td align="right">4449.25</td>
 <td align="right">5565.44</td>
-<td align="right">465.01</td>
+<td align="right">464.81</td>
 <td align="left">TRUE</td>
 <td align="right">1</td>
 <td align="right">1</td>
@@ -472,15 +472,15 @@ Figure 2.6: quantro example
 <tr class="even">
 <td align="left">ZMPSTE24</td>
 <td align="left">MUC1370</td>
-<td align="right">7.2e-06</td>
-<td align="right">0.0400441</td>
-<td align="right">4.29</td>
-<td align="right">0.39</td>
+<td align="right">7.7e-06</td>
+<td align="right">0.0426990</td>
+<td align="right">4.28</td>
+<td align="right">0.38</td>
 <td align="right">6180</td>
 <td align="right">4026.77</td>
-<td align="right">5105.04</td>
-<td align="right">3905.53</td>
-<td align="right">267.48</td>
+<td align="right">5088.19</td>
+<td align="right">3905.38</td>
+<td align="right">273.05</td>
 <td align="left">TRUE</td>
 <td align="right">1</td>
 <td align="right">1</td>
@@ -536,7 +536,7 @@ Figure 4.1: DESeq2 example
 <span><span class="co">#&gt; final dispersion estimates</span></span>
 <span><span class="co">#&gt; fitting model and testing</span></span>
 <span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">DESeq2</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/DESeq2/man/results.html" class="external-link">results</a></span><span class="op">(</span><span class="va">dds2</span><span class="op">)</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="8%">
@@ -671,22 +671,22 @@ Figure 5.1: GeneNet example
 <span><span class="co">#&gt; 2   0.22405545    52    53 2.220446e-16 3.612205e-13 1.0000000</span></span>
 <span><span class="co">#&gt; 3   0.21507824    51    52 2.220446e-16 3.612205e-13 1.0000000</span></span>
 <span><span class="co">#&gt; 4   0.17328863     7    93 3.108624e-15 3.792816e-12 0.9999945</span></span>
-<span><span class="co">#&gt; 5  -0.13418892    29    86 1.120811e-09 1.093997e-06 0.9999516</span></span>
-<span><span class="co">#&gt; 6   0.12594697    21    72 1.103836e-08 8.978558e-06 0.9998400</span></span>
-<span><span class="co">#&gt; 7   0.11956105    28    86 5.890921e-08 3.853588e-05 0.9998400</span></span>
-<span><span class="co">#&gt; 8  -0.11723897    26    80 1.060525e-07 5.816169e-05 0.9998400</span></span>
-<span><span class="co">#&gt; 9  -0.11711625    72    89 1.093654e-07 5.930496e-05 0.9972804</span></span>
-<span><span class="co">#&gt; 10  0.10658013    20    21 1.366610e-06 5.925272e-04 0.9972804</span></span>
-<span><span class="co">#&gt; 11  0.10589778    21    73 1.596859e-06 6.678426e-04 0.9972804</span></span>
-<span><span class="co">#&gt; 12  0.10478689    20    91 2.053403e-06 8.024421e-04 0.9972804</span></span>
-<span><span class="co">#&gt; 13  0.10420836     7    52 2.338381e-06 8.778601e-04 0.9944557</span></span>
-<span><span class="co">#&gt; 14  0.10236077    87    95 3.525185e-06 1.224963e-03 0.9944557</span></span>
-<span><span class="co">#&gt; 15  0.10113550    27    95 4.610442e-06 1.500047e-03 0.9920084</span></span>
-<span><span class="co">#&gt; 16  0.09928954    21    51 6.868355e-06 2.046548e-03 0.9920084</span></span>
-<span><span class="co">#&gt; 17  0.09791914    21    88 9.192370e-06 2.520615e-03 0.9920084</span></span>
-<span><span class="co">#&gt; 18  0.09719685    18    95 1.070232e-05 2.790101e-03 0.9920084</span></span>
-<span><span class="co">#&gt; 19  0.09621791    28    90 1.313007e-05 3.171816e-03 0.9920084</span></span>
-<span><span class="co">#&gt; 20  0.09619099    12    80 1.320373e-05 3.182525e-03 0.9920084</span></span>
+<span><span class="co">#&gt; 5  -0.13418892    29    86 1.120812e-09 1.093997e-06 0.9999516</span></span>
+<span><span class="co">#&gt; 6   0.12594697    21    72 1.103836e-08 8.978563e-06 0.9998400</span></span>
+<span><span class="co">#&gt; 7   0.11956105    28    86 5.890924e-08 3.853590e-05 0.9998400</span></span>
+<span><span class="co">#&gt; 8  -0.11723897    26    80 1.060526e-07 5.816172e-05 0.9998400</span></span>
+<span><span class="co">#&gt; 9  -0.11711625    72    89 1.093655e-07 5.930499e-05 0.9972804</span></span>
+<span><span class="co">#&gt; 10  0.10658013    20    21 1.366610e-06 5.925275e-04 0.9972804</span></span>
+<span><span class="co">#&gt; 11  0.10589778    21    73 1.596859e-06 6.678429e-04 0.9972804</span></span>
+<span><span class="co">#&gt; 12  0.10478689    20    91 2.053403e-06 8.024425e-04 0.9972804</span></span>
+<span><span class="co">#&gt; 13  0.10420836     7    52 2.338382e-06 8.778605e-04 0.9944557</span></span>
+<span><span class="co">#&gt; 14  0.10236077    87    95 3.525186e-06 1.224964e-03 0.9944557</span></span>
+<span><span class="co">#&gt; 15  0.10113550    27    95 4.610444e-06 1.500047e-03 0.9920084</span></span>
+<span><span class="co">#&gt; 16  0.09928954    21    51 6.868357e-06 2.046549e-03 0.9920084</span></span>
+<span><span class="co">#&gt; 17  0.09791914    21    88 9.192373e-06 2.520616e-03 0.9920084</span></span>
+<span><span class="co">#&gt; 18  0.09719685    18    95 1.070232e-05 2.790102e-03 0.9920084</span></span>
+<span><span class="co">#&gt; 19  0.09621791    28    90 1.313007e-05 3.171817e-03 0.9920084</span></span>
+<span><span class="co">#&gt; 20  0.09619099    12    80 1.320374e-05 3.182526e-03 0.9920084</span></span>
 <span></span>
 <span><span class="co"># network containing edges with prob &gt; 0.9 (i.e. local fdr &lt; 0.1)</span></span>
 <span><span class="va">net</span> <span class="op">&lt;-</span> <span class="fu">GeneNet</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GeneNet/man/network.test.edges.html" class="external-link">extract.network</a></span><span class="op">(</span><span class="va">test.results</span>, cutoff.ggm<span class="op">=</span><span class="fl">0.9</span><span class="op">)</span></span>
@@ -699,67 +699,67 @@ Figure 5.1: GeneNet example
 <span><span class="co">#&gt; 2   0.22405545    52    53 2.220446e-16 3.612205e-13 1.0000000</span></span>
 <span><span class="co">#&gt; 3   0.21507824    51    52 2.220446e-16 3.612205e-13 1.0000000</span></span>
 <span><span class="co">#&gt; 4   0.17328863     7    93 3.108624e-15 3.792816e-12 0.9999945</span></span>
-<span><span class="co">#&gt; 5  -0.13418892    29    86 1.120811e-09 1.093997e-06 0.9999516</span></span>
-<span><span class="co">#&gt; 6   0.12594697    21    72 1.103836e-08 8.978558e-06 0.9998400</span></span>
-<span><span class="co">#&gt; 7   0.11956105    28    86 5.890921e-08 3.853588e-05 0.9998400</span></span>
-<span><span class="co">#&gt; 8  -0.11723897    26    80 1.060525e-07 5.816169e-05 0.9998400</span></span>
-<span><span class="co">#&gt; 9  -0.11711625    72    89 1.093654e-07 5.930496e-05 0.9972804</span></span>
-<span><span class="co">#&gt; 10  0.10658013    20    21 1.366610e-06 5.925272e-04 0.9972804</span></span>
-<span><span class="co">#&gt; 11  0.10589778    21    73 1.596859e-06 6.678426e-04 0.9972804</span></span>
-<span><span class="co">#&gt; 12  0.10478689    20    91 2.053403e-06 8.024421e-04 0.9972804</span></span>
-<span><span class="co">#&gt; 13  0.10420836     7    52 2.338381e-06 8.778601e-04 0.9944557</span></span>
-<span><span class="co">#&gt; 14  0.10236077    87    95 3.525185e-06 1.224963e-03 0.9944557</span></span>
-<span><span class="co">#&gt; 15  0.10113550    27    95 4.610442e-06 1.500047e-03 0.9920084</span></span>
-<span><span class="co">#&gt; 16  0.09928954    21    51 6.868355e-06 2.046548e-03 0.9920084</span></span>
-<span><span class="co">#&gt; 17  0.09791914    21    88 9.192370e-06 2.520615e-03 0.9920084</span></span>
-<span><span class="co">#&gt; 18  0.09719685    18    95 1.070232e-05 2.790101e-03 0.9920084</span></span>
-<span><span class="co">#&gt; 19  0.09621791    28    90 1.313007e-05 3.171816e-03 0.9920084</span></span>
-<span><span class="co">#&gt; 20  0.09619099    12    80 1.320373e-05 3.182525e-03 0.9920084</span></span>
-<span><span class="co">#&gt; 21  0.09576091    89    95 1.443542e-05 3.354775e-03 0.9891317</span></span>
-<span><span class="co">#&gt; 22  0.09473210     7    51 1.784126e-05 3.864824e-03 0.9891317</span></span>
-<span><span class="co">#&gt; 23 -0.09386896    53    58 2.127621e-05 4.313589e-03 0.9891317</span></span>
-<span><span class="co">#&gt; 24 -0.09366615    29    83 2.217012e-05 4.421098e-03 0.9891317</span></span>
-<span><span class="co">#&gt; 25 -0.09341148    21    89 2.334320e-05 4.556945e-03 0.9810727</span></span>
-<span><span class="co">#&gt; 26 -0.09156391    49    93 3.380042e-05 5.955970e-03 0.9810727</span></span>
-<span><span class="co">#&gt; 27 -0.09150710    80    90 3.418362e-05 6.002081e-03 0.9810727</span></span>
-<span><span class="co">#&gt; 28  0.09101505     7    53 3.767965e-05 6.408100e-03 0.9810727</span></span>
-<span><span class="co">#&gt; 29  0.09050688    21    84 4.164469e-05 6.838780e-03 0.9810727</span></span>
-<span><span class="co">#&gt; 30  0.08965490    72    73 4.919364e-05 7.581864e-03 0.9810727</span></span>
-<span><span class="co">#&gt; 31 -0.08934025    29    99 5.229603e-05 7.861414e-03 0.9810727</span></span>
-<span><span class="co">#&gt; 32 -0.08906819     9    95 5.512706e-05 8.104756e-03 0.9810727</span></span>
-<span><span class="co">#&gt; 33  0.08888345     2    49 5.713142e-05 8.270670e-03 0.9810727</span></span>
-<span><span class="co">#&gt; 34  0.08850681    86    90 6.143361e-05 8.610158e-03 0.9810727</span></span>
-<span><span class="co">#&gt; 35  0.08805868    17    53 6.695168e-05 9.015173e-03 0.9810727</span></span>
-<span><span class="co">#&gt; 36  0.08790809    28    48 6.890882e-05 9.151288e-03 0.9810727</span></span>
-<span><span class="co">#&gt; 37  0.08783471    33    58 6.988208e-05 9.217594e-03 0.9682377</span></span>
-<span><span class="co">#&gt; 38 -0.08705796     7    49 8.101242e-05 1.021362e-02 0.9682377</span></span>
-<span><span class="co">#&gt; 39  0.08645033    20    46 9.086544e-05 1.102466e-02 0.9682377</span></span>
-<span><span class="co">#&gt; 40  0.08609950    48    86 9.705860e-05 1.150392e-02 0.9682377</span></span>
-<span><span class="co">#&gt; 41  0.08598769    21    52 9.911455e-05 1.165816e-02 0.9682377</span></span>
-<span><span class="co">#&gt; 42  0.08555275    32    95 1.075098e-04 1.226435e-02 0.9682377</span></span>
-<span><span class="co">#&gt; 43  0.08548231    17    51 1.089310e-04 1.236336e-02 0.9424722</span></span>
-<span><span class="co">#&gt; 44  0.08470370    80    83 1.258658e-04 1.382356e-02 0.9424722</span></span>
-<span><span class="co">#&gt; 45  0.08442510    80    82 1.325062e-04 1.437067e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 46  0.08271606    80    93 1.810274e-04 1.845631e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 47  0.08235175    46    91 1.933328e-04 1.941579e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 5  -0.13418892    29    86 1.120812e-09 1.093997e-06 0.9999516</span></span>
+<span><span class="co">#&gt; 6   0.12594697    21    72 1.103836e-08 8.978563e-06 0.9998400</span></span>
+<span><span class="co">#&gt; 7   0.11956105    28    86 5.890924e-08 3.853590e-05 0.9998400</span></span>
+<span><span class="co">#&gt; 8  -0.11723897    26    80 1.060526e-07 5.816172e-05 0.9998400</span></span>
+<span><span class="co">#&gt; 9  -0.11711625    72    89 1.093655e-07 5.930499e-05 0.9972804</span></span>
+<span><span class="co">#&gt; 10  0.10658013    20    21 1.366610e-06 5.925275e-04 0.9972804</span></span>
+<span><span class="co">#&gt; 11  0.10589778    21    73 1.596859e-06 6.678429e-04 0.9972804</span></span>
+<span><span class="co">#&gt; 12  0.10478689    20    91 2.053403e-06 8.024425e-04 0.9972804</span></span>
+<span><span class="co">#&gt; 13  0.10420836     7    52 2.338382e-06 8.778605e-04 0.9944557</span></span>
+<span><span class="co">#&gt; 14  0.10236077    87    95 3.525186e-06 1.224964e-03 0.9944557</span></span>
+<span><span class="co">#&gt; 15  0.10113550    27    95 4.610444e-06 1.500047e-03 0.9920084</span></span>
+<span><span class="co">#&gt; 16  0.09928954    21    51 6.868357e-06 2.046549e-03 0.9920084</span></span>
+<span><span class="co">#&gt; 17  0.09791914    21    88 9.192373e-06 2.520616e-03 0.9920084</span></span>
+<span><span class="co">#&gt; 18  0.09719685    18    95 1.070232e-05 2.790102e-03 0.9920084</span></span>
+<span><span class="co">#&gt; 19  0.09621791    28    90 1.313007e-05 3.171817e-03 0.9920084</span></span>
+<span><span class="co">#&gt; 20  0.09619099    12    80 1.320374e-05 3.182526e-03 0.9920084</span></span>
+<span><span class="co">#&gt; 21  0.09576091    89    95 1.443542e-05 3.354777e-03 0.9891317</span></span>
+<span><span class="co">#&gt; 22  0.09473210     7    51 1.784126e-05 3.864825e-03 0.9891317</span></span>
+<span><span class="co">#&gt; 23 -0.09386896    53    58 2.127622e-05 4.313590e-03 0.9891317</span></span>
+<span><span class="co">#&gt; 24 -0.09366615    29    83 2.217013e-05 4.421099e-03 0.9891317</span></span>
+<span><span class="co">#&gt; 25 -0.09341148    21    89 2.334321e-05 4.556947e-03 0.9810727</span></span>
+<span><span class="co">#&gt; 26 -0.09156391    49    93 3.380043e-05 5.955972e-03 0.9810727</span></span>
+<span><span class="co">#&gt; 27 -0.09150710    80    90 3.418363e-05 6.002083e-03 0.9810727</span></span>
+<span><span class="co">#&gt; 28  0.09101505     7    53 3.767966e-05 6.408102e-03 0.9810727</span></span>
+<span><span class="co">#&gt; 29  0.09050688    21    84 4.164471e-05 6.838782e-03 0.9810727</span></span>
+<span><span class="co">#&gt; 30  0.08965490    72    73 4.919365e-05 7.581866e-03 0.9810727</span></span>
+<span><span class="co">#&gt; 31 -0.08934025    29    99 5.229604e-05 7.861416e-03 0.9810727</span></span>
+<span><span class="co">#&gt; 32 -0.08906819     9    95 5.512708e-05 8.104759e-03 0.9810727</span></span>
+<span><span class="co">#&gt; 33  0.08888345     2    49 5.713144e-05 8.270673e-03 0.9810727</span></span>
+<span><span class="co">#&gt; 34  0.08850681    86    90 6.143363e-05 8.610161e-03 0.9810727</span></span>
+<span><span class="co">#&gt; 35  0.08805868    17    53 6.695170e-05 9.015175e-03 0.9810727</span></span>
+<span><span class="co">#&gt; 36  0.08790809    28    48 6.890884e-05 9.151291e-03 0.9810727</span></span>
+<span><span class="co">#&gt; 37  0.08783471    33    58 6.988211e-05 9.217597e-03 0.9682377</span></span>
+<span><span class="co">#&gt; 38 -0.08705796     7    49 8.101244e-05 1.021362e-02 0.9682377</span></span>
+<span><span class="co">#&gt; 39  0.08645033    20    46 9.086547e-05 1.102466e-02 0.9682377</span></span>
+<span><span class="co">#&gt; 40  0.08609950    48    86 9.705862e-05 1.150392e-02 0.9682377</span></span>
+<span><span class="co">#&gt; 41  0.08598769    21    52 9.911458e-05 1.165816e-02 0.9682377</span></span>
+<span><span class="co">#&gt; 42  0.08555275    32    95 1.075099e-04 1.226435e-02 0.9682377</span></span>
+<span><span class="co">#&gt; 43  0.08548231    17    51 1.089311e-04 1.236337e-02 0.9424721</span></span>
+<span><span class="co">#&gt; 44  0.08470370    80    83 1.258659e-04 1.382356e-02 0.9424721</span></span>
+<span><span class="co">#&gt; 45  0.08442510    80    82 1.325062e-04 1.437068e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 46  0.08271606    80    93 1.810275e-04 1.845632e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 47  0.08235175    46    91 1.933329e-04 1.941579e-02 0.9174573</span></span>
 <span><span class="co">#&gt; 48  0.08217787    25    95 1.994788e-04 1.988432e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 49 -0.08170331    29    87 2.171998e-04 2.119714e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 50  0.08123632    19    29 2.360716e-04 2.253605e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 51  0.08101702    51    84 2.454546e-04 2.318024e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 52  0.08030748    16    93 2.782642e-04 2.532795e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 53  0.08006503    28    52 2.903869e-04 2.608270e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 54 -0.07941656    41    80 3.252832e-04 2.814823e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 55  0.07941410    54    89 3.254228e-04 2.815619e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 56 -0.07934653    28    80 3.292783e-04 2.837510e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 57  0.07916783    29    92 3.396801e-04 2.895701e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 58 -0.07866905    17    86 3.703634e-04 3.060292e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 59  0.07827749    16    29 3.962445e-04 3.191461e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 60 -0.07808262    73    89 4.097451e-04 3.257289e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 61  0.07766261    52    67 4.403164e-04 3.400206e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 62  0.07762917    25    87 4.428395e-04 3.411636e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 63 -0.07739378     9    93 4.609871e-04 3.492294e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 64  0.07738885    31    80 4.613746e-04 3.493987e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 65 -0.07718681    80    94 4.775134e-04 3.563443e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 49 -0.08170331    29    87 2.171999e-04 2.119715e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 50  0.08123632    19    29 2.360716e-04 2.253606e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 51  0.08101702    51    84 2.454547e-04 2.318024e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 52  0.08030748    16    93 2.782643e-04 2.532796e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 53  0.08006503    28    52 2.903870e-04 2.608271e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 54 -0.07941656    41    80 3.252833e-04 2.814824e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 55  0.07941410    54    89 3.254229e-04 2.815620e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 56 -0.07934653    28    80 3.292784e-04 2.837511e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 57  0.07916783    29    92 3.396802e-04 2.895702e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 58 -0.07866905    17    86 3.703635e-04 3.060293e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 59  0.07827749    16    29 3.962446e-04 3.191462e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 60 -0.07808262    73    89 4.097452e-04 3.257290e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 61  0.07766261    52    67 4.403165e-04 3.400207e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 62  0.07762917    25    87 4.428396e-04 3.411637e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 63 -0.07739378     9    93 4.609872e-04 3.492295e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 64  0.07738885    31    80 4.613747e-04 3.493988e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 65 -0.07718681    80    94 4.775136e-04 3.563444e-02 0.9174573</span></span>
 <span></span>
 <span><span class="co"># significant based on FDR cutoff Q=0.05?</span></span>
 <span><span class="va">num.significant.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">test.results</span><span class="op">$</span><span class="va">qval</span> <span class="op">&lt;=</span> <span class="fl">0.05</span><span class="op">)</span></span>
@@ -769,70 +769,70 @@ Figure 5.1: GeneNet example
 <span><span class="co">#&gt; 2   0.22405545    52    53 2.220446e-16 3.612205e-13 1.0000000</span></span>
 <span><span class="co">#&gt; 3   0.21507824    51    52 2.220446e-16 3.612205e-13 1.0000000</span></span>
 <span><span class="co">#&gt; 4   0.17328863     7    93 3.108624e-15 3.792816e-12 0.9999945</span></span>
-<span><span class="co">#&gt; 5  -0.13418892    29    86 1.120811e-09 1.093997e-06 0.9999516</span></span>
-<span><span class="co">#&gt; 6   0.12594697    21    72 1.103836e-08 8.978558e-06 0.9998400</span></span>
-<span><span class="co">#&gt; 7   0.11956105    28    86 5.890921e-08 3.853588e-05 0.9998400</span></span>
-<span><span class="co">#&gt; 8  -0.11723897    26    80 1.060525e-07 5.816169e-05 0.9998400</span></span>
-<span><span class="co">#&gt; 9  -0.11711625    72    89 1.093654e-07 5.930496e-05 0.9972804</span></span>
-<span><span class="co">#&gt; 10  0.10658013    20    21 1.366610e-06 5.925272e-04 0.9972804</span></span>
-<span><span class="co">#&gt; 11  0.10589778    21    73 1.596859e-06 6.678426e-04 0.9972804</span></span>
-<span><span class="co">#&gt; 12  0.10478689    20    91 2.053403e-06 8.024421e-04 0.9972804</span></span>
-<span><span class="co">#&gt; 13  0.10420836     7    52 2.338381e-06 8.778601e-04 0.9944557</span></span>
-<span><span class="co">#&gt; 14  0.10236077    87    95 3.525185e-06 1.224963e-03 0.9944557</span></span>
-<span><span class="co">#&gt; 15  0.10113550    27    95 4.610442e-06 1.500047e-03 0.9920084</span></span>
-<span><span class="co">#&gt; 16  0.09928954    21    51 6.868355e-06 2.046548e-03 0.9920084</span></span>
-<span><span class="co">#&gt; 17  0.09791914    21    88 9.192370e-06 2.520615e-03 0.9920084</span></span>
-<span><span class="co">#&gt; 18  0.09719685    18    95 1.070232e-05 2.790101e-03 0.9920084</span></span>
-<span><span class="co">#&gt; 19  0.09621791    28    90 1.313007e-05 3.171816e-03 0.9920084</span></span>
-<span><span class="co">#&gt; 20  0.09619099    12    80 1.320373e-05 3.182525e-03 0.9920084</span></span>
-<span><span class="co">#&gt; 21  0.09576091    89    95 1.443542e-05 3.354775e-03 0.9891317</span></span>
-<span><span class="co">#&gt; 22  0.09473210     7    51 1.784126e-05 3.864824e-03 0.9891317</span></span>
-<span><span class="co">#&gt; 23 -0.09386896    53    58 2.127621e-05 4.313589e-03 0.9891317</span></span>
-<span><span class="co">#&gt; 24 -0.09366615    29    83 2.217012e-05 4.421098e-03 0.9891317</span></span>
-<span><span class="co">#&gt; 25 -0.09341148    21    89 2.334320e-05 4.556945e-03 0.9810727</span></span>
-<span><span class="co">#&gt; 26 -0.09156391    49    93 3.380042e-05 5.955970e-03 0.9810727</span></span>
-<span><span class="co">#&gt; 27 -0.09150710    80    90 3.418362e-05 6.002081e-03 0.9810727</span></span>
-<span><span class="co">#&gt; 28  0.09101505     7    53 3.767965e-05 6.408100e-03 0.9810727</span></span>
-<span><span class="co">#&gt; 29  0.09050688    21    84 4.164469e-05 6.838780e-03 0.9810727</span></span>
-<span><span class="co">#&gt; 30  0.08965490    72    73 4.919364e-05 7.581864e-03 0.9810727</span></span>
-<span><span class="co">#&gt; 31 -0.08934025    29    99 5.229603e-05 7.861414e-03 0.9810727</span></span>
-<span><span class="co">#&gt; 32 -0.08906819     9    95 5.512706e-05 8.104756e-03 0.9810727</span></span>
-<span><span class="co">#&gt; 33  0.08888345     2    49 5.713142e-05 8.270670e-03 0.9810727</span></span>
-<span><span class="co">#&gt; 34  0.08850681    86    90 6.143361e-05 8.610158e-03 0.9810727</span></span>
-<span><span class="co">#&gt; 35  0.08805868    17    53 6.695168e-05 9.015173e-03 0.9810727</span></span>
-<span><span class="co">#&gt; 36  0.08790809    28    48 6.890882e-05 9.151288e-03 0.9810727</span></span>
-<span><span class="co">#&gt; 37  0.08783471    33    58 6.988208e-05 9.217594e-03 0.9682377</span></span>
-<span><span class="co">#&gt; 38 -0.08705796     7    49 8.101242e-05 1.021362e-02 0.9682377</span></span>
-<span><span class="co">#&gt; 39  0.08645033    20    46 9.086544e-05 1.102466e-02 0.9682377</span></span>
-<span><span class="co">#&gt; 40  0.08609950    48    86 9.705860e-05 1.150392e-02 0.9682377</span></span>
-<span><span class="co">#&gt; 41  0.08598769    21    52 9.911455e-05 1.165816e-02 0.9682377</span></span>
-<span><span class="co">#&gt; 42  0.08555275    32    95 1.075098e-04 1.226435e-02 0.9682377</span></span>
-<span><span class="co">#&gt; 43  0.08548231    17    51 1.089310e-04 1.236336e-02 0.9424722</span></span>
-<span><span class="co">#&gt; 44  0.08470370    80    83 1.258658e-04 1.382356e-02 0.9424722</span></span>
-<span><span class="co">#&gt; 45  0.08442510    80    82 1.325062e-04 1.437067e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 46  0.08271606    80    93 1.810274e-04 1.845631e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 47  0.08235175    46    91 1.933328e-04 1.941579e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 5  -0.13418892    29    86 1.120812e-09 1.093997e-06 0.9999516</span></span>
+<span><span class="co">#&gt; 6   0.12594697    21    72 1.103836e-08 8.978563e-06 0.9998400</span></span>
+<span><span class="co">#&gt; 7   0.11956105    28    86 5.890924e-08 3.853590e-05 0.9998400</span></span>
+<span><span class="co">#&gt; 8  -0.11723897    26    80 1.060526e-07 5.816172e-05 0.9998400</span></span>
+<span><span class="co">#&gt; 9  -0.11711625    72    89 1.093655e-07 5.930499e-05 0.9972804</span></span>
+<span><span class="co">#&gt; 10  0.10658013    20    21 1.366610e-06 5.925275e-04 0.9972804</span></span>
+<span><span class="co">#&gt; 11  0.10589778    21    73 1.596859e-06 6.678429e-04 0.9972804</span></span>
+<span><span class="co">#&gt; 12  0.10478689    20    91 2.053403e-06 8.024425e-04 0.9972804</span></span>
+<span><span class="co">#&gt; 13  0.10420836     7    52 2.338382e-06 8.778605e-04 0.9944557</span></span>
+<span><span class="co">#&gt; 14  0.10236077    87    95 3.525186e-06 1.224964e-03 0.9944557</span></span>
+<span><span class="co">#&gt; 15  0.10113550    27    95 4.610444e-06 1.500047e-03 0.9920084</span></span>
+<span><span class="co">#&gt; 16  0.09928954    21    51 6.868357e-06 2.046549e-03 0.9920084</span></span>
+<span><span class="co">#&gt; 17  0.09791914    21    88 9.192373e-06 2.520616e-03 0.9920084</span></span>
+<span><span class="co">#&gt; 18  0.09719685    18    95 1.070232e-05 2.790102e-03 0.9920084</span></span>
+<span><span class="co">#&gt; 19  0.09621791    28    90 1.313007e-05 3.171817e-03 0.9920084</span></span>
+<span><span class="co">#&gt; 20  0.09619099    12    80 1.320374e-05 3.182526e-03 0.9920084</span></span>
+<span><span class="co">#&gt; 21  0.09576091    89    95 1.443542e-05 3.354777e-03 0.9891317</span></span>
+<span><span class="co">#&gt; 22  0.09473210     7    51 1.784126e-05 3.864825e-03 0.9891317</span></span>
+<span><span class="co">#&gt; 23 -0.09386896    53    58 2.127622e-05 4.313590e-03 0.9891317</span></span>
+<span><span class="co">#&gt; 24 -0.09366615    29    83 2.217013e-05 4.421099e-03 0.9891317</span></span>
+<span><span class="co">#&gt; 25 -0.09341148    21    89 2.334321e-05 4.556947e-03 0.9810727</span></span>
+<span><span class="co">#&gt; 26 -0.09156391    49    93 3.380043e-05 5.955972e-03 0.9810727</span></span>
+<span><span class="co">#&gt; 27 -0.09150710    80    90 3.418363e-05 6.002083e-03 0.9810727</span></span>
+<span><span class="co">#&gt; 28  0.09101505     7    53 3.767966e-05 6.408102e-03 0.9810727</span></span>
+<span><span class="co">#&gt; 29  0.09050688    21    84 4.164471e-05 6.838782e-03 0.9810727</span></span>
+<span><span class="co">#&gt; 30  0.08965490    72    73 4.919365e-05 7.581866e-03 0.9810727</span></span>
+<span><span class="co">#&gt; 31 -0.08934025    29    99 5.229604e-05 7.861416e-03 0.9810727</span></span>
+<span><span class="co">#&gt; 32 -0.08906819     9    95 5.512708e-05 8.104759e-03 0.9810727</span></span>
+<span><span class="co">#&gt; 33  0.08888345     2    49 5.713144e-05 8.270673e-03 0.9810727</span></span>
+<span><span class="co">#&gt; 34  0.08850681    86    90 6.143363e-05 8.610161e-03 0.9810727</span></span>
+<span><span class="co">#&gt; 35  0.08805868    17    53 6.695170e-05 9.015175e-03 0.9810727</span></span>
+<span><span class="co">#&gt; 36  0.08790809    28    48 6.890884e-05 9.151291e-03 0.9810727</span></span>
+<span><span class="co">#&gt; 37  0.08783471    33    58 6.988211e-05 9.217597e-03 0.9682377</span></span>
+<span><span class="co">#&gt; 38 -0.08705796     7    49 8.101244e-05 1.021362e-02 0.9682377</span></span>
+<span><span class="co">#&gt; 39  0.08645033    20    46 9.086547e-05 1.102466e-02 0.9682377</span></span>
+<span><span class="co">#&gt; 40  0.08609950    48    86 9.705862e-05 1.150392e-02 0.9682377</span></span>
+<span><span class="co">#&gt; 41  0.08598769    21    52 9.911458e-05 1.165816e-02 0.9682377</span></span>
+<span><span class="co">#&gt; 42  0.08555275    32    95 1.075099e-04 1.226435e-02 0.9682377</span></span>
+<span><span class="co">#&gt; 43  0.08548231    17    51 1.089311e-04 1.236337e-02 0.9424721</span></span>
+<span><span class="co">#&gt; 44  0.08470370    80    83 1.258659e-04 1.382356e-02 0.9424721</span></span>
+<span><span class="co">#&gt; 45  0.08442510    80    82 1.325062e-04 1.437068e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 46  0.08271606    80    93 1.810275e-04 1.845632e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 47  0.08235175    46    91 1.933329e-04 1.941579e-02 0.9174573</span></span>
 <span><span class="co">#&gt; 48  0.08217787    25    95 1.994788e-04 1.988432e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 49 -0.08170331    29    87 2.171998e-04 2.119714e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 50  0.08123632    19    29 2.360716e-04 2.253605e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 51  0.08101702    51    84 2.454546e-04 2.318024e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 52  0.08030748    16    93 2.782642e-04 2.532795e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 53  0.08006503    28    52 2.903869e-04 2.608270e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 54 -0.07941656    41    80 3.252832e-04 2.814823e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 55  0.07941410    54    89 3.254228e-04 2.815619e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 56 -0.07934653    28    80 3.292783e-04 2.837510e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 57  0.07916783    29    92 3.396801e-04 2.895701e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 58 -0.07866905    17    86 3.703634e-04 3.060292e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 59  0.07827749    16    29 3.962445e-04 3.191461e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 60 -0.07808262    73    89 4.097451e-04 3.257289e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 61  0.07766261    52    67 4.403164e-04 3.400206e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 62  0.07762917    25    87 4.428395e-04 3.411636e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 63 -0.07739378     9    93 4.609871e-04 3.492294e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 64  0.07738885    31    80 4.613746e-04 3.493987e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 65 -0.07718681    80    94 4.775134e-04 3.563443e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 66  0.07706275    27    58 4.876830e-04 3.606178e-02 0.8297811</span></span>
-<span><span class="co">#&gt; 67 -0.07610709    16    83 5.730531e-04 4.085919e-02 0.8297811</span></span>
-<span><span class="co">#&gt; 68  0.07550557    53    84 6.337142e-04 4.406471e-02 0.8297811</span></span>
+<span><span class="co">#&gt; 49 -0.08170331    29    87 2.171999e-04 2.119715e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 50  0.08123632    19    29 2.360716e-04 2.253606e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 51  0.08101702    51    84 2.454547e-04 2.318024e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 52  0.08030748    16    93 2.782643e-04 2.532796e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 53  0.08006503    28    52 2.903870e-04 2.608271e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 54 -0.07941656    41    80 3.252833e-04 2.814824e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 55  0.07941410    54    89 3.254229e-04 2.815620e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 56 -0.07934653    28    80 3.292784e-04 2.837511e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 57  0.07916783    29    92 3.396802e-04 2.895702e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 58 -0.07866905    17    86 3.703635e-04 3.060293e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 59  0.07827749    16    29 3.962446e-04 3.191462e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 60 -0.07808262    73    89 4.097452e-04 3.257290e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 61  0.07766261    52    67 4.403165e-04 3.400207e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 62  0.07762917    25    87 4.428396e-04 3.411637e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 63 -0.07739378     9    93 4.609872e-04 3.492295e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 64  0.07738885    31    80 4.613747e-04 3.493988e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 65 -0.07718681    80    94 4.775136e-04 3.563444e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 66  0.07706275    27    58 4.876831e-04 3.606179e-02 0.8297811</span></span>
+<span><span class="co">#&gt; 67 -0.07610709    16    83 5.730532e-04 4.085920e-02 0.8297811</span></span>
+<span><span class="co">#&gt; 68  0.07550557    53    84 6.337143e-04 4.406472e-02 0.8297811</span></span>
 <span></span>
 <span><span class="co"># significant based on "local fdr" cutoff (prob &gt; 0.9)?</span></span>
 <span><span class="va">num.significant.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">test.results</span><span class="op">$</span><span class="va">prob</span> <span class="op">&gt;</span> <span class="fl">0.9</span><span class="op">)</span></span>
@@ -842,67 +842,67 @@ Figure 5.1: GeneNet example
 <span><span class="co">#&gt; 2   0.22405545    52    53 2.220446e-16 3.612205e-13 1.0000000</span></span>
 <span><span class="co">#&gt; 3   0.21507824    51    52 2.220446e-16 3.612205e-13 1.0000000</span></span>
 <span><span class="co">#&gt; 4   0.17328863     7    93 3.108624e-15 3.792816e-12 0.9999945</span></span>
-<span><span class="co">#&gt; 5  -0.13418892    29    86 1.120811e-09 1.093997e-06 0.9999516</span></span>
-<span><span class="co">#&gt; 6   0.12594697    21    72 1.103836e-08 8.978558e-06 0.9998400</span></span>
-<span><span class="co">#&gt; 7   0.11956105    28    86 5.890921e-08 3.853588e-05 0.9998400</span></span>
-<span><span class="co">#&gt; 8  -0.11723897    26    80 1.060525e-07 5.816169e-05 0.9998400</span></span>
-<span><span class="co">#&gt; 9  -0.11711625    72    89 1.093654e-07 5.930496e-05 0.9972804</span></span>
-<span><span class="co">#&gt; 10  0.10658013    20    21 1.366610e-06 5.925272e-04 0.9972804</span></span>
-<span><span class="co">#&gt; 11  0.10589778    21    73 1.596859e-06 6.678426e-04 0.9972804</span></span>
-<span><span class="co">#&gt; 12  0.10478689    20    91 2.053403e-06 8.024421e-04 0.9972804</span></span>
-<span><span class="co">#&gt; 13  0.10420836     7    52 2.338381e-06 8.778601e-04 0.9944557</span></span>
-<span><span class="co">#&gt; 14  0.10236077    87    95 3.525185e-06 1.224963e-03 0.9944557</span></span>
-<span><span class="co">#&gt; 15  0.10113550    27    95 4.610442e-06 1.500047e-03 0.9920084</span></span>
-<span><span class="co">#&gt; 16  0.09928954    21    51 6.868355e-06 2.046548e-03 0.9920084</span></span>
-<span><span class="co">#&gt; 17  0.09791914    21    88 9.192370e-06 2.520615e-03 0.9920084</span></span>
-<span><span class="co">#&gt; 18  0.09719685    18    95 1.070232e-05 2.790101e-03 0.9920084</span></span>
-<span><span class="co">#&gt; 19  0.09621791    28    90 1.313007e-05 3.171816e-03 0.9920084</span></span>
-<span><span class="co">#&gt; 20  0.09619099    12    80 1.320373e-05 3.182525e-03 0.9920084</span></span>
-<span><span class="co">#&gt; 21  0.09576091    89    95 1.443542e-05 3.354775e-03 0.9891317</span></span>
-<span><span class="co">#&gt; 22  0.09473210     7    51 1.784126e-05 3.864824e-03 0.9891317</span></span>
-<span><span class="co">#&gt; 23 -0.09386896    53    58 2.127621e-05 4.313589e-03 0.9891317</span></span>
-<span><span class="co">#&gt; 24 -0.09366615    29    83 2.217012e-05 4.421098e-03 0.9891317</span></span>
-<span><span class="co">#&gt; 25 -0.09341148    21    89 2.334320e-05 4.556945e-03 0.9810727</span></span>
-<span><span class="co">#&gt; 26 -0.09156391    49    93 3.380042e-05 5.955970e-03 0.9810727</span></span>
-<span><span class="co">#&gt; 27 -0.09150710    80    90 3.418362e-05 6.002081e-03 0.9810727</span></span>
-<span><span class="co">#&gt; 28  0.09101505     7    53 3.767965e-05 6.408100e-03 0.9810727</span></span>
-<span><span class="co">#&gt; 29  0.09050688    21    84 4.164469e-05 6.838780e-03 0.9810727</span></span>
-<span><span class="co">#&gt; 30  0.08965490    72    73 4.919364e-05 7.581864e-03 0.9810727</span></span>
-<span><span class="co">#&gt; 31 -0.08934025    29    99 5.229603e-05 7.861414e-03 0.9810727</span></span>
-<span><span class="co">#&gt; 32 -0.08906819     9    95 5.512706e-05 8.104756e-03 0.9810727</span></span>
-<span><span class="co">#&gt; 33  0.08888345     2    49 5.713142e-05 8.270670e-03 0.9810727</span></span>
-<span><span class="co">#&gt; 34  0.08850681    86    90 6.143361e-05 8.610158e-03 0.9810727</span></span>
-<span><span class="co">#&gt; 35  0.08805868    17    53 6.695168e-05 9.015173e-03 0.9810727</span></span>
-<span><span class="co">#&gt; 36  0.08790809    28    48 6.890882e-05 9.151288e-03 0.9810727</span></span>
-<span><span class="co">#&gt; 37  0.08783471    33    58 6.988208e-05 9.217594e-03 0.9682377</span></span>
-<span><span class="co">#&gt; 38 -0.08705796     7    49 8.101242e-05 1.021362e-02 0.9682377</span></span>
-<span><span class="co">#&gt; 39  0.08645033    20    46 9.086544e-05 1.102466e-02 0.9682377</span></span>
-<span><span class="co">#&gt; 40  0.08609950    48    86 9.705860e-05 1.150392e-02 0.9682377</span></span>
-<span><span class="co">#&gt; 41  0.08598769    21    52 9.911455e-05 1.165816e-02 0.9682377</span></span>
-<span><span class="co">#&gt; 42  0.08555275    32    95 1.075098e-04 1.226435e-02 0.9682377</span></span>
-<span><span class="co">#&gt; 43  0.08548231    17    51 1.089310e-04 1.236336e-02 0.9424722</span></span>
-<span><span class="co">#&gt; 44  0.08470370    80    83 1.258658e-04 1.382356e-02 0.9424722</span></span>
-<span><span class="co">#&gt; 45  0.08442510    80    82 1.325062e-04 1.437067e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 46  0.08271606    80    93 1.810274e-04 1.845631e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 47  0.08235175    46    91 1.933328e-04 1.941579e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 5  -0.13418892    29    86 1.120812e-09 1.093997e-06 0.9999516</span></span>
+<span><span class="co">#&gt; 6   0.12594697    21    72 1.103836e-08 8.978563e-06 0.9998400</span></span>
+<span><span class="co">#&gt; 7   0.11956105    28    86 5.890924e-08 3.853590e-05 0.9998400</span></span>
+<span><span class="co">#&gt; 8  -0.11723897    26    80 1.060526e-07 5.816172e-05 0.9998400</span></span>
+<span><span class="co">#&gt; 9  -0.11711625    72    89 1.093655e-07 5.930499e-05 0.9972804</span></span>
+<span><span class="co">#&gt; 10  0.10658013    20    21 1.366610e-06 5.925275e-04 0.9972804</span></span>
+<span><span class="co">#&gt; 11  0.10589778    21    73 1.596859e-06 6.678429e-04 0.9972804</span></span>
+<span><span class="co">#&gt; 12  0.10478689    20    91 2.053403e-06 8.024425e-04 0.9972804</span></span>
+<span><span class="co">#&gt; 13  0.10420836     7    52 2.338382e-06 8.778605e-04 0.9944557</span></span>
+<span><span class="co">#&gt; 14  0.10236077    87    95 3.525186e-06 1.224964e-03 0.9944557</span></span>
+<span><span class="co">#&gt; 15  0.10113550    27    95 4.610444e-06 1.500047e-03 0.9920084</span></span>
+<span><span class="co">#&gt; 16  0.09928954    21    51 6.868357e-06 2.046549e-03 0.9920084</span></span>
+<span><span class="co">#&gt; 17  0.09791914    21    88 9.192373e-06 2.520616e-03 0.9920084</span></span>
+<span><span class="co">#&gt; 18  0.09719685    18    95 1.070232e-05 2.790102e-03 0.9920084</span></span>
+<span><span class="co">#&gt; 19  0.09621791    28    90 1.313007e-05 3.171817e-03 0.9920084</span></span>
+<span><span class="co">#&gt; 20  0.09619099    12    80 1.320374e-05 3.182526e-03 0.9920084</span></span>
+<span><span class="co">#&gt; 21  0.09576091    89    95 1.443542e-05 3.354777e-03 0.9891317</span></span>
+<span><span class="co">#&gt; 22  0.09473210     7    51 1.784126e-05 3.864825e-03 0.9891317</span></span>
+<span><span class="co">#&gt; 23 -0.09386896    53    58 2.127622e-05 4.313590e-03 0.9891317</span></span>
+<span><span class="co">#&gt; 24 -0.09366615    29    83 2.217013e-05 4.421099e-03 0.9891317</span></span>
+<span><span class="co">#&gt; 25 -0.09341148    21    89 2.334321e-05 4.556947e-03 0.9810727</span></span>
+<span><span class="co">#&gt; 26 -0.09156391    49    93 3.380043e-05 5.955972e-03 0.9810727</span></span>
+<span><span class="co">#&gt; 27 -0.09150710    80    90 3.418363e-05 6.002083e-03 0.9810727</span></span>
+<span><span class="co">#&gt; 28  0.09101505     7    53 3.767966e-05 6.408102e-03 0.9810727</span></span>
+<span><span class="co">#&gt; 29  0.09050688    21    84 4.164471e-05 6.838782e-03 0.9810727</span></span>
+<span><span class="co">#&gt; 30  0.08965490    72    73 4.919365e-05 7.581866e-03 0.9810727</span></span>
+<span><span class="co">#&gt; 31 -0.08934025    29    99 5.229604e-05 7.861416e-03 0.9810727</span></span>
+<span><span class="co">#&gt; 32 -0.08906819     9    95 5.512708e-05 8.104759e-03 0.9810727</span></span>
+<span><span class="co">#&gt; 33  0.08888345     2    49 5.713144e-05 8.270673e-03 0.9810727</span></span>
+<span><span class="co">#&gt; 34  0.08850681    86    90 6.143363e-05 8.610161e-03 0.9810727</span></span>
+<span><span class="co">#&gt; 35  0.08805868    17    53 6.695170e-05 9.015175e-03 0.9810727</span></span>
+<span><span class="co">#&gt; 36  0.08790809    28    48 6.890884e-05 9.151291e-03 0.9810727</span></span>
+<span><span class="co">#&gt; 37  0.08783471    33    58 6.988211e-05 9.217597e-03 0.9682377</span></span>
+<span><span class="co">#&gt; 38 -0.08705796     7    49 8.101244e-05 1.021362e-02 0.9682377</span></span>
+<span><span class="co">#&gt; 39  0.08645033    20    46 9.086547e-05 1.102466e-02 0.9682377</span></span>
+<span><span class="co">#&gt; 40  0.08609950    48    86 9.705862e-05 1.150392e-02 0.9682377</span></span>
+<span><span class="co">#&gt; 41  0.08598769    21    52 9.911458e-05 1.165816e-02 0.9682377</span></span>
+<span><span class="co">#&gt; 42  0.08555275    32    95 1.075099e-04 1.226435e-02 0.9682377</span></span>
+<span><span class="co">#&gt; 43  0.08548231    17    51 1.089311e-04 1.236337e-02 0.9424721</span></span>
+<span><span class="co">#&gt; 44  0.08470370    80    83 1.258659e-04 1.382356e-02 0.9424721</span></span>
+<span><span class="co">#&gt; 45  0.08442510    80    82 1.325062e-04 1.437068e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 46  0.08271606    80    93 1.810275e-04 1.845632e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 47  0.08235175    46    91 1.933329e-04 1.941579e-02 0.9174573</span></span>
 <span><span class="co">#&gt; 48  0.08217787    25    95 1.994788e-04 1.988432e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 49 -0.08170331    29    87 2.171998e-04 2.119714e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 50  0.08123632    19    29 2.360716e-04 2.253605e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 51  0.08101702    51    84 2.454546e-04 2.318024e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 52  0.08030748    16    93 2.782642e-04 2.532795e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 53  0.08006503    28    52 2.903869e-04 2.608270e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 54 -0.07941656    41    80 3.252832e-04 2.814823e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 55  0.07941410    54    89 3.254228e-04 2.815619e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 56 -0.07934653    28    80 3.292783e-04 2.837510e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 57  0.07916783    29    92 3.396801e-04 2.895701e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 58 -0.07866905    17    86 3.703634e-04 3.060292e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 59  0.07827749    16    29 3.962445e-04 3.191461e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 60 -0.07808262    73    89 4.097451e-04 3.257289e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 61  0.07766261    52    67 4.403164e-04 3.400206e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 62  0.07762917    25    87 4.428395e-04 3.411636e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 63 -0.07739378     9    93 4.609871e-04 3.492294e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 64  0.07738885    31    80 4.613746e-04 3.493987e-02 0.9174573</span></span>
-<span><span class="co">#&gt; 65 -0.07718681    80    94 4.775134e-04 3.563443e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 49 -0.08170331    29    87 2.171999e-04 2.119715e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 50  0.08123632    19    29 2.360716e-04 2.253606e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 51  0.08101702    51    84 2.454547e-04 2.318024e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 52  0.08030748    16    93 2.782643e-04 2.532796e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 53  0.08006503    28    52 2.903870e-04 2.608271e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 54 -0.07941656    41    80 3.252833e-04 2.814824e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 55  0.07941410    54    89 3.254229e-04 2.815620e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 56 -0.07934653    28    80 3.292784e-04 2.837511e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 57  0.07916783    29    92 3.396802e-04 2.895702e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 58 -0.07866905    17    86 3.703635e-04 3.060293e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 59  0.07827749    16    29 3.962446e-04 3.191462e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 60 -0.07808262    73    89 4.097452e-04 3.257290e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 61  0.07766261    52    67 4.403165e-04 3.400207e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 62  0.07762917    25    87 4.428396e-04 3.411637e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 63 -0.07739378     9    93 4.609872e-04 3.492295e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 64  0.07738885    31    80 4.613747e-04 3.493988e-02 0.9174573</span></span>
+<span><span class="co">#&gt; 65 -0.07718681    80    94 4.775136e-04 3.563444e-02 0.9174573</span></span>
 <span></span>
 <span><span class="co"># parameters of the mixture distribution used to compute p-values etc.</span></span>
 <span><span class="va">c</span> <span class="op">&lt;-</span> <span class="fu">fdrtool</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/fdrtool/man/fdrtool.html" class="external-link">fdrtool</a></span><span class="op">(</span><span class="fu">corpcor</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/corpcor/man/smtools.html" class="external-link">sm2vec</a></span><span class="op">(</span><span class="va">inferred.pcor</span><span class="op">)</span>, statistic<span class="op">=</span><span class="st">"correlation"</span><span class="op">)</span></span>
@@ -913,7 +913,7 @@ Figure 5.1: GeneNet example
 <span><span class="co">#&gt; Step 5... prepare for plotting</span></span>
 <span><span class="va">c</span><span class="op">$</span><span class="va">param</span></span>
 <span><span class="co">#&gt;          cutoff N.cens      eta0     eta0.SE    kappa kappa.SE</span></span>
-<span><span class="co">#&gt; [1,] 0.03553068   4352 0.9474623 0.005656465 2043.378 94.72266</span></span>
+<span><span class="co">#&gt; [1,] 0.03553068   4352 0.9474623 0.005656465 2043.377 94.72267</span></span>
 <span></span>
 <span><span class="co">## A random network with 20 nodes and 10 percent (=19) edges</span></span>
 <span><span class="va">true.pcor</span> <span class="op">&lt;-</span> <span class="fu">GeneNet</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GeneNet/man/ggm.simulate.pcor.html" class="external-link">ggm.simulate.pcor</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">0.1</span><span class="op">)</span></span>
@@ -1049,7 +1049,7 @@ Figure 5.4: Heatmaps
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/assign.html" class="external-link">assign</a></span><span class="op">(</span><span class="va">pam_name</span>, <span class="fu">cluster</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/cluster/man/pam.html" class="external-link">pam</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/dist.html" class="external-link">as.dist</a></span><span class="op">(</span><span class="va">dissADJ</span><span class="op">)</span>,<span class="va">j</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="va">pamTOM_name</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"pamTOM"</span>,<span class="va">j</span><span class="op">)</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/assign.html" class="external-link">assign</a></span><span class="op">(</span><span class="va">pamTOM_name</span>,<span class="fu">cluster</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/cluster/man/pam.html" class="external-link">pam</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/dist.html" class="external-link">as.dist</a></span><span class="op">(</span><span class="va">dissTOM</span><span class="op">)</span>,<span class="va">j</span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="va">tc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/get.html" class="external-link">get</a></span><span class="op">(</span><span class="va">pam_name</span><span class="op">)</span><span class="op">$</span><span class="va">clustering</span>,<span class="fu"><a href="https://rdrr.io/r/base/get.html" class="external-link">get</a></span><span class="op">(</span><span class="va">pamTOM_name</span><span class="op">)</span><span class="op">$</span><span class="va">clustering</span><span class="op">)</span></span>
+<span>  <span class="va">tc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/table.html" class="external-link">table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/get.html" class="external-link">get</a></span><span class="op">(</span><span class="va">pam_name</span><span class="op">)</span><span class="op">$</span><span class="va">clustering</span>,<span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/get.html" class="external-link">get</a></span><span class="op">(</span><span class="va">pamTOM_name</span><span class="op">)</span><span class="op">$</span><span class="va">clustering</span><span class="op">)</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">tc</span><span class="op">)</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="va">tc</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
@@ -1057,7 +1057,7 @@ Figure 5.4: Heatmaps
 <span><span class="va">colorDynamicTOM</span> <span class="op">&lt;-</span> <span class="fu">WGCNA</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/WGCNA/man/labels2colors.html" class="external-link">labels2colors</a></span><span class="op">(</span><span class="fu">cutreeDynamic</span><span class="op">(</span><span class="va">Tree</span>,method<span class="op">=</span><span class="st">"tree"</span>,minClusterSize<span class="op">=</span><span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">Colors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">pamTOM6</span><span class="op">$</span><span class="va">clustering</span>,<span class="va">colorStaticTOM</span>,<span class="va">colorDynamicTOM</span><span class="op">)</span></span>
 <span><span class="fu">WGCNA</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/WGCNA/man/plotDendroAndColors.html" class="external-link">plotDendroAndColors</a></span><span class="op">(</span><span class="va">Tree</span>, <span class="va">Colors</span>, dendroLabels<span class="op">=</span><span class="cn">FALSE</span>, hang<span class="op">=</span><span class="fl">0.03</span>, addGuide<span class="op">=</span><span class="cn">TRUE</span>, guideHang<span class="op">=</span><span class="fl">0.05</span><span class="op">)</span></span>
-<span><span class="va">meg</span> <span class="op">&lt;-</span> <span class="fu">WGCNA</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/WGCNA/man/moduleEigengenes.html" class="external-link">moduleEigengenes</a></span><span class="op">(</span><span class="va">dat</span>, color<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span>, softPower<span class="op">=</span><span class="fl">6</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">meg</span> <span class="op">&lt;-</span> <span class="fu">WGCNA</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/WGCNA/man/moduleEigengenes.html" class="external-link">moduleEigengenes</a></span><span class="op">(</span><span class="va">dat</span>, color<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span>, softPower<span class="op">=</span><span class="fl">6</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2" number="6">
 <h2 id="meta-data">
@@ -1066,12 +1066,12 @@ Figure 5.4: Heatmaps
 <p>This section is based on package <code>recount3</code>.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">hs</span> <span class="op">&lt;-</span> <span class="fu">recount3</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/recount3/man/available_projects.html" class="external-link">available_projects</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">hs</span>,<span class="va">file_source</span><span class="op">==</span><span class="st">"gtex"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">hs</span>,<span class="va">file_source</span><span class="op">==</span><span class="st">"gtex"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu">recount3</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/recount3/man/annotation_options.html" class="external-link">annotation_options</a></span><span class="op">(</span><span class="st">"human"</span><span class="op">)</span></span>
-<span><span class="va">blood_rse</span> <span class="op">&lt;-</span> <span class="fu">recount3</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/recount3/man/create_rse.html" class="external-link">create_rse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">hs</span>,<span class="va">project</span><span class="op">==</span><span class="st">"BLOOD"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">blood_rse</span> <span class="op">&lt;-</span> <span class="fu">recount3</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/recount3/man/create_rse.html" class="external-link">create_rse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">hs</span>,<span class="va">project</span><span class="op">==</span><span class="st">"BLOOD"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu">S4Vectors</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Annotated-class.html" class="external-link">metadata</a></span><span class="op">(</span><span class="va">blood_rse</span><span class="op">)</span></span>
 <span><span class="fu">SummarizedExperiment</span><span class="fu">::</span><span class="fu">rowRanges</span><span class="op">(</span><span class="va">blood_rse</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="fu">SummarizedExperiment</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData</a></span><span class="op">(</span><span class="va">blood_rse</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">]</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/row_colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="fu">SummarizedExperiment</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">colData</a></span><span class="op">(</span><span class="va">blood_rse</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span><span class="op">]</span></span>
 <span><span class="fu">recount3</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/recount3/man/expand_sra_attributes.html" class="external-link">expand_sra_attributes</a></span><span class="op">(</span><span class="va">blood_rse</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2" number="7">
@@ -1095,9 +1095,9 @@ Figure 5.4: Heatmaps
 <span><span class="co">#&gt; [28] "ENTREZID:63826"     "ENTREZID:6470"      "ENTREZID:6472"     </span></span>
 <span><span class="co">#&gt; [31] "ENTREZID:64902"     "ENTREZID:669"       "ENTREZID:875"      </span></span>
 <span><span class="co">#&gt; [34] "ENTREZID:9380"      "ENTREZID:1491"</span></span>
-<span><span class="va">kegg_t2g</span> <span class="op">&lt;-</span> <span class="fu">ldply</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">kegg</span>, <span class="va">nodes</span><span class="op">)</span>, <span class="va">data.frame</span><span class="op">)</span></span>
+<span><span class="va">kegg_t2g</span> <span class="op">&lt;-</span> <span class="fu">ldply</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">kegg</span>, <span class="va">nodes</span><span class="op">)</span>, <span class="va">data.frame</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">kegg_t2g</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"gs_name"</span>, <span class="st">"gene_symbol"</span><span class="op">)</span></span>
-<span><span class="va">VEGF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">kegg_t2g</span>,<span class="va">gs_name</span><span class="op">==</span><span class="st">"VEGF signaling pathway"</span><span class="op">)</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="va">VEGF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">kegg_t2g</span>,<span class="va">gs_name</span><span class="op">==</span><span class="st">"VEGF signaling pathway"</span><span class="op">)</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="va">eKEGG</span> <span class="op">&lt;-</span> <span class="fu">clusterProfiler</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/clusterProfiler/man/enricher.html" class="external-link">enricher</a></span><span class="op">(</span>gene<span class="op">=</span><span class="va">VEGF</span>, TERM2GENE <span class="op">=</span> <span class="va">kegg_t2g</span>,</span>
 <span>                                   universe<span class="op">=</span>,</span>
 <span>                                   pAdjustMethod <span class="op">=</span> <span class="st">"BH"</span>,</span>
@@ -1359,8 +1359,8 @@ Figure 5.4: Heatmaps
 <span><span class="co">#&gt; Fetch chromosome names and lengths from Ensembl ...OK</span></span>
 <span><span class="co">#&gt; Gather the metadata ... OK</span></span>
 <span><span class="co">#&gt; Make the TxDb object ... OK</span></span>
-<span><span class="va">txdb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">as.list</a></span><span class="op">(</span><span class="va">txdbEnsemblGRCh38</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">txdb</span>,<span class="va">head</span><span class="op">)</span></span>
+<span><span class="va">txdb</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/as.list.html" class="external-link">as.list</a></span><span class="op">(</span><span class="va">txdbEnsemblGRCh38</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">txdb</span>,<span class="va">head</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $transcripts</span></span>
 <span><span class="co">#&gt;   tx_id         tx_name        tx_type        tx_chrom tx_strand tx_start  tx_end</span></span>
 <span><span class="co">#&gt; 1     1 ENST00000636745         lncRNA CHR_HG107_PATCH         +  1049876 1055745</span></span>
