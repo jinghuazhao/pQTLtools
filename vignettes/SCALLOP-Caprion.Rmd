@@ -1,5 +1,5 @@
 ---
-title: "SCALLOP-INF scripts"
+title: "SCALLOP-Caprion scripts"
 output:
   bookdown::html_document2:
     toc: true
@@ -28,11 +28,13 @@ knitr::opts_chunk$set(
 
 This article provides details of pQTL/disease overlap and colocalization analysis.
 
-# pQTL/disease overlap
+# SCALLOP
+
+## pQTL/disease overlap
 
 The ontology of traits/disease is available through Experimental Factor Ontology (EFO) @malone10, which can be used to build lists of diseases and immune-mediated traits and filter search results from PhenoScanner @kamat19.
 
-## Diseases
+### Diseases
 
 ```r
 library(ontologyIndex)
@@ -65,7 +67,7 @@ library(ontologyPlot)
 onto_plot(efo,efo_0000540)
 ```
 
-## Lookup
+### Lookup
 
 ```r
 options(width=200)
@@ -155,7 +157,7 @@ gwas <- function()
 rxc <- gwas()
 ```
 
-## Visualization
+### Visualization
 
 ```r
 SF <- function(rxc, f="SF-pQTL-GWAS.png", ch=21, cw=21, h=13, w=18)
@@ -180,15 +182,15 @@ SF(rxc,f="SF-pQTL-GWAS.png",ch=8,cw=8,h=11,w=8.6)
 knitr::include_graphics("SF-pQTL-GWAS.png")
 ```
 
-# Colocalization
+## Colocalization
 
 This is the actual script for cis-pQTL colocalization analysis on GTEx v8 for SCALLOP-INF.
 
-## Data
+### Data
 
 The data were GWAS summary statistics in GRCh37 and VCF format, converted by `gwasvcf`. The GTEx association statistics were in GRCh38 and downloaded from the eQTL Catalogue and stored locally. Data on microarray and RNA-Seq remain on the eQTL Catalogue website.
 
-## coloc.R
+### coloc.R
 
 It contains minor modification to the documentation example,
 
@@ -358,7 +360,7 @@ single_run(r)
 where options for protein GWAS, microarray, RNA-Seq are available with respect to variant-flanking or gene regions. When no results are generated,
 there would have problem with `dplyr::arrange(df_gtex, -PP.H4.abf);p <- ggplot(df_gtex, aes(x = PP.H4.abf)) + geom_histogram()`.
 
-## Collection of results
+### Collection of results
 
 When these are furnished we keep results (i.e., PP4>=0.8) as follows,
 
@@ -414,7 +416,7 @@ do
 done
 ```
 
-## Parallel computing
+### Parallel computing
 
 To speed up the analysis, we resort to [SLURM](https://slurm.schedmd.com/documentation.html),
 
@@ -745,4 +747,7 @@ prot_rsid <- select(sentinels,prot,SNP) %>%
 collect()
 collect(coloc_dir="eQTLCatalogue/ensGene")
 ```
+
+As before, mask `single_run()` before running `collect()` with no need of SLURM.
+
 ### References
