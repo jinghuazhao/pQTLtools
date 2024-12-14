@@ -467,10 +467,12 @@ This is from the Caprion project, <https://jinghuazhao.github.io/Caprion/>.
 The `coloc.R` is modified slightly employing `basename` for local files.
 
 ```r
-liftRegion <- function(x,chain,flanking=1e6)
+liftRegion <- function(x,flanking=1e6)
 {
   gr <- with(x,GenomicRanges::GRanges(seqnames=chr,IRanges::IRanges(start,end))+flanking)
   seqlevelsStyle(gr) <- "UCSC"
+  f <- file.path(find.package("pQTLtools"),"eQTL-Catalogue","hg19ToHg38.over.chain")
+  chain <- rtracklayer::import.chain(f)
   gr38 <- rtracklayer::liftOver(gr, chain)
   chr <- gsub("chr","",colnames(table(seqnames(gr38))))
   start <- min(unlist(start(gr38)))
@@ -489,6 +491,8 @@ sumstats <- function(prot,chr,region37,chain)
   gwas_granges <- with(gwas_stats,GRanges(seqnames = paste0("chr",dplyr::if_else(Chromosome==23,"X",paste(Chromosome))),
                        ranges = IRanges(start = Position, end = Position),
                        id = ID,REF=Allele2,ALT=Allele1,AF=Freq1,ES=Effect,SE=StdErr,LP=-logP,SS=N))
+  f <- file.path(find.package("pQTLtools"),"eQTL-Catalogue","hg19ToHg38.over.chain")
+  chain <- rtracklayer::import.chain(f)
   gwas_stats_hg38 <- rtracklayer::liftOver(gwas_granges, chain) %>%
                      unlist() %>%
                      dplyr::as_tibble() %>%
@@ -558,8 +562,8 @@ ge <- function(gwas_stats_hg38,ensGene,region38)
 {
   cat("d. eQTL datasets\n")
   fp <- file.path(find.package("pQTLtools"),"eQTL-Catalogue","tabix_ftp_paths_ge.tsv")
-  imported_tabix_paths <- read.delim(fp, stringsAsFactors = FALSE) %>% dplyr::as_tibble() %>%
-                          dplyr::mutate(file.path("~/rds/public_databases/eQTLCatalogue",basename(ftp_path)))
+  imported_tabix_paths <- read.delim(fp, stringsAsFactors = FALSE) %>%
+                          dplyr::mutate(ftp_path=file.path("~/rds/public_databases/eQTLCatalogue",basename(ftp_path)))
   ftp_path_list <- setNames(as.list(imported_tabix_paths$ftp_path), imported_tabix_paths$unique_id)
   hdr <- file.path(find.package("pQTLtools"),"eQTL-Catalogue","column_names.Alasoo")
   column_names <- names(read.delim(hdr))
@@ -579,12 +583,12 @@ gtex_coloc <- function(prot,chr,ensGene,chain,region37,region38,out)
   save(gwas_stats_hg38,file=paste0(out,"-sumstats.rda"))
   df_gtex <- gtex(gwas_stats_hg38,ensGene,region38)
   if (!exists("df_gtex")) return
-  saveRDS(df_gtex,file=paste0(out,"-GTEx.rds"))
+  saveRDS(df_gtex,file=paste0(out,".rds"))
   p <- ggplot(df_gtex, aes(x = PP.H4.abf)) + geom_histogram()
   s <- ggplot(gwas_stats_hg38, aes(x = position, y = LP)) + geom_point()
-  ggplot2::ggsave(plot = s, filename = paste0(out, "-GTEx.assoc.pdf"), device = "pdf",
+  ggplot2::ggsave(plot = s, filename = paste0(out, ".assoc.pdf"), device = "pdf",
                   height = 15, width = 15, units = "cm", dpi = 300)
-  ggplot2::ggsave(plot = p, filename = paste0(out, "-GTEx.hist.pdf"), device = "pdf",
+  ggplot2::ggsave(plot = p, filename = paste0(out, ".hist.pdf"), device = "pdf",
                   height = 15, width = 15, units = "cm", dpi = 300)
 }
 
@@ -593,12 +597,12 @@ ge_coloc <- function(prot,chr,ensGene,chain,region37,region38,out)
   gwas_stats_hg38 <- sumstats(prot,chr,region37)
   df_ge <- ge(gwas_stats_hg38,ensGene,region38)
   if (!exists("df_ge")) return
-  saveRDS(df_ge,file=paste0(out,"-GE.rds"))
+  saveRDS(df_ge,file=paste0(out,".rds"))
   p <- ggplot(df_ge, aes(x = PP.H4.abf)) + geom_histogram()
   s <- ggplot(gwas_stats_hg38, aes(x = position, y = LP)) + geom_point()
-  ggsave(plot = s, filename = paste0(out, "-GE.assoc.pdf"), device = "pdf",
+  ggsave(plot = s, filename = paste0(out, ".assoc.pdf"), device = "pdf",
          height = 15, width = 15, units = "cm", dpi = 300)
-  ggsave(plot = p, filename = paste0(out, "GE.hist.pdf"), device = "pdf",
+  ggsave(plot = p, filename = paste0(out, ".hist.pdf"), device = "pdf",
          height = 15, width = 15, units = "cm", dpi = 300)
 }
 
@@ -635,20 +639,20 @@ single_run <- function(r, batch="GTEx")
                       })
   ss <- subset(pQTLdata::caprion,Protein==paste0(sentinel[["prot"]],"_HUMAN"))
   ensGene <- ss[["ensGenes"]]
-  lr <- liftRegion(with(sentinel,list(chr=geneChrom,start=geneStart,end=geneEnd)),chain)
+  x <- with(sentinel,list(chr=geneChrom,start=geneStart,end=geneEnd))
+  lr <- liftRegion(x)
   ensRegion38 <- with(lr,paste0(chr,":",start-M,"-",end+M))
   cat(chr,ensGene,ensRegion37,ensRegion38,"\n")
+  f <- file.path(analysis,"coloc",batch,with(sentinel,paste0(prot,"-",SNP)))
   if (batch=="GTEx")
   {
-    f <- file.path(analysis,"coloc",with(sentinel,paste0(prot,"-",SNP)))
     gtex_coloc(sentinel[["prot"]],chr,ensGene,chain,ensRegion37,ensRegion38,f)
   } else {
-    f <- file.path(analysis,"eQTLCatalogue",with(sentinel,paste0(prot,"-",SNP)))
     ge_coloc(sentinel[["prot"]],chr,ensGene,chain,ensRegion37,ensRegion38,f)
   }
 }
 
-collect <- function(coloc_dir="coloc")
+collect <- function(batch="GTEx")
 # to collect results when all single runs are done
 {
   df_coloc <- data.frame()
@@ -657,7 +661,7 @@ collect <- function(coloc_dir="coloc")
     prot <- sentinels[["prot"]][r]
     snpid <- sentinels[["SNP"]][r]
     rsid <- prot_rsid[["SNP"]][r]
-    f <- file.path(analysis,coloc_dir,paste0(prot,"-",snpid,dplyr::if_else(coloc_dir=="coloc","-GTEx.rds","-GE.rds")))
+    f <- file.path(analysis,"coloc",batch,paste0(prot,"-",snpid,".rds"))
     if (!file.exists(f)) next
     cat(prot,"-",rsid,"\n")
     rds <- readRDS(f)
@@ -668,11 +672,11 @@ collect <- function(coloc_dir="coloc")
                  mutate(prot=gsub("_HUMAN","",Protein),gene=Gene)
   df <- dplyr::rename(df_coloc,H0=PP.H0.abf,H1=PP.H1.abf,H2=PP.H2.abf,H3=PP.H3.abf,H4=PP.H4.abf) %>%
         dplyr::left_join(caprion_upd[c("prot","gene")])
-  if (coloc_dir=="coloc") {
+  if (batch=="GTEx") {
     df_coloc <- within(df,{qtl_id <- gsub("GTEx_V8_","",qtl_id)})
-    write.table(subset(df,H4>=0.8),file=file.path(analysis,coloc_dir,"GTEx.tsv"),
+    write.table(subset(df,H4>=0.8),file=file.path(analysis,"coloc","GTEx.tsv"),
                 quote=FALSE,row.names=FALSE,sep="\t")
-    write.table(df,file=file.path(analysis,coloc_dir,"GTEx-all.tsv"),
+    write.table(df,file=file.path(analysis,"coloc","GTEx-all.tsv"),
                 quote=FALSE,row.names=FALSE,sep="\t")
     coloc <- merge(df_coloc,caprion_upd[c("prot","gene")]) %>%
              mutate(prot,
@@ -683,12 +687,12 @@ collect <- function(coloc_dir="coloc")
                     H4=round(H4,2)) %>%
              setNames(c("Protein","Gene","RSid","SNPid","Tissue","nSNP","H0","H1","H2","H3","H4")) %>%
              select(Protein,Gene,RSid,Tissue,nSNP,H0,H1,H2,H3,H4)
-    write.table(coloc,file=file.path(analysis,coloc_dir,"GTEx-ST.tsv"),
+    write.table(coloc,file=file.path(analysis,"coloc","GTEx-ST.tsv"),
                 quote=FALSE,row.names=FALSE,sep="\t")
   } else {
-    write.table(subset(df,H4>=0.8),file=file.path(analysis,coloc_dir,"eQTLCatalogue.tsv"),
+    write.table(subset(df,H4>=0.8),file=file.path(analysis,"coloc","eQTLCatalogue.tsv"),
                 quote=FALSE,row.names=FALSE,sep="\t")
-    write.table(df,file=file.path(analysis,coloc_dir,"eQTLCatalogue-all.tsv"),
+    write.table(df,file=file.path(analysis,"coloc","eQTLCatalogue-all.tsv"),
                 quote=FALSE,row.names=FALSE,sep="\t")
     eQTLCatalogue <- left_join(df,caprion_upd[c("prot","gene")]) %>%
                      mutate(prot,
@@ -699,7 +703,7 @@ collect <- function(coloc_dir="coloc")
                             H4=round(H4,2)) %>%
                      setNames(c("Protein","Gene","RSid","SNPid","Study","nSNP","H0","H1","H2","H3","H4")) %>%
                      select(UniProt,Protein,Gene,RSid,Study,nSNP,H0,H1,H2,H3,H4)
-    write.table(eQTLCatalogue,file=file.path(analysis,coloc_dir,"eQTLCatalogue-ST.tsv"),
+    write.table(eQTLCatalogue,file=file.path(analysis,"coloc","eQTLCatalogue-ST.tsv"),
                 quote=FALSE,row.names=FALSE,sep="\t")
   }
 }
@@ -730,8 +734,6 @@ updates <- as.data.frame(scan(file=textConnection(sevens),what=list("","","",0,0
            setNames(c("ensGenes","dash","gene","chromosome","start38","end38"))
 caprion <- left_join(pQTLdata::caprion,updates)
 sentinels <- subset(read.csv(file.path(analysis,"work","caprion_dr.cis.vs.trans")),cis)
-f <- file.path(find.package("pQTLtools"),"eQTL-Catalogue","hg19ToHg38.over.chain")
-chain <- rtracklayer::import.chain(f)
 fp <- file.path(find.package("pQTLtools"),"eQTL-Catalogue","tabix_ftp_paths.tsv")
 tabix_paths <- read.delim(fp, stringsAsFactors = FALSE) %>% dplyr::as_tibble()
 
@@ -745,7 +747,7 @@ prot_rsid <- select(sentinels,prot,SNP) %>%
              transmute(prot,SNP=dplyr::if_else(is.na(rsid)|rsid==".",SNP,rsid))
 
 collect()
-collect(coloc_dir="eQTLCatalogue/ensGene")
+collect(batch="eQTLCatalogue")
 ```
 
 As before, mask `single_run()` before running `collect()` with no need of SLURM.
