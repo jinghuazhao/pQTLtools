@@ -7,9 +7,8 @@ Rscript -e '
   # DESCRIPTION
   {
     knitr::knit("README.Rmd")
-    pkgdown::build_home()
     roxygen2::roxygenise()
-    pkgdown::build_reference()
+    pkgdown::build_site()
   }
   pkgdown::build_site_github_pages()
 # usethis::use_github_action("pkgdown", save_as = "R-CMD-check.yaml", ref = NULL, ignore = TRUE, open = FALSE)
