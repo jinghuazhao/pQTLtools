@@ -62,8 +62,8 @@ navbar:
           href: articles/snakemake.html
         - text: Spectrum data analysis
           href: articles/spectrum.html
-        - text: SCALLOP-INF scripts
-          href: articles/SCALLOP-INF.html
+        - text: SCALLOP-Caprion scripts
+          href: articles/SCALLOP-Caprion.html
     reference:
           text: Reference
           href: reference/pQTLtools.html
