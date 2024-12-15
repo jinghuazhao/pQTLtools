@@ -1,10 +1,10 @@
 ## pQTLtools 0.4
 
-(2024/12/14)
+(2024/12/15)
 
 * Amend lz.htm (called by LocusZoom.js.Rmd) to use EUR reference panel.
 * Amend LocusZoom.js.Rmd.
-* Unify DESCRIPTION/README (finally!).
+* Unify DESCRIPTION/README (finally).
 * Add caprion coloc scripts.
 * Add SummarizedExperiment section to es.Rmd --> esse.Rmd.
 * Add csq(), protein_altering_variants (so data/), histo.fyi, aria-label.
