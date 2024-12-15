@@ -702,7 +702,7 @@ collect <- function(batch="GTEx")
                             H3=round(H3,2),
                             H4=round(H4,2)) %>%
                      setNames(c("Protein","Gene","RSid","SNPid","Study","nSNP","H0","H1","H2","H3","H4")) %>%
-                     select(UniProt,Protein,Gene,RSid,Study,nSNP,H0,H1,H2,H3,H4)
+                     select(Protein,Gene,RSid,Study,nSNP,H0,H1,H2,H3,H4)
     write.table(eQTLCatalogue,file=file.path(analysis,"coloc","eQTLCatalogue-ST.tsv"),
                 quote=FALSE,row.names=FALSE,sep="\t")
   }
