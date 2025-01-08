@@ -1,6 +1,6 @@
 ## pQTLtools 0.4
 
-(2024/12/21)
+(2025/1/8)
 
 * Amend lz.htm (called by LocusZoom.js.Rmd) to use EUR reference panel.
 * Amend LocusZoom.js.Rmd.
