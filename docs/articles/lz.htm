@@ -7,11 +7,11 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locuszoom@0.14.0/dist/locuszoom.css" type="text/css" crossorigin="anonymous"/>
   <script src="https://cdn.jsdelivr.net/npm/d3@5.16.0/dist/d3.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/locuszoom@0.14.0/dist/locuszoom.app.min.js"></script>
-  <script src="https://statgen.github.io/locuszoom/dist/ext/lz-credible-sets.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/locuszoom@0.14.0/dist/ext/lz-dynamic-urls.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/locuszoom@0.14.0/dist/ext/lz-intervals-track.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/locuszoom@0.14.0/dist/ext/lz-parsers.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/locuszoom@0.14.0/dist/ext/lz-tabix-source.min.js"></script>
+  <script src="https://statgen.github.io/locuszoom/dist/ext/lz-credible-sets.min.js"></script>
   <title>LocusZoom.js</title>
   <style>
     body {
@@ -81,8 +81,8 @@
       state: initialState,
       panels: [
         LocusZoom.Layouts.get('panel', 'association', { title: { text: "GIANT BMI meta-analysis (women only)" }}),
-        LocusZoom.Layouts.get('panel', 'annotation_catalog', { title: { text: "GWAS catalog" }}),
         LocusZoom.Layouts.get('panel', 'annotation_credible_set'),
+        LocusZoom.Layouts.get('panel', 'annotation_catalog', { title: { text: "GWAS catalog" }}),
         LocusZoom.Layouts.get('panel', 'genes'),
       ]
     });
@@ -107,8 +107,8 @@
           state: {chr, start, end},
           panels: [
             LocusZoom.Layouts.get('panel', 'association', { title: { text: ppid } }),
-            LocusZoom.Layouts.get('panel', 'annotation_catalog', { title: { text: "GWAS catalog" } }),
             LocusZoom.Layouts.get('panel', 'annotation_credible_set'),
+            LocusZoom.Layouts.get('panel', 'annotation_catalog', { title: { text: "GWAS catalog" } }),
             LocusZoom.Layouts.get('panel', 'genes'),
           ],
         });
