@@ -120,6 +120,10 @@ server <- function(input, output) {
 shinyApp(ui, server)
 ```
 
+## Direct access
+
+The direct link for `lz.htm` is <https://jinghuazhao.github.io/pQTLtools/articles/lz.htm>.
+
 # Stacked association plots
 
 The figure below contains three panels.
@@ -134,12 +138,12 @@ We set to change filename and region dynamically, as is shown with A1BG-rs145685
 
 ```{r, results='asis', echo=FALSE}
 library(htmltools)
-filename <- "A1BG-rs145685027.json"
+filename <- "A1BG-rs145685027"
 chr <- "19"
 start <- 58948122 - 25000
 end <- 58948122 + 25000
 html_content <- readLines("ACE.htm")
-html_content <- gsub("ACE-rs4353.json", filename, html_content)
+html_content <- gsub("ACE-rs4353", filename, html_content)
 html_content <- gsub("const chr = '17';", paste0("const chr = '", chr, "';"), html_content)
 html_content <- gsub("const start = 61320422;", paste0("const start = ", start, ";"), html_content)
 html_content <- gsub("const end = 61820422;", paste0("const end = ", end, ";"), html_content)
@@ -148,3 +152,5 @@ writeLines(html_content, output_html)
 lz <- tags$iframe(src = output_html, width = "100%", height = "1500px")
 lz
 ```
+
+Lastly, the direct link for `ACE.htm` is <https://jinghuazhao.github.io/pQTLtools/articles/ACE.htm>.
