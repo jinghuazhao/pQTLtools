@@ -130,7 +130,7 @@ lz <- tags$iframe(src = "ACE.htm", width = "100%", height = "1500px")
 lz
 ```
 
-It is preferable though to change filename and region dynamically, as is shown with A1BG-rs145685027.json above.
+We set to change filename and region dynamically, as is shown with A1BG-rs145685027.json above.
 
 ```{r, results='asis', echo=FALSE}
 library(htmltools)
