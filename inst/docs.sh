@@ -20,6 +20,7 @@ Rscript -e '
 
 cp vignettes/ACE.htm vignettes/lz.htm docs/articles
 if [ -d docs/articles/data ]; then rm -rf docs/articles/data; cp -r vignettes/data docs/articles; fi
+if [ -f vignettes/ACEr.html ]; then rm vignettes/ACEr.html; fi
 for d in bioconductor esse pQTLtools spectrum
 do
     if [ -d vignettes/${d} ]; then
