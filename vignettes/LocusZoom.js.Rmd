@@ -136,8 +136,8 @@ We set to change filename and region dynamically, as is shown with A1BG-rs145685
 library(htmltools)
 filename <- "A1BG-rs145685027"
 chr <- "19"
-start <- 58948122 - 25000
-end <- 58948122 + 25000
+start <- 58948122 - 250000
+end <- 58948122 + 250000
 html_content <- readLines("ACE.htm")
 html_content <- gsub("ACE-rs4353", filename, html_content)
 html_content <- gsub("const chr = '17';", paste0("const chr = '", chr, "';"), html_content)
