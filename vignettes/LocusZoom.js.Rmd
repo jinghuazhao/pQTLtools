@@ -153,6 +153,6 @@ lz
 
 There are also direct links for the html files above
 
-- `lz.html`,  <https://jinghuazhao.github.io/pQTLtools/articles/lz.htm;>.
-- `ACE.html`, <https://jinghuazhao.github.io/pQTLtools/articles/ACE.htm;>.
+- `lz.html`,  <https://jinghuazhao.github.io/pQTLtools/articles/lz.html>.
+- `ACE.html`, <https://jinghuazhao.github.io/pQTLtools/articles/ACE.html>.
 - `ACEr.html`, <https://jinghuazhao.github.io/pQTLtools/articles/ACEr.html>.
