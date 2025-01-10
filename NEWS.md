@@ -2,8 +2,7 @@
 
 (2025/1/10)
 
-* Amend lz.htm (called by LocusZoom.js.Rmd) to use EUR reference panel.
-* Amend LocusZoom.js.Rmd.
+* Amend lz.htm and ACE.htm (called by LocusZoom.js.Rmd).
 * Unify DESCRIPTION/README (finally).
 * Add caprion coloc scripts.
 * Add SummarizedExperiment section to es.Rmd --> esse.Rmd.
