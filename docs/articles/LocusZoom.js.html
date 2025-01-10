@@ -196,11 +196,12 @@ $data
 <span class="header-section-number">2</span> Stacked association plots<a class="anchor" aria-label="anchor" href="#stacked-association-plots"></a>
 </h2>
 <p>The figure below contains three panels, the first of which is ACE-rs4353 above.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">htmltools</span><span class="fu">::</span><span class="va"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">tags</a></span><span class="op">$</span><span class="fu">iframe</span><span class="op">(</span>src <span class="op">=</span> <span class="st">"ACE.html"</span>, width <span class="op">=</span> <span class="st">"100%"</span>, height <span class="op">=</span> <span class="st">"1500px"</span><span class="op">)</span></span></code></pre></div>
 <iframe src="ACE.html" width="100%" height="1500px"></iframe>
 <p>We only need to change filename and region for A1BG-rs145685027 above.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rstudio/htmltools" class="external-link">htmltools</a></span><span class="op">)</span></span>
-<span><span class="va">filename</span> <span class="op">&lt;-</span> <span class="st">"A1BG-rs145685027"</span></span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">filename</span> <span class="op">&lt;-</span> <span class="st">"A1BG-rs145685027"</span></span>
 <span><span class="va">chr</span> <span class="op">&lt;-</span> <span class="st">"19"</span></span>
 <span><span class="va">start</span> <span class="op">&lt;-</span> <span class="fl">58948122</span> <span class="op">-</span> <span class="fl">250000</span></span>
 <span><span class="va">end</span> <span class="op">&lt;-</span> <span class="fl">58948122</span> <span class="op">+</span> <span class="fl">250000</span></span>
@@ -211,8 +212,7 @@ $data
 <span><span class="va">html_content</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">"const end = 61820422;"</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"const end = "</span>, <span class="va">end</span>, <span class="st">";"</span><span class="op">)</span>, <span class="va">html_content</span><span class="op">)</span></span>
 <span><span class="va">output_html</span> <span class="op">&lt;-</span> <span class="st">"ACEr.html"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">html_content</span>, <span class="va">output_html</span><span class="op">)</span></span>
-<span><span class="va">lz</span> <span class="op">&lt;-</span> <span class="va">tags</span><span class="op">$</span><span class="fu">iframe</span><span class="op">(</span>src <span class="op">=</span> <span class="va">output_html</span>, width <span class="op">=</span> <span class="st">"100%"</span>, height <span class="op">=</span> <span class="st">"1500px"</span><span class="op">)</span></span>
-<span><span class="va">lz</span></span></code></pre></div>
+<span><span class="fu">htmltools</span><span class="fu">::</span><span class="va"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">tags</a></span><span class="op">$</span><span class="fu">iframe</span><span class="op">(</span>src <span class="op">=</span> <span class="va">output_html</span>, width <span class="op">=</span> <span class="st">"100%"</span>, height <span class="op">=</span> <span class="st">"1500px"</span><span class="op">)</span></span></code></pre></div>
 <iframe src="ACEr.html" width="100%" height="1500px"></iframe>
 </div>
 <div class="section level2" number="3">
