@@ -103,8 +103,8 @@
     
 <p>This article provides details of pQTL/disease overlap and colocalization analysis.</p>
 <div class="section level2" number="1">
-<h2 id="scallop">
-<span class="header-section-number">1</span> SCALLOP<a class="anchor" aria-label="anchor" href="#scallop"></a>
+<h2 id="scallop-analysis">
+<span class="header-section-number">1</span> SCALLOP analysis<a class="anchor" aria-label="anchor" href="#scallop-analysis"></a>
 </h2>
 <div class="section level3" number="1.1">
 <h3 id="pqtldisease-overlap">
@@ -912,9 +912,72 @@ there would have problem with <code>dplyr::arrange(df_gtex, -PP.H4.abf);p &lt;- 
 <span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html" class="external-link">collect</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html" class="external-link">collect</a></span><span class="op">(</span>batch<span class="op">=</span><span class="st">"eQTLCatalogue"</span><span class="op">)</span></span></code></pre></div>
 <p>The <code>single_run()</code> is called for analysis with SLURM and <code><a href="https://dplyr.tidyverse.org/reference/compute.html" class="external-link">collect()</a></code> for summary with no need of SLURM.</p>
-<div class="section level4">
-<h4 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
-</h4>
+</div>
+<div class="section level3" number="2.2">
+<h3 id="locuszoom-js">
+<span class="header-section-number">2.2</span> LocusZoom.js<a class="anchor" aria-label="anchor" href="#locuszoom-js"></a>
+</h3>
+<p>This actually involves liftOver back to GRCh37 done as follows for GTEx data.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">'NR&gt;1{print $1,$2,$3,$4}'</span> <span class="va">${analysis}</span>/coloc/GTEx.tsv <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">parallel</span> <span class="at">-C</span> <span class="st">' '</span> <span class="st">'</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="st">export prot={1}</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="st">export rsid={2}</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="st">export snpid={3}</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="st">export tissue={4}</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="st">Rscript -e "</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="st">  suppressMessages(library(dplyr))</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="st">  suppressMessages(library(jsonlite))</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="st">  suppressMessages(library(rtracklayer))</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="st">  analysis &lt;- Sys.getenv(\"analysis\")</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="st">  hpc_work &lt;- Sys.getenv(\"HPC_WORK\")</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="st">  prot &lt;- Sys.getenv(\"prot\")</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="st">  rsid &lt;- Sys.getenv(\"rsid\")</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="st">  snpid &lt;- Sys.getenv(\"snpid\")</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="st">  tissue &lt;- Sys.getenv(\"tissue\")</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="st">  print(paste0(prot,\"-\",tissue))</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="st">  f &lt;- file.path(hpc_work,\"bin\",\"hg38ToHg19.over.chain\")</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="st">  chain &lt;- rtracklayer::import.chain(f)</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="st">  liftOver &lt;- function(gwas_stats)</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="st">  {</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="st">  gwas_granges &lt;- with(gwas_stats,GRanges(seqnames = paste0(\"chr\",dplyr::if_else(chromosome==23,\"X\",paste(chromosome))),</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="st">                       ranges = IRanges(start = position, end = position),</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="st">                       chromosome = chromosome, position = position,</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="st">                       ref_allele=ref_allele,alt_allele=alt_allele,alt_allele_freq=alt_allele_freq,</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="st">                       log_pvalue=log_pvalue,beta=beta,se=se))</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="st">  gwas_stats_hg37 &lt;- rtracklayer::liftOver(gwas_granges, chain) %&gt;%</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="st">                     unlist() %&gt;%</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="st">                     dplyr::as_tibble() %&gt;%</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="st">                     dplyr::transmute(chromosome = seqnames, position = start,</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="st">                                      variant = paste0(chromosome,\":\",position,\"_\",ref_allele,\"/\",alt_allele),</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="st">                                      ref_allele,alt_allele,alt_allele_freq,log_pvalue,beta,se) %&gt;%</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="st">                     dplyr::mutate(id = paste(chromosome, position, sep = \":\")) %&gt;%</span></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a><span class="st">                     dplyr::group_by(id) %&gt;%</span></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a><span class="st">                     dplyr::mutate(row_count = n()) %&gt;%</span></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a><span class="st">                     dplyr::ungroup() %&gt;%</span></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a><span class="st">                     dplyr::filter(row_count == 1) %&gt;%</span></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a><span class="st">                     mutate(chromosome=gsub(\"chr\",\"\",chromosome))</span></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a><span class="st">  }</span></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a><span class="st">  pGWAS_sumstats &lt;- read.delim(file.path(analysis,\"coloc\",\"sumstats\",paste0(prot,\"-\",snpid,\".gz\"))) %&gt;%</span></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a><span class="st">                    dplyr::mutate(REF=toupper(REF),ALT=toupper(ALT),variant=paste0(chromosome,\":\",position,\"_\",REF,\"/\",ALT)) %&gt;%</span></span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a><span class="st">                    dplyr::mutate(log_pvalue=LP,ref_allele=REF,alt_allele=ALT,alt_allele_freq=AF,beta=ES,se=SE) %&gt;%</span></span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a><span class="st">                    dplyr::select(chromosome,position,variant,ref_allele,alt_allele,alt_allele_freq,log_pvalue,beta,se) %&gt;%</span></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a><span class="st">                    liftOver()</span></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a><span class="st">  GTEx_sumstats &lt;- read.delim(file.path(analysis,\"coloc\",\"GTEx\",\"sumstats\",paste0(prot,\"-\",tissue,\".gz\"))) %&gt;%</span></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a><span class="st">                   dplyr::mutate(REF=toupper(ref),ALT=toupper(alt),variant=paste0(chromosome,\":\",position,\"_\",REF,\"/\",ALT)) %&gt;%</span></span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a><span class="st">                   dplyr::mutate(log_pvalue=-log10(pvalue),ref_allele=REF,alt_allele=ALT,alt_allele_freq=ac/an) %&gt;%</span></span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a><span class="st">                   dplyr::select(chromosome,position,variant,ref_allele,alt_allele,alt_allele_freq,log_pvalue,beta,se) %&gt;%</span></span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a><span class="st">                   liftOver()</span></span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a><span class="st">  j &lt;- gzfile(file.path(analysis,\"json\",\"pqtleqtl\",paste0(prot,\"-\",tissue,\".json.gz\")))</span></span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a><span class="st">  combined_json &lt;- jsonlite::toJSON(list(pqtl=pGWAS_sumstats,eqtl=GTEx_sumstats),auto_unbox=TRUE,pretty=TRUE)</span></span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a><span class="st">  write(combined_json,file=j)</span></span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a><span class="st">  close(j)</span></span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a><span class="st">"</span></span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span></code></pre></div>
+</div>
+</div>
+<div class="section level2">
+<h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h2>
 <div id="refs" class="references csl-bib-body" line-spacing="2">
 <div id="ref-malone10" class="csl-entry">
 <div class="csl-left-margin">1. </div>
@@ -923,8 +986,6 @@ there would have problem with <code>dplyr::arrange(df_gtex, -PP.H4.abf);p &lt;- 
 <div id="ref-kamat19" class="csl-entry">
 <div class="csl-left-margin">2. </div>
 <div class="csl-right-inline">Kamat, M. A. <em>et al.</em> <a href="https://doi.org/10.1093/bioinformatics/btz469" class="external-link">PhenoScanner V2: An expanded tool for searching human genotype-phenotype associations</a>. <em>Bioinformatics</em> <strong>35</strong>, 4851–4853 (2019).</div>
-</div>
-</div>
 </div>
 </div>
 </div>
