@@ -1,8 +1,8 @@
 ## pQTLtools 0.4
 
-(2025/1/10)
+(2025/1/11)
 
-* Amend lz.htm and ACE.htm (called by LocusZoom.js.Rmd).
+* Amend LocusZoom.js.Rmd, including lz.html and ACE.html.
 * Unify DESCRIPTION/README (finally).
 * Add caprion coloc scripts.
 * Add SummarizedExperiment section to es.Rmd --> esse.Rmd.
