@@ -890,5 +890,6 @@ Rscript -e "
 "
 '
 ```
+Note that compressed json (.json.gz) is used.
 
 # References
