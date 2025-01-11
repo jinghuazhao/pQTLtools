@@ -2,7 +2,7 @@
 
 (2025/1/11)
 
-* Amend LocusZoom.js.Rmd, including lz.html and ACE.html.
+* Amend SCALLOP-Caprion.Rmd and LocusZoom.js.Rmd (including lz.html and ACE.html).
 * Unify DESCRIPTION/README (finally).
 * Add caprion coloc scripts.
 * Add SummarizedExperiment section to es.Rmd --> esse.Rmd.
