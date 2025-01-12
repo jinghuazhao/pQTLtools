@@ -1,6 +1,6 @@
 ## pQTLtools 0.4
 
-(2025/1/11)
+(2025/1/12)
 
 * Amend SCALLOP-Caprion.Rmd and LocusZoom.js.Rmd (including lz.html and ACE.html).
 * Unify DESCRIPTION/README (finally).
@@ -19,7 +19,7 @@
 * Activate package logo for the GitHub repository.
 * Dedicated .R files for (blocks of) functions.
 * Use of scope operator for clarification, e.g., ensembldb::genes().
-* Use of OPENGWAS_JWT from <https://api.opengwas.io/profile/>.
+* Use of OPENGWAS_JWT (.Renviron) from <https://api.opengwas.io/profile/>.
 * Suggest IlluminaHumanMethylation450kmanifest, OUTRIDER.
 * Fix URL in DESCRIPTION/snakemake.Rmd.
 
