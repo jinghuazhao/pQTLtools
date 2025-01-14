@@ -467,8 +467,7 @@ invisible(sapply(c("harmonise","result","single"),
 
 The documentation example is quoted here,
 
-```r
-# {r TwoSampleMR, fig.cap="Two-sample MR", fig.height=8, fig.width=9, results='hide', warning=FALSE}
+```{r TwoSampleMR, fig.cap="Two-sample MR", fig.height=8, fig.width=9, results='hide', warning=FALSE}
 prot <- "MMP.10"
 type <- "cis"
 f <- paste0(prot,"-",type,".mrx")
@@ -492,12 +491,11 @@ prefix <- paste(prot,type,sep="-")
 run_TwoSampleMR(harmonise, mr_plot="pQTLtools", prefix=prefix)
 ```
 
-`clump_data`/`extract_outcome_data` requires a somewhat confusing authentication token so 1.25% variants is used for illustrative purpose.
+As `clump_data` requires a somewhat confusing authentication token, 1.25% variants is used for illustrative purpose while /`extract_outcome_data` is skipped.
 
 The output is contained in individual `.txt` files, together with the scatter, forest, funnel and leave-one-out plots.
 
-```r
-# {r mmp10, echo=FALSE, warning=FALSE}
+```{r mmp10, echo=FALSE, warning=FALSE}
 caption5 <- "MMP.10 variants and FEV1"
 knitr::kable(read.delim(paste0(prefix,"-result.txt"),header=TRUE),caption=paste(caption5, "(result)"),digits=3)
 knitr::kable(read.delim(paste0(prefix,"-heterogeneity.txt"),header=TRUE),caption=paste(caption5,"(heterogeneity)"),digits=3)
