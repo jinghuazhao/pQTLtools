@@ -982,8 +982,9 @@ Figure 3.2: GREAT plots
 <span><span class="co">#&gt; Don't make too frequent requests. The time break is 60s.</span></span>
 <span><span class="co">#&gt; Please wait for 57s for the next request.</span></span>
 <span><span class="co">#&gt; The time break can be set by `request_interval` argument.</span></span>
+<span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Don't make too frequent requests. The time break is 60s.</span></span>
-<span><span class="co">#&gt; Please wait for 58s for the next request.</span></span>
+<span><span class="co">#&gt; Please wait for 57s for the next request.</span></span>
 <span><span class="co">#&gt; The time break can be set by `request_interval` argument.</span></span></code></pre></div>
 <p>The top terms at Binomial p=1e-5 could be extracted as follows,</p>
 <table class="table">
@@ -2054,7 +2055,6 @@ Figure 5.1: pQTL-MR
 <span>                        pval_col<span class="op">=</span><span class="st">"P"</span>, log_pval<span class="op">=</span><span class="cn">FALSE</span>,</span>
 <span>                        samplesize_col<span class="op">=</span><span class="st">"N"</span><span class="op">)</span></span>
 <span><span class="va">clump</span> <span class="op">&lt;-</span> <span class="va">exposure</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">exposure</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">exposure</span><span class="op">)</span><span class="op">/</span><span class="fl">80</span><span class="op">)</span>,<span class="op">]</span> <span class="co"># TwoSampleMR::clump_data(exposure)</span></span>
-<span><span class="co"># outcome &lt;- TwoSampleMR::extract_outcome_data(snps=clump$SNP,outcomes="ebi-a-GCST007432")</span></span>
 <span><span class="va">outcome</span> <span class="op">&lt;-</span> <span class="fu">pQTLtools</span><span class="fu">::</span><span class="fu"><a href="../reference/import_OpenGWAS.html">import_OpenGWAS</a></span><span class="op">(</span><span class="st">"ebi-a-GCST007432"</span>,<span class="st">"11:102090035-103364929"</span>,<span class="st">"gwasvcf"</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>           <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>           <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>outcome<span class="op">=</span><span class="st">"FEV1"</span>,LP<span class="op">=</span><span class="fl">10</span><span class="op">^</span><span class="op">-</span><span class="va">LP</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
@@ -2089,7 +2089,12 @@ Figure 5.4: Two-sample MR
 Figure 5.5: Two-sample MR
 </p>
 </div>
-<p>As <code>clump_data</code> requires a somewhat confusing authentication token, 1.25% variants is used for illustrative purpose while /<code>extract_outcome_data</code> is skipped.</p>
+<p>As <code>clump_data</code> requires a somewhat confusing authentication token,</p>
+<ul>
+<li>1.25% variants is used for illustrative purpose.</li>
+<li>
+<code>extract_outcome_data</code> is unused (<code>outcome &lt;- TwoSampleMR::extract_outcome_data(snps=clump$SNP,outcomes="ebi-a-GCST007432")</code>).</li>
+</ul>
 <p>The output is contained in individual <code>.txt</code> files, together with the scatter, forest, funnel and leave-one-out plots.</p>
 <table class="table">
 <caption>
