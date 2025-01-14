@@ -480,7 +480,6 @@ exposure <- TwoSampleMR::format_data(within(d,{P=10^logP}), phenotype_col="prot"
                         pval_col="P", log_pval=FALSE,
                         samplesize_col="N")
 clump <- exposure[sample(1:nrow(exposure),nrow(exposure)/80),] # TwoSampleMR::clump_data(exposure)
-# outcome <- TwoSampleMR::extract_outcome_data(snps=clump$SNP,outcomes="ebi-a-GCST007432")
 outcome <- pQTLtools::import_OpenGWAS("ebi-a-GCST007432","11:102090035-103364929","gwasvcf") %>%
            as.data.frame() %>%
            dplyr::mutate(outcome="FEV1",LP=10^-LP) %>%
@@ -491,7 +490,10 @@ prefix <- paste(prot,type,sep="-")
 run_TwoSampleMR(harmonise, mr_plot="pQTLtools", prefix=prefix)
 ```
 
-As `clump_data` requires a somewhat confusing authentication token, 1.25% variants is used for illustrative purpose while /`extract_outcome_data` is skipped.
+As `clump_data` requires a somewhat confusing authentication token, 
+
+- 1.25% variants is used for illustrative purpose.
+- `extract_outcome_data` is unused (`outcome <- TwoSampleMR::extract_outcome_data(snps=clump$SNP,outcomes="ebi-a-GCST007432")`).
 
 The output is contained in individual `.txt` files, together with the scatter, forest, funnel and leave-one-out plots.
 
