@@ -394,7 +394,13 @@ mr_leaveoneout_plot2 <- function (leaveoneout_results, alpha = 0.05)
 #'                                      pval_col="P", log_pval=FALSE,
 #'                                      samplesize_col="N")
 #' clump <- exposure[sample(1:nrow(exposure),nrow(exposure)/80),] # TwoSampleMR::clump_data(exposure)
-#' outcome <- TwoSampleMR::extract_outcome_data(snps=exposure$SNP,outcomes="ebi-a-GCST007432")
+#' # outcome <- TwoSampleMR::extract_outcome_data(snps=exposure$SNP,outcomes="ebi-a-GCST007432")
+#' outcome <- pQTLtools::import_OpenGWAS("ebi-a-GCST007432","11:102090035-103364929","gwasvcf") %>%
+#'            as.data.frame() %>%
+#'            dplyr::mutate(outcome="FEV1",LP=10^-LP) %>%
+#'            dplyr::select(ID,outcome,REF,ALT,AF,ES,SE,LP,SS,id) %>%
+#'            setNames(c("SNP","outcome",paste0(c("other_allele","effect_allele","eaf","beta","se",
+#'                                                "pval","samplesize","id"),".outcome")))
 #' harmonise <- TwoSampleMR::harmonise_data(clump,outcome)
 #' prefix <- paste(prot,type,sep="-")
 #' pQTLtools::run_TwoSampleMR(harmonise, mr_plot="pQTLtools", prefix=prefix)
