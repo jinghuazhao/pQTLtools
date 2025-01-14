@@ -982,9 +982,8 @@ Figure 3.2: GREAT plots
 <span><span class="co">#&gt; Don't make too frequent requests. The time break is 60s.</span></span>
 <span><span class="co">#&gt; Please wait for 57s for the next request.</span></span>
 <span><span class="co">#&gt; The time break can be set by `request_interval` argument.</span></span>
-<span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Don't make too frequent requests. The time break is 60s.</span></span>
-<span><span class="co">#&gt; Please wait for 57s for the next request.</span></span>
+<span><span class="co">#&gt; Please wait for 58s for the next request.</span></span>
 <span><span class="co">#&gt; The time break can be set by `request_interval` argument.</span></span></code></pre></div>
 <p>The top terms at Binomial p=1e-5 could be extracted as follows,</p>
 <table class="table">
@@ -2043,8 +2042,7 @@ Figure 5.1: pQTL-MR
 </h3>
 <p>The documentation example is quoted here,</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># {r TwoSampleMR, fig.cap="Two-sample MR", fig.height=8, fig.width=9, results='hide', warning=FALSE}</span></span>
-<span><span class="va">prot</span> <span class="op">&lt;-</span> <span class="st">"MMP.10"</span></span>
+<code class="sourceCode R"><span><span class="va">prot</span> <span class="op">&lt;-</span> <span class="st">"MMP.10"</span></span>
 <span><span class="va">type</span> <span class="op">&lt;-</span> <span class="st">"cis"</span></span>
 <span><span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">prot</span>,<span class="st">"-"</span>,<span class="va">type</span>,<span class="st">".mrx"</span><span class="op">)</span></span>
 <span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package<span class="op">=</span><span class="st">"pQTLtools"</span><span class="op">)</span>,<span class="st">"tests"</span>,<span class="va">f</span><span class="op">)</span>,</span>
@@ -2063,26 +2061,578 @@ Figure 5.1: pQTL-MR
 <span>           <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">ID</span>,<span class="va">outcome</span>,<span class="va">REF</span>,<span class="va">ALT</span>,<span class="va">AF</span>,<span class="va">ES</span>,<span class="va">SE</span>,<span class="va">LP</span>,<span class="va">SS</span>,<span class="va">id</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>           <span class="fu"><a href="https://rdrr.io/r/stats/setNames.html" class="external-link">setNames</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SNP"</span>,<span class="st">"outcome"</span>,<span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"other_allele"</span>,<span class="st">"effect_allele"</span>,<span class="st">"eaf"</span>,<span class="st">"beta"</span>,<span class="st">"se"</span>,<span class="st">"pval"</span>,<span class="st">"samplesize"</span>,<span class="st">"id"</span><span class="op">)</span>,<span class="st">".outcome"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">harmonise</span> <span class="op">&lt;-</span> <span class="fu">TwoSampleMR</span><span class="fu">::</span><span class="fu"><a href="https://mrcieu.github.io/TwoSampleMR/reference/harmonise_data.html" class="external-link">harmonise_data</a></span><span class="op">(</span><span class="va">clump</span>,<span class="va">outcome</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Harmonising MMP.10 (jrjVHU) and FEV1 (ebi-a-GCST007432)</span></span>
 <span><span class="va">prefix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">prot</span>,<span class="va">type</span>,sep<span class="op">=</span><span class="st">"-"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/run_TwoSampleMR.html">run_TwoSampleMR</a></span><span class="op">(</span><span class="va">harmonise</span>, mr_plot<span class="op">=</span><span class="st">"pQTLtools"</span>, prefix<span class="op">=</span><span class="va">prefix</span><span class="op">)</span></span></code></pre></div>
-<p><code>clump_data</code>/<code>extract_outcome_data</code> requires a somewhat confusing authentication token so 1.25% variants is used for illustrative purpose.</p>
+<span><span class="fu"><a href="../reference/run_TwoSampleMR.html">run_TwoSampleMR</a></span><span class="op">(</span><span class="va">harmonise</span>, mr_plot<span class="op">=</span><span class="st">"pQTLtools"</span>, prefix<span class="op">=</span><span class="va">prefix</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Analysing 'jrjVHU' on 'ebi-a-GCST007432'</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:TwoSampleMR-1"></span>
+<img src="pQTLtools%2FTwoSampleMR-1.png" alt="Two-sample MR" width="864" style="display:block; margin: auto"><p class="caption">
+Figure 5.2: Two-sample MR
+</p>
+</div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:TwoSampleMR-2"></span>
+<img src="pQTLtools%2FTwoSampleMR-2.png" alt="Two-sample MR" width="864" style="display:block; margin: auto"><p class="caption">
+Figure 5.3: Two-sample MR
+</p>
+</div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:TwoSampleMR-3"></span>
+<img src="pQTLtools%2FTwoSampleMR-3.png" alt="Two-sample MR" width="864" style="display:block; margin: auto"><p class="caption">
+Figure 5.4: Two-sample MR
+</p>
+</div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:TwoSampleMR-4"></span>
+<img src="pQTLtools%2FTwoSampleMR-4.png" alt="Two-sample MR" width="864" style="display:block; margin: auto"><p class="caption">
+Figure 5.5: Two-sample MR
+</p>
+</div>
+<p>As <code>clump_data</code> requires a somewhat confusing authentication token, 1.25% variants is used for illustrative purpose while /<code>extract_outcome_data</code> is skipped.</p>
 <p>The output is contained in individual <code>.txt</code> files, together with the scatter, forest, funnel and leave-one-out plots.</p>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># {r mmp10, echo=FALSE, warning=FALSE}</span></span>
-<span><span class="va">caption5</span> <span class="op">&lt;-</span> <span class="st">"MMP.10 variants and FEV1"</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.delim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">prefix</span>,<span class="st">"-result.txt"</span><span class="op">)</span>,header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>,caption<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">caption5</span>, <span class="st">"(result)"</span><span class="op">)</span>,digits<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.delim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">prefix</span>,<span class="st">"-heterogeneity.txt"</span><span class="op">)</span>,header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>,caption<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">caption5</span>,<span class="st">"(heterogeneity)"</span><span class="op">)</span>,digits<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.delim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">prefix</span>,<span class="st">"-pleiotropy.txt"</span><span class="op">)</span>,header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>,caption<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">caption5</span>,<span class="st">"(pleiotropy)"</span><span class="op">)</span>,digits<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.delim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">prefix</span>,<span class="st">"-single.txt"</span><span class="op">)</span>,header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>,caption<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">caption5</span>,<span class="st">"(single)"</span><span class="op">)</span>,digits<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.delim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">prefix</span>,<span class="st">"-loo.txt"</span><span class="op">)</span>,header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>,caption<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">caption5</span>,<span class="st">"(loo)"</span><span class="op">)</span>,digits<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span>
-<span><span class="kw">for</span> <span class="op">(</span><span class="va">x</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"result"</span>,<span class="st">"heterogeneity"</span>,<span class="st">"pleiotropy"</span>,<span class="st">"single"</span>,<span class="st">"loo"</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">prefix</span>,<span class="st">"-"</span>,<span class="va">x</span>,<span class="st">".txt"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<table class="table">
+<caption>
+<span id="tab:mmp10">Table 5.2: </span>MMP.10 variants and FEV1 (result)</caption>
+<colgroup>
+<col width="12%">
+<col width="17%">
+<col width="8%">
+<col width="9%">
+<col width="27%">
+<col width="5%">
+<col width="7%">
+<col width="6%">
+<col width="6%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">id.exposure</th>
+<th align="left">id.outcome</th>
+<th align="left">outcome</th>
+<th align="left">exposure</th>
+<th align="left">method</th>
+<th align="right">nsnp</th>
+<th align="right">b</th>
+<th align="right">se</th>
+<th align="right">pval</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">jrjVHU</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="left">FEV1</td>
+<td align="left">MMP.10</td>
+<td align="left">MR Egger</td>
+<td align="right">13</td>
+<td align="right">0.018</td>
+<td align="right">0.014</td>
+<td align="right">0.210</td>
+</tr>
+<tr class="even">
+<td align="left">jrjVHU</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="left">FEV1</td>
+<td align="left">MMP.10</td>
+<td align="left">Weighted median</td>
+<td align="right">13</td>
+<td align="right">0.001</td>
+<td align="right">0.007</td>
+<td align="right">0.940</td>
+</tr>
+<tr class="odd">
+<td align="left">jrjVHU</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="left">FEV1</td>
+<td align="left">MMP.10</td>
+<td align="left">Inverse variance weighted</td>
+<td align="right">13</td>
+<td align="right">-0.004</td>
+<td align="right">0.005</td>
+<td align="right">0.497</td>
+</tr>
+<tr class="even">
+<td align="left">jrjVHU</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="left">FEV1</td>
+<td align="left">MMP.10</td>
+<td align="left">Simple mode</td>
+<td align="right">13</td>
+<td align="right">-0.001</td>
+<td align="right">0.013</td>
+<td align="right">0.952</td>
+</tr>
+<tr class="odd">
+<td align="left">jrjVHU</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="left">FEV1</td>
+<td align="left">MMP.10</td>
+<td align="left">Weighted mode</td>
+<td align="right">13</td>
+<td align="right">0.000</td>
+<td align="right">0.009</td>
+<td align="right">0.984</td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<caption>
+<span id="tab:mmp10">Table 5.2: </span>MMP.10 variants and FEV1 (heterogeneity)</caption>
+<colgroup>
+<col width="13%">
+<col width="19%">
+<col width="8%">
+<col width="10%">
+<col width="29%">
+<col width="5%">
+<col width="5%">
+<col width="7%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">id.exposure</th>
+<th align="left">id.outcome</th>
+<th align="left">outcome</th>
+<th align="left">exposure</th>
+<th align="left">method</th>
+<th align="right">Q</th>
+<th align="right">Q_df</th>
+<th align="right">Q_pval</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">jrjVHU</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="left">FEV1</td>
+<td align="left">MMP.10</td>
+<td align="left">MR Egger</td>
+<td align="right">8.8</td>
+<td align="right">11</td>
+<td align="right">0.641</td>
+</tr>
+<tr class="even">
+<td align="left">jrjVHU</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="left">FEV1</td>
+<td align="left">MMP.10</td>
+<td align="left">Inverse variance weighted</td>
+<td align="right">11.8</td>
+<td align="right">12</td>
+<td align="right">0.463</td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<caption>
+<span id="tab:mmp10">Table 5.2: </span>MMP.10 variants and FEV1 (pleiotropy)</caption>
+<colgroup>
+<col width="16%">
+<col width="22%">
+<col width="10%">
+<col width="12%">
+<col width="21%">
+<col width="8%">
+<col width="8%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">id.exposure</th>
+<th align="left">id.outcome</th>
+<th align="left">outcome</th>
+<th align="left">exposure</th>
+<th align="right">egger_intercept</th>
+<th align="right">se</th>
+<th align="right">pval</th>
+</tr></thead>
+<tbody><tr class="odd">
+<td align="left">jrjVHU</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="left">FEV1</td>
+<td align="left">MMP.10</td>
+<td align="right">-0.004</td>
+<td align="right">0.002</td>
+<td align="right">0.112</td>
+</tr></tbody>
+</table>
+<table class="table">
+<caption>
+<span id="tab:mmp10">Table 5.2: </span>MMP.10 variants and FEV1 (single)</caption>
+<colgroup>
+<col width="8%">
+<col width="7%">
+<col width="11%">
+<col width="15%">
+<col width="10%">
+<col width="29%">
+<col width="6%">
+<col width="5%">
+<col width="5%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">exposure</th>
+<th align="left">outcome</th>
+<th align="left">id.exposure</th>
+<th align="left">id.outcome</th>
+<th align="right">samplesize</th>
+<th align="left">SNP</th>
+<th align="right">b</th>
+<th align="right">se</th>
+<th align="right">p</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1</td>
+<td align="left">jrjVHU</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs11605152</td>
+<td align="right">-0.002</td>
+<td align="right">0.012</td>
+<td align="right">0.836</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1</td>
+<td align="left">jrjVHU</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs12365082</td>
+<td align="right">0.005</td>
+<td align="right">0.011</td>
+<td align="right">0.617</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1</td>
+<td align="left">jrjVHU</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1276270</td>
+<td align="right">-0.019</td>
+<td align="right">0.018</td>
+<td align="right">0.287</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1</td>
+<td align="left">jrjVHU</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs17099555</td>
+<td align="right">0.020</td>
+<td align="right">0.033</td>
+<td align="right">0.548</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1</td>
+<td align="left">jrjVHU</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs17880553</td>
+<td align="right">0.003</td>
+<td align="right">0.032</td>
+<td align="right">0.929</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1</td>
+<td align="left">jrjVHU</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1835493</td>
+<td align="right">-0.038</td>
+<td align="right">0.034</td>
+<td align="right">0.262</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1</td>
+<td align="left">jrjVHU</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs2846341</td>
+<td align="right">-0.013</td>
+<td align="right">0.016</td>
+<td align="right">0.407</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1</td>
+<td align="left">jrjVHU</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs41380244</td>
+<td align="right">0.006</td>
+<td align="right">0.036</td>
+<td align="right">0.864</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1</td>
+<td align="left">jrjVHU</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs510347</td>
+<td align="right">-0.061</td>
+<td align="right">0.033</td>
+<td align="right">0.068</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1</td>
+<td align="left">jrjVHU</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs61895694</td>
+<td align="right">0.021</td>
+<td align="right">0.014</td>
+<td align="right">0.143</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1</td>
+<td align="left">jrjVHU</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs72977504</td>
+<td align="right">-0.013</td>
+<td align="right">0.037</td>
+<td align="right">0.732</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1</td>
+<td align="left">jrjVHU</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs75093003</td>
+<td align="right">-0.039</td>
+<td align="right">0.033</td>
+<td align="right">0.230</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1</td>
+<td align="left">jrjVHU</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs79991976</td>
+<td align="right">-0.040</td>
+<td align="right">0.033</td>
+<td align="right">0.230</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1</td>
+<td align="left">jrjVHU</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">All - Inverse variance weighted</td>
+<td align="right">-0.004</td>
+<td align="right">0.005</td>
+<td align="right">0.497</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1</td>
+<td align="left">jrjVHU</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">All - MR Egger</td>
+<td align="right">0.018</td>
+<td align="right">0.014</td>
+<td align="right">0.210</td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<caption>
+<span id="tab:mmp10">Table 5.2: </span>MMP.10 variants and FEV1 (loo)</caption>
+<colgroup>
+<col width="10%">
+<col width="9%">
+<col width="13%">
+<col width="19%">
+<col width="12%">
+<col width="12%">
+<col width="8%">
+<col width="6%">
+<col width="6%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">exposure</th>
+<th align="left">outcome</th>
+<th align="left">id.exposure</th>
+<th align="left">id.outcome</th>
+<th align="right">samplesize</th>
+<th align="left">SNP</th>
+<th align="right">b</th>
+<th align="right">se</th>
+<th align="right">p</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1</td>
+<td align="left">jrjVHU</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs11605152</td>
+<td align="right">-0.004</td>
+<td align="right">0.006</td>
+<td align="right">0.525</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1</td>
+<td align="left">jrjVHU</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs12365082</td>
+<td align="right">-0.007</td>
+<td align="right">0.006</td>
+<td align="right">0.286</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1</td>
+<td align="left">jrjVHU</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1276270</td>
+<td align="right">-0.002</td>
+<td align="right">0.006</td>
+<td align="right">0.707</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1</td>
+<td align="left">jrjVHU</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs17099555</td>
+<td align="right">-0.004</td>
+<td align="right">0.005</td>
+<td align="right">0.437</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1</td>
+<td align="left">jrjVHU</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs17880553</td>
+<td align="right">-0.004</td>
+<td align="right">0.006</td>
+<td align="right">0.496</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1</td>
+<td align="left">jrjVHU</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs1835493</td>
+<td align="right">-0.003</td>
+<td align="right">0.005</td>
+<td align="right">0.610</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1</td>
+<td align="left">jrjVHU</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs2846341</td>
+<td align="right">-0.002</td>
+<td align="right">0.006</td>
+<td align="right">0.680</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1</td>
+<td align="left">jrjVHU</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs41380244</td>
+<td align="right">-0.004</td>
+<td align="right">0.006</td>
+<td align="right">0.490</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1</td>
+<td align="left">jrjVHU</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs510347</td>
+<td align="right">-0.002</td>
+<td align="right">0.005</td>
+<td align="right">0.696</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1</td>
+<td align="left">jrjVHU</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs61895694</td>
+<td align="right">-0.008</td>
+<td align="right">0.006</td>
+<td align="right">0.187</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1</td>
+<td align="left">jrjVHU</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs72977504</td>
+<td align="right">-0.003</td>
+<td align="right">0.006</td>
+<td align="right">0.538</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1</td>
+<td align="left">jrjVHU</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs75093003</td>
+<td align="right">-0.003</td>
+<td align="right">0.005</td>
+<td align="right">0.624</td>
+</tr>
+<tr class="odd">
+<td align="left">MMP.10</td>
+<td align="left">FEV1</td>
+<td align="left">jrjVHU</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">rs79991976</td>
+<td align="right">-0.003</td>
+<td align="right">0.005</td>
+<td align="right">0.623</td>
+</tr>
+<tr class="even">
+<td align="left">MMP.10</td>
+<td align="left">FEV1</td>
+<td align="left">jrjVHU</td>
+<td align="left">ebi-a-GCST007432</td>
+<td align="right">321047</td>
+<td align="left">All</td>
+<td align="right">-0.004</td>
+<td align="right">0.005</td>
+<td align="right">0.497</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section level3" number="5.3">
 <h3 id="mr-using-cis-trans-and-cistrans-pan-instruments">
 <span class="header-section-number">5.3</span> MR using cis, trans and cis+trans (pan) instruments<a class="anchor" aria-label="anchor" href="#mr-using-cis-trans-and-cistrans-pan-instruments"></a>
 </h3>
 <p>This is illustrated with IL-12B.</p>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">efo</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.delim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/find.package.html" class="external-link">find.package</a></span><span class="op">(</span><span class="st">"pQTLtools"</span><span class="op">)</span>,<span class="st">"tests"</span>,<span class="st">"efo.txt"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">d3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.delim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/find.package.html" class="external-link">find.package</a></span><span class="op">(</span><span class="st">"pQTLtools"</span><span class="op">)</span>,<span class="st">"tests"</span>,<span class="st">"IL.12B.txt"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
 <span>      <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>MRBASEID<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/strsplit.html" class="external-link">strsplit</a></span><span class="op">(</span><span class="va">outcome</span>,<span class="st">"id:"</span><span class="op">)</span>,<span class="st">"["</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span>,y<span class="op">=</span><span class="va">b</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
@@ -2096,7 +2646,7 @@ Figure 5.1: pQTL-MR
 <span>             caption<span class="op">=</span><span class="st">"MR with IL-12B variants"</span>,digits<span class="op">=</span><span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>
-<span id="tab:mr">Table 5.2: </span>MR with IL-12B variants</caption>
+<span id="tab:mr">Table 5.3: </span>MR with IL-12B variants</caption>
 <colgroup>
 <col width="25%">
 <col width="35%">
@@ -2901,7 +3451,7 @@ Figure 5.1: pQTL-MR
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">d3</span>,<span class="fu">aes</span><span class="op">(</span>y <span class="op">=</span> <span class="va">trait</span>, x <span class="op">=</span> <span class="va">y</span><span class="op">)</span><span class="op">)</span><span class="op">+</span></span>
 <span>     <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span></span>
 <span>     <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span></span>
@@ -2914,7 +3464,7 @@ Figure 5.1: pQTL-MR
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:mr"></span>
 <img src="pQTLtools%2Fmr-1.png" alt="MR with cis, trans and cis+trans variants of IL-12B" width="672" style="display:block; margin: auto"><p class="caption">
-Figure 5.2: MR with cis, trans and cis+trans variants of IL-12B
+Figure 5.6: MR with cis, trans and cis+trans variants of IL-12B
 </p>
 </div>
 </div>
