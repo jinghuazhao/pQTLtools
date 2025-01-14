@@ -980,11 +980,11 @@ Figure 3.2: GREAT plots
 <span><span class="co">#&gt; Please wait for 55s for the next request.</span></span>
 <span><span class="co">#&gt; The time break can be set by `request_interval` argument.</span></span>
 <span><span class="co">#&gt; Don't make too frequent requests. The time break is 60s.</span></span>
-<span><span class="co">#&gt; Please wait for 57s for the next request.</span></span>
+<span><span class="co">#&gt; Please wait for 58s for the next request.</span></span>
 <span><span class="co">#&gt; The time break can be set by `request_interval` argument.</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Don't make too frequent requests. The time break is 60s.</span></span>
-<span><span class="co">#&gt; Please wait for 57s for the next request.</span></span>
+<span><span class="co">#&gt; Please wait for 58s for the next request.</span></span>
 <span><span class="co">#&gt; The time break can be set by `request_interval` argument.</span></span></code></pre></div>
 <p>The top terms at Binomial p=1e-5 could be extracted as follows,</p>
 <table class="table">
@@ -2089,11 +2089,10 @@ Figure 5.4: Two-sample MR
 Figure 5.5: Two-sample MR
 </p>
 </div>
-<p>As <code>clump_data</code> requires a somewhat confusing authentication token,</p>
+<p>To avoid issue with TwoSampleMR authentication token, we</p>
 <ul>
-<li>1.25% variants is used for illustrative purpose.</li>
-<li>
-<code>extract_outcome_data</code> is unused (<code>outcome &lt;- TwoSampleMR::extract_outcome_data(snps=clump$SNP,outcomes="ebi-a-GCST007432")</code>).</li>
+<li>use 1.25% variants instead of <code>clump_data</code> is used for illustrative purpose.</li>
+<li>avoid <code>extract_outcome_data</code> (<code>outcome &lt;- TwoSampleMR::extract_outcome_data(snps=clump$SNP,outcomes="ebi-a-GCST007432")</code>).</li>
 </ul>
 <p>The output is contained in individual <code>.txt</code> files, together with the scatter, forest, funnel and leave-one-out plots.</p>
 <table class="table">
