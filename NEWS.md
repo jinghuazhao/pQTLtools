@@ -1,10 +1,10 @@
 ## pQTLtools 0.4
 
-(2025/1/12)
+(2025/1/14)
 
-* Amend SCALLOP-Caprion.Rmd and LocusZoom.js.Rmd (including lz.html and ACE.html).
+* Revise pQTLtools, SCALLOP-Caprion and LocusZoom.js (including lz.html and ACE.html).
 * Unify DESCRIPTION/README (finally).
-* Add caprion coloc scripts.
+* Add Caprion coloc scripts.
 * Add SummarizedExperiment section to es.Rmd --> esse.Rmd.
 * Add csq(), protein_altering_variants (so data/), histo.fyi, aria-label.
 * Adopt new hg38 LD blocks for turboman().
