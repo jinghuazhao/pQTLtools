@@ -1,6 +1,6 @@
 ## pQTLtools 0.4
 
-(2025/1/14)
+(2025/1/15)
 
 * Revise pQTLtools, SCALLOP-Caprion and LocusZoom.js (including lz.html and ACE.html).
 * Unify DESCRIPTION/README (finally).
