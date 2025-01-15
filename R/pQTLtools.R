@@ -84,10 +84,6 @@
 #' @importFrom utils head read.table tail write.table
 #' @importFrom Rdpack reprompt
 #'
-#' @importFrom MsCoreUtils impute_knn impute_RF
-#' @importFrom SummarizedExperiment assay assays rowRanges rowData colData
-#' @importFrom S4Vectors SimpleList endoapply metadata
-
 #' @author Jing Hua Zhao in collaboration with other colleagues
 #' @keywords internal
 
