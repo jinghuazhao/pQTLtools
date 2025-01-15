@@ -1,5 +1,5 @@
 ---
-title: Spectrum data analysis
+title: "Spectrum data analysis"
 output:
   bookdown::html_document2:
     toc: true
@@ -12,7 +12,7 @@ csl: nature-genetics.csl
 pkgdown:
   as_is: true
 vignette: >
-  %\VignetteIndexEntry{Bioconductor notes}
+  %\VignetteIndexEntry{Spectrum data analysis}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
