@@ -493,7 +493,7 @@ run_TwoSampleMR(harmonise, mr_plot="pQTLtools", prefix=prefix)
 To avoid issue with TwoSampleMR authentication token, we
 
 - use 1.25% variants instead of `clump_data` for illustrative purpose.
-- avoid `extract_outcome_data` (`outcome <- TwoSampleMR::extract_outcome_data(snps=clump$SNP,outcomes="ebi-a-GCST007432")`).
+- replace `extract_outcome_data` (`outcome <- TwoSampleMR::extract_outcome_data(snps=clump$SNP,outcomes="ebi-a-GCST007432")`).
 
 The output is contained in individual `.txt` files, together with the scatter, forest, funnel and leave-one-out plots.
 
