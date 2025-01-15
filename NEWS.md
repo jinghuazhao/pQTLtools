@@ -2,7 +2,7 @@
 
 (2025/1/15)
 
-* Revise pQTLtools, SCALLOP-Caprion and LocusZoom.js (including lz.html and ACE.html).
+* Revise pQTLtools, SCALLOP-Caprion, spectrum and LocusZoom.js (including lz.html and ACE.html).
 * Unify DESCRIPTION/README (finally).
 * Add Caprion coloc scripts.
 * Add SummarizedExperiment section to es.Rmd --> esse.Rmd.
