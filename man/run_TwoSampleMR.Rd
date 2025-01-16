@@ -48,6 +48,7 @@ outcome <- pQTLtools::import_OpenGWAS("ebi-a-GCST007432","11:102090035-103364929
            dplyr::select(ID,outcome,REF,ALT,AF,ES,SE,LP,SS,id) \%>\%
            setNames(c("SNP","outcome",paste0(c("other_allele","effect_allele","eaf","beta","se",
                                                "pval","samplesize","id"),".outcome")))
+unlink("ebi-a-GCST007432.vcf.gz.tbi")
 harmonise <- TwoSampleMR::harmonise_data(clump,outcome)
 prefix <- paste(prot,type,sep="-")
 pQTLtools::run_TwoSampleMR(harmonise, mr_plot="pQTLtools", prefix=prefix)
