@@ -38,6 +38,7 @@
 #'       dplyr::group_by(SNP) %>%
 #'       dplyr::slice(which.min(p)) %>%
 #'       data.frame()
+#' unlink("ebi-a-GCST007432.vcf.gz.tbi")
 #' od[is.na(od$N),"N"] <- n
 #' write.table(od,quote=FALSE,row.names=FALSE)
 #' # method="gwasvcf"

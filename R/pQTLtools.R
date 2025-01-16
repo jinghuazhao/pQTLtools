@@ -77,10 +77,7 @@
 #' - SCALLOP-INF scripts. `vignette("SCALLOP-INF")`.
 #' @md
 #'
-#' @import dplyr ggplot2 pQTLdata
-#' @importFrom MsCoreUtils impute_knn impute_RF
-#' @importFrom SummarizedExperiment assay assays rowRanges rowData colData
-#' @importFrom S4Vectors SimpleList endoapply metadata
+#' @import dplyr ggplot2 pQTLdata MsCoreUtils S4Vectors SummarizedExperiment
 #' @importFrom graphics axis legend lines mtext par points polygon segments text title
 #' @importFrom grDevices colors xy.coords
 #' @importFrom stats complete.cases median na.omit pnorm qbeta qchisq qnorm setNames
