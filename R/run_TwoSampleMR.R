@@ -150,6 +150,7 @@ blank_plot <- function(message)
 
 mr_scatter_plot2 <- function (mr_results, dat, alpha=0.05)
 {
+   exposure <- outcome <- b_i <- default_parameters <- NA
    for (p in c("ggplot2","plyr")) {
      if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
         if (!requireNamespace(p, quietly = TRUE))
@@ -210,6 +211,7 @@ mr_scatter_plot2 <- function (mr_results, dat, alpha=0.05)
 
 mr_forest_plot2 <- function (singlesnp_results, exponentiate = FALSE, alpha = 0.05)
 {
+   exposure <- outcome <- NA
    for (p in c("ggplot2","plyr")) {
      if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
         if (!requireNamespace(p, quietly = TRUE))
@@ -315,6 +317,7 @@ mr_funnel_plot2 <- function (singlesnp_results)
 
 mr_leaveoneout_plot2 <- function (leaveoneout_results, alpha = 0.05)
 {
+  exposure <- outcome <- NA
   for (p in c("ggplot2","plyr")) {
       if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
          if (!requireNamespace(p, quietly = TRUE))

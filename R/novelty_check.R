@@ -76,7 +76,7 @@
 
 novelty_check <- function(known_loci,query_loci,ldops=NULL,flanking=1e6,pop="EUR",verbose=TRUE)
 {
-  rsid <- seqnames <- start <- strand <- width <- NA
+  rsid <- seqnames <- start <- strand <- width <- chr <- pos <- prot <- uniprot <- known.rsid <- query.rsid <- NA
   bfile <- plink <- NA
   query <- with(known_loci,GenomicRanges::GRanges(seqnames=chr,IRanges::IRanges(start=pos,width=1),
                                                   uniprot=uniprot,rsid=rsid,pos=pos,prot=prot))

@@ -59,7 +59,7 @@
 #' }
 #'
 csq <- function(query_loci, annotated_loci, pattern, ldops=NULL, flanking=1e6, pop="EUR", verbose=TRUE) {
-  rsid <- seqnames <- start <- strand <- width <- bfile <- plink <- NA
+  chr <- pos <- prot <- ref.rsid <- rsid <- seqnames <- start <- strand <- width <- bfile <- plink <- NA
   
   subject <- with(query_loci,
     GenomicRanges::GRanges(seqnames=chr, IRanges::IRanges(start=pos-flanking, end=pos+flanking),

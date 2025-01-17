@@ -11,6 +11,7 @@
 
 run_coloc <- function(eqtl_sumstats, gwas_sumstats, harmonise=TRUE)
 {
+  flag <- an <- maf <- snpid <- maf <- MAF <- SS <- NA
   if (harmonise)
   {
     chromosome <- position <- ref <- alt <- REF <- ALT <- beta <- se <- ES <- SE <- NA
