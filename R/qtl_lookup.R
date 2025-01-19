@@ -42,7 +42,7 @@
 qtl_lookup <- function(d,dat,panel="1000Genomes",p_threshold=1e-3,r2_threshold=0.8,pop="EUR",
                        plink_bin=NULL,r=NULL,r2=NULL,xlsx=NULL)
 {
-  protein <- p <- SNP <- prot <- Disease <- protein <- fdr <- qtl <- p_qtl <- rsq <- NULL
+  id <- protein <- p <- SNP <- prot <- Disease <- protein <- fdr <- qtl <- p_qtl <- rsq <- NULL
   for(i in 1:nrow(dat))
   {
      z <- dplyr::slice(dat,i)

@@ -127,7 +127,7 @@ blank_plot <- function(message)
              warning(paste("This function needs package `", p, "' to be fully functional; please install", sep=""))
        }
    }
-   a <- b <- NA
+   a <- b <- n <- NA
    ggplot2::ggplot(data.frame(a=0,b=0,n=message)) +
    ggplot2::geom_text(ggplot2::aes(x=a,y=b,label=n)) +
    ggplot2::labs(x=NULL,y=NULL) +

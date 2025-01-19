@@ -77,14 +77,15 @@
 #' - SCALLOP-INF scripts. `vignette("SCALLOP-INF")`.
 #' @md
 #'
-#' @import S4Vectors dplyr ggplot2 pQTLdata MsCoreUtils SummarizedExperiment
+#' @importFrom dplyr rename intersect union setdiff setequal first last between
+#' @importFrom dplyr %>% filter if_else mutate select bind_cols left_join pull slice
 #' @importFrom MsCoreUtils impute_knn impute_RF
 #' @importFrom SummarizedExperiment assay assays rowRanges rowData colData
 #' @importFrom S4Vectors DataFrame SimpleList endoapply metadata
 #' @importFrom graphics axis legend lines mtext par points polygon segments text title
 #' @importFrom grDevices colors xy.coords
 #' @importFrom stats complete.cases median na.omit pnorm qbeta qchisq qnorm setNames
-#' @importFrom utils head read.table tail write.table
+#' @importFrom utils globalVariables head read.table tail write.table
 #' @importFrom Rdpack reprompt
 #'
 #' @author Jing Hua Zhao in collaboration with other colleagues
