@@ -1,7 +1,8 @@
 ## pQTLtools 0.4
 
-(2025/1/17)
+(2025/1/19)
 
+* Another pass through R CMD check --as-cran
 * Revise articles esp. pQTLtools, esse, LocusZoom.js (including lz.html and ACE.html).
 * Unify DESCRIPTION/README (finally).
 * Add Caprion coloc scripts.
