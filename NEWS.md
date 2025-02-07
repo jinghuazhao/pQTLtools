@@ -1,10 +1,11 @@
 ## pQTLtools 0.4
 
-(2025/1/19)
+(2025/2/7)
 
 * Another pass through R CMD check --as-cran
 * Revise articles esp. pQTLtools, esse, LocusZoom.js (including lz.html and ACE.html).
 * Unify DESCRIPTION/README (finally).
+* Add support for MathJax and mermaid.
 * Add Caprion coloc scripts.
 * Add SummarizedExperiment section to es.Rmd --> esse.Rmd.
 * Add csq(), protein_altering_variants (so data/), histo.fyi, aria-label.
