@@ -1,6 +1,6 @@
 ## pQTLtools 0.4
 
-(2025/2/7)
+(2025/2/13)
 
 * Another pass through R CMD check --as-cran
 * Revise articles esp. pQTLtools, esse, LocusZoom.js (including lz.html and ACE.html).
