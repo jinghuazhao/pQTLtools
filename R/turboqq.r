@@ -41,7 +41,7 @@
 #' }
 #'
 #' @references
-#' \insertAllCited{}
+#'   \insertAllCited{}
 #'
 #' @author Bram Prins, \href{https://github.com/bpprins/turboqq}{https://github.com/bpprins/turboqq}.
 

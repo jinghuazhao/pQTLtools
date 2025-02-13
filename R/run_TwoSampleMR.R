@@ -381,7 +381,7 @@ mr_leaveoneout_plot2 <- function (leaveoneout_results, alpha = 0.05)
 #' No value is returned but several files.
 #'
 #' @references
-#' \insertAllCited{}
+#'   \insertAllCited{}
 #'
 #' @examples
 #' suppressMessages(require(dplyr))

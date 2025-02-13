@@ -19,7 +19,7 @@
 #' No value is returned but several files.
 #'
 #' @references
-#' \insertAllCited{}
+#'   \insertAllCited{}
 #'
 #' @examples
 #' fi <- file.path(find.package("pQTLtools",lib.loc=.libPaths()),"tests","Ins.csv")

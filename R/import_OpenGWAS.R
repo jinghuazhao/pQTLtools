@@ -16,7 +16,7 @@
 #' A summary statistic object. With method="TwoSampleMR" the result is in TwoSampleMR outcome format.
 #'
 #' @references
-#' \insertAllCited{}
+#'   \insertAllCited{}
 #'
 #' @seealso \code{\link[TwoSampleMR]{extract_outcome_data}}
 #' @examples

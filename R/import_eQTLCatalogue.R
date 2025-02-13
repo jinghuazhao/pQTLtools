@@ -15,7 +15,7 @@
 #' @return A summary statistic object.
 #'
 #' @references
-#' \insertAllCited{}
+#'   \insertAllCited{}
 #'
 #' @examples
 #' \dontrun{

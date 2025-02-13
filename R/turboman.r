@@ -85,7 +85,7 @@
 #' @author Arthur Gilly, Chris Finan, Bram Prins, see \href{https://github.com/bpprins/turboman}{https://github.com/bpprins/turboman}.
 #'
 #' @references
-#' \insertAllCited{}
+#'   \insertAllCited{}
 
 turboman <- function(input_data_path, custom_peak_annotation_file_path, reference_file_path,
     pvalue_sign, plot_title, vertical_resolution = 1800)
