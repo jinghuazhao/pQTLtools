@@ -5,7 +5,7 @@ output:
     toc: true
     toc_float: true
     number_sections: true
-    self_contained: true
+    self_contained: false
 fontsize: 11pt
 bibliography: '`r system.file("REFERENCES.bib", package="pQTLtools")`'
 csl: nature-genetics.csl

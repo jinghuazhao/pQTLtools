@@ -4,6 +4,7 @@ output:
   bookdown::html_document2:
     toc: true
     toc_float: true
+    self_contained: false
 fontsize: 11pt
 bibliography: '`r system.file("REFERENCES.bib", package="pQTLtools")`'
 csl: nature-genetics.csl
