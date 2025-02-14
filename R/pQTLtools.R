@@ -77,6 +77,7 @@
 #' - SCALLOP-INF scripts. `vignette("SCALLOP-INF")`.
 #' @md
 #'
+#' @import pQTLdata
 #' @importFrom dplyr rename intersect union setdiff setequal first last between
 #' @importFrom dplyr %>% filter if_else mutate select bind_cols left_join pull slice
 #' @importFrom MsCoreUtils impute_knn impute_RF
