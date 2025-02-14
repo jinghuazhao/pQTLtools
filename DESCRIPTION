@@ -22,7 +22,7 @@ BugReports: https://github.com/jinghuazhao/pQTLtools/issues
 Depends:
     R (>= 3.5.0), pQTLdata
 Imports:
-    S4Vectors, dplyr, gap, grDevices, graphics, ggplot2, stats, utils, MsCoreUtils, SummarizedExperiment, Rdpack
+    dplyr, gap, grDevices, graphics, ggplot2, stats, utils, MsCoreUtils, S4Vectors, SummarizedExperiment, Rdpack
 RdMacros: Rdpack
 Suggests:
     AnnotationFilter,
