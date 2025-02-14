@@ -34,6 +34,7 @@ template:
   bootstrap: 5
   params:
     bootswatch: litera
+  self_contained: true
   math-rendering: mathjax
   includes:
     in_header:
