@@ -126,10 +126,8 @@ shinyApp(ui, server)
 The figure below extends to three panels.
 
 ```{r, results='asis'}
-htmltools::tags$iframe(src = "stack.html", width = "100%", height = "1500px")
+htmltools::tags$iframe(src = "stack.html", width = "100%", height = "1200px")
 ```
-
-We only need to change filename and region for A1BG-rs145685027 above.
 
 # Direct access
 
