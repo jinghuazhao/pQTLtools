@@ -27,7 +27,7 @@ do
     fi
 done
 if [ -f vignettes/ebi-a-GCST007432.vcf.gz.tbi ]; then rm vignettes/ebi-a-GCST007432.vcf.gz.tbi; fi
-for f in ACEr fig2d fig3d heatmaply mcpca3d
+for f in fig2d fig3d heatmaply mcpca3d
 do
     if [ -f vignettes/${f}.html ]; then mv vignettes/${f}.html docs/articles/; fi
 done
