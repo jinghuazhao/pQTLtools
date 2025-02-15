@@ -14,9 +14,8 @@
   <script src="https://statgen.github.io/locuszoom/dist/ext/lz-credible-sets.min.js"></script>
   <title>LocusZoom.js</title>
 <style>
-  html, body {
+  body {
     background-color: #FAFAFA;
-    height: 100%;
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
@@ -33,6 +32,7 @@
     height: 100%;
     box-sizing: border-box;
   }
+
   #lz-plot {
     width: 100%;
     height: 100%;
@@ -48,7 +48,7 @@
         <option value="">Select a Protein-pQTL...</option>
       </select>
     </div>
-    <div class="plot-container" style="height: 100%;">
+    <div class="plot-container">
       <div id="lz-plot" class="lz-container-responsive"></div>
     </div>
   </div>
