@@ -1,5 +1,5 @@
 pandoc: '2.18'
-pkgdown: 2.1.1
+pkgdown: 2.1.0
 pkgdown_sha: ~
 articles:
   bioconductor: bioconductor.html
@@ -9,7 +9,7 @@ articles:
   SCALLOP-Caprion: SCALLOP-Caprion.html
   snakemake: snakemake.html
   spectrum: spectrum.html
-last_built: 2025-02-14T17:42Z
+last_built: 2025-02-15T14:02Z
 urls:
   reference: https://jinghuazhao.github.io/pQTLtools/reference
   article: https://jinghuazhao.github.io/pQTLtools/articles

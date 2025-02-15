@@ -128,7 +128,8 @@ The input data needs to be a file that has:</p><ol><li><p>Spaces / tabs as field
 NB!: If no label is given, variants will be automatically annotated</p></li>
 </ol><p><strong>Reference file / reference_file_path</strong></p>
 <p>Define the path to the 'turboman_hg19_reference_data.rda' / 'turboman_hg38_reference_data.rda' reference file that
-contains the LD block breaks as in berisa16;textualpQTLtools
+contains the LD block breaks as in Berisa and Pickrell (2016)
+
 and gene coordinates used to construct and annotate the Manhattan plot. Both
 are available from the <code>turboman</code> directory of the installed package, e.g.,
 <code>file.path(find.package('pQTLtools'),'turboman','turboman_hg38_reference_data.rda')</code>.</p>
@@ -144,7 +145,11 @@ This will be used to</p><ol><li><p>Highlight signal peaks that come above this s
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
-    <p></p>
+    <p>Berisa T, Pickrell JK (2016).
+“Approximately independent linkage disequilibrium blocks in human populations.”
+<em>Bioinformatics</em>, <b>32</b>(2), 283-285.
+<a href="https://doi.org/10.1093/bioinformatics/btv546" class="external-link">doi:10.1093/bioinformatics/btv546</a>
+.</p>
     </div>
     <div class="section level2">
     <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>
@@ -189,7 +194,7 @@ This will be used to</p><ol><li><p>Highlight signal peaks that come above this s
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Crafted by <a href="https://jinghuazhao.github.io" class="external-link">Jing Hua Zhao</a>. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Crafted by <a href="https://jinghuazhao.github.io" class="external-link">Jing Hua Zhao</a>. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
 </div>
 
 <div class="pkgdown-footer-right">

@@ -183,7 +183,7 @@ $data
 <span>    <span class="va">selected_pair</span> <span class="op">&lt;-</span> <span class="va">protein_pqtl_pairs</span><span class="op">[[</span><span class="va">input</span><span class="op">$</span><span class="va">imageSelect</span><span class="op">]</span><span class="op">]</span></span>
 <span>    </span>
 <span>    <span class="co"># Use the first element of the vector returned by match</span></span>
-<span>    <span class="va">selected_image_url</span> <span class="op">&lt;-</span> <span class="va">image_urls</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/match.html" class="external-link">match</a></span><span class="op">(</span><span class="va">selected_pair</span>, <span class="va">protein_pqtl_pairs</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
+<span>    <span class="va">selected_image_url</span> <span class="op">&lt;-</span> <span class="va">image_urls</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/match.html" class="external-link">match</a></span><span class="op">(</span><span class="va">selected_pair</span>, <span class="va">protein_pqtl_pairs</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
 <span>    </span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>src <span class="op">=</span> <span class="va">selected_image_url</span>, alt <span class="op">=</span> <span class="st">"Selected Image"</span><span class="op">)</span></span>
 <span>  <span class="op">}</span>, deleteFile <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
@@ -199,7 +199,7 @@ $data
 <p>The figure below extends to three panels.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">htmltools</span><span class="fu">::</span><span class="va"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">tags</a></span><span class="op">$</span><span class="fu">iframe</span><span class="op">(</span>src <span class="op">=</span> <span class="st">"stack.html"</span>, width <span class="op">=</span> <span class="st">"100%"</span>, height <span class="op">=</span> <span class="st">"2300px"</span><span class="op">)</span></span></code></pre></div>
-<iframe src="stack.html" width="100%" height="1200px"></iframe>
+<iframe src="stack.html" width="100%" height="2300px"></iframe>
 </div>
 <div class="section level2" number="3">
 <h2 id="direct-access">
@@ -220,7 +220,7 @@ $data
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Crafted by <a href="https://jinghuazhao.github.io" class="external-link">Jing Hua Zhao</a>. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Crafted by <a href="https://jinghuazhao.github.io" class="external-link">Jing Hua Zhao</a>. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
 </div>
 
 <div class="pkgdown-footer-right">
