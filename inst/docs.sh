@@ -18,7 +18,7 @@ Rscript -e '
 # pandoc README.md --citeproc --mathjax -s --self-contained -o index.html
 }
 
-cp -r vignettes/data vignettes/ACE.html vignettes/lz.html docs/articles
+cp -r vignettes/data vignettes/lz.html vignettes/stack.html docs/articles
 for d in bioconductor esse pQTLtools spectrum
 do
     if [ -d vignettes/${d} ]; then
