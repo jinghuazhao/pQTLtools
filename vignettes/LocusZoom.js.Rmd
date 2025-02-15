@@ -126,7 +126,7 @@ shinyApp(ui, server)
 The figure below extends to three panels.
 
 ```{r, results='asis'}
-htmltools::tags$iframe(src = "stack.html", width = "100%", style = "height: 50vh;")
+htmltools::tags$iframe(src = "stack.html", width = "100%", style = "min-height: 100vh; width: 100%; border: none;")
 ```
 
 # Direct access
