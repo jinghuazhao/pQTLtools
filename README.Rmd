@@ -17,10 +17,10 @@ knitr::opts_chunk$set(
 [![R-CMD-check](https://github.com/jinghuazhao/pQTLtools/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jinghuazhao/pQTLtools/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-## A protein Quantitative Trait Locus toolkit
-
 ```{r, echo = FALSE, message=FALSE, warning=FALSE}
 desc <- read.dcf("DESCRIPTION")
+title <- desc[, "Title"]
+knitr::asis_output(paste0("##"," ", title,"\n\n"))
 description <- desc[, "Description"]
 lines <- unlist(lapply(strsplit(description, "\n"),paste,""))
 lines[[length(lines)]] <- gsub(" $","",lines[[length(lines)]])
