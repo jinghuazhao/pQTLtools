@@ -75,11 +75,8 @@ Vignettes on package usage:
 \itemize{
 \item An Overview of pQTLtools. \code{vignette("pQTLtools")}.
 \item Bioconductor Notes. \code{vignette("bioconductor")}.
-\item ExpressionSet/SummarizedExperiment usage. \code{vignette("esse")}.
 \item LocusZoom.js. \code{vignette("LocusZoom.js")}.
 \item snakemake showcases. \code{vignette("snakemake")}.
-\item Spectrum data analysis. \code{vignette("spectrum")}.
-\item SCALLOP-INF scripts. \code{vignette("SCALLOP-INF")}.
 }
 }
 
@@ -87,7 +84,7 @@ Vignettes on package usage:
 Useful links:
 \itemize{
   \item \url{https://github.com/jinghuazhao/pQTLtools/}
-  \item \url{https://jinghuazhao.github.io/pQTLtools}
+  \item \url{https://jinghuazhao.github.io/pQTLtools/}
   \item Report bugs at \url{https://github.com/jinghuazhao/pQTLtools/issues}
 }
 
