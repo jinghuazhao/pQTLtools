@@ -70,11 +70,8 @@
 #' Vignettes on package usage:
 #' - An Overview of pQTLtools. `vignette("pQTLtools")`.
 #' - Bioconductor Notes. `vignette("bioconductor")`.
-#' - ExpressionSet/SummarizedExperiment usage. `vignette("esse")`.
 #' - LocusZoom.js. `vignette("LocusZoom.js")`.
 #' - snakemake showcases. `vignette("snakemake")`.
-#' - Spectrum data analysis. `vignette("spectrum")`.
-#' - SCALLOP-INF scripts. `vignette("SCALLOP-INF")`.
 #' @md
 #'
 #' @import pQTLdata
