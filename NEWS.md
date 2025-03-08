@@ -2,6 +2,7 @@
 
 (2025/3/8)
 
+* Add single quote to package/software name.
 * Drop link to GitHub repository in _pkgdown.yml.
 * Merge Bioconductor-related and LocusZoom.js/SCALLOP-Caprion articles.
 
