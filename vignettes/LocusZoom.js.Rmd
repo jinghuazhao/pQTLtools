@@ -845,7 +845,7 @@ collect <- function(batch="GTEx")
 
 loop_slowly <- function() for (r in 1:nrow(sentinels)) single_run(r)
 
-## Environmental variables
+# Environmental variables
 
 pkgs <- c("dplyr", "gap", "ggplot2", "readr", "coloc", "GenomicRanges","pQTLtools","rtracklayer","seqminer")
 invisible(suppressMessages(lapply(pkgs, require, character.only = TRUE)))

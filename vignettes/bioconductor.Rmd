@@ -478,7 +478,7 @@ WGCNA::plotDendroAndColors(Tree, Colors, dendroLabels=FALSE, hang=0.03, addGuide
 meg <- WGCNA::moduleEigengenes(dat, color=1:ncol(dat), softPower=6)
 ```
 
-# Meta-data
+# Metadata
 
 This section is based on package `recount3`.
 
