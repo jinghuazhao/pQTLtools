@@ -1,3 +1,9 @@
+## pQTLtools 0.5
+
+(2025/3/8)
+
+* Set to merge Bioconductor-related and LocusZoom.js/SCALLOP-Caprion articles.
+
 ## pQTLtools 0.4
 
 (2025/3/7)
