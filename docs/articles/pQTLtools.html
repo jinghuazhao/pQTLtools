@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">pQTLtools</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,11 +44,8 @@
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Articles:</h6></li>
     <li><a class="dropdown-item" href="../articles/bioconductor.html">Bioconductor notes</a></li>
-    <li><a class="dropdown-item" href="../articles/esse.html">ExpressionSet/SummarizedExperiment usage</a></li>
     <li><a class="dropdown-item" href="../articles/LocusZoom.js.html">LocusZoom.js</a></li>
     <li><a class="dropdown-item" href="../articles/snakemake.html">snakemake showcases</a></li>
-    <li><a class="dropdown-item" href="../articles/spectrum.html">Spectrum data analysis</a></li>
-    <li><a class="dropdown-item" href="../articles/SCALLOP-Caprion.html">SCALLOP-Caprion scripts</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../reference/pQTLtools.html">Reference</a></li>
@@ -628,7 +625,7 @@ Figure 1.4: Forest plots
 <p>This is visualised via a circos plot, highlighting the likely causal genes for pQTLs,</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pQTLs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/transmute.html" class="external-link">transmute</a></span><span class="op">(</span><span class="va">merge_cvt</span>,chr<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"chr"</span>,<span class="va">Chr</span><span class="op">)</span>,start<span class="op">=</span><span class="va">bp</span>,end<span class="op">=</span><span class="va">bp</span>,<span class="va">log10p</span><span class="op">)</span></span>
-<span><span class="va">cis.pQTLs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">merge_cvt</span>,<span class="va">cis</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span><span class="va">cis.pQTLs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">merge_cvt</span>,<span class="va">cis</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>             <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/transmute.html" class="external-link">transmute</a></span><span class="op">(</span>chr<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"chr"</span>,<span class="va">p.chr</span><span class="op">)</span>,start<span class="op">=</span><span class="va">p.start</span>,end<span class="op">=</span><span class="va">p.end</span>,gene<span class="op">=</span><span class="va">p.gene</span>,cols<span class="op">=</span><span class="st">"red"</span><span class="op">)</span></span>
 <span><span class="va">pQTL_genes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/find.package.html" class="external-link">find.package</a></span><span class="op">(</span><span class="st">"pQTLtools"</span><span class="op">)</span>,<span class="st">"tests"</span>,<span class="st">"pQTL_genes.txt"</span><span class="op">)</span>,</span>
 <span>                         col.names<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"chr"</span>,<span class="st">"start"</span>,<span class="st">"end"</span>,<span class="st">"gene"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -877,7 +874,7 @@ Figure 2.5: pQTL-gene plot
 <span><span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">180</span><span class="op">)</span></span>
 <span><span class="op">{</span></span>
 <span>  <span class="va">v</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">merge_cvt</span><span class="op">[</span><span class="va">i</span>,<span class="op">]</span>,<span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">Chr</span>,<span class="st">":"</span>,<span class="va">bp</span>,<span class="st">":"</span>,<span class="va">bp</span><span class="op">)</span><span class="op">)</span></span>
-<span>  <span class="va">g</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="fu">getBM</span><span class="op">(</span>attributes <span class="op">=</span> <span class="va">attrs</span>, filters<span class="op">=</span><span class="st">"chromosomal_region"</span>, values<span class="op">=</span><span class="va">v</span>, mart<span class="op">=</span><span class="va">mart</span><span class="op">)</span>,<span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">hgnc_symbol</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="va">g</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="fu">getBM</span><span class="op">(</span>attributes <span class="op">=</span> <span class="va">attrs</span>, filters<span class="op">=</span><span class="st">"chromosomal_region"</span>, values<span class="op">=</span><span class="va">v</span>, mart<span class="op">=</span><span class="va">mart</span><span class="op">)</span>,<span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">hgnc_symbol</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="va">hgnc</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">g</span><span class="op">[[</span><span class="st">"hgnc_symbol"</span><span class="op">]</span><span class="op">]</span>,collapse<span class="op">=</span><span class="st">";"</span><span class="op">)</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="va">i</span>,<span class="va">g</span><span class="op">[[</span><span class="st">"hgnc_symbol"</span><span class="op">]</span><span class="op">]</span>,<span class="va">hgnc</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>,<span class="st">"\n"</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
@@ -980,8 +977,9 @@ Figure 3.2: GREAT plots
 <span><span class="co">#&gt; Please wait for 55s for the next request.</span></span>
 <span><span class="co">#&gt; The time break can be set by `request_interval` argument.</span></span>
 <span><span class="co">#&gt; Don't make too frequent requests. The time break is 60s.</span></span>
-<span><span class="co">#&gt; Please wait for 58s for the next request.</span></span>
+<span><span class="co">#&gt; Please wait for 57s for the next request.</span></span>
 <span><span class="co">#&gt; The time break can be set by `request_interval` argument.</span></span>
+<span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Don't make too frequent requests. The time break is 60s.</span></span>
 <span><span class="co">#&gt; Please wait for 57s for the next request.</span></span>
 <span><span class="co">#&gt; The time break can be set by `request_interval` argument.</span></span></code></pre></div>
