@@ -17,12 +17,15 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r logo, echo = FALSE, include=FALSE}
+```{r setup, include=FALSE}
+set.seed(0)
 knitr::opts_chunk$set(
+  out.extra = 'style="display:block; margin: auto"',
+  fig.align = "center",
+  fig.path = "bioconductor/"
   collapse = TRUE,
   comment = "#>",
-  fig.path = "bioconductor/"
-)
+  dev = "png")
 ```
 
 This article collects notes on Bioconductor packages, made available here to faciliate their use and extensions.
@@ -34,6 +37,10 @@ pkgs <- c("AnnotationDbi", "AnnotationFilter", "ComplexHeatmap", "DESeq2", "EnsD
           "TxDb.Hsapiens.UCSC.hg38.knownGene", "bladderbatch", "clusterProfiler",
           "corpcor", "doParallel", "ensembldb", "fdrtool", "graph", "graphite", "heatmaply",
           "minfi", "org.Hs.eg.db", "plyr", "quantro", "recount3", "sva")
+es_pkgs <- c("Biobase", "arrayQualityMetrics", "dplyr", "knitr", "mclust", "pQTLtools", "rgl", "scatterplot3d")
+se_pkgs <- c("BiocGenerics","GenomicRanges","IRanges","MsCoreUtils","SummarizedExperiment","impute")
+sp_pkgs <- c("Biostrings", "CAMERA", "MSnbase", "MSstats", "Spectra", "mzR", "protViz", "rawrr")
+pkgs <- c(pkgs, es_pkgs,se_pkgs,sp_pkgs)
 for (p in pkgs) if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
     if (!requireNamespace(p)) warning(paste0("This vignette needs package `", p, "'; please install"))
 }
@@ -43,6 +50,226 @@ invisible(suppressMessages(lapply(pkgs, require, character.only = TRUE)))
 # liftover
 
 See `inst/turboman`in the source, <https://github.com/jinghuazhao/pQTLtools/tree/master/inst/turboman>, or `turboman/` directory in the installed package.
+
+# ExpressionSet
+
+We start with Bioconductor/Biobase's ExpressionSet example and finish with a real application.
+
+```{r, results='hide'}
+dataDirectory <- system.file("extdata", package="Biobase")
+exprsFile <- file.path(dataDirectory, "exprsData.txt")
+exprs <- as.matrix(read.table(exprsFile, header=TRUE, sep="\t", row.names=1, as.is=TRUE))
+pDataFile <- file.path(dataDirectory, "pData.txt")
+pData <- read.table(pDataFile, row.names=1, header=TRUE, sep="\t")
+all(rownames(pData)==colnames(exprs))
+metadata <- data.frame(labelDescription=c("Patient gender",
+                                          "Case/control status",
+                                          "Tumor progress on XYZ scale"),
+                       row.names=c("gender", "type", "score"))
+phenoData <- Biobase::AnnotatedDataFrame(data=pData, varMetadata=metadata)
+experimentData <- Biobase::MIAME(name="Pierre Fermat",
+                                 lab="Francis Galton Lab",
+                                 contact="pfermat@lab.not.exist",
+                                 title="Smoking-Cancer Experiment",
+                                 abstract="An example ExpressionSet",
+                                 url="www.lab.not.exist",
+                                 other=list(notes="Created from text files"))
+exampleSet <- pQTLtools::make_ExpressionSet(exprs,phenoData,experimentData=experimentData,
+                                            annotation="hgu95av2")
+data(sample.ExpressionSet, package="Biobase")
+identical(exampleSet,sample.ExpressionSet)
+```
+
+## data.frame
+
+The great benefit is to use the object directly as a data.frame.
+
+```{r}
+lm.result <- Biobase::esApply(exampleSet,1,function(x) lm(score~gender+x))
+beta.x <- unlist(lapply(lapply(lm.result,coef),"[",3))
+beta.x[1]
+lm(score~gender+AFFX.MurIL2_at,data=exampleSet)
+```
+
+## Composite plots
+
+We wish to examine the distribution of each feature via histogram, scatter and boxplot.
+One could resort to `esApply()` for its simplicity as before
+
+```r
+invisible(Biobase::esApply(exampleSet[1:2],1,function(x)
+                           {par(mfrow=c(3,1));boxplot(x);hist(x);plot(x)}
+))
+```
+but it is nicer to add feature name in the title.
+
+```{r plots, fig.cap="Histogram, scatter & boxplots", fig.height=3}
+par(mfrow=c(1,3))
+f <- Biobase::featureNames(exampleSet[1:2])
+invisible(sapply(f,function(x) {
+                     d <- t(Biobase::exprs(exampleSet[x]))
+                     fn <- Biobase::featureNames(exampleSet[x])
+                     hist(d,main="",xlab=fn); plot(d, ylab=fn); boxplot(d,ylab=fn)
+                   }
+          )
+)
+```
+where the expression set is indexed using feature name(s).
+
+## Outlier detections
+
+This illustrates one mechanism,
+
+```r
+list_outliers <- function(es, method="upperquartile")
+                 arrayQualityMetrics::outliers(exprs(es),method=method)
+for (method in c("KS","sum","upperquartile"))
+{
+  ZWK_outliers <- list_outliers(protein_ZWK,method=method)
+  print(ZWK_outliers@statistic[ZWK_outliers@which])
+}
+```
+
+## Clustering
+
+We employ model-based clustering absed on principal compoents to see potential groupings in the data,
+
+```{r mcpca, fig.cap="Three-group Clustering", fig.height=7, fig.width=7}
+  pca <- prcomp(na.omit(t(Biobase::exprs(exampleSet))), rank=10, scale=TRUE)
+  pc1pc2pc3 <- with(pca,x)[,1:3]
+  mc <- mclust::Mclust(pc1pc2pc3,G=3)
+  with(mc, {
+      cols <- c("blue","red", "purple")
+      s3d <- scatterplot3d::scatterplot3d(with(pca,x[,c(2,1,3)]),
+                                          color=cols[classification],
+                                          pch=16,
+                                          type="h",
+                                          main="Plot of the PC1, PC2 and PC3")
+      s3d.coords <- s3d$xyz.convert(with(pca,x[,c(2,1,3)]))
+      text(s3d.coords$x, 
+           s3d.coords$y,   
+           cex = 1.2,
+           col = cols[classification],
+           labels = row.names(pc1pc2pc3),
+           pos = 4)
+      legend("right", legend=levels(as.factor(classification)), col=cols[classification], pch=16)
+      rgl::open3d(width = 500, height = 500)
+      rgl::plot3d(with(pca,x[,c(2,1,3)]),cex=1.2,col=cols[classification],size=5)
+      rgl::text3d(with(pca,x[,c(2,1,3)]),cex=1.2,col=cols[classification],texts=row.names(pc1pc2pc3))
+      htmlwidgets::saveWidget(rgl::rglwidget(), file = "mcpca3d.html")
+  })
+```
+
+An interactive version is also available,
+
+```{r rgl3d, echo=FALSE}
+htmltools::tags$iframe(src = "mcpca3d.html", width = "100%", height = "450px")
+```
+
+## Data transformation
+
+Suppose we wish use log2 for those greater than zero but set those negative values to be missing.
+
+```r
+log2.na <- function(x) log2(ifelse(x>0, x, NA))
+Biobase::exprs(exampleSet) <- log2.na(Biobase::exprs(exampleSet))
+```
+
+## Limit of detection (LOD)
+
+We generate a `lod.max` ~ U[0,1] variable to experiment
+
+```{r lod, fig.cap="LOD based on a random cutoff", fig.height=7}
+Biobase::fData(exampleSet)
+Biobase::fData(exampleSet)$lod.max <- apply(Biobase::exprs(exampleSet),1,quantile,runif(nrow(exampleSet)))
+lod <- pQTLtools::get.prop.below.LLOD(exampleSet)
+x <- dplyr::arrange(Biobase::fData(lod),desc(pc.belowLOD.new))
+knitr::kable(head(lod))
+plot(x[,2], main="Random quantile cutoff", ylab="<lod%")
+```
+
+The quantity has been shown to have a big impact on protein abundance and therefore pQTL detection as is shown with a real example.
+
+```r
+rm(list=ls())
+dir <- "~/rds/post_qc_data/interval/phenotype/olink_proteomics/post-qc/"
+eset <- readRDS(paste0(dir,"eset.inf1.flag.out.outlier.in.rds"))
+x <- pQTLtools::get.prop.below.LLOD(eset)
+annot <- Biobase::fData(x)
+annot$MissDataProp <- as.numeric(gsub("\\%$", "", annot$MissDataProp))
+plot(annot$MissDataProp, annot$pc.belowLOD.new, xlab="% <LLOD in Original",
+     ylab="% <LLOD in post QC dataset", pch=19)
+INF <- Sys.getenv("INF")
+np <- read.table(paste(INF, "work", "INF1.merge.nosig", sep="/"), header=FALSE,
+                 col.names = c("prot", "uniprot"))
+kable(np, caption="Proteins with no pQTL")
+annot$pQTL <- rep(NA, nrow(annot))
+no.pQTL.ind <- which(annot$uniprot.id %in% np$uniprot)
+annot$pQTL[no.pQTL.ind] <- "red"
+annot$pQTL[-no.pQTL.ind] <- "blue"
+annot <- annot[order(annot$pc.belowLOD.new, decreasing = TRUE),]
+annot <- annot[-grep("^BDNF$", annot$ID),]
+saveRDS(annot,file=file.path("~","pQTLtools","tests","annot.RDS"))
+```
+
+```{r test, fig.cap="LOD in SCALLOP-INF/INTERVAL", fig.height=8, fig.width=15}
+annot <- readRDS(file.path(find.package("pQTLtools"),"tests","annot.RDS")) %>%
+         dplyr::left_join(pQTLdata::inf1[c("prot","target.short","alt_name")],by=c("ID"="prot")) %>%
+         dplyr::mutate(prot=if_else(is.na(alt_name),target.short,alt_name),order=1:n()) %>%
+         dplyr::arrange(desc(order))
+xtick <- seq(1, nrow(annot))
+attach(annot)
+par(mar=c(10,5,1,1))
+plot(100-pc.belowLOD.new,cex=2,pch=19,col=pQTL,xaxt="n",xlab="",ylab="",cex.axis=0.8)
+text(66,16,"IL-17C",offset=0,pos=2,cex=1.5,font=2,srt=0)
+arrows(67,16,71,16,lwd=2)
+axis(1, at=xtick, labels=prot, lwd.tick=0.5, lwd=0, las=2, hadj=1, cex.axis=0.8)
+mtext("% samples above LLOD",side=2,line=2.5,cex=1.2)
+mtext("Ordered protein",side=1,line=6.5,cex=1.2,font=1)
+legend(x=1,y=25,c("without pQTL","with pQTL"),box.lwd=0,cex=2,col=c("red","blue"),pch=19)
+detach(annot)
+options(width=120)
+knitr::kable(annot,caption="Summary statistics",row.names=FALSE)
+```
+
+## maEndtoEnd
+
+Web: <https://bioconductor.org/packages/release/workflows/html/maEndToEnd.html>.
+
+Examples can be found on PCA, heatmap, normalisation, linear models, and enrichment analysis from this Bioconductor package.
+
+# SummarizedExperiment
+
+This is a more modern construct. Based on the documentation example, ranged summarized experiment (rse) and imputation are shown below.
+
+```{r, message=FALSE, warning=FALSE}
+set.seed(123)
+nrows <- 20
+ncols <- 4
+counts <- matrix(runif(nrows * ncols, 1, 1e4), nrows)
+missing_indices <- sample(length(counts), size = 5, replace = FALSE)
+counts[missing_indices] <- NA
+rowRanges <- GenomicRanges::GRanges(rep(c("chr1", "chr2"), c(1, 3) * nrows / 4),
+                            IRanges::IRanges(floor(runif(nrows, 1e5, 1e6)), width=ncols),
+                            strand=sample(c("+", "-"), nrows, TRUE),
+                            feature_id=sprintf("ID%03d", 1:nrows))
+colData <- S4Vectors::DataFrame(Treatment=rep(c("ChIP", "Input"), ncols/2),
+                                row.names=LETTERS[1:ncols])
+rse <- SummarizedExperiment::SummarizedExperiment(assays=S4Vectors::SimpleList(counts=counts),
+                                                  rowRanges=rowRanges, colData=colData)
+SummarizedExperiment::assay(rse)
+imputed <- MsCoreUtils::impute_knn(as.matrix(SummarizedExperiment::assay(rse)),2)
+imputed_counts <- MsCoreUtils::impute_RF(as.matrix(SummarizedExperiment::assay(rse)),2)
+imputed-imputed_counts
+SummarizedExperiment::assays(rse) <- S4Vectors::SimpleList(counts=imputed_counts)
+SummarizedExperiment::assay(rse)
+SummarizedExperiment::assays(rse) <- S4Vectors::endoapply(SummarizedExperiment::assays(rse), asinh)
+SummarizedExperiment::assay(rse)
+
+SummarizedExperiment::rowRanges(rse)
+SummarizedExperiment::rowData(rse)
+SummarizedExperiment::colData(rse)
+```
 
 # Normalisation
 
@@ -321,6 +548,254 @@ txdb <- TxDb.Hsapiens.UCSC.hg38.knownGene
 # liverExprs <- quantifyExpressionsFromBWs(txdb = txdb,BWfiles=,experimentalDesign=)
 ```
 
+# Spectrum data analysis
+
+This section collects notes on peptide/protein analysis, especially with respect to spectrum data.
+
+## Peptide sequence
+
+Here is an example for PROC_HUMAN, which is handled by the `Biostrings` package,
+
+```r
+fasta_file_path <- 'https://rest.uniprot.org/uniprotkb/P04070.fasta'
+fasta_sequences <- Biostrings::readAAStringSet(fasta_file_path, format = "fasta")
+AA_sequence <- fasta_sequences[[1]]
+cat("Sequence:", toString(AA_sequence), "\n")
+iso_442688365 <- 'TDGEGALSEPSATVTIEELAAPPPPVLMHHGESSQVLHPGNK'
+match_position <- regexpr(iso_442688365, AA_sequence)
+match_position
+mp <- matchPattern(iso_442688365,AA_sequence)
+mp
+```
+
+```{r a1bg, fig.cap="peptide association plot",fig.height=6,fig.width=10,messages=FALSE}
+load("~/pQTLtools/tests/PROC.rda")
+pQTLtools::peptideAssociationPlot(protein,cistrans)
+```
+
+## Spectrum data analysis
+
+### Setup
+
+The .raw files can be handled by `rawrr` package nevertheless it requires necessary files,
+
+```r
+library(rawrr)
+if (isFALSE(rawrr::.checkDllInMonoPath())){
+   rawrr::installRawFileReaderDLLs()
+}
+if (isFALSE(file.exists(rawrr:::.rawrrAssembly()))){
+   rawrr::installRawrrExe()
+}
+```
+
+### List of.raw files
+
+Based on a real project, the following is an example of listing/generating multiple .raw from .zip files
+
+```r
+# ZWK .raw data
+spectra_ZWK <- "~/Caprion/pre_qc_data/spectral_library_ZWK"
+raw_files <- list.files(spectra_ZWK, pattern = "\\.raw$", full.names = TRUE)
+## collectively
+suppressMessages(library(MsBackendRawFileReader))
+ZWK <- Spectra::backendInitialize(MsBackendRawFileReader::MsBackendRawFileReader(),
+       files = raw_files)
+class(ZWK)
+methods(class=class(ZWK))
+Spectra(ZWK)
+spectraData(ZWK)
+ZWK
+ZWKvars <- ZWK |> Spectra::spectraVariables()
+ZWKdata <- ZWK |> Spectra::spectraData()
+dim(ZWKdata)
+# rows with >=1 non-NA value in the columns with prefix "precursor"
+precursor <- apply(ZWKdata[grep("precursor",ZWKvars)], 1, function(x) any(!is.na(x)))
+ZWKdata_filtered <- ZWKdata[precursor, ]
+save(ZWK,file="~/Caprion/analysis/work/ZWK.rda")
+
+# ZYQ/UDP
+library(utils)
+spectra <- "~/Caprion/pre_qc_data/spectra"
+zip_files <- dir(spectra, recursive = TRUE, full.names=TRUE)
+work_dir <- "~/Caprion/analysis/work"
+for (zip_file in zip_files) unzip(zip_file, exdir=work_dir)
+ZYQ_UDP <- Spectra::backendInitialize(MsBackendRawFileReader::MsBackendRawFileReader(),
+           files = dir(work_dir,patt="raw",full.names=TRUE))
+class(ZYQ_UDP)
+ZYQ_UDP
+ZYQ_UDP |> Spectra::spectraVariables()
+save(ZYQ_UDP,file="~/Caprion/analysis/work/ZYQ_UDP.rda")
+```
+
+### Usage
+
+Various facilities are shown below.
+
+```r
+options(width=200)
+
+# various files
+d <- "/rds/project/rds-zuZwCZMsS0w/Caprion_proteomics/analysis/crux"
+f <- file.path(d,"szwk901104i19801xms1.mzML")
+x <- file.path(d,"szwk901104i19801xms1.mzXML")
+g <- file.path(d,"szwk901104i19801xms1.mgf")
+r <- file.path(d,"szwk901104i19801xms1.rda")
+z <- file.path(d,"szwk901104i19801xms1.mzML.gz")
+
+# mzML
+mz <- mzR::openMSfile(f)
+header_info <- mzR::header(mz)
+table(header_info$msLevel)
+peak_data <- mzR::peaks(mz)
+spec <- mzR::spectra(mz)
+class(spec)
+length(spec)
+lapply(spec,head,3)
+methods(class="mzRpwiz")
+mzR::close(mz)
+
+mz <- mzR::openMSfile(z, backend = "pwiz")
+mz
+nChrom(mz)
+head(tic(mz))
+head(chromatogram(mz, 1L)) ## same as tic(x)
+str(chromatogram(mz))
+head(peaks(mz, scan=4))
+
+# MSnbase
+mzXML <- MSnbase::readMSData(x)
+mgf <- MSnbase::readMgfData(g)
+save(mzXML,mgf,file=r)
+
+MSnbase::extractSpectraData(mzXML)
+MSnbase::hasSpectra(z)
+MSnbase::hasChromatograms(z)
+MSnbase::plot2d(mzXML,z="peaks.count")
+MSnbase::plotDensity(mzXML,z="precursor.mz")
+
+MSnbase::extractSpectraData(mgf)
+methods(class="MSpectra")
+MSnbase::mz(mgf)
+MSnbase::intensity(mgf)
+MSnbase::rtime(mgf)
+MSnbase::precursorMz(mgf)
+MSnbase::precursorCharge(mgf)
+MSnbase::precScanNum(mgf)
+MSnbase::precursorIntensity(mgf)
+MSnbase::acquisitionNum(mgf)
+MSnbase::scanIndex(mgf)
+MSnbase::peaksCount(mgf)
+MSnbase::msLevel(mgf)
+MSnbase::tic(mgf)
+MSnbase::ionCount(mgf)
+MSnbase::collisionEnergy(mgf)
+MSnbase::fromFile(mgf)
+MSnbase::polarity(mgf)
+MSnbase::smoothed(mgf)
+MSnbase::centroided(mgf)
+MSnbase::isCentroided(mgf)
+MSnbase::writeMgfData(mgf, con = "spectra.mgf", COM = NULL, TITLE = NULL)
+MSnbase::removePeaks(mgf, t, msLevel., ...)
+MSnbase::filterMsLevel(mgf, msLevel=2)
+MSnbase::as.ExpressionSet(mgf)
+
+# This turned to be really slow!
+sp_list <- lapply(seq_along(mgf), function(i) {
+  intensity_i <- MSnbase::intensity(mgf)[[i]]
+  mz_i <- MSnbase::mz(mgf)[[i]]
+  centroided_i <- MSnbase::centroided(mgf)[[i]]
+  return(new("Spectrum1", intensity = intensity_i, mz = mz_i, centroided = centroided_i))
+})
+sp1 <- do.call(rbind, sp_list)
+# only the first one is more manageable
+sp1 <- new("Spectrum1",intensity=MSnbase::intensity(mgf)[[1]],mz=MSnbase::mz(mgf)[[1]],centroided=MSnbase::centroided(mgf)[[1]])
+sp2 <- MSnbase::pickPeaks(sp1)
+MSnbase::intensity(sp2)
+plot(MSnbase::mz(sp1),MSnbase::intensity(sp1),type="h")
+## Without m/z refinement
+points(MSnbase::mz(sp2), MSnbase::intensity(sp2), col = "darkgrey")
+## Using k = 1, closest signals
+sp3 <- MSnbase::pickPeaks(sp1, refineMz = "kNeighbors", k = 1)
+points(MSnbase::mz(sp3), MSnbase::intensity(sp3), col = "green", type = "h")
+## Using descendPeak requiring at least 50% or the centroid's intensity
+sp4 <- MSnbase::pickPeaks(sp1, refineMz = "descendPeak", signalPercentage = 50)
+points(MSnbase::mz(sp4), MSnbase::intensity(sp4), col = "red", type = "h")
+
+# CAMERA
+xs   <- CAMERA::xcmsSet(f, method="centWave", ppm=30, peakwidth=c(5,10))
+an   <- CAMERA::xsAnnotate(xs)
+an   <- CAMERA::groupFWHM(an)
+#For one group
+peaklist <- CAMERA::getpspectra(an, 1)
+#For two groups
+peaklist <- CAMERA::getpspectra(an, c(1,2))
+
+# Spectra
+suppressMessages(library(Spectra))
+sp <- Spectra::Spectra(z)
+head(sp)
+table(sp$msLevel)
+d <- Spectra::computeMzDeltas(sp[1:1000])
+Spectra::plotMzDelta(d)
+
+# protViz
+protViz::fragmentIon("TFVLNFIK")
+esd <- MSnbase::extractSpectraData(mgf)
+op <- par(mfrow=c(2,1))
+ms <- function(i) with(esd[i,],list(title=TITLE,rtinseconds=RTINSECONDS,pepmass=PEPMASS,charge=CHARGE,
+                                    mZ=MSnbase::mz(mgf[[i]]),intensity=MSnbase::intensity(mgf[[i]])))
+protViz::peakplot("TAFDEAIAELDTLNEESYK", ms(1))
+protViz::peakplot("TAFDEAIAELDTLSEESYK", ms(2))
+par(op)
+load("~/Caprion/pilot/ZWK.rda")
+peptides <- subset(mapping_ZWK,Protein=="PROC_HUMAN")[["Modified.Peptide.Sequence"]] |> unique()
+pim <- protViz::parentIonMass(peptides)
+fi <- protViz::fragmentIon(peptides)
+df <- as.data.frame(fi)
+op <- par(mfrow=c(3,1))
+for (i in 1:length(peptides)){
+    plot(0, 0,
+    xlab='m/Z',
+    ylab='',
+    xlim=range(c(fi[[i]]$b,fi[[i]]$y)),
+    ylim=c(0,1),
+    type='n',
+    axes=FALSE,
+    sub=paste(peptides[i], "/", pim[i], "Da"));
+    box()
+    axis(1, fi[[i]]$b, round(fi[[i]]$b,1), las=2)
+    axis(1, fi[[i]]$y, round(fi[[i]]$y,1), las=2)
+
+    pepSeq<-strsplit(peptides[i], "")
+    axis(3,fi[[i]]$b, paste("b", row.names(fi[[i]]),sep=''),las=2)
+    axis(3,fi[[i]]$y, paste("y", row.names(fi[[i]]),sep=''),las=2)
+
+    text(fi[[i]]$b, rep(0.3, nchar(peptides[i])),
+    pepSeq[[1]],pos=3,cex=4, lwd=4, col="#aaaaaaaa")
+
+    abline(v=fi[[i]]$b, col='red')
+    abline(v=fi[[i]]$y, col='blue',lwd=2)
+}
+par(op)
+
+# MSstats
+head(SRMRawData)
+QuantData <- MSstats::dataProcess(SRMRawData, use_log_file = FALSE)
+quant <- MSstats::dataProcess(SRMRawData,
+                              normalization = "equalizeMedians",
+                              summaryMethod = "TMP",
+                              censoredInt = "NA",
+                              MBimpute = TRUE,
+                              maxQuantileforCensored = 0.999,
+                              logTrans=2,
+                              use_log_file=FALSE,
+                              numberOfCores=5)
+names(quant)
+```
+
+MSstats @kohler23 takes output from other data-processing pipelines.
+
 # Bionconductor forum
 
 Web: [https://support.bioconductor.org/](https://support.bioconductor.org/)
@@ -332,6 +807,8 @@ Package | Description
 **Bioconductor** |
 AnnotationDbi | AnnotationDb objects and their progeny, methods etc.
 Biobase | Base functions for Bioconductor
+Biostrings | Efficient manipulation of biological strings
+CAMERA | Collection of annotation related methods
 clusterProfiler | Functional profiles for genes and gene clusters
 ComplexHeatmap | Make complex heatmaps
 DESSeq2 | Differential gene expression analysis based on the negative binomial distribution
@@ -342,12 +819,17 @@ FlowSorted.DLPFC.450k | Illumina HumanMethylation data on sorted frontal cortex 
 graphite | GRAPH Interaction from pathway topological environment
 IlluminaHumanMethylation450kmanifest | Annotation for Illumina's 450k methylation arrays
 INSPEcT | Quantification of the intronic and exonic gene features and the post-transcriptional regulation analysis
+MSnbase | Base Functions and Classes for Mass Spectrometry and Proteomics
+MSstats | Protein Significance Analysis in DDA, SRM and DIA Proteomics
+mzR | parser for netCDF, mzXML and mzML and mzIdentML files
 org.Hs.eg.db | Conversion of Entrez ID -- gene symbols
 OUTRIDER | OUTlier in RNA-Seq fInDER
 Pi | Priority index, leveraging genetic evidence to prioritise drug targets at the gene and pathway level
 quantro | A test for when to use quantile normalisation
+rawrr | Direct Access to Orbitrap Data and Beyond
 recount3 | Interface to uniformly processed RNA-seq data
 Rgraphiz | Interfaces R with the AT&T graphviz library for plotting R graph objects from the graph package
+Spectra | Spectra Infrastructure for Mass Spectrometry
 sva | Surrogate Variable Analysis
 TxDb.Hsapiens.UCSC.hg38.knownGene | Annotation of the human genome
 **CRAN** |
@@ -357,6 +839,7 @@ ggplot2 | Data Visualisations Using the grammar of graphics
 heatmaply | Interactive Cluster Heat Maps Using `plotly` and `ggplot2`
 pheatmap | results visualisation
 plyr | Splitting, applying and combining data
+protViz | Foreach Parallel Adaptor for the 'parallel' Package
 RColorBrewer | ColorBrewer Palettes
 WGCNA | Weighted correlation network analysis
 
