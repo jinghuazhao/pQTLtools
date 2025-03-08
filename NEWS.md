@@ -2,7 +2,8 @@
 
 (2025/3/8)
 
-* Set to merge Bioconductor-related and LocusZoom.js/SCALLOP-Caprion articles.
+* Drop link to GitHub repository in _pkgdown.yml.
+* Merge Bioconductor-related and LocusZoom.js/SCALLOP-Caprion articles.
 
 ## pQTLtools 0.4
 
