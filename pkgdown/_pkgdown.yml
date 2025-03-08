@@ -8,8 +8,6 @@ home:
     href: https://jinghuazhao.github.io/pQTLdata/
   - text: rdrr.io snapshots
     href: https://rdrr.io/github/jinghuazhao/pQTLtools/
-  - text: <img src='https://jinghuazhao.github.io/bees.svg' width=24> GitHub repositories
-    href: https://github.com/jinghuazhao/
   sidebar:
     structure: [links, support, license, community, authors, dev]
     components:
