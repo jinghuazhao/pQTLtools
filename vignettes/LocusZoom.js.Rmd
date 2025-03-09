@@ -256,7 +256,6 @@ imported_tabix_paths <- within(read.delim(fp, stringsAsFactors = FALSE) %>% dply
          f <- lapply(strsplit(ftp_path,"/csv/|/ge/"),"[",3)
          ftp_path <- paste0("~/rds/public_databases/GTEx/csv"),f)
       })
-options(width=200)
 library(dplyr)
 INF <- Sys.getenv("INF")
 M <- 1e6
@@ -409,8 +408,6 @@ onto_plot(efo,efo_0000540)
 ### Lookup
 
 ```r
-options(width=200)
-
 suppressMessages(library(dplyr))
 suppressMessages(library(gap))
 suppressMessages(library(pQTLtools))

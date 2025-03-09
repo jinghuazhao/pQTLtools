@@ -228,7 +228,6 @@ mtext("% samples above LLOD",side=2,line=2.5,cex=1.2)
 mtext("Ordered protein",side=1,line=6.5,cex=1.2,font=1)
 legend(x=1,y=25,c("without pQTL","with pQTL"),box.lwd=0,cex=2,col=c("red","blue"),pch=19)
 detach(annot)
-options(width=120)
 knitr::kable(annot,caption="Summary statistics",row.names=FALSE)
 ```
 
@@ -515,8 +514,6 @@ eKEGG <- clusterProfiler::enricher(gene=VEGF, TERM2GENE = kegg_t2g,
 An overview of annotation is available @carlson16.
 
 ```{r ts-data, messages=FALSE}
-options(width=200)
-
 # columns(org.Hs.eg.db)
 # keyref <- keys(org.Hs.eg.db, keytype="ENTREZID")
 # symbol_uniprot <- select(org.Hs.eg.db,keys=keyref,columns = c("SYMBOL","UNIPROT"))
@@ -633,8 +630,6 @@ save(ZYQ_UDP,file="~/Caprion/analysis/work/ZYQ_UDP.rda")
 Various facilities are shown below.
 
 ```r
-options(width=200)
-
 # various files
 d <- "/rds/project/rds-zuZwCZMsS0w/Caprion_proteomics/analysis/crux"
 f <- file.path(d,"szwk901104i19801xms1.mzML")

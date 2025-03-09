@@ -61,7 +61,6 @@ involving both a cis and a trans pQTLs. As `meta` inherently includes random eff
 ## pQTL signals and classification table
 
 ```{r ctdata}
-options(width=200)
 f <- file.path(find.package("pQTLtools"),"tests","INF1.merge")
 merged <- read.delim(f,as.is=TRUE)
 hits <- merge(merged[c("CHR","POS","MarkerName","prot","log10p")],
@@ -137,7 +136,6 @@ Here we focus on *SH2B3*.
 A more recent implementation is the `qtlClassifier` function. For this example we have,
 
 ```{r qtlClassifier, fig.cap="cis/trans classification", fig.height=7, fig.width=7}
-options(width=200)
 geneSNP <- merge(merged[c("prot","MarkerName")],pQTLdata::inf1[c("prot","gene")],by="prot")[c("gene","MarkerName","prot")]
 SNPPos <- merged[c("MarkerName","CHR","POS")]
 genePos <- pQTLdata::inf1[c("gene","chr","start","end")]
@@ -270,7 +268,6 @@ for (r in c("IL12B","KITLG","TNFSF10"))
 The top terms at Binomial p=1e-5 could be extracted as follows,
 
 ```{r, echo=FALSE}
-options(width=100)
 great3 <- filter(tb_all,BinomP<=1e-5) %>%
           dplyr::mutate(ID=gsub(":",": ",ID))
 knitr::kable(great3,caption="GREAT IL12B-KITLG-TNFSF10 results",digits=3)
@@ -387,7 +384,6 @@ single_run <- function()
   gtex_coloc(sentinel[["prot"]],chr,ensGene,chain,ensRegion37,ensRegion38,f)
 }
 
-options(width=200)
 HOME <- Sys.getenv("HOME")
 HPC_WORK <- Sys.getenv("HPC_WORK")
 INF <- Sys.getenv("INF")
