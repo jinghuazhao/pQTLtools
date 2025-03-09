@@ -73,7 +73,6 @@ r2 <- with(r,
 results <- subset(r2,pmid=="29875488")
 grp <- names(table(with(results,group)))
 sink("INF1_merge.txt")
-options(width=250)
 for(g in as.numeric(grp))
 {
   uniprot <- regions[g,"uniprot"]

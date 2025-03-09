@@ -50,7 +50,6 @@ a given LD (r2_threshold) thresholds.
 }
 \examples{
 \dontrun{
-options(width=200)
 INF <- Sys.getenv("INF")
 suppressMessages(library(dplyr))
 d <- file.path(INF,"mr","gsmr","trait")

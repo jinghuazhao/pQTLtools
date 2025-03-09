@@ -40,7 +40,6 @@ takes into account linkage disequilibrium (LD) in flanking regions.
 }
 \examples{
 \dontrun{
-options(width=2000)
 suppressMessages(require(dplyr))
 suppressMessages(require(stringr))
 # SCALLOP-INF list
