@@ -7,7 +7,6 @@
 #' @return a list containing mapping information.
 #' @examples
 #' \dontrun{
-#'   options(width=200)
 #'   batch <- "ZWK"
 #'   load(paste0("~/Caprion/pilot/",batch,".rda"))
 #'   PROC <- peptideMapping("PROC",mm=0)

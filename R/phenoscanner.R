@@ -105,7 +105,6 @@ genequeries <- function(genelist,catalogue="pQTL",proxies="EUR",p=5e-8,r2=0.8,bu
 #' results <- subset(r2,pmid=="29875488")
 #' grp <- names(table(with(results,group)))
 #' sink("INF1_merge.txt")
-#' options(width=250)
 #' for(g in as.numeric(grp))
 #' {
 #'   uniprot <- regions[g,"uniprot"]

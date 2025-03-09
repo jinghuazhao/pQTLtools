@@ -21,7 +21,6 @@
 #' @seealso \code{\link[TwoSampleMR]{extract_outcome_data}}
 #' @examples
 #' \dontrun{
-#' options(width=200)
 #' # method="TwoSampleMR"
 #' # GSMR data preparation for Crohn's disease in the LTA region
 #' opengwas_id <- "ebi-a-GCST004132"
