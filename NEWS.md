@@ -1,9 +1,9 @@
 ## pQTLtools 0.5
 
-(2025/3/8)
+(2025/3/9)
 
-* Add single quote to package/software name.
-* Drop link to GitHub repository in _pkgdown.yml.
+* Add single quotes to package/software name.
+* Drop link to GitHub repository in _pkgdown.yml and a lot of options().
 * Merge Bioconductor-related and LocusZoom.js/SCALLOP-Caprion articles.
 
 ## pQTLtools 0.4
