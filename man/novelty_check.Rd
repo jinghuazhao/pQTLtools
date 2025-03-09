@@ -35,7 +35,6 @@ Both known_loci and query_loci have these variables: chr, pos, uniprot, rsid, pr
 }
 \examples{
 \dontrun{
-options(width=2000)
 suppressMessages(require(dplyr))
 suppressMessages(require(openxlsx))
 # SCALLOP-INF list
