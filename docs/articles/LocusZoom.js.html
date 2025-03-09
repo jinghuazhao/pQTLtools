@@ -333,16 +333,15 @@ $data
 <span id="cb5-148"><a href="#cb5-148" aria-hidden="true" tabindex="-1"></a>         f <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">strsplit</span>(ftp_path,<span class="st">"/csv/|/ge/"</span>),<span class="st">"["</span>,<span class="dv">3</span>)</span>
 <span id="cb5-149"><a href="#cb5-149" aria-hidden="true" tabindex="-1"></a>         ftp_path <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"~/rds/public_databases/GTEx/csv"</span>),f<span class="er">)</span></span>
 <span id="cb5-150"><a href="#cb5-150" aria-hidden="true" tabindex="-1"></a>      })</span>
-<span id="cb5-151"><a href="#cb5-151" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">width=</span><span class="dv">200</span>)</span>
-<span id="cb5-152"><a href="#cb5-152" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb5-153"><a href="#cb5-153" aria-hidden="true" tabindex="-1"></a>INF <span class="ot">&lt;-</span> <span class="fu">Sys.getenv</span>(<span class="st">"INF"</span>)</span>
-<span id="cb5-154"><a href="#cb5-154" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fl">1e6</span></span>
-<span id="cb5-155"><a href="#cb5-155" aria-hidden="true" tabindex="-1"></a>sentinels <span class="ot">&lt;-</span> <span class="fu">subset</span>(<span class="fu">read.csv</span>(<span class="fu">file.path</span>(INF,<span class="st">"work"</span>,<span class="st">"INF1.merge.cis.vs.trans"</span>)),cis)</span>
-<span id="cb5-156"><a href="#cb5-156" aria-hidden="true" tabindex="-1"></a>cvt_rsid <span class="ot">&lt;-</span> <span class="fu">file.path</span>(INF,<span class="st">"work"</span>,<span class="st">"INF1.merge.cis.vs.trans-rsid"</span>)</span>
-<span id="cb5-157"><a href="#cb5-157" aria-hidden="true" tabindex="-1"></a>prot_rsid <span class="ot">&lt;-</span> <span class="fu">subset</span>(<span class="fu">read.delim</span>(cvt_rsid,<span class="at">sep=</span><span class="st">" "</span>),cis,<span class="at">select=</span><span class="fu">c</span>(prot,SNP))</span>
-<span id="cb5-158"><a href="#cb5-158" aria-hidden="true" tabindex="-1"></a><span class="co"># Faster with parallel Bash runs.</span></span>
-<span id="cb5-159"><a href="#cb5-159" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="fu">Sys.getenv</span>(<span class="st">"r"</span>))</span>
-<span id="cb5-160"><a href="#cb5-160" aria-hidden="true" tabindex="-1"></a><span class="fu">single_run</span>(r)</span></code></pre></div>
+<span id="cb5-151"><a href="#cb5-151" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb5-152"><a href="#cb5-152" aria-hidden="true" tabindex="-1"></a>INF <span class="ot">&lt;-</span> <span class="fu">Sys.getenv</span>(<span class="st">"INF"</span>)</span>
+<span id="cb5-153"><a href="#cb5-153" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fl">1e6</span></span>
+<span id="cb5-154"><a href="#cb5-154" aria-hidden="true" tabindex="-1"></a>sentinels <span class="ot">&lt;-</span> <span class="fu">subset</span>(<span class="fu">read.csv</span>(<span class="fu">file.path</span>(INF,<span class="st">"work"</span>,<span class="st">"INF1.merge.cis.vs.trans"</span>)),cis)</span>
+<span id="cb5-155"><a href="#cb5-155" aria-hidden="true" tabindex="-1"></a>cvt_rsid <span class="ot">&lt;-</span> <span class="fu">file.path</span>(INF,<span class="st">"work"</span>,<span class="st">"INF1.merge.cis.vs.trans-rsid"</span>)</span>
+<span id="cb5-156"><a href="#cb5-156" aria-hidden="true" tabindex="-1"></a>prot_rsid <span class="ot">&lt;-</span> <span class="fu">subset</span>(<span class="fu">read.delim</span>(cvt_rsid,<span class="at">sep=</span><span class="st">" "</span>),cis,<span class="at">select=</span><span class="fu">c</span>(prot,SNP))</span>
+<span id="cb5-157"><a href="#cb5-157" aria-hidden="true" tabindex="-1"></a><span class="co"># Faster with parallel Bash runs.</span></span>
+<span id="cb5-158"><a href="#cb5-158" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="fu">Sys.getenv</span>(<span class="st">"r"</span>))</span>
+<span id="cb5-159"><a href="#cb5-159" aria-hidden="true" tabindex="-1"></a><span class="fu">single_run</span>(r)</span></code></pre></div>
 <p>where options for protein GWAS, microarray, RNA-Seq are available with respect to variant-flanking or gene regions. When no results are generated,
 there would have problem with <code>dplyr::arrange(df_gtex, -PP.H4.abf);p &lt;- ggplot(df_gtex, aes(x = PP.H4.abf)) + geom_histogram()</code>.</p>
 </div>
@@ -487,9 +486,7 @@ there would have problem with <code>dplyr::arrange(df_gtex, -PP.H4.abf);p &lt;- 
 <span class="header-section-number">2.2.2</span> Lookup<a class="anchor" aria-label="anchor" href="#lookup"></a>
 </h4>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>width<span class="op">=</span><span class="fl">200</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jinghuazhao/R" class="external-link">gap</a></span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jinghuazhao/pQTLtools/" class="external-link">pQTLtools</a></span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
