@@ -14,7 +14,6 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' options(width=2000)
 #' suppressMessages(require(dplyr))
 #' suppressMessages(require(openxlsx))
 #' # SCALLOP-INF list
