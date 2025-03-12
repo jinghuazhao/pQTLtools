@@ -6,7 +6,7 @@
 \alias{pQTLtools-package}
 \title{A reference manual}
 \description{
-It collects data and utilities for pQTL analysis, including 1. Protein GWAS facilities such as Manhattan/QQ/LocusZoom.js plots, novelty/consequence checking; 2. Articles linking functions for cis/trans classification, pQTL-gene plot, 2d/3d-plotly plots, forest plots among others available from 'gap' (\url{https://cran.r-project.org/package=gap}) as well as colocalization, pQTL-Mendelian Randomization via 'TwoSampleMR' (\url{https://mrcieu.github.io/TwoSampleMR/}); 3. Query on genes, regions, and SNPs via 'PhenoScanner' (\url{http://www.phenoscanner.medschl.cam.ac.uk/}). 4. Mapping of UniProt IDs to other resources; 5. Showcases of 'Bioconductor' (\url{https://github.com/bioconductor}) and 'snakemake' (\url{https://github.com/snakemake}).
+It collects data and utilities for pQTL analysis, including 1. Protein GWAS facilities such as Manhattan/QQ/LocusZoom.js plots, novelty/consequence checking; 2. Articles linking functions for cis/trans classification, pQTL-gene plot, 2d/3d-plotly plots, forest plots among others available from 'gap' (\url{https://cran.r-project.org/package=gap}) as well as colocalization, pQTL-Mendelian Randomization via 'TwoSampleMR' (\url{https://mrcieu.github.io/TwoSampleMR/}); 3. Query on genes, regions, and SNPs via 'PhenoScanner' (\url{https://github.com/phenoscanner/}). 4. Mapping of UniProt IDs to other resources; 5. Showcases of 'Bioconductor' (\url{https://github.com/bioconductor}) and 'snakemake' (\url{https://github.com/snakemake}).
 }
 \details{
 Available data and functions are listed in the following table.\tabular{ll}{
