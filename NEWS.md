@@ -1,6 +1,6 @@
 ## pQTLtools 0.5
 
-(2025/3/9)
+(2025/3/12)
 
 * Add single quotes to package/software name.
 * Drop link to GitHub repository in _pkgdown.yml and a lot of options().
