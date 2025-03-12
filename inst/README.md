@@ -7,14 +7,14 @@ eQTL-Catalogue/  | eQTL-catalog-related
 PPI/             | PPI-related
 STRING/          | StringDB-related
 snakemake/       | snakemake showcase
+scripts/         | Bash scripts
 tests/           | SCALLOP-INF-related
 turboman/        | turboman reference data
 UniProt/         | UniProt-related
 README.md        | This file
 REFERENCES.bib   | BibTeX bibliography
-csd3.sh[^csd3]   | build/INSTALL/check
-docs.sh          | GitHub scripts
 
-[^csd3]: **csd3.sh**
+Two Bash scripts
 
-     CSD3 stands for Cambridge Service for Data Driven Discovery, <https://cambridge-ceu.github.io/csd3/>.
+- [docs.sh](scripts/docs.sh). To build pkgdown-style website on HPC and interact with GitHub.
+- [cran.sh](scripts/cran.sh). A chain to build, install, and check (--as-cran) the package.
