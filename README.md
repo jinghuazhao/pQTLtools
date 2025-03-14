@@ -4,7 +4,7 @@ output: github_document
 
 
 
-<img src="man/figures/logo.svg" style="float: right;" height="200" width="200" alt="pQTLtools website" />
+<img src="man/figures/logo.svg" style="float: right;" height="240" width="240" alt="pQTLtools website" />
 
 <!-- badges: start -->
 [![pages-build-deployment](https://github.com/jinghuazhao/pQTLtools/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/jinghuazhao/pQTLtools/actions/workflows/pages/pages-build-deployment)
