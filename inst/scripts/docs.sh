@@ -1,6 +1,22 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
+#SBATCH --job-name=_pQTLtools
+#SBATCH --account PETERS-SL3-CPU
+#SBATCH --partition icelake-himem
+#SBATCH --mem=28800
+#SBATCH --time=12:00:00
+#SBATCH --error=/home/jhz22/R/work/_pQTLtools_%A_%a.err
+#SBATCH --output=/home/jhz22/R/work/_pQTLtools_%A_%a.out
+#SBATCH --export ALL
+
+. /etc/profile.d/modules.sh
+module purge
+module load rhel8/default-icl
 module load ceuadmin/R
+
+export TMPDIR=/rds/user/jhz22/hpc-work/work
+
+cd ~/pQTLtools
 Rscript -e '
   suppressMessages(library(pkgdown))
   {
