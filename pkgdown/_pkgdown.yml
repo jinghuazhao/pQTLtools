@@ -40,13 +40,9 @@ template:
 
 navbar:
   structure:
-    left: [home, articles, reference, changelog]
-    right: [github, cran, alphafold, urls, uniprot]
+    left: [articles, reference, changelog]
+    right: [home, github, cran, alphafold, urls, uniprot]
   components:
-    home:
-        icon: fa-home
-        href: index.html
-        aria-label: Home
     articles:
         text: Articles
         menu:
@@ -67,6 +63,10 @@ navbar:
     changelog:
           text: Changelog
           href: news/index.html
+    home:
+        icon: fa-home
+        href: index.html
+        aria-label: Home
     github:
         icon: fab fa-github
         href: https://github.com/jinghuazhao/pQTLtools
