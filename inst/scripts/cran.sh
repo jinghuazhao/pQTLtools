@@ -53,5 +53,5 @@ export version=$(awk '/Version/{print $2}' ~/pQTLtools/DESCRIPTION)
 R CMD build --resave-data --compact-vignettes=both pQTLtools
 R CMD INSTALL pQTLtools_${version}.tar.gz
 R CMD check --as-cran pQTLtools_${version}.tar.gz
-if [ -d R/pQTLtools.Rcheck ]; then -rf R/pQTLtools.Rcheck; fi
+if [ -d R/pQTLtools.Rcheck ]; then rm -rf R/pQTLtools.Rcheck; fi
 mv pQTLtools_${version}.tar.gz pQTLtools.Rcheck R
