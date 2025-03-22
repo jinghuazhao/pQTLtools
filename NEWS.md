@@ -1,6 +1,6 @@
 ## pQTLtools 0.5
 
-(2025/3/14)
+(2025/3/22)
 
 * Add single quotes to package/software name.
 * Add inst/scripts for docs.sh and cran.sh.
