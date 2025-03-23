@@ -32,7 +32,7 @@ Rscript -e '
 # pandoc README.md --citeproc --mathjax -s --self-contained -o index.html
 
 cp -r vignettes/data vignettes/lz.html vignettes/stack.html docs/articles
-for d in bioconductor esse pQTLtools spectrum
+for d in bioconductor pQTLtools snakemake
 do
     if [ -d vignettes/${d} ]; then
        rm -rf docs/articles/${d}
