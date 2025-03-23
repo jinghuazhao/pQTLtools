@@ -21,7 +21,9 @@ set.seed(0)
 knitr::opts_chunk$set(
   out.extra = 'style="display:block; margin: auto"',
   fig.align = "center",
-  fig.path = "es/",
+  fig.height = 8,
+  fig.path = "snakemake/",
+  fig.width = 8,
   collapse = TRUE,
   comment = "#>",
   dev = "CairoPNG")

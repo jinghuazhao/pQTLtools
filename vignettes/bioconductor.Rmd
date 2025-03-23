@@ -22,7 +22,9 @@ set.seed(0)
 knitr::opts_chunk$set(
   out.extra = 'style="display:block; margin: auto"',
   fig.align = "center",
+  fig.height = 8,
   fig.path = "bioconductor/",
+  fig.width = 8,
   collapse = TRUE,
   comment = "#>",
   dev = "CairoPNG")
