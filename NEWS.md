@@ -7,7 +7,7 @@
 * Drop link to GitHub repository in _pkgdown.yml and a lot of options().
 * Merge Bioconductor-related and LocusZoom.js/SCALLOP-Caprion articles.
 * Revise README.Rmd.
-* Suggest Cairo for CairoPNG.
+* Set fig.height/fig.width for articles and suggest Cairo for CairoPNG.
 
 ## pQTLtools 0.4
 
