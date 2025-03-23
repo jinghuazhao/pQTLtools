@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
   fig.path = "bioconductor/",
   collapse = TRUE,
   comment = "#>",
-  dev = "png")
+  dev = "CairoPNG")
 ```
 
 This article collects notes on Bioconductor packages, made available here to faciliate their use and extensions.

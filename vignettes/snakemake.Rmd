@@ -24,7 +24,7 @@ knitr::opts_chunk$set(
   fig.path = "es/",
   collapse = TRUE,
   comment = "#>",
-  dev = "png")
+  dev = "CairoPNG")
 ```
 
 This article provides information on installation of snakemake along with two examples. Additional information is also available @petereit22.

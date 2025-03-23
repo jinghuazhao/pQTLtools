@@ -25,7 +25,7 @@ knitr::opts_chunk$set(
   fig.path = "pQTLtools/",
   collapse = TRUE,
   comment = "#>",
-  dev = "png")
+  dev = "CairoPNG")
 ```
 
 The examples here are based on the SCALLOP work @scallop_inf.

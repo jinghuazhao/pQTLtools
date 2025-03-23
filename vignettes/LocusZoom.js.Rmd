@@ -24,7 +24,7 @@ knitr::opts_chunk$set(
   fig.path = "LocusZoom.js/",
   collapse = TRUE,
   comment = "#>",
-  dev = "png")
+  dev = "CairoPNG")
 ```
 
 # LocusZoom.js plots
