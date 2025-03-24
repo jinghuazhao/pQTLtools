@@ -324,7 +324,7 @@ if (FALSE)
 
 # Outlier detection in RNA-Seq
 
-The following is adapted from package OUTRIDER,
+The following is adapted from package OUTRIDER, noting its plotQQ() has issues
 
 ```{r ods, fig.cap="Q-Q plot for Kremer data", fig.height=7, fig.with=7, messages=FALSE}
 ctsFile <- system.file('extdata', 'KremerNBaderSmall.tsv', package='OUTRIDER')
@@ -334,11 +334,8 @@ ods <- OUTRIDER::filterExpression(ods, minCounts=TRUE, filterGenes=TRUE)
 ods <- OUTRIDER::OUTRIDER(ods)
 res <- OUTRIDER::results(ods)
 knitr::kable(res,caption="A check list of outliers")
-if ("geneID" %in% colnames(res)) {
+if ("geneID" %in% colnames(res) & FALSE)
   OUTRIDER::plotQQ(ods, res$geneID, global=TRUE)
-} else {
-  stop("'geneID' column not found in results")
-}
 ```
 
 # Differential expression
@@ -573,7 +570,7 @@ mp
 ```
 
 ```{r a1bg, fig.cap="peptide association plot",fig.height=6,fig.width=10,messages=FALSE}
-load("~/pQTLtools/tests/PROC.rda")
+load(system.file("tests","PROC.rda",package="pQTLtools"))
 pQTLtools::peptideAssociationPlot(protein,cistrans)
 ```
 
