@@ -2,7 +2,7 @@ Package: pQTLtools
 Type: Package
 Title: A Protein Quantitative Trait Locus Toolkit
 Version: 0.5
-Date: 2025-3-23
+Date: 2025-3-24
 Authors@R: c(
     person("Jing Hua", "Zhao", , "jinghuazhao@hotmail.com", role = c("aut", "cre"),
       comment = c(ORCID = "0000-0002-1463-5870", "0000-0003-4930-3582")
@@ -29,6 +29,7 @@ Suggests:
     Biobase,
     Biostrings,
     Cairo,
+    CAMERA,
     ComplexHeatmap,
     DESeq2,
     EnsDb.Hsapiens.v86,
@@ -72,12 +73,17 @@ Suggests:
     mclust,
     minfi,
     missForest,
+    MSnbase,
+    MSstats,
+    mzR,
     openxlsx,
     org.Hs.eg.db,
     plyr,
     plotly,
+    protViz,
     purrr,
     quantro,
+    rawrr,
     readr,
     recount3,
     regioneR,
@@ -88,6 +94,7 @@ Suggests:
     rtracklayer,
     scatterplot3d,
     seqminer,
+    Spectra,
     stringr,
     tourr,
     sva,
