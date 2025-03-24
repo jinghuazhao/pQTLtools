@@ -1,6 +1,6 @@
 ## pQTLtools 0.5
 
-(2025/3/23)
+(2025/3/24)
 
 * Add single quotes to package/software name.
 * Add inst/scripts for docs.sh and cran.sh.
@@ -8,6 +8,7 @@
 * Merge Bioconductor-related and LocusZoom.js/SCALLOP-Caprion articles.
 * Revise README.Rmd.
 * Set fig.height/fig.width for articles and suggest Cairo for CairoPNG.
+* Suggests CAMERA, MSnbase, MSstats, mzR, protViz, rawrr, Spectra
 
 ## pQTLtools 0.4
 
