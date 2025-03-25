@@ -1,12 +1,12 @@
 ## pQTLtools 0.5
 
-(2025/3/24)
+(2025/3/25)
 
 * Add single quotes to package/software name.
 * Add inst/scripts for docs.sh and cran.sh.
 * Drop link to GitHub repository in _pkgdown.yml and a lot of options().
 * Merge Bioconductor-related and LocusZoom.js/SCALLOP-Caprion articles.
-* Revise README.Rmd.
+* Revise README.Rmd/bioconductor.Rmd/pQTLtools.Rmd to suppress Fedora 41 check.
 * Set fig.height/fig.width for articles and suggest Cairo for CairoPNG.
 * Suggests CAMERA, MSnbase, MSstats, mzR, protViz, rawrr, Spectra
 
