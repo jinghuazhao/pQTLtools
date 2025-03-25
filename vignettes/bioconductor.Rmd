@@ -540,13 +540,9 @@ ensembldb::genes(x, columns=c("gene_name"),
 ensembldb ::transcripts(x, columns=ensembldb::listColumns(x, "tx"),
                         filter = AnnotationFilter::AnnotationFilterList(), order.type = "asc", return.type = "GRanges")
 
-txdbEnsemblGRCh38 <- GenomicFeatures::makeTxDbFromEnsembl(organism="Homo sapiens", release=98)
-txdb <- as.list(txdbEnsemblGRCh38)
-lapply(txdb,head)
-
-txdb <- TxDb.Hsapiens.UCSC.hg38.knownGene
-
-# liverExprs <- quantifyExpressionsFromBWs(txdb = txdb,BWfiles=,experimentalDesign=)
+#txdbEnsemblGRCh38 <- GenomicFeatures::makeTxDbFromEnsembl(organism="Homo sapiens", release=98)
+#txdb <- as.list(txdbEnsemblGRCh38)
+#lapply(txdb,head)
 ```
 
 # Spectrum data analysis

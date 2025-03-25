@@ -209,7 +209,7 @@ with(merge_cvt, {
   colors <- c("red","blue")
   GenomeInfoDb::seqlevelsStyle(sentinels) <- "UCSC"
   kp <- karyoploteR::plotKaryotype(genome="hg19",chromosomes=levels(seqnames(sentinels)))
-  karyoploteR::kpAddBaseNumbers(kp)
+# karyoploteR::kpAddBaseNumbers(kp)
   karyoploteR::kpPlotRegions(kp, data=loci,r0=0.05,r1=0.15,border="black")
   karyoploteR::kpPlotMarkers(kp, data=sentinels, labels=hgnc, text.orientation="vertical",
                 cex=0.5, y=0.3*seq_along(hgnc)/length(hgnc), srt=30,
