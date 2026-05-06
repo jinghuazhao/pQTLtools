@@ -5,6 +5,7 @@
 * Drop b from the right column in vignette/METAL_forestplot
 * Add single quotes to package/software name.
 * Add inst/scripts for docs.sh and cran.sh.
+* Amend import_OpenGWAS using "https://opengwas.io/datasets/"
 * Drop link to GitHub repository in _pkgdown.yml and a lot of options().
 * Merge Bioconductor-related and LocusZoom.js/SCALLOP-Caprion articles.
 * Revise README.Rmd/bioconductor.Rmd/pQTLtools.Rmd to suppress Fedora 41 check.
