@@ -8,7 +8,7 @@
 A vector of consequences.
 }
 \usage{
-protein_altering_variants
+data(protein_altering_variants)
 }
 \description{
 Variants which directly affect the coding sequence or the protein produced.

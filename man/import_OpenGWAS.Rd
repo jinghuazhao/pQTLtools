@@ -57,19 +57,19 @@ unlink("ebi-a-GCST007432.vcf.gz.tbi")
 od[is.na(od$N),"N"] <- n
 write.table(od,quote=FALSE,row.names=FALSE)
 # method="gwasvcf"
+HPC_WORK <- Sys.getenv("HPC_WORK")
 gwasvcf::set_bcftools(path=file.path(HPC_WORK,"bin","bcftools"))
 # MPV ARHGEF3 region
 opengwas_id <- "ebi-a-GCST004599"
 region <- "3:56649749-57049749"
 mpv_ARHGEF3 <- import_OpenGWAS(opengwas_id,region,method="gwasvcf")
 # all immune-related
-INF <- Sys.getenv("INF")
-HPC_WORK <- Sys.getenv("HPC_WORK")
-opengwas_ids <- scan(file.path(INF,"OpenGWAS","ieu.list"),what="")
-unavail <- c("ieu-b-18","finn-a-M13_SLE","finn-a-D3_SARCOIDOSIS")
-opengwas_ids <- subset(opengwas_ids,!opengwas_ids \%in\% unavail)
-region <- "1:100-2000000"
-summary_list = purrr::map(opengwas_ids[1:2], ~import_OpenGWAS(., region, method="gwasvcf"))
+# INF <- Sys.getenv("INF")
+# opengwas_ids <- scan(file.path(INF,"OpenGWAS","ieu.list"),what="")
+# unavail <- c("ieu-b-18","finn-a-M13_SLE","finn-a-D3_SARCOIDOSIS")
+# opengwas_ids <- subset(opengwas_ids,!opengwas_ids \%in\% unavail)
+# region <- "1:100-2000000"
+# summary_list = purrr::map(opengwas_ids[1:2], ~import_OpenGWAS(., region, method="gwasvcf"))
 }
 }
 \references{
