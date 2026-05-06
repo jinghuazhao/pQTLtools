@@ -1,7 +1,8 @@
 ## pQTLtools 0.5
 
-(2025/3/25)
+(2025/5/6)
 
+* Drop b from the right column in vignette/METAL_forestplot
 * Add single quotes to package/software name.
 * Add inst/scripts for docs.sh and cran.sh.
 * Drop link to GitHub repository in _pkgdown.yml and a lot of options().
