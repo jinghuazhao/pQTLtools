@@ -51,6 +51,7 @@ We start with results on osteoprotegerin (OPG) @kwan14,
 data(OPG,package="gap.datasets")
 meta::settings.meta(method.tau="DL")
 gap::METAL_forestplot(OPGtbl,OPGall,OPGrsid,width=6.75,height=5,digits.TE=2,digits.se=2,
+                 rightcols="ci",digits.TE.right=0,
                  col.diamond="black",col.inside="black",col.square="black")
 gap::METAL_forestplot(OPGtbl,OPGall,OPGrsid,package="metafor",method="FE",xlab="Effect",
                  showweights=TRUE)
