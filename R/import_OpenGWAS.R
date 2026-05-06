@@ -41,19 +41,19 @@
 #' od[is.na(od$N),"N"] <- n
 #' write.table(od,quote=FALSE,row.names=FALSE)
 #' # method="gwasvcf"
+#' HPC_WORK <- Sys.getenv("HPC_WORK")
 #' gwasvcf::set_bcftools(path=file.path(HPC_WORK,"bin","bcftools"))
 #' # MPV ARHGEF3 region
 #' opengwas_id <- "ebi-a-GCST004599"
 #' region <- "3:56649749-57049749"
 #' mpv_ARHGEF3 <- import_OpenGWAS(opengwas_id,region,method="gwasvcf")
 #' # all immune-related
-#' INF <- Sys.getenv("INF")
-#' HPC_WORK <- Sys.getenv("HPC_WORK")
-#' opengwas_ids <- scan(file.path(INF,"OpenGWAS","ieu.list"),what="")
-#' unavail <- c("ieu-b-18","finn-a-M13_SLE","finn-a-D3_SARCOIDOSIS")
-#' opengwas_ids <- subset(opengwas_ids,!opengwas_ids %in% unavail)
-#' region <- "1:100-2000000"
-#' summary_list = purrr::map(opengwas_ids[1:2], ~import_OpenGWAS(., region, method="gwasvcf"))
+#' # INF <- Sys.getenv("INF")
+#' # opengwas_ids <- scan(file.path(INF,"OpenGWAS","ieu.list"),what="")
+#' # unavail <- c("ieu-b-18","finn-a-M13_SLE","finn-a-D3_SARCOIDOSIS")
+#' # opengwas_ids <- subset(opengwas_ids,!opengwas_ids %in% unavail)
+#' # region <- "1:100-2000000"
+#' # summary_list = purrr::map(opengwas_ids[1:2], ~import_OpenGWAS(., region, method="gwasvcf"))
 #' }
 #' @note
 #' Adapted function.
@@ -61,26 +61,33 @@
 
 import_OpenGWAS <- function(opengwas_id, region, method="TwoSampleMR", verbose = TRUE, ...)
 {
-  if (method=="TwoSampleMR") TwoSampleMR::extract_outcome_data(region,opengwas_id,...) else if (method=="gwasvcf")
+  if(!method %in% c("TwoSampleMR","gwasvcf"))
+    stop("method must be 'TwoSampleMR' or 'gwasvcf'")
+  if (method=="TwoSampleMR") return(TwoSampleMR::extract_outcome_data(region,opengwas_id,...))
+  if (method=="gwasvcf")
   {
-    opengwas_root <- "https://gwas.mrcieu.ac.uk/files"
-    file_path <- paste(opengwas_root,opengwas_id,paste0(opengwas_id,".vcf.gz"),sep="/")
-    if(verbose) print(file_path)
+  # "https://gwas.mrcieu.ac.uk/files"
+  # file_path <- paste(opengwas_root,opengwas_id,paste0(opengwas_id,".vcf.gz"),sep="/")
+  # if(verbose) print(file_path)
+  # opengwas_root <- "https://opengwas.io/datasets/"
+    files <- ieugwasr::gwasinfo_files(opengwas_id, opengwas_jwt=ieugwasr::get_opengwas_jwt())
+    urls <- files[[1]]
+    vcf_url <- urls[1]
+    tbi_url <- urls[2]
+    vcf_file <- VariantAnnotation::VcfFile(file =vcf_url,index=tbi_url)
+    chr_start_end <- strsplit(gsub(":", "-", region), "-")[[1]]
+    seqname <- chr_start_end[1]
+    start   <- as.integer(chr_start_end[2])
+    end     <- as.integer(chr_start_end[3])
+    rng <- GenomicRanges::GRanges(seqnames=seqname, ranges=IRanges::IRanges(start,end))
+    param <- VariantAnnotation::ScanVcfParam(which=rng)
+    vcf <- VariantAnnotation::readVcf(vcf_file, "hg19", param)
+    gwasvcf::vcf_to_granges(vcf)
   # pending on its exclusive/web use later
   # fetch_table = seqminer::tabix.read.table(tabixFile = file_path, tabixRange = region, stringsAsFactors = FALSE)
   # only possible locally but its GRanges conversion is helpful
   # gwas_stats <- gwasvcf::query_gwas(basename(file_path),chrompos = region)
   # gwas_sumstats <- gwasvcf::vcf_to_granges(gwas_stats)
   # One that does work at the moment
-    VariantAnnotation::VcfFile(file_path)
-    VariantAnnotation::vcfFields(file_path)
-    chr_start_end <- unlist(strsplit(gsub(":", "-", region),"-"))
-    seqnames <- chr_start_end[1]
-    start <- as.integer(chr_start_end[2])
-    end <- as.integer(chr_start_end[3])
-    rngs <- GenomicRanges::GRanges(seqnames, IRanges::IRanges(start,end))
-    param <- VariantAnnotation::ScanVcfParam(which=rngs)
-    vcf <- VariantAnnotation::readVcf(file_path, "hg19", param)
-    gwasvcf::vcf_to_granges(vcf)
   }
 }
