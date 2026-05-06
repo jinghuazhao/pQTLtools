@@ -6,16 +6,22 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Bioconductor notes • pQTLtools</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="48x48" href="../favicon-48x48.png">
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
 <link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
 <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
 <link rel="icon" sizes="any" href="../favicon.ico">
 <link rel="manifest" href="../site.webmanifest">
-<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- mathjax math --><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script><script>
+  window.MathJax = {
+    chtml: {
+      fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
+    }
+  };
+</script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><script src="../deps/MathJax-3.2.2/tex-chtml.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Bioconductor notes">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Bioconductor notes">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
@@ -648,7 +654,7 @@ Figure 2.4: LOD based on a random cutoff
 <span><span class="va">annot</span><span class="op">$</span><span class="va">pQTL</span><span class="op">[</span><span class="op">-</span><span class="va">no.pQTL.ind</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"blue"</span></span>
 <span><span class="va">annot</span> <span class="op">&lt;-</span> <span class="va">annot</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/order.html" class="external-link">order</a></span><span class="op">(</span><span class="va">annot</span><span class="op">$</span><span class="va">pc.belowLOD.new</span>, decreasing <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,<span class="op">]</span></span>
 <span><span class="va">annot</span> <span class="op">&lt;-</span> <span class="va">annot</span><span class="op">[</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="st">"^BDNF$"</span>, <span class="va">annot</span><span class="op">$</span><span class="va">ID</span><span class="op">)</span>,<span class="op">]</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">saveRDS</a></span><span class="op">(</span><span class="va">annot</span>,file<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="st">"~"</span>,<span class="st">"pQTLtools"</span>,<span class="st">"tests"</span>,<span class="st">"annot.RDS"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/saveRDS.html" class="external-link">saveRDS</a></span><span class="op">(</span><span class="va">annot</span>,file<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="st">"~"</span>,<span class="st">"pQTLtools"</span>,<span class="st">"tests"</span>,<span class="st">"annot.RDS"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">annot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">readRDS</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/find.package.html" class="external-link">find.package</a></span><span class="op">(</span><span class="st">"pQTLtools"</span><span class="op">)</span>,<span class="st">"tests"</span>,<span class="st">"annot.RDS"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>         <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="fu">pQTLdata</span><span class="fu">::</span><span class="va"><a href="https://jinghuazhao.github.io/pQTLdata/reference/inf1.html" class="external-link">inf1</a></span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"prot"</span>,<span class="st">"target.short"</span>,<span class="st">"alt_name"</span><span class="op">)</span><span class="op">]</span>,by<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ID"</span><span class="op">=</span><span class="st">"prot"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -2008,7 +2014,7 @@ Figure 2.5: LOD in SCALLOP-INF/INTERVAL
 <span>                            feature_id<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"ID%03d"</span>, <span class="fl">1</span><span class="op">:</span><span class="va">nrows</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">colData</span> <span class="op">&lt;-</span> <span class="fu">S4Vectors</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/DataFrame-class.html" class="external-link">DataFrame</a></span><span class="op">(</span>Treatment<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ChIP"</span>, <span class="st">"Input"</span><span class="op">)</span>, <span class="va">ncols</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span>,</span>
 <span>                                row.names<span class="op">=</span><span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="va">ncols</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="va">rse</span> <span class="op">&lt;-</span> <span class="fu">SummarizedExperiment</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/RangedSummarizedExperiment-class.html" class="external-link">SummarizedExperiment</a></span><span class="op">(</span>assays<span class="op">=</span><span class="fu">S4Vectors</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/SimpleList-class.html" class="external-link">SimpleList</a></span><span class="op">(</span>counts<span class="op">=</span><span class="va">counts</span><span class="op">)</span>,</span>
+<span><span class="va">rse</span> <span class="op">&lt;-</span> <span class="fu">SummarizedExperiment</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">SummarizedExperiment</a></span><span class="op">(</span>assays<span class="op">=</span><span class="fu">S4Vectors</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/SimpleList-class.html" class="external-link">SimpleList</a></span><span class="op">(</span>counts<span class="op">=</span><span class="va">counts</span><span class="op">)</span>,</span>
 <span>                                                  rowRanges<span class="op">=</span><span class="va">rowRanges</span>, colData<span class="op">=</span><span class="va">colData</span><span class="op">)</span></span>
 <span><span class="fu">SummarizedExperiment</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">assay</a></span><span class="op">(</span><span class="va">rse</span><span class="op">)</span></span>
 <span><span class="co">#&gt;               A         B         C           D</span></span>
@@ -2035,27 +2041,27 @@ Figure 2.5: LOD in SCALLOP-INF/INTERVAL
 <span><span class="va">imputed</span> <span class="op">&lt;-</span> <span class="fu">MsCoreUtils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/MsCoreUtils/man/imputation.html" class="external-link">impute_knn</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="fu">SummarizedExperiment</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">assay</a></span><span class="op">(</span><span class="va">rse</span><span class="op">)</span><span class="op">)</span>,<span class="fl">2</span><span class="op">)</span></span>
 <span><span class="va">imputed_counts</span> <span class="op">&lt;-</span> <span class="fu">MsCoreUtils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/MsCoreUtils/man/imputation.html" class="external-link">impute_RF</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="fu">SummarizedExperiment</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">assay</a></span><span class="op">(</span><span class="va">rse</span><span class="op">)</span><span class="op">)</span>,<span class="fl">2</span><span class="op">)</span></span>
 <span><span class="va">imputed</span><span class="op">-</span><span class="va">imputed_counts</span></span>
-<span><span class="co">#&gt;              A         B        C        D</span></span>
-<span><span class="co">#&gt;  [1,]    0.000    0.0000    0.000    0.000</span></span>
-<span><span class="co">#&gt;  [2,]    0.000    0.0000    0.000    0.000</span></span>
-<span><span class="co">#&gt;  [3,]    0.000    0.0000    0.000    0.000</span></span>
-<span><span class="co">#&gt;  [4,]    0.000    0.0000    0.000    0.000</span></span>
-<span><span class="co">#&gt;  [5,]    0.000    0.0000    0.000    0.000</span></span>
-<span><span class="co">#&gt;  [6,] 2559.339    0.0000    0.000    0.000</span></span>
-<span><span class="co">#&gt;  [7,]    0.000    0.0000    0.000    0.000</span></span>
-<span><span class="co">#&gt;  [8,]    0.000    0.0000    0.000    0.000</span></span>
-<span><span class="co">#&gt;  [9,]    0.000    0.0000    0.000    0.000</span></span>
-<span><span class="co">#&gt; [10,]    0.000    0.0000 1791.909    0.000</span></span>
-<span><span class="co">#&gt; [11,]    0.000 -709.2786    0.000    0.000</span></span>
-<span><span class="co">#&gt; [12,]    0.000    0.0000    0.000 2467.614</span></span>
-<span><span class="co">#&gt; [13,]    0.000    0.0000    0.000    0.000</span></span>
-<span><span class="co">#&gt; [14,]    0.000    0.0000    0.000    0.000</span></span>
-<span><span class="co">#&gt; [15,]    0.000    0.0000    0.000    0.000</span></span>
-<span><span class="co">#&gt; [16,]    0.000    0.0000    0.000    0.000</span></span>
-<span><span class="co">#&gt; [17,]    0.000    0.0000    0.000    0.000</span></span>
-<span><span class="co">#&gt; [18,]    0.000    0.0000    0.000    0.000</span></span>
-<span><span class="co">#&gt; [19,]    0.000 1298.3456    0.000    0.000</span></span>
-<span><span class="co">#&gt; [20,]    0.000    0.0000    0.000    0.000</span></span>
+<span><span class="co">#&gt;              A          B        C        D</span></span>
+<span><span class="co">#&gt;  [1,]    0.000     0.0000    0.000    0.000</span></span>
+<span><span class="co">#&gt;  [2,]    0.000     0.0000    0.000    0.000</span></span>
+<span><span class="co">#&gt;  [3,]    0.000     0.0000    0.000    0.000</span></span>
+<span><span class="co">#&gt;  [4,]    0.000     0.0000    0.000    0.000</span></span>
+<span><span class="co">#&gt;  [5,]    0.000     0.0000    0.000    0.000</span></span>
+<span><span class="co">#&gt;  [6,] 1661.249     0.0000    0.000    0.000</span></span>
+<span><span class="co">#&gt;  [7,]    0.000     0.0000    0.000    0.000</span></span>
+<span><span class="co">#&gt;  [8,]    0.000     0.0000    0.000    0.000</span></span>
+<span><span class="co">#&gt;  [9,]    0.000     0.0000    0.000    0.000</span></span>
+<span><span class="co">#&gt; [10,]    0.000     0.0000 1632.214    0.000</span></span>
+<span><span class="co">#&gt; [11,]    0.000 -1253.3641    0.000    0.000</span></span>
+<span><span class="co">#&gt; [12,]    0.000     0.0000    0.000 3109.097</span></span>
+<span><span class="co">#&gt; [13,]    0.000     0.0000    0.000    0.000</span></span>
+<span><span class="co">#&gt; [14,]    0.000     0.0000    0.000    0.000</span></span>
+<span><span class="co">#&gt; [15,]    0.000     0.0000    0.000    0.000</span></span>
+<span><span class="co">#&gt; [16,]    0.000     0.0000    0.000    0.000</span></span>
+<span><span class="co">#&gt; [17,]    0.000     0.0000    0.000    0.000</span></span>
+<span><span class="co">#&gt; [18,]    0.000     0.0000    0.000    0.000</span></span>
+<span><span class="co">#&gt; [19,]    0.000   745.3773    0.000    0.000</span></span>
+<span><span class="co">#&gt; [20,]    0.000     0.0000    0.000    0.000</span></span>
 <span><span class="fu">SummarizedExperiment</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">assays</a></span><span class="op">(</span><span class="va">rse</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">S4Vectors</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/SimpleList-class.html" class="external-link">SimpleList</a></span><span class="op">(</span>counts<span class="op">=</span><span class="va">imputed_counts</span><span class="op">)</span></span>
 <span><span class="fu">SummarizedExperiment</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">assay</a></span><span class="op">(</span><span class="va">rse</span><span class="op">)</span></span>
 <span><span class="co">#&gt;               A         B         C           D</span></span>
@@ -2064,20 +2070,20 @@ Figure 2.5: LOD in SCALLOP-INF/INTERVAL
 <span><span class="co">#&gt;  [3,] 4090.3602 6405.4276 4137.8295 3840.312408</span></span>
 <span><span class="co">#&gt;  [4,] 8830.2910 9942.7035 3689.0857 2744.562062</span></span>
 <span><span class="co">#&gt;  [5,] 9404.7324 6557.4023 1525.2950 8146.585749</span></span>
-<span><span class="co">#&gt;  [6,] 4439.2947 7085.5962 1388.9218 4485.714898</span></span>
+<span><span class="co">#&gt;  [6,] 5337.3847 7085.5962 1388.9218 4485.714898</span></span>
 <span><span class="co">#&gt;  [7,] 5281.5268 5441.1162 2331.1080 8100.833466</span></span>
 <span><span class="co">#&gt;  [8,] 8924.2980 5941.8261 4660.1585 8124.082706</span></span>
 <span><span class="co">#&gt;  [9,] 5514.7987 2892.3082 2660.4604 7943.628869</span></span>
-<span><span class="co">#&gt; [10,] 4566.6907 1471.9894 4812.3872 4398.877044</span></span>
-<span><span class="co">#&gt; [11,] 9568.3766 5545.7565  459.2658 7544.997111</span></span>
-<span><span class="co">#&gt; [12,] 4533.8882 9023.0882 4422.5585 4611.837102</span></span>
+<span><span class="co">#&gt; [10,] 4566.6907 1471.9894 4972.0817 4398.877044</span></span>
+<span><span class="co">#&gt; [11,] 9568.3766 6089.8420  459.2658 7544.997111</span></span>
+<span><span class="co">#&gt; [12,] 4533.8882 9023.0882 4422.5585 3970.354132</span></span>
 <span><span class="co">#&gt; [13,] 6776.0288 6907.3621 7989.4495 7102.113831</span></span>
 <span><span class="co">#&gt; [14,] 5726.7614 7954.8787 1219.8707    7.247108</span></span>
 <span><span class="co">#&gt; [15,] 1030.1439  247.1122 5609.9189 4753.690424</span></span>
 <span><span class="co">#&gt; [16,] 8998.3499 4778.4819 2066.1074 2201.968733</span></span>
 <span><span class="co">#&gt; [17,] 2461.6313 7584.8369 1276.1890 3798.785561</span></span>
 <span><span class="co">#&gt; [18,]  421.5533 2164.8630 7533.3253 6128.097262</span></span>
-<span><span class="co">#&gt; [19,] 3279.8793 4566.2289 8950.5585 3518.627295</span></span>
+<span><span class="co">#&gt; [19,] 3279.8793 5119.1973 8950.5585 3518.627295</span></span>
 <span><span class="co">#&gt; [20,] 9545.0820 2317.0262 3745.2533 1112.243108</span></span>
 <span><span class="fu">SummarizedExperiment</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">assays</a></span><span class="op">(</span><span class="va">rse</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu">S4Vectors</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/List-utils.html" class="external-link">endoapply</a></span><span class="op">(</span><span class="fu">SummarizedExperiment</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">assays</a></span><span class="op">(</span><span class="va">rse</span><span class="op">)</span>, <span class="va">asinh</span><span class="op">)</span></span>
 <span><span class="fu">SummarizedExperiment</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">assay</a></span><span class="op">(</span><span class="va">rse</span><span class="op">)</span></span>
@@ -2087,20 +2093,20 @@ Figure 2.5: LOD in SCALLOP-INF/INTERVAL
 <span><span class="co">#&gt;  [3,] 9.009536 9.458048 9.021074 8.946456</span></span>
 <span><span class="co">#&gt;  [4,] 9.779090 9.897741 8.906281 8.610524</span></span>
 <span><span class="co">#&gt;  [5,] 9.842115 9.481497 8.023090 9.698501</span></span>
-<span><span class="co">#&gt;  [6,] 9.091398 9.558966 7.929430 9.101800</span></span>
+<span><span class="co">#&gt;  [6,] 9.275638 9.558966 7.929430 9.101800</span></span>
 <span><span class="co">#&gt;  [7,] 9.265118 9.294887 8.447246 9.692869</span></span>
 <span><span class="co">#&gt;  [8,] 9.789680 9.382919 9.139952 9.695735</span></span>
 <span><span class="co">#&gt;  [9,] 9.308338 8.662957 8.579402 9.673273</span></span>
-<span><span class="co">#&gt; [10,] 9.119691 7.987517 9.172096 9.082252</span></span>
-<span><span class="co">#&gt; [11,] 9.859366 9.313936 6.822778 9.621787</span></span>
-<span><span class="co">#&gt; [12,] 9.112482 9.800689 9.087621 9.129529</span></span>
+<span><span class="co">#&gt; [10,] 9.119691 7.987517 9.204741 9.082252</span></span>
+<span><span class="co">#&gt; [11,] 9.859366 9.407525 6.822778 9.621787</span></span>
+<span><span class="co">#&gt; [12,] 9.112482 9.800689 9.087621 8.979758</span></span>
 <span><span class="co">#&gt; [13,] 9.514294 9.533490 9.679024 9.561295</span></span>
 <span><span class="co">#&gt; [14,] 9.346053 9.674688 7.799647 2.678476</span></span>
 <span><span class="co">#&gt; [15,] 7.630601 6.202994 9.325439 9.159824</span></span>
 <span><span class="co">#&gt; [16,] 9.797944 9.165025 8.326569 8.390254</span></span>
 <span><span class="co">#&gt; [17,] 8.501727 9.627054 7.844781 8.935584</span></span>
 <span><span class="co">#&gt; [18,] 6.737095 8.373260 9.620239 9.413787</span></span>
-<span><span class="co">#&gt; [19,] 8.788709 9.119590 9.792618 8.858973</span></span>
+<span><span class="co">#&gt; [19,] 8.788709 9.233900 9.792618 8.858973</span></span>
 <span><span class="co">#&gt; [20,] 9.856929 8.441187 8.921392 7.707281</span></span>
 <span></span>
 <span><span class="fu">SummarizedExperiment</span><span class="fu">::</span><span class="fu">rowRanges</span><span class="op">(</span><span class="va">rse</span><span class="op">)</span></span>
@@ -2276,31 +2282,25 @@ Figure 4.6: quantro example
 <span><span class="va">ods</span> <span class="op">&lt;-</span> <span class="fu">OUTRIDER</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/OUTRIDER/man/filterExpression.html" class="external-link">filterExpression</a></span><span class="op">(</span><span class="va">ods</span>, minCounts<span class="op">=</span><span class="cn">TRUE</span>, filterGenes<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 229 genes did not pass the filter due to zero counts. This is 22.9% of the genes.</span></span>
 <span><span class="va">ods</span> <span class="op">&lt;-</span> <span class="fu">OUTRIDER</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/OUTRIDER/man/OUTRIDER.html" class="external-link">OUTRIDER</a></span><span class="op">(</span><span class="va">ods</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Tue Mar 25 10:41:03 2025: SizeFactor estimation ...</span></span>
-<span><span class="co">#&gt; Tue Mar 25 10:41:03 2025: Controlling for confounders ...</span></span>
-<span><span class="co">#&gt; Using estimated q with: 23</span></span>
-<span><span class="co">#&gt; Tue Mar 25 10:41:03 2025: Using the autoencoder implementation for controlling.</span></span>
-<span><span class="co">#&gt; [1] "Tue Mar 25 10:41:07 2025: Initial PCA loss: 4.73997327486604"</span></span>
-<span><span class="co">#&gt; [1] "Tue Mar 25 10:41:11 2025: Iteration: 1 loss: 4.19416269506454"</span></span>
-<span><span class="co">#&gt; [1] "Tue Mar 25 10:41:14 2025: Iteration: 2 loss: 4.17550752619036"</span></span>
-<span><span class="co">#&gt; [1] "Tue Mar 25 10:41:16 2025: Iteration: 3 loss: 4.16639365666912"</span></span>
-<span><span class="co">#&gt; [1] "Tue Mar 25 10:41:18 2025: Iteration: 4 loss: 4.16142359470334"</span></span>
-<span><span class="co">#&gt; [1] "Tue Mar 25 10:41:20 2025: Iteration: 5 loss: 4.15785341106832"</span></span>
-<span><span class="co">#&gt; [1] "Tue Mar 25 10:41:22 2025: Iteration: 6 loss: 4.15533343090454"</span></span>
-<span><span class="co">#&gt; [1] "Tue Mar 25 10:41:23 2025: Iteration: 7 loss: 4.15339892434562"</span></span>
-<span><span class="co">#&gt; [1] "Tue Mar 25 10:41:25 2025: Iteration: 8 loss: 4.15175378925737"</span></span>
-<span><span class="co">#&gt; [1] "Tue Mar 25 10:41:26 2025: Iteration: 9 loss: 4.15069201289976"</span></span>
-<span><span class="co">#&gt; [1] "Tue Mar 25 10:41:27 2025: Iteration: 10 loss: 4.1501222741797"</span></span>
-<span><span class="co">#&gt; [1] "Tue Mar 25 10:41:29 2025: Iteration: 11 loss: 4.14904801948777"</span></span>
-<span><span class="co">#&gt; [1] "Tue Mar 25 10:41:30 2025: Iteration: 12 loss: 4.14805452270911"</span></span>
-<span><span class="co">#&gt; [1] "Tue Mar 25 10:41:31 2025: Iteration: 13 loss: 4.14796461892655"</span></span>
-<span><span class="co">#&gt; [1] "Tue Mar 25 10:41:32 2025: Iteration: 14 loss: 4.14722109314569"</span></span>
-<span><span class="co">#&gt; [1] "Tue Mar 25 10:41:33 2025: Iteration: 15 loss: 4.14696284053289"</span></span>
-<span><span class="co">#&gt; Time difference of 25.25854 secs</span></span>
-<span><span class="co">#&gt; [1] "Tue Mar 25 10:41:33 2025: 15 Final nb-AE loss: 4.14696284053289"</span></span>
-<span><span class="co">#&gt; Tue Mar 25 10:41:33 2025: Used the autoencoder implementation for controlling.</span></span>
-<span><span class="co">#&gt; Tue Mar 25 10:41:33 2025: P-value calculation ...</span></span>
-<span><span class="co">#&gt; Tue Mar 25 10:41:37 2025: Zscore calculation ...</span></span>
+<span><span class="co">#&gt; Wed May  6 23:42:06 2026: SizeFactor estimation ...</span></span>
+<span><span class="co">#&gt; Wed May  6 23:42:06 2026: Controlling for confounders ...</span></span>
+<span><span class="co">#&gt; Optimal encoding dimension: 16</span></span>
+<span><span class="co">#&gt; Using estimated q with: 16</span></span>
+<span><span class="co">#&gt; Wed May  6 23:42:07 2026: Using the autoencoder implementation for controlling.</span></span>
+<span><span class="co">#&gt; [1] "Wed May  6 23:42:10 2026: Initial PCA loss: 4.76571576945417"</span></span>
+<span><span class="co">#&gt; [1] "Wed May  6 23:42:17 2026: Iteration: 1 loss: 4.29942242213863"</span></span>
+<span><span class="co">#&gt; [1] "Wed May  6 23:42:21 2026: Iteration: 2 loss: 4.28066542943078"</span></span>
+<span><span class="co">#&gt; [1] "Wed May  6 23:42:25 2026: Iteration: 3 loss: 4.26974794312247"</span></span>
+<span><span class="co">#&gt; [1] "Wed May  6 23:42:27 2026: Iteration: 4 loss: 4.26971920514349"</span></span>
+<span><span class="co">#&gt; [1] "Wed May  6 23:42:31 2026: Iteration: 5 loss: 4.26539009375334"</span></span>
+<span><span class="co">#&gt; [1] "Wed May  6 23:42:35 2026: Iteration: 6 loss: 4.26537551170652"</span></span>
+<span><span class="co">#&gt; [1] "Wed May  6 23:42:45 2026: Iteration: 7 loss: 4.26536829666373"</span></span>
+<span><span class="co">#&gt; Wed May  6 23:42:45 2026: the AE correction converged with:4.26536829666373</span></span>
+<span><span class="co">#&gt; Time difference of 32.45164 secs</span></span>
+<span><span class="co">#&gt; [1] "Wed May  6 23:42:45 2026: 7 Final nb-AE loss: 4.26536829666373"</span></span>
+<span><span class="co">#&gt; Wed May  6 23:42:46 2026: Used the autoencoder implementation for controlling.</span></span>
+<span><span class="co">#&gt; Wed May  6 23:42:46 2026: P-value calculation ...</span></span>
+<span><span class="co">#&gt; Wed May  6 23:42:55 2026: Zscore calculation ...</span></span>
 <span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">OUTRIDER</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/OUTRIDER/man/results.html" class="external-link">results</a></span><span class="op">(</span><span class="va">ods</span><span class="op">)</span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">res</span>,caption<span class="op">=</span><span class="st">"A check list of outliers"</span><span class="op">)</span></span></code></pre></div>
 <table style="width:100%;" class="table">
@@ -2345,171 +2345,188 @@ Figure 4.6: quantro example
 <td align="left">ATAD3C</td>
 <td align="left">MUC1360</td>
 <td align="right">0.0e+00</td>
-<td align="right">0.0000001</td>
-<td align="right">5.28</td>
-<td align="right">1.88</td>
+<td align="right">0.0000000</td>
+<td align="right">5.77</td>
+<td align="right">2.22</td>
 <td align="right">948</td>
 <td align="right">82.29</td>
-<td align="right">248.14</td>
-<td align="right">67.33</td>
-<td align="right">16.48</td>
+<td align="right">318.00</td>
+<td align="right">67.93</td>
+<td align="right">12.59</td>
 <td align="left">TRUE</td>
 <td align="right">1</td>
 <td align="right">1</td>
-<td align="right">1</td>
+<td align="right">1.0</td>
 </tr>
 <tr class="even">
-<td align="left">NBPF15</td>
-<td align="left">MUC1351</td>
-<td align="right">0.0e+00</td>
-<td align="right">0.0000035</td>
-<td align="right">5.80</td>
-<td align="right">0.77</td>
-<td align="right">7591</td>
-<td align="right">4224.88</td>
-<td align="right">7028.35</td>
-<td align="right">4121.14</td>
-<td align="right">112.78</td>
-<td align="left">TRUE</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
 <td align="left">MSTO1</td>
 <td align="left">MUC1367</td>
 <td align="right">0.0e+00</td>
-<td align="right">0.0000177</td>
-<td align="right">-6.26</td>
-<td align="right">-0.81</td>
+<td align="right">0.0000095</td>
+<td align="right">-6.39</td>
+<td align="right">-0.88</td>
 <td align="right">761</td>
 <td align="right">1327.87</td>
-<td align="right">727.74</td>
-<td align="right">1276.02</td>
-<td align="right">153.26</td>
+<td align="right">694.91</td>
+<td align="right">1276.58</td>
+<td align="right">134.73</td>
 <td align="left">TRUE</td>
 <td align="right">1</td>
 <td align="right">1</td>
+<td align="right">1.0</td>
+</tr>
+<tr class="odd">
+<td align="left">NBPF15</td>
+<td align="left">MUC1351</td>
+<td align="right">0.0e+00</td>
+<td align="right">0.0000375</td>
+<td align="right">5.40</td>
+<td align="right">0.77</td>
+<td align="right">7591</td>
+<td align="right">4224.88</td>
+<td align="right">7023.99</td>
+<td align="right">4123.67</td>
+<td align="right">99.23</td>
+<td align="left">TRUE</td>
+<td align="right">2</td>
 <td align="right">1</td>
+<td align="right">1.0</td>
 </tr>
 <tr class="even">
-<td align="left">HDAC1</td>
-<td align="left">MUC1350</td>
-<td align="right">0.0e+00</td>
-<td align="right">0.0001133</td>
-<td align="right">-5.88</td>
-<td align="right">-0.78</td>
-<td align="right">2215</td>
-<td align="right">3805.56</td>
-<td align="right">2128.19</td>
-<td align="right">3649.04</td>
-<td align="right">135.60</td>
+<td align="left">RPS27</td>
+<td align="left">MUC1372</td>
+<td align="right">1.0e-07</td>
+<td align="right">0.0002900</td>
+<td align="right">-5.91</td>
+<td align="right">-0.87</td>
+<td align="right">949</td>
+<td align="right">10951.09</td>
+<td align="right">5738.64</td>
+<td align="right">10506.04</td>
+<td align="right">107.12</td>
 <td align="left">TRUE</td>
 <td align="right">1</td>
 <td align="right">1</td>
-<td align="right">1</td>
+<td align="right">1.0</td>
 </tr>
 <tr class="odd">
 <td align="left">DCAF6</td>
 <td align="left">MUC1374</td>
 <td align="right">1.0e-07</td>
-<td align="right">0.0004182</td>
-<td align="right">-5.67</td>
-<td align="right">-0.61</td>
+<td align="right">0.0004242</td>
+<td align="right">-5.70</td>
+<td align="right">-0.67</td>
 <td align="right">2348</td>
 <td align="right">4869.53</td>
-<td align="right">3085.40</td>
-<td align="right">4724.25</td>
-<td align="right">196.31</td>
+<td align="right">2972.96</td>
+<td align="right">4726.41</td>
+<td align="right">165.94</td>
 <td align="left">TRUE</td>
 <td align="right">1</td>
 <td align="right">1</td>
-<td align="right">1</td>
+<td align="right">1.0</td>
 </tr>
 <tr class="even">
 <td align="left">NBPF16</td>
 <td align="left">MUC1351</td>
-<td align="right">2.0e-07</td>
-<td align="right">0.0006791</td>
-<td align="right">4.83</td>
-<td align="right">0.67</td>
+<td align="right">5.0e-07</td>
+<td align="right">0.0015297</td>
+<td align="right">4.67</td>
+<td align="right">0.68</td>
 <td align="right">4014</td>
 <td align="right">2459.90</td>
-<td align="right">3822.18</td>
-<td align="right">2402.36</td>
-<td align="right">107.85</td>
+<td align="right">3857.91</td>
+<td align="right">2403.62</td>
+<td align="right">97.07</td>
 <td align="left">TRUE</td>
 <td align="right">2</td>
 <td align="right">1</td>
-<td align="right">2</td>
+<td align="right">2.0</td>
 </tr>
 <tr class="odd">
-<td align="left">FAM102B</td>
-<td align="left">MUC1363</td>
-<td align="right">1.2e-06</td>
-<td align="right">0.0067682</td>
-<td align="right">-5.37</td>
-<td align="right">-1.29</td>
-<td align="right">455</td>
-<td align="right">1138.75</td>
-<td align="right">440.62</td>
-<td align="right">1076.81</td>
-<td align="right">41.98</td>
+<td align="left">HDAC1</td>
+<td align="left">MUC1403</td>
+<td align="right">1.8e-06</td>
+<td align="right">0.0074005</td>
+<td align="right">-5.08</td>
+<td align="right">-0.92</td>
+<td align="right">982</td>
+<td align="right">3805.56</td>
+<td align="right">1938.05</td>
+<td align="right">3660.39</td>
+<td align="right">73.92</td>
+<td align="left">TRUE</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">1.5</td>
+</tr>
+<tr class="even">
+<td align="left">NTNG1</td>
+<td align="left">MUC1403</td>
+<td align="right">2.7e-06</td>
+<td align="right">0.0074005</td>
+<td align="right">-6.31</td>
+<td align="right">-5.38</td>
+<td align="right">4</td>
+<td align="right">1872.22</td>
+<td align="right">29.91</td>
+<td align="right">1550.31</td>
+<td align="right">4.80</td>
+<td align="left">TRUE</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">1.5</td>
+</tr>
+<tr class="odd">
+<td align="left">HDAC1</td>
+<td align="left">MUC1350</td>
+<td align="right">1.6e-06</td>
+<td align="right">0.0087417</td>
+<td align="right">-5.03</td>
+<td align="right">-0.91</td>
+<td align="right">2215</td>
+<td align="right">3805.56</td>
+<td align="right">1950.70</td>
+<td align="right">3660.39</td>
+<td align="right">73.92</td>
+<td align="left">TRUE</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">1.0</td>
+</tr>
+<tr class="even">
+<td align="left">TYW3</td>
+<td align="left">MUC1428</td>
+<td align="right">2.7e-06</td>
+<td align="right">0.0152755</td>
+<td align="right">-4.97</td>
+<td align="right">-0.79</td>
+<td align="right">620</td>
+<td align="right">1143.71</td>
+<td align="right">649.95</td>
+<td align="right">1120.98</td>
+<td align="right">99.82</td>
 <td align="left">TRUE</td>
 <td align="right">1</td>
 <td align="right">1</td>
-<td align="right">1</td>
+<td align="right">1.0</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">LOC100288142</td>
 <td align="left">MUC1361</td>
-<td align="right">3.0e-06</td>
-<td align="right">0.0167927</td>
-<td align="right">4.25</td>
-<td align="right">0.85</td>
+<td align="right">7.8e-06</td>
+<td align="right">0.0432071</td>
+<td align="right">4.08</td>
+<td align="right">0.87</td>
 <td align="right">637</td>
 <td align="right">356.12</td>
-<td align="right">622.40</td>
-<td align="right">345.76</td>
-<td align="right">57.44</td>
+<td align="right">633.82</td>
+<td align="right">346.30</td>
+<td align="right">48.56</td>
 <td align="left">TRUE</td>
 <td align="right">1</td>
 <td align="right">1</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="left">TARDBP</td>
-<td align="left">MUC0486</td>
-<td align="right">7.3e-06</td>
-<td align="right">0.0407384</td>
-<td align="right">-4.56</td>
-<td align="right">-0.32</td>
-<td align="right">5911</td>
-<td align="right">5780.34</td>
-<td align="right">4449.25</td>
-<td align="right">5565.44</td>
-<td align="right">464.81</td>
-<td align="left">TRUE</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td align="left">ZMPSTE24</td>
-<td align="left">MUC1370</td>
-<td align="right">7.7e-06</td>
-<td align="right">0.0426990</td>
-<td align="right">4.28</td>
-<td align="right">0.38</td>
-<td align="right">6180</td>
-<td align="right">4026.77</td>
-<td align="right">5088.19</td>
-<td align="right">3905.38</td>
-<td align="right">273.05</td>
-<td align="left">TRUE</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">1</td>
+<td align="right">1.0</td>
 </tr>
 </tbody>
 </table>
@@ -2579,57 +2596,57 @@ Figure 6.1: DESeq2 example
 <tbody>
 <tr class="odd">
 <td align="left">gene1</td>
-<td align="right">8.884414</td>
-<td align="right">0.2449020</td>
-<td align="right">1.3370638</td>
-<td align="right">0.1831640</td>
-<td align="right">0.8546693</td>
-<td align="right">0.9896044</td>
+<td align="right">32.066278</td>
+<td align="right">0.6915335</td>
+<td align="right">0.8953643</td>
+<td align="right">0.7723488</td>
+<td align="right">0.4399079</td>
+<td align="right">0.9961926</td>
 </tr>
 <tr class="even">
 <td align="left">gene2</td>
-<td align="right">18.554877</td>
-<td align="right">-0.9545927</td>
-<td align="right">1.0945708</td>
-<td align="right">-0.8721161</td>
-<td align="right">0.3831451</td>
-<td align="right">0.9896044</td>
+<td align="right">4.412314</td>
+<td align="right">-1.0016303</td>
+<td align="right">2.0623610</td>
+<td align="right">-0.4856717</td>
+<td align="right">0.6272000</td>
+<td align="right">0.9961926</td>
 </tr>
 <tr class="odd">
 <td align="left">gene3</td>
-<td align="right">10.398828</td>
-<td align="right">-0.0389598</td>
-<td align="right">1.2211301</td>
-<td align="right">-0.0319047</td>
-<td align="right">0.9745481</td>
-<td align="right">0.9987191</td>
+<td align="right">30.498821</td>
+<td align="right">-0.9328430</td>
+<td align="right">0.8577129</td>
+<td align="right">-1.0875936</td>
+<td align="right">0.2767745</td>
+<td align="right">0.9961926</td>
 </tr>
 <tr class="even">
 <td align="left">gene4</td>
-<td align="right">13.075617</td>
-<td align="right">1.1475896</td>
-<td align="right">1.1265255</td>
-<td align="right">1.0186983</td>
-<td align="right">0.3083462</td>
-<td align="right">0.9896044</td>
+<td align="right">36.510796</td>
+<td align="right">-0.9515118</td>
+<td align="right">0.8692174</td>
+<td align="right">-1.0946764</td>
+<td align="right">0.2736584</td>
+<td align="right">0.9961926</td>
 </tr>
 <tr class="odd">
 <td align="left">gene5</td>
-<td align="right">10.629715</td>
-<td align="right">-0.3700499</td>
-<td align="right">1.2156482</td>
-<td align="right">-0.3044054</td>
-<td align="right">0.7608190</td>
-<td align="right">0.9896044</td>
+<td align="right">4.622864</td>
+<td align="right">3.0727212</td>
+<td align="right">2.1197063</td>
+<td align="right">1.4495976</td>
+<td align="right">0.1471708</td>
+<td align="right">0.9961926</td>
 </tr>
 <tr class="even">
 <td align="left">gene6</td>
-<td align="right">22.092276</td>
-<td align="right">-1.4125098</td>
-<td align="right">0.9883968</td>
-<td align="right">-1.4290918</td>
-<td align="right">0.1529778</td>
-<td align="right">0.9896044</td>
+<td align="right">39.111363</td>
+<td align="right">-1.1866091</td>
+<td align="right">0.7171454</td>
+<td align="right">-1.6546282</td>
+<td align="right">0.0979999</td>
+<td align="right">0.9961926</td>
 </tr>
 </tbody>
 </table>
@@ -2653,13 +2670,13 @@ Figure 6.1: DESeq2 example
 <span></span>
 <span><span class="co"># A comparison of estimated and true values</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="op">(</span><span class="va">true.pcor</span><span class="op">-</span><span class="va">estimated.pcor</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 346.6915</span></span>
+<span><span class="co">#&gt; [1] 259.8131</span></span>
 <span></span>
 <span><span class="co"># A slightly better estimate ...</span></span>
 <span><span class="va">estimated.pcor.2</span> <span class="op">&lt;-</span> <span class="fu">GeneNet</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GeneNet/man/ggm.estimate.pcor.html" class="external-link">ggm.estimate.pcor</a></span><span class="op">(</span><span class="va">m.sim</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Estimating optimal shrinkage intensity lambda (correlation matrix): 0.2942</span></span>
+<span><span class="co">#&gt; Estimating optimal shrinkage intensity lambda (correlation matrix): 0.1511</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="op">(</span><span class="va">true.pcor</span><span class="op">-</span><span class="va">estimated.pcor.2</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 11.19183</span></span>
+<span><span class="co">#&gt; [1] 12.37069</span></span>
 <span></span>
 <span><span class="co">## ecoli data </span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">ecoli</span>, package<span class="op">=</span><span class="st">"GeneNet"</span><span class="op">)</span></span>
@@ -2933,7 +2950,7 @@ Figure 7.1: GeneNet example
 <span><span class="co">#&gt; Step 5... prepare for plotting</span></span>
 <span><span class="va">c</span><span class="op">$</span><span class="va">param</span></span>
 <span><span class="co">#&gt;          cutoff N.cens      eta0     eta0.SE    kappa kappa.SE</span></span>
-<span><span class="co">#&gt; [1,] 0.03553068   4352 0.9474623 0.005656465 2043.377 94.72267</span></span>
+<span><span class="co">#&gt; [1,] 0.03553068   4352 0.9474623 0.005656465 2043.377 94.72265</span></span>
 <span></span>
 <span><span class="co">## A random network with 20 nodes and 10 percent (=19) edges</span></span>
 <span><span class="va">true.pcor</span> <span class="op">&lt;-</span> <span class="fu">GeneNet</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GeneNet/man/ggm.simulate.pcor.html" class="external-link">ggm.simulate.pcor</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">0.1</span><span class="op">)</span></span>
@@ -2956,48 +2973,42 @@ Figure 7.1: GeneNet example
 <span><span class="co">#&gt; [1] 20</span></span>
 <span><span class="fu">edge.info</span><span class="op">(</span><span class="va">gr</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $weight</span></span>
-<span><span class="co">#&gt;      A~H      D~F      D~O      E~R      F~L      F~G      G~R      G~O </span></span>
-<span><span class="co">#&gt; -0.76325 -0.47042 -0.53865 -0.52631 -0.05494  0.42383 -0.19385  0.32270 </span></span>
-<span><span class="co">#&gt;      H~T      I~J      J~S      J~M      K~R      K~L      L~N      N~R </span></span>
-<span><span class="co">#&gt; -0.34139  0.54040  0.41751  0.62051  0.33471 -0.64564 -0.05633  0.55074 </span></span>
-<span><span class="co">#&gt;      O~R      O~P      S~T </span></span>
-<span><span class="co">#&gt; -0.04365 -0.37113  0.57545 </span></span>
+<span><span class="co">#&gt;      A~T      A~K      A~G      B~M      C~D      C~P      D~G      E~G </span></span>
+<span><span class="co">#&gt; -0.10241  0.29365 -0.49576 -0.99954 -0.17986 -0.88697 -0.48185 -0.32599 </span></span>
+<span><span class="co">#&gt;      E~F      E~S      F~N      F~T      F~K      G~J      J~S      J~O </span></span>
+<span><span class="co">#&gt; -0.40175  0.40466  0.14147 -0.29806 -0.34034  0.03677 -0.34159 -0.50914 </span></span>
+<span><span class="co">#&gt;      K~R      N~O      R~T </span></span>
+<span><span class="co">#&gt; -0.26140  0.68240 -0.60957 </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $dir</span></span>
-<span><span class="co">#&gt;    A~H    D~F    D~O    E~R    F~L    F~G    G~R    G~O    H~T    I~J    J~S </span></span>
+<span><span class="co">#&gt;    A~T    A~K    A~G    B~M    C~D    C~P    D~G    E~G    E~F    E~S    F~N </span></span>
 <span><span class="co">#&gt; "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" </span></span>
-<span><span class="co">#&gt;    J~M    K~R    K~L    L~N    N~R    O~R    O~P    S~T </span></span>
+<span><span class="co">#&gt;    F~T    F~K    G~J    J~S    J~O    K~R    N~O    R~T </span></span>
 <span><span class="co">#&gt; "none" "none" "none" "none" "none" "none" "none" "none"</span></span>
 <span><span class="va">gr2</span> <span class="op">&lt;-</span> <span class="fu">GeneNet</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GeneNet/man/network.make.graph.html" class="external-link">network.make.graph</a></span><span class="op">(</span> <span class="va">test.results</span>, <span class="va">nlab</span>, drop.singles<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="va">gr2</span></span>
 <span><span class="co">#&gt; A graphNEL graph with directed edges</span></span>
-<span><span class="co">#&gt; Number of Nodes = 17 </span></span>
+<span><span class="co">#&gt; Number of Nodes = 16 </span></span>
 <span><span class="co">#&gt; Number of Edges = 38</span></span>
 <span><span class="fu">GeneNet</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GeneNet/man/network.make.graph.html" class="external-link">num.nodes</a></span><span class="op">(</span><span class="va">gr2</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 17</span></span>
+<span><span class="co">#&gt; [1] 16</span></span>
 <span><span class="fu">GeneNet</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GeneNet/man/network.make.graph.html" class="external-link">edge.info</a></span><span class="op">(</span><span class="va">gr2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; $weight</span></span>
-<span><span class="co">#&gt;      A~H      D~F      D~O      E~R      F~L      F~G      G~R      G~O </span></span>
-<span><span class="co">#&gt; -0.76325 -0.47042 -0.53865 -0.52631 -0.05494  0.42383 -0.19385  0.32270 </span></span>
-<span><span class="co">#&gt;      H~T      I~J      J~S      J~M      K~R      K~L      L~N      N~R </span></span>
-<span><span class="co">#&gt; -0.34139  0.54040  0.41751  0.62051  0.33471 -0.64564 -0.05633  0.55074 </span></span>
-<span><span class="co">#&gt;      O~R      O~P      S~T </span></span>
-<span><span class="co">#&gt; -0.04365 -0.37113  0.57545 </span></span>
+<span><span class="co">#&gt;      A~T      A~K      A~G      B~M      C~D      C~P      D~G      E~G </span></span>
+<span><span class="co">#&gt; -0.10241  0.29365 -0.49576 -0.99954 -0.17986 -0.88697 -0.48185 -0.32599 </span></span>
+<span><span class="co">#&gt;      E~F      E~S      F~N      F~T      F~K      G~J      J~S      J~O </span></span>
+<span><span class="co">#&gt; -0.40175  0.40466  0.14147 -0.29806 -0.34034  0.03677 -0.34159 -0.50914 </span></span>
+<span><span class="co">#&gt;      K~R      N~O      R~T </span></span>
+<span><span class="co">#&gt; -0.26140  0.68240 -0.60957 </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $dir</span></span>
-<span><span class="co">#&gt;    A~H    D~F    D~O    E~R    F~L    F~G    G~R    G~O    H~T    I~J    J~S </span></span>
+<span><span class="co">#&gt;    A~T    A~K    A~G    B~M    C~D    C~P    D~G    E~G    E~F    E~S    F~N </span></span>
 <span><span class="co">#&gt; "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" "none" </span></span>
-<span><span class="co">#&gt;    J~M    K~R    K~L    L~N    N~R    O~R    O~P    S~T </span></span>
+<span><span class="co">#&gt;    F~T    F~K    G~J    J~S    J~O    K~R    N~O    R~T </span></span>
 <span><span class="co">#&gt; "none" "none" "none" "none" "none" "none" "none" "none"</span></span>
 <span></span>
 <span><span class="co"># plot network</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gr</span>, <span class="st">"fdp"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =</span></span>
-<span><span class="co">#&gt; edgeColor, : zero-length arrow is of indeterminate angle and so skipped</span></span>
-<span><span class="co">#&gt; Warning in arrows(head_from[1], head_from[2], head_to[1], head_to[2], col =</span></span>
-<span><span class="co">#&gt; edgeColor, : zero-length arrow is of indeterminate angle and so skipped</span></span>
-<span><span class="co">#&gt; Warning in arrows(head_from[1], head_from[2], head_to[1], head_to[2], col =</span></span>
-<span><span class="co">#&gt; edgeColor, : zero-length arrow is of indeterminate angle and so skipped</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gr</span>, <span class="st">"fdp"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:GeneNet-2"></span>
 <img src="bioconductor/GeneNet-2.png" alt="GeneNet example" width="768" style="display:block; margin: auto"><p class="caption">
@@ -3005,13 +3016,7 @@ Figure 7.2: GeneNet example
 </p>
 </div>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gr2</span>, <span class="st">"fdp"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =</span></span>
-<span><span class="co">#&gt; edgeColor, : zero-length arrow is of indeterminate angle and so skipped</span></span>
-<span><span class="co">#&gt; Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =</span></span>
-<span><span class="co">#&gt; edgeColor, : zero-length arrow is of indeterminate angle and so skipped</span></span>
-<span><span class="co">#&gt; Warning in arrows(tail_from[1], tail_from[2], tail_to[1], tail_to[2], col =</span></span>
-<span><span class="co">#&gt; edgeColor, : zero-length arrow is of indeterminate angle and so skipped</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gr2</span>, <span class="st">"fdp"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:GeneNet-3"></span>
 <img src="bioconductor/GeneNet-3.png" alt="GeneNet example" width="768" style="display:block; margin: auto"><p class="caption">
@@ -3039,6 +3044,13 @@ Figure 7.4: Heatmaps
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">heatmaply</span><span class="fu">::</span><span class="fu"><a href="https://talgalili.github.io/heatmaply/reference/normalize.html" class="external-link">normalize</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span></span>
 <span><span class="va">hm</span> <span class="op">&lt;-</span> <span class="fu">heatmaply</span><span class="fu">::</span><span class="fu"><a href="https://talgalili.github.io/heatmaply/reference/heatmaply.html" class="external-link">heatmaply</a></span><span class="op">(</span><span class="va">df</span>,k_col<span class="op">=</span><span class="fl">5</span>,k_row<span class="op">=</span><span class="fl">5</span>,</span>
 <span>                           colors <span class="op">=</span> <span class="fu">grDevices</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/grDevices/colorRamp.html" class="external-link">colorRampPalette</a></span><span class="op">(</span><span class="fu">RColorBrewer</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html" class="external-link">brewer.pal</a></span><span class="op">(</span><span class="fl">3</span>, <span class="st">"RdBu"</span><span class="op">)</span><span class="op">)</span><span class="op">(</span><span class="fl">256</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Please use `linewidth` instead.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> The deprecated feature was likely used in the <span style="color: #0000BB;">dendextend</span> package.</span></span>
+<span><span class="co">#&gt;   Please report the issue at <span style="color: #0000BB; font-style: italic;">&lt;https://github.com/talgalili/dendextend/issues&gt;</span>.</span></span>
+<span><span class="co">#&gt; <span style="color: #555555;">This warning is displayed once per session.</span></span></span>
+<span><span class="co">#&gt; <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span></span>
+<span><span class="co">#&gt; <span style="color: #555555;">generated.</span></span></span>
 <span><span class="fu">htmlwidgets</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/htmlwidgets/man/saveWidget.html" class="external-link">saveWidget</a></span><span class="op">(</span><span class="va">hm</span>,file<span class="op">=</span><span class="st">"heatmaply.html"</span><span class="op">)</span></span>
 <span><span class="fu">htmltools</span><span class="fu">::</span><span class="va"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">tags</a></span><span class="op">$</span><span class="fu">iframe</span><span class="op">(</span>src <span class="op">=</span> <span class="st">"heatmaply.html"</span>, width <span class="op">=</span> <span class="st">"100%"</span>, height <span class="op">=</span> <span class="st">"550px"</span><span class="op">)</span></span></code></pre></div>
 <iframe src="heatmaply.html" width="100%" height="550px"></iframe>
@@ -3091,18 +3103,18 @@ Figure 7.4: Heatmaps
 <span><span class="va">kegg</span> <span class="op">&lt;-</span> <span class="fu">graphite</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/graphite/man/pathways.html" class="external-link">pathways</a></span><span class="op">(</span><span class="st">"hsapiens"</span>,<span class="st">"kegg"</span><span class="op">)</span></span>
 <span><span class="va">pharmgkb</span> <span class="op">&lt;-</span> <span class="fu">graphite</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/graphite/man/pathways.html" class="external-link">pathways</a></span><span class="op">(</span><span class="st">"hsapiens"</span>,<span class="st">"pharmgkb"</span><span class="op">)</span></span>
 <span><span class="fu">nodes</span><span class="op">(</span><span class="va">kegg</span><span class="op">[[</span><span class="fl">21</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="co">#&gt;  [1] "ENTREZID:102724560" "ENTREZID:10993"     "ENTREZID:113675"   </span></span>
-<span><span class="co">#&gt;  [4] "ENTREZID:132158"    "ENTREZID:1610"      "ENTREZID:1738"     </span></span>
-<span><span class="co">#&gt;  [7] "ENTREZID:1757"      "ENTREZID:189"       "ENTREZID:211"      </span></span>
-<span><span class="co">#&gt; [10] "ENTREZID:212"       "ENTREZID:23464"     "ENTREZID:2593"     </span></span>
-<span><span class="co">#&gt; [13] "ENTREZID:26227"     "ENTREZID:2628"      "ENTREZID:27232"    </span></span>
-<span><span class="co">#&gt; [16] "ENTREZID:2731"      "ENTREZID:275"       "ENTREZID:29958"    </span></span>
-<span><span class="co">#&gt; [19] "ENTREZID:29968"     "ENTREZID:441531"    "ENTREZID:501"      </span></span>
-<span><span class="co">#&gt; [22] "ENTREZID:51268"     "ENTREZID:5223"      "ENTREZID:5224"     </span></span>
-<span><span class="co">#&gt; [25] "ENTREZID:55349"     "ENTREZID:5723"      "ENTREZID:635"      </span></span>
-<span><span class="co">#&gt; [28] "ENTREZID:63826"     "ENTREZID:6470"      "ENTREZID:6472"     </span></span>
-<span><span class="co">#&gt; [31] "ENTREZID:64902"     "ENTREZID:669"       "ENTREZID:875"      </span></span>
-<span><span class="co">#&gt; [34] "ENTREZID:9380"      "ENTREZID:1491"</span></span>
+<span><span class="co">#&gt;  [1] "ENTREZID:102724560" "ENTREZID:107080644" "ENTREZID:10993"    </span></span>
+<span><span class="co">#&gt;  [4] "ENTREZID:113675"    "ENTREZID:132158"    "ENTREZID:1610"     </span></span>
+<span><span class="co">#&gt;  [7] "ENTREZID:1738"      "ENTREZID:1757"      "ENTREZID:189"      </span></span>
+<span><span class="co">#&gt; [10] "ENTREZID:211"       "ENTREZID:212"       "ENTREZID:23464"    </span></span>
+<span><span class="co">#&gt; [13] "ENTREZID:2593"      "ENTREZID:26227"     "ENTREZID:2628"     </span></span>
+<span><span class="co">#&gt; [16] "ENTREZID:27232"     "ENTREZID:2731"      "ENTREZID:275"      </span></span>
+<span><span class="co">#&gt; [19] "ENTREZID:29958"     "ENTREZID:29968"     "ENTREZID:441531"   </span></span>
+<span><span class="co">#&gt; [22] "ENTREZID:501"       "ENTREZID:51268"     "ENTREZID:5223"     </span></span>
+<span><span class="co">#&gt; [25] "ENTREZID:5224"      "ENTREZID:55349"     "ENTREZID:5723"     </span></span>
+<span><span class="co">#&gt; [28] "ENTREZID:635"       "ENTREZID:63826"     "ENTREZID:6470"     </span></span>
+<span><span class="co">#&gt; [31] "ENTREZID:6472"      "ENTREZID:64902"     "ENTREZID:669"      </span></span>
+<span><span class="co">#&gt; [34] "ENTREZID:875"       "ENTREZID:9380"      "ENTREZID:1491"</span></span>
 <span><span class="va">kegg_t2g</span> <span class="op">&lt;-</span> <span class="fu">ldply</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">kegg</span>, <span class="va">nodes</span><span class="op">)</span>, <span class="va">data.frame</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">kegg_t2g</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"gs_name"</span>, <span class="st">"gene_symbol"</span><span class="op">)</span></span>
 <span><span class="va">VEGF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">kegg_t2g</span>,<span class="va">gs_name</span><span class="op">==</span><span class="st">"VEGF signaling pathway"</span><span class="op">)</span><span class="op">[[</span><span class="fl">2</span><span class="op">]</span><span class="op">]</span></span>
@@ -3229,7 +3241,7 @@ Figure 7.4: Heatmaps
 <span><span class="co">#&gt; [1] "Homo sapiens"</span></span>
 <span><span class="fu">ensembldb</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ensembldb/man/EnsDb-class.html" class="external-link">returnFilterColumns</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span>
-<span><span class="fu">ensembldb</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GenomeInfoDb/man/seqinfo.html" class="external-link">seqinfo</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span><span class="fu">ensembldb</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/Seqinfo/man/seqinfo.html" class="external-link">seqinfo</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Seqinfo object with 357 sequences (1 circular) from GRCh38 genome:</span></span>
 <span><span class="co">#&gt;   seqnames seqlengths isCircular genome</span></span>
 <span><span class="co">#&gt;   X         156040895      FALSE GRCh38</span></span>
@@ -3243,7 +3255,7 @@ Figure 7.4: Heatmaps
 <span><span class="co">#&gt;   LRG_721       33396      FALSE GRCh38</span></span>
 <span><span class="co">#&gt;   LRG_741      231167      FALSE GRCh38</span></span>
 <span><span class="co">#&gt;   LRG_93        22459      FALSE GRCh38</span></span>
-<span><span class="fu">ensembldb</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GenomeInfoDb/man/seqinfo.html" class="external-link">seqlevels</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span><span class="fu">ensembldb</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/Seqinfo/man/seqinfo.html" class="external-link">seqlevels</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   [1] "1"                                     </span></span>
 <span><span class="co">#&gt;   [2] "10"                                    </span></span>
 <span><span class="co">#&gt;   [3] "11"                                    </span></span>
@@ -3742,7 +3754,7 @@ Figure 11.1: peptide association plot
 <p>The .raw files can be handled by <code>rawrr</code> package nevertheless it requires necessary files,</p>
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/fgcz/rawrr/" class="external-link">rawrr</a></span><span class="op">)</span></span>
-<span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Logic.html" class="external-link">isFALSE</a></span><span class="op">(</span><span class="fu">rawrr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rawrr/man/dot-checkDllInMonoPath.html" class="external-link">.checkDllInMonoPath</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Logic.html" class="external-link">isFALSE</a></span><span class="op">(</span><span class="fu">rawrr</span><span class="fu">::</span><span class="fu">.checkDllInMonoPath</span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
 <span>   <span class="fu">rawrr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rawrr/man/installRawFileReaderDLLs.html" class="external-link">installRawFileReaderDLLs</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Logic.html" class="external-link">isFALSE</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/files.html" class="external-link">file.exists</a></span><span class="op">(</span><span class="fu">rawrr</span><span class="fu">:::</span><span class="fu">.rawrrAssembly</span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
@@ -3765,10 +3777,10 @@ Figure 11.1: peptide association plot
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">ZWK</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/methods.html" class="external-link">methods</a></span><span class="op">(</span>class<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">ZWK</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/Spectra/man/Spectra.html" class="external-link">Spectra</a></span><span class="op">(</span><span class="va">ZWK</span><span class="op">)</span></span>
-<span><span class="fu">spectraData</span><span class="op">(</span><span class="va">ZWK</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/ProtGenerics/man/protgenerics.html" class="external-link">spectraData</a></span><span class="op">(</span><span class="va">ZWK</span><span class="op">)</span></span>
 <span><span class="va">ZWK</span></span>
-<span><span class="va">ZWKvars</span> <span class="op">&lt;-</span> <span class="va">ZWK</span> <span class="op">|&gt;</span> <span class="fu">Spectra</span><span class="fu">::</span><span class="fu">spectraVariables</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">ZWKdata</span> <span class="op">&lt;-</span> <span class="va">ZWK</span> <span class="op">|&gt;</span> <span class="fu">Spectra</span><span class="fu">::</span><span class="fu">spectraData</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">ZWKvars</span> <span class="op">&lt;-</span> <span class="va">ZWK</span> <span class="op">|&gt;</span> <span class="fu">Spectra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ProtGenerics/man/protgenerics.html" class="external-link">spectraVariables</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">ZWKdata</span> <span class="op">&lt;-</span> <span class="va">ZWK</span> <span class="op">|&gt;</span> <span class="fu">Spectra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ProtGenerics/man/protgenerics.html" class="external-link">spectraData</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">ZWKdata</span><span class="op">)</span></span>
 <span><span class="co"># rows with &gt;=1 non-NA value in the columns with prefix "precursor"</span></span>
 <span><span class="va">precursor</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="va">ZWKdata</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="st">"precursor"</span>,<span class="va">ZWKvars</span><span class="op">)</span><span class="op">]</span>, <span class="fl">1</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/any.html" class="external-link">any</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
@@ -3785,7 +3797,7 @@ Figure 11.1: peptide association plot
 <span>           files <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">dir</a></span><span class="op">(</span><span class="va">work_dir</span>,patt<span class="op">=</span><span class="st">"raw"</span>,full.names<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">ZYQ_UDP</span><span class="op">)</span></span>
 <span><span class="va">ZYQ_UDP</span></span>
-<span><span class="va">ZYQ_UDP</span> <span class="op">|&gt;</span> <span class="fu">Spectra</span><span class="fu">::</span><span class="fu">spectraVariables</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="va">ZYQ_UDP</span> <span class="op">|&gt;</span> <span class="fu">Spectra</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ProtGenerics/man/protgenerics.html" class="external-link">spectraVariables</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/save.html" class="external-link">save</a></span><span class="op">(</span><span class="va">ZYQ_UDP</span>,file<span class="op">=</span><span class="st">"~/Caprion/analysis/work/ZYQ_UDP.rda"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level4" number="11.2.3">
@@ -3818,9 +3830,9 @@ Figure 11.1: peptide association plot
 <span><span class="va">mz</span></span>
 <span><span class="fu">nChrom</span><span class="op">(</span><span class="va">mz</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/ProtGenerics/man/protgenerics.html" class="external-link">tic</a></span><span class="op">(</span><span class="va">mz</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/ProtGenerics/man/protgenerics.html" class="external-link">chromatogram</a></span><span class="op">(</span><span class="va">mz</span>, <span class="fl">1L</span><span class="op">)</span><span class="op">)</span> <span class="co">## same as tic(x)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/ProtGenerics/man/protgenerics.html" class="external-link">chromatogram</a></span><span class="op">(</span><span class="va">mz</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/ProtGenerics/man/protgenerics.html" class="external-link">peaks</a></span><span class="op">(</span><span class="va">mz</span>, scan<span class="op">=</span><span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">chromatogram</span><span class="op">(</span><span class="va">mz</span>, <span class="fl">1L</span><span class="op">)</span><span class="op">)</span> <span class="co">## same as tic(x)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="fu">chromatogram</span><span class="op">(</span><span class="va">mz</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">peaks</span><span class="op">(</span><span class="va">mz</span>, scan<span class="op">=</span><span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># MSnbase</span></span>
 <span><span class="va">mzXML</span> <span class="op">&lt;-</span> <span class="fu">MSnbase</span><span class="fu">::</span><span class="fu"><a href="https://lgatto.github.io/MSnbase/reference/readMSData.html" class="external-link">readMSData</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
@@ -4156,7 +4168,7 @@ Figure 11.1: peptide association plot
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Crafted by <a href="https://jinghuazhao.github.io" class="external-link">Jing Hua Zhao</a>. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.9000.</p>
+  <p>Crafted by <a href="https://jinghuazhao.github.io" class="external-link">Jing Hua Zhao</a>. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
 <div class="pkgdown-footer-right">

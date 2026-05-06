@@ -1,0 +1,188 @@
+# Import eQTL Catalogue
+
+An adopted function which imports eQTL Catalogue.
+
+## Usage
+
+``` r
+import_eQTLCatalogue(
+  ftp_path,
+  region,
+  selected_gene_id,
+  column_names,
+  verbose = TRUE
+)
+```
+
+## Arguments
+
+-   ftp_path:
+
+    URL.
+
+-   region:
+
+    chr:start-end.
+
+-   selected_gene_id:
+
+    An Ensembl gene ID.
+
+-   column_names:
+
+    Column names of the dataset.
+
+-   verbose:
+
+    Extra information.
+
+## Value
+
+A summary statistic object.
+
+## Details
+
+This function is based on the eQTL-Catalogue-resources, Kerimov et al.
+(2021) .
+
+## Note
+
+Adapted function.
+
+## References
+
+Kerimov N, Hayhurst JD, Peikova K, Manning JR, Walter P, Kolberg L,
+Samovica M, Sakthivel MP, Kuzmin I, Trevanion SJ, Burdett T, Jupp S,
+Parkinson H, Papatheodorou I, Yates AD, Zerbino DR, Alasoo K (2021). “A
+compendium of uniformly processed human gene expression and splicing
+quantitative trait loci.” *Nature Genetics*, **53**(9), 1290-1299.
+[doi:10.1038/s41588-021-00924-w](https://doi.org/10.1038/s41588-021-00924-w)
+.
+
+## Examples
+
+``` r
+if (FALSE) { # \dontrun{
+suppressMessages(invisible(lapply(c("dplyr", "ggplot2", "readr", "coloc",
+                                    "GenomicRanges","seqminer"),
+                 require, character.only = TRUE)))
+# Largely deprecated so b./c. below are local version
+fp <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","tabix_ftp_paths.tsv")
+tabix_paths <- read.delim(fp, stringsAsFactors = FALSE) %>% dplyr::as_tibble()
+# MPV association at the ARHGEF3 locus
+region <- "3:56615721-57015721"
+ensGene <- "ENSG00000163947"
+platelet_df <- dplyr::filter(tabix_paths, study == "CEDAR", tissue_label == "platelet")
+hdr <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","column_names.CEDAR")
+column_names <- names(read.delim(hdr))
+summary_stats <- pQTLtools::import_eQTLCatalogue(platelet_df$ftp_path, region,
+                                      selected_gene_id = ensGene, column_names)
+summary_stats
+ggplot(summary_stats, aes(x = position, y = -log(pvalue, 10))) + geom_point()
+# gwasvcf::set_bcftools(path=file.path(HPC_WORK,"bin","bcftools"))
+# GWAS sumstat from the same region
+# manually download and parse with gwasvcf
+# wget https://gwas.mrcieu.ac.uk/files/ebi-a-GCST004599/ebi-a-GCST004599.vcf.gz
+# wget https://gwas.mrcieu.ac.uk/files/ebi-a-GCST004599/ebi-a-GCST004599.vcf.gz.tbi
+# gwas_stats <- gwasvcf::query_gwas("ebi-a-GCST004599.vcf.gz", chrompos = "3:56649749-57049749")
+# gwas_stats <- gwasvcf::vcf_to_granges(gwas_stats) %>%
+#               keepSeqlevels("3") %>%
+#               renameSeqlevels("chr3")
+# via import_OpenGWAS
+opengwas_id <- "ebi-a-GCST004599"
+region <- "3:56649749-57049749"
+gwas_stats <- import_OpenGWAS(opengwas_id,region) %>%
+#             keepSeqlevels("3") %>%
+#             renameSeqlevels("chr3")
+f <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","hg19ToHg38.over.chain")
+chain <- rtracklayer::import.chain(f)
+gwas_stats_hg38 <- rtracklayer::liftOver(gwas_stats, chain) %>%
+  unlist() %>%
+  dplyr::as_tibble() %>%
+  dplyr::transmute(chromosome = seqnames,
+                   position = start, REF, ALT, AF, ES, SE, LP, SS) %>%
+  dplyr::mutate(id = paste(chromosome, position, sep = ":")) %>%
+  dplyr::mutate(MAF = pmin(AF, 1-AF)) %>%
+  dplyr::group_by(id) %>%
+  dplyr::mutate(row_count = n()) %>%
+  dplyr::ungroup() %>%
+  dplyr::filter(row_count == 1) %>%
+  dplyr::mutate(chromosome=gsub("chr","",chromosome))
+ggplot2::ggplot(gwas_stats_hg38, aes(x = position, y = LP)) + geom_point()
+# Colocalisation
+res <- run_coloc(summary_stats, gwas_stats_hg38)
+
+# a. all other eQTL datasets
+microarray_df <- dplyr::filter(tabix_paths, quant_method == "microarray") %>%
+                 dplyr::mutate(qtl_id = paste(study, qtl_group, sep = "_"))
+ftp_path_list <- setNames(as.list(microarray_df$ftp_path), microarray_df$qtl_id[1])
+hdr <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","column_names.CEDAR")
+column_names <- names(read.delim(hdr))
+summary_list <- purrr::map(ftp_path_list, ~import_eQTLCatalogue(., region,
+                           selected_gene_id = ensGene, column_names))
+coloc_df_microarray <- purrr::map_df(summary_list, ~run_coloc(., gwas_stats_hg38),
+                                     .id = "qtl_id")
+
+# b. Uniformly processed RNA-seq datasets
+# rnaseq_df <- dplyr::filter(tabix_paths, quant_method == "ge") %>%
+#              dplyr::mutate(qtl_id = paste(study, qtl_group, sep = "_"))
+# ftp_path_list <- setNames(as.list(rnaseq_df$ftp_path), rnaseq_df$qtl_id)
+# hdr <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","column_names.Alasoo")
+fp <- file.path(find.package("pQTLtools"),"eQTL-Catalogue",
+                "tabix_ftp_paths_ge.tsv")
+# eQTL Catalogue site (deprecated)
+imported_tabix_paths <- read.delim(fp, stringsAsFactors = FALSE) %>%
+                        dplyr::as_tibble()
+# local downloads
+imported_tabix_paths <- within(imported_tabix_paths,
+      {
+        f <- lapply(strsplit(ftp_path,"/csv/|/ge/"),"[",3)
+        ftp_path <- paste0("~/rds/public_databases/eQTLCatalogue/",f)
+      })
+ftp_path_list <- setNames(as.list(imported_tabix_paths$ftp_path),
+                          imported_tabix_paths$unique_id)
+hdr <- file.path(path.package("pQTLtools"),"eQTL-Catalogue",
+                 "column_names.Alasoo")
+column_names <- names(read.delim(hdr))
+safe_import <- purrr::safely(import_eQTLCatalogue)
+summary_list <- purrr::map(ftp_path_list, ~safe_import(., region,
+                           selected_gene_id = ensGene, column_names))
+result_list <- purrr::map(summary_list, ~.$result)
+result_list <- result_list[!unlist(purrr::map(result_list, is.null))]
+coloc_df_rnaseq <- purrr::map_df(result_list, ~run_coloc(., gwas_stats_hg38),
+                                 .id = "qtl_id")
+
+# c. GTEx_v8 imported eQTL datasets
+# rnaseq_df <- dplyr::filter(imported_tabix_paths, quant_method == "ge") %>%
+#              dplyr::mutate(qtl_id = paste(study, qtl_group, sep = "_"))
+# ftp_path_list <- setNames(as.list(rnaseq_df$ftp_path), rnaseq_df$qtl_id)
+fp <- file.path(find.package("pQTLtools"),"eQTL-Catalogue",
+                "tabix_ftp_paths_gtex.tsv")
+# eQTL Catalogue site
+imported_tabix_paths <- read.delim(fp, stringsAsFactors = FALSE) %>%
+                        dplyr::as_tibble()
+# local downloads
+imported_tabix_paths <- within(imported_tabix_paths,
+       {
+         f <- lapply(strsplit(ftp_path,"/csv/|/ge/"),"[",3);
+         ftp_path <- paste0("~/rds/public_databases/GTEx/csv/",f)
+       })
+gtex_df <- dplyr::filter(imported_tabix_paths, quant_method == "ge") %>%
+           dplyr::mutate(qtl_id = paste(study, qtl_group, sep = "_"))
+ftp_path_list <- setNames(as.list(gtex_df$ftp_path), gtex_df$qtl_id)
+hdr <- file.path(path.package("pQTLtools"),"eQTL-Catalogue","column_names.GTEx")
+column_names <- names(read.delim(hdr))
+safe_import <- purrr::safely(import_eQTLCatalogue)
+summary_list <- purrr::map(ftp_path_list, ~safe_import(., region,
+                           selected_gene_id = ensGene, column_names))
+result_list <- purrr::map(summary_list, ~.$result)
+result_list <- result_list[!unlist(purrr::map(result_list, is.null))]
+result_filtered <- purrr::map(result_list, ~dplyr::filter(., !is.na(se)))
+coloc_df_imported <- purrr::map_df(result_filtered, ~run_coloc(., gwas_stats_hg38),
+                                   .id = "qtl_id")
+
+coloc_df = dplyr::bind_rows(coloc_df_microarray, coloc_df_rnaseq, coloc_df_imported)
+dplyr::arrange(coloc_df, -PP.H4.abf)
+ggplot2::ggplot(coloc_df, aes(x = PP.H4.abf)) + geom_histogram()
+} # }
+```

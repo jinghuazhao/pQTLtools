@@ -1,12 +1,12 @@
 pandoc: '2.18'
-pkgdown: 2.1.1.9000
-pkgdown_sha: 18cca452d736fea33d47b19b4ef4973db9104a75
+pkgdown: 2.2.0
+pkgdown_sha: ~
 articles:
   bioconductor: bioconductor.html
   LocusZoom.js: LocusZoom.js.html
   pQTLtools: pQTLtools.html
   snakemake: snakemake.html
-last_built: 2025-03-25T10:37Z
+last_built: 2026-05-06T22:40Z
 urls:
   reference: https://jinghuazhao.github.io/pQTLtools/reference
   article: https://jinghuazhao.github.io/pQTLtools/articles
