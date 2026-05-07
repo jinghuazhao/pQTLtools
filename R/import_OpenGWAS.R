@@ -47,6 +47,7 @@
 #' opengwas_id <- "ebi-a-GCST004599"
 #' region <- "3:56649749-57049749"
 #' mpv_ARHGEF3 <- import_OpenGWAS(opengwas_id,region,method="gwasvcf")
+#' unlink("ebi-a-GCST004599.vcf.gz.tbi")
 #' # all immune-related
 #' # INF <- Sys.getenv("INF")
 #' # opengwas_ids <- scan(file.path(INF,"OpenGWAS","ieu.list"),what="")
