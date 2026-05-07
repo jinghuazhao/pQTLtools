@@ -666,25 +666,25 @@ ods <- OUTRIDER::OutriderDataSet(countData=ctsTable)
 ods <- OUTRIDER::filterExpression(ods, minCounts=TRUE, filterGenes=TRUE)
 #> 229 genes did not pass the filter due to zero counts. This is 22.9% of the genes.
 ods <- OUTRIDER::OUTRIDER(ods)
-#> Wed May  6 23:42:06 2026: SizeFactor estimation ...
-#> Wed May  6 23:42:06 2026: Controlling for confounders ...
+#> Thu May  7 09:17:55 2026: SizeFactor estimation ...
+#> Thu May  7 09:17:55 2026: Controlling for confounders ...
 #> Optimal encoding dimension: 16
 #> Using estimated q with: 16
-#> Wed May  6 23:42:07 2026: Using the autoencoder implementation for controlling.
-#> [1] "Wed May  6 23:42:10 2026: Initial PCA loss: 4.76571576945417"
-#> [1] "Wed May  6 23:42:17 2026: Iteration: 1 loss: 4.29942242213863"
-#> [1] "Wed May  6 23:42:21 2026: Iteration: 2 loss: 4.28066542943078"
-#> [1] "Wed May  6 23:42:25 2026: Iteration: 3 loss: 4.26974794312247"
-#> [1] "Wed May  6 23:42:27 2026: Iteration: 4 loss: 4.26971920514349"
-#> [1] "Wed May  6 23:42:31 2026: Iteration: 5 loss: 4.26539009375334"
-#> [1] "Wed May  6 23:42:35 2026: Iteration: 6 loss: 4.26537551170652"
-#> [1] "Wed May  6 23:42:45 2026: Iteration: 7 loss: 4.26536829666373"
-#> Wed May  6 23:42:45 2026: the AE correction converged with:4.26536829666373
-#> Time difference of 32.45164 secs
-#> [1] "Wed May  6 23:42:45 2026: 7 Final nb-AE loss: 4.26536829666373"
-#> Wed May  6 23:42:46 2026: Used the autoencoder implementation for controlling.
-#> Wed May  6 23:42:46 2026: P-value calculation ...
-#> Wed May  6 23:42:55 2026: Zscore calculation ...
+#> Thu May  7 09:17:55 2026: Using the autoencoder implementation for controlling.
+#> [1] "Thu May  7 09:17:59 2026: Initial PCA loss: 4.76571576945417"
+#> [1] "Thu May  7 09:18:06 2026: Iteration: 1 loss: 4.29942242213863"
+#> [1] "Thu May  7 09:18:10 2026: Iteration: 2 loss: 4.28066542943078"
+#> [1] "Thu May  7 09:18:14 2026: Iteration: 3 loss: 4.26974794312247"
+#> [1] "Thu May  7 09:18:16 2026: Iteration: 4 loss: 4.26971920514349"
+#> [1] "Thu May  7 09:18:20 2026: Iteration: 5 loss: 4.26539009375334"
+#> [1] "Thu May  7 09:18:25 2026: Iteration: 6 loss: 4.26537551170652"
+#> [1] "Thu May  7 09:18:47 2026: Iteration: 7 loss: 4.26536829666373"
+#> Thu May  7 09:18:47 2026: the AE correction converged with:4.26536829666373
+#> Time difference of 45.87098 secs
+#> [1] "Thu May  7 09:18:48 2026: 7 Final nb-AE loss: 4.26536829666373"
+#> Thu May  7 09:18:51 2026: Used the autoencoder implementation for controlling.
+#> Thu May  7 09:18:51 2026: P-value calculation ...
+#> Thu May  7 09:18:56 2026: Zscore calculation ...
 res <- OUTRIDER::results(ods)
 knitr::kable(res,caption="A check list of outliers")
 ```
