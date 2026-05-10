@@ -1,8 +1,8 @@
 ## pQTLtools 0.5
 
-(2025/5/7)
+(2025/5/10)
 
-* Drop b from the right column in vignette/METAL_forestplot
+* Accommodate revised gap::METAL_forestplot in vignette
 * Add single quotes to package/software name.
 * Add inst/scripts for docs.sh and cran.sh.
 * Amend import_OpenGWAS using <https://opengwas.io/datasets/>
