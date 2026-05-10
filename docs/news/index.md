@@ -4,10 +4,10 @@
 
 (2025/5/10)
 
--   Accommodate revised gap::METAL_forestplot in vignette
+-   Accommodate revised gap::METAL_forestplot in vignette.
 -   Add single quotes to package/software name.
--   Add inst/scripts for docs.sh and cran.sh.
--   Amend import_OpenGWAS using <https://opengwas.io/datasets/>
+-   Add inst/scripts for docs.sh, cran.sb and cran.sh.
+-   Amend import_OpenGWAS using <https://opengwas.io/datasets/>.
 -   Drop link to GitHub repository in \_pkgdown.yml and a lot of
     options().
 -   Merge Bioconductor-related and LocusZoom.js/SCALLOP-Caprion
@@ -16,7 +16,7 @@
     41 check.
 -   Set fig.height/fig.width for articles and suggest Cairo for
     CairoPNG.
--   Suggests CAMERA, MSnbase, MSstats, mzR, protViz, rawrr, Spectra
+-   Suggests CAMERA, MSnbase, MSstats, mzR, protViz, rawrr, Spectra.
 
 ## pQTLtools 0.4
 
