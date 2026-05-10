@@ -2282,25 +2282,25 @@ Figure 4.6: quantro example
 <span><span class="va">ods</span> <span class="op">&lt;-</span> <span class="fu">OUTRIDER</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/OUTRIDER/man/filterExpression.html" class="external-link">filterExpression</a></span><span class="op">(</span><span class="va">ods</span>, minCounts<span class="op">=</span><span class="cn">TRUE</span>, filterGenes<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 229 genes did not pass the filter due to zero counts. This is 22.9% of the genes.</span></span>
 <span><span class="va">ods</span> <span class="op">&lt;-</span> <span class="fu">OUTRIDER</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/OUTRIDER/man/OUTRIDER.html" class="external-link">OUTRIDER</a></span><span class="op">(</span><span class="va">ods</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Sun May 10 11:58:29 2026: SizeFactor estimation ...</span></span>
-<span><span class="co">#&gt; Sun May 10 11:58:29 2026: Controlling for confounders ...</span></span>
+<span><span class="co">#&gt; Sun May 10 14:21:23 2026: SizeFactor estimation ...</span></span>
+<span><span class="co">#&gt; Sun May 10 14:21:23 2026: Controlling for confounders ...</span></span>
 <span><span class="co">#&gt; Optimal encoding dimension: 16</span></span>
 <span><span class="co">#&gt; Using estimated q with: 16</span></span>
-<span><span class="co">#&gt; Sun May 10 11:58:29 2026: Using the autoencoder implementation for controlling.</span></span>
-<span><span class="co">#&gt; [1] "Sun May 10 11:58:33 2026: Initial PCA loss: 4.76571576945417"</span></span>
-<span><span class="co">#&gt; [1] "Sun May 10 11:58:40 2026: Iteration: 1 loss: 4.29942242213863"</span></span>
-<span><span class="co">#&gt; [1] "Sun May 10 11:58:44 2026: Iteration: 2 loss: 4.28066542943078"</span></span>
-<span><span class="co">#&gt; [1] "Sun May 10 11:58:47 2026: Iteration: 3 loss: 4.26974794312247"</span></span>
-<span><span class="co">#&gt; [1] "Sun May 10 11:58:49 2026: Iteration: 4 loss: 4.26971920514349"</span></span>
-<span><span class="co">#&gt; [1] "Sun May 10 11:58:53 2026: Iteration: 5 loss: 4.26539009375334"</span></span>
-<span><span class="co">#&gt; [1] "Sun May 10 11:58:56 2026: Iteration: 6 loss: 4.26537551170652"</span></span>
-<span><span class="co">#&gt; [1] "Sun May 10 11:59:12 2026: Iteration: 7 loss: 4.26536829666373"</span></span>
-<span><span class="co">#&gt; Sun May 10 11:59:12 2026: the AE correction converged with:4.26536829666373</span></span>
-<span><span class="co">#&gt; Time difference of 40.17393 secs</span></span>
-<span><span class="co">#&gt; [1] "Sun May 10 11:59:16 2026: 7 Final nb-AE loss: 4.26536829666373"</span></span>
-<span><span class="co">#&gt; Sun May 10 11:59:20 2026: Used the autoencoder implementation for controlling.</span></span>
-<span><span class="co">#&gt; Sun May 10 11:59:20 2026: P-value calculation ...</span></span>
-<span><span class="co">#&gt; Sun May 10 11:59:25 2026: Zscore calculation ...</span></span>
+<span><span class="co">#&gt; Sun May 10 14:21:23 2026: Using the autoencoder implementation for controlling.</span></span>
+<span><span class="co">#&gt; [1] "Sun May 10 14:21:26 2026: Initial PCA loss: 4.76571576945417"</span></span>
+<span><span class="co">#&gt; [1] "Sun May 10 14:21:33 2026: Iteration: 1 loss: 4.29942242213863"</span></span>
+<span><span class="co">#&gt; [1] "Sun May 10 14:21:37 2026: Iteration: 2 loss: 4.28066542943078"</span></span>
+<span><span class="co">#&gt; [1] "Sun May 10 14:21:41 2026: Iteration: 3 loss: 4.26974794312247"</span></span>
+<span><span class="co">#&gt; [1] "Sun May 10 14:21:43 2026: Iteration: 4 loss: 4.26971920514349"</span></span>
+<span><span class="co">#&gt; [1] "Sun May 10 14:21:47 2026: Iteration: 5 loss: 4.26539009375334"</span></span>
+<span><span class="co">#&gt; [1] "Sun May 10 14:21:51 2026: Iteration: 6 loss: 4.26537551170652"</span></span>
+<span><span class="co">#&gt; [1] "Sun May 10 14:22:00 2026: Iteration: 7 loss: 4.26536829666373"</span></span>
+<span><span class="co">#&gt; Sun May 10 14:22:00 2026: the AE correction converged with:4.26536829666373</span></span>
+<span><span class="co">#&gt; Time difference of 30.48176 secs</span></span>
+<span><span class="co">#&gt; [1] "Sun May 10 14:22:00 2026: 7 Final nb-AE loss: 4.26536829666373"</span></span>
+<span><span class="co">#&gt; Sun May 10 14:22:03 2026: Used the autoencoder implementation for controlling.</span></span>
+<span><span class="co">#&gt; Sun May 10 14:22:03 2026: P-value calculation ...</span></span>
+<span><span class="co">#&gt; Sun May 10 14:22:08 2026: Zscore calculation ...</span></span>
 <span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">OUTRIDER</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/OUTRIDER/man/results.html" class="external-link">results</a></span><span class="op">(</span><span class="va">ods</span><span class="op">)</span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">res</span>,caption<span class="op">=</span><span class="st">"A check list of outliers"</span><span class="op">)</span></span></code></pre></div>
 <table style="width:100%;" class="table">
