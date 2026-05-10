@@ -1,0 +1,174 @@
+#!/usr/bin/env bash
+#SBATCH --job-name=_cran
+#SBATCH --account PETERS-SL3-CPU
+#SBATCH --partition icelake-himem
+#SBATCH --mem=28800
+#SBATCH --time=12:00:00
+#SBATCH --error=/home/jhz22/R/work/_cran_%A_%a.err
+#SBATCH --output=/home/jhz22/R/work/_cran_%A_%a.out
+#SBATCH --export ALL
+
+set -euo pipefail
+
+echo "===== CRAN-like HPC check started: $(date) ====="
+
+# ============================================================
+# 0) REAL HOME (persisted storage) vs CRAN fake HOME
+# ============================================================
+REAL_HOME=$HOME
+
+# ============================================================
+# 1) MODULE ENVIRONMENT
+# ============================================================
+. /etc/profile.d/modules.sh
+module purge
+module load rhel8/default-icl
+module load ceuadmin/R
+module load mono/5.0.1.1
+module load texlive
+module load ceuadmin/pandoc || true
+
+# ============================================================
+# 2) TEMP + FAKE CRAN HOME
+# ============================================================
+export TMPDIR=/rds/user/jhz22/hpc-work/work
+export TMP="$TMPDIR"
+export TEMP="$TMPDIR"
+
+export HOME="$TMPDIR/fake_home"
+mkdir -p "$HOME"
+
+export R_LIBS_USER="$TMPDIR/Rlib"
+mkdir -p "$R_LIBS_USER"
+
+# ============================================================
+# 3) CRAN-LIKE ENVIRONMENT VARIABLES
+# ============================================================
+export LC_ALL=en_GB.UTF-8
+export LANG=en_GB.UTF-8
+export TZ=UTC
+
+export R_ENVIRON_USER=NULL
+export R_ENVIRON=NULL
+export R_PROFILE_USER=NULL
+export R_PROFILE=NULL
+
+# ---- HEADLESS GRAPHICS FIX ----
+export R_DEFAULT_DEVICE=pdf
+export R_HEADLESS=1
+export DISPLAY=
+export _R_CHECK_SCREEN_DEVICE_=pdf
+
+# ---- CRAN strictness ----
+export R_INSTALL_STAGED=TRUE
+export R_PARALLEL_INSTALL=FALSE
+export _R_CHECK_CRAN_INCOMING_=TRUE
+export _R_CHECK_CRAN_INCOMING_REMOTE_=TRUE
+export _R_CHECK_FORCE_SUGGESTS_=FALSE
+export _R_CHECK_LICENSE_=TRUE
+export _R_CHECK_LIMIT_CORES_=TRUE
+export _R_CHECK_NETWORK_CONNECTION_=FALSE
+export _R_CHECK_COMPILATION_FLAGS_KNOWN_=TRUE
+export _R_CHECK_CRAN_INCOMING_CHECK_URLS_=TRUE
+export _R_CHECK_CRAN_INCOMING_CHECK_BASHISMS_=TRUE
+export _R_CHECK_XREFS_USE_ALIASES_FROM_CRAN_=TRUE
+
+# ---- avoid X11 + threading crashes ----
+export OMP_NUM_THREADS=1
+export OPENBLAS_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+
+export MAKEFLAGS="-j${SLURM_CPUS_PER_TASK:-4}"
+
+echo "R version:"
+Rscript -e 'cat(R.version.string,"\n")'
+
+# ============================================================
+# 4) CREATE CLEAN SOURCE COPY (CRAN style)
+# ============================================================
+echo "===== Creating clean source copy ====="
+
+src="$REAL_HOME/pQTLtools"
+dst="$TMPDIR/pQTLtools"
+log_file="$REAL_HOME/R/work/pQTLtools_copy.log"
+
+mkdir -p "$(dirname "$log_file")"
+rm -rf "$dst"
+mkdir -p "$dst"
+
+rsync -av \
+  --exclude='docs/' \
+  --exclude='pkgdown/' \
+  --exclude='.*' \
+  --exclude='*/.*' \
+  --exclude='README.Rmd' \
+  --exclude='LICENSE.md' \
+  "$src/" "$dst/" >> "$log_file" 2>&1
+
+cd "$dst"
+version=$(awk '/^Version:/{print $2}' DESCRIPTION)
+echo "Package version: $version"
+
+# ============================================================
+# 5) BUILD PACKAGE
+# ============================================================
+echo "===== Building package ====="
+
+rm -f pQTLtools_*.tar.gz
+R CMD REMOVE pQTLtools || true
+
+R CMD build --resave-data --compact-vignettes=both .
+
+# ============================================================
+# 6) INSTALL DEPENDENCIES (fresh CRAN machine)
+# ============================================================
+echo "===== Installing dependencies ====="
+
+Rscript -e 'options(repos=c(CRAN="https://cloud.r-project.org")); install.packages("remotes")'
+Rscript -e 'options(repos=c(CRAN="https://cloud.r-project.org")); install.packages(remotes::dev_package_deps(dependencies=TRUE)$package)'
+
+# ============================================================
+# 7) INSTALL PACKAGE
+# ============================================================
+echo "===== Installing package ====="
+R CMD INSTALL "pQTLtools_${version}.tar.gz"
+
+# ============================================================
+# 8) RUN FULL CRAN CHECK
+# ============================================================
+echo "===== Running R CMD check ====="
+
+R CMD check \
+  --as-cran \
+  --run-donttest \
+  --no-manual \
+  --no-build-vignettes \
+  --timings \
+  "pQTLtools_${version}.tar.gz"
+
+# ============================================================
+# 9) TEST PKGDOWN BUILD (separate from check!)
+# ============================================================
+echo "===== Testing pkgdown build ====="
+
+Rscript -e 'remotes::install_deps(dependencies = TRUE)'
+Rscript -e 'pkgdown::build_site()'
+
+# ============================================================
+# 10) ARCHIVE RESULTS (persist after job ends)
+# ============================================================
+echo "===== Archiving results ====="
+
+mkdir -p "$REAL_HOME/R"
+rm -rf "$REAL_HOME/R/pQTLtools.Rcheck" || true
+
+mv "pQTLtools_${version}.tar.gz" "$REAL_HOME/R/"
+mv pQTLtools.Rcheck "$REAL_HOME/R/"
+
+# ============================================================
+# 11) SESSION INFO (CRAN debugging gold)
+# ============================================================
+echo "===== Session info ====="
+Rscript -e 'sessionInfo()'
+
+echo "===== CRAN-like HPC check completed: $(date) ====="
