@@ -20,9 +20,8 @@ We start with results on osteoprotegerin (OPG)²,
 ``` r
 data(OPG,package="gap.datasets")
 meta::settings.meta(method.tau="DL")
-gap::METAL_forestplot(OPGtbl,OPGall,OPGrsid,width=6.75,height=5,digits.TE=2,digits.se=2,
-                 rightcols="ci",digits.TE.right=0,
-                 col.diamond="black",col.inside="black",col.square="black")
+gap::METAL_forestplot(OPGtbl, OPGall, OPGrsid, width=6.75, height=5, digits.TE=2, digits.seTE=2,
+                 col.diamond="black", col.inside="black", col.square="black")
 #> Joining with `by = join_by(MarkerName)`
 #> Joining with `by = join_by(MarkerName)`
 ```
@@ -427,11 +426,12 @@ for (r in c("IL12B","KITLG","TNFSF10"))
   tb_all <- rbind(tb_all,data.frame(gene=r,with(r.post,tb)))
 }
 #> Don't make too frequent requests. The time break is 60s.
-#> Please wait for 54s for the next request.
+#> Please wait for 56s for the next request.
 #> The time break can be set by `request_interval` argument.
 #> Don't make too frequent requests. The time break is 60s.
-#> Please wait for 57s for the next request.
+#> Please wait for 58s for the next request.
 #> The time break can be set by `request_interval` argument.
+#> 
 #> Don't make too frequent requests. The time break is 60s.
 #> Please wait for 58s for the next request.
 #> The time break can be set by `request_interval` argument.
