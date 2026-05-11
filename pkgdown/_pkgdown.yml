@@ -45,6 +45,7 @@ template:
 
 build:
   vignette:
+    lazy: true
     pandoc_args: ["--no-check-links"]
 
 navbar:
