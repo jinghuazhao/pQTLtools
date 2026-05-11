@@ -428,12 +428,11 @@ for (r in c("IL12B","KITLG","TNFSF10"))
   tb_all <- rbind(tb_all,data.frame(gene=r,with(r.post,tb)))
 }
 #> Don't make too frequent requests. The time break is 60s.
-#> Please wait for 55s for the next request.
+#> Please wait for 56s for the next request.
 #> The time break can be set by `request_interval` argument.
 #> Don't make too frequent requests. The time break is 60s.
-#> Please wait for 58s for the next request.
+#> Please wait for 57s for the next request.
 #> The time break can be set by `request_interval` argument.
-#> 
 #> Don't make too frequent requests. The time break is 60s.
 #> Please wait for 58s for the next request.
 #> The time break can be set by `request_interval` argument.
