@@ -25,6 +25,39 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   dev = "CairoPNG")
+---
+title: "An Overview of pQTLtools"
+output:
+  bookdown::html_document2:
+    toc: true
+    toc_float: true
+    number_sections: true
+    self_contained: false
+fontsize: 11pt
+bibliography: '`r system.file("REFERENCES.bib", package="pQTLtools")`'
+csl: nature-genetics.csl
+pkgdown:
+  as_is: true
+vignette: >
+  %\VignetteIndexEntry{An Overview of pQTLtools}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+set.seed(0)
+knitr::opts_chunk$set(
+  out.extra = 'style="display:block; margin: auto"',
+  fig.align = "center",
+  fig.height = 8,
+  fig.path = "pQTLtools/",
+  fig.width = 8,
+  collapse = TRUE,
+  comment = "#>",
+  dev = "CairoPNG")
+is_pkgdown <- function() {
+  identical(Sys.getenv("IN_PKGDOWN"), "true")
+}
 ```
 
 # LocusZoom.js plots

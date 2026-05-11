@@ -28,6 +28,9 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   dev = "CairoPNG")
+is_pkgdown <- function() {
+  identical(Sys.getenv("IN_PKGDOWN"), "true")
+}
 ```
 
 The examples here are based on the SCALLOP work @scallop_inf.
