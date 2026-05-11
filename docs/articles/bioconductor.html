@@ -41,26 +41,15 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="active nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><h6 class="dropdown-header" data-toc-skip>Vignettes:</h6></li>
-    <li><a class="dropdown-item" href="../articles/pQTLtools.html">An overview of pQTLtools</a></li>
-    <li><hr class="dropdown-divider"></li>
-    <li><h6 class="dropdown-header" data-toc-skip>Articles:</h6></li>
-    <li><a class="dropdown-item" href="../articles/bioconductor.html">Bioconductor notes</a></li>
-    <li><a class="dropdown-item" href="../articles/LocusZoom.js.html">LocusZoom.js</a></li>
-    <li><a class="dropdown-item" href="../articles/snakemake.html">snakemake showcases</a></li>
-  </ul>
-</li>
+<li class="active nav-item"><a class="nav-link" href="../articles/index.html">Articles</a></li>
 <li class="nav-item"><a class="nav-link" href="../reference/pQTLtools.html">Reference</a></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul>
 <ul class="navbar-nav">
-<li class="nav-item"><a class="nav-link" href="../index.html" aria-label="Home"><span class="fa fa-home"></span></a></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/jinghuazhao/pQTLtools" aria-label="GitHub"><span class="fa fab fa-github"></span></a></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://jinghuazhao.github.io/R/" aria-label="R packages"><span class="fa fab fa-r-project"></span></a></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://alphafold.ebi.ac.uk/" aria-label="AlphaFold"><span class="fa fas fa-fast-backward"></span></a></li>
+<li class="nav-item"><a class="nav-link" href="../index.html"><span class="fa fa-home"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/jinghuazhao/pQTLtools"><span class="fa fab fa-github"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://jinghuazhao.github.io/R/"><span class="fa fab fa-r-project"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://alphafold.ebi.ac.uk/"><span class="fa fas fa-fast-backward"></span></a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-urls" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">URLs</button>
   <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-urls">
@@ -84,7 +73,7 @@
     <li><a class="external-link dropdown-item" href="https://www.uniprot.org/">UniProt</a></li>
   </ul>
 </li>
-<li class="nav-item"><a class="external-link nav-link" href="https://www.uniprot.org/" aria-label="UniProt"><span class="fa fas fa-fast-forward"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://www.uniprot.org/"><span class="fa fas fa-fast-forward"></span></a></li>
       </ul>
 </div>
 
@@ -197,13 +186,13 @@ One could resort to <code><a href="https://rdrr.io/pkg/Biobase/man/esApply.html"
 <span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:plots-1"></span>
-<img src="bioconductor/plots-1.png" alt="Histogram, scatter &amp; boxplots" width="768" style="display:block; margin: auto"><p class="caption">
+<img src="pQTLtools/plots-1.png" alt="Histogram, scatter &amp; boxplots" width="768" style="display:block; margin: auto"><p class="caption">
 Figure 2.1: Histogram, scatter &amp; boxplots
 </p>
 </div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:plots-2"></span>
-<img src="bioconductor/plots-2.png" alt="Histogram, scatter &amp; boxplots" width="768" style="display:block; margin: auto"><p class="caption">
+<img src="pQTLtools/plots-2.png" alt="Histogram, scatter &amp; boxplots" width="768" style="display:block; margin: auto"><p class="caption">
 Figure 2.2: Histogram, scatter &amp; boxplots
 </p>
 </div>
@@ -250,10 +239,12 @@ Figure 2.2: Histogram, scatter &amp; boxplots
 <span>      <span class="fu">rgl</span><span class="fu">::</span><span class="fu"><a href="https://dmurdoch.github.io/rgl/dev/reference/open3d.html" class="external-link">open3d</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">500</span>, height <span class="op">=</span> <span class="fl">500</span><span class="op">)</span></span>
 <span>      <span class="fu">rgl</span><span class="fu">::</span><span class="fu"><a href="https://dmurdoch.github.io/rgl/dev/reference/plot3d.html" class="external-link">plot3d</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">pca</span>,<span class="va">x</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>,cex<span class="op">=</span><span class="fl">1.2</span>,col<span class="op">=</span><span class="va">cols</span><span class="op">[</span><span class="va">classification</span><span class="op">]</span>,size<span class="op">=</span><span class="fl">5</span><span class="op">)</span></span>
 <span>      <span class="fu">rgl</span><span class="fu">::</span><span class="fu"><a href="https://dmurdoch.github.io/rgl/dev/reference/texts.html" class="external-link">text3d</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">pca</span>,<span class="va">x</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>,cex<span class="op">=</span><span class="fl">1.2</span>,col<span class="op">=</span><span class="va">cols</span><span class="op">[</span><span class="va">classification</span><span class="op">]</span>,texts<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/row.names.html" class="external-link">row.names</a></span><span class="op">(</span><span class="va">pc1pc2pc3</span><span class="op">)</span><span class="op">)</span></span>
+<span>      <span class="va">widget</span> <span class="op">&lt;-</span> <span class="fu">rgl</span><span class="fu">::</span><span class="fu"><a href="https://dmurdoch.github.io/rgl/dev/reference/rglwidget.html" class="external-link">rglwidget</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>      <span class="fu">htmlwidgets</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/htmlwidgets/man/saveWidget.html" class="external-link">saveWidget</a></span><span class="op">(</span><span class="va">widget</span>, <span class="st">"mcpca3d.html"</span><span class="op">)</span></span>
 <span>  <span class="op">}</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:mcpca3d"></span>
-<img src="bioconductor/mcpca3d-1.png" alt="Three-group Clustering" width="672" style="display:block; margin: auto"><p class="caption">
+<img src="pQTLtools/mcpca3d-1.png" alt="Three-group Clustering" width="672" style="display:block; margin: auto"><p class="caption">
 Figure 2.3: Three-group Clustering
 </p>
 </div>
@@ -262,7 +253,7 @@ Figure 2.3: Three-group Clustering
 <span><span class="co">#&gt; Warning in par3d(userMatrix = structure(c(1, 0, 0, 0, 0, 0.342020143325668, :</span></span>
 <span><span class="co">#&gt; parameter "height" cannot be set</span></span></code></pre>
 <p>An interactive version is also available,</p>
-<iframe src="/pQTLtools/articles/mcpca3d.html" width="100%" height="600px"></iframe>
+<iframe src="mcpca3d.html" width="100%" height="600px"></iframe>
 </div>
 <div class="section level3" number="2.5">
 <h3 id="data-transformation">
@@ -629,7 +620,7 @@ Figure 2.3: Three-group Clustering
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span>,<span class="fl">2</span><span class="op">]</span>, main<span class="op">=</span><span class="st">"Random quantile cutoff"</span>, ylab<span class="op">=</span><span class="st">"&lt;lod%"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:lod"></span>
-<img src="bioconductor/lod-1.png" alt="LOD based on a random cutoff" width="768" style="display:block; margin: auto"><p class="caption">
+<img src="pQTLtools/lod-1.png" alt="LOD based on a random cutoff" width="768" style="display:block; margin: auto"><p class="caption">
 Figure 2.4: LOD based on a random cutoff
 </p>
 </div>
@@ -671,7 +662,7 @@ Figure 2.4: LOD based on a random cutoff
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span>x<span class="op">=</span><span class="fl">1</span>,y<span class="op">=</span><span class="fl">25</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"without pQTL"</span>,<span class="st">"with pQTL"</span><span class="op">)</span>,box.lwd<span class="op">=</span><span class="fl">0</span>,cex<span class="op">=</span><span class="fl">2</span>,col<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>,<span class="st">"blue"</span><span class="op">)</span>,pch<span class="op">=</span><span class="fl">19</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:test"></span>
-<img src="bioconductor/test-1.png" alt="LOD in SCALLOP-INF/INTERVAL" width="1152" style="display:block; margin: auto"><p class="caption">
+<img src="pQTLtools/test-1.png" alt="LOD in SCALLOP-INF/INTERVAL" width="1152" style="display:block; margin: auto"><p class="caption">
 Figure 2.5: LOD in SCALLOP-INF/INTERVAL
 </p>
 </div>
@@ -2171,7 +2162,7 @@ Figure 2.5: LOD in SCALLOP-INF/INTERVAL
 <span><span class="fu">quantro</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/quantro/man/matboxplot.html" class="external-link">matboxplot</a></span><span class="op">(</span><span class="va">edat</span>,<span class="va">batch</span>,cex.axis<span class="op">=</span><span class="fl">0.6</span>,notch<span class="op">=</span><span class="cn">TRUE</span>,pch<span class="op">=</span><span class="fl">19</span>,ylab<span class="op">=</span><span class="st">"Expression"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ComBat-1"></span>
-<img src="bioconductor/ComBat-1.png" alt="ComBat example" width="768" style="display:block; margin: auto"><p class="caption">
+<img src="pQTLtools/ComBat-1.png" alt="ComBat example" width="768" style="display:block; margin: auto"><p class="caption">
 Figure 4.1: ComBat example
 </p>
 </div>
@@ -2180,7 +2171,7 @@ Figure 4.1: ComBat example
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="st">"topleft"</span>,legend<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,col<span class="op">=</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>,lty<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ComBat-2"></span>
-<img src="bioconductor/ComBat-2.png" alt="ComBat example" width="768" style="display:block; margin: auto"><p class="caption">
+<img src="pQTLtools/ComBat-2.png" alt="ComBat example" width="768" style="display:block; margin: auto"><p class="caption">
 Figure 4.2: ComBat example
 </p>
 </div>
@@ -2194,7 +2185,7 @@ Figure 4.2: ComBat example
 <span><span class="co">#&gt; Fitting L/S model and finding priors</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ComBat-3"></span>
-<img src="bioconductor/ComBat-3.png" alt="ComBat example" width="768" style="display:block; margin: auto"><p class="caption">
+<img src="pQTLtools/ComBat-3.png" alt="ComBat example" width="768" style="display:block; margin: auto"><p class="caption">
 Figure 4.3: ComBat example
 </p>
 </div>
@@ -2221,7 +2212,7 @@ Figure 4.3: ComBat example
 <span><span class="co">#&gt; Fitting L/S model and finding priors</span></span></code></pre>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ComBat-4"></span>
-<img src="bioconductor/ComBat-4.png" alt="ComBat example" width="768" style="display:block; margin: auto"><p class="caption">
+<img src="pQTLtools/ComBat-4.png" alt="ComBat example" width="768" style="display:block; margin: auto"><p class="caption">
 Figure 4.4: ComBat example
 </p>
 </div>
@@ -2240,7 +2231,7 @@ Figure 4.4: ComBat example
 <span><span class="fu">quantro</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/quantro/man/matboxplot.html" class="external-link">matboxplot</a></span><span class="op">(</span><span class="va">p</span>, groupFactor <span class="op">=</span> <span class="va">pd</span><span class="op">$</span><span class="va">CellType</span>, xaxt <span class="op">=</span> <span class="st">"n"</span>, main <span class="op">=</span> <span class="st">"Beta Values"</span>, pch<span class="op">=</span><span class="fl">19</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:quantro-1"></span>
-<img src="bioconductor/quantro-1.png" alt="quantro example" width="768" style="display:block; margin: auto"><p class="caption">
+<img src="pQTLtools/quantro-1.png" alt="quantro example" width="768" style="display:block; margin: auto"><p class="caption">
 Figure 4.5: quantro example
 </p>
 </div>
@@ -2250,7 +2241,7 @@ Figure 4.5: quantro example
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="st">'top'</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"NeuN_neg"</span>, <span class="st">"NeuN_pos"</span><span class="op">)</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>, lty <span class="op">=</span> <span class="fl">1</span>, lwd <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:quantro-2"></span>
-<img src="bioconductor/quantro-2.png" alt="quantro example" width="768" style="display:block; margin: auto"><p class="caption">
+<img src="pQTLtools/quantro-2.png" alt="quantro example" width="768" style="display:block; margin: auto"><p class="caption">
 Figure 4.6: quantro example
 </p>
 </div>
@@ -2309,7 +2300,7 @@ Figure 4.6: quantro example
 <span><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ylab</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"PC2:"</span>,<span class="va">percentVar</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,<span class="st">"% variance"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:DESeq2"></span>
-<img src="bioconductor/DESeq2-1.png" alt="DESeq2 example" width="768" style="display:block; margin: auto"><p class="caption">
+<img src="pQTLtools/DESeq2-1.png" alt="DESeq2 example" width="768" style="display:block; margin: auto"><p class="caption">
 Figure 6.1: DESeq2 example
 </p>
 </div>
@@ -2446,7 +2437,7 @@ Figure 6.1: DESeq2 example
 <span><span class="co">#&gt; Step 5... prepare for plotting</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:GeneNet-1"></span>
-<img src="bioconductor/GeneNet-1.png" alt="GeneNet example" width="768" style="display:block; margin: auto"><p class="caption">
+<img src="pQTLtools/GeneNet-1.png" alt="GeneNet example" width="768" style="display:block; margin: auto"><p class="caption">
 Figure 7.1: GeneNet example
 </p>
 </div>
@@ -2762,7 +2753,7 @@ Figure 7.1: GeneNet example
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gr</span>, <span class="st">"fdp"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:GeneNet-2"></span>
-<img src="bioconductor/GeneNet-2.png" alt="GeneNet example" width="768" style="display:block; margin: auto"><p class="caption">
+<img src="pQTLtools/GeneNet-2.png" alt="GeneNet example" width="768" style="display:block; margin: auto"><p class="caption">
 Figure 7.2: GeneNet example
 </p>
 </div>
@@ -2770,7 +2761,7 @@ Figure 7.2: GeneNet example
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gr2</span>, <span class="st">"fdp"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:GeneNet-3"></span>
-<img src="bioconductor/GeneNet-3.png" alt="GeneNet example" width="768" style="display:block; margin: auto"><p class="caption">
+<img src="pQTLtools/GeneNet-3.png" alt="GeneNet example" width="768" style="display:block; margin: auto"><p class="caption">
 Figure 7.3: GeneNet example
 </p>
 </div>
@@ -2786,7 +2777,7 @@ Figure 7.3: GeneNet example
 <span><span class="fu">ComplexHeatmap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/ComplexHeatmap/man/draw-dispatch.html" class="external-link">draw</a></span><span class="op">(</span><span class="va">f</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:heatmap"></span>
-<img src="bioconductor/heatmap-1.png" alt="Heatmaps" width="768" style="display:block; margin: auto"><p class="caption">
+<img src="pQTLtools/heatmap-1.png" alt="Heatmaps" width="768" style="display:block; margin: auto"><p class="caption">
 Figure 7.4: Heatmaps
 </p>
 </div>
@@ -2803,10 +2794,8 @@ Figure 7.4: Heatmaps
 <span><span class="co">#&gt; <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span></span>
 <span><span class="co">#&gt; <span style="color: #555555;">generated.</span></span></span>
 <span><span class="fu">htmlwidgets</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/htmlwidgets/man/saveWidget.html" class="external-link">saveWidget</a></span><span class="op">(</span><span class="va">hm</span>,file<span class="op">=</span><span class="st">"heatmaply.html"</span><span class="op">)</span></span>
-<span>      <span class="va">heatmaply_path</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"pkgdown"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">&amp;&amp;</span></span>
-<span>                        <span class="fu">pkgdown</span><span class="fu">::</span><span class="fu"><a href="https://pkgdown.r-lib.org/reference/in_pkgdown.html" class="external-link">in_pkgdown</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span><span class="st">"/pQTLtools/articles/heatmaply.html"</span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span><span class="st">"heatmaply.html"</span><span class="op">}</span></span>
-<span>      <span class="fu">htmltools</span><span class="fu">::</span><span class="va"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">tags</a></span><span class="op">$</span><span class="fu">iframe</span><span class="op">(</span>src <span class="op">=</span> <span class="va">heatmaply_path</span>, width <span class="op">=</span> <span class="st">"100%"</span>, height <span class="op">=</span> <span class="st">"600px"</span><span class="op">)</span></span></code></pre></div>
-<iframe src="/pQTLtools/articles/heatmaply.html" width="100%" height="600px"></iframe>
+<span><span class="fu">htmltools</span><span class="fu">::</span><span class="va"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">tags</a></span><span class="op">$</span><span class="fu">iframe</span><span class="op">(</span>src <span class="op">=</span> <span class="st">"heatmaply.html"</span>, width <span class="op">=</span> <span class="st">"100%"</span>, height <span class="op">=</span> <span class="st">"600px"</span><span class="op">)</span></span></code></pre></div>
+<iframe src="heatmaply.html" width="100%" height="600px"></iframe>
 <p>so we have <a href="heatmaply.html">heatmaply.html</a> and a module analysis with WGCNA,</p>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pwr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span>from<span class="op">=</span><span class="fl">12</span>, to<span class="op">=</span><span class="fl">30</span>, by<span class="op">=</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
@@ -3491,7 +3480,7 @@ Figure 7.4: Heatmaps
 <span><span class="co">#&gt; Joining with `by = join_by(Modified.Peptide.Sequence)`</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:a1bg"></span>
-<img src="bioconductor/a1bg-1.png" alt="peptide association plot" width="960" style="display:block; margin: auto"><p class="caption">
+<img src="pQTLtools/a1bg-1.png" alt="peptide association plot" width="960" style="display:block; margin: auto"><p class="caption">
 Figure 11.1: peptide association plot
 </p>
 </div>

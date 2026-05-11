@@ -41,26 +41,15 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="active nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><h6 class="dropdown-header" data-toc-skip>Vignettes:</h6></li>
-    <li><a class="dropdown-item" href="../articles/pQTLtools.html">An overview of pQTLtools</a></li>
-    <li><hr class="dropdown-divider"></li>
-    <li><h6 class="dropdown-header" data-toc-skip>Articles:</h6></li>
-    <li><a class="dropdown-item" href="../articles/bioconductor.html">Bioconductor notes</a></li>
-    <li><a class="dropdown-item" href="../articles/LocusZoom.js.html">LocusZoom.js</a></li>
-    <li><a class="dropdown-item" href="../articles/snakemake.html">snakemake showcases</a></li>
-  </ul>
-</li>
+<li class="active nav-item"><a class="nav-link" href="../articles/index.html">Articles</a></li>
 <li class="nav-item"><a class="nav-link" href="../reference/pQTLtools.html">Reference</a></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul>
 <ul class="navbar-nav">
-<li class="nav-item"><a class="nav-link" href="../index.html" aria-label="Home"><span class="fa fa-home"></span></a></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/jinghuazhao/pQTLtools" aria-label="GitHub"><span class="fa fab fa-github"></span></a></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://jinghuazhao.github.io/R/" aria-label="R packages"><span class="fa fab fa-r-project"></span></a></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://alphafold.ebi.ac.uk/" aria-label="AlphaFold"><span class="fa fas fa-fast-backward"></span></a></li>
+<li class="nav-item"><a class="nav-link" href="../index.html"><span class="fa fa-home"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/jinghuazhao/pQTLtools"><span class="fa fab fa-github"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://jinghuazhao.github.io/R/"><span class="fa fab fa-r-project"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://alphafold.ebi.ac.uk/"><span class="fa fas fa-fast-backward"></span></a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-urls" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">URLs</button>
   <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-urls">
@@ -84,7 +73,7 @@
     <li><a class="external-link dropdown-item" href="https://www.uniprot.org/">UniProt</a></li>
   </ul>
 </li>
-<li class="nav-item"><a class="external-link nav-link" href="https://www.uniprot.org/" aria-label="UniProt"><span class="fa fas fa-fast-forward"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://www.uniprot.org/"><span class="fa fas fa-fast-forward"></span></a></li>
       </ul>
 </div>
 
@@ -856,18 +845,14 @@ Figure 2.5: pQTL-gene plot
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fig2d</span> <span class="op">&lt;-</span> <span class="fu">gap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gap/man/qtl2dplotly.html" class="external-link">qtl2dplotly</a></span><span class="op">(</span><span class="va">cis.vs.trans</span>,xlab<span class="op">=</span><span class="st">"pQTL position"</span>,ylab<span class="op">=</span><span class="st">"Gene position"</span><span class="op">)</span></span>
 <span><span class="fu">htmlwidgets</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/htmlwidgets/man/saveWidget.html" class="external-link">saveWidget</a></span><span class="op">(</span><span class="va">fig2d</span>,file<span class="op">=</span><span class="st">"fig2d.html"</span><span class="op">)</span></span>
-<span><span class="va">fig2d_path</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"pkgdown"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">&amp;&amp;</span></span>
-<span>                  <span class="fu">pkgdown</span><span class="fu">::</span><span class="fu"><a href="https://pkgdown.r-lib.org/reference/in_pkgdown.html" class="external-link">in_pkgdown</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span><span class="st">"/pQTLtools/articles/fig2d.html"</span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span><span class="st">"fig2d.html"</span><span class="op">}</span></span>
-<span><span class="fu">htmltools</span><span class="fu">::</span><span class="va"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">tags</a></span><span class="op">$</span><span class="fu">iframe</span><span class="op">(</span>src <span class="op">=</span> <span class="va">fig2d_path</span>,  width <span class="op">=</span> <span class="st">"100%"</span>,  height <span class="op">=</span> <span class="st">"650px"</span><span class="op">)</span></span></code></pre></div>
-<iframe src="/pQTLtools/articles/fig2d.html" width="100%" height="650px"></iframe>
+<span><span class="fu">htmltools</span><span class="fu">::</span><span class="va"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">tags</a></span><span class="op">$</span><span class="fu">iframe</span><span class="op">(</span>src <span class="op">=</span> <span class="st">"fig2d.html"</span>,  width <span class="op">=</span> <span class="st">"100%"</span>,  height <span class="op">=</span> <span class="st">"650px"</span><span class="op">)</span></span></code></pre></div>
+<iframe src="fig2d.html" width="100%" height="650px"></iframe>
 <p>and 3-d counterpart,</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fig3d</span> <span class="op">&lt;-</span> <span class="fu">gap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gap/man/qtl3dplotly.html" class="external-link">qtl3dplotly</a></span><span class="op">(</span><span class="va">cis.vs.trans</span>,zmax<span class="op">=</span><span class="fl">300</span>,qtl.prefix<span class="op">=</span><span class="st">"pQTL:"</span>,xlab<span class="op">=</span><span class="st">"pQTL position"</span>,ylab<span class="op">=</span><span class="st">"Gene position"</span><span class="op">)</span></span>
 <span><span class="fu">htmlwidgets</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/htmlwidgets/man/saveWidget.html" class="external-link">saveWidget</a></span><span class="op">(</span><span class="va">fig3d</span>,file<span class="op">=</span><span class="st">"fig3d.html"</span><span class="op">)</span></span>
-<span><span class="va">fig3d_path</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"pkgdown"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">&amp;&amp;</span></span>
-<span>                  <span class="fu">pkgdown</span><span class="fu">::</span><span class="fu"><a href="https://pkgdown.r-lib.org/reference/in_pkgdown.html" class="external-link">in_pkgdown</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span><span class="st">"/pQTLtools/articles/fig3d.html"</span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span><span class="st">"fig3d.html"</span><span class="op">}</span></span>
-<span><span class="fu">htmltools</span><span class="fu">::</span><span class="va"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">tags</a></span><span class="op">$</span><span class="fu">iframe</span><span class="op">(</span>src <span class="op">=</span> <span class="va">fig3d_path</span>, width <span class="op">=</span> <span class="st">"100%"</span>, height <span class="op">=</span> <span class="st">"600px"</span><span class="op">)</span></span></code></pre></div>
-<iframe src="/pQTLtools/articles/fig3d.html" width="100%" height="600px"></iframe>
+<span><span class="fu">htmltools</span><span class="fu">::</span><span class="va"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">tags</a></span><span class="op">$</span><span class="fu">iframe</span><span class="op">(</span>src <span class="op">=</span> <span class="st">"fig3d.html"</span>, width <span class="op">=</span> <span class="st">"100%"</span>, height <span class="op">=</span> <span class="st">"600px"</span><span class="op">)</span></span></code></pre></div>
+<iframe src="fig3d.html" width="100%" height="600px"></iframe>
 <p>Both plots are responsive.</p>
 </div>
 <div class="section level3" number="2.7">
@@ -986,8 +971,9 @@ Figure 3.2: GREAT plots
 <span><span class="co">#&gt; Please wait for 56s for the next request.</span></span>
 <span><span class="co">#&gt; The time break can be set by `request_interval` argument.</span></span>
 <span><span class="co">#&gt; Don't make too frequent requests. The time break is 60s.</span></span>
-<span><span class="co">#&gt; Please wait for 57s for the next request.</span></span>
+<span><span class="co">#&gt; Please wait for 58s for the next request.</span></span>
 <span><span class="co">#&gt; The time break can be set by `request_interval` argument.</span></span>
+<span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Don't make too frequent requests. The time break is 60s.</span></span>
 <span><span class="co">#&gt; Please wait for 58s for the next request.</span></span>
 <span><span class="co">#&gt; The time break can be set by `request_interval` argument.</span></span></code></pre></div>

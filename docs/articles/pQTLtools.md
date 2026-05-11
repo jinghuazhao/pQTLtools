@@ -298,9 +298,7 @@ The pQTL-gene plot above can be also viewed in a 2-d plotly style,,
 ``` r
 fig2d <- gap::qtl2dplotly(cis.vs.trans,xlab="pQTL position",ylab="Gene position")
 htmlwidgets::saveWidget(fig2d,file="fig2d.html")
-fig2d_path <- if (requireNamespace("pkgdown", quietly = TRUE) &&
-                  pkgdown::in_pkgdown()) {"/pQTLtools/articles/fig2d.html"} else {"fig2d.html"}
-htmltools::tags$iframe(src = fig2d_path,  width = "100%",  height = "650px")
+htmltools::tags$iframe(src = "fig2d.html",  width = "100%",  height = "650px")
 ```
 
 and 3-d counterpart,
@@ -308,9 +306,7 @@ and 3-d counterpart,
 ``` r
 fig3d <- gap::qtl3dplotly(cis.vs.trans,zmax=300,qtl.prefix="pQTL:",xlab="pQTL position",ylab="Gene position")
 htmlwidgets::saveWidget(fig3d,file="fig3d.html")
-fig3d_path <- if (requireNamespace("pkgdown", quietly = TRUE) &&
-                  pkgdown::in_pkgdown()) {"/pQTLtools/articles/fig3d.html"} else {"fig3d.html"}
-htmltools::tags$iframe(src = fig3d_path, width = "100%", height = "600px")
+htmltools::tags$iframe(src = "fig3d.html", width = "100%", height = "600px")
 ```
 
 Both plots are responsive.
@@ -431,8 +427,9 @@ for (r in c("IL12B","KITLG","TNFSF10"))
 #> Please wait for 56s for the next request.
 #> The time break can be set by `request_interval` argument.
 #> Don't make too frequent requests. The time break is 60s.
-#> Please wait for 57s for the next request.
+#> Please wait for 58s for the next request.
 #> The time break can be set by `request_interval` argument.
+#> 
 #> Don't make too frequent requests. The time break is 60s.
 #> Please wait for 58s for the next request.
 #> The time break can be set by `request_interval` argument.

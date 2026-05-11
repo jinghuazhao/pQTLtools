@@ -102,11 +102,11 @@ invisible(sapply(f,function(x) {
 )
 ```
 
-![Histogram, scatter & boxplots](bioconductor/plots-1.png)
+![Histogram, scatter & boxplots](pQTLtools/plots-1.png)
 
 Figure 2.1: Histogram, scatter & boxplots
 
-![Histogram, scatter & boxplots](bioconductor/plots-2.png)
+![Histogram, scatter & boxplots](pQTLtools/plots-2.png)
 
 Figure 2.2: Histogram, scatter & boxplots
 
@@ -153,10 +153,12 @@ potential groupings in the data,
       rgl::open3d(width = 500, height = 500)
       rgl::plot3d(with(pca,x[,c(2,1,3)]),cex=1.2,col=cols[classification],size=5)
       rgl::text3d(with(pca,x[,c(2,1,3)]),cex=1.2,col=cols[classification],texts=row.names(pc1pc2pc3))
+      widget <- rgl::rglwidget()
+      htmlwidgets::saveWidget(widget, "mcpca3d.html")
   })
 ```
 
-![Three-group Clustering](bioconductor/mcpca3d-1.png)
+![Three-group Clustering](pQTLtools/mcpca3d-1.png)
 
 Figure 2.3: Three-group Clustering
 
@@ -223,7 +225,7 @@ knitr::kable(head(lod))
 plot(x[,2], main="Random quantile cutoff", ylab="<lod%")
 ```
 
-![LOD based on a random cutoff](bioconductor/lod-1.png)
+![LOD based on a random cutoff](pQTLtools/lod-1.png)
 
 Figure 2.4: LOD based on a random cutoff
 
@@ -269,7 +271,7 @@ mtext("Ordered protein",side=1,line=6.5,cex=1.2,font=1)
 legend(x=1,y=25,c("without pQTL","with pQTL"),box.lwd=0,cex=2,col=c("red","blue"),pch=19)
 ```
 
-![LOD in SCALLOP-INF/INTERVAL](bioconductor/test-1.png)
+![LOD in SCALLOP-INF/INTERVAL](pQTLtools/test-1.png)
 
 Figure 2.5: LOD in SCALLOP-INF/INTERVAL
 
@@ -556,7 +558,7 @@ table(batch)
 quantro::matboxplot(edat,batch,cex.axis=0.6,notch=TRUE,pch=19,ylab="Expression")
 ```
 
-![ComBat example](bioconductor/ComBat-1.png)
+![ComBat example](pQTLtools/ComBat-1.png)
 
 Figure 4.1: ComBat example
 
@@ -565,7 +567,7 @@ quantro::matdensity(edat,batch,xlab=" ",ylab="density")
 legend("topleft",legend=1:5,col=1:5,lty=1)
 ```
 
-![ComBat example](bioconductor/ComBat-2.png)
+![ComBat example](pQTLtools/ComBat-2.png)
 
 Figure 4.2: ComBat example
 
@@ -579,7 +581,7 @@ combat_edata1 <- sva::ComBat(dat=edat, batch=batch, par.prior=TRUE, prior.plots=
 #> Fitting L/S model and finding priors
 ```
 
-![ComBat example](bioconductor/ComBat-3.png)
+![ComBat example](pQTLtools/ComBat-3.png)
 
 Figure 4.3: ComBat example
 
@@ -605,7 +607,7 @@ Figure 4.3: ComBat example
     #> Standardizing Data across genes
     #> Fitting L/S model and finding priors
 
-![ComBat example](bioconductor/ComBat-4.png)
+![ComBat example](pQTLtools/ComBat-4.png)
 
 Figure 4.4: ComBat example
 
@@ -624,7 +626,7 @@ pd <- Biobase::pData(FlowSorted.DLPFC.450k)
 quantro::matboxplot(p, groupFactor = pd$CellType, xaxt = "n", main = "Beta Values", pch=19)
 ```
 
-![quantro example](bioconductor/quantro-1.png)
+![quantro example](pQTLtools/quantro-1.png)
 
 Figure 4.5: quantro example
 
@@ -634,7 +636,7 @@ quantro::matdensity(p, groupFactor = pd$CellType, xlab = " ", ylab = "density",
 legend('top', c("NeuN_neg", "NeuN_pos"), col = c(1, 2), lty = 1, lwd = 3)
 ```
 
-![quantro example](bioconductor/quantro-2.png)
+![quantro example](pQTLtools/quantro-2.png)
 
 Figure 4.6: quantro example
 
@@ -692,7 +694,7 @@ ggplot2::xlab(paste0("PC1:",percentVar[1],"% variance")) +
 ggplot2::ylab(paste0("PC2:",percentVar[2],"% variance"))
 ```
 
-![DESeq2 example](bioconductor/DESeq2-1.png)
+![DESeq2 example](pQTLtools/DESeq2-1.png)
 
 Figure 6.1: DESeq2 example
 
@@ -764,7 +766,7 @@ test.results <- GeneNet::network.test.edges(inferred.pcor)
 #> Step 5... prepare for plotting
 ```
 
-![GeneNet example](bioconductor/GeneNet-1.png)
+![GeneNet example](pQTLtools/GeneNet-1.png)
 
 Figure 7.1: GeneNet example
 
@@ -1080,7 +1082,7 @@ GeneNet::edge.info(gr2)
 plot(gr, "fdp")
 ```
 
-![GeneNet example](bioconductor/GeneNet-2.png)
+![GeneNet example](pQTLtools/GeneNet-2.png)
 
 Figure 7.2: GeneNet example
 
@@ -1088,7 +1090,7 @@ Figure 7.2: GeneNet example
 plot(gr2, "fdp")
 ```
 
-![GeneNet example](bioconductor/GeneNet-3.png)
+![GeneNet example](pQTLtools/GeneNet-3.png)
 
 Figure 7.3: GeneNet example
 
@@ -1105,7 +1107,7 @@ f <- f1+f2
 ComplexHeatmap::draw(f)
 ```
 
-![Heatmaps](bioconductor/heatmap-1.png)
+![Heatmaps](pQTLtools/heatmap-1.png)
 
 Figure 7.4: Heatmaps
 
@@ -1122,9 +1124,7 @@ hm <- heatmaply::heatmaply(df,k_col=5,k_row=5,
 #> Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
 #> generated.
 htmlwidgets::saveWidget(hm,file="heatmaply.html")
-      heatmaply_path <- if (requireNamespace("pkgdown", quietly = TRUE) &&
-                        pkgdown::in_pkgdown()) {"/pQTLtools/articles/heatmaply.html"} else {"heatmaply.html"}
-      htmltools::tags$iframe(src = heatmaply_path, width = "100%", height = "600px")
+htmltools::tags$iframe(src = "heatmaply.html", width = "100%", height = "600px")
 ```
 
 so we have
@@ -1816,7 +1816,7 @@ pQTLtools::peptideAssociationPlot(protein,cistrans)
 #> Joining with `by = join_by(Modified.Peptide.Sequence)`
 ```
 
-![peptide association plot](bioconductor/a1bg-1.png)
+![peptide association plot](pQTLtools/a1bg-1.png)
 
 Figure 11.1: peptide association plot
 
