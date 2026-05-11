@@ -11,6 +11,9 @@ template:
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     after_body: <script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";mermaid.initialize({});</script>
 
+development:
+  mode: auto
+
 home:
   title: Protein Quantitative Trait Locus tools
   description: A protein Quantitative Trait Locus toolkit.
@@ -175,6 +178,7 @@ footer:
 build:
   vignette:
     lazy: true
+    llm: false
     pandoc_args: ["--no-check-links"]
 
 env:

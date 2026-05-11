@@ -4,9 +4,10 @@
 
 (2025/5/11)
 
+-   \_pkgdown.yml overhaul.
 -   Accommodate revised gap::METAL_forestplot in vignette.
 -   Add single quotes to package/software name.
--   Add inst/scripts for docs.sh, cran.sb (very sensitive!) and cran.sh.
+-   Add inst/scripts docs.sh, cran.sb (very sensitive!) and cran.sh.
 -   Amend import_OpenGWAS using <https://opengwas.io/datasets/>.
 -   Drop link to GitHub repository in \_pkgdown.yml and a lot of
     options().
