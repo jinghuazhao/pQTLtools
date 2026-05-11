@@ -137,7 +137,7 @@ for (method in c("KS","sum","upperquartile"))
 
 We employ model-based clustering absed on principal compoents to see potential groupings in the data,
 
-```{r mcpca, fig.cap="Three-group Clustering", fig.height=7, fig.width=7}
+```{r mcpca3d, fig.cap="Three-group Clustering", fig.height=7, fig.width=7}
   pca <- prcomp(na.omit(t(Biobase::exprs(exampleSet))), rank=10, scale=TRUE)
   pc1pc2pc3 <- with(pca,x)[,1:3]
   mc <- mclust::Mclust(pc1pc2pc3,G=3)
@@ -159,14 +159,15 @@ We employ model-based clustering absed on principal compoents to see potential g
       rgl::open3d(width = 500, height = 500)
       rgl::plot3d(with(pca,x[,c(2,1,3)]),cex=1.2,col=cols[classification],size=5)
       rgl::text3d(with(pca,x[,c(2,1,3)]),cex=1.2,col=cols[classification],texts=row.names(pc1pc2pc3))
-      htmlwidgets::saveWidget(rgl::rglwidget(), file = "/pQTLtools/articles/mcpca3d.html")
   })
 ```
 
 An interactive version is also available,
 
 ```{r rgl3d, echo=FALSE}
-htmltools::tags$iframe(src = "/pQTLtools/articles/mcpca3d.html", width = "100%", height = "650px")
+      mcpca3d_path <- if (requireNamespace("pkgdown", quietly = TRUE) &&
+                        pkgdown::in_pkgdown()) {"/pQTLtools/articles/mcpca3d.html"} else {"mcpca3d.html"}
+      htmltools::tags$iframe(src = mcpca3d_path, width = "100%", height = "600px")
 ```
 
 ## Data transformation
@@ -451,7 +452,9 @@ df <- heatmaply::normalize(mtcars)
 hm <- heatmaply::heatmaply(df,k_col=5,k_row=5,
                            colors = grDevices::colorRampPalette(RColorBrewer::brewer.pal(3, "RdBu"))(256))
 htmlwidgets::saveWidget(hm,file="heatmaply.html")
-htmltools::tags$iframe(src = "heatmaply.html", width = "100%", height = "550px")
+      heatmaply_path <- if (requireNamespace("pkgdown", quietly = TRUE) &&
+                        pkgdown::in_pkgdown()) {"/pQTLtools/articles/heatmaply.html"} else {"heatmaply.html"}
+      htmltools::tags$iframe(src = heatmaply_path, width = "100%", height = "600px")
 ```
 
 so we have [heatmaply.html](heatmaply.html) and a module analysis with WGCNA,
