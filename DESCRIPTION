@@ -113,3 +113,4 @@ NeedsCompilation: no
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr
 Config/roxygen2/version: 8.0.0
+Config/build/clean-inst-doc: FALSE
