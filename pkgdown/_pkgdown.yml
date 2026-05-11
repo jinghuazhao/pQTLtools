@@ -84,14 +84,17 @@ navbar:
     home:
       icon: fa-home
       href: index.html
+      aria-label: Home
 
     github:
       icon: fab fa-github
       href: https://github.com/jinghuazhao/pQTLtools
+      aria-label: GitHub
 
     cran:
       icon: fab fa-r-project
       href: https://jinghuazhao.github.io/R/
+      aria-label: CRAN
 
     alphafold:
       icon: fas fa-fast-backward
