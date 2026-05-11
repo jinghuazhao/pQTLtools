@@ -327,7 +327,7 @@ if (FALSE)
 
 The following is adapted from package OUTRIDER, noting its plotQQ() has issues
 
-```{r ods, fig.cap="Q-Q plot for Kremer data", fig.height=7, fig.with=7, messages=FALSE}
+```{r ods, fig.cap="Q-Q plot for Kremer data", fig.height=7, fig.width=7, message=FALSE, eval=interactive()}
 ctsFile <- system.file('extdata', 'KremerNBaderSmall.tsv', package='OUTRIDER')
 ctsTable <- read.table(ctsFile, check.names=FALSE)
 ods <- OUTRIDER::OutriderDataSet(countData=ctsTable)
