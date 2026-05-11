@@ -43,6 +43,10 @@ template:
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     after_body: <script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";mermaid.initialize({});</script>
 
+build:
+  vignette:
+    pandoc_args: ["--no-check-links"]
+
 navbar:
   structure:
     left: [articles, reference, changelog]
