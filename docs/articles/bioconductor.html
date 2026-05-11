@@ -250,11 +250,10 @@ Figure 2.2: Histogram, scatter &amp; boxplots
 <span>      <span class="fu">rgl</span><span class="fu">::</span><span class="fu"><a href="https://dmurdoch.github.io/rgl/dev/reference/open3d.html" class="external-link">open3d</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">500</span>, height <span class="op">=</span> <span class="fl">500</span><span class="op">)</span></span>
 <span>      <span class="fu">rgl</span><span class="fu">::</span><span class="fu"><a href="https://dmurdoch.github.io/rgl/dev/reference/plot3d.html" class="external-link">plot3d</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">pca</span>,<span class="va">x</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>,cex<span class="op">=</span><span class="fl">1.2</span>,col<span class="op">=</span><span class="va">cols</span><span class="op">[</span><span class="va">classification</span><span class="op">]</span>,size<span class="op">=</span><span class="fl">5</span><span class="op">)</span></span>
 <span>      <span class="fu">rgl</span><span class="fu">::</span><span class="fu"><a href="https://dmurdoch.github.io/rgl/dev/reference/texts.html" class="external-link">text3d</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">pca</span>,<span class="va">x</span><span class="op">[</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">1</span>,<span class="fl">3</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>,cex<span class="op">=</span><span class="fl">1.2</span>,col<span class="op">=</span><span class="va">cols</span><span class="op">[</span><span class="va">classification</span><span class="op">]</span>,texts<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/row.names.html" class="external-link">row.names</a></span><span class="op">(</span><span class="va">pc1pc2pc3</span><span class="op">)</span><span class="op">)</span></span>
-<span>      <span class="fu">htmlwidgets</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/htmlwidgets/man/saveWidget.html" class="external-link">saveWidget</a></span><span class="op">(</span><span class="fu">rgl</span><span class="fu">::</span><span class="fu"><a href="https://dmurdoch.github.io/rgl/dev/reference/rglwidget.html" class="external-link">rglwidget</a></span><span class="op">(</span><span class="op">)</span>, file <span class="op">=</span> <span class="st">"mcpca3d.html"</span><span class="op">)</span></span>
 <span>  <span class="op">}</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
-<span style="display:block;" id="fig:mcpca"></span>
-<img src="bioconductor/mcpca-1.png" alt="Three-group Clustering" width="672" style="display:block; margin: auto"><p class="caption">
+<span style="display:block;" id="fig:mcpca3d"></span>
+<img src="bioconductor/mcpca3d-1.png" alt="Three-group Clustering" width="672" style="display:block; margin: auto"><p class="caption">
 Figure 2.3: Three-group Clustering
 </p>
 </div>
@@ -263,7 +262,7 @@ Figure 2.3: Three-group Clustering
 <span><span class="co">#&gt; Warning in par3d(userMatrix = structure(c(1, 0, 0, 0, 0, 0.342020143325668, :</span></span>
 <span><span class="co">#&gt; parameter "height" cannot be set</span></span></code></pre>
 <p>An interactive version is also available,</p>
-<iframe src="mcpca3d.html" width="100%" height="650px"></iframe>
+<iframe src="/pQTLtools/articles/mcpca3d.html" width="100%" height="600px"></iframe>
 </div>
 <div class="section level3" number="2.5">
 <h3 id="data-transformation">
@@ -2280,265 +2279,17 @@ Figure 4.6: quantro example
 <span><span class="va">ctsTable</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span><span class="va">ctsFile</span>, check.names<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span>
 <span><span class="va">ods</span> <span class="op">&lt;-</span> <span class="fu">OUTRIDER</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/OUTRIDER/man/OutriderDataSet-class.html" class="external-link">OutriderDataSet</a></span><span class="op">(</span>countData<span class="op">=</span><span class="va">ctsTable</span><span class="op">)</span></span>
 <span><span class="va">ods</span> <span class="op">&lt;-</span> <span class="fu">OUTRIDER</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/OUTRIDER/man/filterExpression.html" class="external-link">filterExpression</a></span><span class="op">(</span><span class="va">ods</span>, minCounts<span class="op">=</span><span class="cn">TRUE</span>, filterGenes<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; 229 genes did not pass the filter due to zero counts. This is 22.9% of the genes.</span></span>
 <span><span class="va">ods</span> <span class="op">&lt;-</span> <span class="fu">OUTRIDER</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/OUTRIDER/man/OUTRIDER.html" class="external-link">OUTRIDER</a></span><span class="op">(</span><span class="va">ods</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Sun May 10 22:41:47 2026: SizeFactor estimation ...</span></span>
-<span><span class="co">#&gt; Sun May 10 22:41:47 2026: Controlling for confounders ...</span></span>
-<span><span class="co">#&gt; Optimal encoding dimension: 16</span></span>
-<span><span class="co">#&gt; Using estimated q with: 16</span></span>
-<span><span class="co">#&gt; Sun May 10 22:41:47 2026: Using the autoencoder implementation for controlling.</span></span>
-<span><span class="co">#&gt; [1] "Sun May 10 22:41:51 2026: Initial PCA loss: 4.76571576945417"</span></span>
-<span><span class="co">#&gt; [1] "Sun May 10 22:41:58 2026: Iteration: 1 loss: 4.29942242213863"</span></span>
-<span><span class="co">#&gt; [1] "Sun May 10 22:42:02 2026: Iteration: 2 loss: 4.28066542943078"</span></span>
-<span><span class="co">#&gt; [1] "Sun May 10 22:42:05 2026: Iteration: 3 loss: 4.26974794312247"</span></span>
-<span><span class="co">#&gt; [1] "Sun May 10 22:42:07 2026: Iteration: 4 loss: 4.26971920514349"</span></span>
-<span><span class="co">#&gt; [1] "Sun May 10 22:42:11 2026: Iteration: 5 loss: 4.26539009375334"</span></span>
-<span><span class="co">#&gt; [1] "Sun May 10 22:42:16 2026: Iteration: 6 loss: 4.26537551170652"</span></span>
-<span><span class="co">#&gt; [1] "Sun May 10 22:42:27 2026: Iteration: 7 loss: 4.26536829666373"</span></span>
-<span><span class="co">#&gt; Sun May 10 22:42:27 2026: the AE correction converged with:4.26536829666373</span></span>
-<span><span class="co">#&gt; Time difference of 33.03916 secs</span></span>
-<span><span class="co">#&gt; [1] "Sun May 10 22:42:27 2026: 7 Final nb-AE loss: 4.26536829666373"</span></span>
-<span><span class="co">#&gt; Sun May 10 22:42:30 2026: Used the autoencoder implementation for controlling.</span></span>
-<span><span class="co">#&gt; Sun May 10 22:42:30 2026: P-value calculation ...</span></span>
-<span><span class="co">#&gt; Sun May 10 22:42:35 2026: Zscore calculation ...</span></span>
 <span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">OUTRIDER</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/OUTRIDER/man/results.html" class="external-link">results</a></span><span class="op">(</span><span class="va">ods</span><span class="op">)</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">res</span>,caption<span class="op">=</span><span class="st">"A check list of outliers"</span><span class="op">)</span></span></code></pre></div>
-<table style="width:100%;" class="table">
-<caption>
-<span id="tab:ods">Table 5.1: </span>A check list of outliers</caption>
-<colgroup>
-<col width="8%">
-<col width="5%">
-<col width="5%">
-<col width="6%">
-<col width="4%">
-<col width="3%">
-<col width="6%">
-<col width="8%">
-<col width="6%">
-<col width="8%">
-<col width="4%">
-<col width="5%">
-<col width="10%">
-<col width="9%">
-<col width="6%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">geneID</th>
-<th align="left">sampleID</th>
-<th align="right">pValue</th>
-<th align="right">padjust</th>
-<th align="right">zScore</th>
-<th align="right">l2fc</th>
-<th align="right">rawcounts</th>
-<th align="right">meanRawcounts</th>
-<th align="right">normcounts</th>
-<th align="right">meanCorrected</th>
-<th align="right">theta</th>
-<th align="left">aberrant</th>
-<th align="right">AberrantBySample</th>
-<th align="right">AberrantByGene</th>
-<th align="right">padj_rank</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">ATAD3C</td>
-<td align="left">MUC1360</td>
-<td align="right">0.0e+00</td>
-<td align="right">0.0000000</td>
-<td align="right">5.77</td>
-<td align="right">2.22</td>
-<td align="right">948</td>
-<td align="right">82.29</td>
-<td align="right">318.00</td>
-<td align="right">67.93</td>
-<td align="right">12.59</td>
-<td align="left">TRUE</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">1.0</td>
-</tr>
-<tr class="even">
-<td align="left">MSTO1</td>
-<td align="left">MUC1367</td>
-<td align="right">0.0e+00</td>
-<td align="right">0.0000095</td>
-<td align="right">-6.39</td>
-<td align="right">-0.88</td>
-<td align="right">761</td>
-<td align="right">1327.87</td>
-<td align="right">694.91</td>
-<td align="right">1276.58</td>
-<td align="right">134.73</td>
-<td align="left">TRUE</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">1.0</td>
-</tr>
-<tr class="odd">
-<td align="left">NBPF15</td>
-<td align="left">MUC1351</td>
-<td align="right">0.0e+00</td>
-<td align="right">0.0000375</td>
-<td align="right">5.40</td>
-<td align="right">0.77</td>
-<td align="right">7591</td>
-<td align="right">4224.88</td>
-<td align="right">7023.99</td>
-<td align="right">4123.67</td>
-<td align="right">99.23</td>
-<td align="left">TRUE</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">1.0</td>
-</tr>
-<tr class="even">
-<td align="left">RPS27</td>
-<td align="left">MUC1372</td>
-<td align="right">1.0e-07</td>
-<td align="right">0.0002900</td>
-<td align="right">-5.91</td>
-<td align="right">-0.87</td>
-<td align="right">949</td>
-<td align="right">10951.09</td>
-<td align="right">5738.64</td>
-<td align="right">10506.04</td>
-<td align="right">107.12</td>
-<td align="left">TRUE</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">1.0</td>
-</tr>
-<tr class="odd">
-<td align="left">DCAF6</td>
-<td align="left">MUC1374</td>
-<td align="right">1.0e-07</td>
-<td align="right">0.0004242</td>
-<td align="right">-5.70</td>
-<td align="right">-0.67</td>
-<td align="right">2348</td>
-<td align="right">4869.53</td>
-<td align="right">2972.96</td>
-<td align="right">4726.41</td>
-<td align="right">165.94</td>
-<td align="left">TRUE</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">1.0</td>
-</tr>
-<tr class="even">
-<td align="left">NBPF16</td>
-<td align="left">MUC1351</td>
-<td align="right">5.0e-07</td>
-<td align="right">0.0015297</td>
-<td align="right">4.67</td>
-<td align="right">0.68</td>
-<td align="right">4014</td>
-<td align="right">2459.90</td>
-<td align="right">3857.91</td>
-<td align="right">2403.62</td>
-<td align="right">97.07</td>
-<td align="left">TRUE</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">2.0</td>
-</tr>
-<tr class="odd">
-<td align="left">HDAC1</td>
-<td align="left">MUC1403</td>
-<td align="right">1.8e-06</td>
-<td align="right">0.0074005</td>
-<td align="right">-5.08</td>
-<td align="right">-0.92</td>
-<td align="right">982</td>
-<td align="right">3805.56</td>
-<td align="right">1938.05</td>
-<td align="right">3660.39</td>
-<td align="right">73.92</td>
-<td align="left">TRUE</td>
-<td align="right">2</td>
-<td align="right">2</td>
-<td align="right">1.5</td>
-</tr>
-<tr class="even">
-<td align="left">NTNG1</td>
-<td align="left">MUC1403</td>
-<td align="right">2.7e-06</td>
-<td align="right">0.0074005</td>
-<td align="right">-6.31</td>
-<td align="right">-5.38</td>
-<td align="right">4</td>
-<td align="right">1872.22</td>
-<td align="right">29.91</td>
-<td align="right">1550.31</td>
-<td align="right">4.80</td>
-<td align="left">TRUE</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">1.5</td>
-</tr>
-<tr class="odd">
-<td align="left">HDAC1</td>
-<td align="left">MUC1350</td>
-<td align="right">1.6e-06</td>
-<td align="right">0.0087417</td>
-<td align="right">-5.03</td>
-<td align="right">-0.91</td>
-<td align="right">2215</td>
-<td align="right">3805.56</td>
-<td align="right">1950.70</td>
-<td align="right">3660.39</td>
-<td align="right">73.92</td>
-<td align="left">TRUE</td>
-<td align="right">1</td>
-<td align="right">2</td>
-<td align="right">1.0</td>
-</tr>
-<tr class="even">
-<td align="left">TYW3</td>
-<td align="left">MUC1428</td>
-<td align="right">2.7e-06</td>
-<td align="right">0.0152755</td>
-<td align="right">-4.97</td>
-<td align="right">-0.79</td>
-<td align="right">620</td>
-<td align="right">1143.71</td>
-<td align="right">649.95</td>
-<td align="right">1120.98</td>
-<td align="right">99.82</td>
-<td align="left">TRUE</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">1.0</td>
-</tr>
-<tr class="odd">
-<td align="left">LOC100288142</td>
-<td align="left">MUC1361</td>
-<td align="right">7.8e-06</td>
-<td align="right">0.0432071</td>
-<td align="right">4.08</td>
-<td align="right">0.87</td>
-<td align="right">637</td>
-<td align="right">356.12</td>
-<td align="right">633.82</td>
-<td align="right">346.30</td>
-<td align="right">48.56</td>
-<td align="left">TRUE</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">1.0</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="st">"geneID"</span> <span class="op"><a href="https://rdrr.io/pkg/BiocGenerics/man/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/row_colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span> <span class="op">&amp;</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">res</span>,caption<span class="op">=</span><span class="st">"A check list of outliers"</span><span class="op">)</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="st">"geneID"</span> <span class="op"><a href="https://rdrr.io/pkg/BiocGenerics/man/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/row_colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span> <span class="op">&amp;</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span>  <span class="fu">OUTRIDER</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/OUTRIDER/man/plotFunctions.html" class="external-link">plotQQ</a></span><span class="op">(</span><span class="va">ods</span>, <span class="va">res</span><span class="op">$</span><span class="va">geneID</span>, global<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2" number="6">
 <h2 id="differential-expression">
 <span class="header-section-number">6</span> Differential expression<a class="anchor" aria-label="anchor" href="#differential-expression"></a>
 </h2>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ex</span> <span class="op">&lt;-</span> <span class="fu">DESeq2</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/DESeq2/man/makeExampleDESeqDataSet.html" class="external-link">makeExampleDESeqDataSet</a></span><span class="op">(</span>m<span class="op">=</span><span class="fl">4</span><span class="op">)</span></span>
 <span><span class="va">dds</span> <span class="op">&lt;-</span> <span class="fu">DESeq2</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/DESeq2/man/DESeq.html" class="external-link">DESeq</a></span><span class="op">(</span><span class="va">ex</span><span class="op">)</span></span>
 <span><span class="co">#&gt; estimating size factors</span></span>
@@ -2562,7 +2313,7 @@ Figure 4.6: quantro example
 Figure 6.1: DESeq2 example
 </p>
 </div>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ex</span><span class="op">$</span><span class="va">condition</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/relevel.html" class="external-link">relevel</a></span><span class="op">(</span><span class="va">ex</span><span class="op">$</span><span class="va">condition</span>, ref<span class="op">=</span><span class="st">"B"</span><span class="op">)</span></span>
 <span><span class="va">dds2</span> <span class="op">&lt;-</span> <span class="fu">DESeq2</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/DESeq2/man/DESeq.html" class="external-link">DESeq</a></span><span class="op">(</span><span class="va">dds</span><span class="op">)</span></span>
 <span><span class="co">#&gt; using pre-existing size factors</span></span>
@@ -2657,7 +2408,7 @@ Figure 6.1: DESeq2 example
 <span class="header-section-number">7</span> Gene co-expression and network analysis<a class="anchor" aria-label="anchor" href="#gene-co-expression-and-network-analysis"></a>
 </h2>
 <p>A simple network is furnished with the <code>GeneNet</code> documentation example,</p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## A random network with 40 nodes </span></span>
 <span><span class="co"># it contains 780=40*39/2 edges of which 5 percent (=39) are non-zero</span></span>
 <span><span class="va">true.pcor</span> <span class="op">&lt;-</span> <span class="fu">GeneNet</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GeneNet/man/ggm.simulate.pcor.html" class="external-link">ggm.simulate.pcor</a></span><span class="op">(</span><span class="fl">40</span><span class="op">)</span></span>
@@ -2699,7 +2450,7 @@ Figure 6.1: DESeq2 example
 Figure 7.1: GeneNet example
 </p>
 </div>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="co"># best 20 edges (strongest correlation)</span></span>
 <span><span class="va">test.results</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>,<span class="op">]</span></span>
@@ -3015,7 +2766,7 @@ Figure 7.1: GeneNet example
 Figure 7.2: GeneNet example
 </p>
 </div>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gr2</span>, <span class="st">"fdp"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:GeneNet-3"></span>
@@ -3024,7 +2775,7 @@ Figure 7.3: GeneNet example
 </p>
 </div>
 <p>A side-by-side heatmaps</p>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123454321</span><span class="op">)</span></span>
 <span><span class="va">m</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">2500</span><span class="op">)</span>,<span class="fl">50</span><span class="op">)</span></span>
 <span><span class="va">r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">m</span><span class="op">)</span></span>
@@ -3039,7 +2790,7 @@ Figure 7.3: GeneNet example
 Figure 7.4: Heatmaps
 </p>
 </div>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">heatmaply</span><span class="fu">::</span><span class="fu"><a href="https://talgalili.github.io/heatmaply/reference/normalize.html" class="external-link">normalize</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span></span>
 <span><span class="va">hm</span> <span class="op">&lt;-</span> <span class="fu">heatmaply</span><span class="fu">::</span><span class="fu"><a href="https://talgalili.github.io/heatmaply/reference/heatmaply.html" class="external-link">heatmaply</a></span><span class="op">(</span><span class="va">df</span>,k_col<span class="op">=</span><span class="fl">5</span>,k_row<span class="op">=</span><span class="fl">5</span>,</span>
@@ -3052,10 +2803,12 @@ Figure 7.4: Heatmaps
 <span><span class="co">#&gt; <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span></span>
 <span><span class="co">#&gt; <span style="color: #555555;">generated.</span></span></span>
 <span><span class="fu">htmlwidgets</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/htmlwidgets/man/saveWidget.html" class="external-link">saveWidget</a></span><span class="op">(</span><span class="va">hm</span>,file<span class="op">=</span><span class="st">"heatmaply.html"</span><span class="op">)</span></span>
-<span><span class="fu">htmltools</span><span class="fu">::</span><span class="va"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">tags</a></span><span class="op">$</span><span class="fu">iframe</span><span class="op">(</span>src <span class="op">=</span> <span class="st">"heatmaply.html"</span>, width <span class="op">=</span> <span class="st">"100%"</span>, height <span class="op">=</span> <span class="st">"550px"</span><span class="op">)</span></span></code></pre></div>
-<iframe src="heatmaply.html" width="100%" height="550px"></iframe>
+<span>      <span class="va">heatmaply_path</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"pkgdown"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">&amp;&amp;</span></span>
+<span>                        <span class="fu">pkgdown</span><span class="fu">::</span><span class="fu"><a href="https://pkgdown.r-lib.org/reference/in_pkgdown.html" class="external-link">in_pkgdown</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span><span class="st">"/pQTLtools/articles/heatmaply.html"</span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span><span class="st">"heatmaply.html"</span><span class="op">}</span></span>
+<span>      <span class="fu">htmltools</span><span class="fu">::</span><span class="va"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">tags</a></span><span class="op">$</span><span class="fu">iframe</span><span class="op">(</span>src <span class="op">=</span> <span class="va">heatmaply_path</span>, width <span class="op">=</span> <span class="st">"100%"</span>, height <span class="op">=</span> <span class="st">"600px"</span><span class="op">)</span></span></code></pre></div>
+<iframe src="/pQTLtools/articles/heatmaply.html" width="100%" height="600px"></iframe>
 <p>so we have <a href="heatmaply.html">heatmaply.html</a> and a module analysis with WGCNA,</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pwr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span>from<span class="op">=</span><span class="fl">12</span>, to<span class="op">=</span><span class="fl">30</span>, by<span class="op">=</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">sft</span> <span class="op">&lt;-</span> <span class="fu">WGCNA</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/WGCNA/man/pickSoftThreshold.html" class="external-link">pickSoftThreshold</a></span><span class="op">(</span><span class="va">dat</span>, powerVector<span class="op">=</span><span class="va">pwr</span>, verbose<span class="op">=</span><span class="fl">5</span><span class="op">)</span></span>
 <span><span class="va">ADJ</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">dat</span>, method<span class="op">=</span><span class="st">"pearson"</span>, use<span class="op">=</span><span class="st">"pairwise.complete.obs"</span><span class="op">)</span><span class="op">)</span><span class="op">^</span><span class="fl">6</span></span>
@@ -3084,7 +2837,7 @@ Figure 7.4: Heatmaps
 <span class="header-section-number">8</span> Metadata<a class="anchor" aria-label="anchor" href="#metadata"></a>
 </h2>
 <p>This section is based on package <code>recount3</code>.</p>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">hs</span> <span class="op">&lt;-</span> <span class="fu">recount3</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/recount3/man/available_projects.html" class="external-link">available_projects</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">hs</span>,<span class="va">file_source</span><span class="op">==</span><span class="st">"gtex"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu">recount3</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/recount3/man/annotation_options.html" class="external-link">annotation_options</a></span><span class="op">(</span><span class="st">"human"</span><span class="op">)</span></span>
@@ -3098,7 +2851,7 @@ Figure 7.4: Heatmaps
 <h2 id="pathway-and-enrichment-analysis">
 <span class="header-section-number">9</span> Pathway and enrichment analysis<a class="anchor" aria-label="anchor" href="#pathway-and-enrichment-analysis"></a>
 </h2>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">reactome</span> <span class="op">&lt;-</span> <span class="fu">graphite</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/graphite/man/pathways.html" class="external-link">pathways</a></span><span class="op">(</span><span class="st">"hsapiens"</span>, <span class="st">"reactome"</span><span class="op">)</span></span>
 <span><span class="va">kegg</span> <span class="op">&lt;-</span> <span class="fu">graphite</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/graphite/man/pathways.html" class="external-link">pathways</a></span><span class="op">(</span><span class="st">"hsapiens"</span>,<span class="st">"kegg"</span><span class="op">)</span></span>
 <span><span class="va">pharmgkb</span> <span class="op">&lt;-</span> <span class="fu">graphite</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/graphite/man/pathways.html" class="external-link">pathways</a></span><span class="op">(</span><span class="st">"hsapiens"</span>,<span class="st">"pharmgkb"</span><span class="op">)</span></span>
@@ -3129,7 +2882,7 @@ Figure 7.4: Heatmaps
 <span class="header-section-number">10</span> Transcript databases<a class="anchor" aria-label="anchor" href="#transcript-databases"></a>
 </h2>
 <p>An overview of annotation is available<span class="citation"><sup><a href="#ref-carlson16" role="doc-biblioref">2</a></sup></span>.</p>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># columns(org.Hs.eg.db)</span></span>
 <span><span class="co"># keyref &lt;- keys(org.Hs.eg.db, keytype="ENTREZID")</span></span>
 <span><span class="co"># symbol_uniprot &lt;- select(org.Hs.eg.db,keys=keyref,columns = c("SYMBOL","UNIPROT"))</span></span>
@@ -3722,7 +3475,7 @@ Figure 7.4: Heatmaps
 <span class="header-section-number">11.1</span> Peptide sequence<a class="anchor" aria-label="anchor" href="#peptide-sequence"></a>
 </h3>
 <p>Here is an example for PROC_HUMAN, which is handled by the <code>Biostrings</code> package,</p>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fasta_file_path</span> <span class="op">&lt;-</span> <span class="st">'https://rest.uniprot.org/uniprotkb/P04070.fasta'</span></span>
 <span><span class="va">fasta_sequences</span> <span class="op">&lt;-</span> <span class="fu">Biostrings</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/Biostrings/man/XStringSet-io.html" class="external-link">readAAStringSet</a></span><span class="op">(</span><span class="va">fasta_file_path</span>, format <span class="op">=</span> <span class="st">"fasta"</span><span class="op">)</span></span>
 <span><span class="va">AA_sequence</span> <span class="op">&lt;-</span> <span class="va">fasta_sequences</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span>
@@ -3732,7 +3485,7 @@ Figure 7.4: Heatmaps
 <span><span class="va">match_position</span></span>
 <span><span class="va">mp</span> <span class="op">&lt;-</span> <span class="fu">matchPattern</span><span class="op">(</span><span class="va">iso_442688365</span>,<span class="va">AA_sequence</span><span class="op">)</span></span>
 <span><span class="va">mp</span></span></code></pre></div>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/load.html" class="external-link">load</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"tests"</span>,<span class="st">"PROC.rda"</span>,package<span class="op">=</span><span class="st">"pQTLtools"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu">pQTLtools</span><span class="fu">::</span><span class="fu"><a href="../reference/peptideAssociationPlot.html">peptideAssociationPlot</a></span><span class="op">(</span><span class="va">protein</span>,<span class="va">cistrans</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Joining with `by = join_by(Modified.Peptide.Sequence)`</span></span></code></pre></div>
@@ -3752,7 +3505,7 @@ Figure 11.1: peptide association plot
 <span class="header-section-number">11.2.1</span> Setup<a class="anchor" aria-label="anchor" href="#setup"></a>
 </h4>
 <p>The .raw files can be handled by <code>rawrr</code> package nevertheless it requires necessary files,</p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/fgcz/rawrr/" class="external-link">rawrr</a></span><span class="op">)</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Logic.html" class="external-link">isFALSE</a></span><span class="op">(</span><span class="fu">rawrr</span><span class="fu">::</span><span class="fu">.checkDllInMonoPath</span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
 <span>   <span class="fu">rawrr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rawrr/man/installRawFileReaderDLLs.html" class="external-link">installRawFileReaderDLLs</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -3766,7 +3519,7 @@ Figure 11.1: peptide association plot
 <span class="header-section-number">11.2.2</span> List of.raw files<a class="anchor" aria-label="anchor" href="#list-of-raw-files"></a>
 </h4>
 <p>Based on a real project, the following is an example of listing/generating multiple .raw from .zip files</p>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># ZWK .raw data</span></span>
 <span><span class="va">spectra_ZWK</span> <span class="op">&lt;-</span> <span class="st">"~/Caprion/pre_qc_data/spectral_library_ZWK"</span></span>
 <span><span class="va">raw_files</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="va">spectra_ZWK</span>, pattern <span class="op">=</span> <span class="st">"\\.raw$"</span>, full.names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -3805,7 +3558,7 @@ Figure 11.1: peptide association plot
 <span class="header-section-number">11.2.3</span> Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h4>
 <p>Various facilities are shown below.</p>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># various files</span></span>
 <span><span class="va">d</span> <span class="op">&lt;-</span> <span class="st">"/rds/project/rds-zuZwCZMsS0w/Caprion_proteomics/analysis/crux"</span></span>
 <span><span class="va">f</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">d</span>,<span class="st">"szwk901104i19801xms1.mzML"</span><span class="op">)</span></span>

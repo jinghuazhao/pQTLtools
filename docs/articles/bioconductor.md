@@ -153,11 +153,10 @@ potential groupings in the data,
       rgl::open3d(width = 500, height = 500)
       rgl::plot3d(with(pca,x[,c(2,1,3)]),cex=1.2,col=cols[classification],size=5)
       rgl::text3d(with(pca,x[,c(2,1,3)]),cex=1.2,col=cols[classification],texts=row.names(pc1pc2pc3))
-      htmlwidgets::saveWidget(rgl::rglwidget(), file = "mcpca3d.html")
   })
 ```
 
-![Three-group Clustering](bioconductor/mcpca-1.png)
+![Three-group Clustering](bioconductor/mcpca3d-1.png)
 
 Figure 2.3: Three-group Clustering
 
@@ -664,48 +663,9 @@ ctsFile <- system.file('extdata', 'KremerNBaderSmall.tsv', package='OUTRIDER')
 ctsTable <- read.table(ctsFile, check.names=FALSE)
 ods <- OUTRIDER::OutriderDataSet(countData=ctsTable)
 ods <- OUTRIDER::filterExpression(ods, minCounts=TRUE, filterGenes=TRUE)
-#> 229 genes did not pass the filter due to zero counts. This is 22.9% of the genes.
 ods <- OUTRIDER::OUTRIDER(ods)
-#> Sun May 10 22:41:47 2026: SizeFactor estimation ...
-#> Sun May 10 22:41:47 2026: Controlling for confounders ...
-#> Optimal encoding dimension: 16
-#> Using estimated q with: 16
-#> Sun May 10 22:41:47 2026: Using the autoencoder implementation for controlling.
-#> [1] "Sun May 10 22:41:51 2026: Initial PCA loss: 4.76571576945417"
-#> [1] "Sun May 10 22:41:58 2026: Iteration: 1 loss: 4.29942242213863"
-#> [1] "Sun May 10 22:42:02 2026: Iteration: 2 loss: 4.28066542943078"
-#> [1] "Sun May 10 22:42:05 2026: Iteration: 3 loss: 4.26974794312247"
-#> [1] "Sun May 10 22:42:07 2026: Iteration: 4 loss: 4.26971920514349"
-#> [1] "Sun May 10 22:42:11 2026: Iteration: 5 loss: 4.26539009375334"
-#> [1] "Sun May 10 22:42:16 2026: Iteration: 6 loss: 4.26537551170652"
-#> [1] "Sun May 10 22:42:27 2026: Iteration: 7 loss: 4.26536829666373"
-#> Sun May 10 22:42:27 2026: the AE correction converged with:4.26536829666373
-#> Time difference of 33.03916 secs
-#> [1] "Sun May 10 22:42:27 2026: 7 Final nb-AE loss: 4.26536829666373"
-#> Sun May 10 22:42:30 2026: Used the autoencoder implementation for controlling.
-#> Sun May 10 22:42:30 2026: P-value calculation ...
-#> Sun May 10 22:42:35 2026: Zscore calculation ...
 res <- OUTRIDER::results(ods)
 knitr::kable(res,caption="A check list of outliers")
-```
-
-| geneID       | sampleID |  pValue |   padjust | zScore |  l2fc | rawcounts | meanRawcounts | normcounts | meanCorrected |  theta | aberrant | AberrantBySample | AberrantByGene | padj_rank |
-|:-------------|:---------|--------:|----------:|-------:|------:|----------:|--------------:|-----------:|--------------:|-------:|:---------|-----------------:|---------------:|----------:|
-| ATAD3C       | MUC1360  | 0.0e+00 | 0.0000000 |   5.77 |  2.22 |       948 |         82.29 |     318.00 |         67.93 |  12.59 | TRUE     |                1 |              1 |       1.0 |
-| MSTO1        | MUC1367  | 0.0e+00 | 0.0000095 |  -6.39 | -0.88 |       761 |       1327.87 |     694.91 |       1276.58 | 134.73 | TRUE     |                1 |              1 |       1.0 |
-| NBPF15       | MUC1351  | 0.0e+00 | 0.0000375 |   5.40 |  0.77 |      7591 |       4224.88 |    7023.99 |       4123.67 |  99.23 | TRUE     |                2 |              1 |       1.0 |
-| RPS27        | MUC1372  | 1.0e-07 | 0.0002900 |  -5.91 | -0.87 |       949 |      10951.09 |    5738.64 |      10506.04 | 107.12 | TRUE     |                1 |              1 |       1.0 |
-| DCAF6        | MUC1374  | 1.0e-07 | 0.0004242 |  -5.70 | -0.67 |      2348 |       4869.53 |    2972.96 |       4726.41 | 165.94 | TRUE     |                1 |              1 |       1.0 |
-| NBPF16       | MUC1351  | 5.0e-07 | 0.0015297 |   4.67 |  0.68 |      4014 |       2459.90 |    3857.91 |       2403.62 |  97.07 | TRUE     |                2 |              1 |       2.0 |
-| HDAC1        | MUC1403  | 1.8e-06 | 0.0074005 |  -5.08 | -0.92 |       982 |       3805.56 |    1938.05 |       3660.39 |  73.92 | TRUE     |                2 |              2 |       1.5 |
-| NTNG1        | MUC1403  | 2.7e-06 | 0.0074005 |  -6.31 | -5.38 |         4 |       1872.22 |      29.91 |       1550.31 |   4.80 | TRUE     |                2 |              1 |       1.5 |
-| HDAC1        | MUC1350  | 1.6e-06 | 0.0087417 |  -5.03 | -0.91 |      2215 |       3805.56 |    1950.70 |       3660.39 |  73.92 | TRUE     |                1 |              2 |       1.0 |
-| TYW3         | MUC1428  | 2.7e-06 | 0.0152755 |  -4.97 | -0.79 |       620 |       1143.71 |     649.95 |       1120.98 |  99.82 | TRUE     |                1 |              1 |       1.0 |
-| LOC100288142 | MUC1361  | 7.8e-06 | 0.0432071 |   4.08 |  0.87 |       637 |        356.12 |     633.82 |        346.30 |  48.56 | TRUE     |                1 |              1 |       1.0 |
-
-Table 5.1: A check list of outliers
-
-``` r
 if ("geneID" %in% colnames(res) & FALSE)
   OUTRIDER::plotQQ(ods, res$geneID, global=TRUE)
 ```
@@ -1162,7 +1122,9 @@ hm <- heatmaply::heatmaply(df,k_col=5,k_row=5,
 #> Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
 #> generated.
 htmlwidgets::saveWidget(hm,file="heatmaply.html")
-htmltools::tags$iframe(src = "heatmaply.html", width = "100%", height = "550px")
+      heatmaply_path <- if (requireNamespace("pkgdown", quietly = TRUE) &&
+                        pkgdown::in_pkgdown()) {"/pQTLtools/articles/heatmaply.html"} else {"heatmaply.html"}
+      htmltools::tags$iframe(src = heatmaply_path, width = "100%", height = "600px")
 ```
 
 so we have

@@ -293,22 +293,24 @@ Figure 2.5: pQTL-gene plot
 
 ### 2.6 pQTL-gene plotly
 
-The pQTL-gene plot above can be also viewed in a 2-d plotly style,
-[fig2d.html](https://jinghuazhao.github.io/pQTLtools/articles/fig2d.md),
+The pQTL-gene plot above can be also viewed in a 2-d plotly style,,
 
 ``` r
 fig2d <- gap::qtl2dplotly(cis.vs.trans,xlab="pQTL position",ylab="Gene position")
 htmlwidgets::saveWidget(fig2d,file="fig2d.html")
-htmltools::tags$iframe(src = "fig2d.html", width = "100%", height = "650px")
+fig2d_path <- if (requireNamespace("pkgdown", quietly = TRUE) &&
+                  pkgdown::in_pkgdown()) {"/pQTLtools/articles/fig2d.html"} else {"fig2d.html"}
+htmltools::tags$iframe(src = fig2d_path,  width = "100%",  height = "650px")
 ```
 
 and 3-d counterpart,
-[fig3d.html](https://jinghuazhao.github.io/pQTLtools/articles/fig3d.md),
 
 ``` r
 fig3d <- gap::qtl3dplotly(cis.vs.trans,zmax=300,qtl.prefix="pQTL:",xlab="pQTL position",ylab="Gene position")
 htmlwidgets::saveWidget(fig3d,file="fig3d.html")
-htmltools::tags$iframe(src = "fig3d.html", width = "100%", height = "600px")
+fig3d_path <- if (requireNamespace("pkgdown", quietly = TRUE) &&
+                  pkgdown::in_pkgdown()) {"/pQTLtools/articles/fig3d.html"} else {"fig3d.html"}
+htmltools::tags$iframe(src = fig3d_path, width = "100%", height = "600px")
 ```
 
 Both plots are responsive.

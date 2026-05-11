@@ -114,8 +114,10 @@
 </h3>
 <p>This figure starts with a default and is updated when selected for one of the two alternatives.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">htmltools</span><span class="fu">::</span><span class="va"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">tags</a></span><span class="op">$</span><span class="fu">iframe</span><span class="op">(</span>src <span class="op">=</span><span class="st">"lz.html"</span>, width <span class="op">=</span> <span class="st">"100%"</span>, height <span class="op">=</span> <span class="st">"600px"</span><span class="op">)</span></span></code></pre></div>
-<iframe src="lz.html" width="100%" height="600px"></iframe>
+<code class="sourceCode R"><span>      <span class="va">lz_path</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"pkgdown"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">&amp;&amp;</span></span>
+<span>                        <span class="fu">pkgdown</span><span class="fu">::</span><span class="fu"><a href="https://pkgdown.r-lib.org/reference/in_pkgdown.html" class="external-link">in_pkgdown</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span><span class="st">"/pQTLtools/articles/lz.html"</span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span><span class="st">"lz.html"</span><span class="op">}</span></span>
+<span>      <span class="fu">htmltools</span><span class="fu">::</span><span class="va"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">tags</a></span><span class="op">$</span><span class="fu">iframe</span><span class="op">(</span>src <span class="op">=</span> <span class="va">lz_path</span>, width <span class="op">=</span> <span class="st">"100%"</span>, height <span class="op">=</span> <span class="st">"600px"</span><span class="op">)</span></span></code></pre></div>
+<iframe src="/pQTLtools/articles/lz.html" width="100%" height="600px"></iframe>
 <p>THe HTML skeleton (<code>lz.html</code>) takes a file named <code>top_hits.json</code> containing the menu items,</p>
 <pre><code>[
   ["A1BG", "rs145685027", "19:58948122"],
@@ -152,8 +154,10 @@ $data
 </h3>
 <p>The figure below extends to three panels.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">htmltools</span><span class="fu">::</span><span class="va"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">tags</a></span><span class="op">$</span><span class="fu">iframe</span><span class="op">(</span>src <span class="op">=</span> <span class="st">"stack.html"</span>, width <span class="op">=</span> <span class="st">"100%"</span>, style<span class="op">=</span><span class="st">"height: 1600px;"</span><span class="op">)</span></span></code></pre></div>
-<iframe src="stack.html" width="100%" style="height: 1600px;"></iframe>
+<code class="sourceCode R"><span><span class="va">stack_path</span> <span class="op">&lt;-</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"pkgdown"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">&amp;&amp;</span></span>
+<span>                  <span class="fu">pkgdown</span><span class="fu">::</span><span class="fu"><a href="https://pkgdown.r-lib.org/reference/in_pkgdown.html" class="external-link">in_pkgdown</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span><span class="st">"/pQTLtools/articles/stack.html"</span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span><span class="st">"stack.html"</span><span class="op">}</span></span>
+<span><span class="fu">htmltools</span><span class="fu">::</span><span class="va"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">tags</a></span><span class="op">$</span><span class="fu">iframe</span><span class="op">(</span>src <span class="op">=</span> <span class="va">stack_path</span>, width <span class="op">=</span> <span class="st">"100%"</span>, height <span class="op">=</span> <span class="st">"600px"</span><span class="op">)</span></span></code></pre></div>
+<iframe src="/pQTLtools/articles/stack.html" width="100%" height="600px"></iframe>
 </div>
 <div class="section level3" number="1.3">
 <h3 id="direct-access">

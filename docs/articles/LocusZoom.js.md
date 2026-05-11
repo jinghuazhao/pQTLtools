@@ -8,7 +8,9 @@ This figure starts with a default and is updated when selected for one
 of the two alternatives.
 
 ``` r
-htmltools::tags$iframe(src ="lz.html", width = "100%", height = "600px")
+      lz_path <- if (requireNamespace("pkgdown", quietly = TRUE) &&
+                        pkgdown::in_pkgdown()) {"/pQTLtools/articles/lz.html"} else {"lz.html"}
+      htmltools::tags$iframe(src = lz_path, width = "100%", height = "600px")
 ```
 
 THe HTML skeleton (`lz.html`) takes a file named `top_hits.json`
@@ -50,7 +52,9 @@ each corresponds to a file for GWAS summary statistics as shown below
 The figure below extends to three panels.
 
 ``` r
-htmltools::tags$iframe(src = "stack.html", width = "100%", style="height: 1600px;")
+stack_path <- if (requireNamespace("pkgdown", quietly = TRUE) &&
+                  pkgdown::in_pkgdown()) {"/pQTLtools/articles/stack.html"} else {"stack.html"}
+htmltools::tags$iframe(src = stack_path, width = "100%", height = "600px")
 ```
 
 ### 1.3 Direct access
