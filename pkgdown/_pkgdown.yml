@@ -13,6 +13,7 @@ template:
 
 development:
   mode: auto
+  build_llm_index: false
 
 home:
   title: Protein Quantitative Trait Locus tools
