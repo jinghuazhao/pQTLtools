@@ -159,14 +159,14 @@ We employ model-based clustering absed on principal compoents to see potential g
       rgl::open3d(width = 500, height = 500)
       rgl::plot3d(with(pca,x[,c(2,1,3)]),cex=1.2,col=cols[classification],size=5)
       rgl::text3d(with(pca,x[,c(2,1,3)]),cex=1.2,col=cols[classification],texts=row.names(pc1pc2pc3))
-      htmlwidgets::saveWidget(rgl::rglwidget(), file = "mcpca3d.html")
+      htmlwidgets::saveWidget(rgl::rglwidget(), file = "/pQTLtools/articles/mcpca3d.html")
   })
 ```
 
 An interactive version is also available,
 
 ```{r rgl3d, echo=FALSE}
-htmltools::tags$iframe(src = "mcpca3d.html", width = "100%", height = "650px")
+htmltools::tags$iframe(src = "/pQTLtools/articles/mcpca3d.html", width = "100%", height = "650px")
 ```
 
 ## Data transformation
