@@ -1124,11 +1124,9 @@ hm <- heatmaply::heatmaply(df,k_col=5,k_row=5,
 #> Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
 #> generated.
 htmlwidgets::saveWidget(hm,file="heatmaply.html")
-htmltools::tags$iframe(src = "heatmaply.html", width = "100%", height = "600px")
+htmltools::tags$iframe(src = "/articles/heatmaply.html", width = "100%", height = "600px")
 ```
 
-so we have
-[heatmaply.html](https://jinghuazhao.github.io/pQTLtools/articles/heatmaply.md)
 and a module analysis with WGCNA,
 
 ``` r

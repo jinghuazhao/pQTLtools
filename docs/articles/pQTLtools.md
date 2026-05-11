@@ -298,7 +298,7 @@ The pQTL-gene plot above can be also viewed in a 2-d plotly style,,
 ``` r
 fig2d <- gap::qtl2dplotly(cis.vs.trans,xlab="pQTL position",ylab="Gene position")
 htmlwidgets::saveWidget(fig2d,file="fig2d.html")
-htmltools::tags$iframe(src = "fig2d.html",  width = "100%",  height = "650px")
+htmltools::tags$iframe(src = "/pQTLtools/articles/fig2d.html",  width = "100%",  height = "650px")
 ```
 
 and 3-d counterpart,
@@ -306,7 +306,7 @@ and 3-d counterpart,
 ``` r
 fig3d <- gap::qtl3dplotly(cis.vs.trans,zmax=300,qtl.prefix="pQTL:",xlab="pQTL position",ylab="Gene position")
 htmlwidgets::saveWidget(fig3d,file="fig3d.html")
-htmltools::tags$iframe(src = "fig3d.html", width = "100%", height = "600px")
+htmltools::tags$iframe(src = "/pQTLtools/articles/fig3d.html", width = "100%", height = "600px")
 ```
 
 Both plots are responsive.

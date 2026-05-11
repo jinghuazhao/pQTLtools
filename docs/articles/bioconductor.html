@@ -253,7 +253,7 @@ Figure 2.3: Three-group Clustering
 <span><span class="co">#&gt; Warning in par3d(userMatrix = structure(c(1, 0, 0, 0, 0, 0.342020143325668, :</span></span>
 <span><span class="co">#&gt; parameter "height" cannot be set</span></span></code></pre>
 <p>An interactive version is also available,</p>
-<iframe src="mcpca3d.html" width="100%" height="600px"></iframe>
+<iframe src="/pQTLtools/articles/mcpca3d.html" width="100%" height="600px"></iframe>
 </div>
 <div class="section level3" number="2.5">
 <h3 id="data-transformation">
@@ -2794,9 +2794,9 @@ Figure 7.4: Heatmaps
 <span><span class="co">#&gt; <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span></span>
 <span><span class="co">#&gt; <span style="color: #555555;">generated.</span></span></span>
 <span><span class="fu">htmlwidgets</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/htmlwidgets/man/saveWidget.html" class="external-link">saveWidget</a></span><span class="op">(</span><span class="va">hm</span>,file<span class="op">=</span><span class="st">"heatmaply.html"</span><span class="op">)</span></span>
-<span><span class="fu">htmltools</span><span class="fu">::</span><span class="va"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">tags</a></span><span class="op">$</span><span class="fu">iframe</span><span class="op">(</span>src <span class="op">=</span> <span class="st">"heatmaply.html"</span>, width <span class="op">=</span> <span class="st">"100%"</span>, height <span class="op">=</span> <span class="st">"600px"</span><span class="op">)</span></span></code></pre></div>
-<iframe src="heatmaply.html" width="100%" height="600px"></iframe>
-<p>so we have <a href="heatmaply.html">heatmaply.html</a> and a module analysis with WGCNA,</p>
+<span><span class="fu">htmltools</span><span class="fu">::</span><span class="va"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">tags</a></span><span class="op">$</span><span class="fu">iframe</span><span class="op">(</span>src <span class="op">=</span> <span class="st">"/articles/heatmaply.html"</span>, width <span class="op">=</span> <span class="st">"100%"</span>, height <span class="op">=</span> <span class="st">"600px"</span><span class="op">)</span></span></code></pre></div>
+<iframe src="/articles/heatmaply.html" width="100%" height="600px"></iframe>
+<p>and a module analysis with WGCNA,</p>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">pwr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>, <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span>from<span class="op">=</span><span class="fl">12</span>, to<span class="op">=</span><span class="fl">30</span>, by<span class="op">=</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">sft</span> <span class="op">&lt;-</span> <span class="fu">WGCNA</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/WGCNA/man/pickSoftThreshold.html" class="external-link">pickSoftThreshold</a></span><span class="op">(</span><span class="va">dat</span>, powerVector<span class="op">=</span><span class="va">pwr</span>, verbose<span class="op">=</span><span class="fl">5</span><span class="op">)</span></span>
