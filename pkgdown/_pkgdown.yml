@@ -13,7 +13,12 @@ home:
     components:
       support:
         title: Support
-        text: "[<img src='https://jinghuazhao.github.io/pQTLtools/reference/figures/ceu.svg' width='80' alt="Cardiovascular Epidemiology Unit (CEU)">](https://www.phpc.cam.ac.uk/research/departmental-research-units/cardiovascular-epidemiology-unit-ceu)"
+        text: |
+          <a href="https://www.phpc.cam.ac.uk/research/departmental-research-units/cardiovascular-epidemiology-unit-ceu">
+            <img src="https://jinghuazhao.github.io/pQTLtools/reference/figures/ceu.svg"
+                 width="80"
+                 alt="Cardiovascular Epidemiology Unit (CEU)">
+          </a>
 
 authors:
   Jing Hua Zhao:
