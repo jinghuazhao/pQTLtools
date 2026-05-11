@@ -1,10 +1,10 @@
 ## pQTLtools 0.5
 
-(2025/5/10)
+(2025/5/11)
 
 * Accommodate revised gap::METAL_forestplot in vignette.
 * Add single quotes to package/software name.
-* Add inst/scripts for docs.sh, cran.sb and cran.sh.
+* Add inst/scripts for docs.sh, cran.sb (very sensitive!) and cran.sh.
 * Amend import_OpenGWAS using <https://opengwas.io/datasets/>.
 * Drop link to GitHub repository in _pkgdown.yml and a lot of options().
 * Merge Bioconductor-related and LocusZoom.js/SCALLOP-Caprion articles.
