@@ -7,7 +7,7 @@ output:
     self_contained: false
 fontsize: 11pt
 bibliography: '`r system.file("REFERENCES.bib", package="pQTLtools")`'
-csl: nature-genetics.csl
+csl: '`r system.file("nature-genetics.csl", package="pQTLtools")`'
 link-citations: yes
 pkgdown:
   as_is: true

@@ -13,6 +13,7 @@ turboman/        | turboman reference data
 UniProt/         | UniProt-related
 README.md        | This file
 REFERENCES.bib   | BibTeX bibliography
+nature-genetics.csl| CSL-style file
 
 Two Bash scripts
 
