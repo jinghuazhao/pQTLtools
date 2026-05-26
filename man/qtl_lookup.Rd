@@ -2,68 +2,61 @@
 % Please edit documentation in R/qtl_lookup.R
 \name{qtl_lookup}
 \alias{qtl_lookup}
-\title{QTL lookup}
+\title{QTL lookup with LD-based proxy selection}
 \usage{
 qtl_lookup(
   d,
   dat,
-  panel = "1000Genomes",
+  panel = c("1000Genomes", "local"),
   p_threshold = 0.001,
   r2_threshold = 0.8,
   pop = "EUR",
   plink_bin = NULL,
-  r = NULL,
-  r2 = NULL,
-  xlsx = NULL
+  max_snps = 500,
+  xlsx = NULL,
+  verbose = TRUE
 )
 }
 \arguments{
-\item{d}{directory where \code{dat} (below) is held.}
+\item{d}{Directory containing GWAS files.}
 
-\item{dat}{MR results (\code{protein}, \code{id}, \code{pqtl},\code{p}, \code{qtl}, \code{p_qtl}) whose \code{proxy}, \code{p_proxy} and \code{rsq} variables will be updated.}
+\item{dat}{Data frame of MR results. Must contain:
+protein, id, pqtl, qtl, p_qtl, file_gwas.}
 
-\item{panel}{reference panel.}
+\item{panel}{LD reference type: "1000Genomes" or "local".}
 
-\item{p_threshold}{cutoff of QTL association from trait GWASs.}
+\item{p_threshold}{P-value cutoff for selecting candidate SNPs.}
 
-\item{r2_threshold}{cutoff of r^2.}
+\item{r2_threshold}{LD r^2 threshold for locus classification.}
 
-\item{pop}{reference population from 1000Genomes for LD calculation.}
+\item{pop}{1000 Genomes population (default "EUR").}
 
-\item{plink_bin}{PLINK executable file whose binary files are indicated in \code{bfile} variable of \code{dat}.}
+\item{plink_bin}{Path to PLINK executable (required for local mode).}
 
-\item{r}{when specified, the LD(r) is output.}
+\item{max_snps}{Maximum SNPs used in LD computation.}
 
-\item{r2}{when specified, the LD(r^2) is output.}
+\item{xlsx}{Optional Excel output path.}
 
-\item{xlsx}{a non-null specification indicates name of an output Excel workbook.}
+\item{verbose}{Logical; show progress messages.}
 }
 \value{
-A data.frame containing the looked up loci.
+Updated dat with columns:
+proxy, p_proxy, rsq, classification.
 }
 \description{
-This function takes MR results (involving pQTL/QTL) to look up QTLs in trait GWASs given a P value and
-linkage disequilibrium (LD) cutoffs.
-The rationale is that a pQTL may not necessarily be in strong LD with QTL but some other independent signal
-in the same region. The interest then lands on association signals below a given P value (p_threshold) and above
-a given LD (r2_threshold) thresholds.
+This function performs QTL lookup by integrating MR results with GWAS summary
+statistics and identifying proxy SNPs based on linkage disequilibrium (LD).
 }
-\examples{
-\dontrun{
-INF <- Sys.getenv("INF")
-suppressMessages(library(dplyr))
-d <- file.path(INF,"mr","gsmr","trait")
-inf1 <- select(gap.datasets::inf1,prot,target.short)
-gsmr_efo <- read.delim(file.path(INF,"mr","gsmr","gsmr-efo.txt")) \%>\%
-            left_join(inf1,by=c('protein'='target.short')) \%>\%
-            mutate(file_gwas=paste(prot,id,"rsid.txt",sep="-"),
-                   bfile=file.path(INF,"INTERVAL","per_chr",
-                                   paste0("interval.imputed.olink.chr_",chr)),
-                   proxy=NA,p_proxy=NA,rsq=NA)
-proxies <- qtl_lookup(d,gsmr_efo,plink_bin="/rds/user/jhz22/hpc-work/bin/plink",
-                      xlsx=file.path(INF,"mr","gsmr","r2_INTERVAL.xlsx")) \%>\%
-           select(protein,id,Disease,fdr,pqtl,p,qtl,p_qtl,proxy,p_proxy,rsq)
-write.table(proxies,file=file.path(INF,"mr","gsmr","r2_INTERVAL.tsv"),
-            row.names=FALSE,quote=FALSE,sep="\t")
+\details{
+It supports:
+\itemize{
+\item 1000 Genomes LD reference (ieugwasr API)
+\item Local PLINK reference panels (recommended for large-scale runs)
+}
+
+Loci are classified as:
+\itemize{
+\item same_locus (r^2 >= threshold)
+\item independent_locus (r^2 < threshold)
 }
 }

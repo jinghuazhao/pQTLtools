@@ -1,124 +1,140 @@
-#' Locus novelty check
+#' Locus novelty check using LD overlap
 #'
-#' This function checks novelty of a list of loci such as pQTLs against a published list.
-#' Both known_loci and query_loci have these variables: chr, pos, uniprot, rsid, prot.
+#' This function assesses whether query loci are novel or match known loci
+#' by combining genomic proximity (± flanking window) and linkage disequilibrium (LD).
 #'
-#' @param known_loci A data.frame of published loci.
-#' @param query_loci A data.frame of loci whose novelties are unclear.
-#' @param ldops arguments for ieugwasr::ld_matrix_local()
-#' @param flanking A flanking distance.
-#' @param pop The reference population as for ieugwasr::ld_matrix().
-#' @param verbose A flag to show nonexistent variants.
+#' It supports:
+#' - 1000 Genomes LD reference via ieugwasr
+#' - Local PLINK reference panels via ld_matrix_local()
 #'
-#' @return A data.frame containing nonnovel loci.
+#' The function:
+#' 1. Finds overlapping loci within a flanking distance
+#' 2. Matches loci by gene/protein (uniprot)
+#' 3. Computes LD (r and r^2) between known and query variants
+#' 4. Returns per-pair LD values for downstream novelty/replication assessment
+#'
+#' @param known_loci Data.frame of known/published loci.
+#' Must contain columns: chr, pos, uniprot, rsid, prot.
+#'
+#' @param query_loci Data.frame of query loci to evaluate.
+#' Must contain columns: chr, pos, uniprot, rsid, prot.
+#'
+#' @param ldops Optional list specifying local LD computation:
+#'   \describe{
+#'     \item{bfile}{PLINK binary prefix (bed/bim/fam)}
+#'     \item{plink}{Path to PLINK executable}
+#'   }
+#'
+#' @param flanking Genomic window (bp) around query loci used for overlap.
+#' Default is 1e6 (±1 Mb).
+#'
+#' @param pop 1000 Genomes population code (e.g., "EUR") used when ldops = NULL.
+#'
+#' @param verbose Logical; if TRUE prints missing LD variants.
+#'
+#' @return A data.frame with paired known/query loci and LD r^2 values.
+#'
 #' @export
+#'
 #' @examples
 #' \dontrun{
-#' suppressMessages(require(dplyr))
-#' suppressMessages(require(openxlsx))
-#' # SCALLOP-INF list
-#' METAL <- read.delim(file.path(find.package("pQTLtools"),"tests","INF1.METAL")) %>%
-#'          dplyr::left_join(gap.datasets::inf1[c("prot","gene")]) %>%
-#'          dplyr::mutate(prot=gene,prot_rsid=paste0(uniprot,"-",rsid),chr=Chromosome,pos=Position)
-#' # UKB_PPP list
-#' results <- "/rds/project/jmmh2/rds-jmmh2-results/public/proteomics"
-#' url <- file.path(results,"UKB-PPP","doc","sun22.xlsx")
-#' ST10 <- read.xlsx(url,"ST10",startRow=3) %>%
-#'         dplyr::mutate(uniprot=Target.UniProt,rsid=rsID,prot=Assay.Target) %>%
-#'         dplyr::mutate(prot_rsid=paste0(uniprot,"-",rsid))
-#' sentinels <- dplyr::left_join(METAL,ST10,by="prot_rsid") %>%
-#'              dplyr::select(prot_rsid,cis.trans,rsID) %>%
-#'              dplyr::filter(!is.na(rsID))
-#' inf1 <- c(with(gap.datasets::inf1,uniprot),with(METAL,uniprot)) %>%
-#'         unique()
-#' overlap <- dplyr::filter(ST10,uniprot %in% inf1)
-#' dim(overlap)
-#' UKB_PPP <- dplyr::mutate(overlap,
-#'            chrpos=strsplit(overlap[["Variant.ID.(CHROM:GENPOS.(hg37):A0:A1:imp:v1)"]],":"),
-#'            chr=as.integer(unlist(lapply(chrpos,"[[",1))),
-#'            pos=as.integer(unlist(lapply(chrpos,"[[",2))),
-#'            chrpos=paste(chr,pos,sep=":"))
-#' # ieugwasr LD reference which requires an up-to-date registration.
-#' suppressMessages(require(GenomicRanges))
-#' b <- novelty_check(UKB_PPP,METAL)
-#' replication <- dplyr::filter(b,r2>=0.8)
-#' INF <- "/rds/project/jmmh2/rds-jmmh2-projects/olink_proteomics/scallop/INF/"
-#' # write.table(replication,file=file.path(INF,"work","UKB-PPP.txt"),
-#' #             row.names=FALSE,quote=FALSE,sep="\t")
-#' replication <- read.delim(file.path(find.package("pQTLtools"),"tests","UKB-PPP.txt")) %>%
-#'                dplyr::select(known.seqnames,known.rsid,query.rsid,query.prot)
-#' variant_list <- unique(c(dplyr::pull(replication,known.rsid),
-#'                          dplyr::pull(replication,query.rsid)))
-#' load(file.path(find.package("pQTLtools"),"tests","novel_data.rda"))
-#' prot_rsid <- with(novel_data,paste0(prot,"-",rsid))
-#' prot_rsid_repl <- with(replication,paste0(query.prot,"-",query.rsid))
-#' left <- setdiff(prot_rsid,prot_rsid_repl)
-#' # local LD reference panel by chromosome
-#' # r2 <- LDlinkR::LDmatrix(variant_list,pop="CEU",token=Sys.getenv("LDLINK_TOKEN"))
-#' plink <- "/rds/user/jhz22/hpc-work/bin/plink"
-#' b <- list()
-#' for(i in unique(dplyr::pull(METAL,Chromosome)))
-#' {
-#'    u <- dplyr::filter(UKB_PPP,chr %in% i) %>%
-#'         dplyr::select(chr,pos,uniprot,rsid,prot)
-#'    m <- dplyr::filter(METAL,Chromosome %in% i) %>%
-#'         dplyr::select(chr,pos,uniprot,rsid,prot)
-#'    bfile <- file.path(INF,"INTERVAL","per_chr",paste0("chr",i))
-#'    b[[i]] <- novelty_check(u,m,ldops=list(bfile=bfile,plink=plink))
+#' # 1000G mode
+#' novelty_check(known_loci, query_loci)
+#'
+#' # Local PLINK mode
+#' novelty_check(
+#'   known_loci,
+#'   query_loci,
+#'   ldops = list(
+#'     bfile = "/path/interval.imputed.olink.chr_3",
+#'     plink = "/path/plink"
+#'   )
+#' )
 #' }
-#' replication2 <- dplyr::filter(bind_rows(b), r2>=0.8)
-#' prot_rsid <- with(novel_data %>%
-#'              dplyr::left_join(gap.datasets::inf1[c("prot","gene")]),paste0(gene,"-",rsid))
-#' prot_rsid_repl <- with(replication2,paste0(query.prot,"-",query.rsid))
-#' novel <- setdiff(prot_rsid,prot_rsid_repl)
-#' }
-
-novelty_check <- function(known_loci,query_loci,ldops=NULL,flanking=1e6,pop="EUR",verbose=TRUE)
-{
-  rsid <- seqnames <- start <- strand <- width <- chr <- pos <- prot <- uniprot <- known.rsid <- query.rsid <- NA
-  bfile <- plink <- NA
-  query <- with(known_loci,GenomicRanges::GRanges(seqnames=chr,IRanges::IRanges(start=pos,width=1),
-                                                  uniprot=uniprot,rsid=rsid,pos=pos,prot=prot))
-  subject <- with(query_loci,GenomicRanges::GRanges(seqnames=chr,IRanges::IRanges(start=pos-flanking,end=pos+flanking),
-                                                    uniprot=uniprot,rsid=rsid,pos=pos,prot=prot))
-  fo <- GenomicRanges::findOverlaps(query,subject) %>%
-        data.frame()
-  eq <- subject[fo$subjectHits,]$uniprot==query[fo$queryHits,]$uniprot
-  ov <- data.frame(fo[eq,])
-  ov1 <- query[ov$queryHits,] %>%
-         data.frame() %>%
-         select(-strand,-width) %>%
-         mutate(rsid=if_else(rsid=="-",paste0("chr",seqnames,":",start),rsid))
-  ov2 <- subject[ov$subjectHits,] %>%
-         data.frame() %>%
-         select(-strand,-width)
-  b <- bind_cols(data.frame(ov1) %>% setNames(paste("known",names(ov1),sep=".")),
-                 data.frame(ov2) %>% setNames(paste("query",names(ov2),sep=".")))
-  variant_list <- unique(c(b[["known.rsid"]],b[["query.rsid"]]))
-  if (!is.null(ldops))
-  {
-    r <- ieugwasr::ld_matrix_local(variants=variant_list,
-                                   bfile=ldops[["bfile"]],
-                                   plink_bin=ldops[["plink"]],
-                                   with_alleles=FALSE)
-  } else r <- ieugwasr::ld_matrix(variant_list,pop=pop,with_alleles=FALSE)
-  failure <- setdiff(variant_list,colnames(r))
-  if (verbose) {
-     cat("\nLD information cannot be retrieved for", length(failure), "variants:\n")
-     cat(failure,sep="\n")
-  }
-  known.keep <- intersect(b[["known.rsid"]],colnames(r))
-  query.keep <- intersect(b[["query.rsid"]],colnames(r))
-  ll <- table(b[["known.rsid"]],b[["query.rsid"]])
-  ll[,] <- NA
-  ll[known.keep,query.keep] <- r[known.keep,query.keep]
-  r2 <- sapply(1:nrow(b), function(x) with(b[x, ], ifelse(known.rsid == query.rsid, 1, ll[known.rsid, query.rsid]^2)))
-  invisible(mutate(b,r2=r2))
+#'
+novelty_check <- function(
+    known_loci,
+    query_loci,
+    ldops = NULL,
+    flanking = 1e6,
+    pop = "EUR",
+    verbose = TRUE
+) {
+    required_cols <- c("chr","pos","uniprot","rsid","prot")
+    if (!all(required_cols %in% names(known_loci))) {
+        stop("known_loci missing required columns")
+    }
+    if (!all(required_cols %in% names(query_loci))) {
+        stop("query_loci missing required columns")
+    }
+    make_gr <- function(df, flank = 0) {
+        GenomicRanges::GRanges(
+            seqnames = df$chr,
+            ranges = IRanges::IRanges(
+                start = pmax(1, df$pos - flank),
+                end = df$pos + flank
+            ),
+            uniprot = df$uniprot,
+            rsid = df$rsid,
+            prot = df$prot,
+            pos = df$pos
+        )
+    }
+    known_gr <- make_gr(known_loci, flank = 0)
+    query_gr <- make_gr(query_loci, flank = flanking)
+    hits <- GenomicRanges::findOverlaps(known_gr, query_gr)
+    if (length(hits) == 0) return(data.frame())
+    hits_df <- data.frame(
+        known_idx = queryHits(hits),
+        query_idx = subjectHits(hits)
+    )
+    hits_df <- hits_df[
+        known_gr[hits_df$known_idx]$uniprot ==
+        query_gr[hits_df$query_idx]$uniprot,
+    ]
+    if (nrow(hits_df) == 0) return(data.frame())
+    b <- data.frame(
+        known.rsid = known_gr[hits_df$known_idx]$rsid,
+        query.rsid = query_gr[hits_df$query_idx]$rsid,
+        known.prot = known_gr[hits_df$known_idx]$prot,
+        query.prot = query_gr[hits_df$query_idx]$prot,
+        known.uniprot = known_gr[hits_df$known_idx]$uniprot,
+        query.uniprot = query_gr[hits_df$query_idx]$uniprot,
+        stringsAsFactors = FALSE
+    )
+    variant_list <- unique(c(b$known.rsid, b$query.rsid))
+    if (is.null(ldops)) {
+        r <- ieugwasr::ld_matrix(
+            variants = variant_list,
+            pop = pop,
+            with_alleles = FALSE
+        )
+    } else {
+        r <- ieugwasr::ld_matrix_local(
+            variants = variant_list,
+            bfile = ldops$bfile,
+            plink_bin = ldops$plink,
+            with_alleles = FALSE
+        )
+    }
+    if (!is.matrix(r)) {
+        stop("LD matrix computation failed")
+    }
+    colnames(r) <- gsub("_[A-Z]+$", "", colnames(r))
+    rownames(r) <- gsub("_[A-Z]+$", "", rownames(r))
+    missing <- setdiff(variant_list, colnames(r))
+    if (verbose && length(missing) > 0) {
+        message("Missing LD variants: ", length(missing))
+    }
+    r2_vals <- mapply(
+        function(kr, qr) {
+            if (kr == qr) return(1)
+            if (!(kr %in% colnames(r)) || !(qr %in% rownames(r))) return(NA)
+            r[kr, qr]^2
+        },
+        b$known.rsid,
+        b$query.rsid
+    )
+    b$r2 <- r2_vals
+    b
 }
-
-# l <- matrix(NA,length(b[["known.rsid"]]),length(b[["query.rsid"]]),dimnames=list(b[["known.rsid"]], b[["query.rsid"]]))
-# l[known.keep,query.keep] <- r[known.keep,query.keep]
-# r2 <-  sapply(1:nrow(b),function(x) with(b[x,],ifelse(known.rsid==query.rsid,1,l[known.rsid,query.rsid]^2)))
-
-# wget https://www.biorxiv.org/content/biorxiv/early/2022/06/18/2022.06.17.496443/DC2/embed/media-2.xlsx -O sun22.xlsx
-

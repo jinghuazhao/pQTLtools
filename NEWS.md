@@ -1,6 +1,6 @@
 ## pQTLtools 0.5
 
-(2025/5/22)
+(2025/5/26)
 
 * _pkgdown.yml overhaul.
 * Accommodate revised gap::METAL_forestplot in vignette.
@@ -8,10 +8,12 @@
 * Add inst/scripts docs.sh, cran.sb (very sensitive!) and cran.sh.
 * Amend import_OpenGWAS using <https://opengwas.io/datasets/>.
 * Drop link to GitHub repository in _pkgdown.yml and a lot of options().
+* Imports data.table.
 * Merge Bioconductor-related and LocusZoom.js/SCALLOP-Caprion articles.
 * Revise README.Rmd/bioconductor.Rmd/pQTLtools.Rmd to suppress Fedora 41 check.
+* Rewrite novelty_check(), qtl_lookup().
 * Set fig.height/fig.width for articles and suggest Cairo for CairoPNG.
-* Suggests CAMERA, MSnbase, MSstats, mzR, protViz, rawrr, Spectra.
+* Suggests CAMERA, MSnbase, MSstats, Spectra, mzR, protViz, rawrr.
 
 ## pQTLtools 0.4
 

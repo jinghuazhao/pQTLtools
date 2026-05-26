@@ -25,18 +25,23 @@ echo "=== CRAN pipeline start $(date) on $(hostname) ==="
 
 rm -rf "$dst"
 mkdir -p "$dst"
+
+cd "$src"
+
+Rscript -e "devtools::document()"
+
 rsync -a --delete \
   --exclude='docs/' --exclude='pkgdown/' \
-  --exclude='README.Rmd' \
-  --exclude='.*' "$src/" "$dst/"
+  --exclude='README.Rmd' --exclude='LICENSE.md' \
+  --exclude='.*' \
+  "$src/" "$dst/"
 
 cd "$HOME"
 
-ver=$(awk '/^Version:/ {print $2}' "$src/DESCRIPTION")
+ver=$(awk '/^Version:/ {print $2}' "$dst/DESCRIPTION")
 pkg="pQTLtools_${ver}.tar.gz"
-[ -n "${ver:-}" ] || { echo "Version not found"; exit 1; }
 
-R CMD build --resave-data --compact-vignettes=both "$src"
+R CMD build --resave-data --compact-vignettes=both "$dst"
 R CMD INSTALL "$pkg"
 R CMD check --as-cran --run-donttest "$pkg"
 

@@ -15,11 +15,19 @@ module purge; module load rhel8/default-icl ceuadmin/R
 export TMPDIR=/rds/user/jhz22/hpc-work/work IN_PKGDOWN=true R_PKGDOWN_BUILD_LLM=false
 cd ~/pQTLtools
 
-Rscript -e 'suppressMessages({library(pkgdown);library(roxygen2);library(knitr);
-knitr::knit("README.Rmd");roxygen2::roxygenise();pkgdown::build_site()})'
+Rscript -e '
+suppressMessages({
+    library(pkgdown)
+    library(roxygen2)
+    library(knitr)
+    knitr::knit("README.Rmd")
+    roxygen2::roxygenise()
+    pkgdown::build_site()
+})
+'
 
 rm -f vignettes/*.html
 rm -rf vignettes/pQTLtools
 
 git add -A; git commit -m "pkgdown rebuild $(date +%F)" || true; git push || true
-du -hs --exclude .git --exclude docs
+du -hs --exclude .git --exclude docs .

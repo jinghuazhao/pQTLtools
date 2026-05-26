@@ -2,7 +2,7 @@ Package: pQTLtools
 Type: Package
 Title: A Protein Quantitative Trait Locus Toolkit
 Version: 0.5
-Date: 2025-05-22
+Date: 2025-05-26
 Authors@R: c(
     person("Jing Hua", "Zhao", , "jinghuazhao@hotmail.com", role = c("aut", "cre"),
       comment = c(ORCID = "0000-0002-1463-5870", "0000-0003-4930-3582")
@@ -22,7 +22,7 @@ BugReports: https://github.com/jinghuazhao/pQTLtools/issues
 Depends:
     R (>= 3.5.0), pQTLdata
 Imports:
-    dplyr, gap, grDevices, graphics, ggplot2, stats, utils, MsCoreUtils, S4Vectors, SummarizedExperiment, Rdpack
+    data.table, dplyr, gap, grDevices, graphics, ggplot2, stats, utils, MsCoreUtils, S4Vectors, SummarizedExperiment, Rdpack
 RdMacros: Rdpack
 Suggests:
     AnnotationFilter,

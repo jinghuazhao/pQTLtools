@@ -12,12 +12,12 @@
 -   `import_OpenGWAS()` : Import OpenGWAS
 -   `import_eQTLCatalogue()` : Import eQTL Catalogue
 -   `make_ExpressionSet()` : A call to expressionSet class
--   `novelty_check()` : Locus novelty check
+-   `novelty_check()` : Locus novelty check using LD overlap
 -   `peptideAssociationPlot()` : peptide association plot
 -   `peptideMapping()` : peptide-to-protein mapping
 -   `pqtlMR()` : Basic pQTL-MR analysis
 -   `protein_altering_variants` : Protein-altering variants
--   `qtl_lookup()` : QTL lookup
+-   `qtl_lookup()` : QTL lookup with LD-based proxy selection
 -   `regionqueries()` : phenoscanner regionqueries in batches
 -   `run_coloc()` : Colocalisation analysis
 -   `run_TwoSampleMR()` : Basic TwoSampleMR analysis

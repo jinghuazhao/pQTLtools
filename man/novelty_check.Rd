@@ -2,7 +2,7 @@
 % Please edit documentation in R/novelty_check.R
 \name{novelty_check}
 \alias{novelty_check}
-\title{Locus novelty check}
+\title{Locus novelty check using LD overlap}
 \usage{
 novelty_check(
   known_loci,
@@ -14,83 +14,61 @@ novelty_check(
 )
 }
 \arguments{
-\item{known_loci}{A data.frame of published loci.}
+\item{known_loci}{Data.frame of known/published loci.
+Must contain columns: chr, pos, uniprot, rsid, prot.}
 
-\item{query_loci}{A data.frame of loci whose novelties are unclear.}
+\item{query_loci}{Data.frame of query loci to evaluate.
+Must contain columns: chr, pos, uniprot, rsid, prot.}
 
-\item{ldops}{arguments for ieugwasr::ld_matrix_local()}
+\item{ldops}{Optional list specifying local LD computation:
+\describe{
+\item{bfile}{PLINK binary prefix (bed/bim/fam)}
+\item{plink}{Path to PLINK executable}
+}}
 
-\item{flanking}{A flanking distance.}
+\item{flanking}{Genomic window (bp) around query loci used for overlap.
+Default is 1e6 (±1 Mb).}
 
-\item{pop}{The reference population as for ieugwasr::ld_matrix().}
+\item{pop}{1000 Genomes population code (e.g., "EUR") used when ldops = NULL.}
 
-\item{verbose}{A flag to show nonexistent variants.}
+\item{verbose}{Logical; if TRUE prints missing LD variants.}
 }
 \value{
-A data.frame containing nonnovel loci.
+A data.frame with paired known/query loci and LD r^2 values.
 }
 \description{
-This function checks novelty of a list of loci such as pQTLs against a published list.
-Both known_loci and query_loci have these variables: chr, pos, uniprot, rsid, prot.
+This function assesses whether query loci are novel or match known loci
+by combining genomic proximity (± flanking window) and linkage disequilibrium (LD).
+}
+\details{
+It supports:
+\itemize{
+\item 1000 Genomes LD reference via ieugwasr
+\item Local PLINK reference panels via ld_matrix_local()
+}
+
+The function:
+\enumerate{
+\item Finds overlapping loci within a flanking distance
+\item Matches loci by gene/protein (uniprot)
+\item Computes LD (r and r^2) between known and query variants
+\item Returns per-pair LD values for downstream novelty/replication assessment
+}
 }
 \examples{
 \dontrun{
-suppressMessages(require(dplyr))
-suppressMessages(require(openxlsx))
-# SCALLOP-INF list
-METAL <- read.delim(file.path(find.package("pQTLtools"),"tests","INF1.METAL")) \%>\%
-         dplyr::left_join(gap.datasets::inf1[c("prot","gene")]) \%>\%
-         dplyr::mutate(prot=gene,prot_rsid=paste0(uniprot,"-",rsid),chr=Chromosome,pos=Position)
-# UKB_PPP list
-results <- "/rds/project/jmmh2/rds-jmmh2-results/public/proteomics"
-url <- file.path(results,"UKB-PPP","doc","sun22.xlsx")
-ST10 <- read.xlsx(url,"ST10",startRow=3) \%>\%
-        dplyr::mutate(uniprot=Target.UniProt,rsid=rsID,prot=Assay.Target) \%>\%
-        dplyr::mutate(prot_rsid=paste0(uniprot,"-",rsid))
-sentinels <- dplyr::left_join(METAL,ST10,by="prot_rsid") \%>\%
-             dplyr::select(prot_rsid,cis.trans,rsID) \%>\%
-             dplyr::filter(!is.na(rsID))
-inf1 <- c(with(gap.datasets::inf1,uniprot),with(METAL,uniprot)) \%>\%
-        unique()
-overlap <- dplyr::filter(ST10,uniprot \%in\% inf1)
-dim(overlap)
-UKB_PPP <- dplyr::mutate(overlap,
-           chrpos=strsplit(overlap[["Variant.ID.(CHROM:GENPOS.(hg37):A0:A1:imp:v1)"]],":"),
-           chr=as.integer(unlist(lapply(chrpos,"[[",1))),
-           pos=as.integer(unlist(lapply(chrpos,"[[",2))),
-           chrpos=paste(chr,pos,sep=":"))
-# ieugwasr LD reference which requires an up-to-date registration.
-suppressMessages(require(GenomicRanges))
-b <- novelty_check(UKB_PPP,METAL)
-replication <- dplyr::filter(b,r2>=0.8)
-INF <- "/rds/project/jmmh2/rds-jmmh2-projects/olink_proteomics/scallop/INF/"
-# write.table(replication,file=file.path(INF,"work","UKB-PPP.txt"),
-#             row.names=FALSE,quote=FALSE,sep="\t")
-replication <- read.delim(file.path(find.package("pQTLtools"),"tests","UKB-PPP.txt")) \%>\%
-               dplyr::select(known.seqnames,known.rsid,query.rsid,query.prot)
-variant_list <- unique(c(dplyr::pull(replication,known.rsid),
-                         dplyr::pull(replication,query.rsid)))
-load(file.path(find.package("pQTLtools"),"tests","novel_data.rda"))
-prot_rsid <- with(novel_data,paste0(prot,"-",rsid))
-prot_rsid_repl <- with(replication,paste0(query.prot,"-",query.rsid))
-left <- setdiff(prot_rsid,prot_rsid_repl)
-# local LD reference panel by chromosome
-# r2 <- LDlinkR::LDmatrix(variant_list,pop="CEU",token=Sys.getenv("LDLINK_TOKEN"))
-plink <- "/rds/user/jhz22/hpc-work/bin/plink"
-b <- list()
-for(i in unique(dplyr::pull(METAL,Chromosome)))
-{
-   u <- dplyr::filter(UKB_PPP,chr \%in\% i) \%>\%
-        dplyr::select(chr,pos,uniprot,rsid,prot)
-   m <- dplyr::filter(METAL,Chromosome \%in\% i) \%>\%
-        dplyr::select(chr,pos,uniprot,rsid,prot)
-   bfile <- file.path(INF,"INTERVAL","per_chr",paste0("chr",i))
-   b[[i]] <- novelty_check(u,m,ldops=list(bfile=bfile,plink=plink))
+# 1000G mode
+novelty_check(known_loci, query_loci)
+
+# Local PLINK mode
+novelty_check(
+  known_loci,
+  query_loci,
+  ldops = list(
+    bfile = "/path/interval.imputed.olink.chr_3",
+    plink = "/path/plink"
+  )
+)
 }
-replication2 <- dplyr::filter(bind_rows(b), r2>=0.8)
-prot_rsid <- with(novel_data \%>\%
-             dplyr::left_join(gap.datasets::inf1[c("prot","gene")]),paste0(gene,"-",rsid))
-prot_rsid_repl <- with(replication2,paste0(query.prot,"-",query.rsid))
-novel <- setdiff(prot_rsid,prot_rsid_repl)
-}
+
 }
