@@ -162,6 +162,15 @@ Figure 1.4: Forest plots
 <span>        <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>log10p<span class="op">=</span><span class="op">-</span><span class="va">log10p</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">hits</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"prot"</span>,<span class="st">"Chr"</span>,<span class="st">"bp"</span>,<span class="st">"SNP"</span>,<span class="st">"log10p"</span>,<span class="st">"uniprot"</span><span class="op">)</span></span>
 <span><span class="va">cistrans</span> <span class="op">&lt;-</span> <span class="fu">gap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gap/man/cis.vs.trans.classification.html" class="external-link">cis.vs.trans.classification</a></span><span class="op">(</span><span class="va">hits</span>,<span class="fu">pQTLdata</span><span class="fu">::</span><span class="va"><a href="https://jinghuazhao.github.io/pQTLdata/reference/inf1.html" class="external-link">inf1</a></span>,<span class="st">"uniprot"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Cis/trans classification</span></span>
+<span><span class="co">#&gt; ------------------------</span></span>
+<span><span class="co">#&gt; Variants : 180 </span></span>
+<span><span class="co">#&gt; Proteins : 70 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;   cis trans </span></span>
+<span><span class="co">#&gt;    59   121</span></span>
 <span><span class="va">cis.vs.trans</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">cistrans</span>,<span class="va">data</span><span class="op">)</span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">cistrans</span>,<span class="va">table</span><span class="op">)</span>,caption<span class="op">=</span><span class="st">"cis/trans classification"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
@@ -171,442 +180,366 @@ Figure 1.4: Forest plots
 <th align="left"></th>
 <th align="right">cis</th>
 <th align="right">trans</th>
-<th align="right">total</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">ADA</td>
 <td align="right">1</td>
 <td align="right">0</td>
-<td align="right">1</td>
 </tr>
 <tr class="even">
 <td align="left">CASP8</td>
 <td align="right">1</td>
 <td align="right">0</td>
-<td align="right">1</td>
 </tr>
 <tr class="odd">
 <td align="left">CCL11</td>
 <td align="right">1</td>
 <td align="right">4</td>
-<td align="right">5</td>
 </tr>
 <tr class="even">
 <td align="left">CCL13</td>
 <td align="right">1</td>
 <td align="right">3</td>
-<td align="right">4</td>
 </tr>
 <tr class="odd">
 <td align="left">CCL19</td>
 <td align="right">1</td>
 <td align="right">3</td>
-<td align="right">4</td>
 </tr>
 <tr class="even">
 <td align="left">CCL2</td>
 <td align="right">0</td>
-<td align="right">3</td>
 <td align="right">3</td>
 </tr>
 <tr class="odd">
 <td align="left">CCL20</td>
 <td align="right">1</td>
 <td align="right">1</td>
-<td align="right">2</td>
 </tr>
 <tr class="even">
 <td align="left">CCL23</td>
 <td align="right">1</td>
 <td align="right">0</td>
-<td align="right">1</td>
 </tr>
 <tr class="odd">
 <td align="left">CCL25</td>
 <td align="right">1</td>
 <td align="right">3</td>
-<td align="right">4</td>
 </tr>
 <tr class="even">
 <td align="left">CCL3</td>
 <td align="right">1</td>
 <td align="right">1</td>
-<td align="right">2</td>
 </tr>
 <tr class="odd">
 <td align="left">CCL4</td>
 <td align="right">1</td>
 <td align="right">1</td>
-<td align="right">2</td>
 </tr>
 <tr class="even">
 <td align="left">CCL7</td>
 <td align="right">1</td>
 <td align="right">2</td>
-<td align="right">3</td>
 </tr>
 <tr class="odd">
 <td align="left">CCL8</td>
 <td align="right">1</td>
 <td align="right">1</td>
-<td align="right">2</td>
 </tr>
 <tr class="even">
 <td align="left">CD244</td>
 <td align="right">1</td>
 <td align="right">2</td>
-<td align="right">3</td>
 </tr>
 <tr class="odd">
 <td align="left">CD274</td>
 <td align="right">1</td>
 <td align="right">0</td>
-<td align="right">1</td>
 </tr>
 <tr class="even">
 <td align="left">CD40</td>
 <td align="right">1</td>
 <td align="right">0</td>
-<td align="right">1</td>
 </tr>
 <tr class="odd">
 <td align="left">CD5</td>
 <td align="right">1</td>
 <td align="right">2</td>
-<td align="right">3</td>
 </tr>
 <tr class="even">
 <td align="left">CD6</td>
 <td align="right">1</td>
 <td align="right">1</td>
-<td align="right">2</td>
 </tr>
 <tr class="odd">
 <td align="left">CDCP1</td>
 <td align="right">1</td>
 <td align="right">2</td>
-<td align="right">3</td>
 </tr>
 <tr class="even">
 <td align="left">CSF1</td>
 <td align="right">1</td>
 <td align="right">0</td>
-<td align="right">1</td>
 </tr>
 <tr class="odd">
 <td align="left">CST5</td>
 <td align="right">1</td>
 <td align="right">3</td>
-<td align="right">4</td>
 </tr>
 <tr class="even">
 <td align="left">CX3CL1</td>
 <td align="right">1</td>
 <td align="right">2</td>
-<td align="right">3</td>
 </tr>
 <tr class="odd">
 <td align="left">CXCL1</td>
 <td align="right">1</td>
 <td align="right">0</td>
-<td align="right">1</td>
 </tr>
 <tr class="even">
 <td align="left">CXCL10</td>
 <td align="right">1</td>
 <td align="right">1</td>
-<td align="right">2</td>
 </tr>
 <tr class="odd">
 <td align="left">CXCL11</td>
 <td align="right">1</td>
 <td align="right">3</td>
-<td align="right">4</td>
 </tr>
 <tr class="even">
 <td align="left">CXCL5</td>
 <td align="right">1</td>
 <td align="right">3</td>
-<td align="right">4</td>
 </tr>
 <tr class="odd">
 <td align="left">CXCL6</td>
 <td align="right">1</td>
 <td align="right">1</td>
-<td align="right">2</td>
 </tr>
 <tr class="even">
 <td align="left">CXCL9</td>
 <td align="right">1</td>
 <td align="right">2</td>
-<td align="right">3</td>
 </tr>
 <tr class="odd">
 <td align="left">DNER</td>
 <td align="right">1</td>
 <td align="right">0</td>
-<td align="right">1</td>
 </tr>
 <tr class="even">
 <td align="left">EIF4EBP1</td>
 <td align="right">0</td>
-<td align="right">1</td>
 <td align="right">1</td>
 </tr>
 <tr class="odd">
 <td align="left">FGF19</td>
 <td align="right">0</td>
 <td align="right">3</td>
-<td align="right">3</td>
 </tr>
 <tr class="even">
 <td align="left">FGF21</td>
 <td align="right">1</td>
 <td align="right">2</td>
-<td align="right">3</td>
 </tr>
 <tr class="odd">
 <td align="left">FGF23</td>
 <td align="right">0</td>
-<td align="right">2</td>
 <td align="right">2</td>
 </tr>
 <tr class="even">
 <td align="left">FGF5</td>
 <td align="right">1</td>
 <td align="right">0</td>
-<td align="right">1</td>
 </tr>
 <tr class="odd">
 <td align="left">FLT3LG</td>
 <td align="right">0</td>
-<td align="right">6</td>
 <td align="right">6</td>
 </tr>
 <tr class="even">
 <td align="left">GDNF</td>
 <td align="right">1</td>
 <td align="right">0</td>
-<td align="right">1</td>
 </tr>
 <tr class="odd">
 <td align="left">HGF</td>
 <td align="right">1</td>
 <td align="right">1</td>
-<td align="right">2</td>
 </tr>
 <tr class="even">
 <td align="left">IL10</td>
 <td align="right">1</td>
 <td align="right">2</td>
-<td align="right">3</td>
 </tr>
 <tr class="odd">
 <td align="left">IL10RB</td>
 <td align="right">1</td>
 <td align="right">1</td>
-<td align="right">2</td>
 </tr>
 <tr class="even">
 <td align="left">IL12B</td>
 <td align="right">1</td>
 <td align="right">7</td>
-<td align="right">8</td>
 </tr>
 <tr class="odd">
 <td align="left">IL15RA</td>
 <td align="right">1</td>
 <td align="right">0</td>
-<td align="right">1</td>
 </tr>
 <tr class="even">
 <td align="left">IL17C</td>
 <td align="right">1</td>
 <td align="right">0</td>
-<td align="right">1</td>
 </tr>
 <tr class="odd">
 <td align="left">IL18</td>
 <td align="right">1</td>
 <td align="right">1</td>
-<td align="right">2</td>
 </tr>
 <tr class="even">
 <td align="left">IL18R1</td>
 <td align="right">1</td>
 <td align="right">1</td>
-<td align="right">2</td>
 </tr>
 <tr class="odd">
 <td align="left">IL1A</td>
 <td align="right">0</td>
-<td align="right">1</td>
 <td align="right">1</td>
 </tr>
 <tr class="even">
 <td align="left">IL6</td>
 <td align="right">0</td>
 <td align="right">1</td>
-<td align="right">1</td>
 </tr>
 <tr class="odd">
 <td align="left">IL7</td>
 <td align="right">1</td>
 <td align="right">0</td>
-<td align="right">1</td>
 </tr>
 <tr class="even">
 <td align="left">IL8</td>
 <td align="right">1</td>
 <td align="right">0</td>
-<td align="right">1</td>
 </tr>
 <tr class="odd">
 <td align="left">KITLG</td>
 <td align="right">0</td>
-<td align="right">7</td>
 <td align="right">7</td>
 </tr>
 <tr class="even">
 <td align="left">LIFR</td>
 <td align="right">0</td>
 <td align="right">1</td>
-<td align="right">1</td>
 </tr>
 <tr class="odd">
 <td align="left">LTA</td>
 <td align="right">1</td>
 <td align="right">2</td>
-<td align="right">3</td>
 </tr>
 <tr class="even">
 <td align="left">MMP1</td>
 <td align="right">1</td>
 <td align="right">2</td>
-<td align="right">3</td>
 </tr>
 <tr class="odd">
 <td align="left">MMP10</td>
 <td align="right">1</td>
 <td align="right">1</td>
-<td align="right">2</td>
 </tr>
 <tr class="even">
 <td align="left">NGF</td>
 <td align="right">1</td>
 <td align="right">1</td>
-<td align="right">2</td>
 </tr>
 <tr class="odd">
 <td align="left">NTF3</td>
 <td align="right">0</td>
-<td align="right">1</td>
 <td align="right">1</td>
 </tr>
 <tr class="even">
 <td align="left">OSM</td>
 <td align="right">0</td>
 <td align="right">2</td>
-<td align="right">2</td>
 </tr>
 <tr class="odd">
 <td align="left">PLAU</td>
 <td align="right">1</td>
 <td align="right">5</td>
-<td align="right">6</td>
 </tr>
 <tr class="even">
 <td align="left">S100A12</td>
 <td align="right">1</td>
 <td align="right">0</td>
-<td align="right">1</td>
 </tr>
 <tr class="odd">
 <td align="left">SIRT2</td>
 <td align="right">1</td>
 <td align="right">0</td>
-<td align="right">1</td>
 </tr>
 <tr class="even">
 <td align="left">SLAMF1</td>
 <td align="right">1</td>
 <td align="right">4</td>
-<td align="right">5</td>
 </tr>
 <tr class="odd">
 <td align="left">SULT1A1</td>
 <td align="right">1</td>
 <td align="right">1</td>
-<td align="right">2</td>
 </tr>
 <tr class="even">
 <td align="left">TGFA</td>
 <td align="right">1</td>
 <td align="right">0</td>
-<td align="right">1</td>
 </tr>
 <tr class="odd">
 <td align="left">TGFB1</td>
 <td align="right">1</td>
 <td align="right">0</td>
-<td align="right">1</td>
 </tr>
 <tr class="even">
 <td align="left">TNFRSF11B</td>
 <td align="right">1</td>
 <td align="right">1</td>
-<td align="right">2</td>
 </tr>
 <tr class="odd">
 <td align="left">TNFRSF9</td>
 <td align="right">1</td>
 <td align="right">1</td>
-<td align="right">2</td>
 </tr>
 <tr class="even">
 <td align="left">TNFSF10</td>
 <td align="right">1</td>
 <td align="right">7</td>
-<td align="right">8</td>
 </tr>
 <tr class="odd">
 <td align="left">TNFSF11</td>
 <td align="right">1</td>
 <td align="right">5</td>
-<td align="right">6</td>
 </tr>
 <tr class="even">
 <td align="left">TNFSF12</td>
 <td align="right">1</td>
 <td align="right">4</td>
-<td align="right">5</td>
 </tr>
 <tr class="odd">
 <td align="left">TNFSF14</td>
 <td align="right">1</td>
 <td align="right">0</td>
-<td align="right">1</td>
 </tr>
 <tr class="even">
 <td align="left">VEGFA</td>
 <td align="right">1</td>
 <td align="right">3</td>
-<td align="right">4</td>
-</tr>
-<tr class="odd">
-<td align="left">total</td>
-<td align="right">59</td>
-<td align="right">121</td>
-<td align="right">180</td>
 </tr>
 </tbody>
 </table>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">cistrans</span>,<span class="va">total</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 180</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;   cis trans </span></span>
+<span><span class="co">#&gt;    59   121</span></span>
 <span><span class="cn">T</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">cistrans</span>,<span class="va">table</span><span class="op">)</span></span>
-<span><span class="va">H</span> <span class="op">&lt;-</span> <span class="cn">T</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/row_colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="cn">T</span><span class="op">)</span><span class="op">!=</span><span class="st">"total"</span>,<span class="st">"total"</span><span class="op">]</span></span>
 <span><span class="va">merge</span> <span class="op">&lt;-</span> <span class="va">merged</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Chrom"</span>,<span class="st">"Start"</span>,<span class="st">"End"</span>,<span class="st">"prot"</span>,<span class="st">"MarkerName"</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="va">merge_cvt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Vector-merge.html" class="external-link">merge</a></span><span class="op">(</span><span class="va">merge</span>,<span class="va">cis.vs.trans</span>,by.x<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"prot"</span>,<span class="st">"MarkerName"</span><span class="op">)</span>,by.y<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"prot"</span>,<span class="st">"SNP"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">ord</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">merge_cvt</span>,<span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/order.html" class="external-link">order</a></span><span class="op">(</span><span class="va">Chr</span>,<span class="va">bp</span><span class="op">)</span><span class="op">)</span></span>
@@ -664,7 +597,7 @@ Figure 2.1: Genomic associations
 <span class="header-section-number">2.3</span> Bar chart and circos plot<a class="anchor" aria-label="anchor" href="#bar-chart-and-circos-plot"></a>
 </h3>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/barplot.html" class="external-link">barplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">H</span><span class="op">)</span>,xlab<span class="op">=</span><span class="st">"No. of pQTL regions"</span>,ylab<span class="op">=</span><span class="st">"No. of proteins"</span>,</span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/barplot.html" class="external-link">barplot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/table.html" class="external-link">table</a></span><span class="op">(</span><span class="cn">T</span><span class="op">)</span>,xlab<span class="op">=</span><span class="st">"No. of pQTL regions"</span>,ylab<span class="op">=</span><span class="st">"No. of proteins"</span>,</span>
 <span>        ylim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">25</span><span class="op">)</span>,col<span class="op">=</span><span class="st">"darkgrey"</span>,border<span class="op">=</span><span class="st">"black"</span>,cex<span class="op">=</span><span class="fl">0.8</span>,cex.axis<span class="op">=</span><span class="fl">2</span>,cex.names<span class="op">=</span><span class="fl">2</span>,las<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ctbar"></span>
@@ -673,7 +606,16 @@ Figure 2.2: Bar chart
 </p>
 </div>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">gap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gap/man/circos.cis.vs.trans.plot.html" class="external-link">circos.cis.vs.trans.plot</a></span><span class="op">(</span>hits<span class="op">=</span><span class="va">f</span>,<span class="fu">pQTLdata</span><span class="fu">::</span><span class="va"><a href="https://jinghuazhao.github.io/pQTLdata/reference/inf1.html" class="external-link">inf1</a></span>,<span class="st">"uniprot"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">gap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gap/man/circos.cis.vs.trans.plot.html" class="external-link">circos.cis.vs.trans.plot</a></span><span class="op">(</span><span class="va">f</span>,<span class="fu">pQTLdata</span><span class="fu">::</span><span class="va"><a href="https://jinghuazhao.github.io/pQTLdata/reference/inf1.html" class="external-link">inf1</a></span>,<span class="st">"uniprot"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Cis/trans classification</span></span>
+<span><span class="co">#&gt; ------------------------</span></span>
+<span><span class="co">#&gt; Variants : 180 </span></span>
+<span><span class="co">#&gt; Proteins : 70 </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;   cis trans </span></span>
+<span><span class="co">#&gt;    59   121</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:ctcircos"></span>
 <img src="pQTLtools/ctcircos-1.png" alt="circos plot" width="672" style="display:block; margin: auto"><p class="caption">
@@ -829,7 +771,7 @@ Figure 2.4: <em>SH2B3</em> hotspot
 <span class="header-section-number">2.5</span> pQTL-gene plot<a class="anchor" aria-label="anchor" href="#pqtl-gene-plot"></a>
 </h3>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">t2d</span> <span class="op">&lt;-</span> <span class="fu">gap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gap/man/qtl2dplot.html" class="external-link">qtl2dplot</a></span><span class="op">(</span><span class="va">cis.vs.trans</span>,xlab<span class="op">=</span><span class="st">"pQTL position"</span>,ylab<span class="op">=</span><span class="st">"Gene position"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">t2d</span> <span class="op">&lt;-</span> <span class="fu">gap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gap/man/qtl2dplot.html" class="external-link">qtl2dplot</a></span><span class="op">(</span><span class="va">cis.vs.trans</span>,trait <span class="op">=</span> <span class="st">"prot"</span>,xlab<span class="op">=</span><span class="st">"pQTL position"</span>,ylab<span class="op">=</span><span class="st">"Gene position"</span><span class="op">)</span></span></code></pre></div>
 <div class="figure" style="text-align: center">
 <span style="display:block;" id="fig:qtl2dplot"></span>
 <img src="pQTLtools/qtl2dplot-1.png" alt="pQTL-gene plot" width="768" style="display:block; margin: auto"><p class="caption">
@@ -843,14 +785,17 @@ Figure 2.5: pQTL-gene plot
 </h3>
 <p>The pQTL-gene plot above can be also viewed in a 2-d plotly style,,</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">fig2d</span> <span class="op">&lt;-</span> <span class="fu">gap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gap/man/qtl2dplotly.html" class="external-link">qtl2dplotly</a></span><span class="op">(</span><span class="va">cis.vs.trans</span>,xlab<span class="op">=</span><span class="st">"pQTL position"</span>,ylab<span class="op">=</span><span class="st">"Gene position"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">fig2d</span> <span class="op">&lt;-</span> <span class="fu">gap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gap/man/qtl2dplotly.html" class="external-link">qtl2dplotly</a></span><span class="op">(</span><span class="va">cis.vs.trans</span>,trait<span class="op">=</span><span class="st">"prot"</span>,xlab<span class="op">=</span><span class="st">"pQTL position"</span>,ylab<span class="op">=</span><span class="st">"Gene position"</span><span class="op">)</span></span>
 <span><span class="fu">htmlwidgets</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/htmlwidgets/man/saveWidget.html" class="external-link">saveWidget</a></span><span class="op">(</span><span class="va">fig2d</span>,file<span class="op">=</span><span class="st">"fig2d.html"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: Ignoring 59 observations</span></span>
+<span><span class="co">#&gt; Warning: Ignoring 121 observations</span></span>
 <span><span class="fu">htmltools</span><span class="fu">::</span><span class="va"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">tags</a></span><span class="op">$</span><span class="fu">iframe</span><span class="op">(</span>src <span class="op">=</span> <span class="st">"/pQTLtools/articles/fig2d.html"</span>,  width <span class="op">=</span> <span class="st">"100%"</span>,  height <span class="op">=</span> <span class="st">"650px"</span><span class="op">)</span></span></code></pre></div>
 <iframe src="/pQTLtools/articles/fig2d.html" width="100%" height="650px"></iframe>
 <p>and 3-d counterpart,</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">fig3d</span> <span class="op">&lt;-</span> <span class="fu">gap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gap/man/qtl3dplotly.html" class="external-link">qtl3dplotly</a></span><span class="op">(</span><span class="va">cis.vs.trans</span>,zmax<span class="op">=</span><span class="fl">300</span>,qtl.prefix<span class="op">=</span><span class="st">"pQTL:"</span>,xlab<span class="op">=</span><span class="st">"pQTL position"</span>,ylab<span class="op">=</span><span class="st">"Gene position"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">fig3d</span> <span class="op">&lt;-</span> <span class="fu">gap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gap/man/qtl3dplotly.html" class="external-link">qtl3dplotly</a></span><span class="op">(</span><span class="va">cis.vs.trans</span>,trait<span class="op">=</span><span class="st">"prot"</span>,zmax<span class="op">=</span><span class="fl">300</span>,qtl.prefix<span class="op">=</span><span class="st">"pQTL:"</span>,xlab<span class="op">=</span><span class="st">"pQTL position"</span>,ylab<span class="op">=</span><span class="st">"Gene position"</span><span class="op">)</span></span>
 <span><span class="fu">htmlwidgets</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/htmlwidgets/man/saveWidget.html" class="external-link">saveWidget</a></span><span class="op">(</span><span class="va">fig3d</span>,file<span class="op">=</span><span class="st">"fig3d.html"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: Ignoring 180 observations</span></span>
 <span><span class="fu">htmltools</span><span class="fu">::</span><span class="va"><a href="https://rstudio.github.io/htmltools/reference/builder.html" class="external-link">tags</a></span><span class="op">$</span><span class="fu">iframe</span><span class="op">(</span>src <span class="op">=</span> <span class="st">"/pQTLtools/articles/fig3d.html"</span>, width <span class="op">=</span> <span class="st">"100%"</span>, height <span class="op">=</span> <span class="st">"600px"</span><span class="op">)</span></span></code></pre></div>
 <iframe src="/pQTLtools/articles/fig3d.html" width="100%" height="600px"></iframe>
 <p>Both plots are responsive.</p>
@@ -968,7 +913,7 @@ Figure 3.2: GREAT plots
 <span>  <span class="va">tb_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">tb_all</span>,<span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>gene<span class="op">=</span><span class="va">r</span>,<span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">r.post</span>,<span class="va">tb</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span><span class="co">#&gt; Don't make too frequent requests. The time break is 60s.</span></span>
-<span><span class="co">#&gt; Please wait for 55s for the next request.</span></span>
+<span><span class="co">#&gt; Please wait for 56s for the next request.</span></span>
 <span><span class="co">#&gt; The time break can be set by `request_interval` argument.</span></span>
 <span><span class="co">#&gt; Don't make too frequent requests. The time break is 60s.</span></span>
 <span><span class="co">#&gt; Please wait for 58s for the next request.</span></span>

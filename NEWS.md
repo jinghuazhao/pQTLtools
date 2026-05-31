@@ -1,6 +1,6 @@
 ## pQTLtools 0.5
 
-(2025/5/26)
+(2025/5/31)
 
 * _pkgdown.yml overhaul.
 * Accommodate revised gap::METAL_forestplot in vignette.

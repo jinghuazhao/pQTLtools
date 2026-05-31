@@ -64,91 +64,100 @@ hits <- merge(merged[c("CHR","POS","MarkerName","prot","log10p")],
         dplyr::mutate(log10p=-log10p)
 names(hits) <- c("prot","Chr","bp","SNP","log10p","uniprot")
 cistrans <- gap::cis.vs.trans.classification(hits,pQTLdata::inf1,"uniprot")
+#> 
+#> Cis/trans classification
+#> ------------------------
+#> Variants : 180 
+#> Proteins : 70 
+#> 
+#> 
+#>   cis trans 
+#>    59   121
 cis.vs.trans <- with(cistrans,data)
 knitr::kable(with(cistrans,table),caption="cis/trans classification")
 ```
 
-|           | cis | trans | total |
-|:----------|----:|------:|------:|
-| ADA       |   1 |     0 |     1 |
-| CASP8     |   1 |     0 |     1 |
-| CCL11     |   1 |     4 |     5 |
-| CCL13     |   1 |     3 |     4 |
-| CCL19     |   1 |     3 |     4 |
-| CCL2      |   0 |     3 |     3 |
-| CCL20     |   1 |     1 |     2 |
-| CCL23     |   1 |     0 |     1 |
-| CCL25     |   1 |     3 |     4 |
-| CCL3      |   1 |     1 |     2 |
-| CCL4      |   1 |     1 |     2 |
-| CCL7      |   1 |     2 |     3 |
-| CCL8      |   1 |     1 |     2 |
-| CD244     |   1 |     2 |     3 |
-| CD274     |   1 |     0 |     1 |
-| CD40      |   1 |     0 |     1 |
-| CD5       |   1 |     2 |     3 |
-| CD6       |   1 |     1 |     2 |
-| CDCP1     |   1 |     2 |     3 |
-| CSF1      |   1 |     0 |     1 |
-| CST5      |   1 |     3 |     4 |
-| CX3CL1    |   1 |     2 |     3 |
-| CXCL1     |   1 |     0 |     1 |
-| CXCL10    |   1 |     1 |     2 |
-| CXCL11    |   1 |     3 |     4 |
-| CXCL5     |   1 |     3 |     4 |
-| CXCL6     |   1 |     1 |     2 |
-| CXCL9     |   1 |     2 |     3 |
-| DNER      |   1 |     0 |     1 |
-| EIF4EBP1  |   0 |     1 |     1 |
-| FGF19     |   0 |     3 |     3 |
-| FGF21     |   1 |     2 |     3 |
-| FGF23     |   0 |     2 |     2 |
-| FGF5      |   1 |     0 |     1 |
-| FLT3LG    |   0 |     6 |     6 |
-| GDNF      |   1 |     0 |     1 |
-| HGF       |   1 |     1 |     2 |
-| IL10      |   1 |     2 |     3 |
-| IL10RB    |   1 |     1 |     2 |
-| IL12B     |   1 |     7 |     8 |
-| IL15RA    |   1 |     0 |     1 |
-| IL17C     |   1 |     0 |     1 |
-| IL18      |   1 |     1 |     2 |
-| IL18R1    |   1 |     1 |     2 |
-| IL1A      |   0 |     1 |     1 |
-| IL6       |   0 |     1 |     1 |
-| IL7       |   1 |     0 |     1 |
-| IL8       |   1 |     0 |     1 |
-| KITLG     |   0 |     7 |     7 |
-| LIFR      |   0 |     1 |     1 |
-| LTA       |   1 |     2 |     3 |
-| MMP1      |   1 |     2 |     3 |
-| MMP10     |   1 |     1 |     2 |
-| NGF       |   1 |     1 |     2 |
-| NTF3      |   0 |     1 |     1 |
-| OSM       |   0 |     2 |     2 |
-| PLAU      |   1 |     5 |     6 |
-| S100A12   |   1 |     0 |     1 |
-| SIRT2     |   1 |     0 |     1 |
-| SLAMF1    |   1 |     4 |     5 |
-| SULT1A1   |   1 |     1 |     2 |
-| TGFA      |   1 |     0 |     1 |
-| TGFB1     |   1 |     0 |     1 |
-| TNFRSF11B |   1 |     1 |     2 |
-| TNFRSF9   |   1 |     1 |     2 |
-| TNFSF10   |   1 |     7 |     8 |
-| TNFSF11   |   1 |     5 |     6 |
-| TNFSF12   |   1 |     4 |     5 |
-| TNFSF14   |   1 |     0 |     1 |
-| VEGFA     |   1 |     3 |     4 |
-| total     |  59 |   121 |   180 |
+|           | cis | trans |
+|:----------|----:|------:|
+| ADA       |   1 |     0 |
+| CASP8     |   1 |     0 |
+| CCL11     |   1 |     4 |
+| CCL13     |   1 |     3 |
+| CCL19     |   1 |     3 |
+| CCL2      |   0 |     3 |
+| CCL20     |   1 |     1 |
+| CCL23     |   1 |     0 |
+| CCL25     |   1 |     3 |
+| CCL3      |   1 |     1 |
+| CCL4      |   1 |     1 |
+| CCL7      |   1 |     2 |
+| CCL8      |   1 |     1 |
+| CD244     |   1 |     2 |
+| CD274     |   1 |     0 |
+| CD40      |   1 |     0 |
+| CD5       |   1 |     2 |
+| CD6       |   1 |     1 |
+| CDCP1     |   1 |     2 |
+| CSF1      |   1 |     0 |
+| CST5      |   1 |     3 |
+| CX3CL1    |   1 |     2 |
+| CXCL1     |   1 |     0 |
+| CXCL10    |   1 |     1 |
+| CXCL11    |   1 |     3 |
+| CXCL5     |   1 |     3 |
+| CXCL6     |   1 |     1 |
+| CXCL9     |   1 |     2 |
+| DNER      |   1 |     0 |
+| EIF4EBP1  |   0 |     1 |
+| FGF19     |   0 |     3 |
+| FGF21     |   1 |     2 |
+| FGF23     |   0 |     2 |
+| FGF5      |   1 |     0 |
+| FLT3LG    |   0 |     6 |
+| GDNF      |   1 |     0 |
+| HGF       |   1 |     1 |
+| IL10      |   1 |     2 |
+| IL10RB    |   1 |     1 |
+| IL12B     |   1 |     7 |
+| IL15RA    |   1 |     0 |
+| IL17C     |   1 |     0 |
+| IL18      |   1 |     1 |
+| IL18R1    |   1 |     1 |
+| IL1A      |   0 |     1 |
+| IL6       |   0 |     1 |
+| IL7       |   1 |     0 |
+| IL8       |   1 |     0 |
+| KITLG     |   0 |     7 |
+| LIFR      |   0 |     1 |
+| LTA       |   1 |     2 |
+| MMP1      |   1 |     2 |
+| MMP10     |   1 |     1 |
+| NGF       |   1 |     1 |
+| NTF3      |   0 |     1 |
+| OSM       |   0 |     2 |
+| PLAU      |   1 |     5 |
+| S100A12   |   1 |     0 |
+| SIRT2     |   1 |     0 |
+| SLAMF1    |   1 |     4 |
+| SULT1A1   |   1 |     1 |
+| TGFA      |   1 |     0 |
+| TGFB1     |   1 |     0 |
+| TNFRSF11B |   1 |     1 |
+| TNFRSF9   |   1 |     1 |
+| TNFSF10   |   1 |     7 |
+| TNFSF11   |   1 |     5 |
+| TNFSF12   |   1 |     4 |
+| TNFSF14   |   1 |     0 |
+| VEGFA     |   1 |     3 |
 
 Table 2.1: cis/trans classification
 
 ``` r
 with(cistrans,total)
-#> [1] 180
+#> 
+#>   cis trans 
+#>    59   121
 T <- with(cistrans,table)
-H <- T[rownames(T)!="total","total"]
 merge <- merged[c("Chrom","Start","End","prot","MarkerName")]
 merge_cvt <- merge(merge,cis.vs.trans,by.x=c("prot","MarkerName"),by.y=c("prot","SNP"))
 ord <- with(merge_cvt,order(Chr,bp))
@@ -207,7 +216,7 @@ where the red and blue colours indicate cis/trans classifications.
 ### 2.3 Bar chart and circos plot
 
 ``` r
-barplot(table(H),xlab="No. of pQTL regions",ylab="No. of proteins",
+barplot(table(T),xlab="No. of pQTL regions",ylab="No. of proteins",
         ylim=c(0,25),col="darkgrey",border="black",cex=0.8,cex.axis=2,cex.names=2,las=1)
 ```
 
@@ -216,7 +225,16 @@ barplot(table(H),xlab="No. of pQTL regions",ylab="No. of proteins",
 Figure 2.2: Bar chart
 
 ``` r
-gap::circos.cis.vs.trans.plot(hits=f,pQTLdata::inf1,"uniprot")
+gap::circos.cis.vs.trans.plot(f,pQTLdata::inf1,"uniprot")
+#> 
+#> Cis/trans classification
+#> ------------------------
+#> Variants : 180 
+#> Proteins : 70 
+#> 
+#> 
+#>   cis trans 
+#>    59   121
 ```
 
 ![circos plot](pQTLtools/ctcircos-1.png)
@@ -284,7 +302,7 @@ with(cistrans.check,table(Type,cis.trans))
 ### 2.5 pQTL-gene plot
 
 ``` r
-t2d <- gap::qtl2dplot(cis.vs.trans,xlab="pQTL position",ylab="Gene position")
+t2d <- gap::qtl2dplot(cis.vs.trans,trait = "prot",xlab="pQTL position",ylab="Gene position")
 ```
 
 ![pQTL-gene plot](pQTLtools/qtl2dplot-1.png)
@@ -296,16 +314,19 @@ Figure 2.5: pQTL-gene plot
 The pQTL-gene plot above can be also viewed in a 2-d plotly style,,
 
 ``` r
-fig2d <- gap::qtl2dplotly(cis.vs.trans,xlab="pQTL position",ylab="Gene position")
+fig2d <- gap::qtl2dplotly(cis.vs.trans,trait="prot",xlab="pQTL position",ylab="Gene position")
 htmlwidgets::saveWidget(fig2d,file="fig2d.html")
+#> Warning: Ignoring 59 observations
+#> Warning: Ignoring 121 observations
 htmltools::tags$iframe(src = "/pQTLtools/articles/fig2d.html",  width = "100%",  height = "650px")
 ```
 
 and 3-d counterpart,
 
 ``` r
-fig3d <- gap::qtl3dplotly(cis.vs.trans,zmax=300,qtl.prefix="pQTL:",xlab="pQTL position",ylab="Gene position")
+fig3d <- gap::qtl3dplotly(cis.vs.trans,trait="prot",zmax=300,qtl.prefix="pQTL:",xlab="pQTL position",ylab="Gene position")
 htmlwidgets::saveWidget(fig3d,file="fig3d.html")
+#> Warning: Ignoring 180 observations
 htmltools::tags$iframe(src = "/pQTLtools/articles/fig3d.html", width = "100%", height = "600px")
 ```
 
@@ -424,7 +445,7 @@ for (r in c("IL12B","KITLG","TNFSF10"))
   tb_all <- rbind(tb_all,data.frame(gene=r,with(r.post,tb)))
 }
 #> Don't make too frequent requests. The time break is 60s.
-#> Please wait for 55s for the next request.
+#> Please wait for 56s for the next request.
 #> The time break can be set by `request_interval` argument.
 #> Don't make too frequent requests. The time break is 60s.
 #> Please wait for 58s for the next request.

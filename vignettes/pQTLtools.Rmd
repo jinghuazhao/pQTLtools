@@ -74,7 +74,6 @@ cis.vs.trans <- with(cistrans,data)
 knitr::kable(with(cistrans,table),caption="cis/trans classification")
 with(cistrans,total)
 T <- with(cistrans,table)
-H <- T[rownames(T)!="total","total"]
 merge <- merged[c("Chrom","Start","End","prot","MarkerName")]
 merge_cvt <- merge(merge,cis.vs.trans,by.x=c("prot","MarkerName"),by.y=c("prot","SNP"))
 ord <- with(merge_cvt,order(Chr,bp))
@@ -104,12 +103,12 @@ where the red and blue colours indicate cis/trans classifications.
 ## Bar chart and circos plot
 
 ```{r ctbar, fig.cap="Bar chart", fig.height=7, fig.width=7}
-barplot(table(H),xlab="No. of pQTL regions",ylab="No. of proteins",
+barplot(table(T),xlab="No. of pQTL regions",ylab="No. of proteins",
         ylim=c(0,25),col="darkgrey",border="black",cex=0.8,cex.axis=2,cex.names=2,las=1)
 ```
 
 ```{r ctcircos, fig.cap="circos plot", fig.height=7, fig.width=7}
-gap::circos.cis.vs.trans.plot(hits=f,pQTLdata::inf1,"uniprot")
+gap::circos.cis.vs.trans.plot(f,pQTLdata::inf1,"uniprot")
 ```
 
 The circos plot is based on target genes (those encoding proteins) and somewhat too busy.
@@ -151,7 +150,7 @@ with(cistrans.check,table(Type,cis.trans))
 ## pQTL-gene plot
 
 ```{r qtl2dplot, fig.cap="pQTL-gene plot", fig.height=8, fig.width=8}
-t2d <- gap::qtl2dplot(cis.vs.trans,xlab="pQTL position",ylab="Gene position")
+t2d <- gap::qtl2dplot(cis.vs.trans,trait = "prot",xlab="pQTL position",ylab="Gene position")
 ```
 
 ## pQTL-gene plotly
@@ -159,7 +158,7 @@ t2d <- gap::qtl2dplot(cis.vs.trans,xlab="pQTL position",ylab="Gene position")
 The pQTL-gene plot above can be also viewed in a 2-d plotly style,,
 
 ```{r qtl2dplotly, fig.cap="2d pQTL-gene plotly", fig.height=8, fig.width=8, plotly=TRUE}
-fig2d <- gap::qtl2dplotly(cis.vs.trans,xlab="pQTL position",ylab="Gene position")
+fig2d <- gap::qtl2dplotly(cis.vs.trans,trait="prot",xlab="pQTL position",ylab="Gene position")
 htmlwidgets::saveWidget(fig2d,file="fig2d.html")
 htmltools::tags$iframe(src = "/pQTLtools/articles/fig2d.html",  width = "100%",  height = "650px")
 ```
@@ -167,7 +166,7 @@ htmltools::tags$iframe(src = "/pQTLtools/articles/fig2d.html",  width = "100%", 
 and 3-d counterpart,
 
 ```{r qtl3dplotly, fig.cap="3d pQTL-gene plotly", fig.height=8, fig.width=8, plotly=TRUE}
-fig3d <- gap::qtl3dplotly(cis.vs.trans,zmax=300,qtl.prefix="pQTL:",xlab="pQTL position",ylab="Gene position")
+fig3d <- gap::qtl3dplotly(cis.vs.trans,trait="prot",zmax=300,qtl.prefix="pQTL:",xlab="pQTL position",ylab="Gene position")
 htmlwidgets::saveWidget(fig3d,file="fig3d.html")
 htmltools::tags$iframe(src = "/pQTLtools/articles/fig3d.html", width = "100%", height = "600px")
 ```
