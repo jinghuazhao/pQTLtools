@@ -27,14 +27,13 @@ peptide association plot
   protein <- "PROC"
   suffix <- "_dr"
   input <- paste0("~/Caprion/analysis/METAL",suffix,"/gz/",protein,suffix,".txt.gz")
-  annotation <- paste0("~/Caprion/analysis/METAL",suffix,"/vep/",protein,suffix,".txt")
+  annotation <- paste0("~/Caprion/analysis/METAL",suffix,"/vep/",protein,".txt")
   reference <- file.path(find.package("pQTLtools"),"turboman",
                                       "turboman_hg19_reference_data.rda")
   pvalue_sign <- 5e-8
   plot_title <- protein
   pQTLtools::turboman(input, annotation, reference, pvalue_sign, plot_title)
-  cistrans <- read.csv(paste0("~/pQTLtools/tests","/",protein,".cis.vs.trans"))
-  load("~/pQTLtools/tests/PROC.rda")
+  load(file.path(find.package("pQTLtools"),"tests","PROC.rda"))
   peptideAssociationPlot(protein,cistrans)
 }
 }
