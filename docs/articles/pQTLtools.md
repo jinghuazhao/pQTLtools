@@ -316,8 +316,6 @@ The pQTL-gene plot above can be also viewed in a 2-d plotly style,,
 ``` r
 fig2d <- gap::qtl2dplotly(cis.vs.trans,trait="prot",xlab="pQTL position",ylab="Gene position")
 htmlwidgets::saveWidget(fig2d,file="fig2d.html")
-#> Warning: Ignoring 59 observations
-#> Warning: Ignoring 121 observations
 htmltools::tags$iframe(src = "/pQTLtools/articles/fig2d.html",  width = "100%",  height = "650px")
 ```
 
@@ -326,7 +324,6 @@ and 3-d counterpart,
 ``` r
 fig3d <- gap::qtl3dplotly(cis.vs.trans,trait="prot",zmax=300,qtl.prefix="pQTL:",xlab="pQTL position",ylab="Gene position")
 htmlwidgets::saveWidget(fig3d,file="fig3d.html")
-#> Warning: Ignoring 180 observations
 htmltools::tags$iframe(src = "/pQTLtools/articles/fig3d.html", width = "100%", height = "600px")
 ```
 
