@@ -32,6 +32,6 @@ a list containing mapping information.
 if (FALSE) { # \dontrun{
   batch <- "ZWK"
   load(paste0("~/Caprion/pilot/",batch,".rda"))
-  PROC <- peptideMapping("PROC",mm=0)
+  PROC <- pQTLtools::peptideMapping("PROC",mm=0)
 } # }
 ```

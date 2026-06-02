@@ -45,6 +45,6 @@ if (FALSE) { # \dontrun{
   plot_title <- protein
   pQTLtools::turboman(input, annotation, reference, pvalue_sign, plot_title)
   load(file.path(find.package("pQTLtools"),"tests","PROC.rda"))
-  peptideAssociationPlot(protein,cistrans)
+  pQTLtools::peptideAssociationPlot(protein,cistrans)
 } # }
 ```

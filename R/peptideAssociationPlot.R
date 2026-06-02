@@ -9,7 +9,7 @@
 #' \dontrun{
 #'   batch <- "ZWK"
 #'   load(paste0("~/Caprion/pilot/",batch,".rda"))
-#'   PROC <- peptideMapping("PROC",mm=0)
+#'   PROC <- pQTLtools::peptideMapping("PROC",mm=0)
 #' }
 
 peptideMapping <- function(protein,batch="ZWK",mm=5)
@@ -64,7 +64,7 @@ peptideMapping <- function(protein,batch="ZWK",mm=5)
 #'   plot_title <- protein
 #'   pQTLtools::turboman(input, annotation, reference, pvalue_sign, plot_title)
 #'   load(file.path(find.package("pQTLtools"),"tests","PROC.rda"))
-#'   peptideAssociationPlot(protein,cistrans)
+#'   pQTLtools::peptideAssociationPlot(protein,cistrans)
 #' }
 
 peptideAssociationPlot <- function(protein,cistrans,chrlen=gap::hg19,disp=85)
