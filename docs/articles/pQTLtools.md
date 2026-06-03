@@ -448,9 +448,8 @@ for (r in c("IL12B","KITLG","TNFSF10"))
 #> Don't make too frequent requests. The time break is 60s.
 #> Please wait for 58s for the next request.
 #> The time break can be set by `request_interval` argument.
-#> 
 #> Don't make too frequent requests. The time break is 60s.
-#> Please wait for 58s for the next request.
+#> Please wait for 57s for the next request.
 #> The time break can be set by `request_interval` argument.
 ```
 
