@@ -1,4 +1,5 @@
 url: https://jinghuazhao.github.io/pQTLtools/
+destination: docs
 
 template:
   bootstrap: 5
@@ -180,9 +181,9 @@ footer:
     legal: Provided without **any warranty**.
 
 build:
+  llm: false
   vignette:
     lazy: true
-    llm: false
     pandoc_args: ["--no-check-links"]
 
 env:
