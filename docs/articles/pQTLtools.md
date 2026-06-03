@@ -302,7 +302,8 @@ with(cistrans.check,table(Type,cis.trans))
 ### 2.5 pQTL-gene plot
 
 ``` r
-t2d <- gap::qtl2dplot(cis.vs.trans,trait = "prot",xlab="pQTL position",ylab="Gene position")
+t2d <- gap::qtl2dplot(cis.vs.trans,trait="prot",xlab="pQTL position",ylab="Gene position",
+                      cex.points = pmin(sqrt(cis.vs.trans[["log10p"]]/20), 2.5))
 ```
 
 ![pQTL-gene plot](pQTLtools/qtl2dplot-1.png)
