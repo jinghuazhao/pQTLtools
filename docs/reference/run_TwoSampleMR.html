@@ -135,10 +135,10 @@ ISBN 978-1-4939-7868-7.
 <span class="r-in"><span>                                               <span class="st">"pval"</span>,<span class="st">"samplesize"</span>,<span class="st">"id"</span><span class="op">)</span>,<span class="st">".outcome"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="st">"ebi-a-GCST007432.vcf.gz.tbi"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">harmonise</span> <span class="op">&lt;-</span> <span class="fu">TwoSampleMR</span><span class="fu">::</span><span class="fu"><a href="https://mrcieu.github.io/TwoSampleMR/reference/harmonise_data.html" class="external-link">harmonise_data</a></span><span class="op">(</span><span class="va">clump</span>,<span class="va">outcome</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising MMP.10 (er44c0) and FEV1 (ebi-a-GCST007432)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Harmonising MMP.10 (PTlu05) and FEV1 (ebi-a-GCST007432)</span>
 <span class="r-in"><span><span class="va">prefix</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">prot</span>,<span class="va">type</span>,sep<span class="op">=</span><span class="st">"-"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">pQTLtools</span><span class="fu">::</span><span class="fu">run_TwoSampleMR</span><span class="op">(</span><span class="va">harmonise</span>, mr_plot<span class="op">=</span><span class="st">"pQTLtools"</span>, prefix<span class="op">=</span><span class="va">prefix</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'er44c0' on 'ebi-a-GCST007432'</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Analysing 'PTlu05' on 'ebi-a-GCST007432'</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Please use `linewidth` instead.</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> The deprecated feature was likely used in the <span style="color: #0000BB;">pQTLtools</span> package.</span>
@@ -165,13 +165,13 @@ ISBN 978-1-4939-7868-7.
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Table: Table. MMP.10 variants and FEV1 (result)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |id.exposure |id.outcome       |outcome |exposure |method                    | nsnp|        b|      se|    pval|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |:-----------|:----------------|:-------|:--------|:-------------------------|----:|--------:|-------:|-------:|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |er44c0      |ebi-a-GCST007432 |FEV1    |MMP.10   |MR Egger                  |   10|  0.00526| 0.01677| 0.76191|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |er44c0      |ebi-a-GCST007432 |FEV1    |MMP.10   |Weighted median           |   10| -0.01824| 0.01056| 0.08403|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |er44c0      |ebi-a-GCST007432 |FEV1    |MMP.10   |Inverse variance weighted |   10| -0.02234| 0.00777| 0.00404|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |er44c0      |ebi-a-GCST007432 |FEV1    |MMP.10   |Simple mode               |   10| -0.05425| 0.03524| 0.15806|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |er44c0      |ebi-a-GCST007432 |FEV1    |MMP.10   |Weighted mode             |   10| -0.01338| 0.03957| 0.74306|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |id.exposure |id.outcome       |outcome |exposure |method                    | nsnp|        b|     se|   pval|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |:-----------|:----------------|:-------|:--------|:-------------------------|----:|--------:|------:|------:|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |PTlu05      |ebi-a-GCST007432 |FEV1    |MMP.10   |MR Egger                  |   12| -0.01626| 0.0380| 0.6778|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |PTlu05      |ebi-a-GCST007432 |FEV1    |MMP.10   |Weighted median           |   12|  0.01901| 0.0113| 0.0919|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |PTlu05      |ebi-a-GCST007432 |FEV1    |MMP.10   |Inverse variance weighted |   12|  0.00404| 0.0108| 0.7092|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |PTlu05      |ebi-a-GCST007432 |FEV1    |MMP.10   |Simple mode               |   12|  0.01505| 0.0291| 0.6157|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |PTlu05      |ebi-a-GCST007432 |FEV1    |MMP.10   |Weighted mode             |   12|  0.02056| 0.0357| 0.5766|</span>
 <span class="r-in"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.delim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">prefix</span>,<span class="st">"-heterogeneity.txt"</span><span class="op">)</span>,header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>             caption<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">caption</span>,<span class="st">"(heterogeneity)"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -180,56 +180,60 @@ ISBN 978-1-4939-7868-7.
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> |id.exposure |id.outcome       |outcome |exposure |method                    |    Q| Q_df| Q_pval|</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> |:-----------|:----------------|:-------|:--------|:-------------------------|----:|----:|------:|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |er44c0      |ebi-a-GCST007432 |FEV1    |MMP.10   |MR Egger                  | 4.94|    8|  0.764|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |er44c0      |ebi-a-GCST007432 |FEV1    |MMP.10   |Inverse variance weighted | 8.39|    9|  0.496|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |PTlu05      |ebi-a-GCST007432 |FEV1    |MMP.10   |MR Egger                  | 19.1|   10| 0.0393|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |PTlu05      |ebi-a-GCST007432 |FEV1    |MMP.10   |Inverse variance weighted | 19.7|   11| 0.0500|</span>
 <span class="r-in"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.delim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">prefix</span>,<span class="st">"-pleiotropy.txt"</span><span class="op">)</span>,header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>             caption<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">caption</span>,<span class="st">"(pleiotropy)"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Table: Table. MMP.10 variants and FEV1 (pleiotropy)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |id.exposure |id.outcome       |outcome |exposure | egger_intercept|      se| pval|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |:-----------|:----------------|:-------|:--------|---------------:|-------:|----:|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |er44c0      |ebi-a-GCST007432 |FEV1    |MMP.10   |        -0.00368| 0.00198|  0.1|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |id.exposure |id.outcome       |outcome |exposure | egger_intercept|      se|  pval|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |:-----------|:----------------|:-------|:--------|---------------:|-------:|-----:|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |PTlu05      |ebi-a-GCST007432 |FEV1    |MMP.10   |         0.00211| 0.00377| 0.589|</span>
 <span class="r-in"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.delim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">prefix</span>,<span class="st">"-single.txt"</span><span class="op">)</span>,header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>             caption<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">caption</span>,<span class="st">"(single)"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Table: Table. MMP.10 variants and FEV1 (single)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |exposure |outcome |id.exposure |id.outcome       | samplesize|SNP                             |        b|      se|       p|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |:--------|:-------|:-----------|:----------------|----------:|:-------------------------------|--------:|-------:|-------:|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |er44c0      |ebi-a-GCST007432 |     321047|rs11601744                      | -0.01770| 0.02056| 0.38918|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |er44c0      |ebi-a-GCST007432 |     321047|rs140957819                     | -0.03994| 0.03391| 0.23889|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |er44c0      |ebi-a-GCST007432 |     321047|rs2292733                       |  0.00228| 0.01901| 0.90448|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |er44c0      |ebi-a-GCST007432 |     321047|rs2514414                       | -0.05914| 0.03226| 0.06675|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |er44c0      |ebi-a-GCST007432 |     321047|rs484316                        | -0.05898| 0.03155| 0.06154|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |er44c0      |ebi-a-GCST007432 |     321047|rs577850                        |  0.00870| 0.03285| 0.79124|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |er44c0      |ebi-a-GCST007432 |     321047|rs608419                        | -0.06043| 0.03309| 0.06784|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |er44c0      |ebi-a-GCST007432 |     321047|rs6590984                       | -0.01855| 0.01408| 0.18781|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |er44c0      |ebi-a-GCST007432 |     321047|rs75524134                      |  0.00284| 0.03354| 0.93246|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |er44c0      |ebi-a-GCST007432 |     321047|rs9735884                       | -0.05507| 0.03478| 0.11335|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |er44c0      |ebi-a-GCST007432 |     321047|All - Inverse variance weighted | -0.02234| 0.00777| 0.00404|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |er44c0      |ebi-a-GCST007432 |     321047|All - MR Egger                  |  0.00526| 0.01677| 0.76191|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |exposure |outcome |id.exposure |id.outcome       | samplesize|SNP                             |        b|     se|      p|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |:--------|:-------|:-----------|:----------------|----------:|:-------------------------------|--------:|------:|------:|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |PTlu05      |ebi-a-GCST007432 |     321047|rs11225349                      |  0.02199| 0.0182| 0.2269|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |PTlu05      |ebi-a-GCST007432 |     321047|rs11607785                      |  0.06486| 0.0295| 0.0278|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |PTlu05      |ebi-a-GCST007432 |     321047|rs1709147                       | -0.05507| 0.0333| 0.0985|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |PTlu05      |ebi-a-GCST007432 |     321047|rs1711429                       |  0.01887| 0.0310| 0.5427|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |PTlu05      |ebi-a-GCST007432 |     321047|rs1711431                       |  0.01961| 0.0288| 0.4965|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |PTlu05      |ebi-a-GCST007432 |     321047|rs1711437                       |  0.01488| 0.0357| 0.6769|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |PTlu05      |ebi-a-GCST007432 |     321047|rs17360292                      | -0.06333| 0.0294| 0.0315|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |PTlu05      |ebi-a-GCST007432 |     321047|rs4434970                       |  0.03886| 0.0227| 0.0876|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |PTlu05      |ebi-a-GCST007432 |     321047|rs55930209                      | -0.00727| 0.0277| 0.7931|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |PTlu05      |ebi-a-GCST007432 |     321047|rs660574                        | -0.02376| 0.0323| 0.4622|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |PTlu05      |ebi-a-GCST007432 |     321047|rs7103012                       | -0.03681| 0.0337| 0.2753|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |PTlu05      |ebi-a-GCST007432 |     321047|rs7118046                       | -0.02427| 0.0330| 0.4622|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |PTlu05      |ebi-a-GCST007432 |     321047|All - Inverse variance weighted |  0.00404| 0.0108| 0.7092|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |PTlu05      |ebi-a-GCST007432 |     321047|All - MR Egger                  | -0.01626| 0.0380| 0.6778|</span>
 <span class="r-in"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.delim</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">prefix</span>,<span class="st">"-loo.txt"</span><span class="op">)</span>,header<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>             caption<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">caption</span>,<span class="st">"(loo)"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Table: Table. MMP.10 variants and FEV1 (loo)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |exposure |outcome |id.exposure |id.outcome       | samplesize|SNP         |       b|      se|       p|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |:--------|:-------|:-----------|:----------------|----------:|:-----------|-------:|-------:|-------:|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |er44c0      |ebi-a-GCST007432 |     321047|rs11601744  | -0.0231| 0.00856| 0.00695|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |er44c0      |ebi-a-GCST007432 |     321047|rs140957819 | -0.0214| 0.00803| 0.00783|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |er44c0      |ebi-a-GCST007432 |     321047|rs2292733   | -0.0273| 0.00851| 0.00136|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |er44c0      |ebi-a-GCST007432 |     321047|rs2514414   | -0.0201| 0.00801| 0.01217|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |er44c0      |ebi-a-GCST007432 |     321047|rs484316    | -0.0200| 0.00802| 0.01273|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |er44c0      |ebi-a-GCST007432 |     321047|rs577850    | -0.0242| 0.00800| 0.00250|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |er44c0      |ebi-a-GCST007432 |     321047|rs608419    | -0.0201| 0.00799| 0.01185|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |er44c0      |ebi-a-GCST007432 |     321047|rs6590984   | -0.0240| 0.00948| 0.01136|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |er44c0      |ebi-a-GCST007432 |     321047|rs75524134  | -0.0238| 0.00799| 0.00292|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |er44c0      |ebi-a-GCST007432 |     321047|rs9735884   | -0.0206| 0.00797| 0.00969|</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |er44c0      |ebi-a-GCST007432 |     321047|All         | -0.0223| 0.00777| 0.00404|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |exposure |outcome |id.exposure |id.outcome       | samplesize|SNP        |         b|      se|     p|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |:--------|:-------|:-----------|:----------------|----------:|:----------|---------:|-------:|-----:|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |PTlu05      |ebi-a-GCST007432 |     321047|rs11225349 | -0.000395| 0.01229| 0.974|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |PTlu05      |ebi-a-GCST007432 |     321047|rs11607785 | -0.000926| 0.01034| 0.929|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |PTlu05      |ebi-a-GCST007432 |     321047|rs1709147  |  0.007751| 0.01067| 0.468|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |PTlu05      |ebi-a-GCST007432 |     321047|rs1711429  |  0.002954| 0.01170| 0.801|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |PTlu05      |ebi-a-GCST007432 |     321047|rs1711431  |  0.002707| 0.01174| 0.818|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |PTlu05      |ebi-a-GCST007432 |     321047|rs1711437  |  0.003453| 0.01164| 0.767|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |PTlu05      |ebi-a-GCST007432 |     321047|rs17360292 |  0.009557| 0.00997| 0.338|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |PTlu05      |ebi-a-GCST007432 |     321047|rs4434970  | -0.001016| 0.01130| 0.928|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |PTlu05      |ebi-a-GCST007432 |     321047|rs55930209 |  0.005097| 0.01183| 0.666|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |PTlu05      |ebi-a-GCST007432 |     321047|rs660574   |  0.005904| 0.01150| 0.608|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |PTlu05      |ebi-a-GCST007432 |     321047|rs7103012  |  0.006539| 0.01123| 0.560|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |PTlu05      |ebi-a-GCST007432 |     321047|rs7118046  |  0.005855| 0.01148| 0.610|</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> |MMP.10   |FEV1    |PTlu05      |ebi-a-GCST007432 |     321047|All        |  0.004041| 0.01083| 0.709|</span>
 <span class="r-in"><span><span class="kw">for</span> <span class="op">(</span><span class="va">x</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"result"</span>,<span class="st">"heterogeneity"</span>,<span class="st">"pleiotropy"</span>,<span class="st">"single"</span>,<span class="st">"loo"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/unlink.html" class="external-link">unlink</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">prefix</span>,<span class="st">"-"</span>,<span class="va">x</span>,<span class="st">".txt"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>

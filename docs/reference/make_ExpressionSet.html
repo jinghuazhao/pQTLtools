@@ -126,13 +126,13 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">dataDirectory</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package<span class="op">=</span><span class="st">"Biobase"</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
+<span class="r-in"><span><span class="va">dataDirectory</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package<span class="op">=</span><span class="st">"Biobase"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">exprsFile</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">dataDirectory</span>, <span class="st">"exprsData.txt"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">exprs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">as.matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span><span class="va">exprsFile</span>, header<span class="op">=</span><span class="cn">TRUE</span>, sep<span class="op">=</span><span class="st">"\t"</span>, row.names<span class="op">=</span><span class="fl">1</span>, as.is<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">pDataFile</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">dataDirectory</span>, <span class="st">"pData.txt"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">pData</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.table</a></span><span class="op">(</span><span class="va">pDataFile</span>, row.names<span class="op">=</span><span class="fl">1</span>, header<span class="op">=</span><span class="cn">TRUE</span>, sep<span class="op">=</span><span class="st">"\t"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/all.html" class="external-link">all</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/row_colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">pData</span><span class="op">)</span><span class="op">==</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/row_colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">exprs</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"><span><span class="va">metadata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>labelDescription<span class="op">=</span></span></span>
 <span class="r-in"><span>                       <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Patient gender"</span>,</span></span>
 <span class="r-in"><span>                         <span class="st">"Case/control status"</span>,</span></span>
@@ -153,44 +153,9 @@
 <span class="r-in"><span>                                 annotation<span class="op">=</span><span class="st">"hgu95av2"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">sample.ExpressionSet</span>, package<span class="op">=</span><span class="st">"Biobase"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/identical.html" class="external-link">identical</a></span><span class="op">(</span><span class="va">exampleSet</span>,<span class="va">sample.ExpressionSet</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/invisible.html" class="external-link">invisible</a></span><span class="op">(</span><span class="fu">Biobase</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/Biobase/man/esApply.html" class="external-link">esApply</a></span><span class="op">(</span><span class="va">exampleSet</span>,<span class="fl">2</span>,<span class="va">hist</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-plt img"><img src="make_ExpressionSet-1.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="make_ExpressionSet-2.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="make_ExpressionSet-3.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="make_ExpressionSet-4.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="make_ExpressionSet-5.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="make_ExpressionSet-6.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="make_ExpressionSet-7.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="make_ExpressionSet-8.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="make_ExpressionSet-9.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="make_ExpressionSet-10.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="make_ExpressionSet-11.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="make_ExpressionSet-12.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="make_ExpressionSet-13.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="make_ExpressionSet-14.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="make_ExpressionSet-15.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="make_ExpressionSet-16.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="make_ExpressionSet-17.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="make_ExpressionSet-18.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="make_ExpressionSet-19.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="make_ExpressionSet-20.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="make_ExpressionSet-21.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="make_ExpressionSet-22.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="make_ExpressionSet-23.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="make_ExpressionSet-24.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="make_ExpressionSet-25.png" alt="" width="700" height="433"></span>
-<span class="r-plt img"><img src="make_ExpressionSet-26.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">score</span><span class="op">~</span><span class="va">gender</span><span class="op">+</span><span class="va">X31739_at</span>,data<span class="op">=</span><span class="va">exampleSet</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Call:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lm(formula = score ~ gender + X31739_at, data = exampleSet)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)   genderMale    X31739_at  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.6006673    0.0108515   -0.0003012  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

@@ -8,7 +8,8 @@
 
 -   `csq()` : Variant consequence
 -   `genequeries()` : phenoscanner genequeries in batches
--   `get.prop.below.LLOD()` : Limit of detection analysis
+-   `get.prop.below.LLOD()` : Limit of detection analysis for
+    ExpressionSet objects
 -   `import_OpenGWAS()` : Import OpenGWAS
 -   `import_eQTLCatalogue()` : Import eQTL Catalogue
 -   `make_ExpressionSet()` : A call to expressionSet class

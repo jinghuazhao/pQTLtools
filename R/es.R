@@ -18,6 +18,7 @@
 #' An ExpressionSet object.
 #'
 #' @examples
+#' \dontrun{
 #' dataDirectory <- system.file("extdata", package="Biobase")
 #' exprsFile <- file.path(dataDirectory, "exprsData.txt")
 #' exprs <- as.matrix(read.table(exprsFile, header=TRUE, sep="\t", row.names=1, as.is=TRUE))
@@ -46,7 +47,7 @@
 #' identical(exampleSet,sample.ExpressionSet)
 #' invisible(Biobase::esApply(exampleSet,2,hist))
 #' lm(score~gender+X31739_at,data=exampleSet)
-#'
+#' }
 #' @note
 #' Adapted from Bioconductor/Biobase following a number of proteomic pilot studies.
 #' @keywords utilities
@@ -57,100 +58,86 @@ make_ExpressionSet <- function(assayData,
                       experimentData=Biobase::MIAME(),
                       annotation=character(),
                       protocolData=Biobase::annotatedDataFrameFrom(assayData, byrow=FALSE),...)
-Biobase::ExpressionSet(assayData,phenoData=phenoData,
-                       featureData=featureData,
-                       experimentData=experimentData,
-                       annotation=annotation,
-                       protocolData=protocolData,...)
+{
+  Biobase::ExpressionSet(assayData,phenoData=phenoData,
+                         featureData=featureData,
+                         experimentData=experimentData,
+                         annotation=annotation,
+                         protocolData=protocolData,...)
+}
 
-#' Limit of detection analysis
+#' Limit of detection analysis for ExpressionSet objects
 #'
-#' The function obtains lower limit of detection as in proteomic analysis.
+#' Computes the percentage of values below a feature-specific lower limit of detection (LOD)
+#' in an \code{ExpressionSet}. Commonly used in proteomic quality assessment.
 #'
-#' @param eset An ExpressionSet object.
-#' @param flagged A flag is an indicator for sample exclusion.
-#' @export
-#' @return An updated ExpressionSet object.
+#' @param eset An \code{ExpressionSet} object containing expression values and feature metadata.
+#' Must include a numeric column \code{lod.max} in \code{fData(eset)}.
+#'
+#' @param flagged Character string indicating whether flagged samples should be removed.
+#' One of \code{"OUT"} (remove flagged samples) or \code{"IN"} (retain all samples).
+#'
+#' @return An \code{ExpressionSet} with an added feature annotation column:
+#' \item{pc.belowLOD.new}{Percentage of values below the LOD per feature.}
+#'
+#' @details
+#' The function compares expression values from \code{exprs(eset)} to feature-specific
+#' LOD thresholds stored in \code{fData(eset)$lod.max}. Computation is vectorised using
+#' \code{sweep()} for efficiency and consistency with Bioconductor conventions.
+#'
+#' Flagged samples (if present in \code{pData(eset)$Flagged}) can optionally be removed.
+#'
 #' @examples
+#' \dontrun{
 #' suppressMessages(library(Biobase))
-#' data(sample.ExpressionSet, package="Biobase")
+#' data(sample.ExpressionSet, package = "Biobase")
 #' exampleSet <- sample.ExpressionSet
-#' Biobase::fData(exampleSet)
-#' Biobase::fData(exampleSet)$lod.max <-
-#'     apply(Biobase::exprs(exampleSet),1,quantile,runif(nrow(exampleSet)))
+#' set.seed(1)
+#' probs <- runif(nrow(exampleSet))
+#' Biobase::fData(exampleSet)$lod.max <- vapply(seq_len(nrow(exampleSet)), function(i)
+#'            quantile(Biobase::exprs(exampleSet)[i, ], probs = probs[i], na.rm = TRUE),
+#'            numeric(1))
 #' lod <- get.prop.below.LLOD(exampleSet)
-#' x <- dplyr::arrange(fData(lod),desc(pc.belowLOD.new))
-#' knitr::kable(head(lod))
-#' plot(x[,2], main="Random quantile cut off", ylab="<lod%")
-#' @author James Peters
-
-get.prop.below.LLOD <- function(eset, flagged = 'OUT'){
-
-  ## A function to calculate no. of proteins i.e NA per sample (missing or <LLD per sample)
-  # arguments 'eset' and 'flagged'
-  # flagged indicates whether Flagged samples should be excluded (if they have not been already)
-
-  if(!inherits(eset, what= "ExpressionSet")){
-    stop("'eset' argument must inherit class ExpressionSet")
-  }
-
-  if (!flagged %in% c('IN','OUT')){
-    stop("'flagged' argument must be 'IN' or 'OUT")
-  }
-
-  for (p in "stringr") {
-    if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
-       if (!requireNamespace(p, quietly = TRUE))
-           warning(paste("This function needs package `", p, "' to be fully functional; please install", sep=""))
+#' fd <- Biobase::fData(lod)
+#' fd <- fd[order(fd$pc.belowLOD.new, decreasing = TRUE), ]
+#' knitr::kable(head(fd))
+#' plot(fd$pc.belowLOD.new, main = "Random quantile cut off", ylab = "% below LOD")
+#' }
+#' @export
+#'
+get.prop.below.LLOD <- function(eset, flagged = c("OUT", "IN")) {
+    flagged <- match.arg(flagged)
+    if (!inherits(eset, "ExpressionSet")) {
+        stop("'eset' must be an ExpressionSet object")
     }
-  }
-
-  # best to cut flagged samples first at eset stage:
-  # risk of messing up if cutting from matrix, and then dont edit pData
-
-  ind.fl <- which(eset$Flagged == 'Flagged')
-
-  if (flagged == "IN"){
-
-    if (length(ind.fl) > 0){
-      panel <- unique(eset$panel)
-      mytit <- paste(toupper(panel), "panel \n (flagged retained)")
-    } else{
-      panel <- unique(eset$panel)
-      mytit <- paste(toupper(panel), "panel \n (no. flagged samples = 0)")
+    fd <- Biobase::fData(eset)
+    pd <- Biobase::pData(eset)
+    expr_mat <- Biobase::exprs(eset)
+    # check required column
+    if (!"lod.max" %in% colnames(fd)) {
+        stop("Feature data must contain column 'lod.max'")
     }
+    lod <- fd$lod.max
+    # optional removal of flagged samples
+    if ("Flagged" %in% colnames(pd)) {
+        ind_fl <- which(pd$Flagged == "Flagged")
 
-  } else if (flagged == "OUT"){
-    # cut flagged samples
-
-    if (length(ind.fl) > 0){
-      eset <- eset[, -ind.fl] # nb annoying ESet behaviour: cols are samples
-      panel <- unique(eset$panel)
-      mytit <- paste(toupper(panel), "panel \n (flagged removed)")
-    } else{
-      panel <- unique(eset$panel)
-      mytit <- paste(toupper(panel), "panel \n (no. flagged samples = 0)")
+        if (flagged == "OUT" && length(ind_fl) > 0) {
+            eset <- eset[, -ind_fl]
+            expr_mat <- Biobase::exprs(eset)
+        }
     }
-
-  }
-
-  E <- t(Biobase::exprs(eset))
-
-  p.annot <- Biobase::fData(eset)
-
-  p.annot$pc.belowLOD.new <- NA
-
-  # % proteins in each sample
-  ##miss.by.prot <- apply(E, 2, FUN=function(x) 100*sum(is.na(x))/nrow(E) )
-
-  for (i in 1:ncol(E)){
-    m <- sum( E[,i] <= p.annot$lod.max[i], na.rm=T ) # number of samples <= LLOD
-    t <- length( na.omit(E[,i] )) # denominator NB use this rather than just nrow(E) to make code robust in event of missing values
-    p.annot$pc.belowLOD.new[i] <- 100*m/t
-  }
-
-  Biobase::fData(eset) <- p.annot
-
-  eset
-  #eof
+    fd <- Biobase::fData(eset)
+    lod <- fd$lod.max
+    # dimension safety check
+    if (nrow(expr_mat) != length(lod)) {
+        stop("Mismatch: number of features in exprs does not match length of lod.max")
+    }
+    # vectorised core computation (Bioconductor standard)
+    below <- sweep(expr_mat, 1, lod, FUN = "<=")
+    denom <- rowSums(!is.na(expr_mat))
+    denom[denom == 0] <- NA_real_
+    fd$pc.belowLOD.new <- 100 * rowSums(below, na.rm = TRUE) / denom
+    Biobase::fData(eset) <- fd
+    eset
 }

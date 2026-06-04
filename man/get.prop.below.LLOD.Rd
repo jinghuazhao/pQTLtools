@@ -2,33 +2,46 @@
 % Please edit documentation in R/es.R
 \name{get.prop.below.LLOD}
 \alias{get.prop.below.LLOD}
-\title{Limit of detection analysis}
+\title{Limit of detection analysis for ExpressionSet objects}
 \usage{
-get.prop.below.LLOD(eset, flagged = "OUT")
+get.prop.below.LLOD(eset, flagged = c("OUT", "IN"))
 }
 \arguments{
-\item{eset}{An ExpressionSet object.}
+\item{eset}{An \code{ExpressionSet} object containing expression values and feature metadata.
+Must include a numeric column \code{lod.max} in \code{fData(eset)}.}
 
-\item{flagged}{A flag is an indicator for sample exclusion.}
+\item{flagged}{Character string indicating whether flagged samples should be removed.
+One of \code{"OUT"} (remove flagged samples) or \code{"IN"} (retain all samples).}
 }
 \value{
-An updated ExpressionSet object.
+An \code{ExpressionSet} with an added feature annotation column:
+\item{pc.belowLOD.new}{Percentage of values below the LOD per feature.}
 }
 \description{
-The function obtains lower limit of detection as in proteomic analysis.
+Computes the percentage of values below a feature-specific lower limit of detection (LOD)
+in an \code{ExpressionSet}. Commonly used in proteomic quality assessment.
+}
+\details{
+The function compares expression values from \code{exprs(eset)} to feature-specific
+LOD thresholds stored in \code{fData(eset)$lod.max}. Computation is vectorised using
+\code{sweep()} for efficiency and consistency with Bioconductor conventions.
+
+Flagged samples (if present in \code{pData(eset)$Flagged}) can optionally be removed.
 }
 \examples{
+\dontrun{
 suppressMessages(library(Biobase))
-data(sample.ExpressionSet, package="Biobase")
+data(sample.ExpressionSet, package = "Biobase")
 exampleSet <- sample.ExpressionSet
-Biobase::fData(exampleSet)
-Biobase::fData(exampleSet)$lod.max <-
-    apply(Biobase::exprs(exampleSet),1,quantile,runif(nrow(exampleSet)))
+set.seed(1)
+probs <- runif(nrow(exampleSet))
+Biobase::fData(exampleSet)$lod.max <- vapply(seq_len(nrow(exampleSet)), function(i)
+           quantile(Biobase::exprs(exampleSet)[i, ], probs = probs[i], na.rm = TRUE),
+           numeric(1))
 lod <- get.prop.below.LLOD(exampleSet)
-x <- dplyr::arrange(fData(lod),desc(pc.belowLOD.new))
-knitr::kable(head(lod))
-plot(x[,2], main="Random quantile cut off", ylab="<lod\%")
+fd <- Biobase::fData(lod)
+fd <- fd[order(fd$pc.belowLOD.new, decreasing = TRUE), ]
+knitr::kable(head(fd))
+plot(fd$pc.belowLOD.new, main = "Random quantile cut off", ylab = "\% below LOD")
 }
-\author{
-James Peters
 }

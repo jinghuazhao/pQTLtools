@@ -63,13 +63,13 @@ studies.
 ## Examples
 
 ``` r
+if (FALSE) { # \dontrun{
 dataDirectory <- system.file("extdata", package="Biobase")
 exprsFile <- file.path(dataDirectory, "exprsData.txt")
 exprs <- as.matrix(read.table(exprsFile, header=TRUE, sep="\t", row.names=1, as.is=TRUE))
 pDataFile <- file.path(dataDirectory, "pData.txt")
 pData <- read.table(pDataFile, row.names=1, header=TRUE, sep="\t")
 all(rownames(pData)==colnames(exprs))
-#> [1] TRUE
 metadata <- data.frame(labelDescription=
                        c("Patient gender",
                          "Case/control status",
@@ -90,41 +90,7 @@ exampleSet <- pQTLtools::make_ExpressionSet(exprs,phenoData,
                                  annotation="hgu95av2")
 data(sample.ExpressionSet, package="Biobase")
 identical(exampleSet,sample.ExpressionSet)
-#> [1] FALSE
 invisible(Biobase::esApply(exampleSet,2,hist))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 lm(score~gender+X31739_at,data=exampleSet)
-#> 
-#> Call:
-#> lm(formula = score ~ gender + X31739_at, data = exampleSet)
-#> 
-#> Coefficients:
-#> (Intercept)   genderMale    X31739_at  
-#>   0.6006673    0.0108515   -0.0003012  
-#> 
+} # }
 ```

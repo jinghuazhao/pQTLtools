@@ -42,6 +42,7 @@ The explicit call make it easier to handle proteomic data for other downstream a
 Adapted from Bioconductor/Biobase following a number of proteomic pilot studies.
 }
 \examples{
+\dontrun{
 dataDirectory <- system.file("extdata", package="Biobase")
 exprsFile <- file.path(dataDirectory, "exprsData.txt")
 exprs <- as.matrix(read.table(exprsFile, header=TRUE, sep="\t", row.names=1, as.is=TRUE))
@@ -70,6 +71,6 @@ data(sample.ExpressionSet, package="Biobase")
 identical(exampleSet,sample.ExpressionSet)
 invisible(Biobase::esApply(exampleSet,2,hist))
 lm(score~gender+X31739_at,data=exampleSet)
-
+}
 }
 \keyword{utilities}

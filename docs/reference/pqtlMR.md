@@ -75,19 +75,19 @@ outcome <- TwoSampleMR::format_data(read.csv(fo),type="outcome")
 #> Warning: The following columns are not present but are helpful for harmonisation
 #> eaf
 pQTLtools::pqtlMR(exposure, outcome, prefix="IL6R-")
-#> Harmonising IL.6 (O9YIMd) and Rheumatoid arthritis (9A6LZH)
-#> Harmonising IL.6 (O9YIMd) and Coronary artery disease (GvLTWN)
-#> Harmonising IL.6 (O9YIMd) and Atopic dermatitis (c4aS45)
-#> Analysing 'O9YIMd' on '9A6LZH'
-#> Analysing 'O9YIMd' on 'GvLTWN'
-#> Analysing 'O9YIMd' on 'c4aS45'
+#> Harmonising IL.6 (4kHYx5) and Atopic dermatitis (3yGQlQ)
+#> Harmonising IL.6 (4kHYx5) and Coronary artery disease (Lo659x)
+#> Harmonising IL.6 (4kHYx5) and Rheumatoid arthritis (xlv8vg)
+#> Analysing '4kHYx5' on '3yGQlQ'
+#> Analysing '4kHYx5' on 'Lo659x'
+#> Analysing '4kHYx5' on 'xlv8vg'
 pQTLtools::pqtlMR(exposure, outcome, prefix="IL6R_rev-",reverse=TRUE)
-#> Harmonising IL.6 (O9YIMd) and Rheumatoid arthritis (9A6LZH)
-#> Harmonising IL.6 (O9YIMd) and Coronary artery disease (GvLTWN)
-#> Harmonising IL.6 (O9YIMd) and Atopic dermatitis (c4aS45)
-#> Analysing '9A6LZH' on 'O9YIMd'
-#> Analysing 'GvLTWN' on 'O9YIMd'
-#> Analysing 'c4aS45' on 'O9YIMd'
+#> Harmonising IL.6 (4kHYx5) and Atopic dermatitis (3yGQlQ)
+#> Harmonising IL.6 (4kHYx5) and Coronary artery disease (Lo659x)
+#> Harmonising IL.6 (4kHYx5) and Rheumatoid arthritis (xlv8vg)
+#> Analysing '3yGQlQ' on '4kHYx5'
+#> Analysing 'Lo659x' on '4kHYx5'
+#> Analysing 'xlv8vg' on '4kHYx5'
 unlink(c("IL6R*","pQTL-combined*"))
 # Phenotype,SNP,effect_allele,other_allele,eaf,beta,se,pval
 # ABO,rs505922,C,T,0.313,1.298,0.014,1.2e-1828

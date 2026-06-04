@@ -184,12 +184,18 @@ Biobase::exprs(exampleSet) <- log2.na(Biobase::exprs(exampleSet))
 We generate a `lod.max` ~ U[0,1] variable to experiment
 
 ```{r lod, fig.cap="LOD based on a random cutoff", fig.height=7}
-Biobase::fData(exampleSet)
-Biobase::fData(exampleSet)$lod.max <- apply(Biobase::exprs(exampleSet),1,quantile,runif(nrow(exampleSet)))
-lod <- pQTLtools::get.prop.below.LLOD(exampleSet)
-x <- dplyr::arrange(Biobase::fData(lod),desc(pc.belowLOD.new))
-knitr::kable(head(lod))
-plot(x[,2], main="Random quantile cutoff", ylab="<lod%")
+data(sample.ExpressionSet, package = "Biobase")
+exampleSet <- sample.ExpressionSet
+set.seed(1)
+probs <- runif(nrow(exampleSet))
+Biobase::fData(exampleSet)$lod.max <- vapply(seq_len(nrow(exampleSet)), function(i)
+           quantile(Biobase::exprs(exampleSet)[i, ], probs = probs[i], na.rm = TRUE),
+           numeric(1))
+lod <- get.prop.below.LLOD(exampleSet)
+fd <- Biobase::fData(lod)
+fd <- fd[order(fd$pc.belowLOD.new, decreasing = TRUE), ]
+knitr::kable(head(fd))
+plot(fd$pc.belowLOD.new, main = "Random quantile cut off", ylab = "% below LOD")
 ```
 
 The quantity has been shown to have a big impact on protein abundance and therefore pQTL detection as is shown with a real example.

@@ -12,7 +12,7 @@
 * Merge Bioconductor-related and LocusZoom.js/SCALLOP-Caprion articles.
 * New favicon/logo from realfavicongenerator.net.
 * Revise README.Rmd/bioconductor.Rmd/pQTLtools.Rmd to suppress Fedora 41 check.
-* Rewrite novelty_check(), qtl_lookup().
+* Rewrite get.prop.below.LLOD(), novelty_check(), qtl_lookup().
 * Set fig.height/fig.width for articles and suggest Cairo for CairoPNG.
 * Suggests CAMERA, MSnbase, MSstats, Spectra, mzR, protViz, rawrr.
 
