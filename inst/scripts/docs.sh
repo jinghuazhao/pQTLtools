@@ -16,7 +16,6 @@ export TMPDIR=/rds/user/jhz22/hpc-work/work IN_PKGDOWN=true R_PKGDOWN_BUILD_LLM=
 cd ~/pQTLtools
 
 Rscript -e '
-file.copy(c("inst/doc/lz.html", "inst/doc/stack.html", "inst/doc/data"), "docs/articles", recursive=TRUE, overwrite=TRUE)
 suppressMessages({
     library(pkgdown)
     library(roxygen2)
@@ -25,6 +24,8 @@ suppressMessages({
     roxygen2::roxygenise()
     pkgdown::clean_site();pkgdown::build_site()
 })
+file.copy(c("inst/doc/lz.html","inst/doc/stack.html"), "docs/articles", overwrite=TRUE)
+file.copy("inst/doc/data","docs/articles", overwrite=TRUE, recursive=TRUE)
 '
 
 rm -f vignettes/*.html
