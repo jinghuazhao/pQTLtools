@@ -16,6 +16,7 @@ export TMPDIR=/rds/user/jhz22/hpc-work/work IN_PKGDOWN=true R_PKGDOWN_BUILD_LLM=
 cd ~/pQTLtools
 
 Rscript -e '
+file.copy(c("inst/doc/lz.html", "inst/doc/stack.html", "inst/doc/data"), "docs/articles", recursive=TRUE, overwrite=TRUE)
 suppressMessages({
     library(pkgdown)
     library(roxygen2)
