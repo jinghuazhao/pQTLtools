@@ -14,7 +14,7 @@
 -   Imports data.table.
 -   Merge Bioconductor-related and LocusZoom.js/SCALLOP-Caprion
     articles.
--   New favicon from realfavicongenerator.net.
+-   New favicon/logo from realfavicongenerator.net.
 -   Revise README.Rmd/bioconductor.Rmd/pQTLtools.Rmd to suppress Fedora
     41 check.
 -   Rewrite novelty_check(), qtl_lookup().
