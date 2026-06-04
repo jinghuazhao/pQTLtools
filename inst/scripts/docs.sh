@@ -23,7 +23,7 @@ suppressMessages({
     library(knitr)
     knitr::knit("README.Rmd")
     roxygen2::roxygenise()
-    pkgdown::build_site()
+    pkgdown::clean_site();pkgdown::build_site()
 })
 '
 
