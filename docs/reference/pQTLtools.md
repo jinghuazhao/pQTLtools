@@ -67,6 +67,7 @@ Available data and functions are listed in the following table.
 | `gap::log10p`                      | log10(p) for a standard normal deviate                  |
 | `gap::log10pvalue`                 | log10(p) for a P value including its scientific format  |
 | `gap::logp`                        | log(p) for a normal deviate                             |
+| `gap::makeRLEplot`                 | Create a Relative Log Expression (RLE) Plot             |
 | `gap::mhtplot.trunc`               | Truncated Manhattan plot                                |
 | `gap::miamiplot2`                  | Miami plot                                              |
 | `gap::mr_forestplot`               | Mendelian Randomization forest plot                     |
