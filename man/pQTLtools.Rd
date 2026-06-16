@@ -46,6 +46,8 @@ Available data and functions are listed in the following table.\tabular{ll}{
      \tab   \cr
    \strong{Functions in gap} \tab   \cr
    \code{\link[gap:METAL_forestplot]{gap::METAL_forestplot}} \tab Forest plots from metal analysis \cr
+   \code{\link[gap:ab]{gap::ab}} \tab Test and Power Calculation for Mediating Effect \cr
+   \code{\link[gap:asplot]{gap::asplot}} \tab Regional association plot \cr
    \code{\link[gap:ci2ms]{gap::ci2ms}} \tab Effect size and standard error from confidence interval \cr
    \code{\link[gap:cis.vs.trans.classification]{gap::cis.vs.trans.classification}} \tab a cis/trans classifier \cr
    \code{\link[gap:circos.cis.vs.trans.plot]{gap::circos.cis.vs.trans.plot}} \tab circos plot of cis/trans classification \cr
@@ -61,6 +63,7 @@ Available data and functions are listed in the following table.\tabular{ll}{
    \code{\link[gap:log10pvalue]{gap::log10pvalue}} \tab log10(p) for a P value including its scientific format \cr
    \code{\link[gap:logp]{gap::logp}} \tab log(p) for a normal deviate \cr
    \code{\link[gap:makeRLEplot]{gap::makeRLEplot}} \tab Create a Relative Log Expression (RLE) Plot \cr
+   \code{\link[gap:masize]{gap::masize}} \tab Sample Size Calculation for Mediation Analysis \cr
    \code{\link[gap:mhtplot.trunc]{gap::mhtplot.trunc}} \tab Truncated Manhattan plot \cr
    \code{\link[gap:miamiplot2]{gap::miamiplot2}} \tab Miami plot \cr
    \code{\link[gap:mr_forestplot]{gap::mr_forestplot}} \tab Mendelian Randomization forest plot \cr

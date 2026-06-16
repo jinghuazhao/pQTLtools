@@ -42,6 +42,8 @@
 #' &nbsp;                   |   &nbsp;
 #' **Functions in gap**     |   &nbsp;
 #' [`gap::METAL_forestplot`]    |    Forest plots from metal analysis
+#' [`gap::ab`]                  |    Test and Power Calculation for Mediating Effect
+#' [`gap::asplot`]              |    Regional association plot
 #' [`gap::ci2ms`]               |    Effect size and standard error from confidence interval
 #' [`gap::cis.vs.trans.classification`] | a cis/trans classifier
 #' [`gap::circos.cis.vs.trans.plot`] | circos plot of cis/trans classification
@@ -57,6 +59,7 @@
 #' [`gap::log10pvalue`]         |    log10(p) for a P value including its scientific format
 #' [`gap::logp`]                |    log(p) for a normal deviate
 #' [`gap::makeRLEplot`]         |    Create a Relative Log Expression (RLE) Plot
+#' [`gap::masize`]              |    Sample Size Calculation for Mediation Analysis
 #' [`gap::mhtplot.trunc`]       |    Truncated Manhattan plot
 #' [`gap::miamiplot2`]          |    Miami plot
 #' [`gap::mr_forestplot`]       |    Mendelian Randomization forest plot
