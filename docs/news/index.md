@@ -2,7 +2,7 @@
 
 ## pQTLtools 0.5
 
-(2025/6/9)
+(2025/6/16)
 
 -   \_pkgdown.yml overhaul.
 -   Accommodate revised gap::METAL_forestplot in vignette.
@@ -14,13 +14,15 @@
 -   Imports data.table.
 -   Merge Bioconductor-related and LocusZoom.js/SCALLOP-Caprion
     articles.
--   New favicon/logo from realfavicongenerator.net.
+-   New logo/favicons (build_favicons() cannot resolve
+    realfavicongenerator.net).
 -   Revise README.Rmd/bioconductor.Rmd/pQTLtools.Rmd to suppress Fedora
     41 check.
 -   Rewrite get.prop.below.LLOD(), novelty_check(), qtl_lookup().
 -   Set fig.height/fig.width for articles and suggest Cairo for
     CairoPNG.
--   Suggests CAMERA, MSnbase, MSstats, Spectra, mzR, protViz, rawrr.
+-   Suggests CAMERA, MSnbase, MSstats, Spectra, bigsnpr, mzR, protViz,
+    rawrr, zoo.
 
 ## pQTLtools 0.4
 

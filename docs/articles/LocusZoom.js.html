@@ -158,194 +158,282 @@ $data
 </div>
 </div>
 <div class="section level2" number="2">
+<h2 id="gapasplot">
+<span class="header-section-number">2</span> gap::asplot<a class="anchor" aria-label="anchor" href="#gapasplot"></a>
+</h2>
+<p>This section mirrors the original CDKN results for the named function.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">pkgs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AnnotationDbi"</span>, <span class="st">"GenomicRanges"</span>, <span class="st">"TxDb.Hsapiens.UCSC.hg19.knownGene"</span>, <span class="st">"bigsnpr"</span>, <span class="st">"ieugwasr"</span>, <span class="st">"zoo"</span>, <span class="st">"org.Hs.eg.db"</span><span class="op">)</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">p</span> <span class="kw">in</span> <span class="va">pkgs</span><span class="op">)</span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"^package:"</span>, <span class="va">p</span>, <span class="st">"$"</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/search.html" class="external-link">search</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/warning.html" class="external-link">warning</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"This vignette needs package `"</span>, <span class="va">p</span>, <span class="st">"'; please install"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="co">#&gt; Loading required namespace: AnnotationDbi</span></span>
+<span><span class="co">#&gt; Loading required namespace: GenomicRanges</span></span>
+<span><span class="co">#&gt; Loading required namespace: TxDb.Hsapiens.UCSC.hg19.knownGene</span></span>
+<span><span class="co">#&gt; Loading required namespace: bigsnpr</span></span>
+<span><span class="co">#&gt; Loading required namespace: ieugwasr</span></span>
+<span><span class="co">#&gt; Loading required namespace: zoo</span></span>
+<span><span class="co">#&gt; Loading required namespace: org.Hs.eg.db</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/invisible.html" class="external-link">invisible</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressMessages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">pkgs</span>, <span class="va">require</span>, character.only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">chr</span>   <span class="op">&lt;-</span> <span class="fl">9</span></span>
+<span><span class="va">start</span> <span class="op">&lt;-</span> <span class="fl">21900000</span></span>
+<span><span class="va">end</span>   <span class="op">&lt;-</span> <span class="fl">22500000</span></span>
+<span><span class="va">opengwas_id</span> <span class="op">&lt;-</span> <span class="st">"ebi-a-GCST006867"</span></span>
+<span><span class="va">region</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">chr</span>, <span class="st">":"</span>, <span class="va">start</span>, <span class="st">"-"</span>, <span class="va">end</span><span class="op">)</span></span>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">associations</span><span class="op">(</span>variants <span class="op">=</span> <span class="va">region</span>, id<span class="op">=</span><span class="va">opengwas_id</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Querying id chunk 1 of 1</span></span>
+<span><span class="co">#&gt; Querying variant chunk 1 of 1</span></span>
+<span><span class="va">lead</span> <span class="op">&lt;-</span> <span class="va">dat</span><span class="op">$</span><span class="va">rsid</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/which.min.html" class="external-link">which.min</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">p</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">dat</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/order.html" class="external-link">order</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">p</span><span class="op">)</span>, <span class="op">]</span></span>
+<span><span class="va">snps500</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">rsid</span><span class="op">)</span></span>
+<span><span class="va">snps500</span> <span class="op">&lt;-</span> <span class="va">snps500</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">snps500</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">snps500</span> <span class="op">&lt;-</span> <span class="va">snps500</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="fl">500</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">snps500</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">ld_mat</span> <span class="op">&lt;-</span> <span class="fu">ieugwasr</span><span class="fu">::</span><span class="fu"><a href="https://mrcieu.github.io/ieugwasr/reference/ld_matrix.html" class="external-link">ld_matrix</a></span><span class="op">(</span>variants<span class="op">=</span><span class="va">snps500</span>, pop<span class="op">=</span><span class="st">"EUR"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Please look at vignettes for options on running this locally if you need to run many instances of this command.</span></span>
+<span><span class="va">ld_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/row_colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">ld_mat</span><span class="op">)</span></span>
+<span><span class="va">ld_clean_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">sub</a></span><span class="op">(</span><span class="st">"_.*"</span>, <span class="st">""</span>, <span class="va">ld_names</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/row_colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">ld_mat</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">ld_clean_names</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/row_colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">ld_mat</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">ld_clean_names</span></span>
+<span><span class="va">dat_gap</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>chr<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"chr"</span>, <span class="va">dat</span><span class="op">$</span><span class="va">chr</span><span class="op">)</span>, pos<span class="op">=</span><span class="va">dat</span><span class="op">$</span><span class="va">position</span>, snp<span class="op">=</span><span class="va">dat</span><span class="op">$</span><span class="va">rsid</span><span class="op">)</span></span>
+<span><span class="va">dat_gap</span><span class="op">$</span><span class="va">logp</span> <span class="op">&lt;-</span> <span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log10</a></span><span class="op">(</span><span class="va">dat_gap</span><span class="op">$</span><span class="va">p</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html" class="external-link">stopifnot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html" class="external-link">all</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/row_colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">ld_mat</span><span class="op">)</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/row_colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">ld_mat</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">rsqr</span> <span class="op">&lt;-</span> <span class="va">ld_mat</span><span class="op">[</span><span class="va">lead</span>, <span class="op">]</span><span class="op">^</span><span class="fl">2</span></span>
+<span><span class="va">dat</span><span class="op">$</span><span class="va">rsqr</span> <span class="op">&lt;-</span> <span class="va">rsqr</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/match.html" class="external-link">match</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">rsid</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">rsqr</span><span class="op">)</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="va">dat</span><span class="op">$</span><span class="va">gpos_cM</span> <span class="op">&lt;-</span> <span class="fu">snp_asGeneticPos</span><span class="op">(</span>infos.chr<span class="op">=</span><span class="va">dat</span><span class="op">$</span><span class="va">chr</span>, infos.pos<span class="op">=</span><span class="va">dat</span><span class="op">$</span><span class="va">position</span>, type<span class="op">=</span><span class="st">"OMNI"</span><span class="op">)</span></span>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="va">dat</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/order.html" class="external-link">order</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">chr</span>, <span class="va">dat</span><span class="op">$</span><span class="va">position</span><span class="op">)</span>, <span class="op">]</span></span>
+<span><span class="va">dat</span><span class="op">$</span><span class="va">d_cm</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fu"><a href="https://rdrr.io/r/base/diff.html" class="external-link">diff</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">gpos_cM</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">dat</span><span class="op">$</span><span class="va">theta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span> <span class="op">*</span> <span class="va">dat</span><span class="op">$</span><span class="va">d_cm</span><span class="op">[</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span> <span class="op">/</span> <span class="fl">100</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">locus</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>CHR<span class="op">=</span><span class="va">dat</span><span class="op">$</span><span class="va">chr</span>, POS<span class="op">=</span><span class="va">dat</span><span class="op">$</span><span class="va">position</span>, NAME<span class="op">=</span><span class="va">dat</span><span class="op">$</span><span class="va">rsid</span>, PVAL<span class="op">=</span><span class="va">dat</span><span class="op">$</span><span class="va">p</span>, RSQR<span class="op">=</span><span class="va">dat</span><span class="op">$</span><span class="va">rsqr</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html" class="external-link">stopifnot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html" class="external-link">all</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/is.finite.html" class="external-link">is.finite</a></span><span class="op">(</span><span class="va">locus</span><span class="op">$</span><span class="va">PVAL</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html" class="external-link">stopifnot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html" class="external-link">all</a></span><span class="op">(</span><span class="va">locus</span><span class="op">$</span><span class="va">PVAL</span> <span class="op">&gt;=</span> <span class="fl">0</span> <span class="op">&amp;</span> <span class="va">locus</span><span class="op">$</span><span class="va">PVAL</span> <span class="op">&lt;=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">locus</span> <span class="op">&lt;-</span> <span class="va">locus</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">locus</span><span class="op">$</span><span class="va">CHR</span><span class="op">)</span> <span class="op">&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">locus</span><span class="op">$</span><span class="va">POS</span><span class="op">)</span>, <span class="op">]</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">locus</span><span class="op">)</span> <span class="op">==</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span><span class="kw"><a href="https://rdrr.io/r/base/stop.html" class="external-link">stop</a></span><span class="op">(</span><span class="st">"ERROR: locus is empty after cleaning dat"</span><span class="op">)</span><span class="op">}</span></span>
+<span><span class="va">locus</span> <span class="op">&lt;-</span> <span class="va">locus</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/order.html" class="external-link">order</a></span><span class="op">(</span><span class="va">locus</span><span class="op">$</span><span class="va">CHR</span>, <span class="va">locus</span><span class="op">$</span><span class="va">POS</span><span class="op">)</span>, <span class="op">]</span></span>
+<span><span class="va">locus</span><span class="op">$</span><span class="va">CM</span> <span class="op">&lt;-</span> <span class="fu">snp_asGeneticPos</span><span class="op">(</span>infos.chr<span class="op">=</span><span class="va">locus</span><span class="op">$</span><span class="va">CHR</span>, infos.pos<span class="op">=</span><span class="va">locus</span><span class="op">$</span><span class="va">POS</span>, type<span class="op">=</span><span class="st">"OMNI"</span><span class="op">)</span></span>
+<span><span class="va">locus</span><span class="op">$</span><span class="va">RATE</span> <span class="op">&lt;-</span> <span class="cn">NA_real_</span></span>
+<span><span class="va">ok</span> <span class="op">&lt;-</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">locus</span><span class="op">$</span><span class="va">CM</span><span class="op">)</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">ok</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">1</span><span class="op">)</span> <span class="op">{</span><span class="va">locus</span><span class="op">$</span><span class="va">RATE</span><span class="op">[</span><span class="va">ok</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="fu"><a href="https://rdrr.io/r/base/diff.html" class="external-link">diff</a></span><span class="op">(</span><span class="va">locus</span><span class="op">$</span><span class="va">CM</span><span class="op">[</span><span class="va">ok</span><span class="op">]</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/diff.html" class="external-link">diff</a></span><span class="op">(</span><span class="va">locus</span><span class="op">$</span><span class="va">POS</span><span class="op">[</span><span class="va">ok</span><span class="op">]</span><span class="op">)</span> <span class="op">*</span> <span class="fl">1e6</span><span class="op">)</span><span class="op">}</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">locus</span><span class="op">$</span><span class="va">RATE</span><span class="op">)</span><span class="op">)</span><span class="op">&gt;</span><span class="fl">3</span><span class="op">)</span> <span class="op">{</span><span class="va">locus</span><span class="op">$</span><span class="va">RATE</span> <span class="op">&lt;-</span> <span class="fu">zoo</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/zoo/man/rollmean.html" class="external-link">rollmean</a></span><span class="op">(</span><span class="va">locus</span><span class="op">$</span><span class="va">RATE</span>, k<span class="op">=</span><span class="fl">7</span>, fill<span class="op">=</span><span class="cn">NA</span>, align<span class="op">=</span><span class="st">"center"</span><span class="op">)</span><span class="op">}</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html" class="external-link">stopifnot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">locus</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html" class="external-link">stopifnot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html" class="external-link">all</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">locus</span><span class="op">$</span><span class="va">RATE</span><span class="op">)</span> <span class="op">|</span> <span class="fu"><a href="https://rdrr.io/r/base/is.finite.html" class="external-link">is.finite</a></span><span class="op">(</span><span class="va">locus</span><span class="op">$</span><span class="va">RATE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html" class="external-link">stopifnot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html" class="external-link">all</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">locus</span><span class="op">$</span><span class="va">CM</span><span class="op">)</span> <span class="op">|</span> <span class="va">locus</span><span class="op">$</span><span class="va">CM</span><span class="op">&gt;=</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html" class="external-link">stopifnot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html" class="external-link">all</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"POS"</span>, <span class="st">"CM"</span>, <span class="st">"RATE"</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/pkg/BiocGenerics/man/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/row_colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">locus</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">locus</span> <span class="op">&lt;-</span> <span class="va">locus</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/order.html" class="external-link">order</a></span><span class="op">(</span><span class="va">locus</span><span class="op">$</span><span class="va">POS</span><span class="op">)</span>, <span class="op">]</span></span>
+<span><span class="va">map</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">locus</span>,<span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>POS<span class="op">=</span><span class="va">POS</span>, THETA<span class="op">=</span><span class="va">RATE</span>, DIST<span class="op">=</span><span class="va">CM</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">map</span> <span class="op">&lt;-</span> <span class="va">map</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/order.html" class="external-link">order</a></span><span class="op">(</span><span class="va">map</span><span class="op">$</span><span class="va">POS</span><span class="op">)</span>, <span class="op">]</span></span>
+<span><span class="va">map</span><span class="op">$</span><span class="va">THETA</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/is.finite.html" class="external-link">is.finite</a></span><span class="op">(</span><span class="va">map</span><span class="op">$</span><span class="va">THETA</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
+<span><span class="va">map</span><span class="op">$</span><span class="va">DIST</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/is.finite.html" class="external-link">is.finite</a></span><span class="op">(</span><span class="va">map</span><span class="op">$</span><span class="va">DIST</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span>
+<span><span class="va">gr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/GenomicRanges/man/GRanges-class.html" class="external-link">GRanges</a></span><span class="op">(</span>seqnames<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"chr"</span>, <span class="va">chr</span><span class="op">)</span>,ranges<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/IRanges/man/IRanges-constructor.html" class="external-link">IRanges</a></span><span class="op">(</span><span class="va">start</span>, <span class="va">end</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">genes_gr</span> <span class="op">&lt;-</span> <span class="fu">genes</span><span class="op">(</span><span class="va">TxDb.Hsapiens.UCSC.hg19.knownGene</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   24 genes were dropped because they have exons located on both strands of the</span></span>
+<span><span class="co">#&gt;   same reference sequence or on more than one reference sequence, so cannot be</span></span>
+<span><span class="co">#&gt;   represented by a single genomic range.</span></span>
+<span><span class="co">#&gt;   Use 'single.strand.genes.only=FALSE' to get all the genes in a GRangesList</span></span>
+<span><span class="co">#&gt;   object, or use suppressMessages() to suppress this message.</span></span>
+<span><span class="va">hits</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/IRanges/man/findOverlaps-methods.html" class="external-link">subsetByOverlaps</a></span><span class="op">(</span><span class="va">genes_gr</span>, <span class="va">gr</span><span class="op">)</span></span>
+<span><span class="va">symbols</span> <span class="op">&lt;-</span> <span class="fu">mapIds</span><span class="op">(</span><span class="va">org.Hs.eg.db</span>, keys<span class="op">=</span><span class="va">hits</span><span class="op">$</span><span class="va">gene_id</span>, keytype<span class="op">=</span><span class="st">"ENTREZID"</span>, column<span class="op">=</span><span class="st">"SYMBOL"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; 'select()' returned 1:1 mapping between keys and columns</span></span>
+<span><span class="va">genes_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>gene_id<span class="op">=</span><span class="va">hits</span><span class="op">$</span><span class="va">gene_id</span>, symbol<span class="op">=</span><span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Vector-class.html" class="external-link">unname</a></span><span class="op">(</span><span class="va">symbols</span><span class="op">)</span>, start<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/stats/start.html" class="external-link">start</a></span><span class="op">(</span><span class="va">hits</span><span class="op">)</span>, end<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/stats/start.html" class="external-link">end</a></span><span class="op">(</span><span class="va">hits</span><span class="op">)</span>, strand<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/BiocGenerics/man/strand.html" class="external-link">strand</a></span><span class="op">(</span><span class="va">hits</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">genes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>START<span class="op">=</span><span class="va">genes_df</span><span class="op">$</span><span class="va">start</span>, STOP<span class="op">=</span><span class="va">genes_df</span><span class="op">$</span><span class="va">end</span>, STRAND<span class="op">=</span><span class="va">genes_df</span><span class="op">$</span><span class="va">strand</span>, GENE<span class="op">=</span><span class="va">genes_df</span><span class="op">$</span><span class="va">symbol</span><span class="op">)</span></span>
+<span><span class="fu">gap</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/gap/man/asplot.html" class="external-link">asplot</a></span><span class="op">(</span><span class="va">locus</span>,<span class="va">map</span>,<span class="va">genes</span><span class="op">)</span></span></code></pre></div>
+<div class="figure" style="text-align: center">
+<span style="display:block;" id="fig:asplot"></span>
+<img src="pQTLtools/asplot-1.png" alt="Association plot for T2D" width="864" style="display:block; margin: auto"><p class="caption">
+Figure 2.1: Association plot for T2D
+</p>
+</div>
+</div>
+<div class="section level2" number="3">
 <h2 id="scallop-analysis">
-<span class="header-section-number">2</span> SCALLOP analysis<a class="anchor" aria-label="anchor" href="#scallop-analysis"></a>
+<span class="header-section-number">3</span> SCALLOP analysis<a class="anchor" aria-label="anchor" href="#scallop-analysis"></a>
 </h2>
 <p>This section details colocalization and pQTL/disease overlap analysis.</p>
-<div class="section level3" number="2.1">
+<div class="section level3" number="3.1">
 <h3 id="colocalization">
-<span class="header-section-number">2.1</span> Colocalization<a class="anchor" aria-label="anchor" href="#colocalization"></a>
+<span class="header-section-number">3.1</span> Colocalization<a class="anchor" aria-label="anchor" href="#colocalization"></a>
 </h3>
 <p>This is the actual script for cis-pQTL colocalization analysis on GTEx v8 for SCALLOP-INF.</p>
-<div class="section level4" number="2.1.1">
+<div class="section level4" number="3.1.1">
 <h4 id="data">
-<span class="header-section-number">2.1.1</span> Data<a class="anchor" aria-label="anchor" href="#data"></a>
+<span class="header-section-number">3.1.1</span> Data<a class="anchor" aria-label="anchor" href="#data"></a>
 </h4>
 <p>The data were GWAS summary statistics in GRCh37 and VCF format, converted by <code>gwasvcf</code>. The GTEx association statistics were in GRCh38 and downloaded from the eQTL Catalogue and stored locally. Data on microarray and RNA-Seq remain on the eQTL Catalogue website.</p>
 </div>
-<div class="section level4" number="2.1.2">
+<div class="section level4" number="3.1.2">
 <h4 id="coloc-r">
-<span class="header-section-number">2.1.2</span> coloc.R<a class="anchor" aria-label="anchor" href="#coloc-r"></a>
+<span class="header-section-number">3.1.2</span> coloc.R<a class="anchor" aria-label="anchor" href="#coloc-r"></a>
 </h4>
 <p>It contains minor modification to the documentation example,</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>liftRegion <span class="ot">&lt;-</span> <span class="cf">function</span>(x,chain,<span class="at">flanking=</span><span class="fl">1e6</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">require</span>(GenomicRanges)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  gr <span class="ot">&lt;-</span> <span class="fu">with</span>(x,GenomicRanges<span class="sc">::</span><span class="fu">GRanges</span>(<span class="at">seqnames=</span>chr,IRanges<span class="sc">::</span><span class="fu">IRanges</span>(start,end))<span class="sc">+</span>flanking)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">seqlevelsStyle</span>(gr) <span class="ot">&lt;-</span> <span class="st">"UCSC"</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  gr38 <span class="ot">&lt;-</span> rtracklayer<span class="sc">::</span><span class="fu">liftOver</span>(gr, chain)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  chr <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">"chr"</span>,<span class="st">""</span>,<span class="fu">colnames</span>(<span class="fu">table</span>(<span class="fu">seqnames</span>(gr38))))</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  start <span class="ot">&lt;-</span> <span class="fu">min</span>(<span class="fu">unlist</span>(<span class="fu">start</span>(gr38)))</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  end <span class="ot">&lt;-</span> <span class="fu">max</span>(<span class="fu">unlist</span>(<span class="fu">end</span>(gr38)))</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">invisible</span>(<span class="fu">list</span>(<span class="at">chr=</span>chr[<span class="dv">1</span>],<span class="at">start=</span>start,<span class="at">end=</span>end,<span class="at">region=</span><span class="fu">paste0</span>(chr,<span class="st">":"</span>,start,<span class="st">"-"</span>,end)))</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>sumstats <span class="ot">&lt;-</span> <span class="cf">function</span>(prot,chr,region37)</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"GWAS sumstats</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  vcf <span class="ot">&lt;-</span> <span class="fu">file.path</span>(INF,<span class="st">"METAL/gwas2vcf"</span>,<span class="fu">paste0</span>(prot,<span class="st">".vcf.gz"</span>))</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  gwas_stats <span class="ot">&lt;-</span> gwasvcf<span class="sc">::</span><span class="fu">query_gwas</span>(vcf, <span class="at">chrompos =</span> region37) <span class="sc">%&gt;%</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>                gwasvcf<span class="sc">::</span><span class="fu">vcf_to_granges</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>                <span class="fu">keepSeqlevels</span>(chr) <span class="sc">%&gt;%</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>                <span class="fu">renameSeqlevels</span>(<span class="fu">paste0</span>(<span class="st">"chr"</span>,chr))</span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  gwas_stats_hg38 <span class="ot">&lt;-</span> rtracklayer<span class="sc">::</span><span class="fu">liftOver</span>(gwas_stats, chain) <span class="sc">%&gt;%</span></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unlist</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="co">#   renameSeqlevels(chr) %&gt;%</span></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">transmute</span>(<span class="at">chromosome =</span> seqnames,</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>                     <span class="at">position =</span> start, REF, ALT, AF, ES, SE, LP, SS) <span class="sc">%&gt;%</span></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">id =</span> <span class="fu">paste</span>(chromosome, position, <span class="at">sep =</span> <span class="st">":"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">MAF =</span> <span class="fu">pmin</span>(AF, <span class="dv">1</span><span class="sc">-</span>AF)) <span class="sc">%&gt;%</span></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">group_by</span>(id) <span class="sc">%&gt;%</span></span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">row_count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(row_count <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">chromosome=</span><span class="fu">gsub</span>(<span class="st">"chr"</span>,<span class="st">""</span>,chromosome))</span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>microarray <span class="ot">&lt;-</span> <span class="cf">function</span>(gwas_stats_hg38,ensGene,region38)</span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"a. eQTL datasets</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>  microarray_df <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(tabix_paths, quant_method <span class="sc">==</span> <span class="st">"microarray"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a>                   dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">qtl_id =</span> <span class="fu">paste</span>(study, qtl_group, <span class="at">sep =</span> <span class="st">"_"</span>))</span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>  ftp_path_list <span class="ot">&lt;-</span> <span class="fu">setNames</span>(<span class="fu">as.list</span>(microarray_df<span class="sc">$</span>ftp_path), microarray_df<span class="sc">$</span>qtl_id[<span class="dv">1</span>])</span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a>  hdr <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">find.package</span>(<span class="st">"pQTLtools"</span>),<span class="st">"eQTL-Catalogue"</span>,<span class="st">"column_names.CEDAR"</span>)</span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a>  column_names <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">read.delim</span>(hdr))</span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>  summary_list <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(ftp_path_list, <span class="sc">~</span><span class="fu">import_eQTLCatalogue</span>(., region38,</span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>                             <span class="at">selected_gene_id =</span> ensGene, column_names))</span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map_df</span>(summary_list[<span class="fu">lapply</span>(summary_list,nrow)<span class="sc">!=</span><span class="dv">0</span>],</span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>                <span class="sc">~</span><span class="fu">run_coloc</span>(., gwas_stats_hg38), <span class="at">.id =</span> <span class="st">"qtl_id"</span>)</span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>rnaseq <span class="ot">&lt;-</span> <span class="cf">function</span>(gwas_stats_hg38,ensGene,region38)</span>
-<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"b. Uniformly processed RNA-seq datasets</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>  rnaseq_df <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(tabix_paths, quant_method <span class="sc">==</span> <span class="st">"ge"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>               dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">qtl_id =</span> <span class="fu">paste</span>(study, qtl_group, <span class="at">sep =</span> <span class="st">"_"</span>))</span>
-<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>  ftp_path_list <span class="ot">&lt;-</span> <span class="fu">setNames</span>(<span class="fu">as.list</span>(rnaseq_df<span class="sc">$</span>ftp_path), rnaseq_df<span class="sc">$</span>qtl_id)</span>
-<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>  hdr <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">find.package</span>(<span class="st">"pQTLtools"</span>),<span class="st">"eQTL-Catalogue"</span>,<span class="st">"column_names.Alasoo"</span>)</span>
-<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>  column_names <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">read.delim</span>(hdr))</span>
-<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>  safe_import <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">safely</span>(import_eQTLCatalogue)</span>
-<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>  summary_list <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(ftp_path_list, <span class="sc">~</span><span class="fu">safe_import</span>(., region38,</span>
-<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>                             <span class="at">selected_gene_id =</span> ensGene, column_names))</span>
-<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a>  result_list <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(summary_list[<span class="fu">lapply</span>(result_list,nrow)<span class="sc">!=</span><span class="dv">0</span>], <span class="sc">~</span>.<span class="sc">$</span>result)</span>
-<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>  result_list <span class="ot">&lt;-</span> result_list[<span class="sc">!</span><span class="fu">unlist</span>(purrr<span class="sc">::</span><span class="fu">map</span>(result_list, is.null))]</span>
-<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map_df</span>(result_list, <span class="sc">~</span><span class="fu">run_coloc</span>(., gwas_stats_hg38), <span class="at">.id =</span> <span class="st">"qtl_id"</span>)</span>
-<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a>gtex <span class="ot">&lt;-</span> <span class="cf">function</span>(gwas_stats_hg38,ensGene,region38)</span>
-<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"c. GTEx_v8 imported eQTL datasets</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a>  gtex_df <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(imported_tabix_paths, quant_method <span class="sc">==</span> <span class="st">"ge"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a>             dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">qtl_id =</span> <span class="fu">paste</span>(study, qtl_group, <span class="at">sep =</span> <span class="st">"_"</span>))</span>
-<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a>  ftp_path_list <span class="ot">&lt;-</span> <span class="fu">setNames</span>(<span class="fu">as.list</span>(gtex_df<span class="sc">$</span>ftp_path), gtex_df<span class="sc">$</span>qtl_id)</span>
-<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a>  hdr <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">find.package</span>(<span class="st">"pQTLtools"</span>),<span class="st">"eQTL-Catalogue"</span>,<span class="st">"column_names.GTEx"</span>)</span>
-<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a>  column_names <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">read.delim</span>(hdr))</span>
-<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>  safe_import <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">safely</span>(import_eQTLCatalogue)</span>
-<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a>  summary_list <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(ftp_path_list,</span>
-<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a>                             <span class="sc">~</span><span class="fu">safe_import</span>(., region38, <span class="at">selected_gene_id =</span> ensGene, column_names))</span>
-<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a>  result_list <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(summary_list, <span class="sc">~</span>.<span class="sc">$</span>result)</span>
-<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a>  result_list <span class="ot">&lt;-</span> result_list[<span class="sc">!</span><span class="fu">unlist</span>(purrr<span class="sc">::</span><span class="fu">map</span>(result_list, is.null))]</span>
-<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a>  result_filtered <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(result_list[<span class="fu">lapply</span>(result_list,nrow)<span class="sc">!=</span><span class="dv">0</span>],</span>
-<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a>                                <span class="sc">~</span>dplyr<span class="sc">::</span><span class="fu">filter</span>(., <span class="sc">!</span><span class="fu">is.na</span>(se)))</span>
-<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map_df</span>(result_filtered, <span class="sc">~</span><span class="fu">run_coloc</span>(., gwas_stats_hg38), <span class="at">.id =</span> <span class="st">"qtl_id"</span>)</span>
-<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a>coloc <span class="ot">&lt;-</span> <span class="cf">function</span>(prot,chr,ensGene,chain,region37,region38,out,<span class="at">run_all=</span><span class="cn">FALSE</span>)</span>
-<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a>  gwas_stats_hg38 <span class="ot">&lt;-</span> <span class="fu">sumstats</span>(prot,chr,region37)</span>
-<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a>  df_gtex <span class="ot">&lt;-</span> <span class="fu">gtex</span>(gwas_stats_hg38,ensGene,region38)</span>
-<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"df_gtex"</span>))</span>
-<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a>  {</span>
-<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a>    <span class="fu">saveRDS</span>(df_gtex,<span class="at">file=</span><span class="fu">paste0</span>(out,<span class="st">".RDS"</span>))</span>
-<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">arrange</span>(df_gtex, <span class="sc">-</span>PP.H4.abf)</span>
-<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a>    p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_gtex, <span class="fu">aes</span>(<span class="at">x =</span> PP.H4.abf)) <span class="sc">+</span> <span class="fu">geom_histogram</span>()</span>
-<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (run_all)</span>
-<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a>  {</span>
-<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a>    df_microarray <span class="ot">&lt;-</span> <span class="fu">microarray</span>(gwas_stats_hg38,ensGene,region38)</span>
-<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a>    df_rnaseq <span class="ot">&lt;-</span> <span class="fu">rnaseq</span>(gwas_stats_hg38,ensGene,region38)</span>
-<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"df_microarray"</span>) <span class="sc">&amp;</span> <span class="fu">exits</span>(<span class="st">"df_rnaseq"</span>) <span class="sc">&amp;</span> <span class="fu">exists</span>(<span class="st">"df_gtex"</span>))</span>
-<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a>    {</span>
-<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a>      coloc_df <span class="ot">=</span> dplyr<span class="sc">::</span><span class="fu">bind_rows</span>(df_microarray, df_rnaseq, df_gtex)</span>
-<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a>      <span class="fu">saveRDS</span>(coloc_df, <span class="at">file=</span><span class="fu">paste0</span>(out,<span class="st">".RDS"</span>))</span>
-<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a>      dplyr<span class="sc">::</span><span class="fu">arrange</span>(coloc_df, <span class="sc">-</span>PP.H4.abf)</span>
-<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a>      p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(coloc_df, <span class="fu">aes</span>(<span class="at">x =</span> PP.H4.abf)) <span class="sc">+</span> <span class="fu">geom_histogram</span>()</span>
-<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a>  s <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(gwas_stats_hg38, <span class="fu">aes</span>(<span class="at">x =</span> position, <span class="at">y =</span> LP)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span>
-<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggsave</span>(<span class="at">plot =</span> s, <span class="at">filename =</span> <span class="fu">paste0</span>(out, <span class="st">"-assoc.pdf"</span>), <span class="at">path =</span> <span class="st">""</span>, <span class="at">device =</span> <span class="st">"pdf"</span>,</span>
-<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a>         <span class="at">height =</span> <span class="dv">15</span>, <span class="at">width =</span> <span class="dv">15</span>, <span class="at">units =</span> <span class="st">"cm"</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span>
-<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggsave</span>(<span class="at">plot =</span> p, <span class="at">filename =</span> <span class="fu">paste0</span>(out, <span class="st">"-hist.pdf"</span>), <span class="at">path =</span> <span class="st">""</span>, <span class="at">device =</span> <span class="st">"pdf"</span>,</span>
-<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a>         <span class="at">height =</span> <span class="dv">15</span>, <span class="at">width =</span> <span class="dv">15</span>, <span class="at">units =</span> <span class="st">"cm"</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span>
-<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a>single_run <span class="ot">&lt;-</span> <span class="cf">function</span>(r)</span>
-<span id="cb5-114"><a href="#cb5-114" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb5-115"><a href="#cb5-115" aria-hidden="true" tabindex="-1"></a>  sentinel <span class="ot">&lt;-</span> sentinels[r,]</span>
-<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a>  chr <span class="ot">&lt;-</span> <span class="fu">with</span>(sentinel,Chr)</span>
-<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a>  ss <span class="ot">&lt;-</span> <span class="fu">subset</span>(inf1,prot<span class="sc">==</span>sentinel[[<span class="st">"prot"</span>]])</span>
-<span id="cb5-118"><a href="#cb5-118" aria-hidden="true" tabindex="-1"></a>  ensRegion37 <span class="ot">&lt;-</span> <span class="fu">with</span>(ss,</span>
-<span id="cb5-119"><a href="#cb5-119" aria-hidden="true" tabindex="-1"></a>                      {</span>
-<span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a>                        start <span class="ot">&lt;-</span> start<span class="sc">-</span>M</span>
-<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a>                        <span class="cf">if</span> (start<span class="sc">&lt;</span><span class="dv">0</span>) start <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb5-122"><a href="#cb5-122" aria-hidden="true" tabindex="-1"></a>                        end <span class="ot">&lt;-</span> end<span class="sc">+</span>M</span>
-<span id="cb5-123"><a href="#cb5-123" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">paste0</span>(chr,<span class="st">":"</span>,start,<span class="st">"-"</span>,end)</span>
-<span id="cb5-124"><a href="#cb5-124" aria-hidden="true" tabindex="-1"></a>                      })</span>
-<span id="cb5-125"><a href="#cb5-125" aria-hidden="true" tabindex="-1"></a>  ensGene <span class="ot">&lt;-</span> ss[[<span class="st">"ensembl_gene_id"</span>]]</span>
-<span id="cb5-126"><a href="#cb5-126" aria-hidden="true" tabindex="-1"></a>  ensRegion38 <span class="ot">&lt;-</span> <span class="fu">with</span>(<span class="fu">liftRegion</span>(ss,chain),region)</span>
-<span id="cb5-127"><a href="#cb5-127" aria-hidden="true" tabindex="-1"></a>  f <span class="ot">&lt;-</span> <span class="fu">file.path</span>(INF,<span class="st">"coloc"</span>,<span class="fu">with</span>(sentinel,<span class="fu">paste0</span>(prot,<span class="st">"-"</span>,SNP)))</span>
-<span id="cb5-128"><a href="#cb5-128" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(chr,ensGene,ensRegion37,ensRegion38,<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
-<span id="cb5-129"><a href="#cb5-129" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coloc</span>(sentinel[[<span class="st">"prot"</span>]],chr,ensGene,chain,ensRegion37,ensRegion38,f)</span>
-<span id="cb5-130"><a href="#cb5-130" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb5-131"><a href="#cb5-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-132"><a href="#cb5-132" aria-hidden="true" tabindex="-1"></a><span class="co"># slow with the following loop:</span></span>
-<span id="cb5-133"><a href="#cb5-133" aria-hidden="true" tabindex="-1"></a>loop <span class="ot">&lt;-</span> <span class="cf">function</span>() <span class="cf">for</span> (r <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(sentinels)) <span class="fu">single_run</span>(r)</span>
-<span id="cb5-134"><a href="#cb5-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-135"><a href="#cb5-135" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pQTLtools)</span>
-<span id="cb5-136"><a href="#cb5-136" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">find.package</span>(<span class="st">"pQTLtools"</span>),<span class="st">"eQTL-Catalogue"</span>,<span class="st">"hg19ToHg38.over.chain"</span>)</span>
-<span id="cb5-137"><a href="#cb5-137" aria-hidden="true" tabindex="-1"></a>chain <span class="ot">&lt;-</span> rtracklayer<span class="sc">::</span><span class="fu">import.chain</span>(f)</span>
-<span id="cb5-138"><a href="#cb5-138" aria-hidden="true" tabindex="-1"></a>pkgs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"dplyr"</span>, <span class="st">"ggplot2"</span>, <span class="st">"readr"</span>, <span class="st">"coloc"</span>, <span class="st">"GenomicRanges"</span>,<span class="st">"seqminer"</span>)</span>
-<span id="cb5-139"><a href="#cb5-139" aria-hidden="true" tabindex="-1"></a><span class="fu">invisible</span>(<span class="fu">lapply</span>(pkgs, require, <span class="at">character.only =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb5-140"><a href="#cb5-140" aria-hidden="true" tabindex="-1"></a>HPC_WORK <span class="ot">&lt;-</span> <span class="fu">Sys.getenv</span>(<span class="st">"HPC_WORK"</span>)</span>
-<span id="cb5-141"><a href="#cb5-141" aria-hidden="true" tabindex="-1"></a>gwasvcf<span class="sc">::</span><span class="fu">set_bcftools</span>(<span class="fu">file.path</span>(HPC_WORK,<span class="st">"bin"</span>,<span class="st">"bcftools"</span>))</span>
-<span id="cb5-142"><a href="#cb5-142" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">find.package</span>(<span class="st">"pQTLtools"</span>),<span class="st">"eQTL-Catalogue"</span>,<span class="st">"tabix_ftp_paths.tsv"</span>)</span>
-<span id="cb5-143"><a href="#cb5-143" aria-hidden="true" tabindex="-1"></a>tabix_paths <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(f, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">as_tibble</span>()</span>
-<span id="cb5-144"><a href="#cb5-144" aria-hidden="true" tabindex="-1"></a>HOME <span class="ot">&lt;-</span> <span class="fu">Sys.getenv</span>(<span class="st">"HOME"</span>)</span>
-<span id="cb5-145"><a href="#cb5-145" aria-hidden="true" tabindex="-1"></a>fp <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">find.package</span>(<span class="st">"pQTLtools"</span>),<span class="st">"eQTL-Catalogue"</span>,<span class="st">"tabix_ftp_paths_gtex.tsv"</span>)</span>
-<span id="cb5-146"><a href="#cb5-146" aria-hidden="true" tabindex="-1"></a>imported_tabix_paths <span class="ot">&lt;-</span> <span class="fu">within</span>(<span class="fu">read.delim</span>(fp, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">as_tibble</span>(),</span>
-<span id="cb5-147"><a href="#cb5-147" aria-hidden="true" tabindex="-1"></a>      {</span>
-<span id="cb5-148"><a href="#cb5-148" aria-hidden="true" tabindex="-1"></a>         f <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">strsplit</span>(ftp_path,<span class="st">"/csv/|/ge/"</span>),<span class="st">"["</span>,<span class="dv">3</span>)</span>
-<span id="cb5-149"><a href="#cb5-149" aria-hidden="true" tabindex="-1"></a>         ftp_path <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"~/rds/public_databases/GTEx/csv"</span>),f<span class="er">)</span></span>
-<span id="cb5-150"><a href="#cb5-150" aria-hidden="true" tabindex="-1"></a>      })</span>
-<span id="cb5-151"><a href="#cb5-151" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb5-152"><a href="#cb5-152" aria-hidden="true" tabindex="-1"></a>INF <span class="ot">&lt;-</span> <span class="fu">Sys.getenv</span>(<span class="st">"INF"</span>)</span>
-<span id="cb5-153"><a href="#cb5-153" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fl">1e6</span></span>
-<span id="cb5-154"><a href="#cb5-154" aria-hidden="true" tabindex="-1"></a>sentinels <span class="ot">&lt;-</span> <span class="fu">subset</span>(<span class="fu">read.csv</span>(<span class="fu">file.path</span>(INF,<span class="st">"work"</span>,<span class="st">"INF1.merge.cis.vs.trans"</span>)),cis)</span>
-<span id="cb5-155"><a href="#cb5-155" aria-hidden="true" tabindex="-1"></a>cvt_rsid <span class="ot">&lt;-</span> <span class="fu">file.path</span>(INF,<span class="st">"work"</span>,<span class="st">"INF1.merge.cis.vs.trans-rsid"</span>)</span>
-<span id="cb5-156"><a href="#cb5-156" aria-hidden="true" tabindex="-1"></a>prot_rsid <span class="ot">&lt;-</span> <span class="fu">subset</span>(<span class="fu">read.delim</span>(cvt_rsid,<span class="at">sep=</span><span class="st">" "</span>),cis,<span class="at">select=</span><span class="fu">c</span>(prot,SNP))</span>
-<span id="cb5-157"><a href="#cb5-157" aria-hidden="true" tabindex="-1"></a><span class="co"># Faster with parallel Bash runs.</span></span>
-<span id="cb5-158"><a href="#cb5-158" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="fu">Sys.getenv</span>(<span class="st">"r"</span>))</span>
-<span id="cb5-159"><a href="#cb5-159" aria-hidden="true" tabindex="-1"></a><span class="fu">single_run</span>(r)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>liftRegion <span class="ot">&lt;-</span> <span class="cf">function</span>(x,chain,<span class="at">flanking=</span><span class="fl">1e6</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">require</span>(GenomicRanges)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  gr <span class="ot">&lt;-</span> <span class="fu">with</span>(x,GenomicRanges<span class="sc">::</span><span class="fu">GRanges</span>(<span class="at">seqnames=</span>chr,IRanges<span class="sc">::</span><span class="fu">IRanges</span>(start,end))<span class="sc">+</span>flanking)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">seqlevelsStyle</span>(gr) <span class="ot">&lt;-</span> <span class="st">"UCSC"</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  gr38 <span class="ot">&lt;-</span> rtracklayer<span class="sc">::</span><span class="fu">liftOver</span>(gr, chain)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  chr <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">"chr"</span>,<span class="st">""</span>,<span class="fu">colnames</span>(<span class="fu">table</span>(<span class="fu">seqnames</span>(gr38))))</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  start <span class="ot">&lt;-</span> <span class="fu">min</span>(<span class="fu">unlist</span>(<span class="fu">start</span>(gr38)))</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  end <span class="ot">&lt;-</span> <span class="fu">max</span>(<span class="fu">unlist</span>(<span class="fu">end</span>(gr38)))</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">invisible</span>(<span class="fu">list</span>(<span class="at">chr=</span>chr[<span class="dv">1</span>],<span class="at">start=</span>start,<span class="at">end=</span>end,<span class="at">region=</span><span class="fu">paste0</span>(chr,<span class="st">":"</span>,start,<span class="st">"-"</span>,end)))</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>sumstats <span class="ot">&lt;-</span> <span class="cf">function</span>(prot,chr,region37)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"GWAS sumstats</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  vcf <span class="ot">&lt;-</span> <span class="fu">file.path</span>(INF,<span class="st">"METAL/gwas2vcf"</span>,<span class="fu">paste0</span>(prot,<span class="st">".vcf.gz"</span>))</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  gwas_stats <span class="ot">&lt;-</span> gwasvcf<span class="sc">::</span><span class="fu">query_gwas</span>(vcf, <span class="at">chrompos =</span> region37) <span class="sc">%&gt;%</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>                gwasvcf<span class="sc">::</span><span class="fu">vcf_to_granges</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>                <span class="fu">keepSeqlevels</span>(chr) <span class="sc">%&gt;%</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>                <span class="fu">renameSeqlevels</span>(<span class="fu">paste0</span>(<span class="st">"chr"</span>,chr))</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  gwas_stats_hg38 <span class="ot">&lt;-</span> rtracklayer<span class="sc">::</span><span class="fu">liftOver</span>(gwas_stats, chain) <span class="sc">%&gt;%</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unlist</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co">#   renameSeqlevels(chr) %&gt;%</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">transmute</span>(<span class="at">chromosome =</span> seqnames,</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>                     <span class="at">position =</span> start, REF, ALT, AF, ES, SE, LP, SS) <span class="sc">%&gt;%</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">id =</span> <span class="fu">paste</span>(chromosome, position, <span class="at">sep =</span> <span class="st">":"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">MAF =</span> <span class="fu">pmin</span>(AF, <span class="dv">1</span><span class="sc">-</span>AF)) <span class="sc">%&gt;%</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">group_by</span>(id) <span class="sc">%&gt;%</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">row_count =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(row_count <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">chromosome=</span><span class="fu">gsub</span>(<span class="st">"chr"</span>,<span class="st">""</span>,chromosome))</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>microarray <span class="ot">&lt;-</span> <span class="cf">function</span>(gwas_stats_hg38,ensGene,region38)</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"a. eQTL datasets</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>  microarray_df <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(tabix_paths, quant_method <span class="sc">==</span> <span class="st">"microarray"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>                   dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">qtl_id =</span> <span class="fu">paste</span>(study, qtl_group, <span class="at">sep =</span> <span class="st">"_"</span>))</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>  ftp_path_list <span class="ot">&lt;-</span> <span class="fu">setNames</span>(<span class="fu">as.list</span>(microarray_df<span class="sc">$</span>ftp_path), microarray_df<span class="sc">$</span>qtl_id[<span class="dv">1</span>])</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>  hdr <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">find.package</span>(<span class="st">"pQTLtools"</span>),<span class="st">"eQTL-Catalogue"</span>,<span class="st">"column_names.CEDAR"</span>)</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>  column_names <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">read.delim</span>(hdr))</span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>  summary_list <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(ftp_path_list, <span class="sc">~</span><span class="fu">import_eQTLCatalogue</span>(., region38,</span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>                             <span class="at">selected_gene_id =</span> ensGene, column_names))</span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map_df</span>(summary_list[<span class="fu">lapply</span>(summary_list,nrow)<span class="sc">!=</span><span class="dv">0</span>],</span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>                <span class="sc">~</span><span class="fu">run_coloc</span>(., gwas_stats_hg38), <span class="at">.id =</span> <span class="st">"qtl_id"</span>)</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>rnaseq <span class="ot">&lt;-</span> <span class="cf">function</span>(gwas_stats_hg38,ensGene,region38)</span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"b. Uniformly processed RNA-seq datasets</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>  rnaseq_df <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(tabix_paths, quant_method <span class="sc">==</span> <span class="st">"ge"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>               dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">qtl_id =</span> <span class="fu">paste</span>(study, qtl_group, <span class="at">sep =</span> <span class="st">"_"</span>))</span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>  ftp_path_list <span class="ot">&lt;-</span> <span class="fu">setNames</span>(<span class="fu">as.list</span>(rnaseq_df<span class="sc">$</span>ftp_path), rnaseq_df<span class="sc">$</span>qtl_id)</span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>  hdr <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">find.package</span>(<span class="st">"pQTLtools"</span>),<span class="st">"eQTL-Catalogue"</span>,<span class="st">"column_names.Alasoo"</span>)</span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>  column_names <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">read.delim</span>(hdr))</span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>  safe_import <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">safely</span>(import_eQTLCatalogue)</span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true" tabindex="-1"></a>  summary_list <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(ftp_path_list, <span class="sc">~</span><span class="fu">safe_import</span>(., region38,</span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true" tabindex="-1"></a>                             <span class="at">selected_gene_id =</span> ensGene, column_names))</span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true" tabindex="-1"></a>  result_list <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(summary_list[<span class="fu">lapply</span>(result_list,nrow)<span class="sc">!=</span><span class="dv">0</span>], <span class="sc">~</span>.<span class="sc">$</span>result)</span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true" tabindex="-1"></a>  result_list <span class="ot">&lt;-</span> result_list[<span class="sc">!</span><span class="fu">unlist</span>(purrr<span class="sc">::</span><span class="fu">map</span>(result_list, is.null))]</span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map_df</span>(result_list, <span class="sc">~</span><span class="fu">run_coloc</span>(., gwas_stats_hg38), <span class="at">.id =</span> <span class="st">"qtl_id"</span>)</span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-65"><a href="#cb6-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-66"><a href="#cb6-66" aria-hidden="true" tabindex="-1"></a>gtex <span class="ot">&lt;-</span> <span class="cf">function</span>(gwas_stats_hg38,ensGene,region38)</span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb6-68"><a href="#cb6-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"c. GTEx_v8 imported eQTL datasets</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb6-69"><a href="#cb6-69" aria-hidden="true" tabindex="-1"></a>  gtex_df <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(imported_tabix_paths, quant_method <span class="sc">==</span> <span class="st">"ge"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-70"><a href="#cb6-70" aria-hidden="true" tabindex="-1"></a>             dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">qtl_id =</span> <span class="fu">paste</span>(study, qtl_group, <span class="at">sep =</span> <span class="st">"_"</span>))</span>
+<span id="cb6-71"><a href="#cb6-71" aria-hidden="true" tabindex="-1"></a>  ftp_path_list <span class="ot">&lt;-</span> <span class="fu">setNames</span>(<span class="fu">as.list</span>(gtex_df<span class="sc">$</span>ftp_path), gtex_df<span class="sc">$</span>qtl_id)</span>
+<span id="cb6-72"><a href="#cb6-72" aria-hidden="true" tabindex="-1"></a>  hdr <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">find.package</span>(<span class="st">"pQTLtools"</span>),<span class="st">"eQTL-Catalogue"</span>,<span class="st">"column_names.GTEx"</span>)</span>
+<span id="cb6-73"><a href="#cb6-73" aria-hidden="true" tabindex="-1"></a>  column_names <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">read.delim</span>(hdr))</span>
+<span id="cb6-74"><a href="#cb6-74" aria-hidden="true" tabindex="-1"></a>  safe_import <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">safely</span>(import_eQTLCatalogue)</span>
+<span id="cb6-75"><a href="#cb6-75" aria-hidden="true" tabindex="-1"></a>  summary_list <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(ftp_path_list,</span>
+<span id="cb6-76"><a href="#cb6-76" aria-hidden="true" tabindex="-1"></a>                             <span class="sc">~</span><span class="fu">safe_import</span>(., region38, <span class="at">selected_gene_id =</span> ensGene, column_names))</span>
+<span id="cb6-77"><a href="#cb6-77" aria-hidden="true" tabindex="-1"></a>  result_list <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(summary_list, <span class="sc">~</span>.<span class="sc">$</span>result)</span>
+<span id="cb6-78"><a href="#cb6-78" aria-hidden="true" tabindex="-1"></a>  result_list <span class="ot">&lt;-</span> result_list[<span class="sc">!</span><span class="fu">unlist</span>(purrr<span class="sc">::</span><span class="fu">map</span>(result_list, is.null))]</span>
+<span id="cb6-79"><a href="#cb6-79" aria-hidden="true" tabindex="-1"></a>  result_filtered <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(result_list[<span class="fu">lapply</span>(result_list,nrow)<span class="sc">!=</span><span class="dv">0</span>],</span>
+<span id="cb6-80"><a href="#cb6-80" aria-hidden="true" tabindex="-1"></a>                                <span class="sc">~</span>dplyr<span class="sc">::</span><span class="fu">filter</span>(., <span class="sc">!</span><span class="fu">is.na</span>(se)))</span>
+<span id="cb6-81"><a href="#cb6-81" aria-hidden="true" tabindex="-1"></a>  purrr<span class="sc">::</span><span class="fu">map_df</span>(result_filtered, <span class="sc">~</span><span class="fu">run_coloc</span>(., gwas_stats_hg38), <span class="at">.id =</span> <span class="st">"qtl_id"</span>)</span>
+<span id="cb6-82"><a href="#cb6-82" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-83"><a href="#cb6-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-84"><a href="#cb6-84" aria-hidden="true" tabindex="-1"></a>coloc <span class="ot">&lt;-</span> <span class="cf">function</span>(prot,chr,ensGene,chain,region37,region38,out,<span class="at">run_all=</span><span class="cn">FALSE</span>)</span>
+<span id="cb6-85"><a href="#cb6-85" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb6-86"><a href="#cb6-86" aria-hidden="true" tabindex="-1"></a>  gwas_stats_hg38 <span class="ot">&lt;-</span> <span class="fu">sumstats</span>(prot,chr,region37)</span>
+<span id="cb6-87"><a href="#cb6-87" aria-hidden="true" tabindex="-1"></a>  df_gtex <span class="ot">&lt;-</span> <span class="fu">gtex</span>(gwas_stats_hg38,ensGene,region38)</span>
+<span id="cb6-88"><a href="#cb6-88" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"df_gtex"</span>))</span>
+<span id="cb6-89"><a href="#cb6-89" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb6-90"><a href="#cb6-90" aria-hidden="true" tabindex="-1"></a>    <span class="fu">saveRDS</span>(df_gtex,<span class="at">file=</span><span class="fu">paste0</span>(out,<span class="st">".RDS"</span>))</span>
+<span id="cb6-91"><a href="#cb6-91" aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">arrange</span>(df_gtex, <span class="sc">-</span>PP.H4.abf)</span>
+<span id="cb6-92"><a href="#cb6-92" aria-hidden="true" tabindex="-1"></a>    p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_gtex, <span class="fu">aes</span>(<span class="at">x =</span> PP.H4.abf)) <span class="sc">+</span> <span class="fu">geom_histogram</span>()</span>
+<span id="cb6-93"><a href="#cb6-93" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-94"><a href="#cb6-94" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (run_all)</span>
+<span id="cb6-95"><a href="#cb6-95" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb6-96"><a href="#cb6-96" aria-hidden="true" tabindex="-1"></a>    df_microarray <span class="ot">&lt;-</span> <span class="fu">microarray</span>(gwas_stats_hg38,ensGene,region38)</span>
+<span id="cb6-97"><a href="#cb6-97" aria-hidden="true" tabindex="-1"></a>    df_rnaseq <span class="ot">&lt;-</span> <span class="fu">rnaseq</span>(gwas_stats_hg38,ensGene,region38)</span>
+<span id="cb6-98"><a href="#cb6-98" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="fu">exists</span>(<span class="st">"df_microarray"</span>) <span class="sc">&amp;</span> <span class="fu">exits</span>(<span class="st">"df_rnaseq"</span>) <span class="sc">&amp;</span> <span class="fu">exists</span>(<span class="st">"df_gtex"</span>))</span>
+<span id="cb6-99"><a href="#cb6-99" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb6-100"><a href="#cb6-100" aria-hidden="true" tabindex="-1"></a>      coloc_df <span class="ot">=</span> dplyr<span class="sc">::</span><span class="fu">bind_rows</span>(df_microarray, df_rnaseq, df_gtex)</span>
+<span id="cb6-101"><a href="#cb6-101" aria-hidden="true" tabindex="-1"></a>      <span class="fu">saveRDS</span>(coloc_df, <span class="at">file=</span><span class="fu">paste0</span>(out,<span class="st">".RDS"</span>))</span>
+<span id="cb6-102"><a href="#cb6-102" aria-hidden="true" tabindex="-1"></a>      dplyr<span class="sc">::</span><span class="fu">arrange</span>(coloc_df, <span class="sc">-</span>PP.H4.abf)</span>
+<span id="cb6-103"><a href="#cb6-103" aria-hidden="true" tabindex="-1"></a>      p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(coloc_df, <span class="fu">aes</span>(<span class="at">x =</span> PP.H4.abf)) <span class="sc">+</span> <span class="fu">geom_histogram</span>()</span>
+<span id="cb6-104"><a href="#cb6-104" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb6-105"><a href="#cb6-105" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-106"><a href="#cb6-106" aria-hidden="true" tabindex="-1"></a>  s <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(gwas_stats_hg38, <span class="fu">aes</span>(<span class="at">x =</span> position, <span class="at">y =</span> LP)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span>
+<span id="cb6-107"><a href="#cb6-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggsave</span>(<span class="at">plot =</span> s, <span class="at">filename =</span> <span class="fu">paste0</span>(out, <span class="st">"-assoc.pdf"</span>), <span class="at">path =</span> <span class="st">""</span>, <span class="at">device =</span> <span class="st">"pdf"</span>,</span>
+<span id="cb6-108"><a href="#cb6-108" aria-hidden="true" tabindex="-1"></a>         <span class="at">height =</span> <span class="dv">15</span>, <span class="at">width =</span> <span class="dv">15</span>, <span class="at">units =</span> <span class="st">"cm"</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span>
+<span id="cb6-109"><a href="#cb6-109" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggsave</span>(<span class="at">plot =</span> p, <span class="at">filename =</span> <span class="fu">paste0</span>(out, <span class="st">"-hist.pdf"</span>), <span class="at">path =</span> <span class="st">""</span>, <span class="at">device =</span> <span class="st">"pdf"</span>,</span>
+<span id="cb6-110"><a href="#cb6-110" aria-hidden="true" tabindex="-1"></a>         <span class="at">height =</span> <span class="dv">15</span>, <span class="at">width =</span> <span class="dv">15</span>, <span class="at">units =</span> <span class="st">"cm"</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span>
+<span id="cb6-111"><a href="#cb6-111" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-112"><a href="#cb6-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-113"><a href="#cb6-113" aria-hidden="true" tabindex="-1"></a>single_run <span class="ot">&lt;-</span> <span class="cf">function</span>(r)</span>
+<span id="cb6-114"><a href="#cb6-114" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb6-115"><a href="#cb6-115" aria-hidden="true" tabindex="-1"></a>  sentinel <span class="ot">&lt;-</span> sentinels[r,]</span>
+<span id="cb6-116"><a href="#cb6-116" aria-hidden="true" tabindex="-1"></a>  chr <span class="ot">&lt;-</span> <span class="fu">with</span>(sentinel,Chr)</span>
+<span id="cb6-117"><a href="#cb6-117" aria-hidden="true" tabindex="-1"></a>  ss <span class="ot">&lt;-</span> <span class="fu">subset</span>(inf1,prot<span class="sc">==</span>sentinel[[<span class="st">"prot"</span>]])</span>
+<span id="cb6-118"><a href="#cb6-118" aria-hidden="true" tabindex="-1"></a>  ensRegion37 <span class="ot">&lt;-</span> <span class="fu">with</span>(ss,</span>
+<span id="cb6-119"><a href="#cb6-119" aria-hidden="true" tabindex="-1"></a>                      {</span>
+<span id="cb6-120"><a href="#cb6-120" aria-hidden="true" tabindex="-1"></a>                        start <span class="ot">&lt;-</span> start<span class="sc">-</span>M</span>
+<span id="cb6-121"><a href="#cb6-121" aria-hidden="true" tabindex="-1"></a>                        <span class="cf">if</span> (start<span class="sc">&lt;</span><span class="dv">0</span>) start <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb6-122"><a href="#cb6-122" aria-hidden="true" tabindex="-1"></a>                        end <span class="ot">&lt;-</span> end<span class="sc">+</span>M</span>
+<span id="cb6-123"><a href="#cb6-123" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">paste0</span>(chr,<span class="st">":"</span>,start,<span class="st">"-"</span>,end)</span>
+<span id="cb6-124"><a href="#cb6-124" aria-hidden="true" tabindex="-1"></a>                      })</span>
+<span id="cb6-125"><a href="#cb6-125" aria-hidden="true" tabindex="-1"></a>  ensGene <span class="ot">&lt;-</span> ss[[<span class="st">"ensembl_gene_id"</span>]]</span>
+<span id="cb6-126"><a href="#cb6-126" aria-hidden="true" tabindex="-1"></a>  ensRegion38 <span class="ot">&lt;-</span> <span class="fu">with</span>(<span class="fu">liftRegion</span>(ss,chain),region)</span>
+<span id="cb6-127"><a href="#cb6-127" aria-hidden="true" tabindex="-1"></a>  f <span class="ot">&lt;-</span> <span class="fu">file.path</span>(INF,<span class="st">"coloc"</span>,<span class="fu">with</span>(sentinel,<span class="fu">paste0</span>(prot,<span class="st">"-"</span>,SNP)))</span>
+<span id="cb6-128"><a href="#cb6-128" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(chr,ensGene,ensRegion37,ensRegion38,<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb6-129"><a href="#cb6-129" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coloc</span>(sentinel[[<span class="st">"prot"</span>]],chr,ensGene,chain,ensRegion37,ensRegion38,f)</span>
+<span id="cb6-130"><a href="#cb6-130" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-131"><a href="#cb6-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-132"><a href="#cb6-132" aria-hidden="true" tabindex="-1"></a><span class="co"># slow with the following loop:</span></span>
+<span id="cb6-133"><a href="#cb6-133" aria-hidden="true" tabindex="-1"></a>loop <span class="ot">&lt;-</span> <span class="cf">function</span>() <span class="cf">for</span> (r <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(sentinels)) <span class="fu">single_run</span>(r)</span>
+<span id="cb6-134"><a href="#cb6-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-135"><a href="#cb6-135" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pQTLtools)</span>
+<span id="cb6-136"><a href="#cb6-136" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">find.package</span>(<span class="st">"pQTLtools"</span>),<span class="st">"eQTL-Catalogue"</span>,<span class="st">"hg19ToHg38.over.chain"</span>)</span>
+<span id="cb6-137"><a href="#cb6-137" aria-hidden="true" tabindex="-1"></a>chain <span class="ot">&lt;-</span> rtracklayer<span class="sc">::</span><span class="fu">import.chain</span>(f)</span>
+<span id="cb6-138"><a href="#cb6-138" aria-hidden="true" tabindex="-1"></a>pkgs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"dplyr"</span>, <span class="st">"ggplot2"</span>, <span class="st">"readr"</span>, <span class="st">"coloc"</span>, <span class="st">"GenomicRanges"</span>,<span class="st">"seqminer"</span>)</span>
+<span id="cb6-139"><a href="#cb6-139" aria-hidden="true" tabindex="-1"></a><span class="fu">invisible</span>(<span class="fu">lapply</span>(pkgs, require, <span class="at">character.only =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb6-140"><a href="#cb6-140" aria-hidden="true" tabindex="-1"></a>HPC_WORK <span class="ot">&lt;-</span> <span class="fu">Sys.getenv</span>(<span class="st">"HPC_WORK"</span>)</span>
+<span id="cb6-141"><a href="#cb6-141" aria-hidden="true" tabindex="-1"></a>gwasvcf<span class="sc">::</span><span class="fu">set_bcftools</span>(<span class="fu">file.path</span>(HPC_WORK,<span class="st">"bin"</span>,<span class="st">"bcftools"</span>))</span>
+<span id="cb6-142"><a href="#cb6-142" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">find.package</span>(<span class="st">"pQTLtools"</span>),<span class="st">"eQTL-Catalogue"</span>,<span class="st">"tabix_ftp_paths.tsv"</span>)</span>
+<span id="cb6-143"><a href="#cb6-143" aria-hidden="true" tabindex="-1"></a>tabix_paths <span class="ot">&lt;-</span> <span class="fu">read.delim</span>(f, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">as_tibble</span>()</span>
+<span id="cb6-144"><a href="#cb6-144" aria-hidden="true" tabindex="-1"></a>HOME <span class="ot">&lt;-</span> <span class="fu">Sys.getenv</span>(<span class="st">"HOME"</span>)</span>
+<span id="cb6-145"><a href="#cb6-145" aria-hidden="true" tabindex="-1"></a>fp <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">find.package</span>(<span class="st">"pQTLtools"</span>),<span class="st">"eQTL-Catalogue"</span>,<span class="st">"tabix_ftp_paths_gtex.tsv"</span>)</span>
+<span id="cb6-146"><a href="#cb6-146" aria-hidden="true" tabindex="-1"></a>imported_tabix_paths <span class="ot">&lt;-</span> <span class="fu">within</span>(<span class="fu">read.delim</span>(fp, <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">as_tibble</span>(),</span>
+<span id="cb6-147"><a href="#cb6-147" aria-hidden="true" tabindex="-1"></a>      {</span>
+<span id="cb6-148"><a href="#cb6-148" aria-hidden="true" tabindex="-1"></a>         f <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">strsplit</span>(ftp_path,<span class="st">"/csv/|/ge/"</span>),<span class="st">"["</span>,<span class="dv">3</span>)</span>
+<span id="cb6-149"><a href="#cb6-149" aria-hidden="true" tabindex="-1"></a>         ftp_path <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"~/rds/public_databases/GTEx/csv"</span>),f<span class="er">)</span></span>
+<span id="cb6-150"><a href="#cb6-150" aria-hidden="true" tabindex="-1"></a>      })</span>
+<span id="cb6-151"><a href="#cb6-151" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb6-152"><a href="#cb6-152" aria-hidden="true" tabindex="-1"></a>INF <span class="ot">&lt;-</span> <span class="fu">Sys.getenv</span>(<span class="st">"INF"</span>)</span>
+<span id="cb6-153"><a href="#cb6-153" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fl">1e6</span></span>
+<span id="cb6-154"><a href="#cb6-154" aria-hidden="true" tabindex="-1"></a>sentinels <span class="ot">&lt;-</span> <span class="fu">subset</span>(<span class="fu">read.csv</span>(<span class="fu">file.path</span>(INF,<span class="st">"work"</span>,<span class="st">"INF1.merge.cis.vs.trans"</span>)),cis)</span>
+<span id="cb6-155"><a href="#cb6-155" aria-hidden="true" tabindex="-1"></a>cvt_rsid <span class="ot">&lt;-</span> <span class="fu">file.path</span>(INF,<span class="st">"work"</span>,<span class="st">"INF1.merge.cis.vs.trans-rsid"</span>)</span>
+<span id="cb6-156"><a href="#cb6-156" aria-hidden="true" tabindex="-1"></a>prot_rsid <span class="ot">&lt;-</span> <span class="fu">subset</span>(<span class="fu">read.delim</span>(cvt_rsid,<span class="at">sep=</span><span class="st">" "</span>),cis,<span class="at">select=</span><span class="fu">c</span>(prot,SNP))</span>
+<span id="cb6-157"><a href="#cb6-157" aria-hidden="true" tabindex="-1"></a><span class="co"># Faster with parallel Bash runs.</span></span>
+<span id="cb6-158"><a href="#cb6-158" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="fu">Sys.getenv</span>(<span class="st">"r"</span>))</span>
+<span id="cb6-159"><a href="#cb6-159" aria-hidden="true" tabindex="-1"></a><span class="fu">single_run</span>(r)</span></code></pre></div>
 <p>where options for protein GWAS, microarray, RNA-Seq are available with respect to variant-flanking or gene regions. When no results are generated,
 there would have problem with <code>dplyr::arrange(df_gtex, -PP.H4.abf);p &lt;- ggplot(df_gtex, aes(x = PP.H4.abf)) + geom_histogram()</code>.</p>
 </div>
-<div class="section level4" number="2.1.3">
+<div class="section level4" number="3.1.3">
 <h4 id="collection-of-results">
-<span class="header-section-number">2.1.3</span> Collection of results<a class="anchor" aria-label="anchor" href="#collection-of-results"></a>
+<span class="header-section-number">3.1.3</span> Collection of results<a class="anchor" aria-label="anchor" href="#collection-of-results"></a>
 </h4>
 <p>When these are furnished we keep results (i.e., PP4&gt;=0.8) as follows,</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">collect</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">{</span></span>
 <span>  <span class="va">df_coloc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -369,84 +457,84 @@ there would have problem with <code>dplyr::arrange(df_gtex, -PP.H4.abf);p &lt;- 
 <span><span class="op">}</span></span>
 <span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html" class="external-link">collect</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level4" number="2.1.4">
+<div class="section level4" number="3.1.4">
 <h4 id="the-driver-program">
-<span class="header-section-number">2.1.4</span> The driver program<a class="anchor" aria-label="anchor" href="#the-driver-program"></a>
+<span class="header-section-number">3.1.4</span> The driver program<a class="anchor" aria-label="anchor" href="#the-driver-program"></a>
 </h4>
 <p>It is in Bash.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/bash</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> r <span class="kw">in</span> <span class="dt">{</span><span class="dv">1</span><span class="dt">..</span><span class="dv">59</span><span class="dt">}</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="cf">do</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>   <span class="bu">export</span> <span class="va">r</span><span class="op">=</span><span class="va">${r}</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>   <span class="bu">export</span> <span class="va">cvt</span><span class="op">=</span><span class="va">${INF}</span>/work/INF1.merge.cis.vs.trans</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>   <span class="bu">read</span> <span class="va">prot</span> <span class="va">MarkerName</span> <span class="op">&lt;</span> <span class="dt">\</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>                        <span class="op">&lt;(</span><span class="fu">awk</span> <span class="at">-vFS</span><span class="op">=</span><span class="st">","</span> <span class="st">'$14=="cis"'</span> <span class="va">${cvt}</span> <span class="kw">|</span> <span class="dt">\</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">awk</span> <span class="at">-vFS</span><span class="op">=</span><span class="st">","</span> <span class="at">-vr</span><span class="op">=</span><span class="va">${r}</span> <span class="st">'NR==r{print $2,$5}'</span><span class="op">)</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>   <span class="bu">echo</span> <span class="va">${r}</span> <span class="at">-</span> <span class="va">${prot}</span> <span class="at">-</span> <span class="va">${MarkerName}</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>   <span class="bu">export</span> <span class="va">prot</span><span class="op">=</span><span class="va">${prot}</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>   <span class="bu">export</span> <span class="va">MarkerName</span><span class="op">=</span><span class="va">${MarkerName}</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>   <span class="cf">if</span> <span class="bu">[</span> <span class="ot">!</span> <span class="ot">-f</span> <span class="va">${INF}</span>/coloc/<span class="va">${prot}</span>-<span class="va">${MarkerName}</span>.pdf <span class="bu">]</span> <span class="kw">||</span> <span class="dt">\</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>      <span class="bu">[</span> <span class="ot">!</span> <span class="ot">-f</span> <span class="va">${INF}</span>/coloc/<span class="va">${prot}</span>-<span class="va">${MarkerName}</span>.RDS <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>     <span class="bu">cd</span> <span class="va">${INF}</span>/coloc</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>     <span class="ex">R</span> <span class="at">--no-save</span> <span class="op">&lt;</span> <span class="va">${INF}</span>/rsid/coloc.R <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span> <span class="kw">|</span> <span class="dt">\</span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>     <span class="fu">tee</span> <span class="va">${prot}</span>-<span class="va">${MarkerName}</span>.log</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>     <span class="bu">cd</span> <span class="at">-</span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>   <span class="cf">fi</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre></div>
-</div>
-<div class="section level4" number="2.1.5">
-<h4 id="parallel-computing">
-<span class="header-section-number">2.1.5</span> Parallel computing<a class="anchor" aria-label="anchor" href="#parallel-computing"></a>
-</h4>
-<p>To speed up the analysis, we resort to <a href="https://slurm.schedmd.com/documentation.html" class="external-link">SLURM</a>,</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/bash</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --job-name=_coloc</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --account CARDIO-SL0-CPU</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --partition cardio</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --qos=cardio</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --array=1-59</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --mem=28800</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --time=5-00:00:00</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --error=/rds/user/jhz22/hpc-work/work/_coloc_%A_%a.err</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --output=/rds/user/jhz22/hpc-work/work/_coloc_%A_%a.out</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --export ALL</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">trait</span><span class="op">=</span><span class="va">$(</span><span class="fu">awk</span> <span class="st">'NR==ENVIRON["SLURM_ARRAY_TASK_ID"] {print $1}'</span> <span class="va">${INF}</span>/work/inf1.tmp<span class="va">)</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> gtex()</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span></span>
-<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>  <span class="bu">export</span> <span class="va">r</span><span class="op">=</span><span class="va">${SLURM_ARRAY_TASK_ID}</span></span>
-<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>  <span class="bu">export</span> <span class="va">cvt</span><span class="op">=</span><span class="va">${INF}</span>/work/INF1.merge.cis.vs.trans</span>
-<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  <span class="bu">read</span> <span class="va">prot</span> <span class="va">MarkerName</span> <span class="op">&lt;</span> <span class="dt">\</span></span>
-<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>                       <span class="op">&lt;(</span><span class="fu">awk</span> <span class="at">-vFS</span><span class="op">=</span><span class="st">","</span> <span class="st">'$14=="cis"'</span> <span class="va">${cvt}</span> <span class="kw">|</span> <span class="dt">\</span></span>
-<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">awk</span> <span class="at">-vFS</span><span class="op">=</span><span class="st">","</span> <span class="at">-vr</span><span class="op">=</span><span class="va">${r}</span> <span class="st">'NR==r{print $2,$5}'</span><span class="op">)</span></span>
-<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>  <span class="bu">echo</span> <span class="va">${r}</span> <span class="at">-</span> <span class="va">${prot}</span> <span class="at">-</span> <span class="va">${MarkerName}</span></span>
-<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>  <span class="bu">export</span> <span class="va">prot</span><span class="op">=</span><span class="va">${prot}</span></span>
-<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>  <span class="bu">export</span> <span class="va">MarkerName</span><span class="op">=</span><span class="va">${MarkerName}</span></span>
-<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="bu">[</span> <span class="ot">!</span> <span class="ot">-f</span> <span class="va">${INF}</span>/coloc/<span class="va">${prot}</span>-<span class="va">${MarkerName}</span>.pdf <span class="bu">]</span> <span class="kw">||</span> <span class="dt">\</span></span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>     <span class="bu">[</span> <span class="ot">!</span> <span class="ot">-f</span> <span class="va">${INF}</span>/coloc/<span class="va">${prot}</span>-<span class="va">${MarkerName}</span>.RDS <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
-<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>    <span class="bu">cd</span> <span class="va">${INF}</span>/coloc</span>
-<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>    <span class="ex">R</span> <span class="at">--no-save</span> <span class="op">&lt;</span> <span class="va">${INF}</span>/rsid/coloc.R <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span> <span class="kw">|</span> <span class="dt">\</span></span>
-<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tee</span> <span class="va">${prot}</span>-<span class="va">${MarkerName}</span>.log</span>
-<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a>    <span class="bu">cd</span> <span class="at">-</span></span>
-<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a>  <span class="cf">fi</span></span>
-<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
-<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a><span class="ex">gtex</span></span></code></pre></div>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> r <span class="kw">in</span> <span class="dt">{</span><span class="dv">1</span><span class="dt">..</span><span class="dv">59</span><span class="dt">}</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="cf">do</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>   <span class="bu">export</span> <span class="va">r</span><span class="op">=</span><span class="va">${r}</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>   <span class="bu">export</span> <span class="va">cvt</span><span class="op">=</span><span class="va">${INF}</span>/work/INF1.merge.cis.vs.trans</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>   <span class="bu">read</span> <span class="va">prot</span> <span class="va">MarkerName</span> <span class="op">&lt;</span> <span class="dt">\</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>                        <span class="op">&lt;(</span><span class="fu">awk</span> <span class="at">-vFS</span><span class="op">=</span><span class="st">","</span> <span class="st">'$14=="cis"'</span> <span class="va">${cvt}</span> <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">awk</span> <span class="at">-vFS</span><span class="op">=</span><span class="st">","</span> <span class="at">-vr</span><span class="op">=</span><span class="va">${r}</span> <span class="st">'NR==r{print $2,$5}'</span><span class="op">)</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>   <span class="bu">echo</span> <span class="va">${r}</span> <span class="at">-</span> <span class="va">${prot}</span> <span class="at">-</span> <span class="va">${MarkerName}</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>   <span class="bu">export</span> <span class="va">prot</span><span class="op">=</span><span class="va">${prot}</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>   <span class="bu">export</span> <span class="va">MarkerName</span><span class="op">=</span><span class="va">${MarkerName}</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>   <span class="cf">if</span> <span class="bu">[</span> <span class="ot">!</span> <span class="ot">-f</span> <span class="va">${INF}</span>/coloc/<span class="va">${prot}</span>-<span class="va">${MarkerName}</span>.pdf <span class="bu">]</span> <span class="kw">||</span> <span class="dt">\</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>      <span class="bu">[</span> <span class="ot">!</span> <span class="ot">-f</span> <span class="va">${INF}</span>/coloc/<span class="va">${prot}</span>-<span class="va">${MarkerName}</span>.RDS <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>     <span class="bu">cd</span> <span class="va">${INF}</span>/coloc</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>     <span class="ex">R</span> <span class="at">--no-save</span> <span class="op">&lt;</span> <span class="va">${INF}</span>/rsid/coloc.R <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span> <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>     <span class="fu">tee</span> <span class="va">${prot}</span>-<span class="va">${MarkerName}</span>.log</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>     <span class="bu">cd</span> <span class="at">-</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>   <span class="cf">fi</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre></div>
+</div>
+<div class="section level4" number="3.1.5">
+<h4 id="parallel-computing">
+<span class="header-section-number">3.1.5</span> Parallel computing<a class="anchor" aria-label="anchor" href="#parallel-computing"></a>
+</h4>
+<p>To speed up the analysis, we resort to <a href="https://slurm.schedmd.com/documentation.html" class="external-link">SLURM</a>,</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/usr/bin/bash</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --job-name=_coloc</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --account CARDIO-SL0-CPU</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --partition cardio</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --qos=cardio</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --array=1-59</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --mem=28800</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --time=5-00:00:00</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --error=/rds/user/jhz22/hpc-work/work/_coloc_%A_%a.err</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --output=/rds/user/jhz22/hpc-work/work/_coloc_%A_%a.out</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --export ALL</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">trait</span><span class="op">=</span><span class="va">$(</span><span class="fu">awk</span> <span class="st">'NR==ENVIRON["SLURM_ARRAY_TASK_ID"] {print $1}'</span> <span class="va">${INF}</span>/work/inf1.tmp<span class="va">)</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> gtex()</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="kw">{</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  <span class="bu">export</span> <span class="va">r</span><span class="op">=</span><span class="va">${SLURM_ARRAY_TASK_ID}</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  <span class="bu">export</span> <span class="va">cvt</span><span class="op">=</span><span class="va">${INF}</span>/work/INF1.merge.cis.vs.trans</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="bu">read</span> <span class="va">prot</span> <span class="va">MarkerName</span> <span class="op">&lt;</span> <span class="dt">\</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>                       <span class="op">&lt;(</span><span class="fu">awk</span> <span class="at">-vFS</span><span class="op">=</span><span class="st">","</span> <span class="st">'$14=="cis"'</span> <span class="va">${cvt}</span> <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">awk</span> <span class="at">-vFS</span><span class="op">=</span><span class="st">","</span> <span class="at">-vr</span><span class="op">=</span><span class="va">${r}</span> <span class="st">'NR==r{print $2,$5}'</span><span class="op">)</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>  <span class="bu">echo</span> <span class="va">${r}</span> <span class="at">-</span> <span class="va">${prot}</span> <span class="at">-</span> <span class="va">${MarkerName}</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>  <span class="bu">export</span> <span class="va">prot</span><span class="op">=</span><span class="va">${prot}</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>  <span class="bu">export</span> <span class="va">MarkerName</span><span class="op">=</span><span class="va">${MarkerName}</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="bu">[</span> <span class="ot">!</span> <span class="ot">-f</span> <span class="va">${INF}</span>/coloc/<span class="va">${prot}</span>-<span class="va">${MarkerName}</span>.pdf <span class="bu">]</span> <span class="kw">||</span> <span class="dt">\</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>     <span class="bu">[</span> <span class="ot">!</span> <span class="ot">-f</span> <span class="va">${INF}</span>/coloc/<span class="va">${prot}</span>-<span class="va">${MarkerName}</span>.RDS <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    <span class="bu">cd</span> <span class="va">${INF}</span>/coloc</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>    <span class="ex">R</span> <span class="at">--no-save</span> <span class="op">&lt;</span> <span class="va">${INF}</span>/rsid/coloc.R <span class="dv">2</span><span class="op">&gt;&amp;</span><span class="dv">1</span> <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tee</span> <span class="va">${prot}</span>-<span class="va">${MarkerName}</span>.log</span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>    <span class="bu">cd</span> <span class="at">-</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>  <span class="cf">fi</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a><span class="ex">gtex</span></span></code></pre></div>
 </div>
 </div>
-<div class="section level3" number="2.2">
+<div class="section level3" number="3.2">
 <h3 id="pqtldisease-overlap">
-<span class="header-section-number">2.2</span> pQTL/disease overlap<a class="anchor" aria-label="anchor" href="#pqtldisease-overlap"></a>
+<span class="header-section-number">3.2</span> pQTL/disease overlap<a class="anchor" aria-label="anchor" href="#pqtldisease-overlap"></a>
 </h3>
 <p>The ontology of traits/disease is available through Experimental Factor Ontology (EFO)<span class="citation"><sup>1</sup></span>, which can be used to build lists of diseases and immune-mediated traits and filter search results from PhenoScanner<span class="citation"><sup>2</sup></span>.</p>
-<div class="section level4" number="2.2.1">
+<div class="section level4" number="3.2.1">
 <h4 id="diseases">
-<span class="header-section-number">2.2.1</span> Diseases<a class="anchor" aria-label="anchor" href="#diseases"></a>
+<span class="header-section-number">3.2.1</span> Diseases<a class="anchor" aria-label="anchor" href="#diseases"></a>
 </h4>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ontologyIndex</span><span class="op">)</span></span>
 <span><span class="co"># http://www.ebi.ac.uk/efo/efo.obo</span></span>
 <span><span class="va">INF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"INF"</span><span class="op">)</span></span>
@@ -476,11 +564,11 @@ there would have problem with <code>dplyr::arrange(df_gtex, -PP.H4.abf);p &lt;- 
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ontologyPlot</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/ontologyPlot/man/onto_plot.html" class="external-link">onto_plot</a></span><span class="op">(</span><span class="va">efo</span>,<span class="va">efo_0000540</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level4" number="2.2.2">
+<div class="section level4" number="3.2.2">
 <h4 id="lookup">
-<span class="header-section-number">2.2.2</span> Lookup<a class="anchor" aria-label="anchor" href="#lookup"></a>
+<span class="header-section-number">3.2.2</span> Lookup<a class="anchor" aria-label="anchor" href="#lookup"></a>
 </h4>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jinghuazhao/R" class="external-link">gap</a></span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/message.html" class="external-link">suppressMessages</a></span><span class="op">(</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jinghuazhao/pQTLtools/" class="external-link">pQTLtools</a></span><span class="op">)</span><span class="op">)</span></span>
@@ -565,11 +653,11 @@ there would have problem with <code>dplyr::arrange(df_gtex, -PP.H4.abf);p &lt;- 
 <span></span>
 <span><span class="va">rxc</span> <span class="op">&lt;-</span> <span class="fu">gwas</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level4" number="2.2.3">
+<div class="section level4" number="3.2.3">
 <h4 id="visualization">
-<span class="header-section-number">2.2.3</span> Visualization<a class="anchor" aria-label="anchor" href="#visualization"></a>
+<span class="header-section-number">3.2.3</span> Visualization<a class="anchor" aria-label="anchor" href="#visualization"></a>
 </h4>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">SF</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">rxc</span>, <span class="va">f</span><span class="op">=</span><span class="st">"SF-pQTL-GWAS.png"</span>, <span class="va">ch</span><span class="op">=</span><span class="fl">21</span>, <span class="va">cw</span><span class="op">=</span><span class="fl">21</span>, <span class="va">h</span><span class="op">=</span><span class="fl">13</span>, <span class="va">w</span><span class="op">=</span><span class="fl">18</span><span class="op">)</span></span>
 <span><span class="op">{</span></span>
 <span>  <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">pheatmap</span><span class="op">)</span></span>
@@ -589,23 +677,23 @@ there would have problem with <code>dplyr::arrange(df_gtex, -PP.H4.abf);p &lt;- 
 <div class="figure" style="text-align: left">
 <span style="display:block;" id="fig:gwas"></span>
 <img src="SF-pQTL-GWAS.png" alt="pQTL-disease overlap" width="1290" style="display:block; margin: auto"><p class="caption">
-Figure 2.1: pQTL-disease overlap
+Figure 3.1: pQTL-disease overlap
 </p>
 </div>
 </div>
 </div>
 </div>
-<div class="section level2" number="3">
+<div class="section level2" number="4">
 <h2 id="caprion-analysis">
-<span class="header-section-number">3</span> Caprion analysis<a class="anchor" aria-label="anchor" href="#caprion-analysis"></a>
+<span class="header-section-number">4</span> Caprion analysis<a class="anchor" aria-label="anchor" href="#caprion-analysis"></a>
 </h2>
 <p>This is from the Caprion project, <a href="https://jinghuazhao.github.io/Caprion/" class="external-link uri">https://jinghuazhao.github.io/Caprion/</a>.</p>
-<div class="section level3" number="3.1">
+<div class="section level3" number="4.1">
 <h3 id="colocalization-1">
-<span class="header-section-number">3.1</span> Colocalization<a class="anchor" aria-label="anchor" href="#colocalization-1"></a>
+<span class="header-section-number">4.1</span> Colocalization<a class="anchor" aria-label="anchor" href="#colocalization-1"></a>
 </h3>
 <p>The <code>coloc.R</code> is modified slightly employing <code>basename</code> for local files.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">liftRegion</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span>, <span class="va">flanking</span> <span class="op">=</span> <span class="fl">1e6</span><span class="op">)</span></span>
 <span><span class="op">{</span></span>
 <span>  <span class="va">gr</span> <span class="op">&lt;-</span> <span class="fu">GenomicRanges</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/GenomicRanges/man/GRanges-class.html" class="external-link">GRanges</a></span><span class="op">(</span>seqnames <span class="op">=</span> <span class="va">x</span><span class="op">$</span><span class="va">chr</span>,</span>
@@ -965,66 +1053,66 @@ Figure 2.1: pQTL-disease overlap
 <span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/compute.html" class="external-link">collect</a></span><span class="op">(</span>batch<span class="op">=</span><span class="st">"eQTLCatalogue"</span><span class="op">)</span></span></code></pre></div>
 <p>The <code>single_run()</code> is called for analysis with SLURM and <code><a href="https://dplyr.tidyverse.org/reference/compute.html" class="external-link">collect()</a></code> for summary with no need of SLURM.</p>
 </div>
-<div class="section level3" number="3.2">
+<div class="section level3" number="4.2">
 <h3 id="locuszoom-js">
-<span class="header-section-number">3.2</span> LocusZoom.js<a class="anchor" aria-label="anchor" href="#locuszoom-js"></a>
+<span class="header-section-number">4.2</span> LocusZoom.js<a class="anchor" aria-label="anchor" href="#locuszoom-js"></a>
 </h3>
 <p>This actually involves liftOver back to GRCh37 done as follows for GTEx data.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">'NR&gt;1{print $1,$2,$3,$4}'</span> <span class="va">${analysis}</span>/coloc/GTEx.tsv <span class="kw">|</span> <span class="dt">\</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">parallel</span> <span class="at">-C</span> <span class="st">' '</span> <span class="st">'</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="st">export prot={1}</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="st">export rsid={2}</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="st">export snpid={3}</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="st">export tissue={4}</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="st">Rscript -e "</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="st">  suppressMessages(library(dplyr))</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="st">  suppressMessages(library(jsonlite))</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="st">  suppressMessages(library(rtracklayer))</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="st">  analysis &lt;- Sys.getenv(\"analysis\")</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="st">  hpc_work &lt;- Sys.getenv(\"HPC_WORK\")</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="st">  prot &lt;- Sys.getenv(\"prot\")</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="st">  rsid &lt;- Sys.getenv(\"rsid\")</span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="st">  snpid &lt;- Sys.getenv(\"snpid\")</span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="st">  tissue &lt;- Sys.getenv(\"tissue\")</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="st">  print(paste0(prot,\"-\",tissue))</span></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="st">  f &lt;- file.path(hpc_work,\"bin\",\"hg38ToHg19.over.chain\")</span></span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="st">  chain &lt;- rtracklayer::import.chain(f)</span></span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="st">  liftOver &lt;- function(gwas_stats)</span></span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="st">  {</span></span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="st">  gwas_granges &lt;- with(gwas_stats,GRanges(seqnames = paste0(\"chr\",dplyr::if_else(chromosome==23,\"X\",paste(chromosome))),</span></span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="st">                       ranges = IRanges(start = position, end = position),</span></span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a><span class="st">                       chromosome = chromosome, position = position,</span></span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="st">                       ref_allele=ref_allele,alt_allele=alt_allele,alt_allele_freq=alt_allele_freq,</span></span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a><span class="st">                       log_pvalue=log_pvalue,beta=beta,se=se))</span></span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a><span class="st">  gwas_stats_hg37 &lt;- rtracklayer::liftOver(gwas_granges, chain) %&gt;%</span></span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="st">                     unlist() %&gt;%</span></span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a><span class="st">                     dplyr::as_tibble() %&gt;%</span></span>
-<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a><span class="st">                     dplyr::transmute(chromosome = seqnames, position = start,</span></span>
-<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a><span class="st">                                      variant = paste0(chromosome,\":\",position,\"_\",ref_allele,\"/\",alt_allele),</span></span>
-<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a><span class="st">                                      ref_allele,alt_allele,alt_allele_freq,log_pvalue,beta,se) %&gt;%</span></span>
-<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a><span class="st">                     dplyr::mutate(id = paste(chromosome, position, sep = \":\")) %&gt;%</span></span>
-<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a><span class="st">                     dplyr::group_by(id) %&gt;%</span></span>
-<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a><span class="st">                     dplyr::mutate(row_count = n()) %&gt;%</span></span>
-<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a><span class="st">                     dplyr::ungroup() %&gt;%</span></span>
-<span id="cb13-37"><a href="#cb13-37" aria-hidden="true" tabindex="-1"></a><span class="st">                     dplyr::filter(row_count == 1) %&gt;%</span></span>
-<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a><span class="st">                     mutate(chromosome=gsub(\"chr\",\"\",chromosome))</span></span>
-<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a><span class="st">  }</span></span>
-<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a><span class="st">  pGWAS_sumstats &lt;- read.delim(file.path(analysis,\"coloc\",\"sumstats\",paste0(prot,\"-\",snpid,\".gz\"))) %&gt;%</span></span>
-<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a><span class="st">                    dplyr::mutate(REF=toupper(REF),ALT=toupper(ALT),variant=paste0(chromosome,\":\",position,\"_\",REF,\"/\",ALT)) %&gt;%</span></span>
-<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a><span class="st">                    dplyr::mutate(log_pvalue=LP,ref_allele=REF,alt_allele=ALT,alt_allele_freq=AF,beta=ES,se=SE) %&gt;%</span></span>
-<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a><span class="st">                    dplyr::select(chromosome,position,variant,ref_allele,alt_allele,alt_allele_freq,log_pvalue,beta,se) %&gt;%</span></span>
-<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a><span class="st">                    liftOver()</span></span>
-<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a><span class="st">  GTEx_sumstats &lt;- read.delim(file.path(analysis,\"coloc\",\"GTEx\",\"sumstats\",paste0(prot,\"-\",tissue,\".gz\"))) %&gt;%</span></span>
-<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a><span class="st">                   dplyr::mutate(REF=toupper(ref),ALT=toupper(alt),variant=paste0(chromosome,\":\",position,\"_\",REF,\"/\",ALT)) %&gt;%</span></span>
-<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a><span class="st">                   dplyr::mutate(log_pvalue=-log10(pvalue),ref_allele=REF,alt_allele=ALT,alt_allele_freq=ac/an) %&gt;%</span></span>
-<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a><span class="st">                   dplyr::select(chromosome,position,variant,ref_allele,alt_allele,alt_allele_freq,log_pvalue,beta,se) %&gt;%</span></span>
-<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a><span class="st">                   liftOver()</span></span>
-<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a><span class="st">  j &lt;- gzfile(file.path(analysis,\"json\",\"pqtleqtl\",paste0(prot,\"-\",tissue,\".json.gz\")))</span></span>
-<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a><span class="st">  combined_json &lt;- jsonlite::toJSON(list(pqtl=pGWAS_sumstats,eqtl=GTEx_sumstats),auto_unbox=TRUE,pretty=TRUE)</span></span>
-<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a><span class="st">  write(combined_json,file=j)</span></span>
-<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a><span class="st">  close(j)</span></span>
-<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a><span class="st">"</span></span>
-<span id="cb13-55"><a href="#cb13-55" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">'NR&gt;1{print $1,$2,$3,$4}'</span> <span class="va">${analysis}</span>/coloc/GTEx.tsv <span class="kw">|</span> <span class="dt">\</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="ex">parallel</span> <span class="at">-C</span> <span class="st">' '</span> <span class="st">'</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="st">export prot={1}</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="st">export rsid={2}</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="st">export snpid={3}</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="st">export tissue={4}</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="st">Rscript -e "</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="st">  suppressMessages(library(dplyr))</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="st">  suppressMessages(library(jsonlite))</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="st">  suppressMessages(library(rtracklayer))</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="st">  analysis &lt;- Sys.getenv(\"analysis\")</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="st">  hpc_work &lt;- Sys.getenv(\"HPC_WORK\")</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="st">  prot &lt;- Sys.getenv(\"prot\")</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="st">  rsid &lt;- Sys.getenv(\"rsid\")</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="st">  snpid &lt;- Sys.getenv(\"snpid\")</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="st">  tissue &lt;- Sys.getenv(\"tissue\")</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="st">  print(paste0(prot,\"-\",tissue))</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="st">  f &lt;- file.path(hpc_work,\"bin\",\"hg38ToHg19.over.chain\")</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="st">  chain &lt;- rtracklayer::import.chain(f)</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a><span class="st">  liftOver &lt;- function(gwas_stats)</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="st">  {</span></span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a><span class="st">  gwas_granges &lt;- with(gwas_stats,GRanges(seqnames = paste0(\"chr\",dplyr::if_else(chromosome==23,\"X\",paste(chromosome))),</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a><span class="st">                       ranges = IRanges(start = position, end = position),</span></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a><span class="st">                       chromosome = chromosome, position = position,</span></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a><span class="st">                       ref_allele=ref_allele,alt_allele=alt_allele,alt_allele_freq=alt_allele_freq,</span></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a><span class="st">                       log_pvalue=log_pvalue,beta=beta,se=se))</span></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a><span class="st">  gwas_stats_hg37 &lt;- rtracklayer::liftOver(gwas_granges, chain) %&gt;%</span></span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a><span class="st">                     unlist() %&gt;%</span></span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a><span class="st">                     dplyr::as_tibble() %&gt;%</span></span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a><span class="st">                     dplyr::transmute(chromosome = seqnames, position = start,</span></span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a><span class="st">                                      variant = paste0(chromosome,\":\",position,\"_\",ref_allele,\"/\",alt_allele),</span></span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a><span class="st">                                      ref_allele,alt_allele,alt_allele_freq,log_pvalue,beta,se) %&gt;%</span></span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a><span class="st">                     dplyr::mutate(id = paste(chromosome, position, sep = \":\")) %&gt;%</span></span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a><span class="st">                     dplyr::group_by(id) %&gt;%</span></span>
+<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a><span class="st">                     dplyr::mutate(row_count = n()) %&gt;%</span></span>
+<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a><span class="st">                     dplyr::ungroup() %&gt;%</span></span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a><span class="st">                     dplyr::filter(row_count == 1) %&gt;%</span></span>
+<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a><span class="st">                     mutate(chromosome=gsub(\"chr\",\"\",chromosome))</span></span>
+<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a><span class="st">  }</span></span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a><span class="st">  pGWAS_sumstats &lt;- read.delim(file.path(analysis,\"coloc\",\"sumstats\",paste0(prot,\"-\",snpid,\".gz\"))) %&gt;%</span></span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a><span class="st">                    dplyr::mutate(REF=toupper(REF),ALT=toupper(ALT),variant=paste0(chromosome,\":\",position,\"_\",REF,\"/\",ALT)) %&gt;%</span></span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a><span class="st">                    dplyr::mutate(log_pvalue=LP,ref_allele=REF,alt_allele=ALT,alt_allele_freq=AF,beta=ES,se=SE) %&gt;%</span></span>
+<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a><span class="st">                    dplyr::select(chromosome,position,variant,ref_allele,alt_allele,alt_allele_freq,log_pvalue,beta,se) %&gt;%</span></span>
+<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a><span class="st">                    liftOver()</span></span>
+<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a><span class="st">  GTEx_sumstats &lt;- read.delim(file.path(analysis,\"coloc\",\"GTEx\",\"sumstats\",paste0(prot,\"-\",tissue,\".gz\"))) %&gt;%</span></span>
+<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a><span class="st">                   dplyr::mutate(REF=toupper(ref),ALT=toupper(alt),variant=paste0(chromosome,\":\",position,\"_\",REF,\"/\",ALT)) %&gt;%</span></span>
+<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a><span class="st">                   dplyr::mutate(log_pvalue=-log10(pvalue),ref_allele=REF,alt_allele=ALT,alt_allele_freq=ac/an) %&gt;%</span></span>
+<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a><span class="st">                   dplyr::select(chromosome,position,variant,ref_allele,alt_allele,alt_allele_freq,log_pvalue,beta,se) %&gt;%</span></span>
+<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a><span class="st">                   liftOver()</span></span>
+<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a><span class="st">  j &lt;- gzfile(file.path(analysis,\"json\",\"pqtleqtl\",paste0(prot,\"-\",tissue,\".json.gz\")))</span></span>
+<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a><span class="st">  combined_json &lt;- jsonlite::toJSON(list(pqtl=pGWAS_sumstats,eqtl=GTEx_sumstats),auto_unbox=TRUE,pretty=TRUE)</span></span>
+<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a><span class="st">  write(combined_json,file=j)</span></span>
+<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a><span class="st">  close(j)</span></span>
+<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a><span class="st">"</span></span>
+<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span></code></pre></div>
 <p>Note that compressed json (.json.gz) is used.</p>
 </div>
 </div>

@@ -62,23 +62,109 @@ There are also direct links for the html files above
 -   `stack.html`,
     <https://jinghuazhao.github.io/pQTLtools/articles/stack.html>.
 
-## 2 SCALLOP analysis
+## 2 gap::asplot
+
+This section mirrors the original CDKN results for the named function.
+
+``` r
+pkgs <- c("AnnotationDbi", "GenomicRanges", "TxDb.Hsapiens.UCSC.hg19.knownGene", "bigsnpr", "ieugwasr", "zoo", "org.Hs.eg.db")
+for (p in pkgs) if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
+    if (!requireNamespace(p)) warning(paste0("This vignette needs package `", p, "'; please install"))
+}
+#> Loading required namespace: AnnotationDbi
+#> Loading required namespace: GenomicRanges
+#> Loading required namespace: TxDb.Hsapiens.UCSC.hg19.knownGene
+#> Loading required namespace: bigsnpr
+#> Loading required namespace: ieugwasr
+#> Loading required namespace: zoo
+#> Loading required namespace: org.Hs.eg.db
+#> 
+invisible(suppressMessages(lapply(pkgs, require, character.only = TRUE)))
+
+chr   <- 9
+start <- 21900000
+end   <- 22500000
+opengwas_id <- "ebi-a-GCST006867"
+region <- paste0(chr, ":", start, "-", end)
+dat <- associations(variants = region, id=opengwas_id)
+#> Querying id chunk 1 of 1
+#> Querying variant chunk 1 of 1
+lead <- dat$rsid[which.min(dat$p)]
+dat <- dat[order(dat$p), ]
+snps500 <- unique(dat$rsid)
+snps500 <- snps500[!is.na(snps500)]
+snps500 <- snps500[1:min(500, length(snps500))]
+ld_mat <- ieugwasr::ld_matrix(variants=snps500, pop="EUR")
+#> Please look at vignettes for options on running this locally if you need to run many instances of this command.
+ld_names <- rownames(ld_mat)
+ld_clean_names <- sub("_.*", "", ld_names)
+rownames(ld_mat) <- ld_clean_names
+colnames(ld_mat) <- ld_clean_names
+dat_gap <- data.frame(chr=paste0("chr", dat$chr), pos=dat$position, snp=dat$rsid)
+dat_gap$logp <- -log10(dat_gap$p)
+stopifnot(all(rownames(ld_mat) == colnames(ld_mat)))
+rsqr <- ld_mat[lead, ]^2
+dat$rsqr <- rsqr[match(dat$rsid, names(rsqr))]
+dat$gpos_cM <- snp_asGeneticPos(infos.chr=dat$chr, infos.pos=dat$position, type="OMNI")
+dat <- dat[order(dat$chr, dat$position), ]
+dat$d_cm <- c(NA, diff(dat$gpos_cM))
+dat$theta <- c(NA, (1 - exp(-2 * dat$d_cm[-1] / 100)) / 2)
+locus <- data.frame(CHR=dat$chr, POS=dat$position, NAME=dat$rsid, PVAL=dat$p, RSQR=dat$rsqr)
+stopifnot(all(is.finite(locus$PVAL)))
+stopifnot(all(locus$PVAL >= 0 & locus$PVAL <= 1))
+locus <- locus[!is.na(locus$CHR) & !is.na(locus$POS), ]
+if (nrow(locus) == 0) {stop("ERROR: locus is empty after cleaning dat")}
+locus <- locus[order(locus$CHR, locus$POS), ]
+locus$CM <- snp_asGeneticPos(infos.chr=locus$CHR, infos.pos=locus$POS, type="OMNI")
+locus$RATE <- NA_real_
+ok <- !is.na(locus$CM)
+if (sum(ok) > 1) {locus$RATE[ok] <- c(NA, diff(locus$CM[ok]) / diff(locus$POS[ok]) * 1e6)}
+if (sum(!is.na(locus$RATE))>3) {locus$RATE <- zoo::rollmean(locus$RATE, k=7, fill=NA, align="center")}
+stopifnot(nrow(locus) > 0)
+stopifnot(all(is.na(locus$RATE) | is.finite(locus$RATE)))
+stopifnot(all(is.na(locus$CM) | locus$CM>=0))
+stopifnot(all(c("POS", "CM", "RATE") %in% colnames(locus)))
+locus <- locus[order(locus$POS), ]
+map <- with(locus,data.frame(POS=POS, THETA=RATE, DIST=CM))
+map <- map[order(map$POS), ]
+map$THETA[!is.finite(map$THETA)] <- NA
+map$DIST[!is.finite(map$DIST)] <- NA
+gr <- GRanges(seqnames=paste0("chr", chr),ranges=IRanges(start, end))
+genes_gr <- genes(TxDb.Hsapiens.UCSC.hg19.knownGene)
+#>   24 genes were dropped because they have exons located on both strands of the
+#>   same reference sequence or on more than one reference sequence, so cannot be
+#>   represented by a single genomic range.
+#>   Use 'single.strand.genes.only=FALSE' to get all the genes in a GRangesList
+#>   object, or use suppressMessages() to suppress this message.
+hits <- subsetByOverlaps(genes_gr, gr)
+symbols <- mapIds(org.Hs.eg.db, keys=hits$gene_id, keytype="ENTREZID", column="SYMBOL")
+#> 'select()' returned 1:1 mapping between keys and columns
+genes_df <- data.frame(gene_id=hits$gene_id, symbol=unname(symbols), start=start(hits), end=end(hits), strand=as.character(strand(hits)))
+genes <- data.frame(START=genes_df$start, STOP=genes_df$end, STRAND=genes_df$strand, GENE=genes_df$symbol)
+gap::asplot(locus,map,genes)
+```
+
+![Association plot for T2D](pQTLtools/asplot-1.png)
+
+Figure 2.1: Association plot for T2D
+
+## 3 SCALLOP analysis
 
 This section details colocalization and pQTL/disease overlap analysis.
 
-### 2.1 Colocalization
+### 3.1 Colocalization
 
 This is the actual script for cis-pQTL colocalization analysis on GTEx
 v8 for SCALLOP-INF.
 
-#### 2.1.1 Data
+#### 3.1.1 Data
 
 The data were GWAS summary statistics in GRCh37 and VCF format,
 converted by `gwasvcf`. The GTEx association statistics were in GRCh38
 and downloaded from the eQTL Catalogue and stored locally. Data on
 microarray and RNA-Seq remain on the eQTL Catalogue website.
 
-#### 2.1.2 coloc.R
+#### 3.1.2 coloc.R
 
 It contains minor modification to the documentation example,
 
@@ -249,7 +335,7 @@ respect to variant-flanking or gene regions. When no results are
 generated, there would have problem with
 `dplyr::arrange(df_gtex, -PP.H4.abf);p <- ggplot(df_gtex, aes(x = PP.H4.abf)) + geom_histogram()`.
 
-#### 2.1.3 Collection of results
+#### 3.1.3 Collection of results
 
 When these are furnished we keep results (i.e., PP4\>=0.8) as follows,
 
@@ -278,7 +364,7 @@ collect <- function()
 collect()
 ```
 
-#### 2.1.4 The driver program
+#### 3.1.4 The driver program
 
 It is in Bash.
 
@@ -305,7 +391,7 @@ do
 done
 ```
 
-#### 2.1.5 Parallel computing
+#### 3.1.5 Parallel computing
 
 To speed up the analysis, we resort to
 [SLURM](https://slurm.schedmd.com/documentation.html),
@@ -348,13 +434,13 @@ function gtex()
 gtex
 ```
 
-### 2.2 pQTL/disease overlap
+### 3.2 pQTL/disease overlap
 
 The ontology of traits/disease is available through Experimental Factor
 Ontology (EFO)¹, which can be used to build lists of diseases and
 immune-mediated traits and filter search results from PhenoScanner².
 
-#### 2.2.1 Diseases
+#### 3.2.1 Diseases
 
 ``` r
 library(ontologyIndex)
@@ -387,7 +473,7 @@ library(ontologyPlot)
 onto_plot(efo,efo_0000540)
 ```
 
-#### 2.2.2 Lookup
+#### 3.2.2 Lookup
 
 ``` r
 suppressMessages(library(dplyr))
@@ -475,7 +561,7 @@ gwas <- function()
 rxc <- gwas()
 ```
 
-#### 2.2.3 Visualization
+#### 3.2.3 Visualization
 
 ``` r
 SF <- function(rxc, f="SF-pQTL-GWAS.png", ch=21, cw=21, h=13, w=18)
@@ -498,14 +584,14 @@ SF(rxc,f="SF-pQTL-GWAS.png",ch=8,cw=8,h=11,w=8.6)
 
 ![pQTL-disease overlap](SF-pQTL-GWAS.png)
 
-Figure 2.1: pQTL-disease overlap
+Figure 3.1: pQTL-disease overlap
 
-## 3 Caprion analysis
+## 4 Caprion analysis
 
 This is from the Caprion project,
 <https://jinghuazhao.github.io/Caprion/>.
 
-### 3.1 Colocalization
+### 4.1 Colocalization
 
 The `coloc.R` is modified slightly employing `basename` for local files.
 
@@ -872,7 +958,7 @@ collect(batch="eQTLCatalogue")
 The `single_run()` is called for analysis with SLURM and `collect()` for
 summary with no need of SLURM.
 
-### 3.2 LocusZoom.js
+### 4.2 LocusZoom.js
 
 This actually involves liftOver back to GRCh37 done as follows for GTEx
 data.
