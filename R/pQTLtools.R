@@ -81,11 +81,12 @@
 #' @import pQTLdata
 #' @importFrom MsCoreUtils impute_knn impute_RF
 #' @importFrom Rdpack reprompt
-#' @importFrom S4Vectors DataFrame SimpleList endoapply metadata queryHits subjectHits
+#' @importFrom S4Vectors DataFrame SimpleList endoapply metadata queryHits subjectHits unname
 #' @importFrom SummarizedExperiment assay assays rowRanges rowData colData
 #' @importFrom data.table fread
 #' @importFrom dplyr rename intersect union setdiff setequal first last between
 #' @importFrom dplyr %>% filter if_else mutate select bind_cols left_join pull slice
+#' @importFrom gap asplot
 #' @importFrom graphics axis legend lines mtext par points polygon segments text title
 #' @importFrom grDevices colors xy.coords
 #' @importFrom stats complete.cases median na.omit pnorm qbeta qchisq qnorm setNames

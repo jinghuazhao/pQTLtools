@@ -67,12 +67,13 @@ There are also direct links for the html files above
 This section mirrors the original CDKN results for the named function.
 
 ``` r
-pkgs <- c("AnnotationDbi", "GenomicRanges", "TxDb.Hsapiens.UCSC.hg19.knownGene", "bigsnpr", "ieugwasr", "zoo", "org.Hs.eg.db")
+pkgs <- c("AnnotationDbi", "GenomicFeatures", "GenomicRanges", "IRanges", "TxDb.Hsapiens.UCSC.hg19.knownGene",
+          "bigsnpr", "ieugwasr", "zoo", "org.Hs.eg.db")
 for (p in pkgs) if (length(grep(paste("^package:", p, "$", sep=""), search())) == 0) {
     if (!requireNamespace(p)) warning(paste0("This vignette needs package `", p, "'; please install"))
 }
 #> Loading required namespace: AnnotationDbi
-#> Loading required namespace: GenomicRanges
+#> Loading required namespace: GenomicFeatures
 #> Loading required namespace: TxDb.Hsapiens.UCSC.hg19.knownGene
 #> Loading required namespace: bigsnpr
 #> Loading required namespace: ieugwasr
@@ -80,19 +81,18 @@ for (p in pkgs) if (length(grep(paste("^package:", p, "$", sep=""), search())) =
 #> Loading required namespace: org.Hs.eg.db
 #> 
 invisible(suppressMessages(lapply(pkgs, require, character.only = TRUE)))
-
 chr   <- 9
 start <- 21900000
 end   <- 22500000
 opengwas_id <- "ebi-a-GCST006867"
 region <- paste0(chr, ":", start, "-", end)
-dat <- associations(variants = region, id=opengwas_id)
+dat <- ieugwasr::associations(variants=region, id=opengwas_id)
 #> Querying id chunk 1 of 1
 #> Querying variant chunk 1 of 1
 lead <- dat$rsid[which.min(dat$p)]
 dat <- dat[order(dat$p), ]
 snps500 <- unique(dat$rsid)
-snps500 <- snps500[!is.na(snps500)]
+snps500 <- na.omit(snps500)
 snps500 <- snps500[1:min(500, length(snps500))]
 ld_mat <- ieugwasr::ld_matrix(variants=snps500, pop="EUR")
 #> Please look at vignettes for options on running this locally if you need to run many instances of this command.
@@ -102,10 +102,10 @@ rownames(ld_mat) <- ld_clean_names
 colnames(ld_mat) <- ld_clean_names
 dat_gap <- data.frame(chr=paste0("chr", dat$chr), pos=dat$position, snp=dat$rsid)
 dat_gap$logp <- -log10(dat_gap$p)
-stopifnot(all(rownames(ld_mat) == colnames(ld_mat)))
+stopifnot(all(rownames(ld_mat)==colnames(ld_mat)))
 rsqr <- ld_mat[lead, ]^2
 dat$rsqr <- rsqr[match(dat$rsid, names(rsqr))]
-dat$gpos_cM <- snp_asGeneticPos(infos.chr=dat$chr, infos.pos=dat$position, type="OMNI")
+dat$gpos_cM <- bigsnpr::snp_asGeneticPos(infos.chr=dat$chr, infos.pos=dat$position, type="OMNI")
 dat <- dat[order(dat$chr, dat$position), ]
 dat$d_cm <- c(NA, diff(dat$gpos_cM))
 dat$theta <- c(NA, (1 - exp(-2 * dat$d_cm[-1] / 100)) / 2)
@@ -129,17 +129,18 @@ map <- with(locus,data.frame(POS=POS, THETA=RATE, DIST=CM))
 map <- map[order(map$POS), ]
 map$THETA[!is.finite(map$THETA)] <- NA
 map$DIST[!is.finite(map$DIST)] <- NA
-gr <- GRanges(seqnames=paste0("chr", chr),ranges=IRanges(start, end))
-genes_gr <- genes(TxDb.Hsapiens.UCSC.hg19.knownGene)
+gr <- GenomicRanges::GRanges(seqnames=paste0("chr", chr),ranges=IRanges::IRanges(start, end))
+genes_gr <- GenomicFeatures::genes(TxDb.Hsapiens.UCSC.hg19.knownGene::TxDb.Hsapiens.UCSC.hg19.knownGene)
 #>   24 genes were dropped because they have exons located on both strands of the
 #>   same reference sequence or on more than one reference sequence, so cannot be
 #>   represented by a single genomic range.
 #>   Use 'single.strand.genes.only=FALSE' to get all the genes in a GRangesList
 #>   object, or use suppressMessages() to suppress this message.
-hits <- subsetByOverlaps(genes_gr, gr)
-symbols <- mapIds(org.Hs.eg.db, keys=hits$gene_id, keytype="ENTREZID", column="SYMBOL")
+hits <- IRanges::subsetByOverlaps(genes_gr, gr)
+symbols <- AnnotationDbi::mapIds(org.Hs.eg.db::org.Hs.eg.db, keys=hits$gene_id, keytype="ENTREZID", column="SYMBOL")
 #> 'select()' returned 1:1 mapping between keys and columns
-genes_df <- data.frame(gene_id=hits$gene_id, symbol=unname(symbols), start=start(hits), end=end(hits), strand=as.character(strand(hits)))
+genes_df <- data.frame(gene_id=hits$gene_id, symbol=S4Vectors::unname(symbols), start=GenomicRanges::start(hits),
+                       end=GenomicRanges::end(hits), strand=as.character(GenomicRanges::strand(hits)))
 genes <- data.frame(START=genes_df$start, STOP=genes_df$end, STRAND=genes_df$strand, GENE=genes_df$symbol)
 gap::asplot(locus,map,genes)
 ```
