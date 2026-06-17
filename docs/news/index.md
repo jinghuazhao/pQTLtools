@@ -21,8 +21,9 @@
 -   Rewrite get.prop.below.LLOD(), novelty_check(), qtl_lookup().
 -   Set fig.height/fig.width for articles and suggest Cairo for
     CairoPNG.
--   Suggests AnnotationDbi, CAMERA, MSnbase, MSstats, Spectra, bigsnpr,
-    mzR, protViz, rawrr, zoo.
+-   Suggests AnnotationDbi, CAMERA, MSnbase, MSstats, Spectra,
+    TxDb.Hsapiens.UCSC.hg19.knownGene, bigsnpr, mzR, protViz, rawrr,
+    zoo.
 
 ## pQTLtools 0.4
 
