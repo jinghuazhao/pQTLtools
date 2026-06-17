@@ -1,6 +1,6 @@
 ## pQTLtools 0.5
 
-(2025/6/16)
+(2025/6/17)
 
 * _pkgdown.yml overhaul.
 * Accommodate revised gap::METAL_forestplot in vignette.
@@ -14,7 +14,7 @@
 * Revise README.Rmd/bioconductor.Rmd/pQTLtools.Rmd to suppress Fedora 41 check.
 * Rewrite get.prop.below.LLOD(), novelty_check(), qtl_lookup().
 * Set fig.height/fig.width for articles and suggest Cairo for CairoPNG.
-* Suggests CAMERA, MSnbase, MSstats, Spectra, bigsnpr, mzR, protViz, rawrr, zoo.
+* Suggests AnnotationDbi, CAMERA, MSnbase, MSstats, Spectra, bigsnpr, mzR, protViz, rawrr, zoo.
 
 ## pQTLtools 0.4
 
